@@ -112,6 +112,14 @@ jobs:
           # Create a backup
           cp README.md README.md.bak
 
+          # First, remove existing status badges ONLY from tool entry lines (lines starting with "- [")
+          # This preserves badges in the legend/documentation sections
+          sed -i '/^- \[/s/\!\[Active\](https:\/\/img\.shields\.io\/badge\/status-active-brightgreen) //g' README.md
+          sed -i '/^- \[/s/\!\[Stale\](https:\/\/img\.shields\.io\/badge\/status-stale-yellow) //g' README.md
+          sed -i '/^- \[/s/\!\[Unmaintained\](https:\/\/img\.shields\.io\/badge\/status-unmaintained-red) //g' README.md
+          sed -i '/^- \[/s/\!\[Archived\](https:\/\/img\.shields\.io\/badge\/status-archived-lightgrey) //g' README.md
+          sed -i '/^- \[/s/\!\[Deprecated\](https:\/\/img\.shields\.io\/badge\/status-deprecated-lightgrey) //g' README.md
+
           # Process each repository and update its status badge
           while IFS='|' read -r repo_path status days; do
             # Skip if empty
@@ -139,17 +147,10 @@ jobs:
                 ;;
             esac
 
-            # Find lines containing this repo and update status badges
-            # First, remove any existing status badge
-            sed -i "s/\!\[Active\](https:\/\/img\.shields\.io\/badge\/status-active-brightgreen) //g" README.md
-            sed -i "s/\!\[Stale\](https:\/\/img\.shields\.io\/badge\/status-stale-yellow) //g" README.md
-            sed -i "s/\!\[Unmaintained\](https:\/\/img\.shields\.io\/badge\/status-unmaintained-red) //g" README.md
-            sed -i "s/\!\[Archived\](https:\/\/img\.shields\.io\/badge\/status-archived-lightgrey) //g" README.md
-            sed -i "s/\!\[Deprecated\](https:\/\/img\.shields\.io\/badge\/status-deprecated-lightgrey) //g" README.md
-
             # Add the new status badge after the description, before the Stars badge
+            # Only on lines starting with "- [" (tool entries)
             # Pattern: "- [name](url) - Description. ![Stars]" -> "- [name](url) - Description. ![Status] ![Stars]"
-            sed -i "s|\(- \[.*\](https://github.com/${ESCAPED_REPO}[^)]*) - [^!]*\)\(\!\[Stars\]\)|\1${NEW_BADGE} \2|g" README.md
+            sed -i "/^- \[.*github\.com\/${ESCAPED_REPO}/s|\(- \[.*\](https://github.com/${ESCAPED_REPO}[^)]*) - [^!]*\)\(\!\[Stars\]\)|\1${NEW_BADGE} \2|g" README.md
 
           done < updates_needed.txt
 
