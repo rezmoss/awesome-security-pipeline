@@ -5,32 +5,7 @@
 
 > A curated list of open-source security tools organized by CI/CD pipeline stage.
 
-Security shouldn't be an afterthought. This list organizes 50+ battle-tested security tools by where they fit in your pipeline, making it easy to build defense-in-depth from commit to production.
-
-## Reading the Badges
-
-Each tool displays status and activity badges for transparency:
-
-### Maintenance Status (Updated Weekly)
-
-Status badges are **automatically updated every week** by our GitHub Action to reflect current maintenance status.
-
-| Badge | Meaning |
-|-------|---------|
-| ![Active](https://img.shields.io/badge/status-active-brightgreen) | **Active** - Updated within the last 6 months |
-| ![Stale](https://img.shields.io/badge/status-stale-yellow) | **Stale** - No updates in 6-12 months; use with caution |
-| ![Unmaintained](https://img.shields.io/badge/status-unmaintained-red) | **Unmaintained** - No updates in 12+ months; consider alternatives |
-| ![Archived](https://img.shields.io/badge/status-archived-lightgrey) | **Archived** - Repository has been archived by owner |
-| ![Deprecated](https://img.shields.io/badge/status-deprecated-lightgrey) | **Deprecated** - Officially superseded; migration recommended |
-
-### Activity Badges
-
-| Badge | Meaning |
-|-------|---------|
-| ![Stars](https://img.shields.io/badge/stars-★-blue) | GitHub star count - indicates community adoption |
-| ![Last Commit](https://img.shields.io/badge/last%20commit-date-green) | Last commit date - shows exact update time |
-
-> **Tip:** While we update status badges weekly, always verify the "Last Commit" badge for the most current information before adopting a tool.
+Security shouldn't be an afterthought. This list organizes battle-tested security tools by where they fit in your pipeline, making it easy to build defense-in-depth from commit to production.
 
 ## Contents
 
@@ -47,6 +22,7 @@ Status badges are **automatically updated every week** by our GitHub Action to r
 - [Kubernetes Security](#kubernetes-security)
 - [API & Dynamic Testing (DAST)](#api--dynamic-testing-dast)
 - [Cloud Security](#cloud-security)
+- [Reading the Badges](#reading-the-badges)
 - [Contributing](#contributing)
 - [License](#license)
 
@@ -198,6 +174,31 @@ Assess and audit cloud infrastructure security posture.
 - [steampipe](https://github.com/turbot/steampipe) - Query cloud resources using SQL. ![Active](https://img.shields.io/badge/status-active-brightgreen) ![Stars](https://img.shields.io/github/stars/turbot/steampipe) ![Last Commit](https://img.shields.io/github/last-commit/turbot/steampipe)
 
 ---
+
+## Reading the Badges
+
+Each tool displays status and activity badges for transparency.
+
+### Maintenance Status (Updated Weekly)
+
+Status badges are **automatically updated every week** by our GitHub Action to reflect current maintenance status.
+
+| Badge | Meaning |
+|-------|---------|
+| ![Active](https://img.shields.io/badge/status-active-brightgreen) | **Active** - Updated within the last 6 months |
+| ![Stale](https://img.shields.io/badge/status-stale-yellow) | **Stale** - No updates in 6-12 months; use with caution |
+| ![Unmaintained](https://img.shields.io/badge/status-unmaintained-red) | **Unmaintained** - No updates in 12+ months; consider alternatives |
+| ![Archived](https://img.shields.io/badge/status-archived-lightgrey) | **Archived** - Repository has been archived by owner |
+| ![Deprecated](https://img.shields.io/badge/status-deprecated-lightgrey) | **Deprecated** - Officially superseded; migration recommended |
+
+### Activity Badges
+
+| Badge | Meaning |
+|-------|---------|
+| ![Stars](https://img.shields.io/badge/stars-★-blue) | GitHub star count - indicates community adoption |
+| ![Last Commit](https://img.shields.io/badge/last%20commit-date-green) | Last commit date - shows exact update time |
+
+> **Tip:** While we update status badges weekly, always verify the "Last Commit" badge for the most current information before adopting a tool.
 
 ## Contributing
 
