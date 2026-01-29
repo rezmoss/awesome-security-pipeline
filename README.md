@@ -133,6 +133,7 @@ Scan infrastructure configurations for security misconfigurations.
 - [trivy](https://github.com/aquasecurity/trivy) - Also scans IaC misconfigurations (Terraform, CloudFormation, etc.). ![Active](https://img.shields.io/badge/status-active-brightgreen) ![Stars](https://img.shields.io/github/stars/aquasecurity/trivy) ![Last Commit](https://img.shields.io/github/last-commit/aquasecurity/trivy)
 - [snyk-iac](https://github.com/snyk/cli) - Infrastructure as Code security scanning. ![Active](https://img.shields.io/badge/status-active-brightgreen) ![Stars](https://img.shields.io/github/stars/snyk/cli) ![Last Commit](https://img.shields.io/github/last-commit/snyk/cli)
 - [cfn-lint](https://github.com/aws-cloudformation/cfn-lint) - AWS CloudFormation linter with security rules. ![Active](https://img.shields.io/badge/status-active-brightgreen) ![Stars](https://img.shields.io/github/stars/aws-cloudformation/cfn-lint) ![Last Commit](https://img.shields.io/github/last-commit/aws-cloudformation/cfn-lint)
+- [zizmor](https://github.com/zizmorcore/zizmor) - Static analysis for GitHub Actions workflows. ![Active](https://img.shields.io/badge/status-active-brightgreen) ![Stars](https://img.shields.io/github/stars/zizmorcore/zizmor) ![Last Commit](https://img.shields.io/github/last-commit/zizmorcore/zizmor)
 
 ## Container Security
 
