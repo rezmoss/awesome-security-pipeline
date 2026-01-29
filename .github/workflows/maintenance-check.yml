@@ -1,0 +1,201 @@
+name: Maintenance Status Check
+
+on:
+  schedule:
+    # Run weekly on Sunday at 00:00 UTC
+    - cron: '0 0 * * 0'
+  workflow_dispatch: # Allow manual trigger
+  push:
+    branches:
+      - main
+    paths:
+      - 'README.md'
+
+jobs:
+  check-maintenance-status:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: write
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Extract and check all GitHub repositories
+        id: check-repos
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          # Extract all GitHub repository URLs from README.md
+          grep -oP 'https://github\.com/[a-zA-Z0-9_.-]+/[a-zA-Z0-9_.-]+' README.md | \
+            sort -u > all_repos.txt
+
+          echo "Found $(wc -l < all_repos.txt) unique repositories to check"
+
+          # Create a report file
+          echo "# Maintenance Status Report" > status_report.md
+          echo "" >> status_report.md
+          echo "Generated: $(date -u '+%Y-%m-%d %H:%M:%S UTC')" >> status_report.md
+          echo "" >> status_report.md
+
+          # Track changes needed
+          > updates_needed.txt
+
+          while IFS= read -r repo_url; do
+            REPO_PATH=$(echo "$repo_url" | sed 's|https://github.com/||')
+            echo "Checking: $REPO_PATH"
+
+            # Fetch repository data
+            REPO_DATA=$(gh api "repos/$REPO_PATH" 2>/dev/null || echo "ERROR")
+
+            if [ "$REPO_DATA" = "ERROR" ]; then
+              echo "  - ERROR: Could not fetch data"
+              echo "$REPO_PATH|error|Repository not accessible" >> updates_needed.txt
+              continue
+            fi
+
+            # Get last push date
+            PUSHED_AT=$(echo "$REPO_DATA" | jq -r '.pushed_at')
+            ARCHIVED=$(echo "$REPO_DATA" | jq -r '.archived')
+
+            # Calculate days since last update
+            PUSHED_TIMESTAMP=$(date -d "$PUSHED_AT" +%s 2>/dev/null || date -j -f "%Y-%m-%dT%H:%M:%SZ" "$PUSHED_AT" +%s 2>/dev/null)
+            NOW=$(date +%s)
+            DAYS_SINCE_UPDATE=$(( (NOW - PUSHED_TIMESTAMP) / 86400 ))
+
+            # Determine status
+            if [ "$ARCHIVED" = "true" ]; then
+              STATUS="archived"
+              echo "  - ARCHIVED"
+            elif [ "$DAYS_SINCE_UPDATE" -gt 365 ]; then
+              STATUS="unmaintained"
+              echo "  - UNMAINTAINED ($DAYS_SINCE_UPDATE days)"
+            elif [ "$DAYS_SINCE_UPDATE" -gt 180 ]; then
+              STATUS="stale"
+              echo "  - STALE ($DAYS_SINCE_UPDATE days)"
+            else
+              STATUS="active"
+              echo "  - ACTIVE ($DAYS_SINCE_UPDATE days)"
+            fi
+
+            echo "$REPO_PATH|$STATUS|$DAYS_SINCE_UPDATE" >> updates_needed.txt
+
+          done < all_repos.txt
+
+          # Generate summary
+          ACTIVE_COUNT=$(grep -c "|active|" updates_needed.txt || echo "0")
+          STALE_COUNT=$(grep -c "|stale|" updates_needed.txt || echo "0")
+          UNMAINTAINED_COUNT=$(grep -c "|unmaintained|" updates_needed.txt || echo "0")
+          ARCHIVED_COUNT=$(grep -c "|archived|" updates_needed.txt || echo "0")
+          ERROR_COUNT=$(grep -c "|error|" updates_needed.txt || echo "0")
+
+          echo "" >> status_report.md
+          echo "## Summary" >> status_report.md
+          echo "" >> status_report.md
+          echo "| Status | Count |" >> status_report.md
+          echo "|--------|-------|" >> status_report.md
+          echo "| Active | $ACTIVE_COUNT |" >> status_report.md
+          echo "| Stale (6-12 months) | $STALE_COUNT |" >> status_report.md
+          echo "| Unmaintained (12+ months) | $UNMAINTAINED_COUNT |" >> status_report.md
+          echo "| Archived | $ARCHIVED_COUNT |" >> status_report.md
+          echo "| Error | $ERROR_COUNT |" >> status_report.md
+
+          cat status_report.md
+
+      - name: Update README with maintenance status
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          # Create a backup
+          cp README.md README.md.bak
+
+          # Process each repository and update its status badge
+          while IFS='|' read -r repo_path status days; do
+            # Skip if empty
+            [ -z "$repo_path" ] && continue
+
+            # Escape special characters for sed
+            ESCAPED_REPO=$(echo "$repo_path" | sed 's/[\/&]/\\&/g')
+
+            # Determine the badge to add
+            case "$status" in
+              active)
+                NEW_BADGE="![Active](https://img.shields.io/badge/status-active-brightgreen)"
+                ;;
+              stale)
+                NEW_BADGE="![Stale](https://img.shields.io/badge/status-stale-yellow)"
+                ;;
+              unmaintained)
+                NEW_BADGE="![Unmaintained](https://img.shields.io/badge/status-unmaintained-red)"
+                ;;
+              archived)
+                NEW_BADGE="![Archived](https://img.shields.io/badge/status-archived-lightgrey)"
+                ;;
+              *)
+                continue
+                ;;
+            esac
+
+            # Find lines containing this repo and update status badges
+            # First, remove any existing status badge
+            sed -i "s/\!\[Active\](https:\/\/img\.shields\.io\/badge\/status-active-brightgreen) //g" README.md
+            sed -i "s/\!\[Stale\](https:\/\/img\.shields\.io\/badge\/status-stale-yellow) //g" README.md
+            sed -i "s/\!\[Unmaintained\](https:\/\/img\.shields\.io\/badge\/status-unmaintained-red) //g" README.md
+            sed -i "s/\!\[Archived\](https:\/\/img\.shields\.io\/badge\/status-archived-lightgrey) //g" README.md
+            sed -i "s/\!\[Deprecated\](https:\/\/img\.shields\.io\/badge\/status-deprecated-lightgrey) //g" README.md
+
+            # Add the new status badge after the description, before the Stars badge
+            # Pattern: "- [name](url) - Description. ![Stars]" -> "- [name](url) - Description. ![Status] ![Stars]"
+            sed -i "s|\(- \[.*\](https://github.com/${ESCAPED_REPO}[^)]*) - [^!]*\)\(\!\[Stars\]\)|\1${NEW_BADGE} \2|g" README.md
+
+          done < updates_needed.txt
+
+          # Check if there are changes
+          if git diff --quiet README.md; then
+            echo "No changes needed"
+            echo "changes_made=false" >> $GITHUB_OUTPUT
+          else
+            echo "Changes detected"
+            echo "changes_made=true" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Create Pull Request with updates
+        if: github.event_name == 'schedule' || github.event_name == 'workflow_dispatch'
+        uses: peter-evans/create-pull-request@v6
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          commit-message: "chore: update maintenance status badges"
+          title: "chore: Update maintenance status badges"
+          body: |
+            ## Automated Maintenance Status Update
+
+            This PR updates the maintenance status badges for all tools in the README.
+
+            ### Status Definitions
+            - **Active** (green): Updated within the last 6 months
+            - **Stale** (yellow): Not updated in 6-12 months
+            - **Unmaintained** (red): Not updated in 12+ months
+            - **Archived** (grey): Repository has been archived
+
+            ---
+            *This PR was automatically generated by the maintenance check workflow.*
+          branch: maintenance-status-update
+          delete-branch: true
+          labels: |
+            automated
+            maintenance
+
+      - name: Commit changes directly (on push)
+        if: github.event_name == 'push'
+        run: |
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+
+          if ! git diff --quiet README.md; then
+            git add README.md
+            git commit -m "chore: update maintenance status badges [skip ci]"
+            git push
+          fi

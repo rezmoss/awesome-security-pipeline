@@ -1,0 +1,289 @@
+name: PR Validation
+
+on:
+  pull_request:
+    types: [opened, edited, synchronize]
+    paths:
+      - 'README.md'
+
+jobs:
+  validate-submission:
+    runs-on: ubuntu-latest
+    permissions:
+      pull-requests: write
+      contents: read
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Get changed files
+        id: changed-files
+        uses: tj-actions/changed-files@v44
+        with:
+          files: README.md
+
+      - name: Extract new GitHub URLs from PR
+        id: extract-urls
+        if: steps.changed-files.outputs.any_changed == 'true'
+        run: |
+          # Get the diff and extract new GitHub repository URLs
+          git diff origin/${{ github.base_ref }}...HEAD -- README.md | \
+            grep -oP '^\+.*https://github\.com/[a-zA-Z0-9_.-]+/[a-zA-Z0-9_.-]+' | \
+            grep -oP 'https://github\.com/[a-zA-Z0-9_.-]+/[a-zA-Z0-9_.-]+' | \
+            sort -u > new_repos.txt
+
+          if [ -s new_repos.txt ]; then
+            echo "Found new repositories:"
+            cat new_repos.txt
+            echo "has_new_repos=true" >> $GITHUB_OUTPUT
+          else
+            echo "No new repositories found in this PR"
+            echo "has_new_repos=false" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Validate repositories
+        id: validate
+        if: steps.extract-urls.outputs.has_new_repos == 'true'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          echo "## Repository Validation Report" > validation_report.md
+          echo "" >> validation_report.md
+
+          FAILED=false
+          WARNINGS=""
+
+          while IFS= read -r repo_url; do
+            # Extract owner/repo from URL
+            REPO_PATH=$(echo "$repo_url" | sed 's|https://github.com/||')
+            echo "Validating: $REPO_PATH"
+            echo "" >> validation_report.md
+            echo "### $REPO_PATH" >> validation_report.md
+            echo "" >> validation_report.md
+
+            # Fetch repository data from GitHub API
+            REPO_DATA=$(gh api "repos/$REPO_PATH" 2>/dev/null || echo "ERROR")
+
+            if [ "$REPO_DATA" = "ERROR" ]; then
+              echo "- :x: **Repository not found or inaccessible**" >> validation_report.md
+              FAILED=true
+              continue
+            fi
+
+            # Extract relevant fields
+            STARS=$(echo "$REPO_DATA" | jq -r '.stargazers_count')
+            CREATED_AT=$(echo "$REPO_DATA" | jq -r '.created_at')
+            PUSHED_AT=$(echo "$REPO_DATA" | jq -r '.pushed_at')
+            ARCHIVED=$(echo "$REPO_DATA" | jq -r '.archived')
+            LICENSE=$(echo "$REPO_DATA" | jq -r '.license.spdx_id // "None"')
+            DESCRIPTION=$(echo "$REPO_DATA" | jq -r '.description // "No description"')
+            HAS_README=$(echo "$REPO_DATA" | jq -r '.has_wiki')
+            FORK=$(echo "$REPO_DATA" | jq -r '.fork')
+
+            # Calculate ages in days
+            CREATED_TIMESTAMP=$(date -d "$CREATED_AT" +%s 2>/dev/null || date -j -f "%Y-%m-%dT%H:%M:%SZ" "$CREATED_AT" +%s 2>/dev/null)
+            PUSHED_TIMESTAMP=$(date -d "$PUSHED_AT" +%s 2>/dev/null || date -j -f "%Y-%m-%dT%H:%M:%SZ" "$PUSHED_AT" +%s 2>/dev/null)
+            NOW=$(date +%s)
+
+            REPO_AGE_DAYS=$(( (NOW - CREATED_TIMESTAMP) / 86400 ))
+            LAST_UPDATE_DAYS=$(( (NOW - PUSHED_TIMESTAMP) / 86400 ))
+
+            echo "| Check | Status | Value |" >> validation_report.md
+            echo "|-------|--------|-------|" >> validation_report.md
+
+            # Check 1: Repository age (must be > 30 days / 1 month)
+            if [ "$REPO_AGE_DAYS" -lt 30 ]; then
+              echo "| Repository Age | :x: FAIL | ${REPO_AGE_DAYS} days (minimum: 30 days) |" >> validation_report.md
+              FAILED=true
+            else
+              echo "| Repository Age | :white_check_mark: PASS | ${REPO_AGE_DAYS} days |" >> validation_report.md
+            fi
+
+            # Check 2: Minimum stars (must be >= 5)
+            if [ "$STARS" -lt 5 ]; then
+              echo "| Star Count | :x: FAIL | ${STARS} stars (minimum: 5) |" >> validation_report.md
+              FAILED=true
+            else
+              echo "| Star Count | :white_check_mark: PASS | ${STARS} stars |" >> validation_report.md
+            fi
+
+            # Check 3: Recent activity (updated within 365 days)
+            if [ "$LAST_UPDATE_DAYS" -gt 365 ]; then
+              echo "| Last Update | :x: FAIL | ${LAST_UPDATE_DAYS} days ago (maximum: 365 days) |" >> validation_report.md
+              FAILED=true
+            elif [ "$LAST_UPDATE_DAYS" -gt 180 ]; then
+              echo "| Last Update | :warning: WARNING | ${LAST_UPDATE_DAYS} days ago (possibly outdated) |" >> validation_report.md
+              WARNINGS="$WARNINGS\n- $REPO_PATH: Last updated $LAST_UPDATE_DAYS days ago"
+            else
+              echo "| Last Update | :white_check_mark: PASS | ${LAST_UPDATE_DAYS} days ago |" >> validation_report.md
+            fi
+
+            # Check 4: Not archived
+            if [ "$ARCHIVED" = "true" ]; then
+              echo "| Archived | :x: FAIL | Repository is archived |" >> validation_report.md
+              FAILED=true
+            else
+              echo "| Archived | :white_check_mark: PASS | Not archived |" >> validation_report.md
+            fi
+
+            # Check 5: Has license
+            if [ "$LICENSE" = "None" ] || [ "$LICENSE" = "null" ]; then
+              echo "| License | :x: FAIL | No license found |" >> validation_report.md
+              FAILED=true
+            else
+              echo "| License | :white_check_mark: PASS | $LICENSE |" >> validation_report.md
+            fi
+
+            # Check 6: Not a fork (warning only)
+            if [ "$FORK" = "true" ]; then
+              echo "| Fork Status | :warning: WARNING | This is a forked repository |" >> validation_report.md
+              WARNINGS="$WARNINGS\n- $REPO_PATH: Is a fork - please verify it's the canonical source"
+            else
+              echo "| Fork Status | :white_check_mark: PASS | Original repository |" >> validation_report.md
+            fi
+
+            # Check 7: Has description
+            if [ "$DESCRIPTION" = "No description" ] || [ -z "$DESCRIPTION" ]; then
+              echo "| Description | :warning: WARNING | No description provided |" >> validation_report.md
+              WARNINGS="$WARNINGS\n- $REPO_PATH: Missing repository description"
+            else
+              echo "| Description | :white_check_mark: PASS | Has description |" >> validation_report.md
+            fi
+
+            echo "" >> validation_report.md
+
+          done < new_repos.txt
+
+          # Add summary
+          echo "" >> validation_report.md
+          echo "---" >> validation_report.md
+          echo "" >> validation_report.md
+
+          if [ "$FAILED" = "true" ]; then
+            echo ":x: **Validation Failed**" >> validation_report.md
+            echo "" >> validation_report.md
+            echo "One or more repositories do not meet our contribution guidelines. Please review the requirements:" >> validation_report.md
+            echo "- Repository must be at least **1 month old**" >> validation_report.md
+            echo "- Repository must have at least **5 stars**" >> validation_report.md
+            echo "- Repository must have been updated within the last **12 months**" >> validation_report.md
+            echo "- Repository must not be archived" >> validation_report.md
+            echo "- Repository must have a recognized open-source license" >> validation_report.md
+            echo "validation_failed=true" >> $GITHUB_OUTPUT
+          else
+            echo ":white_check_mark: **All Validations Passed**" >> validation_report.md
+            echo "validation_failed=false" >> $GITHUB_OUTPUT
+          fi
+
+          if [ -n "$WARNINGS" ]; then
+            echo "" >> validation_report.md
+            echo "### Warnings" >> validation_report.md
+            echo -e "$WARNINGS" >> validation_report.md
+          fi
+
+          cat validation_report.md
+
+      - name: Check markdown format
+        id: format-check
+        if: steps.changed-files.outputs.any_changed == 'true'
+        run: |
+          echo "## Format Validation" > format_report.md
+          echo "" >> format_report.md
+
+          FORMAT_ISSUES=false
+
+          # Check for proper badge format in new lines
+          git diff origin/${{ github.base_ref }}...HEAD -- README.md | grep '^\+' | grep -v '^\+\+\+' > new_lines.txt || true
+
+          # Check each new tool entry for proper format
+          while IFS= read -r line; do
+            # Skip non-tool lines
+            if echo "$line" | grep -qP '^\+- \[.+\]\(https://'; then
+              # Check for Stars badge
+              if ! echo "$line" | grep -q 'img.shields.io/github/stars'; then
+                echo "- :x: Missing Stars badge: \`${line:0:60}...\`" >> format_report.md
+                FORMAT_ISSUES=true
+              fi
+              # Check for Last Commit badge
+              if ! echo "$line" | grep -q 'img.shields.io/github/last-commit'; then
+                echo "- :x: Missing Last Commit badge: \`${line:0:60}...\`" >> format_report.md
+                FORMAT_ISSUES=true
+              fi
+              # Check for description ending with period
+              if ! echo "$line" | grep -qP ' - .+\. !\['; then
+                echo "- :warning: Description may not end with period: \`${line:0:60}...\`" >> format_report.md
+              fi
+            fi
+          done < new_lines.txt
+
+          if [ "$FORMAT_ISSUES" = "true" ]; then
+            echo "" >> format_report.md
+            echo "Please ensure all tool entries follow the format:" >> format_report.md
+            echo "\`\`\`" >> format_report.md
+            echo '- [Tool Name](https://github.com/org/repo) - Description. ![Stars](https://img.shields.io/github/stars/org/repo) ![Last Commit](https://img.shields.io/github/last-commit/org/repo)' >> format_report.md
+            echo "\`\`\`" >> format_report.md
+            echo "format_failed=true" >> $GITHUB_OUTPUT
+          else
+            echo ":white_check_mark: Format validation passed" >> format_report.md
+            echo "format_failed=false" >> $GITHUB_OUTPUT
+          fi
+
+          cat format_report.md
+
+      - name: Post validation comment
+        if: steps.changed-files.outputs.any_changed == 'true'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const fs = require('fs');
+
+            let comment = '## Automated PR Validation\n\n';
+
+            // Add validation report if exists
+            if (fs.existsSync('validation_report.md')) {
+              comment += fs.readFileSync('validation_report.md', 'utf8');
+              comment += '\n\n';
+            }
+
+            // Add format report if exists
+            if (fs.existsSync('format_report.md')) {
+              comment += fs.readFileSync('format_report.md', 'utf8');
+            }
+
+            comment += '\n\n---\n*This is an automated check. Maintainers will review your submission.*';
+
+            // Find existing bot comment
+            const { data: comments } = await github.rest.issues.listComments({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: context.issue.number,
+            });
+
+            const botComment = comments.find(c =>
+              c.user.type === 'Bot' &&
+              c.body.includes('Automated PR Validation')
+            );
+
+            if (botComment) {
+              await github.rest.issues.updateComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                comment_id: botComment.id,
+                body: comment
+              });
+            } else {
+              await github.rest.issues.createComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: context.issue.number,
+                body: comment
+              });
+            }
+
+      - name: Fail if validation failed
+        if: steps.validate.outputs.validation_failed == 'true' || steps.format-check.outputs.format_failed == 'true'
+        run: |
+          echo "Validation failed. Please review the requirements and fix the issues."
+          exit 1
