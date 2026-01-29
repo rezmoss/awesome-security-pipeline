@@ -57,12 +57,21 @@ jobs:
               continue
             fi
 
-            # Get last push date
-            PUSHED_AT=$(echo "$REPO_DATA" | jq -r '.pushed_at')
             ARCHIVED=$(echo "$REPO_DATA" | jq -r '.archived')
+            DEFAULT_BRANCH=$(echo "$REPO_DATA" | jq -r '.default_branch')
+
+            # Get the actual last commit date on the default branch (more accurate than pushed_at)
+            COMMIT_DATA=$(gh api "repos/$REPO_PATH/commits/$DEFAULT_BRANCH" 2>/dev/null || echo "ERROR")
+
+            if [ "$COMMIT_DATA" = "ERROR" ]; then
+              # Fallback to pushed_at if commits API fails
+              LAST_COMMIT_DATE=$(echo "$REPO_DATA" | jq -r '.pushed_at')
+            else
+              LAST_COMMIT_DATE=$(echo "$COMMIT_DATA" | jq -r '.commit.committer.date')
+            fi
 
             # Calculate days since last update
-            PUSHED_TIMESTAMP=$(date -d "$PUSHED_AT" +%s 2>/dev/null || date -j -f "%Y-%m-%dT%H:%M:%SZ" "$PUSHED_AT" +%s 2>/dev/null)
+            PUSHED_TIMESTAMP=$(date -d "$LAST_COMMIT_DATE" +%s 2>/dev/null || date -j -f "%Y-%m-%dT%H:%M:%SZ" "$LAST_COMMIT_DATE" +%s 2>/dev/null)
             NOW=$(date +%s)
             DAYS_SINCE_UPDATE=$(( (NOW - PUSHED_TIMESTAMP) / 86400 ))
 
