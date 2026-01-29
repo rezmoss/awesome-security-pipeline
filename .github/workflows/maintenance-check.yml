@@ -163,6 +163,9 @@ jobs:
 
           done < updates_needed.txt
 
+          # Clean up temporary files
+          rm -f README.md.bak all_repos.txt status_report.md updates_needed.txt
+
           # Check if there are changes
           if git diff --quiet README.md; then
             echo "No changes needed"
