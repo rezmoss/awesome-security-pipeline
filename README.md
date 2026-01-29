@@ -66,7 +66,7 @@ Sign and verify container images and artifacts for supply chain security.
 
 Audit and verify supply chain security against industry benchmarks.
 
-- [chain-bench](https://github.com/aquasecurity/chain-bench) - Audit supply chain against CIS benchmarks. ![Active](https://img.shields.io/badge/status-active-brightgreen) ![Stars](https://img.shields.io/github/stars/aquasecurity/chain-bench) ![Last Commit](https://img.shields.io/github/last-commit/aquasecurity/chain-bench)
+- [chain-bench](https://github.com/aquasecurity/chain-bench) - Audit supply chain against CIS benchmarks. ![Unmaintained](https://img.shields.io/badge/status-unmaintained-red) ![Stars](https://img.shields.io/github/stars/aquasecurity/chain-bench) ![Last Commit](https://img.shields.io/github/last-commit/aquasecurity/chain-bench)
 
 ## Software Composition Analysis (SCA)
 
@@ -177,7 +177,7 @@ Define and enforce security policies as code across your infrastructure.
 
 - [opa](https://github.com/open-policy-agent/opa) - Open Policy Agent, industry standard for policy as code. ![Active](https://img.shields.io/badge/status-active-brightgreen) ![Stars](https://img.shields.io/github/stars/open-policy-agent/opa) ![Last Commit](https://img.shields.io/github/last-commit/open-policy-agent/opa)
 - [gatekeeper](https://github.com/open-policy-agent/gatekeeper) - OPA for Kubernetes admission control. ![Active](https://img.shields.io/badge/status-active-brightgreen) ![Stars](https://img.shields.io/github/stars/open-policy-agent/gatekeeper) ![Last Commit](https://img.shields.io/github/last-commit/open-policy-agent/gatekeeper)
-- [datree](https://github.com/datreeio/datree) - Prevent Kubernetes misconfigurations. ![Active](https://img.shields.io/badge/status-active-brightgreen) ![Stars](https://img.shields.io/github/stars/datreeio/datree) ![Last Commit](https://img.shields.io/github/last-commit/datreeio/datree)
+- [datree](https://github.com/datreeio/datree) - Prevent Kubernetes misconfigurations. ![Archived](https://img.shields.io/badge/status-archived-lightgrey) ![Stars](https://img.shields.io/github/stars/datreeio/datree) ![Last Commit](https://img.shields.io/github/last-commit/datreeio/datree)
 
 ## Secret Management
 
