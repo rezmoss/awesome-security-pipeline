@@ -62,11 +62,16 @@ Sign and verify container images and artifacts for supply chain security.
 
 - [cosign](https://github.com/sigstore/cosign) - Sign and verify container images. ![Active](https://img.shields.io/badge/status-active-brightgreen) ![Stars](https://img.shields.io/github/stars/sigstore/cosign) ![Last Commit](https://img.shields.io/github/last-commit/sigstore/cosign)
 - [notation](https://github.com/notaryproject/notation) - CNCF signing and verification standard (Notary Project). ![Active](https://img.shields.io/badge/status-active-brightgreen) ![Stars](https://img.shields.io/github/stars/notaryproject/notation) ![Last Commit](https://img.shields.io/github/last-commit/notaryproject/notation)
+- [rekor](https://github.com/sigstore/rekor) - Immutable tamper-resistant transparency log for signed artifacts. ![Active](https://img.shields.io/badge/status-active-brightgreen) ![Stars](https://img.shields.io/github/stars/sigstore/rekor) ![Last Commit](https://img.shields.io/github/last-commit/sigstore/rekor)
+- [fulcio](https://github.com/sigstore/fulcio) - Free code signing certificate authority for open source. ![Active](https://img.shields.io/badge/status-active-brightgreen) ![Stars](https://img.shields.io/github/stars/sigstore/fulcio) ![Last Commit](https://img.shields.io/github/last-commit/sigstore/fulcio)
 
 ## Supply Chain Compliance
 
 Audit and verify supply chain security against industry benchmarks.
 
+- [scorecard](https://github.com/ossf/scorecard) - OpenSSF security health metrics for open source projects. ![Active](https://img.shields.io/badge/status-active-brightgreen) ![Stars](https://img.shields.io/github/stars/ossf/scorecard) ![Last Commit](https://img.shields.io/github/last-commit/ossf/scorecard)
+- [in-toto](https://github.com/in-toto/in-toto) - Framework to protect supply chain integrity. ![Active](https://img.shields.io/badge/status-active-brightgreen) ![Stars](https://img.shields.io/github/stars/in-toto/in-toto) ![Last Commit](https://img.shields.io/github/last-commit/in-toto/in-toto)
+- [slsa-verifier](https://github.com/slsa-framework/slsa-verifier) - Verify SLSA provenance for supply chain security. ![Active](https://img.shields.io/badge/status-active-brightgreen) ![Stars](https://img.shields.io/github/stars/slsa-framework/slsa-verifier) ![Last Commit](https://img.shields.io/github/last-commit/slsa-framework/slsa-verifier)
 - [chain-bench](https://github.com/aquasecurity/chain-bench) - Audit supply chain against CIS benchmarks. ![Unmaintained](https://img.shields.io/badge/status-unmaintained-red) ![Stars](https://img.shields.io/github/stars/aquasecurity/chain-bench) ![Last Commit](https://img.shields.io/github/last-commit/aquasecurity/chain-bench)
 
 ## Software Composition Analysis (SCA)
@@ -113,6 +118,7 @@ Specialized tools for individual programming languages.
 
 #### Go
 - [gosec](https://github.com/securego/gosec) - Security checker for Go source code. ![Active](https://img.shields.io/badge/status-active-brightgreen) ![Stars](https://img.shields.io/github/stars/securego/gosec) ![Last Commit](https://img.shields.io/github/last-commit/securego/gosec)
+- [govulncheck](https://github.com/golang/vuln) - Official Go vulnerability scanner for dependencies and binaries. ![Active](https://img.shields.io/badge/status-active-brightgreen) ![Stars](https://img.shields.io/github/stars/golang/vuln) ![Last Commit](https://img.shields.io/github/last-commit/golang/vuln)
 
 #### Ruby
 - [brakeman](https://github.com/presidentbeef/brakeman) - Static analysis for Ruby on Rails applications. ![Active](https://img.shields.io/badge/status-active-brightgreen) ![Stars](https://img.shields.io/github/stars/presidentbeef/brakeman) ![Last Commit](https://img.shields.io/github/last-commit/presidentbeef/brakeman)
@@ -151,6 +157,8 @@ Scan container images for vulnerabilities before deployment.
 - [anchore-engine](https://github.com/anchore/anchore-engine) - Container analysis and policy evaluation. ![Archived](https://img.shields.io/badge/status-archived-lightgrey) ![Stars](https://img.shields.io/github/stars/anchore/anchore-engine) ![Last Commit](https://img.shields.io/github/last-commit/anchore/anchore-engine) *(Migrate to [Syft](https://github.com/anchore/syft) + [Grype](https://github.com/anchore/grype))*
 - [docker-bench-security](https://github.com/docker/docker-bench-security) - Check Docker deployment against CIS benchmarks. ![Unmaintained](https://img.shields.io/badge/status-unmaintained-red) ![Stars](https://img.shields.io/github/stars/docker/docker-bench-security) ![Last Commit](https://img.shields.io/github/last-commit/docker/docker-bench-security)
 - [dockle](https://github.com/goodwithtech/dockle) - Container image linter for security best practices. ![Unmaintained](https://img.shields.io/badge/status-unmaintained-red) ![Stars](https://img.shields.io/github/stars/goodwithtech/dockle) ![Last Commit](https://img.shields.io/github/last-commit/goodwithtech/dockle)
+- [hadolint](https://github.com/hadolint/hadolint) - Dockerfile linter for best practices and security rules. ![Active](https://img.shields.io/badge/status-active-brightgreen) ![Stars](https://img.shields.io/github/stars/hadolint/hadolint) ![Last Commit](https://img.shields.io/github/last-commit/hadolint/hadolint)
+- [dive](https://github.com/wagoodman/dive) - Explore and analyze Docker image layers and efficiency. ![Active](https://img.shields.io/badge/status-active-brightgreen) ![Stars](https://img.shields.io/github/stars/wagoodman/dive) ![Last Commit](https://img.shields.io/github/last-commit/wagoodman/dive)
 
 ### Runtime Security
 
@@ -181,6 +189,7 @@ Define and enforce security policies as code across your infrastructure.
 - [opa](https://github.com/open-policy-agent/opa) - Open Policy Agent, industry standard for policy as code. ![Active](https://img.shields.io/badge/status-active-brightgreen) ![Stars](https://img.shields.io/github/stars/open-policy-agent/opa) ![Last Commit](https://img.shields.io/github/last-commit/open-policy-agent/opa)
 - [gatekeeper](https://github.com/open-policy-agent/gatekeeper) - OPA for Kubernetes admission control. ![Active](https://img.shields.io/badge/status-active-brightgreen) ![Stars](https://img.shields.io/github/stars/open-policy-agent/gatekeeper) ![Last Commit](https://img.shields.io/github/last-commit/open-policy-agent/gatekeeper)
 - [datree](https://github.com/datreeio/datree) - Prevent Kubernetes misconfigurations. ![Archived](https://img.shields.io/badge/status-archived-lightgrey) ![Stars](https://img.shields.io/github/stars/datreeio/datree) ![Last Commit](https://img.shields.io/github/last-commit/datreeio/datree)
+- [conftest](https://github.com/open-policy-agent/conftest) - Test configuration files against OPA policies. ![Active](https://img.shields.io/badge/status-active-brightgreen) ![Stars](https://img.shields.io/github/stars/open-policy-agent/conftest) ![Last Commit](https://img.shields.io/github/last-commit/open-policy-agent/conftest)
 
 ## Secret Management
 
@@ -189,6 +198,8 @@ Securely manage and distribute secrets in Kubernetes and GitOps workflows.
 - [sealed-secrets](https://github.com/bitnami-labs/sealed-secrets) - Encrypt secrets locally, decrypt only in cluster. ![Active](https://img.shields.io/badge/status-active-brightgreen) ![Stars](https://img.shields.io/github/stars/bitnami-labs/sealed-secrets) ![Last Commit](https://img.shields.io/github/last-commit/bitnami-labs/sealed-secrets)
 - [external-secrets](https://github.com/external-secrets/external-secrets) - Sync secrets from AWS/Vault/Azure into Kubernetes. ![Active](https://img.shields.io/badge/status-active-brightgreen) ![Stars](https://img.shields.io/github/stars/external-secrets/external-secrets) ![Last Commit](https://img.shields.io/github/last-commit/external-secrets/external-secrets)
 - [sops](https://github.com/getsops/sops) - Editor-transparent encryption for Git files. ![Active](https://img.shields.io/badge/status-active-brightgreen) ![Stars](https://img.shields.io/github/stars/getsops/sops) ![Last Commit](https://img.shields.io/github/last-commit/getsops/sops)
+- [vault](https://github.com/hashicorp/vault) - Secrets management, encryption as a service, and privileged access. ![Active](https://img.shields.io/badge/status-active-brightgreen) ![Stars](https://img.shields.io/github/stars/hashicorp/vault) ![Last Commit](https://img.shields.io/github/last-commit/hashicorp/vault)
+- [infisical](https://github.com/Infisical/infisical) - Open-source secret management platform with native integrations. ![Active](https://img.shields.io/badge/status-active-brightgreen) ![Stars](https://img.shields.io/github/stars/Infisical/infisical) ![Last Commit](https://img.shields.io/github/last-commit/Infisical/infisical)
 
 ## API & Dynamic Testing (DAST)
 
@@ -209,6 +220,8 @@ Assess and audit cloud infrastructure security posture.
 - [cloudsplaining](https://github.com/salesforce/cloudsplaining) - AWS IAM security assessment tool. ![Active](https://img.shields.io/badge/status-active-brightgreen) ![Stars](https://img.shields.io/github/stars/salesforce/cloudsplaining) ![Last Commit](https://img.shields.io/github/last-commit/salesforce/cloudsplaining)
 - [ScoutSuite](https://github.com/nccgroup/ScoutSuite) - Multi-cloud security auditing tool. ![Unmaintained](https://img.shields.io/badge/status-unmaintained-red) ![Stars](https://img.shields.io/github/stars/nccgroup/ScoutSuite) ![Last Commit](https://img.shields.io/github/last-commit/nccgroup/ScoutSuite)
 - [steampipe](https://github.com/turbot/steampipe) - Query cloud resources using SQL. ![Active](https://img.shields.io/badge/status-active-brightgreen) ![Stars](https://img.shields.io/github/stars/turbot/steampipe) ![Last Commit](https://img.shields.io/github/last-commit/turbot/steampipe)
+- [cloudquery](https://github.com/cloudquery/cloudquery) - Cloud asset inventory and security analysis with SQL. ![Active](https://img.shields.io/badge/status-active-brightgreen) ![Stars](https://img.shields.io/github/stars/cloudquery/cloudquery) ![Last Commit](https://img.shields.io/github/last-commit/cloudquery/cloudquery)
+- [cartography](https://github.com/lyft/cartography) - Map infrastructure relationships and attack surface. ![Active](https://img.shields.io/badge/status-active-brightgreen) ![Stars](https://img.shields.io/github/stars/lyft/cartography) ![Last Commit](https://img.shields.io/github/last-commit/lyft/cartography)
 
 ---
 
