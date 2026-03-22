@@ -63,7 +63,6 @@ Sign and verify container images and artifacts for supply chain security.
 - [cosign](https://github.com/sigstore/cosign) - Sign and verify container images. ![Active](https://img.shields.io/badge/status-active-brightgreen) ![Stars](https://img.shields.io/github/stars/sigstore/cosign) ![Last Commit](https://img.shields.io/github/last-commit/sigstore/cosign)
 - [notation](https://github.com/notaryproject/notation) - CNCF signing and verification standard (Notary Project). ![Active](https://img.shields.io/badge/status-active-brightgreen) ![Stars](https://img.shields.io/github/stars/notaryproject/notation) ![Last Commit](https://img.shields.io/github/last-commit/notaryproject/notation)
 - [rekor](https://github.com/sigstore/rekor) - Immutable tamper-resistant transparency log for signed artifacts. ![Active](https://img.shields.io/badge/status-active-brightgreen) ![Stars](https://img.shields.io/github/stars/sigstore/rekor) ![Last Commit](https://img.shields.io/github/last-commit/sigstore/rekor)
-- [fulcio](https://github.com/sigstore/fulcio) - Free code signing certificate authority for open source. ![Active](https://img.shields.io/badge/status-active-brightgreen) ![Stars](https://img.shields.io/github/stars/sigstore/fulcio) ![Last Commit](https://img.shields.io/github/last-commit/sigstore/fulcio)
 
 ## Supply Chain Compliance
 
