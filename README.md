@@ -141,6 +141,7 @@ Scan infrastructure configurations for security misconfigurations.
 - [snyk-iac](https://github.com/snyk/cli) - Infrastructure as Code security scanning. ![Active](https://img.shields.io/badge/status-active-brightgreen) ![Stars](https://img.shields.io/github/stars/snyk/cli) ![Last Commit](https://img.shields.io/github/last-commit/snyk/cli)
 - [cfn-lint](https://github.com/aws-cloudformation/cfn-lint) - AWS CloudFormation linter with security rules. ![Active](https://img.shields.io/badge/status-active-brightgreen) ![Stars](https://img.shields.io/github/stars/aws-cloudformation/cfn-lint) ![Last Commit](https://img.shields.io/github/last-commit/aws-cloudformation/cfn-lint)
 - [zizmor](https://github.com/zizmorcore/zizmor) - Static analysis for GitHub Actions workflows. ![Active](https://img.shields.io/badge/status-active-brightgreen) ![Stars](https://img.shields.io/github/stars/zizmorcore/zizmor) ![Last Commit](https://img.shields.io/github/last-commit/zizmorcore/zizmor)
+- [gha-scanner](https://github.com/raajheshkannaa/gha-scanner) - Security scanner for GitHub Actions workflows with 25 checks across 8 categories. Web UI, CLI, and GitHub Action. ![Active](https://img.shields.io/badge/status-active-brightgreen) ![Stars](https://img.shields.io/github/stars/raajheshkannaa/gha-scanner) ![Last Commit](https://img.shields.io/github/last-commit/raajheshkannaa/gha-scanner)
 
 ## Container Security
 
