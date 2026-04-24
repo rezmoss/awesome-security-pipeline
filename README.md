@@ -180,6 +180,7 @@ Secure Kubernetes clusters, manifests, and workloads.
 - [trivy-operator](https://github.com/aquasecurity/trivy-operator) - Kubernetes-native security reports. ![Active](https://img.shields.io/badge/status-active-brightgreen) ![Stars](https://img.shields.io/github/stars/aquasecurity/trivy-operator) ![Last Commit](https://img.shields.io/github/last-commit/aquasecurity/trivy-operator)
 - [kubiscan](https://github.com/cyberark/KubiScan) - Scan Kubernetes RBAC for risky permissions. ![Stale](https://img.shields.io/badge/status-stale-yellow) ![Stars](https://img.shields.io/github/stars/cyberark/KubiScan) ![Last Commit](https://img.shields.io/github/last-commit/cyberark/KubiScan)
 - [kube-hunter](https://github.com/aquasecurity/kube-hunter) - Hunt for security weaknesses in Kubernetes clusters. ![Unmaintained](https://img.shields.io/badge/status-unmaintained-red) ![Stars](https://img.shields.io/github/stars/aquasecurity/kube-hunter) ![Last Commit](https://img.shields.io/github/last-commit/aquasecurity/kube-hunter)
+- [KubeStellar Console](https://github.com/kubestellar/console) - AI-powered multi-cluster Kubernetes dashboard with built-in Falco, Kyverno, and OPA/Gatekeeper integrations for unified security visibility across hybrid and edge clusters. CNCF Sandbox project. ![Active](https://img.shields.io/badge/status-active-brightgreen) ![Stars](https://img.shields.io/github/stars/kubestellar/console) ![Last Commit](https://img.shields.io/github/last-commit/kubestellar/console)
 
 ## Policy as Code
 
