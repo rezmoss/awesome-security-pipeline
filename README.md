@@ -109,7 +109,7 @@ Specialized tools for individual programming languages.
 #### Python
 - [bandit](https://github.com/PyCQA/bandit) - Security linter for Python code. ![Active](https://img.shields.io/badge/status-active-brightgreen) ![Stars](https://img.shields.io/github/stars/PyCQA/bandit) ![Last Commit](https://img.shields.io/github/last-commit/PyCQA/bandit)
 - [safety](https://github.com/pyupio/safety) - Check Python dependencies for vulnerabilities. ![Active](https://img.shields.io/badge/status-active-brightgreen) ![Stars](https://img.shields.io/github/stars/pyupio/safety) ![Last Commit](https://img.shields.io/github/last-commit/pyupio/safety)
-- [pyre-check](https://github.com/facebook/pyre-check) - Performant type checker with security analysis. ![Active](https://img.shields.io/badge/status-active-brightgreen) ![Stars](https://img.shields.io/github/stars/facebook/pyre-check) ![Last Commit](https://img.shields.io/github/last-commit/facebook/pyre-check)
+- [pyre-check](https://github.com/facebook/pyre-check) - Performant type checker with security analysis. ![Archived](https://img.shields.io/badge/status-archived-lightgrey) ![Stars](https://img.shields.io/github/stars/facebook/pyre-check) ![Last Commit](https://img.shields.io/github/last-commit/facebook/pyre-check)
 
 #### JavaScript/Node.js
 - [njsscan](https://github.com/ajinabraham/njsscan) - Semantic SAST tool for Node.js applications. ![Unmaintained](https://img.shields.io/badge/status-unmaintained-red) ![Stars](https://img.shields.io/github/stars/ajinabraham/njsscan) ![Last Commit](https://img.shields.io/github/last-commit/ajinabraham/njsscan)
