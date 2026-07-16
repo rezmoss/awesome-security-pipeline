@@ -1,0 +1,84 @@
+name: Catalog data correction
+description: Report incorrect, outdated, missing, or misleading catalog information.
+title: "[Correction]: "
+labels:
+  - documentation
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Use this form for tool names, links, descriptions, placement, license, or maintenance status. Provide canonical evidence so the correction can be verified.
+
+  - type: input
+    id: affected_entry
+    attributes:
+      label: Affected tool or section
+      description: Name the tool, category, table, or document containing the problem.
+      placeholder: Tool Name — Software Composition Analysis
+    validations:
+      required: true
+
+  - type: input
+    id: location
+    attributes:
+      label: Current location
+      description: Link to the affected line or page when possible.
+      placeholder: https://github.com/rezmoss/awesome-security-pipeline/blob/main/README.md#...
+    validations:
+      required: true
+
+  - type: textarea
+    id: current_data
+    attributes:
+      label: What is currently stated?
+      description: Quote only the specific value or claim that needs correction.
+    validations:
+      required: true
+
+  - type: textarea
+    id: corrected_data
+    attributes:
+      label: Proposed correction
+      description: State the precise replacement, removal, or reclassification you recommend.
+    validations:
+      required: true
+
+  - type: textarea
+    id: evidence
+    attributes:
+      label: Verification evidence
+      description: Link to canonical repository metadata, documentation, release history, license, or another authoritative source.
+      placeholder: Include direct links and the date you verified them.
+    validations:
+      required: true
+
+  - type: dropdown
+    id: affiliation
+    attributes:
+      label: Affiliation with the affected project
+      options:
+        - No affiliation
+        - Maintainer, author, or contributor
+        - Employee, sponsor, or other financial relationship
+        - Other relationship disclosed below
+    validations:
+      required: true
+
+  - type: textarea
+    id: affiliation_details
+    attributes:
+      label: Additional context
+      description: Disclose any other relationship, caveat, or impact. Enter "None" if there is nothing to add.
+    validations:
+      required: true
+
+  - type: checkboxes
+    id: confirmation
+    attributes:
+      label: Confirmation
+      options:
+        - label: I searched existing open issues for this correction.
+          required: true
+        - label: I understand that maintenance badges measure repository activity, not security effectiveness.
+          required: true
+

@@ -1,0 +1,113 @@
+name: New tool proposal
+description: Propose an open-source security tool for the curated catalog.
+title: "[Tool]: "
+labels:
+  - enhancement
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for suggesting a tool. Proposals are evaluated against the [contribution guidelines](../../CONTRIBUTING.md) and [curation methodology](../../docs/methodology.md). GitHub stars are used only as an anti-spam threshold, not as a quality score.
+
+  - type: input
+    id: tool_name
+    attributes:
+      label: Tool name
+      description: Use the official project name.
+      placeholder: Example Security Scanner
+    validations:
+      required: true
+
+  - type: input
+    id: repository_url
+    attributes:
+      label: Canonical repository URL
+      description: Link to the upstream source repository, not a product page, mirror, or fork.
+      placeholder: https://github.com/owner/repository
+    validations:
+      required: true
+
+  - type: input
+    id: license_url
+    attributes:
+      label: Open-source license evidence
+      description: Link to the repository license file or other canonical license evidence.
+      placeholder: https://github.com/owner/repository/blob/main/LICENSE
+    validations:
+      required: true
+
+  - type: dropdown
+    id: pipeline_stage
+    attributes:
+      label: Primary pipeline stage
+      description: Select the stage where this tool provides its main security control.
+      options:
+        - Pre-commit
+        - Pull request
+        - Build
+        - Package or artifact
+        - Deploy or admission
+        - Runtime
+        - Multiple stages
+    validations:
+      required: true
+
+  - type: input
+    id: proposed_category
+    attributes:
+      label: Proposed catalog category
+      description: Name an existing README category, or explain why a new category is necessary.
+      placeholder: Software Composition Analysis (SCA)
+    validations:
+      required: true
+
+  - type: textarea
+    id: automation_evidence
+    attributes:
+      label: Pipeline use and documentation
+      description: Explain the non-interactive CI/CD use case and link to installation and automation documentation.
+      placeholder: Describe the CLI, API, CI integration, or machine-readable output and include canonical documentation links.
+    validations:
+      required: true
+
+  - type: textarea
+    id: catalog_value
+    attributes:
+      label: Distinct value
+      description: Explain the gap this fills or how it differs materially from tools already listed.
+    validations:
+      required: true
+
+  - type: dropdown
+    id: affiliation
+    attributes:
+      label: Affiliation
+      description: Disclose any relationship with the project or organization.
+      options:
+        - I have no affiliation with this tool
+        - I am a maintainer, author, contributor, employee, sponsor, or otherwise affiliated
+    validations:
+      required: true
+
+  - type: textarea
+    id: affiliation_details
+    attributes:
+      label: Affiliation details
+      description: If affiliated, describe the relationship. Enter "Not applicable" otherwise.
+    validations:
+      required: true
+
+  - type: checkboxes
+    id: eligibility
+    attributes:
+      label: Eligibility checks
+      options:
+        - label: The repository is at least 30 days old and has at least five GitHub stars.
+          required: true
+        - label: The canonical repository is not archived and has a default-branch commit within the last 365 days.
+          required: true
+        - label: The project has installation and basic usage documentation and is suitable for non-interactive automation.
+          required: true
+        - label: I searched the README and existing issues for this tool or an equivalent proposal.
+          required: true
+
