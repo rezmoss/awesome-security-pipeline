@@ -175,6 +175,10 @@ jobs:
       - name: Check out source
         uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4
 
+      - name: Prepare report directory
+        shell: bash
+        run: mkdir -p artifacts
+
       - name: Scan Dockerfile and Kubernetes configuration
         uses: aquasecurity/trivy-action@c07df6fec6fa692e6fd1200d50aaa1fdd66f03c8 # master, resolved 2026-07-16
         with:
