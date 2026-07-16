@@ -1,0 +1,105 @@
+name: Recipe failure
+description: Report a reproducible failure in a tested security pipeline recipe.
+title: "[Recipe failure]: "
+labels:
+  - bug
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Please include a reproducible run and remove credentials, tokens, private source code, and other sensitive data from logs before submitting.
+
+  - type: dropdown
+    id: recipe
+    attributes:
+      label: Affected recipe
+      options:
+        - GitHub Actions security baseline
+        - Security demo application
+        - Documentation or quick-start commands
+        - Other committed recipe
+    validations:
+      required: true
+
+  - type: input
+    id: revision
+    attributes:
+      label: Repository revision
+      description: Provide the full commit SHA or release tag you tested.
+      placeholder: Full 40-character commit SHA or v1.0.0
+    validations:
+      required: true
+
+  - type: input
+    id: run_url
+    attributes:
+      label: Workflow run or reproduction URL
+      description: Link to a public GitHub Actions run or minimal public reproduction when available. Enter "Not public" only if no safe URL can be shared.
+      placeholder: https://github.com/owner/repository/actions/runs/...
+    validations:
+      required: true
+
+  - type: input
+    id: failing_job
+    attributes:
+      label: Failing job and step
+      placeholder: Dependencies — Scan lockfile with OSV-Scanner
+    validations:
+      required: true
+
+  - type: textarea
+    id: expected_behavior
+    attributes:
+      label: Expected behavior
+      description: Describe the result documented by the recipe.
+    validations:
+      required: true
+
+  - type: textarea
+    id: actual_behavior
+    attributes:
+      label: Actual behavior and sanitized error
+      description: Paste the smallest useful error excerpt. Remove all secrets and private data.
+      render: shell
+    validations:
+      required: true
+
+  - type: textarea
+    id: reproduction
+    attributes:
+      label: Reproduction steps
+      description: List the exact steps from a clean fork or checkout, including any documented configuration changes.
+      placeholder: |
+        1. Forked revision ...
+        2. Enabled GitHub Actions ...
+        3. Triggered workflow using ...
+    validations:
+      required: true
+
+  - type: textarea
+    id: environment
+    attributes:
+      label: Environment
+      description: Include trigger type, runner, architecture, relevant tool versions, and whether this occurred in a fork.
+      placeholder: workflow_dispatch; ubuntu-24.04; x86_64; fork; no workflow changes
+    validations:
+      required: true
+
+  - type: textarea
+    id: workflow_changes
+    attributes:
+      label: Changes from the committed recipe
+      description: List every workflow, fixture, permission, or path change. Enter "None" if unmodified.
+    validations:
+      required: true
+
+  - type: checkboxes
+    id: confirmation
+    attributes:
+      label: Confirmation
+      options:
+        - label: I reproduced this against a current commit or release and searched existing issues.
+          required: true
+        - label: I removed credentials, tokens, private source code, and other sensitive information.
+          required: true
+

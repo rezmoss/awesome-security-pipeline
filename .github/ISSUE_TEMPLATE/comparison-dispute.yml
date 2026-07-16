@@ -1,0 +1,88 @@
+name: Comparison dispute
+description: Challenge a comparison claim using canonical or reproducible evidence.
+title: "[Comparison dispute]: "
+labels:
+  - documentation
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Comparisons are resolved using declared methodology and evidence, not popularity. A disputed claim may remain labeled as disputed while evidence or reproduction is reviewed.
+
+  - type: input
+    id: comparison_location
+    attributes:
+      label: Comparison and claim location
+      description: Link to the exact comparison page, table, line, or revision.
+      placeholder: https://github.com/rezmoss/awesome-security-pipeline/blob/main/comparisons/...
+    validations:
+      required: true
+
+  - type: textarea
+    id: disputed_claim
+    attributes:
+      label: Disputed claim
+      description: Quote only the specific cell, measurement, or conclusion you dispute.
+    validations:
+      required: true
+
+  - type: dropdown
+    id: dispute_type
+    attributes:
+      label: Type of dispute
+      options:
+        - Factual or capability error
+        - Methodology concern
+        - Reproduction mismatch
+        - Outdated version or documentation
+        - Missing limitation or context
+        - Other evidence-based concern
+    validations:
+      required: true
+
+  - type: textarea
+    id: evidence
+    attributes:
+      label: Evidence
+      description: Link to canonical documentation or provide commands, fixtures, versions, environment, and complete reproducible results.
+      placeholder: Include direct sources or a minimal reproduction and the date tested.
+    validations:
+      required: true
+
+  - type: textarea
+    id: proposed_resolution
+    attributes:
+      label: Proposed resolution
+      description: Suggest corrected wording, data, methodology, or an explicit limitation.
+    validations:
+      required: true
+
+  - type: dropdown
+    id: affiliation
+    attributes:
+      label: Affiliation with a compared project
+      options:
+        - No affiliation
+        - Maintainer, author, or contributor
+        - Employee, sponsor, or other financial relationship
+        - Other relationship disclosed below
+    validations:
+      required: true
+
+  - type: textarea
+    id: affiliation_details
+    attributes:
+      label: Affiliation details and additional context
+      description: Explain any relationship or relevant caveat. Enter "None" if there is nothing to add.
+    validations:
+      required: true
+
+  - type: checkboxes
+    id: confirmation
+    attributes:
+      label: Confirmation
+      options:
+        - label: I reviewed the comparison methodology and searched existing disputes.
+          required: true
+        - label: My report identifies a verifiable claim or method, not only a product preference.
+          required: true
