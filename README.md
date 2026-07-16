@@ -23,6 +23,7 @@ Start with a working pipeline, not an empty checklist. The included GitHub Actio
 | See a complete working implementation | [10-minute quick start](#10-minute-quick-start) |
 | Understand every job, artifact, permission, and failure mode | [Security demo guide](examples/security-demo/README.md) |
 | Choose a smaller or more specialized stack | [Project-type selection matrix](#choose-your-baseline) |
+| Compare GitHub Actions security tools and permissions | [Open-source stack comparison](comparisons/github-actions-security-tools.md) |
 | Evaluate why these tools were selected | [Reference stack decision](docs/reference-stack.md) |
 | Check how projects are selected and classified | [Curation and verification methodology](docs/methodology.md) |
 
