@@ -1,0 +1,98 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="720" height="1260" viewBox="0 0 720 1260" role="img" aria-labelledby="title desc">
+  <title id="title">Open-source security controls across the CI/CD pipeline</title>
+  <desc id="desc">A vertical diagram from pre-commit through pull request, build, package, trusted release, deploy, and runtime with the selected baseline controls.</desc>
+  <defs>
+    <style>
+      .bg { fill: #f8fafc; }
+      .stage { fill: #0b2239; stroke: #38bdf8; stroke-width: 3; }
+      .control { fill: #e8f4ff; stroke: #0284c7; stroke-width: 2; }
+      .stage-title { fill: #fff; font: 700 22px system-ui, sans-serif; }
+      .stage-sub { fill: #dbeafe; font: 15px system-ui, sans-serif; }
+      .control-text { fill: #102a43; font: 600 16px system-ui, sans-serif; }
+      .control-sub { fill: #334e68; font: 14px system-ui, sans-serif; }
+      .arrow { stroke: #0284c7; stroke-width: 4; fill: none; }
+      .heading { fill: #0b2239; font: 800 28px system-ui, sans-serif; }
+      .legend { fill: #486581; font: 14px system-ui, sans-serif; }
+    </style>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#0284c7"/>
+    </marker>
+  </defs>
+  <rect class="bg" width="720" height="1260" rx="20"/>
+  <text class="heading" x="360" y="48" text-anchor="middle">Open-Source Security Pipeline</text>
+  <text class="legend" x="360" y="76" text-anchor="middle">Baseline controls from commit to runtime</text>
+
+  <path class="arrow" marker-end="url(#arrow)" d="M360 210 V245"/>
+  <path class="arrow" marker-end="url(#arrow)" d="M360 375 V410"/>
+  <path class="arrow" marker-end="url(#arrow)" d="M360 540 V575"/>
+  <path class="arrow" marker-end="url(#arrow)" d="M360 705 V740"/>
+  <path class="arrow" marker-end="url(#arrow)" d="M360 870 V905"/>
+  <path class="arrow" marker-end="url(#arrow)" d="M360 1035 V1070"/>
+
+  <g transform="translate(50 100)">
+    <rect class="stage" width="240" height="110" rx="14"/>
+    <text class="stage-title" x="120" y="42" text-anchor="middle">1. Pre-commit</text>
+    <text class="stage-sub" x="120" y="72" text-anchor="middle">Developer workstation</text>
+    <rect class="control" x="280" width="340" height="110" rx="14"/>
+    <text class="control-text" x="450" y="40" text-anchor="middle">Gitleaks</text>
+    <text class="control-sub" x="450" y="68" text-anchor="middle">Optional local Semgrep checks</text>
+  </g>
+
+  <g transform="translate(50 265)">
+    <rect class="stage" width="240" height="110" rx="14"/>
+    <text class="stage-title" x="120" y="42" text-anchor="middle">2. Pull request</text>
+    <text class="stage-sub" x="120" y="72" text-anchor="middle">Source and config gates</text>
+    <rect class="control" x="280" width="340" height="110" rx="14"/>
+    <text class="control-text" x="450" y="32" text-anchor="middle">Gitleaks · Semgrep · OSV-Scanner</text>
+    <text class="control-sub" x="450" y="60" text-anchor="middle">Trivy configuration scan</text>
+    <text class="control-sub" x="450" y="84" text-anchor="middle">SARIF plus native results</text>
+  </g>
+
+  <g transform="translate(50 430)">
+    <rect class="stage" width="240" height="110" rx="14"/>
+    <text class="stage-title" x="120" y="42" text-anchor="middle">3. Build</text>
+    <text class="stage-sub" x="120" y="72" text-anchor="middle">Create container image</text>
+    <rect class="control" x="280" width="340" height="110" rx="14"/>
+    <text class="control-text" x="450" y="40" text-anchor="middle">Build after gates pass</text>
+    <text class="control-sub" x="450" y="68" text-anchor="middle">Record immutable image digest</text>
+  </g>
+
+  <g transform="translate(50 595)">
+    <rect class="stage" width="240" height="110" rx="14"/>
+    <text class="stage-title" x="120" y="42" text-anchor="middle">4. Package</text>
+    <text class="stage-sub" x="120" y="72" text-anchor="middle">Inventory and scan</text>
+    <rect class="control" x="280" width="340" height="110" rx="14"/>
+    <text class="control-text" x="450" y="32" text-anchor="middle">Syft SBOM · Trivy image scan</text>
+    <text class="control-sub" x="450" y="60" text-anchor="middle">Retain standard and native output</text>
+    <text class="control-sub" x="450" y="84" text-anchor="middle">Identify artifact by digest</text>
+  </g>
+
+  <g transform="translate(50 760)">
+    <rect class="stage" width="240" height="110" rx="14"/>
+    <text class="stage-title" x="120" y="42" text-anchor="middle">5. Trusted release</text>
+    <text class="stage-sub" x="120" y="72" text-anchor="middle">Sign and attest</text>
+    <rect class="control" x="280" width="340" height="110" rx="14"/>
+    <text class="control-text" x="450" y="40" text-anchor="middle">Cosign keyless signing</text>
+    <text class="control-sub" x="450" y="68" text-anchor="middle">GitHub OIDC · trusted events only</text>
+  </g>
+
+  <g transform="translate(50 925)">
+    <rect class="stage" width="240" height="110" rx="14"/>
+    <text class="stage-title" x="120" y="42" text-anchor="middle">6. Deploy</text>
+    <text class="stage-sub" x="120" y="72" text-anchor="middle">Verify before admission</text>
+    <rect class="control" x="280" width="340" height="110" rx="14"/>
+    <text class="control-text" x="450" y="40" text-anchor="middle">Verify signature and digest</text>
+    <text class="control-sub" x="450" y="68" text-anchor="middle">Policy integration follows</text>
+  </g>
+
+  <g transform="translate(50 1090)">
+    <rect class="stage" width="240" height="110" rx="14"/>
+    <text class="stage-title" x="120" y="42" text-anchor="middle">7. Runtime</text>
+    <text class="stage-sub" x="120" y="72" text-anchor="middle">Observe and enforce</text>
+    <rect class="control" x="280" width="340" height="110" rx="14"/>
+    <text class="control-text" x="450" y="40" text-anchor="middle">Later recipe: Falco or Tetragon</text>
+    <text class="control-sub" x="450" y="68" text-anchor="middle">Runtime is not a build-time claim</text>
+  </g>
+
+  <text class="legend" x="360" y="1235" text-anchor="middle">Reference architecture — choices and alternatives: docs/reference-stack.md</text>
+</svg>

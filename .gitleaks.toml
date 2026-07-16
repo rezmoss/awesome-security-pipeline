@@ -1,0 +1,14 @@
+title = "Awesome Security Pipeline Gitleaks configuration"
+
+[extend]
+useDefault = true
+
+[[rules]]
+id = "demo-synthetic-secret"
+description = "Detect the repository's non-credential synthetic secret fixture"
+regex = '''DEMO_SECRET_[A-Z0-9]{24}'''
+keywords = ["DEMO_SECRET_"]
+
+[[allowlists]]
+description = "The committed fixture is intentionally detected by its dedicated fixture test"
+paths = ['''examples/security-demo/fixtures/secrets/synthetic-secret\.txt''']

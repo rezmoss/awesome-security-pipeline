@@ -1,0 +1,11 @@
+rules:
+  - id: go-shell-command-injection
+    message: Do not pass variable input to a shell; invoke the required program directly with validated arguments.
+    severity: ERROR
+    languages: [go]
+    metadata:
+      category: security
+      cwe: CWE-78
+      confidence: HIGH
+    patterns:
+      - pattern: exec.Command("sh", "-c", $COMMAND)
