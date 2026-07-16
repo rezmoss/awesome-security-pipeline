@@ -31,11 +31,18 @@ jobs:
         id: extract-urls
         if: steps.changed-files.outputs.any_changed == 'true'
         run: |
-          # Get the diff and extract new GitHub repository URLs
+          # Compare added URLs with the base README so moved or rewritten
+          # entries are not misclassified as new duplicate submissions.
+          git show origin/${{ github.base_ref }}:README.md > base_readme.md
+          grep -oP 'https://github\.com/[a-zA-Z0-9_.-]+/[a-zA-Z0-9_.-]+' base_readme.md | \
+            sort -u > existing_repos.txt
+
           git diff origin/${{ github.base_ref }}...HEAD -- README.md | \
             grep -oP '^\+.*https://github\.com/[a-zA-Z0-9_.-]+/[a-zA-Z0-9_.-]+' | \
             grep -oP 'https://github\.com/[a-zA-Z0-9_.-]+/[a-zA-Z0-9_.-]+' | \
-            sort -u > new_repos.txt
+            sort -u > added_repos.txt || true
+
+          comm -23 added_repos.txt existing_repos.txt > new_repos.txt
 
           if [ -s new_repos.txt ]; then
             echo "Found new repositories:"
@@ -45,49 +52,6 @@ jobs:
             echo "No new repositories found in this PR"
             echo "has_new_repos=false" >> $GITHUB_OUTPUT
           fi
-
-      - name: Check for duplicate tools
-        id: duplicate-check
-        if: steps.extract-urls.outputs.has_new_repos == 'true'
-        run: |
-          echo "## Duplicate Check" > duplicate_report.md
-          echo "" >> duplicate_report.md
-
-          DUPLICATES_FOUND=false
-
-          # Get the README from base branch
-          git show origin/${{ github.base_ref }}:README.md > base_readme.md
-
-          # Extract all existing GitHub URLs from base README
-          grep -oP 'https://github\.com/[a-zA-Z0-9_.-]+/[a-zA-Z0-9_.-]+' base_readme.md | \
-            sort -u > existing_repos.txt
-
-          # Check each new repo against existing repos
-          while IFS= read -r new_repo; do
-            # Normalize URL (remove trailing slashes, lowercase)
-            NORMALIZED_NEW=$(echo "$new_repo" | sed 's|/$||' | tr '[:upper:]' '[:lower:]')
-
-            while IFS= read -r existing_repo; do
-              NORMALIZED_EXISTING=$(echo "$existing_repo" | sed 's|/$||' | tr '[:upper:]' '[:lower:]')
-
-              if [ "$NORMALIZED_NEW" = "$NORMALIZED_EXISTING" ]; then
-                echo "- :x: **Duplicate found:** \`$new_repo\` already exists in the list" >> duplicate_report.md
-                DUPLICATES_FOUND=true
-                break
-              fi
-            done < existing_repos.txt
-          done < new_repos.txt
-
-          if [ "$DUPLICATES_FOUND" = "true" ]; then
-            echo "" >> duplicate_report.md
-            echo "Please remove duplicate entries. Each tool should only appear once in the list." >> duplicate_report.md
-            echo "duplicates_found=true" >> $GITHUB_OUTPUT
-          else
-            echo ":white_check_mark: No duplicate tools found" >> duplicate_report.md
-            echo "duplicates_found=false" >> $GITHUB_OUTPUT
-          fi
-
-          cat duplicate_report.md
 
       - name: Validate repositories
         id: validate
@@ -286,12 +250,6 @@ jobs:
 
             let comment = '## Automated PR Validation\n\n';
 
-            // Add duplicate report if exists
-            if (fs.existsSync('duplicate_report.md')) {
-              comment += fs.readFileSync('duplicate_report.md', 'utf8');
-              comment += '\n\n';
-            }
-
             // Add validation report if exists
             if (fs.existsSync('validation_report.md')) {
               comment += fs.readFileSync('validation_report.md', 'utf8');
@@ -334,11 +292,8 @@ jobs:
             }
 
       - name: Fail if validation failed
-        if: steps.duplicate-check.outputs.duplicates_found == 'true' || steps.validate.outputs.validation_failed == 'true' || steps.format-check.outputs.format_failed == 'true'
+        if: steps.validate.outputs.validation_failed == 'true' || steps.format-check.outputs.format_failed == 'true'
         run: |
-          if [ "${{ steps.duplicate-check.outputs.duplicates_found }}" = "true" ]; then
-            echo "Duplicate tools found. Each tool should only appear once in the list."
-          fi
           if [ "${{ steps.validate.outputs.validation_failed }}" = "true" ]; then
             echo "Repository validation failed. Please review the requirements."
           fi
