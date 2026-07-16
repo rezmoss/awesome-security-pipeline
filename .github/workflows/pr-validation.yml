@@ -243,8 +243,10 @@ jobs:
 
       - name: Post validation comment
         if: steps.changed-files.outputs.any_changed == 'true'
+        continue-on-error: true
         uses: actions/github-script@v7
         with:
+          retries: 3
           script: |
             const fs = require('fs');
 

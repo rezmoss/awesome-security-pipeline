@@ -1,0 +1,59 @@
+{
+  "schema_version": 1,
+  "fixtures": [
+    {
+      "id": "go-direct-lockless",
+      "description": "A lockless Go module with one declared direct dependency.",
+      "kind": "source",
+      "ecosystem": "golang",
+      "path": "examples/security-demo/fixtures/dependencies",
+      "minimum_components": 1,
+      "expected_components": [
+        {
+          "name": "github.com/dgrijalva/jwt-go",
+          "version": "v3.2.0+incompatible",
+          "relationship": "direct"
+        }
+      ]
+    },
+    {
+      "id": "npm-lock-transitive",
+      "description": "An npm v3 lockfile with one direct and one transitive dependency.",
+      "kind": "source",
+      "ecosystem": "js",
+      "path": "benchmarks/sbom/fixtures/npm-transitive",
+      "minimum_components": 2,
+      "expected_components": [
+        {
+          "name": "is-odd",
+          "version": "3.0.1",
+          "relationship": "direct"
+        },
+        {
+          "name": "is-number",
+          "version": "6.0.0",
+          "relationship": "transitive"
+        }
+      ],
+      "expected_relationships": [
+        {
+          "from_name": "is-odd",
+          "from_version": "3.0.1",
+          "to_name": "is-number",
+          "to_version": "6.0.0",
+          "type": "DEPENDS_ON"
+        }
+      ]
+    },
+    {
+      "id": "pinned-container-image",
+      "description": "The pinned Linux/amd64 Go-on-Alpine image used by the security demo build stage.",
+      "kind": "image",
+      "image": "sbom-benchmark:container",
+      "source_image": "golang:1.26.5-alpine@sha256:111d79159b2326f7e80c4a4706e1ba166acb0e2611df853955f3621828cd49e8",
+      "source_index": "sha256:0178a641fbb4858c5f1b48e34bdaabe0350a330a1b1149aabd498d0699ff5fb2",
+      "minimum_components": 1,
+      "expected_components": []
+    }
+  ]
+}
