@@ -1,11 +1,13 @@
 # SBOM benchmark reports
 
-This directory contains reviewed monthly snapshots from the [SBOM compatibility benchmark](../../benchmarks/sbom/README.md).
+These are maintainer-reviewed monthly snapshots from the [SBOM compatibility benchmark](../../benchmarks/sbom/README.md). The suite still runs weekly; raw SBOMs and logs remain workflow artifacts for 90 days, while normalized monthly evidence is retained here.
 
-No automated snapshot has been published yet. After the workflow is merged, run **SBOM Compatibility Benchmark** manually with **Publish a dated snapshot PR** enabled, or wait for the first scheduled Sunday of the next month. The bot will open a pull request containing:
+[Read the latest report](latest.md) · [Download the latest normalized JSON](latest.json)
 
-- `latest.md` and `latest.json` for the current normalized result;
-- immutable dated Markdown and JSON under `history/`; and
-- this index updated with status, tested versions, fixtures, and links.
+## History
 
-Weekly raw outputs and logs are available from each workflow run for 90 days. Only maintainer-reviewed monthly normalized snapshots become permanent repository history.
+| Date | Status | Fixtures / tool runs | Tool versions | Report | Data |
+|---|---|---:|---|---|---|
+| 2026-07-16 | PASSED | 3 / 12 | syft v1.48.0, trivy v0.72.0, cdxgen v12.7.1, microsoft-sbom-tool v4.1.5, cyclonedx-cli v0.32.0 | [report](history/2026-07-16.md) | [JSON](history/2026-07-16.json) |
+
+A passing snapshot means the configured commands completed, documents validated structurally, minimum inventory rules passed, and every configured identity was found. It is not a security certification, vulnerability assessment, license audit, or proof of complete component discovery.
