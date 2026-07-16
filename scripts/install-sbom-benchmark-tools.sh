@@ -24,7 +24,32 @@ records="$work_dir/records.jsonl"
 : > "$records"
 
 release_json() {
-  gh api "repos/$1/releases/latest"
+  local repository=$1
+  local response=""
+  local error_file="$work_dir/gh-api-error.log"
+  local attempt delay
+
+  for attempt in 1 2 3 4 5; do
+    if response=$(gh api \
+      -H "Accept: application/vnd.github+json" \
+      -H "X-GitHub-Api-Version: 2022-11-28" \
+      "repos/$repository/releases/latest" 2>"$error_file") \
+      && jq -e '.tag_name and (.assets | type == "array")' \
+        <<<"$response" >/dev/null; then
+      printf '%s\n' "$response"
+      return 0
+    fi
+
+    if [[ $attempt -lt 5 ]]; then
+      delay=$((attempt * 3))
+      echo "GitHub release lookup failed for $repository (attempt $attempt/5); retrying in ${delay}s" >&2
+      sleep "$delay"
+    fi
+  done
+
+  echo "GitHub release lookup failed for $repository after 5 attempts" >&2
+  cat "$error_file" >&2
+  return 1
 }
 
 asset_url() {
@@ -38,6 +63,7 @@ download_asset() {
   local url
   url=$(asset_url "$release" "$name")
   curl --fail --silent --show-error --location --retry 3 \
+    --retry-all-errors --retry-delay 2 --retry-max-time 120 \
     --output "$destination" "$url"
 }
 
