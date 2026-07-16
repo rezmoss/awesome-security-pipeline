@@ -188,6 +188,7 @@ jobs:
           scanners: misconfig
           severity: HIGH,CRITICAL
           format: sarif
+          limit-severities-for-sarif: "true"
           output: artifacts/trivy-config.sarif
           exit-code: "1"
 
@@ -293,6 +294,7 @@ jobs:
           ignore-unfixed: "true"
           severity: HIGH,CRITICAL
           format: sarif
+          limit-severities-for-sarif: "true"
           output: artifacts/trivy-image.sarif
           exit-code: "1"
 
