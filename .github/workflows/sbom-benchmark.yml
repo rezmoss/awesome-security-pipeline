@@ -1,0 +1,214 @@
+name: SBOM Compatibility Benchmark
+
+on:
+  schedule:
+    # Full weekly run; the first Sunday of each month also prepares a report PR.
+    - cron: "23 4 * * 0"
+  workflow_dispatch:
+    inputs:
+      publish_snapshot:
+        description: Publish a dated snapshot PR from the default branch
+        required: true
+        default: false
+        type: boolean
+  pull_request:
+    paths:
+      - ".github/workflows/sbom-benchmark.yml"
+      - "benchmarks/sbom/**"
+      - "comparisons/sbom-tools.md"
+      - "examples/security-demo/fixtures/dependencies/**"
+      - "scripts/install-sbom-benchmark-tools.sh"
+      - "scripts/sbom_benchmark.py"
+      - "scripts/publish_sbom_benchmark.py"
+      - "tests/test_sbom_benchmark.py"
+  push:
+    branches: [main]
+    paths:
+      - ".github/workflows/sbom-benchmark.yml"
+      - "benchmarks/sbom/**"
+      - "comparisons/sbom-tools.md"
+      - "examples/security-demo/fixtures/dependencies/**"
+      - "scripts/install-sbom-benchmark-tools.sh"
+      - "scripts/sbom_benchmark.py"
+      - "scripts/publish_sbom_benchmark.py"
+      - "tests/test_sbom_benchmark.py"
+
+permissions: {}
+
+concurrency:
+  group: sbom-benchmark-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  benchmark:
+    name: Run generators and normalize evidence
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    permissions:
+      contents: read
+    outputs:
+      publish: ${{ steps.result.outputs.publish }}
+      run_date: ${{ steps.result.outputs.run_date }}
+      status: ${{ steps.result.outputs.status }}
+    steps:
+      - name: Check out source without persisted credentials
+        uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4
+        with:
+          persist-credentials: false
+
+      - name: Test benchmark normalization and regression logic
+        shell: bash
+        run: python3 -m unittest tests/test_sbom_benchmark.py
+
+      - name: Install latest stable benchmark tools
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: bash
+        run: |
+          bash scripts/install-sbom-benchmark-tools.sh \
+            "$RUNNER_TEMP/sbom-tools" \
+            "$RUNNER_TEMP/tool-metadata.json"
+          echo "$RUNNER_TEMP/sbom-tools" >> "$GITHUB_PATH"
+
+      - name: Pull the immutable container fixture
+        shell: bash
+        run: |
+          set -euo pipefail
+          source_image=$(jq -r '.fixtures[] | select(.kind == "image") | .source_image' benchmarks/sbom/fixtures.json)
+          docker pull --platform linux/amd64 "$source_image"
+          docker tag "$source_image" sbom-benchmark:container
+
+      - name: Run full compatibility benchmark
+        id: run
+        continue-on-error: true
+        env:
+          SBOM_BENCHMARK_CACHE_DIR: ${{ runner.temp }}/sbom-benchmark-cache
+        shell: bash
+        run: |
+          previous=()
+          if [[ -f reports/sbom/latest.json ]]; then
+            previous=(--previous reports/sbom/latest.json)
+          fi
+          python3 scripts/sbom_benchmark.py \
+            --config benchmarks/sbom/fixtures.json \
+            --tool-metadata "$RUNNER_TEMP/tool-metadata.json" \
+            --output-dir benchmark-output \
+            --commit "$GITHUB_SHA" \
+            "${previous[@]}"
+
+      - name: Determine result and publication cadence
+        id: result
+        if: always()
+        shell: bash
+        env:
+          REQUESTED_PUBLICATION: ${{ inputs.publish_snapshot || false }}
+        run: |
+          set -euo pipefail
+          test -f benchmark-output/result.json
+          status=$(jq -r '.status' benchmark-output/result.json)
+          run_date=$(jq -r '.run_date' benchmark-output/result.json)
+          publish=false
+
+          if [[ "$GITHUB_EVENT_NAME" == "schedule" ]]; then
+            day=$(date -u +%d)
+            if (( 10#$day <= 7 )); then
+              publish=true
+            fi
+          elif [[ "$GITHUB_EVENT_NAME" == "workflow_dispatch" \
+            && "$REQUESTED_PUBLICATION" == "true" \
+            && "$GITHUB_REF" == "refs/heads/main" ]]; then
+            publish=true
+          fi
+
+          echo "status=$status" >> "$GITHUB_OUTPUT"
+          echo "run_date=$run_date" >> "$GITHUB_OUTPUT"
+          echo "publish=$publish" >> "$GITHUB_OUTPUT"
+          echo "### SBOM benchmark: ${status^^}" >> "$GITHUB_STEP_SUMMARY"
+          echo "- Run date: $run_date" >> "$GITHUB_STEP_SUMMARY"
+          echo "- Publish snapshot PR: $publish" >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Retain normalized result, raw SBOMs, and logs
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        with:
+          name: sbom-benchmark-${{ github.run_id }}
+          path: benchmark-output
+          if-no-files-found: error
+          retention-days: 90
+
+  publish:
+    name: Prepare monthly report pull request
+    needs: benchmark
+    if: needs.benchmark.outputs.publish == 'true'
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    permissions:
+      contents: write
+      pull-requests: write
+    steps:
+      - name: Check out default branch
+        uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4
+        with:
+          ref: main
+          persist-credentials: false
+
+      - name: Download benchmark evidence
+        uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093 # v4
+        with:
+          name: sbom-benchmark-${{ github.run_id }}
+          path: benchmark-output
+
+      - name: Update normalized report history
+        shell: bash
+        run: |
+          python3 scripts/publish_sbom_benchmark.py \
+            --result benchmark-output/result.json \
+            --report benchmark-output/report.md \
+            --root reports/sbom
+
+      - name: Open or update report pull request
+        uses: peter-evans/create-pull-request@5f6978faf089d4d20b00c7766989d076bb2fc7f1 # v8.1.1
+        with:
+          token: ${{ github.token }}
+          branch: automation/sbom-benchmark-${{ needs.benchmark.outputs.run_date }}
+          base: main
+          delete-branch: true
+          add-paths: reports/sbom/**
+          commit-message: "update SBOM benchmark report"
+          title: "report: SBOM compatibility benchmark ${{ needs.benchmark.outputs.run_date }}"
+          body: |
+            ## Automated SBOM compatibility report
+
+            This PR adds the reviewed-history candidate for `${{ needs.benchmark.outputs.run_date }}`.
+
+            - Benchmark status: **${{ needs.benchmark.outputs.status }}**
+            - Scope: Syft, Trivy, cdxgen, Microsoft SBOM Tool, and CycloneDX validation
+            - Fixtures: lockless Go manifest, npm direct/transitive lockfile, and pinned container image
+            - Raw SBOMs and logs: retained on the source workflow run for 90 days
+
+            Review component additions/removals, failed expectations, tool versions, and release-asset digests before merging.
+
+  regression-gate:
+    name: Enforce benchmark expectations
+    needs: benchmark
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    permissions:
+      contents: read
+    steps:
+      - name: Download normalized result
+        uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093 # v4
+        with:
+          name: sbom-benchmark-${{ github.run_id }}
+          path: benchmark-output
+
+      - name: Fail on generator, validation, or expectation regression
+        shell: bash
+        run: |
+          jq -r '
+            .fixtures[] as $fixture
+            | $fixture.runs[]
+            | select(.status != "passed")
+            | "\($fixture.id) / \(.tool): \(.errors | join("; "))"
+          ' benchmark-output/result.json
+          test "$(jq -r '.status' benchmark-output/result.json)" = "passed"

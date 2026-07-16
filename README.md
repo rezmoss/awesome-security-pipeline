@@ -24,6 +24,8 @@ Start with a working pipeline, not an empty checklist. The included GitHub Actio
 | Understand every job, artifact, permission, and failure mode | [Security demo guide](examples/security-demo/README.md) |
 | Choose a smaller or more specialized stack | [Project-type selection matrix](#choose-your-baseline) |
 | Compare GitHub Actions security tools and permissions | [Open-source stack comparison](comparisons/github-actions-security-tools.md) |
+| Choose an SBOM generator and validation workflow | [SBOM tools comparison](comparisons/sbom-tools.md) |
+| Inspect continuously tested SBOM compatibility history | [SBOM benchmark reports](reports/sbom/README.md) |
 | Evaluate why these tools were selected | [Reference stack decision](docs/reference-stack.md) |
 | Check how projects are selected and classified | [Curation and verification methodology](docs/methodology.md) |
 

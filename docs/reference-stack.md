@@ -32,6 +32,8 @@ OSV-Scanner is the baseline dependency scanner because it uses the open OSV vuln
 
 Syft is selected to generate the software bill of materials because it supports source trees, filesystems, and container images and can emit standard formats such as CycloneDX and SPDX. Keeping generation separate from vulnerability scanning makes the artifact reusable for later policy, customer, and incident-response workflows. The generated SBOM will be retained as a CI artifact with its format and source clearly identified.
 
+The [reproducible SBOM tools comparison](../comparisons/sbom-tools.md) tests Syft, Trivy, cdxgen, and Microsoft SBOM Tool against the same fixture and explains where CycloneDX CLI belongs after generation.
+
 **Alternative:** cdxgen for CycloneDX-centered, application-source workflows and broad language-specific analysis; Microsoft SBOM Tool for teams standardized on its SPDX-oriented workflow; Trivy when reducing tool count matters more than separating generation from scanning.
 
 ### IaC and container scanning — Trivy
