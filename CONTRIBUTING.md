@@ -152,11 +152,7 @@ Undisclosed self-promotion will result in rejection and potential ban from futur
 
 ## Code of Conduct
 
-- Be respectful and constructive
-- No self-promotion without disclosure
-- Focus on tool quality, not personal preferences
-- Do not submit multiple tools in rapid succession
-- Do not create fake accounts to submit tools
+All participation is governed by the [Code of Conduct](CODE_OF_CONDUCT.md). Be respectful and constructive, disclose affiliations, and focus discussion on verifiable tool quality rather than personal preference. Conduct concerns must be reported through the private channel described there, not in a public issue.
 
 ## Maintenance Status Indicators
 
