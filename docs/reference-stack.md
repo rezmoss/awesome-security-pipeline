@@ -6,6 +6,8 @@
 
 This is a reference implementation, not a universal ranking. The baseline favors open-source availability, non-interactive CI use, maintained upstreams, complementary output, and a setup that readers can reproduce without commercial accounts.
 
+For a side-by-side view of permissions, SARIF behavior, maintenance, licensing boundaries, strengths, and limitations, see the [GitHub Actions security-tools comparison](../comparisons/github-actions-security-tools.md).
+
 ## Selected controls
 
 ### Secrets — Gitleaks
