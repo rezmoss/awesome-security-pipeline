@@ -1,0 +1,368 @@
+name: Security Baseline
+
+on:
+  pull_request:
+    paths:
+      - ".github/workflows/security-baseline.yml"
+      - ".gitleaks.toml"
+      - ".semgrep/**"
+      - "examples/security-demo/**"
+  push:
+    branches: [main]
+    tags: ["v*"]
+    paths:
+      - ".github/workflows/security-baseline.yml"
+      - ".gitleaks.toml"
+      - ".semgrep/**"
+      - "examples/security-demo/**"
+  workflow_dispatch:
+
+permissions: {}
+
+env:
+  GITLEAKS_VERSION: "8.30.1"
+  SEMGREP_VERSION: "1.170.0"
+  OSV_SCANNER_VERSION: "2.4.0"
+  TRIVY_VERSION: "v0.72.0"
+  SYFT_VERSION: "v1.48.0"
+  COSIGN_VERSION: "v3.1.1"
+  IMAGE_TAG: "security-demo:${{ github.sha }}"
+  REPORT_RETENTION_DAYS: "14"
+
+jobs:
+  secrets:
+    name: Secrets / Gitleaks
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    permissions:
+      contents: read
+      security-events: write
+    steps:
+      - name: Check out full history
+        uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4
+        with:
+          fetch-depth: 0
+
+      - name: Install checksum-verified Gitleaks
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p "$RUNNER_TEMP/gitleaks" "$RUNNER_TEMP/bin"
+          cd "$RUNNER_TEMP/gitleaks"
+          base="https://github.com/gitleaks/gitleaks/releases/download/v${GITLEAKS_VERSION}"
+          archive="gitleaks_${GITLEAKS_VERSION}_linux_x64.tar.gz"
+          curl --fail --silent --show-error --location --retry 3 -o "$archive" "$base/$archive"
+          curl --fail --silent --show-error --location --retry 3 -o checksums.txt "$base/gitleaks_${GITLEAKS_VERSION}_checksums.txt"
+          grep "  $archive$" checksums.txt | sha256sum --check --strict
+          tar -xzf "$archive" -C "$RUNNER_TEMP/bin" gitleaks
+          echo "$RUNNER_TEMP/bin" >> "$GITHUB_PATH"
+
+      - name: Scan Git history
+        shell: bash
+        run: |
+          mkdir -p artifacts
+          gitleaks git . --config .gitleaks.toml --redact \
+            --report-format sarif --report-path artifacts/gitleaks.sarif \
+            --exit-code 1
+
+      - name: Upload Gitleaks SARIF
+        if: ${{ always() && (github.event_name != 'pull_request' || github.event.pull_request.head.repo.full_name == github.repository) }}
+        uses: github/codeql-action/upload-sarif@b7351df727350dca84cb9d725d57dcf5bc82ba26 # v3
+        with:
+          sarif_file: artifacts/gitleaks.sarif
+          category: gitleaks
+
+      - name: Retain Gitleaks report
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        with:
+          name: gitleaks-report
+          path: artifacts/gitleaks.sarif
+          if-no-files-found: error
+          retention-days: ${{ env.REPORT_RETENTION_DAYS }}
+
+  sast:
+    name: SAST / Semgrep
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    permissions:
+      contents: read
+      security-events: write
+    steps:
+      - name: Check out source
+        uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4
+
+      - name: Install pinned Semgrep
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 -m venv "$RUNNER_TEMP/semgrep"
+          "$RUNNER_TEMP/semgrep/bin/python" -m pip install --disable-pip-version-check "semgrep==${SEMGREP_VERSION}"
+          echo "$RUNNER_TEMP/semgrep/bin" >> "$GITHUB_PATH"
+
+      - name: Scan application source
+        shell: bash
+        run: |
+          mkdir -p artifacts
+          semgrep scan --config .semgrep/security-baseline.yml --error \
+            --sarif --output artifacts/semgrep.sarif \
+            examples/security-demo/app
+
+      - name: Upload Semgrep SARIF
+        if: ${{ always() && (github.event_name != 'pull_request' || github.event.pull_request.head.repo.full_name == github.repository) }}
+        uses: github/codeql-action/upload-sarif@b7351df727350dca84cb9d725d57dcf5bc82ba26 # v3
+        with:
+          sarif_file: artifacts/semgrep.sarif
+          category: semgrep
+
+      - name: Retain Semgrep report
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        with:
+          name: semgrep-report
+          path: artifacts/semgrep.sarif
+          if-no-files-found: error
+          retention-days: ${{ env.REPORT_RETENTION_DAYS }}
+
+  dependencies:
+    name: Dependencies / OSV-Scanner
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    permissions:
+      contents: read
+    steps:
+      - name: Check out source
+        uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4
+
+      - name: Install checksum-verified OSV-Scanner
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p "$RUNNER_TEMP/osv-scanner" "$RUNNER_TEMP/bin"
+          cd "$RUNNER_TEMP/osv-scanner"
+          base="https://github.com/google/osv-scanner/releases/download/v${OSV_SCANNER_VERSION}"
+          binary="osv-scanner_linux_amd64"
+          curl --fail --silent --show-error --location --retry 3 -o "$binary" "$base/$binary"
+          curl --fail --silent --show-error --location --retry 3 -o checksums.txt "$base/osv-scanner_SHA256SUMS"
+          grep "  $binary$" checksums.txt | sha256sum --check --strict
+          install -m 0755 "$binary" "$RUNNER_TEMP/bin/osv-scanner"
+          echo "$RUNNER_TEMP/bin" >> "$GITHUB_PATH"
+
+      - name: Scan application dependencies
+        shell: bash
+        run: |
+          mkdir -p artifacts
+          osv-scanner scan source --recursive examples/security-demo/app \
+            --format json --output-file artifacts/osv-scanner.json
+
+      - name: Retain OSV-Scanner report
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        with:
+          name: osv-scanner-report
+          path: artifacts/osv-scanner.json
+          if-no-files-found: error
+          retention-days: ${{ env.REPORT_RETENTION_DAYS }}
+
+  iac:
+    name: IaC / Trivy configuration
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    permissions:
+      contents: read
+      security-events: write
+    steps:
+      - name: Check out source
+        uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4
+
+      - name: Scan Dockerfile and Kubernetes configuration
+        uses: aquasecurity/trivy-action@c07df6fec6fa692e6fd1200d50aaa1fdd66f03c8 # master, resolved 2026-07-16
+        with:
+          version: ${{ env.TRIVY_VERSION }}
+          scan-type: config
+          scan-ref: examples/security-demo/app
+          scanners: misconfig
+          severity: HIGH,CRITICAL
+          format: sarif
+          output: artifacts/trivy-config.sarif
+          exit-code: "1"
+
+      - name: Upload Trivy configuration SARIF
+        if: ${{ always() && (github.event_name != 'pull_request' || github.event.pull_request.head.repo.full_name == github.repository) }}
+        uses: github/codeql-action/upload-sarif@b7351df727350dca84cb9d725d57dcf5bc82ba26 # v3
+        with:
+          sarif_file: artifacts/trivy-config.sarif
+          category: trivy-configuration
+
+      - name: Retain Trivy configuration report
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        with:
+          name: trivy-configuration-report
+          path: artifacts/trivy-config.sarif
+          if-no-files-found: error
+          retention-days: ${{ env.REPORT_RETENTION_DAYS }}
+
+  build:
+    name: Build / immutable image
+    needs: [secrets, sast, dependencies, iac]
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    permissions:
+      contents: read
+    steps:
+      - name: Check out source
+        uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4
+
+      - name: Set up Buildx
+        uses: docker/setup-buildx-action@8d2750c68a42422c14e847fe6c8ac0403b4cbd6f # v3
+
+      - name: Build and export image
+        id: image
+        uses: docker/build-push-action@10e90e3645eae34f1e60eeb005ba3a3d33f178e8 # v6
+        with:
+          context: examples/security-demo/app
+          file: examples/security-demo/app/Dockerfile
+          platforms: linux/amd64
+          tags: ${{ env.IMAGE_TAG }}
+          outputs: type=docker,dest=${{ runner.temp }}/security-demo.tar
+          cache-from: type=gha,scope=security-demo
+          cache-to: type=gha,mode=max,scope=security-demo
+
+      - name: Record immutable image digest
+        shell: bash
+        run: |
+          printf '%s\n' '${{ steps.image.outputs.digest }}' > "$RUNNER_TEMP/image-digest.txt"
+          echo "### Built image" >> "$GITHUB_STEP_SUMMARY"
+          echo '`${{ env.IMAGE_TAG }}` → `${{ steps.image.outputs.digest }}`' >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Retain exported image
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        with:
+          name: security-demo-image
+          path: |
+            ${{ runner.temp }}/security-demo.tar
+            ${{ runner.temp }}/image-digest.txt
+          if-no-files-found: error
+          retention-days: ${{ env.REPORT_RETENTION_DAYS }}
+
+  package:
+    name: Package / SBOM and image scan
+    needs: build
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    permissions:
+      contents: read
+      security-events: write
+    steps:
+      - name: Check out source
+        uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4
+
+      - name: Download exported image
+        uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093 # v4
+        with:
+          name: security-demo-image
+          path: artifacts/image
+
+      - name: Load image
+        shell: bash
+        run: docker load --input artifacts/image/security-demo.tar
+
+      - name: Generate CycloneDX SBOM
+        uses: anchore/sbom-action@e22c389904149dbc22b58101806040fa8d37a610 # v0
+        with:
+          image: ${{ env.IMAGE_TAG }}
+          format: cyclonedx-json
+          output-file: artifacts/security-demo.cdx.json
+          artifact-name: security-demo-sbom
+          syft-version: ${{ env.SYFT_VERSION }}
+          upload-artifact: "false"
+          upload-release-assets: "false"
+
+      - name: Scan built image
+        uses: aquasecurity/trivy-action@c07df6fec6fa692e6fd1200d50aaa1fdd66f03c8 # master, resolved 2026-07-16
+        with:
+          version: ${{ env.TRIVY_VERSION }}
+          scan-type: image
+          image-ref: ${{ env.IMAGE_TAG }}
+          vuln-type: os,library
+          ignore-unfixed: "true"
+          severity: HIGH,CRITICAL
+          format: sarif
+          output: artifacts/trivy-image.sarif
+          exit-code: "1"
+
+      - name: Upload image-scan SARIF
+        if: ${{ always() && (github.event_name != 'pull_request' || github.event.pull_request.head.repo.full_name == github.repository) }}
+        uses: github/codeql-action/upload-sarif@b7351df727350dca84cb9d725d57dcf5bc82ba26 # v3
+        with:
+          sarif_file: artifacts/trivy-image.sarif
+          category: trivy-image
+
+      - name: Retain package reports
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        with:
+          name: security-demo-package-reports
+          path: |
+            artifacts/security-demo.cdx.json
+            artifacts/trivy-image.sarif
+          if-no-files-found: error
+          retention-days: ${{ env.REPORT_RETENTION_DAYS }}
+
+      - name: Summarize package outputs
+        if: always()
+        shell: bash
+        run: |
+          echo "### Package security outputs" >> "$GITHUB_STEP_SUMMARY"
+          echo "- CycloneDX JSON SBOM: \`security-demo.cdx.json\`" >> "$GITHUB_STEP_SUMMARY"
+          echo "- Trivy image SARIF: \`trivy-image.sarif\`" >> "$GITHUB_STEP_SUMMARY"
+          echo "- Retention: ${REPORT_RETENTION_DAYS} days" >> "$GITHUB_STEP_SUMMARY"
+
+  sign:
+    name: Release / keyless Cosign signature
+    if: ${{ github.event_name == 'push' && (github.ref == 'refs/heads/main' || startsWith(github.ref, 'refs/tags/v')) }}
+    needs: package
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    permissions:
+      contents: read
+      id-token: write
+    steps:
+      - name: Download exported image
+        uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093 # v4
+        with:
+          name: security-demo-image
+          path: artifacts/image
+
+      - name: Install checksum-verified Cosign
+        uses: sigstore/cosign-installer@3094a48ba06382e0e6cfa5a4af4fcc55fc6942b9 # main, resolved 2026-07-16
+        with:
+          cosign-release: ${{ env.COSIGN_VERSION }}
+
+      - name: Sign exported image with GitHub OIDC
+        shell: bash
+        env:
+          COSIGN_YES: "true"
+        run: |
+          cosign sign-blob \
+            --bundle artifacts/image/security-demo.bundle.json \
+            artifacts/image/security-demo.tar
+
+      - name: Verify keyless signature
+        shell: bash
+        run: |
+          identity="https://github.com/${GITHUB_REPOSITORY}/.github/workflows/security-baseline.yml@${GITHUB_REF}"
+          cosign verify-blob \
+            --bundle artifacts/image/security-demo.bundle.json \
+            --certificate-identity "$identity" \
+            --certificate-oidc-issuer "https://token.actions.githubusercontent.com" \
+            artifacts/image/security-demo.tar
+
+      - name: Retain signature bundle
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        with:
+          name: security-demo-signature
+          path: artifacts/image/security-demo.bundle.json
+          if-no-files-found: error
+          retention-days: ${{ env.REPORT_RETENTION_DAYS }}
