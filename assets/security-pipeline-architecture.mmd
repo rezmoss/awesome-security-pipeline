@@ -1,0 +1,20 @@
+flowchart TD
+    A[Developer workstation<br/>Pre-commit] --> B[Pull request<br/>Source and configuration gates]
+    B --> C[Build<br/>Create immutable container image]
+    C --> D[Package<br/>Inventory, scan, and identify]
+    D --> E[Trusted release<br/>Sign and attest]
+    E --> F[Deploy<br/>Verify before admission]
+    F --> G[Runtime<br/>Observe and enforce]
+
+    A1[Gitleaks<br/>Optional local Semgrep] -.-> A
+    B1[Gitleaks · Semgrep · OSV-Scanner<br/>Trivy configuration scan · SARIF] -.-> B
+    C1[Build only after required gates pass<br/>Record immutable image digest] -.-> C
+    D1[Syft SBOM<br/>Trivy image scan<br/>Retain native and SARIF results] -.-> D
+    E1[Cosign keyless signing<br/>GitHub OIDC on trusted events only] -.-> E
+    F1[Verify signature and digest<br/>Policy/admission integration follows] -.-> F
+    G1[Runtime controls are a later recipe<br/>Falco or Tetragon are candidates] -.-> G
+
+    classDef stage fill:#0b2239,color:#ffffff,stroke:#38bdf8,stroke-width:2px;
+    classDef control fill:#e8f4ff,color:#102a43,stroke:#0284c7,stroke-width:1px;
+    class A,B,C,D,E,F,G stage;
+    class A1,B1,C1,D1,E1,F1,G1 control;
