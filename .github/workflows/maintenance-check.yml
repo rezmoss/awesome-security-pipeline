@@ -158,6 +158,7 @@ jobs:
 
             # Escape special characters for sed
             ESCAPED_REPO=$(echo "$repo_path" | sed 's/[\/&]/\\&/g')
+            ENTRY_ADDRESS="^- \\[[^]]*\\](https:\\/\\/github\\.com\\/${ESCAPED_REPO}) - "
 
             # Determine the badge to add
             case "$status" in
@@ -181,16 +182,16 @@ jobs:
 
             # Remove an old status only for this successfully checked repository.
             # This preserves badges for repositories whose API lookup failed.
-            sed -i "/^- \[.*github\.com\/${ESCAPED_REPO}/s/\!\[Active\](https:\/\/img\.shields\.io\/badge\/status-active-brightgreen) //g" README.md
-            sed -i "/^- \[.*github\.com\/${ESCAPED_REPO}/s/\!\[Stale\](https:\/\/img\.shields\.io\/badge\/status-stale-yellow) //g" README.md
-            sed -i "/^- \[.*github\.com\/${ESCAPED_REPO}/s/\!\[Unmaintained\](https:\/\/img\.shields\.io\/badge\/status-unmaintained-red) //g" README.md
-            sed -i "/^- \[.*github\.com\/${ESCAPED_REPO}/s/\!\[Archived\](https:\/\/img\.shields\.io\/badge\/status-archived-lightgrey) //g" README.md
-            sed -i "/^- \[.*github\.com\/${ESCAPED_REPO}/s/\!\[Deprecated\](https:\/\/img\.shields\.io\/badge\/status-deprecated-lightgrey) //g" README.md
+            sed -i "/${ENTRY_ADDRESS}/s/\!\[Active\](https:\/\/img\.shields\.io\/badge\/status-active-brightgreen) //g" README.md
+            sed -i "/${ENTRY_ADDRESS}/s/\!\[Stale\](https:\/\/img\.shields\.io\/badge\/status-stale-yellow) //g" README.md
+            sed -i "/${ENTRY_ADDRESS}/s/\!\[Unmaintained\](https:\/\/img\.shields\.io\/badge\/status-unmaintained-red) //g" README.md
+            sed -i "/${ENTRY_ADDRESS}/s/\!\[Archived\](https:\/\/img\.shields\.io\/badge\/status-archived-lightgrey) //g" README.md
+            sed -i "/${ENTRY_ADDRESS}/s/\!\[Deprecated\](https:\/\/img\.shields\.io\/badge\/status-deprecated-lightgrey) //g" README.md
 
             # Add the new status badge after the description, before the Stars badge
             # Only on lines starting with "- [" (tool entries)
             # Pattern: "- [name](url) - Description. ![Stars]" -> "- [name](url) - Description. ![Status] ![Stars]"
-            sed -i "/^- \[.*github\.com\/${ESCAPED_REPO}/s|\(- \[.*\](https://github.com/${ESCAPED_REPO}[^)]*) - [^!]*\)\(\!\[Stars\]\)|\1${NEW_BADGE} \2|g" README.md
+            sed -i "/${ENTRY_ADDRESS}/s|\(- \[.*\](https://github.com/${ESCAPED_REPO}[^)]*) - [^!]*\)\(\!\[Stars\]\)|\1${NEW_BADGE} \2|g" README.md
 
           done < updates_needed.txt
 
