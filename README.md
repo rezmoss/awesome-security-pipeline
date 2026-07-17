@@ -311,7 +311,7 @@ These projects are retained for migration research and historical context, not r
 
 ### Container Security › Image Scanning
 
-- [anchore-engine](https://github.com/anchore/anchore-engine) - Analyze containers and evaluate image policies. ![Archived](https://img.shields.io/badge/status-archived-lightgrey) ![Stars](https://img.shields.io/github/stars/anchore/anchore-engine) ![Last Commit](https://img.shields.io/github/last-commit/anchore/anchore-engine) *(Migrate to [Syft](https://github.com/anchore/syft) + [Grype](https://github.com/anchore/grype))*
+- [anchore-engine](https://github.com/anchore/anchore-engine) - Analyze containers and evaluate image policies. ![Stars](https://img.shields.io/github/stars/anchore/anchore-engine) ![Last Commit](https://img.shields.io/github/last-commit/anchore/anchore-engine) *(Migrate to [Syft](https://github.com/anchore/syft) + [Grype](https://github.com/anchore/grype))*
 - [dive](https://github.com/wagoodman/dive) - Inspect image layers and contents; it does not scan vulnerability databases. ![Unmaintained](https://img.shields.io/badge/status-unmaintained-red) ![Stars](https://img.shields.io/github/stars/wagoodman/dive) ![Last Commit](https://img.shields.io/github/last-commit/wagoodman/dive)
 
 ### Container Security › Runtime Security
@@ -329,7 +329,7 @@ These projects are retained for migration research and historical context, not r
 
 ### API & Dynamic Testing (DAST)
 
-- [arachni](https://github.com/Arachni/arachni) - Scan web applications for security issues. ![Archived](https://img.shields.io/badge/status-archived-lightgrey) ![Stars](https://img.shields.io/github/stars/Arachni/arachni) ![Last Commit](https://img.shields.io/github/last-commit/Arachni/arachni) *(Consider [ZAP](https://github.com/zaproxy/zaproxy) or [Nuclei](https://github.com/projectdiscovery/nuclei) instead)*
+- [arachni](https://github.com/Arachni/arachni) - Scan web applications for security issues. ![Stars](https://img.shields.io/github/stars/Arachni/arachni) ![Last Commit](https://img.shields.io/github/last-commit/Arachni/arachni) *(Consider [ZAP](https://github.com/zaproxy/zaproxy) or [Nuclei](https://github.com/projectdiscovery/nuclei) instead)*
 
 ### Cloud Security
 
