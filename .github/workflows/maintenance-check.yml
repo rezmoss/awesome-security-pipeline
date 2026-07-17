@@ -44,30 +44,60 @@ jobs:
           # Track changes needed
           > updates_needed.txt
 
+          github_api_json() {
+            local endpoint=$1
+            local validation_filter=$2
+            local response attempt delay
+
+            for attempt in 1 2 3; do
+              if response=$(gh api \
+                -H "Accept: application/vnd.github+json" \
+                -H "X-GitHub-Api-Version: 2022-11-28" \
+                "$endpoint" 2>/dev/null) \
+                && jq -e "$validation_filter" <<<"$response" >/dev/null; then
+                printf '%s\n' "$response"
+                return 0
+              fi
+
+              if [ "$attempt" -lt 3 ]; then
+                delay=$((attempt * 2))
+                echo "  - GitHub API attempt $attempt/3 failed; retrying in ${delay}s" >&2
+                sleep "$delay"
+              fi
+            done
+
+            return 1
+          }
+
           while IFS= read -r repo_url; do
             REPO_PATH=$(echo "$repo_url" | sed 's|https://github.com/||')
             echo "Checking: $REPO_PATH"
 
-            # Fetch repository data
-            REPO_DATA=$(gh api "repos/$REPO_PATH" 2>/dev/null || echo "ERROR")
-
-            if [ "$REPO_DATA" = "ERROR" ]; then
-              echo "  - ERROR: Could not fetch data"
-              echo "$REPO_PATH|error|Repository not accessible" >> updates_needed.txt
+            # Retry transient failures and accept only the JSON shape used below.
+            if ! REPO_DATA=$(github_api_json \
+              "repos/$REPO_PATH" \
+              'type == "object"
+                and (.archived | type == "boolean")
+                and (.default_branch | type == "string" and length > 0)
+                and (.pushed_at | type == "string" and length > 0)'); then
+              echo "  - ERROR: Could not fetch valid repository data"
+              echo "$REPO_PATH|error|Repository data unavailable" >> updates_needed.txt
               continue
             fi
 
-            ARCHIVED=$(echo "$REPO_DATA" | jq -r '.archived')
-            DEFAULT_BRANCH=$(echo "$REPO_DATA" | jq -r '.default_branch')
+            ARCHIVED=$(jq -r '.archived' <<<"$REPO_DATA")
+            DEFAULT_BRANCH=$(jq -r '.default_branch' <<<"$REPO_DATA")
 
             # Get the actual last commit date on the default branch (more accurate than pushed_at)
-            COMMIT_DATA=$(gh api "repos/$REPO_PATH/commits/$DEFAULT_BRANCH" 2>/dev/null || echo "ERROR")
-
-            if [ "$COMMIT_DATA" = "ERROR" ]; then
+            if ! COMMIT_DATA=$(github_api_json \
+              "repos/$REPO_PATH/commits/$DEFAULT_BRANCH" \
+              'type == "object"
+                and (.commit.committer.date | type == "string" and length > 0)'); then
               # Fallback to pushed_at if commits API fails
-              LAST_COMMIT_DATE=$(echo "$REPO_DATA" | jq -r '.pushed_at')
+              echo "  - Commit lookup unavailable; using repository pushed_at" >&2
+              LAST_COMMIT_DATE=$(jq -r '.pushed_at' <<<"$REPO_DATA")
             else
-              LAST_COMMIT_DATE=$(echo "$COMMIT_DATA" | jq -r '.commit.committer.date')
+              LAST_COMMIT_DATE=$(jq -r '.commit.committer.date' <<<"$COMMIT_DATA")
             fi
 
             # Calculate days since last update
@@ -95,11 +125,11 @@ jobs:
           done < all_repos.txt
 
           # Generate summary
-          ACTIVE_COUNT=$(grep -c "|active|" updates_needed.txt || echo "0")
-          STALE_COUNT=$(grep -c "|stale|" updates_needed.txt || echo "0")
-          UNMAINTAINED_COUNT=$(grep -c "|unmaintained|" updates_needed.txt || echo "0")
-          ARCHIVED_COUNT=$(grep -c "|archived|" updates_needed.txt || echo "0")
-          ERROR_COUNT=$(grep -c "|error|" updates_needed.txt || echo "0")
+          ACTIVE_COUNT=$(grep -c "|active|" updates_needed.txt || true)
+          STALE_COUNT=$(grep -c "|stale|" updates_needed.txt || true)
+          UNMAINTAINED_COUNT=$(grep -c "|unmaintained|" updates_needed.txt || true)
+          ARCHIVED_COUNT=$(grep -c "|archived|" updates_needed.txt || true)
+          ERROR_COUNT=$(grep -c "|error|" updates_needed.txt || true)
 
           echo "" >> status_report.md
           echo "## Summary" >> status_report.md
@@ -120,14 +150,6 @@ jobs:
         run: |
           # Create a backup
           cp README.md README.md.bak
-
-          # First, remove existing status badges ONLY from tool entry lines (lines starting with "- [")
-          # This preserves badges in the legend/documentation sections
-          sed -i '/^- \[/s/\!\[Active\](https:\/\/img\.shields\.io\/badge\/status-active-brightgreen) //g' README.md
-          sed -i '/^- \[/s/\!\[Stale\](https:\/\/img\.shields\.io\/badge\/status-stale-yellow) //g' README.md
-          sed -i '/^- \[/s/\!\[Unmaintained\](https:\/\/img\.shields\.io\/badge\/status-unmaintained-red) //g' README.md
-          sed -i '/^- \[/s/\!\[Archived\](https:\/\/img\.shields\.io\/badge\/status-archived-lightgrey) //g' README.md
-          sed -i '/^- \[/s/\!\[Deprecated\](https:\/\/img\.shields\.io\/badge\/status-deprecated-lightgrey) //g' README.md
 
           # Process each repository and update its status badge
           while IFS='|' read -r repo_path status days; do
@@ -152,9 +174,18 @@ jobs:
                 NEW_BADGE="![Archived](https://img.shields.io/badge/status-archived-lightgrey)"
                 ;;
               *)
+                # Preserve the existing badge when the API result is unavailable.
                 continue
                 ;;
             esac
+
+            # Remove an old status only for this successfully checked repository.
+            # This preserves badges for repositories whose API lookup failed.
+            sed -i "/^- \[.*github\.com\/${ESCAPED_REPO}/s/\!\[Active\](https:\/\/img\.shields\.io\/badge\/status-active-brightgreen) //g" README.md
+            sed -i "/^- \[.*github\.com\/${ESCAPED_REPO}/s/\!\[Stale\](https:\/\/img\.shields\.io\/badge\/status-stale-yellow) //g" README.md
+            sed -i "/^- \[.*github\.com\/${ESCAPED_REPO}/s/\!\[Unmaintained\](https:\/\/img\.shields\.io\/badge\/status-unmaintained-red) //g" README.md
+            sed -i "/^- \[.*github\.com\/${ESCAPED_REPO}/s/\!\[Archived\](https:\/\/img\.shields\.io\/badge\/status-archived-lightgrey) //g" README.md
+            sed -i "/^- \[.*github\.com\/${ESCAPED_REPO}/s/\!\[Deprecated\](https:\/\/img\.shields\.io\/badge\/status-deprecated-lightgrey) //g" README.md
 
             # Add the new status badge after the description, before the Stars badge
             # Only on lines starting with "- [" (tool entries)
