@@ -318,7 +318,7 @@ These projects are retained for migration research and historical context, not r
 
 ### Container Security › Runtime Security
 
-- [sysdig-inspect](https://github.com/draios/sysdig-inspect) - Visualize system calls and analyze containers. ![Unmaintained](https://img.shields.io/badge/status-unmaintained-red) ![Stars](https://img.shields.io/github/stars/draios/sysdig-inspect) ![Last Commit](https://img.shields.io/github/last-commit/draios/sysdig-inspect)
+- [sysdig-inspect](https://github.com/draios/sysdig-inspect) - Visualize system calls and analyze containers. ![Active](https://img.shields.io/badge/status-active-brightgreen) ![Stars](https://img.shields.io/github/stars/draios/sysdig-inspect) ![Last Commit](https://img.shields.io/github/last-commit/draios/sysdig-inspect)
 
 ### Kubernetes Security
 
