@@ -139,7 +139,7 @@ Audit and verify supply chain security against industry benchmarks.
 
 Scan dependencies for known vulnerabilities.
 
-- [bomber](https://github.com/devops-kung-fu/bomber) - Scan SBOMs for vulnerabilities. ![Active](https://img.shields.io/badge/status-active-brightgreen) ![Stars](https://img.shields.io/github/stars/devops-kung-fu/bomber) ![Last Commit](https://img.shields.io/github/last-commit/devops-kung-fu/bomber)
+- [bomber](https://github.com/devops-kung-fu/bomber) - Scan SBOMs for vulnerabilities. ![Stale](https://img.shields.io/badge/status-stale-yellow) ![Stars](https://img.shields.io/github/stars/devops-kung-fu/bomber) ![Last Commit](https://img.shields.io/github/last-commit/devops-kung-fu/bomber)
 - [dependency-track](https://github.com/DependencyTrack/dependency-track) - Track components and analyze dependency risk from SBOMs. ![Active](https://img.shields.io/badge/status-active-brightgreen) ![Stars](https://img.shields.io/github/stars/DependencyTrack/dependency-track) ![Last Commit](https://img.shields.io/github/last-commit/DependencyTrack/dependency-track)
 - [grype](https://github.com/anchore/grype) - Scan filesystems and SBOMs for dependency vulnerabilities. ![Active](https://img.shields.io/badge/status-active-brightgreen) ![Stars](https://img.shields.io/github/stars/anchore/grype) ![Last Commit](https://img.shields.io/github/last-commit/anchore/grype)
 - [osv-scanner](https://github.com/google/osv-scanner) - Scan dependencies for vulnerabilities in the OSV database. ![Active](https://img.shields.io/badge/status-active-brightgreen) ![Stars](https://img.shields.io/github/stars/google/osv-scanner) ![Last Commit](https://img.shields.io/github/last-commit/google/osv-scanner)
@@ -304,7 +304,7 @@ These projects are retained for migration research and historical context, not r
 
 ### Static Application Security Testing (SAST) › Language-specific › JavaScript/Node.js
 
-- [njsscan](https://github.com/ajinabraham/njsscan) - Analyze Node.js applications with semantic SAST rules. ![Unmaintained](https://img.shields.io/badge/status-unmaintained-red) ![Stars](https://img.shields.io/github/stars/ajinabraham/njsscan) ![Last Commit](https://img.shields.io/github/last-commit/ajinabraham/njsscan)
+- [njsscan](https://github.com/ajinabraham/njsscan) - Analyze Node.js applications with semantic SAST rules. ![Active](https://img.shields.io/badge/status-active-brightgreen) ![Stars](https://img.shields.io/github/stars/ajinabraham/njsscan) ![Last Commit](https://img.shields.io/github/last-commit/ajinabraham/njsscan)
 
 ### Infrastructure as Code Security
 
