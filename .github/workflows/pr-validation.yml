@@ -15,17 +15,27 @@ jobs:
       issues: write
 
     steps:
-      - name: Checkout repository
+      # Check out the trusted base repository only. The PR head is fetched as a
+      # git ref below and is never checked out or executed — this workflow only
+      # inspects the README diff, which keeps pull_request_target safe.
+      - name: Checkout base repository
         uses: actions/checkout@v4
         with:
-          ref: ${{ github.event.pull_request.head.sha }}
           fetch-depth: 0
+
+      - name: Fetch pull request head
+        run: |
+          git fetch origin "pull/${{ github.event.pull_request.number }}/head"
+          git update-ref refs/remotes/pr/head FETCH_HEAD
 
       - name: Get changed files
         id: changed-files
-        uses: tj-actions/changed-files@v44
-        with:
-          files: README.md
+        run: |
+          if git diff --name-only "origin/${{ github.base_ref }}...pr/head" | grep -qx 'README.md'; then
+            echo "any_changed=true" >> $GITHUB_OUTPUT
+          else
+            echo "any_changed=false" >> $GITHUB_OUTPUT
+          fi
 
       - name: Extract new GitHub URLs from PR
         id: extract-urls
@@ -37,7 +47,7 @@ jobs:
           grep -oP 'https://github\.com/[a-zA-Z0-9_.-]+/[a-zA-Z0-9_.-]+' base_readme.md | \
             sort -u > existing_repos.txt
 
-          git diff origin/${{ github.base_ref }}...HEAD -- README.md | \
+          git diff origin/${{ github.base_ref }}...pr/head -- README.md | \
             grep -oP '^\+.*https://github\.com/[a-zA-Z0-9_.-]+/[a-zA-Z0-9_.-]+' | \
             grep -oP 'https://github\.com/[a-zA-Z0-9_.-]+/[a-zA-Z0-9_.-]+' | \
             sort -u > added_repos.txt || true
@@ -204,7 +214,7 @@ jobs:
           FORMAT_ISSUES=false
 
           # Check for proper badge format in new lines
-          git diff origin/${{ github.base_ref }}...HEAD -- README.md | grep '^\+' | grep -v '^\+\+\+' > new_lines.txt || true
+          git diff origin/${{ github.base_ref }}...pr/head -- README.md | grep '^\+' | grep -v '^\+\+\+' > new_lines.txt || true
 
           # Check each new tool entry for proper format
           while IFS= read -r line; do
