@@ -108,7 +108,7 @@ Entries are organized by where they operate in a delivery pipeline. Status refle
 
 Catch secrets and credentials before they enter your repository.
 
-| Tool | What it does<br><img src="assets/blank.gif" width="700" height="1" alt=""> | Status | ★ | Scorecard | Release |
+| Tool<br><img src="assets/blank.gif" width="105" height="1" alt=""> | What it does<br><img src="assets/blank.gif" width="270" height="1" alt=""> | Status<br><img src="assets/blank.gif" width="95" height="1" alt=""> | ★<br><img src="assets/blank.gif" width="45" height="1" alt=""> | Scorecard<br><img src="assets/blank.gif" width="72" height="1" alt=""> | Release<br><img src="assets/blank.gif" width="82" height="1" alt=""> |
 |:---|:---|:---|---:|:---|:---|
 | [**detect-secrets**](https://github.com/Yelp/detect-secrets) | Prevent secrets from entering codebases | 🟡&nbsp;Stale<br><sub>Apr 2026</sub> | 4.7k | [3.5](https://rezmoss.github.io/awesome-security-pipeline/projects/Yelp/detect-secrets/) | — |
 | [**gitleaks**](https://github.com/gitleaks/gitleaks) | Detect and prevent secrets in git repos | 🟢&nbsp;Active<br><sub>Oct 2026</sub> | 30.6k | [report](https://rezmoss.github.io/awesome-security-pipeline/projects/gitleaks/gitleaks/) | Checksums |
@@ -120,7 +120,7 @@ Catch secrets and credentials before they enter your repository.
 
 Generate Software Bill of Materials for supply chain visibility.
 
-| Tool | What it does<br><img src="assets/blank.gif" width="700" height="1" alt=""> | Status | ★ | Scorecard | Release |
+| Tool<br><img src="assets/blank.gif" width="105" height="1" alt=""> | What it does<br><img src="assets/blank.gif" width="270" height="1" alt=""> | Status<br><img src="assets/blank.gif" width="95" height="1" alt=""> | ★<br><img src="assets/blank.gif" width="45" height="1" alt=""> | Scorecard<br><img src="assets/blank.gif" width="72" height="1" alt=""> | Release<br><img src="assets/blank.gif" width="82" height="1" alt=""> |
 |:---|:---|:---|---:|:---|:---|
 | [**cdxgen**](https://github.com/CycloneDX/cdxgen) | Create CycloneDX SBOMs for various languages | 🟢&nbsp;Active<br><sub>Nov 2026</sub> | 1.1k | [report](https://rezmoss.github.io/awesome-security-pipeline/projects/CycloneDX/cdxgen/) | Checksums |
 | [**cyclonedx-cli**](https://github.com/CycloneDX/cyclonedx-cli) | Inspect, convert, and merge CycloneDX SBOMs | 🟢&nbsp;Active<br><sub>Jul 2026</sub> | 552 | [report](https://rezmoss.github.io/awesome-security-pipeline/projects/CycloneDX/cyclonedx-cli/) | — |
@@ -132,7 +132,7 @@ Generate Software Bill of Materials for supply chain visibility.
 
 Sign and verify container images and artifacts for supply chain security.
 
-| Tool | What it does<br><img src="assets/blank.gif" width="700" height="1" alt=""> | Status | ★ | Scorecard | Release |
+| Tool<br><img src="assets/blank.gif" width="105" height="1" alt=""> | What it does<br><img src="assets/blank.gif" width="270" height="1" alt=""> | Status<br><img src="assets/blank.gif" width="95" height="1" alt=""> | ★<br><img src="assets/blank.gif" width="45" height="1" alt=""> | Scorecard<br><img src="assets/blank.gif" width="72" height="1" alt=""> | Release<br><img src="assets/blank.gif" width="82" height="1" alt=""> |
 |:---|:---|:---|---:|:---|:---|
 | [**cosign**](https://github.com/sigstore/cosign) | Sign and verify container images | 🟢&nbsp;Active<br><sub>Oct 2026</sub> | 6.4k | [8.2](https://rezmoss.github.io/awesome-security-pipeline/projects/sigstore/cosign/) | ✓&nbsp;Verified |
 | [**notation**](https://github.com/notaryproject/notation) | Sign and verify OCI artifacts with Notary Project specifications | 🟢&nbsp;Active<br><sub>Oct 2026</sub> | 502 | [6.5](https://rezmoss.github.io/awesome-security-pipeline/projects/notaryproject/notation/) | Checksums |
@@ -142,7 +142,7 @@ Sign and verify container images and artifacts for supply chain security.
 
 Audit and verify supply chain security against industry benchmarks.
 
-| Tool | What it does<br><img src="assets/blank.gif" width="700" height="1" alt=""> | Status | ★ | Scorecard | Release |
+| Tool<br><img src="assets/blank.gif" width="105" height="1" alt=""> | What it does<br><img src="assets/blank.gif" width="270" height="1" alt=""> | Status<br><img src="assets/blank.gif" width="95" height="1" alt=""> | ★<br><img src="assets/blank.gif" width="45" height="1" alt=""> | Scorecard<br><img src="assets/blank.gif" width="72" height="1" alt=""> | Release<br><img src="assets/blank.gif" width="82" height="1" alt=""> |
 |:---|:---|:---|---:|:---|:---|
 | [**in-toto**](https://github.com/in-toto/in-toto) | Protect software supply-chain integrity with signed metadata | 🟢&nbsp;Active<br><sub>Aug 2026</sub> | 1.1k | [6.5](https://rezmoss.github.io/awesome-security-pipeline/projects/in-toto/in-toto/) | — |
 | [**scorecard**](https://github.com/ossf/scorecard) | Measure open-source project security practices with OpenSSF checks | 🟢&nbsp;Active<br><sub>Oct 2026</sub> | 5.8k | [8.6](https://rezmoss.github.io/awesome-security-pipeline/projects/ossf/scorecard/) | ✓&nbsp;Verified |
@@ -152,7 +152,7 @@ Audit and verify supply chain security against industry benchmarks.
 
 Scan dependencies for known vulnerabilities.
 
-| Tool | What it does<br><img src="assets/blank.gif" width="700" height="1" alt=""> | Status | ★ | Scorecard | Release |
+| Tool<br><img src="assets/blank.gif" width="105" height="1" alt=""> | What it does<br><img src="assets/blank.gif" width="270" height="1" alt=""> | Status<br><img src="assets/blank.gif" width="95" height="1" alt=""> | ★<br><img src="assets/blank.gif" width="45" height="1" alt=""> | Scorecard<br><img src="assets/blank.gif" width="72" height="1" alt=""> | Release<br><img src="assets/blank.gif" width="82" height="1" alt=""> |
 |:---|:---|:---|---:|:---|:---|
 | [**bomber**](https://github.com/devops-kung-fu/bomber) | Scan SBOMs for vulnerabilities | 🟡&nbsp;Stale<br><sub>Feb 2026</sub> | 629 | [report](https://rezmoss.github.io/awesome-security-pipeline/projects/devops-kung-fu/bomber/) | Checksums |
 | [**dependency-track**](https://github.com/DependencyTrack/dependency-track) | Track components and analyze dependency risk from SBOMs | 🟢&nbsp;Active<br><sub>Nov 2026</sub> | 4.4k | [7.5](https://rezmoss.github.io/awesome-security-pipeline/projects/DependencyTrack/dependency-track/) | — |
@@ -171,7 +171,7 @@ Analyze source code for security vulnerabilities.
 
 Tools that support multiple programming languages.
 
-| Tool | What it does<br><img src="assets/blank.gif" width="700" height="1" alt=""> | Status | ★ | Scorecard | Release |
+| Tool<br><img src="assets/blank.gif" width="105" height="1" alt=""> | What it does<br><img src="assets/blank.gif" width="270" height="1" alt=""> | Status<br><img src="assets/blank.gif" width="95" height="1" alt=""> | ★<br><img src="assets/blank.gif" width="45" height="1" alt=""> | Scorecard<br><img src="assets/blank.gif" width="72" height="1" alt=""> | Release<br><img src="assets/blank.gif" width="82" height="1" alt=""> |
 |:---|:---|:---|---:|:---|:---|
 | [**bearer**](https://github.com/Bearer/bearer) | Trace sensitive data flows and detect security risks in code | 🟢&nbsp;Active<br><sub>Oct 2026</sub> | 2.8k | [6.3](https://rezmoss.github.io/awesome-security-pipeline/projects/Bearer/bearer/) | Checksums |
 | [**codeql**](https://github.com/github/codeql) | Analyze code semantically with GitHub's query engine | 🟢&nbsp;Active<br><sub>Oct 2026</sub> | 10.3k | [5.8](https://rezmoss.github.io/awesome-security-pipeline/projects/github/codeql/) | — |
@@ -185,41 +185,41 @@ Specialized tools for individual programming languages.
 
 #### Python
 
-| Tool | What it does<br><img src="assets/blank.gif" width="700" height="1" alt=""> | Status | ★ | Scorecard | Release |
+| Tool<br><img src="assets/blank.gif" width="105" height="1" alt=""> | What it does<br><img src="assets/blank.gif" width="270" height="1" alt=""> | Status<br><img src="assets/blank.gif" width="95" height="1" alt=""> | ★<br><img src="assets/blank.gif" width="45" height="1" alt=""> | Scorecard<br><img src="assets/blank.gif" width="72" height="1" alt=""> | Release<br><img src="assets/blank.gif" width="82" height="1" alt=""> |
 |:---|:---|:---|---:|:---|:---|
 | [**bandit**](https://github.com/PyCQA/bandit) | Find common security issues in Python code | 🟢&nbsp;Active<br><sub>Oct 2026</sub> | 8.4k | [5.8](https://rezmoss.github.io/awesome-security-pipeline/projects/PyCQA/bandit/) | — |
 | [**safety**](https://github.com/pyupio/safety) | Check Python dependencies for vulnerabilities | 🟢&nbsp;Active<br><sub>Sep 2026</sub> | 2k | [4.7](https://rezmoss.github.io/awesome-security-pipeline/projects/pyupio/safety/) | — |
 
 #### JavaScript/Node.js
 
-| Tool | What it does<br><img src="assets/blank.gif" width="700" height="1" alt=""> | Status | ★ | Scorecard | Release |
+| Tool<br><img src="assets/blank.gif" width="105" height="1" alt=""> | What it does<br><img src="assets/blank.gif" width="270" height="1" alt=""> | Status<br><img src="assets/blank.gif" width="95" height="1" alt=""> | ★<br><img src="assets/blank.gif" width="45" height="1" alt=""> | Scorecard<br><img src="assets/blank.gif" width="72" height="1" alt=""> | Release<br><img src="assets/blank.gif" width="82" height="1" alt=""> |
 |:---|:---|:---|---:|:---|:---|
 | [**eslint-plugin-security**](https://github.com/eslint-community/eslint-plugin-security) | Detect security patterns in Node.js with ESLint rules | 🟢&nbsp;Active<br><sub>Oct 2026</sub> | 2.4k | [report](https://rezmoss.github.io/awesome-security-pipeline/projects/eslint-community/eslint-plugin-security/) | — |
 | [**njsscan**](https://github.com/ajinabraham/njsscan) | Analyze Node.js applications with semantic SAST rules | 🟢&nbsp;Active<br><sub>Oct 2026</sub> | 458 | — | — |
 
 #### Go
 
-| Tool | What it does<br><img src="assets/blank.gif" width="700" height="1" alt=""> | Status | ★ | Scorecard | Release |
+| Tool<br><img src="assets/blank.gif" width="105" height="1" alt=""> | What it does<br><img src="assets/blank.gif" width="270" height="1" alt=""> | Status<br><img src="assets/blank.gif" width="95" height="1" alt=""> | ★<br><img src="assets/blank.gif" width="45" height="1" alt=""> | Scorecard<br><img src="assets/blank.gif" width="72" height="1" alt=""> | Release<br><img src="assets/blank.gif" width="82" height="1" alt=""> |
 |:---|:---|:---|---:|:---|:---|
 | [**gosec**](https://github.com/securego/gosec) | Find security issues in Go source code | 🟢&nbsp;Active<br><sub>Oct 2026</sub> | 9k | [6.6](https://rezmoss.github.io/awesome-security-pipeline/projects/securego/gosec/) | ✓&nbsp;Verified |
 | [**govulncheck**](https://github.com/golang/vuln) | Report reachable Go vulnerabilities in source and binaries | 🟢&nbsp;Active<br><sub>Oct 2026</sub> | 532 | [3.7](https://rezmoss.github.io/awesome-security-pipeline/projects/golang/vuln/) | — |
 
 #### Ruby
 
-| Tool | What it does<br><img src="assets/blank.gif" width="700" height="1" alt=""> | Status | ★ | Scorecard | Release |
+| Tool<br><img src="assets/blank.gif" width="105" height="1" alt=""> | What it does<br><img src="assets/blank.gif" width="270" height="1" alt=""> | Status<br><img src="assets/blank.gif" width="95" height="1" alt=""> | ★<br><img src="assets/blank.gif" width="45" height="1" alt=""> | Scorecard<br><img src="assets/blank.gif" width="72" height="1" alt=""> | Release<br><img src="assets/blank.gif" width="82" height="1" alt=""> |
 |:---|:---|:---|---:|:---|:---|
 | [**brakeman**](https://github.com/presidentbeef/brakeman) | Scan Ruby on Rails applications with static analysis | 🟢&nbsp;Active<br><sub>Oct 2026</sub> | 7.3k | [6.0](https://rezmoss.github.io/awesome-security-pipeline/projects/presidentbeef/brakeman/) | — |
 
 #### PHP
 
-| Tool | What it does<br><img src="assets/blank.gif" width="700" height="1" alt=""> | Status | ★ | Scorecard | Release |
+| Tool<br><img src="assets/blank.gif" width="105" height="1" alt=""> | What it does<br><img src="assets/blank.gif" width="270" height="1" alt=""> | Status<br><img src="assets/blank.gif" width="95" height="1" alt=""> | ★<br><img src="assets/blank.gif" width="45" height="1" alt=""> | Scorecard<br><img src="assets/blank.gif" width="72" height="1" alt=""> | Release<br><img src="assets/blank.gif" width="82" height="1" alt=""> |
 |:---|:---|:---|---:|:---|:---|
 | [**phpstan**](https://github.com/phpstan/phpstan) | Analyze PHP code without running it | 🟢&nbsp;Active<br><sub>Nov 2026</sub> | 14.1k | [4.8](https://rezmoss.github.io/awesome-security-pipeline/projects/phpstan/phpstan/) | — |
 | [**psalm**](https://github.com/vimeo/psalm) | Analyze PHP code for type and security issues | 🟢&nbsp;Active<br><sub>Nov 2026</sub> | 5.9k | [4.7](https://rezmoss.github.io/awesome-security-pipeline/projects/vimeo/psalm/) | — |
 
 #### Rust
 
-| Tool | What it does<br><img src="assets/blank.gif" width="700" height="1" alt=""> | Status | ★ | Scorecard | Release |
+| Tool<br><img src="assets/blank.gif" width="105" height="1" alt=""> | What it does<br><img src="assets/blank.gif" width="270" height="1" alt=""> | Status<br><img src="assets/blank.gif" width="95" height="1" alt=""> | ★<br><img src="assets/blank.gif" width="45" height="1" alt=""> | Scorecard<br><img src="assets/blank.gif" width="72" height="1" alt=""> | Release<br><img src="assets/blank.gif" width="82" height="1" alt=""> |
 |:---|:---|:---|---:|:---|:---|
 | [**cargo-audit**](https://github.com/RustSec/rustsec) | Audit Cargo.lock for crates with security vulnerabilities | 🟢&nbsp;Active<br><sub>Oct 2026</sub> | 2k | [report](https://rezmoss.github.io/awesome-security-pipeline/projects/RustSec/rustsec/) | — |
 
@@ -227,7 +227,7 @@ Specialized tools for individual programming languages.
 
 Scan infrastructure configurations for security misconfigurations.
 
-| Tool | What it does<br><img src="assets/blank.gif" width="700" height="1" alt=""> | Status | ★ | Scorecard | Release |
+| Tool<br><img src="assets/blank.gif" width="105" height="1" alt=""> | What it does<br><img src="assets/blank.gif" width="270" height="1" alt=""> | Status<br><img src="assets/blank.gif" width="95" height="1" alt=""> | ★<br><img src="assets/blank.gif" width="45" height="1" alt=""> | Scorecard<br><img src="assets/blank.gif" width="72" height="1" alt=""> | Release<br><img src="assets/blank.gif" width="82" height="1" alt=""> |
 |:---|:---|:---|---:|:---|:---|
 | [**cfn-lint**](https://github.com/aws-cloudformation/cfn-lint) | Lint AWS CloudFormation templates with security rules | 🟢&nbsp;Active<br><sub>Oct 2026</sub> | 2.6k | [report](https://rezmoss.github.io/awesome-security-pipeline/projects/aws-cloudformation/cfn-lint/) | — |
 | [**checkov**](https://github.com/bridgecrewio/checkov) | Scan cloud infrastructure configurations | 🟢&nbsp;Active<br><sub>Oct 2026</sub> | 9.1k | [report](https://rezmoss.github.io/awesome-security-pipeline/projects/bridgecrewio/checkov/) | — |
@@ -244,7 +244,7 @@ Secure container images and runtime environments.
 
 Scan container images for vulnerabilities before deployment.
 
-| Tool | What it does<br><img src="assets/blank.gif" width="700" height="1" alt=""> | Status | ★ | Scorecard | Release |
+| Tool<br><img src="assets/blank.gif" width="105" height="1" alt=""> | What it does<br><img src="assets/blank.gif" width="270" height="1" alt=""> | Status<br><img src="assets/blank.gif" width="95" height="1" alt=""> | ★<br><img src="assets/blank.gif" width="45" height="1" alt=""> | Scorecard<br><img src="assets/blank.gif" width="72" height="1" alt=""> | Release<br><img src="assets/blank.gif" width="82" height="1" alt=""> |
 |:---|:---|:---|---:|:---|:---|
 | [**clair**](https://github.com/quay/clair) | Analyze container images for known vulnerabilities | 🟢&nbsp;Active<br><sub>Oct 2026</sub> | 11.1k | [5.0](https://rezmoss.github.io/awesome-security-pipeline/projects/quay/clair/) | — |
 | [**dive**](https://github.com/wagoodman/dive) | Inspect image layers and contents; it does not scan vulnerability databases | 🟢&nbsp;Active<br><sub>Oct 2026</sub> | 54.7k | — | — |
@@ -258,7 +258,7 @@ Scan container images for vulnerabilities before deployment.
 
 Monitor and protect containers at runtime.
 
-| Tool | What it does<br><img src="assets/blank.gif" width="700" height="1" alt=""> | Status | ★ | Scorecard | Release |
+| Tool<br><img src="assets/blank.gif" width="105" height="1" alt=""> | What it does<br><img src="assets/blank.gif" width="270" height="1" alt=""> | Status<br><img src="assets/blank.gif" width="95" height="1" alt=""> | ★<br><img src="assets/blank.gif" width="45" height="1" alt=""> | Scorecard<br><img src="assets/blank.gif" width="72" height="1" alt=""> | Release<br><img src="assets/blank.gif" width="82" height="1" alt=""> |
 |:---|:---|:---|---:|:---|:---|
 | [**falco**](https://github.com/falcosecurity/falco) | Detect runtime threats in cloud-native environments | 🟢&nbsp;Active<br><sub>Oct 2026</sub> | 9.5k | [7.5](https://rezmoss.github.io/awesome-security-pipeline/projects/falcosecurity/falco/) | — |
 | [**sysdig-inspect**](https://github.com/draios/sysdig-inspect) | Visualize system calls and analyze containers | 🟢&nbsp;Active<br><sub>Jul 2026</sub> | 1k | — | — |
@@ -269,7 +269,7 @@ Monitor and protect containers at runtime.
 
 Secure Kubernetes clusters, manifests, and workloads.
 
-| Tool | What it does<br><img src="assets/blank.gif" width="700" height="1" alt=""> | Status | ★ | Scorecard | Release |
+| Tool<br><img src="assets/blank.gif" width="105" height="1" alt=""> | What it does<br><img src="assets/blank.gif" width="270" height="1" alt=""> | Status<br><img src="assets/blank.gif" width="95" height="1" alt=""> | ★<br><img src="assets/blank.gif" width="45" height="1" alt=""> | Scorecard<br><img src="assets/blank.gif" width="72" height="1" alt=""> | Release<br><img src="assets/blank.gif" width="82" height="1" alt=""> |
 |:---|:---|:---|---:|:---|:---|
 | [**kube-bench**](https://github.com/aquasecurity/kube-bench) | Check Kubernetes against CIS benchmarks | 🟢&nbsp;Active<br><sub>Oct 2026</sub> | 8.2k | [5.8](https://rezmoss.github.io/awesome-security-pipeline/projects/aquasecurity/kube-bench/) | Checksums |
 | [**kube-linter**](https://github.com/stackrox/kube-linter) | Analyze Kubernetes YAML and Helm charts before deployment | 🟢&nbsp;Active<br><sub>Oct 2026</sub> | 3.5k | [7.4](https://rezmoss.github.io/awesome-security-pipeline/projects/stackrox/kube-linter/) | Signed |
@@ -283,7 +283,7 @@ Secure Kubernetes clusters, manifests, and workloads.
 
 Define and enforce security policies as code across your infrastructure.
 
-| Tool | What it does<br><img src="assets/blank.gif" width="700" height="1" alt=""> | Status | ★ | Scorecard | Release |
+| Tool<br><img src="assets/blank.gif" width="105" height="1" alt=""> | What it does<br><img src="assets/blank.gif" width="270" height="1" alt=""> | Status<br><img src="assets/blank.gif" width="95" height="1" alt=""> | ★<br><img src="assets/blank.gif" width="45" height="1" alt=""> | Scorecard<br><img src="assets/blank.gif" width="72" height="1" alt=""> | Release<br><img src="assets/blank.gif" width="82" height="1" alt=""> |
 |:---|:---|:---|---:|:---|:---|
 | [**conftest**](https://github.com/open-policy-agent/conftest) | Test configuration files against OPA policies | 🟢&nbsp;Active<br><sub>Oct 2026</sub> | 3.3k | [7.2](https://rezmoss.github.io/awesome-security-pipeline/projects/open-policy-agent/conftest/) | ✓&nbsp;Verified |
 | [**gatekeeper**](https://github.com/open-policy-agent/gatekeeper) | Enforce OPA policies through Kubernetes admission control | 🟢&nbsp;Active<br><sub>Oct 2026</sub> | 4.3k | [report](https://rezmoss.github.io/awesome-security-pipeline/projects/open-policy-agent/gatekeeper/) | ✓&nbsp;Verified |
@@ -293,7 +293,7 @@ Define and enforce security policies as code across your infrastructure.
 
 Securely manage and distribute secrets in Kubernetes and GitOps workflows.
 
-| Tool | What it does<br><img src="assets/blank.gif" width="700" height="1" alt=""> | Status | ★ | Scorecard | Release |
+| Tool<br><img src="assets/blank.gif" width="105" height="1" alt=""> | What it does<br><img src="assets/blank.gif" width="270" height="1" alt=""> | Status<br><img src="assets/blank.gif" width="95" height="1" alt=""> | ★<br><img src="assets/blank.gif" width="45" height="1" alt=""> | Scorecard<br><img src="assets/blank.gif" width="72" height="1" alt=""> | Release<br><img src="assets/blank.gif" width="82" height="1" alt=""> |
 |:---|:---|:---|---:|:---|:---|
 | [**external-secrets**](https://github.com/external-secrets/external-secrets) | Sync secrets from AWS/Vault/Azure into Kubernetes | 🟢&nbsp;Active<br><sub>Oct 2026</sub> | 6.9k | [8.3](https://rezmoss.github.io/awesome-security-pipeline/projects/external-secrets/external-secrets/) | — |
 | [**infisical**](https://github.com/Infisical/infisical) | Manage application secrets with automation integrations | 🟢&nbsp;Active<br><sub>Nov 2026</sub> | 30.2k | [6.9](https://rezmoss.github.io/awesome-security-pipeline/projects/Infisical/infisical/) | — |
@@ -305,7 +305,7 @@ Securely manage and distribute secrets in Kubernetes and GitOps workflows.
 
 Test running applications for vulnerabilities.
 
-| Tool | What it does<br><img src="assets/blank.gif" width="700" height="1" alt=""> | Status | ★ | Scorecard | Release |
+| Tool<br><img src="assets/blank.gif" width="105" height="1" alt=""> | What it does<br><img src="assets/blank.gif" width="270" height="1" alt=""> | Status<br><img src="assets/blank.gif" width="95" height="1" alt=""> | ★<br><img src="assets/blank.gif" width="45" height="1" alt=""> | Scorecard<br><img src="assets/blank.gif" width="72" height="1" alt=""> | Release<br><img src="assets/blank.gif" width="82" height="1" alt=""> |
 |:---|:---|:---|---:|:---|:---|
 | [**Dark-Moon**](https://github.com/ASCIT31/Dark-Moon) | Autonomous AI penetration testing platform that exercises running web, API, Active Directory and Kubernetes targets with proof of exploitation | 🟢&nbsp;Active<br><sub>Oct 2026</sub> | 1.2k | [3.8](https://rezmoss.github.io/awesome-security-pipeline/projects/ASCIT31/Dark-Moon/) | — |
 | [**nikto**](https://github.com/sullo/nikto) | Scan web servers for dangerous files and known vulnerabilities | 🟢&nbsp;Active<br><sub>Aug 2026</sub> | 10.8k | [3.8](https://rezmoss.github.io/awesome-security-pipeline/projects/sullo/nikto/) | — |
@@ -318,7 +318,7 @@ Test running applications for vulnerabilities.
 
 Assess and audit cloud infrastructure security posture.
 
-| Tool | What it does<br><img src="assets/blank.gif" width="700" height="1" alt=""> | Status | ★ | Scorecard | Release |
+| Tool<br><img src="assets/blank.gif" width="105" height="1" alt=""> | What it does<br><img src="assets/blank.gif" width="270" height="1" alt=""> | Status<br><img src="assets/blank.gif" width="95" height="1" alt=""> | ★<br><img src="assets/blank.gif" width="45" height="1" alt=""> | Scorecard<br><img src="assets/blank.gif" width="72" height="1" alt=""> | Release<br><img src="assets/blank.gif" width="82" height="1" alt=""> |
 |:---|:---|:---|---:|:---|:---|
 | [**cartography**](https://github.com/lyft/cartography) | Map infrastructure relationships and attack surface | 🟢&nbsp;Active<br><sub>Nov 2026</sub> | 4.2k | [8.1](https://rezmoss.github.io/awesome-security-pipeline/projects/lyft/cartography/) | — |
 | [**cloudquery**](https://github.com/cloudquery/cloudquery) | Inventory cloud assets and analyze them with SQL | 🟢&nbsp;Active<br><sub>Nov 2026</sub> | 6.6k | [6.0](https://rezmoss.github.io/awesome-security-pipeline/projects/cloudquery/cloudquery/) | Checksums |
@@ -332,71 +332,71 @@ These projects are kept for migration research and historical context, not recom
 
 ### Pre-commit & Secrets Detection
 
-| Tool | What it did<br><img src="assets/blank.gif" width="600" height="1" alt=""> | Status | ★ | Use instead |
+| Tool<br><img src="assets/blank.gif" width="105" height="1" alt=""> | What it did<br><img src="assets/blank.gif" width="240" height="1" alt=""> | Status<br><img src="assets/blank.gif" width="118" height="1" alt=""> | ★<br><img src="assets/blank.gif" width="45" height="1" alt=""> | Use instead<br><img src="assets/blank.gif" width="161" height="1" alt=""> |
 |:---|:---|:---|---:|:---|
 | [**git-secrets**](https://github.com/awslabs/git-secrets) | Prevent committing AWS credentials and secrets | 🔴&nbsp;Unmaintained<br><sub>Sep 2025</sub> | 13.4k | — |
 | [**whispers**](https://github.com/Skyscanner/whispers) | Identify hardcoded secrets in static code analysis | ⚪&nbsp;Archived<br><sub>Oct 2021</sub> | 506 | — |
 
 ### SBOM Generation
 
-| Tool | What it did<br><img src="assets/blank.gif" width="600" height="1" alt=""> | Status | ★ | Use instead |
+| Tool<br><img src="assets/blank.gif" width="105" height="1" alt=""> | What it did<br><img src="assets/blank.gif" width="240" height="1" alt=""> | Status<br><img src="assets/blank.gif" width="118" height="1" alt=""> | ★<br><img src="assets/blank.gif" width="45" height="1" alt=""> | Use instead<br><img src="assets/blank.gif" width="161" height="1" alt=""> |
 |:---|:---|:---|---:|:---|
 | [**spdx-sbom-generator**](https://github.com/opensbom-generator/spdx-sbom-generator) | Generate SPDX format SBOMs from source code | ⚪&nbsp;Archived<br><sub>Jan 2025</sub> | 427 | — |
 | [**tern**](https://github.com/tern-tools/tern) | Analyze container images for software composition | 🔴&nbsp;Unmaintained<br><sub>Dec 2023</sub> | 1k | — |
 
 ### Supply Chain Compliance
 
-| Tool | What it did<br><img src="assets/blank.gif" width="600" height="1" alt=""> | Status | ★ | Use instead |
+| Tool<br><img src="assets/blank.gif" width="105" height="1" alt=""> | What it did<br><img src="assets/blank.gif" width="240" height="1" alt=""> | Status<br><img src="assets/blank.gif" width="118" height="1" alt=""> | ★<br><img src="assets/blank.gif" width="45" height="1" alt=""> | Use instead<br><img src="assets/blank.gif" width="161" height="1" alt=""> |
 |:---|:---|:---|---:|:---|
 | [**chain-bench**](https://github.com/aquasecurity/chain-bench) | Audit supply chain against CIS benchmarks | 🔴&nbsp;Unmaintained<br><sub>Jul 2024</sub> | 772 | — |
 
 ### Static Application Security Testing (SAST) › Multi-language
 
-| Tool | What it did<br><img src="assets/blank.gif" width="600" height="1" alt=""> | Status | ★ | Use instead |
+| Tool<br><img src="assets/blank.gif" width="105" height="1" alt=""> | What it did<br><img src="assets/blank.gif" width="240" height="1" alt=""> | Status<br><img src="assets/blank.gif" width="118" height="1" alt=""> | ★<br><img src="assets/blank.gif" width="45" height="1" alt=""> | Use instead<br><img src="assets/blank.gif" width="161" height="1" alt=""> |
 |:---|:---|:---|---:|:---|
 | [**horusec**](https://github.com/ZupIT/horusec) | Analyze source code across multiple languages | 🔴&nbsp;Unmaintained<br><sub>Aug 2023</sub> | 1.3k | — |
 
 ### Static Application Security Testing (SAST) › Language-specific › Python
 
-| Tool | What it did<br><img src="assets/blank.gif" width="600" height="1" alt=""> | Status | ★ | Use instead |
+| Tool<br><img src="assets/blank.gif" width="105" height="1" alt=""> | What it did<br><img src="assets/blank.gif" width="240" height="1" alt=""> | Status<br><img src="assets/blank.gif" width="118" height="1" alt=""> | ★<br><img src="assets/blank.gif" width="45" height="1" alt=""> | Use instead<br><img src="assets/blank.gif" width="161" height="1" alt=""> |
 |:---|:---|:---|---:|:---|
 | [**pyre-check**](https://github.com/facebook/pyre-check) | Analyze Python types and selected security properties | ⚪&nbsp;Archived<br><sub>Jun 2026</sub> | 7.2k | — |
 
 ### Infrastructure as Code Security
 
-| Tool | What it did<br><img src="assets/blank.gif" width="600" height="1" alt=""> | Status | ★ | Use instead |
+| Tool<br><img src="assets/blank.gif" width="105" height="1" alt=""> | What it did<br><img src="assets/blank.gif" width="240" height="1" alt=""> | Status<br><img src="assets/blank.gif" width="118" height="1" alt=""> | ★<br><img src="assets/blank.gif" width="45" height="1" alt=""> | Use instead<br><img src="assets/blank.gif" width="161" height="1" alt=""> |
 |:---|:---|:---|---:|:---|
 | [**terrascan**](https://github.com/tenable/terrascan) | Detect compliance and security violations in IaC | ⚪&nbsp;Archived<br><sub>Nov 2025</sub> | 5.2k | — |
 | [**tfsec**](https://github.com/aquasecurity/tfsec) | Scan Terraform code for security issues | 🔴&nbsp;Unmaintained<br><sub>May 2025</sub> | 7.1k | — |
 
 ### Container Security › Image Scanning
 
-| Tool | What it did<br><img src="assets/blank.gif" width="600" height="1" alt=""> | Status | ★ | Use instead |
+| Tool<br><img src="assets/blank.gif" width="105" height="1" alt=""> | What it did<br><img src="assets/blank.gif" width="240" height="1" alt=""> | Status<br><img src="assets/blank.gif" width="118" height="1" alt=""> | ★<br><img src="assets/blank.gif" width="45" height="1" alt=""> | Use instead<br><img src="assets/blank.gif" width="161" height="1" alt=""> |
 |:---|:---|:---|---:|:---|
 | [**anchore-engine**](https://github.com/anchore/anchore-engine) | Analyze containers and evaluate image policies | ⚪&nbsp;Archived<br><sub>Jan 2023</sub> | 1.6k | [syft](https://github.com/anchore/syft), [grype](https://github.com/anchore/grype) |
 
 ### Kubernetes Security
 
-| Tool | What it did<br><img src="assets/blank.gif" width="600" height="1" alt=""> | Status | ★ | Use instead |
+| Tool<br><img src="assets/blank.gif" width="105" height="1" alt=""> | What it did<br><img src="assets/blank.gif" width="240" height="1" alt=""> | Status<br><img src="assets/blank.gif" width="118" height="1" alt=""> | ★<br><img src="assets/blank.gif" width="45" height="1" alt=""> | Use instead<br><img src="assets/blank.gif" width="161" height="1" alt=""> |
 |:---|:---|:---|---:|:---|
 | [**kube-hunter**](https://github.com/aquasecurity/kube-hunter) | Hunt for security weaknesses in Kubernetes clusters | 🔴&nbsp;Unmaintained<br><sub>Mar 2024</sub> | 5.1k | — |
 | [**kubiscan**](https://github.com/cyberark/KubiScan) | Scan Kubernetes RBAC for risky permissions | 🔴&nbsp;Unmaintained<br><sub>May 2025</sub> | 1.4k | — |
 
 ### Policy as Code
 
-| Tool | What it did<br><img src="assets/blank.gif" width="600" height="1" alt=""> | Status | ★ | Use instead |
+| Tool<br><img src="assets/blank.gif" width="105" height="1" alt=""> | What it did<br><img src="assets/blank.gif" width="240" height="1" alt=""> | Status<br><img src="assets/blank.gif" width="118" height="1" alt=""> | ★<br><img src="assets/blank.gif" width="45" height="1" alt=""> | Use instead<br><img src="assets/blank.gif" width="161" height="1" alt=""> |
 |:---|:---|:---|---:|:---|
 | [**datree**](https://github.com/datreeio/datree) | Prevent Kubernetes misconfigurations | ⚪&nbsp;Archived<br><sub>Aug 2023</sub> | 6.3k | — |
 
 ### API & Dynamic Testing (DAST)
 
-| Tool | What it did<br><img src="assets/blank.gif" width="600" height="1" alt=""> | Status | ★ | Use instead |
+| Tool<br><img src="assets/blank.gif" width="105" height="1" alt=""> | What it did<br><img src="assets/blank.gif" width="240" height="1" alt=""> | Status<br><img src="assets/blank.gif" width="118" height="1" alt=""> | ★<br><img src="assets/blank.gif" width="45" height="1" alt=""> | Use instead<br><img src="assets/blank.gif" width="161" height="1" alt=""> |
 |:---|:---|:---|---:|:---|
 | [**arachni**](https://github.com/Arachni/arachni) | Scan web applications for security issues | ⚪&nbsp;Archived<br><sub>Apr 2026</sub> | 4k | [zap](https://github.com/zaproxy/zaproxy), [nuclei](https://github.com/projectdiscovery/nuclei) |
 
 ### Cloud Security
 
-| Tool | What it did<br><img src="assets/blank.gif" width="600" height="1" alt=""> | Status | ★ | Use instead |
+| Tool<br><img src="assets/blank.gif" width="105" height="1" alt=""> | What it did<br><img src="assets/blank.gif" width="240" height="1" alt=""> | Status<br><img src="assets/blank.gif" width="118" height="1" alt=""> | ★<br><img src="assets/blank.gif" width="45" height="1" alt=""> | Use instead<br><img src="assets/blank.gif" width="161" height="1" alt=""> |
 |:---|:---|:---|---:|:---|
 | [**ScoutSuite**](https://github.com/nccgroup/ScoutSuite) | Audit security configurations across multiple cloud providers | 🔴&nbsp;Unmaintained<br><sub>May 2024</sub> | 7.9k | — |
 

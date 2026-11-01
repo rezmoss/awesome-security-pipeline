@@ -283,14 +283,18 @@ def spacer(width: int) -> str:
 
 
 def header(columns: list[tuple[str, int]]) -> str:
-    """An invisible spacer in the description header makes every table span the full README width,
-    and gives all spare width to the description so the narrow columns line up across tables."""
-    cells = [f"{title}<br>{spacer(width)}" if width else title for title, width in columns]
+    """Invisible spacers give every column a fixed width, so all tables are the same width and their
+    columns line up. Some browsers treat the spacers as minimum widths, so together with cell padding
+    (26px per column) they must fit GitHub's README width (about 830px) or the tables would scroll."""
+    cells = [f"{title}<br>{spacer(width)}" for title, width in columns]
     return "| " + " | ".join(cells) + " |\n|" + "|".join("---:" if title == "★" else ":---" for title, _ in columns) + "|"
 
 
-ACTIVE_COLUMNS = [("Tool", 0), ("What it does", 700), ("Status", 0), ("★", 0), ("Scorecard", 0), ("Release", 0)]
-LEGACY_COLUMNS = [("Tool", 0), ("What it did", 600), ("Status", 0), ("★", 0), ("Use instead", 0)]
+ACTIVE_COLUMNS = [("Tool", 105), ("What it does", 270), ("Status", 95), ("★", 45), ("Scorecard", 72), ("Release", 82)]
+LEGACY_COLUMNS = [("Tool", 105), ("What it did", 240), ("Status", 118), ("★", 45), ("Use instead", 161)]
+MAX_TABLE_WIDTH = 830
+for _columns in (ACTIVE_COLUMNS, LEGACY_COLUMNS):
+    assert sum(width for _, width in _columns) + 26 * len(_columns) <= MAX_TABLE_WIDTH
 
 
 def status_cell(automated: dict[str, Any]) -> str:
