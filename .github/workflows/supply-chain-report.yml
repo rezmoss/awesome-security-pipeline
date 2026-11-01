@@ -1,0 +1,297 @@
+name: Supply-chain Report
+
+on:
+  schedule:
+    # Weekly, after the SBOM generator benchmark.
+    - cron: "47 5 * * 0"
+  workflow_dispatch:
+  pull_request:
+    paths:
+      - ".github/workflows/supply-chain-report.yml"
+      - "scripts/supply_chain_scan.py"
+      - "scripts/build_site.py"
+      - "scripts/build_sbom_site.py"
+      - "scripts/fetch-site-inputs.sh"
+      - "scripts/install-sbom-benchmark-tools.sh"
+      - "tests/test_supply_chain_scan.py"
+  push:
+    branches: [main]
+    paths:
+      - ".github/workflows/supply-chain-report.yml"
+      - "scripts/supply_chain_scan.py"
+      - "scripts/build_site.py"
+
+permissions: {}
+
+concurrency:
+  group: supply-chain-${{ github.ref }}
+  cancel-in-progress: false
+
+env:
+  DATA_BRANCH: supply-chain-data
+  SHARDS: "8"
+
+jobs:
+  targets:
+    name: Resolve catalog releases
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    permissions:
+      contents: read
+    outputs:
+      matrix: ${{ steps.targets.outputs.matrix }}
+      publish: ${{ steps.targets.outputs.publish }}
+      date: ${{ steps.targets.outputs.date }}
+    steps:
+      - name: Check out source without persisted credentials
+        uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4
+        with:
+          persist-credentials: false
+
+      - name: Test scanner and site generation
+        shell: bash
+        run: python3 -m unittest tests/test_supply_chain_scan.py tests/test_sbom_benchmark.py
+
+      - name: Resolve the latest release of every active catalog project
+        id: targets
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          limit=()
+          publish=false
+          if [[ "$GITHUB_EVENT_NAME" == "pull_request" ]]; then
+            # Pull requests scan a small, varied sample to validate the pipeline.
+            limit=(--only gitleaks/gitleaks --only PyCQA/bandit --only aquasecurity/trivy --only semgrep/semgrep)
+          elif [[ "$GITHUB_REF" == "refs/heads/main" ]]; then
+            publish=true
+          fi
+          matrix=$(python3 scripts/supply_chain_scan.py targets --readme README.md \
+            --shards "$SHARDS" --output targets.json "${limit[@]}")
+          echo "matrix=$matrix" >> "$GITHUB_OUTPUT"
+          echo "publish=$publish" >> "$GITHUB_OUTPUT"
+          echo "date=$(date -u +%F)" >> "$GITHUB_OUTPUT"
+          echo "### Supply-chain targets" >> "$GITHUB_STEP_SUMMARY"
+          jq -r '.targets[] | "- \(.repository) @ \(.ref // "unresolved") (\(.ref_kind))"' targets.json >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Retain target list
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        with:
+          name: supply-chain-targets
+          path: targets.json
+          retention-days: 90
+
+  scan:
+    name: Scan shard ${{ matrix.shard }}
+    needs: targets
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    permissions:
+      contents: read
+      actions: read
+    strategy:
+      fail-fast: false
+      matrix:
+        shard: ${{ fromJSON(needs.targets.outputs.matrix) }}
+    steps:
+      - name: Check out source without persisted credentials
+        uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4
+        with:
+          persist-credentials: false
+
+      - name: Download target list
+        uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093 # v4
+        with:
+          name: supply-chain-targets
+
+      - name: Install checksum-verified Syft, Grype, and sbomlyze
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: bash
+        run: |
+          bash scripts/install-sbom-benchmark-tools.sh \
+            "$RUNNER_TEMP/tools" "$RUNNER_TEMP/tool-metadata.json" syft grype sbomlyze
+          echo "$RUNNER_TEMP/tools" >> "$GITHUB_PATH"
+
+      - name: Update the vulnerability database
+        shell: bash
+        run: grype db update
+
+      - name: Download last week's SBOMs for drift comparison
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          run_id=$(gh run list --repo "$GITHUB_REPOSITORY" --workflow supply-chain-report.yml \
+            --branch main --status success --limit 10 --json databaseId,event \
+            --jq "[.[] | select(.databaseId != $GITHUB_RUN_ID and .event != \"pull_request\")][0].databaseId // empty")
+          mkdir -p "$RUNNER_TEMP/previous"
+          if [[ -n "$run_id" ]] && gh run download "$run_id" --repo "$GITHUB_REPOSITORY" \
+              --pattern "supply-chain-shard-*" --dir "$RUNNER_TEMP/previous-download" 2>/dev/null; then
+            # Flatten shard directories into one directory per project.
+            find "$RUNNER_TEMP/previous-download" -mindepth 2 -maxdepth 2 -type d \
+              -exec cp -R {} "$RUNNER_TEMP/previous/" \;
+            echo "Comparing with run $run_id"
+          else
+            echo "No previous run; this week is a baseline."
+          fi
+
+      - name: Scan projects
+        shell: bash
+        run: |
+          python3 scripts/supply_chain_scan.py scan \
+            --targets targets.json \
+            --shard "${{ matrix.shard }}" \
+            --output-dir scan-output \
+            --previous-dir "$RUNNER_TEMP/previous"
+
+      - name: Retain SBOMs, vulnerability reports, and summaries
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        with:
+          name: supply-chain-shard-${{ matrix.shard }}
+          path: scan-output
+          if-no-files-found: error
+          retention-days: 90
+
+  publish:
+    name: Record the week in the data branch
+    needs: [targets, scan]
+    if: always() && needs.targets.outputs.publish == 'true' && needs.scan.result != 'cancelled'
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    permissions:
+      contents: write
+    steps:
+      # This job never executes downloaded tool binaries; it only runs repository Python on
+      # the normalized JSON produced by the read-only scan jobs.
+      - name: Check out default branch
+        uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4
+        with:
+          ref: main
+
+      - name: Download shard results
+        uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093 # v4
+        with:
+          pattern: supply-chain-shard-*
+          path: shards
+
+      - name: Prepare the data branch worktree
+        shell: bash
+        run: |
+          set -euo pipefail
+          if git ls-remote --exit-code --heads origin "$DATA_BRANCH" >/dev/null; then
+            git fetch origin "+refs/heads/$DATA_BRANCH:refs/remotes/origin/$DATA_BRANCH"
+            git worktree add -B "$DATA_BRANCH" data "origin/$DATA_BRANCH"
+          else
+            git worktree add --detach data
+            git -C data checkout --orphan "$DATA_BRANCH"
+            git -C data rm -rf --quiet .
+          fi
+
+      - name: Record results and changes
+        shell: bash
+        run: |
+          python3 scripts/supply_chain_scan.py publish \
+            --shards-dir shards --data-dir data --date "${{ needs.targets.outputs.date }}"
+
+      - name: Commit and push the data branch
+        shell: bash
+        run: |
+          set -euo pipefail
+          cd data
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add --all
+          if git diff --cached --quiet; then
+            echo "No data changes"
+            exit 0
+          fi
+          git commit --quiet -m "record supply-chain scan ${{ needs.targets.outputs.date }}"
+          git push origin "HEAD:$DATA_BRANCH"
+
+  site:
+    name: Build the report site
+    needs: [targets, scan, publish]
+    if: >-
+      always()
+      && needs.scan.result != 'cancelled'
+      && (needs.publish.result == 'success' || needs.publish.result == 'skipped')
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    permissions:
+      contents: read
+      actions: read
+    steps:
+      - name: Check out source without persisted credentials
+        uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4
+        with:
+          persist-credentials: false
+
+      - name: Download this week's shard results
+        uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093 # v4
+        with:
+          pattern: supply-chain-shard-*
+          path: site-input/supply-chain-artifacts
+
+      - name: Fetch data branches and the latest benchmark artifacts
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: bash
+        run: bash scripts/fetch-site-inputs.sh site-input
+
+      - name: Include this run in pull-request previews
+        if: needs.targets.outputs.publish != 'true'
+        shell: bash
+        run: |
+          python3 scripts/supply_chain_scan.py publish \
+            --shards-dir site-input/supply-chain-artifacts \
+            --data-dir site-input/supply-chain-data \
+            --date "${{ needs.targets.outputs.date }}"
+
+      - name: Build static site
+        shell: bash
+        run: |
+          python3 scripts/build_site.py \
+            --output site \
+            --repository "$GITHUB_REPOSITORY" \
+            --supply-chain-data site-input/supply-chain-data \
+            --supply-chain-artifacts site-input/supply-chain-artifacts \
+            --benchmark-data site-input/benchmark-data \
+            --benchmark-artifacts site-input/benchmark-artifacts
+
+      - name: Upload Pages artifact
+        if: needs.targets.outputs.publish == 'true'
+        uses: actions/upload-pages-artifact@fc324d3547104276b827a68afc52ff2a11cc49c9 # v5.0.0
+        with:
+          path: site
+
+      - name: Upload site preview
+        if: needs.targets.outputs.publish != 'true'
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        with:
+          name: supply-chain-site-preview
+          path: site
+          retention-days: 14
+
+  deploy:
+    name: Deploy the report site
+    needs: [targets, site]
+    if: always() && needs.site.result == 'success' && needs.targets.outputs.publish == 'true'
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    concurrency:
+      group: pages-deploy
+      cancel-in-progress: false
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@368f82528645a54fb793d4d04e342629a3f51346 # v5.0.1

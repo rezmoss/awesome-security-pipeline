@@ -4,9 +4,15 @@ set -euo pipefail
 
 install_dir=${1:-}
 metadata_file=${2:-}
+shift 2 || true
+# Optional tool list; defaults to the SBOM generator benchmark set.
+tools=("$@")
+if [[ ${#tools[@]} -eq 0 ]]; then
+  tools=(syft trivy cdxgen microsoft-sbom-tool cyclonedx-cli sbomlyze)
+fi
 
 if [[ -z "$install_dir" || -z "$metadata_file" ]]; then
-  echo "usage: $0 INSTALL_DIR METADATA_FILE" >&2
+  echo "usage: $0 INSTALL_DIR METADATA_FILE [TOOL...]" >&2
   exit 2
 fi
 
@@ -238,12 +244,38 @@ install_sbomlyze() {
   record_tool sbomlyze "$repository" "$tag" "$published_at" "$archive" "$digest" upstream-checksum+attestation "$release_lookup"
 }
 
-install_syft
-install_trivy
-install_cdxgen
-install_microsoft_sbom_tool
-install_cyclonedx_cli
-install_sbomlyze
+install_grype() {
+  local repository=anchore/grype
+  local release tag version published_at archive checksums digest release_lookup
+  release=$(release_json "$repository")
+  tag=$(jq -r '.tag_name' <<<"$release")
+  version=${tag#v}
+  published_at=$(jq -r '.published_at // ""' <<<"$release")
+  release_lookup=$(jq -r '._benchmark_source' <<<"$release")
+  archive="grype_${version}_linux_amd64.tar.gz"
+  checksums="grype_${version}_checksums.txt"
+
+  download_asset "$release" "$archive" "$work_dir/$archive"
+  download_asset "$release" "$checksums" "$work_dir/$checksums"
+  (cd "$work_dir" && grep "  $archive$" "$checksums" | sha256sum --check --strict)
+  tar -xzf "$work_dir/$archive" -C "$install_dir" grype
+  chmod 0755 "$install_dir/grype"
+  digest=$(sha256sum "$work_dir/$archive" | awk '{print $1}')
+  record_tool grype "$repository" "$tag" "$published_at" "$archive" "$digest" upstream-checksum "$release_lookup"
+}
+
+for tool in "${tools[@]}"; do
+  case "$tool" in
+    syft) install_syft ;;
+    trivy) install_trivy ;;
+    cdxgen) install_cdxgen ;;
+    microsoft-sbom-tool) install_microsoft_sbom_tool ;;
+    cyclonedx-cli) install_cyclonedx_cli ;;
+    sbomlyze) install_sbomlyze ;;
+    grype) install_grype ;;
+    *) echo "unknown tool: $tool" >&2; exit 2 ;;
+  esac
+done
 
 jq -s \
   --arg resolved_at "$(date -u '+%Y-%m-%dT%H:%M:%SZ')" \
