@@ -26,6 +26,10 @@ import sys
 import tempfile
 from typing import Any
 
+sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent.parent))
+
+from scripts import supply_chain_checks as checks  # noqa: E402
+
 SCHEMA_VERSION = 1
 CATALOG_END = "## Legacy and Reference Tools"
 ENTRY = re.compile(r"^- \[(?P<name>[^\]]+)\]\(https://github\.com/(?P<repo>[A-Za-z0-9_.-]+/[A-Za-z0-9_.-]+)\) - (?P<description>[^!]*)")
@@ -126,6 +130,10 @@ def resolve_release(target: dict[str, str], tag_patterns: dict[str, Any]) -> dic
         else:
             release = gh_api(f"repos/{target['repository']}/releases/latest")
         resolved.update(ref=release["tag_name"], ref_kind="release", released_at=release.get("published_at"))
+        resolved["assets"] = [
+            {key: asset.get(key) for key in ("name", "size", "digest", "browser_download_url")}
+            for asset in release.get("assets") or []
+        ]
     except RuntimeError:
         resolved.update(ref=repository["default_branch"], ref_kind="default-branch", released_at=None)
     return resolved
@@ -228,8 +236,16 @@ def normalize_sbom(document: dict[str, Any]) -> list[dict[str, Any]]:
             "location": component_location(item),
         }
         key = entry["purl"] or f"{entry['ecosystem']}:{entry['name']}@{entry['version']}"
-        if entry["name"] and key not in components:
+        if not entry["name"]:
+            continue
+        existing = components.get(key)
+        if existing is None:
             components[key] = entry
+            continue
+        # The same package can be declared by several lockfiles, not all of which carry a
+        # license; merge them so the result does not depend on the order Syft reports them.
+        existing["licenses"] = sorted(set(existing["licenses"]) | set(entry["licenses"]))
+        existing["location"] = min(filter(None, (existing["location"], entry["location"])), default="")
     return sorted(components.values(), key=lambda item: (item["ecosystem"], item["name"].lower(), item["version"]))
 
 
@@ -271,10 +287,13 @@ def tool_version(binary: str, arguments: list[str]) -> str:
         completed = run([binary, *arguments], timeout=60)
     except (OSError, subprocess.TimeoutExpired):
         return "unavailable"
-    for line in completed.stdout.splitlines():
-        if line.strip().lower().startswith("version:"):
-            return line.split(":", 1)[1].strip()
-    return completed.stdout.splitlines()[0].strip() if completed.stdout else "unknown"
+    output = completed.stdout + "\n" + completed.stderr
+    for pattern in (r"govulncheck@v(\S+)", r"(?:GitVersion|Version|version)[:\s]+v?(\d+\.\d+\.\d+\S*)",
+                    r"\bv?(\d+\.\d+\.\d+)\b"):
+        match = re.search(pattern, output)
+        if match:
+            return match.group(1)
+    return "unknown"
 
 
 def compliance_summary(report: dict[str, Any]) -> dict[str, Any]:
@@ -322,7 +341,38 @@ def redact(path: pathlib.Path, replacements: dict[str, str]) -> None:
     path.write_text(text, encoding="utf-8")
 
 
-def scan_target(target: dict[str, Any], output: pathlib.Path, previous_dir: pathlib.Path | None, sbomlyze: str) -> dict[str, Any]:
+def check(summary: dict[str, Any], name: str, function: Any, *arguments: Any) -> Any:
+    """Run one optional check; a failure is recorded without stopping the project scan."""
+    try:
+        return function(*arguments)
+    except Exception as exc:  # noqa: BLE001 - every check is best effort
+        summary["errors"].append(f"{name} failed: {exc}")
+        return None
+
+
+def release_checks(target: dict[str, Any], summary: dict[str, Any], work: pathlib.Path) -> None:
+    asset = checks.select_linux_asset(target.get("assets") or [], target["repository"])
+    file = None
+    if asset:
+        file = work / asset["name"]
+        checks.download(asset["browser_download_url"], file)
+        binaries = checks.extract_binaries(file, work / "extracted")
+        is_go = any(path.endswith("go.mod") for path in summary.get("manifests") or [])
+        for binary in binaries if is_go else []:
+            result = checks.govulncheck_binary(binary)
+            if result:
+                summary["go_binary"] = {**result, "asset": asset["name"]}
+                break
+        if is_go and "go_binary" not in summary:
+            summary["go_binary_note"] = (
+                f"{asset['name']} could not be analyzed: no Go build information "
+                "(the binary may be compressed, for example with UPX, or not built with Go)"
+            )
+    summary["release_integrity"] = checks.release_integrity(target, asset, file, work)
+
+
+def scan_target(target: dict[str, Any], output: pathlib.Path, previous_dir: pathlib.Path | None, sbomlyze: str,
+                scorecard_cli: bool = False) -> dict[str, Any]:
     pid = project_id(target["repository"])
     directory = output / pid
     directory.mkdir(parents=True, exist_ok=True)
@@ -349,6 +399,14 @@ def scan_target(target: dict[str, Any], output: pathlib.Path, previous_dir: path
         if syft.returncode != 0 or not sbom.is_file():
             summary["errors"].append(f"syft failed: {syft.stderr.strip()[:300]}")
             return summary
+        osv = check(summary, "osv-scanner", checks.osv_scan, source) or {}
+        if osv.get("error"):
+            summary["errors"].append(osv["error"])
+        workflows = check(summary, "zizmor", checks.zizmor_audit, source)
+        if workflows and workflows.get("error"):
+            summary["errors"].append(workflows["error"])
+            workflows = None
+        summary["workflow_audit"] = workflows
     redact(sbom, {**source_paths, str(pathlib.Path.home()): "$HOME"})
     document = load_json(sbom)
     summary["components"] = normalize_sbom(document)
@@ -361,6 +419,20 @@ def scan_target(target: dict[str, Any], output: pathlib.Path, previous_dir: path
     else:
         redact(grype_report, {str(directory.resolve()): ".", str(directory): ".", str(pathlib.Path.home()): "$HOME"})
         summary["vulnerabilities"] = normalize_grype(load_json(grype_report))
+
+    summary["osv"] = checks.cross_reference(summary["vulnerabilities"], osv)
+    if summary["osv"].get("available"):
+        summary["osv"]["osv_only"] = summary["osv"]["osv_only"][:100]
+    if target.get("ref_kind") == "release":
+        with tempfile.TemporaryDirectory() as temporary:
+            check(summary, "release checks", release_checks, target, summary, pathlib.Path(temporary))
+    checks.annotate_reachability(summary["vulnerabilities"], summary.get("go_binary"))
+    if summary.get("go_binary"):
+        summary["go_binary"].pop("modules", None)
+    scorecard = check(summary, "scorecard", checks.scorecard, target["repository"], scorecard_cli)
+    summary["scorecard"] = scorecard if scorecard and not scorecard.get("error") else None
+    if scorecard and scorecard.get("error"):
+        summary["scorecard_note"] = scorecard["error"]
 
     compliance = run([sbomlyze, str(sbom), "--compliance", "--json", "--no-pager"])
     if compliance.returncode == 0 and compliance.stdout.strip():
@@ -379,6 +451,12 @@ def command_scan(args: argparse.Namespace) -> int:
     tools = {
         "syft": tool_version("syft", ["version"]),
         "grype": tool_version("grype", ["version"]),
+        "osv-scanner": tool_version("osv-scanner", ["--version"]),
+        "govulncheck": tool_version("govulncheck", ["-version"]),
+        "zizmor": tool_version("zizmor", ["--version"]),
+        "scorecard": tool_version("scorecard", ["version"]),
+        "cosign": tool_version("cosign", ["version"]),
+        "slsa-verifier": tool_version("slsa-verifier", ["version"]),
         "sbomlyze": tool_version(args.sbomlyze, ["--version"]),
     }
     db = run(["grype", "db", "status", "-o", "json"], timeout=120)
@@ -386,10 +464,14 @@ def command_scan(args: argparse.Namespace) -> int:
         status = json.loads(db.stdout)
         tools["grype_db_built"] = status.get("built")
     results = []
+    budget = args.scorecard_cli_limit
     for target in shard:
         print(f"scanning {target['repository']} @ {target.get('ref')}", flush=True)
+        allow_cli = budget > 0
         try:
-            results.append(scan_target(target, args.output_dir, args.previous_dir, args.sbomlyze))
+            results.append(scan_target(target, args.output_dir, args.previous_dir, args.sbomlyze, allow_cli))
+            if allow_cli and (results[-1].get("scorecard") or {}).get("source") == "scorecard-cli":
+                budget -= 1
         except Exception as exc:  # one project must not stop the shard
             results.append({"id": project_id(target["repository"]), **target, "errors": [f"scan crashed: {exc}"]})
         if results[-1]["errors"]:
@@ -448,10 +530,29 @@ def changes(previous: dict[str, Any] | None, current: dict[str, Any]) -> dict[st
         result["resolved_vulnerabilities"] = [old[key] for key in sorted(set(old) - set(new))]
     drift = (current.get("sbomlyze_diff") or {}).get("drift") or {}
     result["integrity_drift"] = int(drift.get("integrity_drift") or 0)
+    before_score = (previous.get("scorecard") or {}).get("score")
+    after_score = (current.get("scorecard") or {}).get("score")
+    if isinstance(before_score, (int, float)) and isinstance(after_score, (int, float)) and abs(before_score - after_score) >= 0.1:
+        result["scorecard"] = {"from": before_score, "to": after_score}
+    before_verdict = (previous.get("release_integrity") or {}).get("verdict")
+    after_verdict = (current.get("release_integrity") or {}).get("verdict")
+    if before_verdict and after_verdict and before_verdict != after_verdict:
+        result["release_integrity"] = {"from": before_verdict, "to": after_verdict}
+    if previous.get("workflow_audit") is not None and current.get("workflow_audit") is not None:
+        def workflow_keys(project: dict[str, Any]) -> set[str]:
+            return {f"{item['rule']}|{item['file']}|{item['note']}" for item in project["workflow_audit"]["findings"]}
+        result["workflow_new"] = len(workflow_keys(current) - workflow_keys(previous))
+        result["workflow_resolved"] = len(workflow_keys(previous) - workflow_keys(current))
+    if previous.get("go_binary") and current.get("go_binary"):
+        def in_binary(project: dict[str, Any]) -> set[str]:
+            return {item["id"] for item in project["go_binary"]["findings"] if item["level"] == "symbol"}
+        result["in_binary_new"] = sorted(in_binary(current) - in_binary(previous))
+        result["in_binary_resolved"] = sorted(in_binary(previous) - in_binary(current))
     result["any"] = bool(
         result["release_changed"] or result["added"] or result["removed"] or result["upgraded"]
         or result["license_changes"] or result.get("new_vulnerabilities") or result.get("resolved_vulnerabilities")
-        or result["integrity_drift"]
+        or result["integrity_drift"] or result.get("scorecard") or result.get("release_integrity")
+        or result.get("workflow_new") or result.get("in_binary_new")
     )
     return result
 
@@ -472,8 +573,36 @@ def history_entry(date: str, project: dict[str, Any]) -> dict[str, Any]:
         "new_vulnerabilities": len(change.get("new_vulnerabilities") or []),
         "resolved_vulnerabilities": len(change.get("resolved_vulnerabilities") or []),
         "release_changed": bool(change.get("release_changed")),
+        "osv_confirmed": (project.get("osv") or {}).get("confirmed"),
+        "osv_only": len((project.get("osv") or {}).get("osv_only") or []) if (project.get("osv") or {}).get("available") else None,
+        "in_binary": in_binary_counts(project.get("go_binary")),
+        "go_version": (project.get("go_binary") or {}).get("go_version"),
+        "workflow": workflow_counts(project.get("workflow_audit")),
+        "scorecard": (project.get("scorecard") or {}).get("score"),
+        "release_integrity": (project.get("release_integrity") or {}).get("verdict"),
         "errors": project.get("errors") or [],
     }
+
+
+def in_binary_counts(go: dict[str, Any] | None) -> dict[str, int] | None:
+    if not go:
+        return None
+    symbols = [item for item in go["findings"] if item["level"] == "symbol"]
+    return {
+        "total": len(symbols),
+        "stdlib": sum(1 for item in symbols if item["module"] == "stdlib"),
+        "dependencies": sum(1 for item in symbols if item["module"] != "stdlib"),
+    }
+
+
+def workflow_counts(audit: dict[str, Any] | None) -> dict[str, int] | None:
+    if audit is None:
+        return None
+    counts = {"High": 0, "Medium": 0, "Low": 0}
+    for item in audit.get("findings") or []:
+        if item["severity"] in counts:
+            counts[item["severity"]] += 1
+    return {**counts, "files": audit.get("files", 0)}
 
 
 def command_publish(args: argparse.Namespace) -> int:
@@ -496,6 +625,9 @@ def command_publish(args: argparse.Namespace) -> int:
                 project = {**previous, "errors": project.get("errors"), "scanned_at": project.get("scanned_at"), "stale": True}
                 project["changes"] = {"baseline": False, "any": False, "scan_failed": True}
             else:
+                if not project.get("scorecard") and previous and previous.get("scorecard"):
+                    # Scorecard CLI runs are rate limited; keep the last result until it is refreshed.
+                    project["scorecard"] = {**previous["scorecard"], "carried_forward": True}
                 project["changes"] = changes(previous, project)
             history = [item for item in stored.get("history") or [] if item["date"] != args.date]
             history.append(history_entry(args.date, project))
@@ -545,6 +677,8 @@ def parse_args() -> argparse.Namespace:
     scan.add_argument("--output-dir", type=pathlib.Path, required=True)
     scan.add_argument("--previous-dir", type=pathlib.Path)
     scan.add_argument("--sbomlyze", default="sbomlyze")
+    scan.add_argument("--scorecard-cli-limit", type=int, default=1,
+                      help="projects per shard that may fall back to the Scorecard CLI (API-rate bound)")
     publish = commands.add_parser("publish")
     publish.add_argument("--shards-dir", type=pathlib.Path, required=True)
     publish.add_argument("--data-dir", type=pathlib.Path, required=True)

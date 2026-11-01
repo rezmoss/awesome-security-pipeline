@@ -12,17 +12,23 @@ The [supply-chain report](https://rezmoss.github.io/awesome-security-pipeline/) 
 
 1. A blobless, sparse checkout fetches only the selected files at the release tag. No project code is built or executed.
 2. [Syft](https://github.com/anchore/syft) generates a CycloneDX SBOM.
-3. [Grype](https://github.com/anchore/grype) matches the SBOM against its vulnerability database, which is updated at the start of every run.
-4. [sbomlyze](https://github.com/rezmoss/sbomlyze) scores NTIA, CISA 2025, and BSI TR-03183 minimum elements and produces an HTML diff against the previous week's SBOM. *Disclosure: sbomlyze is maintained by this repository's maintainer.*
-5. The publish step compares each project with its previous week: new release, dependencies added, removed, or upgraded, license changes, new and resolved advisories, and hashes that changed without a version change.
+3. [Grype](https://github.com/anchore/grype) matches the SBOM against its vulnerability database, updated at the start of every run. [OSV-Scanner](https://github.com/google/osv-scanner) scans the same files against the OSV database; Grype matches it also reports are marked as confirmed, and advisories only OSV reports are listed separately.
+4. For Go tools, the Linux amd64 release binary is downloaded (and checked against GitHub's recorded digest), and [govulncheck](https://github.com/golang/vuln) analyzes it in binary mode. This reports the Go version the release was actually built with and which advisories have vulnerable functions compiled into the shipped binary. Grype's Go matches are annotated with whether their code is in the binary.
+5. [zizmor](https://github.com/zizmorcore/zizmor) audits the release's GitHub Actions workflows offline; only medium- and high-confidence findings are reported.
+6. [OpenSSF Scorecard](https://github.com/ossf/scorecard) results come from the OpenSSF public dataset when it is less than 30 days old. Otherwise this workflow runs the Scorecard CLI, limited by the GitHub API budget (about 100 calls per repository); earlier results are carried forward until refreshed. An optional `SCORECARD_TOKEN` repository secret raises the limit.
+7. Release integrity: the same release file is checked for a Sigstore signature with [Cosign](https://github.com/sigstore/cosign) (on the file or on a signed checksums file that lists it), SLSA provenance with [slsa-verifier](https://github.com/slsa-framework/slsa-verifier), and GitHub artifact attestations with the [GitHub CLI](https://github.com/cli/cli). *Verified* requires the signing identity to be one of the project's own GitHub Actions workflows.
+8. [sbomlyze](https://github.com/rezmoss/sbomlyze) scores NTIA, CISA 2025, and BSI TR-03183 minimum elements and produces an HTML diff against the previous week's SBOM. *Disclosure: sbomlyze is maintained by this repository's maintainer.*
+9. The publish step compares each project with its previous week: new release, dependencies added, removed, or upgraded, license changes, new and resolved advisories, vulnerable functions added to or removed from the binary, Scorecard and release-verification changes, new workflow findings, and hashes that changed without a version change.
 
-All tools are installed from their latest GitHub release and verified against upstream checksums (sbomlyze also against its build-provenance attestation). The scan jobs have read-only permissions; the job that writes the `supply-chain-data` branch only runs this repository's Python on the scan output.
+All tools are installed from their latest release and verified against upstream checksums, GitHub's recorded asset digest, or (for govulncheck) the Go checksum database. The scan jobs have read-only permissions; the job that writes the `supply-chain-data` branch only runs this repository's Python on the scan output.
 
 ## Reading the results
 
 - An advisory match means a declared dependency version is listed as affected. It does not mean the tool is exploitable: the code may be unused, test-only, a development dependency, or not compiled into the released binary.
 - Dependency counts include development, build, and CI dependencies declared in the scanned files.
-- Results describe the release source, not a container image or binary built from it.
+- Dependency and advisory results describe the release source. The *In binary* column and section describe the shipped Linux binary of Go tools; other ecosystems are not analyzed for reachability.
+- zizmor findings are patterns to review, not confirmed vulnerabilities.
+- Scorecard scores reflect repository practices on the assessment date shown, which can be up to 30 days old.
 
 ## Data
 
@@ -39,4 +45,4 @@ python3 scripts/supply_chain_scan.py publish --shards-dir /tmp/scan --data-dir /
 python3 scripts/build_site.py --output /tmp/site --supply-chain-data /tmp/data --supply-chain-artifacts /tmp/scan
 ```
 
-Requires `gh` (authenticated), `git`, `syft`, `grype`, and `sbomlyze` on `PATH`.
+Requires `gh` (authenticated), `git`, `go`, and the tools above on `PATH`; `scripts/install-supply-chain-tools.sh` installs them on Linux.

@@ -1,13 +1,14 @@
 #!/usr/bin/env python3
-"""Build the GitHub Pages site: the weekly supply-chain report plus the SBOM generator benchmark.
+"""Build the GitHub Pages site for the weekly supply-chain report.
 
-Root pages: an overview table of every catalog project, one page per project with full
-details and history, and weekly history. The generator benchmark lives under /sbom-benchmark/.
+Pages: an overview table of every catalog project, one page per project with full details
+and history, and a page per week.
 """
 
 from __future__ import annotations
 
 import argparse
+import html
 import json
 import pathlib
 import shutil
@@ -16,12 +17,30 @@ from typing import Any
 
 sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent.parent))
 
-from scripts import build_sbom_site  # noqa: E402
-from scripts.build_sbom_site import STYLE, esc  # noqa: E402
+from scripts import site_sections as sections  # noqa: E402
 from scripts.supply_chain_scan import SEVERITIES, severity_counts  # noqa: E402
 
 SHOWN_SEVERITIES = ("Critical", "High", "Medium", "Low")
-STANDARD_NAMES = build_sbom_site.STANDARD_NAMES
+STANDARD_NAMES = {"ntia": "NTIA 2021", "cisa": "CISA 2025", "bsi_tr03183": "BSI TR-03183"}
+STYLE = """
+:root{--fg:#1f2328;--muted:#59636e;--bg:#fff;--panel:#f6f8fa;--line:#d1d9e0;--ok:#1a7f37;--bad:#cf222e;--warn:#9a6700;--link:#0969da}
+@media (prefers-color-scheme:dark){:root{--fg:#e6edf3;--muted:#9198a1;--bg:#0d1117;--panel:#151b23;--line:#3d444d;--ok:#3fb950;--bad:#f85149;--warn:#d29922;--link:#4493f8}}
+*{box-sizing:border-box}body{margin:0;font:16px/1.55 -apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;color:var(--fg);background:var(--bg)}
+a{color:var(--link)}header,main,footer{max-width:1120px;margin:0 auto;padding:0 20px}
+header{padding-top:28px}nav{display:flex;gap:16px;flex-wrap:wrap;font-size:15px;margin:8px 0 0}
+h1{font-size:30px;margin:0 0 4px}h2{font-size:22px;margin:36px 0 10px;padding-bottom:6px;border-bottom:1px solid var(--line)}h3{font-size:18px;margin:24px 0 8px}
+.lede{color:var(--muted);margin:4px 0 0;max-width:820px}.meta{color:var(--muted);font-size:14px}
+table{border-collapse:collapse;width:100%;margin:8px 0 4px;font-size:15px}th,td{border:1px solid var(--line);padding:6px 9px;text-align:left;vertical-align:top}
+th{background:var(--panel);font-weight:600}td.num,th.num{text-align:right;white-space:nowrap}.scroll{overflow-x:auto}
+code{font:13px/1.4 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;background:var(--panel);padding:1px 4px;border-radius:4px;word-break:break-word}
+.ok{color:var(--ok);font-weight:600}.bad{color:var(--bad);font-weight:600}.warn{color:var(--warn);font-weight:600}
+.banner{border:1px solid var(--bad);background:var(--panel);padding:12px 16px;border-radius:6px;margin:18px 0}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:12px;margin:16px 0}
+.card{border:1px solid var(--line);border-radius:8px;padding:14px 16px;background:var(--panel)}.card h3{margin:0 0 4px;font-size:17px}
+.card .big{font-size:24px;font-weight:700}.small{font-size:14px;color:var(--muted)}ul.tight{margin:6px 0;padding-left:20px}
+details{margin:8px 0}summary{cursor:pointer;font-weight:600}.note{border-left:3px solid var(--line);padding:4px 12px;color:var(--muted);margin:12px 0}
+footer{margin-top:48px;padding-bottom:40px;border-top:1px solid var(--line);color:var(--muted);font-size:14px}
+"""
 VULNERABILITY_NOTE = (
     "Vulnerabilities are known advisories that Grype matches against the dependencies declared in each "
     "project's release source (manifests and lockfiles, including development and build dependencies). "
@@ -40,15 +59,21 @@ EXTRA_STYLE = """
 """
 
 
+def esc(value: Any) -> str:
+    return html.escape(str(value), quote=True)
+
+
+def ordered_standards(standards: dict[str, Any]) -> list[tuple[str, Any]]:
+    order = list(STANDARD_NAMES)
+    return sorted(standards.items(), key=lambda item: order.index(item[0]) if item[0] in order else len(order))
+
+
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--output", required=True, type=pathlib.Path)
     parser.add_argument("--repository", default="rezmoss/awesome-security-pipeline")
     parser.add_argument("--supply-chain-data", type=pathlib.Path)
     parser.add_argument("--supply-chain-artifacts", type=pathlib.Path, help="scan shard output for the latest week")
-    parser.add_argument("--benchmark-data", type=pathlib.Path)
-    parser.add_argument("--benchmark-artifacts", type=pathlib.Path)
-    parser.add_argument("--benchmark-config", type=pathlib.Path, default=pathlib.Path("benchmarks/sbom/fixtures.json"))
     return parser.parse_args()
 
 
@@ -90,6 +115,16 @@ def change_summary(change: dict[str, Any]) -> str:
         parts.append(f"{len(change['license_changes'])} license changes")
     if change.get("integrity_drift"):
         parts.append(f"{change['integrity_drift']} hash changes without a version change")
+    if change.get("in_binary_new"):
+        parts.append(f"{len(change['in_binary_new'])} new vulnerable functions in binary")
+    if change.get("in_binary_resolved"):
+        parts.append(f"{len(change['in_binary_resolved'])} removed from binary")
+    if change.get("workflow_new"):
+        parts.append(f"{change['workflow_new']} new workflow findings")
+    if change.get("scorecard"):
+        parts.append(f"Scorecard {change['scorecard']['from']} → {change['scorecard']['to']}")
+    if change.get("release_integrity"):
+        parts.append(f"release {change['release_integrity']['from']} → {change['release_integrity']['to']}")
     return "; ".join(parts) or "no change"
 
 
@@ -122,7 +157,7 @@ class ReportSite:
 </head>
 <body>
 <header>
-<nav aria-label="Report"><a href="{root}index.html">All projects</a><a href="{root}history/index.html">History</a><a href="{root}sbom-benchmark/index.html">SBOM generator accuracy</a><a href="{root}data/index.json">Data</a><a href="{repo}">Repository</a></nav>
+<nav aria-label="Report"><a href="{root}index.html">All projects</a><a href="{root}history/index.html">History</a><a href="{root}data/index.json">Data</a><a href="{repo}">Repository</a></nav>
 </header>
 <main>
 {body}
@@ -168,21 +203,39 @@ class ReportSite:
             status = ""
             if entry.get("errors"):
                 status = ' <span class="bad" title="' + esc("; ".join(entry["errors"])) + '">scan error</span>'
+            in_binary = entry.get("in_binary")
+            binary = (f'<span class="{"bad" if in_binary["total"] else "ok"}" title="{esc(entry.get("go_version") or "")}">{in_binary["total"]}</span>'
+                      if in_binary else '<span class="zero">—</span>')
+            workflow = entry.get("workflow")
+            workflow_cell = (pill("High", workflow["High"]) if workflow and workflow["High"] else
+                             ('<span class="pill zero">0</span>' if workflow else '<span class="zero">—</span>'))
+            score = entry.get("scorecard")
+            score_cell = f"{score:.1f}" if isinstance(score, (int, float)) else '<span class="zero">—</span>'
             rows.append(
                 f"<tr class=\"{'changed' if entry.get('change_any') else ''}\">"
                 f"<td><a href=\"{root}{project_path(entry['repository'])}index.html\">{esc(entry.get('name') or entry['repository'])}</a>"
-                f"<div class=\"small\">{esc(entry['repository'])}</div></td>"
-                f"<td class=\"small\">{esc(entry.get('category') or '')}</td>"
+                f"<div class=\"small\">{esc(entry.get('category') or '')}</div></td>"
                 f"<td>{ref}{status}</td>"
                 f"<td class=\"num\">{entry['dependencies'] if entry.get('dependencies') is not None else '—'}</td>"
                 f"{counts}<td class=\"num\">{fixable if fixable is not None else '—'}</td>"
+                f"<td class=\"num\">{binary}</td><td class=\"num\">{score_cell}</td><td class=\"num\">{workflow_cell}</td>"
+                f"<td class=\"small\">{sections.verdict_cell(entry.get('release_integrity'))}</td>"
                 f"<td class=\"change\">{esc(summary)}</td></tr>"
             )
         return (
-            '<div class="scroll"><table><thead><tr><th>Project</th><th>Category</th><th>Version scanned</th>'
+            '<div class="scroll"><table><thead><tr><th>Project</th><th>Version scanned</th>'
             '<th class="num">Dependencies</th><th class="num">Critical</th><th class="num">High</th><th class="num">Medium</th>'
-            '<th class="num">Low</th><th class="num" title="Advisories with a fixed version available">Fixable</th><th>Change since last week</th></tr></thead><tbody>'
+            '<th class="num">Low</th><th class="num" title="Advisories with a fixed version available">Fixable</th>'
+            '<th class="num" title="Go tools: advisories with vulnerable functions compiled into the released binary (govulncheck)">In binary</th>'
+            '<th class="num" title="OpenSSF Scorecard, 0 to 10">Scorecard</th>'
+            '<th class="num" title="High-severity GitHub Actions workflow findings (zizmor)">Workflow</th>'
+            '<th title="Release signature, provenance, or attestation verified">Release</th>'
+            '<th>Change since last week</th></tr></thead><tbody>'
             + "".join(rows) + "</tbody></table></div>"
+            + '<p class="small"><strong>In binary</strong>: Go tools only, advisories whose vulnerable functions are compiled into the '
+            "released Linux binary. <strong>Scorecard</strong>: OpenSSF repository practices out of 10. <strong>Workflow</strong>: high-severity "
+            "GitHub Actions findings from zizmor. <strong>Release</strong>: whether the Linux release file's signature, SLSA provenance, or "
+            "GitHub attestation verifies against the project's own workflows.</p>"
         )
 
     @staticmethod
@@ -199,6 +252,7 @@ class ReportSite:
     def this_week(self) -> str:
         latest = [stored["latest"] for stored in self.projects.values()]
         releases, new_vulns, resolved, deps, drift, failed = [], [], [], [], [], []
+        binary, workflows, scores, integrity = [], [], [], []
         for project in sorted(latest, key=lambda item: item["repository"].lower()):
             change = project.get("changes") or {}
             link = f'<a href="{project_path(project["repository"])}index.html">{esc(project.get("name") or project["repository"])}</a>'
@@ -219,18 +273,30 @@ class ReportSite:
                 deps.append(f"{link}: +{len(change.get('added') or [])} / −{len(change.get('removed') or [])} / ↑{len(change.get('upgraded') or [])}")
             if change.get("integrity_drift"):
                 drift.append(f"{link}: {change['integrity_drift']}")
+            if change.get("in_binary_new") or change.get("in_binary_resolved"):
+                binary.append(f"{link}: +{len(change.get('in_binary_new') or [])} / −{len(change.get('in_binary_resolved') or [])}")
+            if change.get("workflow_new") or change.get("workflow_resolved"):
+                workflows.append(f"{link}: +{change.get('workflow_new', 0)} / −{change.get('workflow_resolved', 0)}")
+            if change.get("scorecard"):
+                scores.append(f"{link}: {change['scorecard']['from']} → {change['scorecard']['to']}")
+            if change.get("release_integrity"):
+                integrity.append(f"{link}: {esc(change['release_integrity']['from'])} → {esc(change['release_integrity']['to'])}")
         if all(not item.get("changes") or item["changes"].get("baseline") for item in latest):
             return ('<h2 id="this-week">This week</h2><p>This is the first weekly scan, so there is nothing to compare yet. '
-                    "From next week this section lists new releases, dependency changes, new and resolved advisories, and drift.</p>"
+                    "From next week this section lists new releases, dependency changes, new and resolved advisories, changes in "
+                    "released binaries, release verification, Scorecard, and workflow findings, and drift.</p>"
                     + (f"<h3>Scan problems</h3><ul>{''.join(f'<li>{item}</li>' for item in failed)}</ul>" if failed else ""))
         new_vulns.sort(key=lambda pair: pair[0])
-        sections = [
+        groups = [
             ("New releases", releases), ("New advisories", [text for _, text in new_vulns]),
             ("Resolved advisories", resolved), ("Dependency changes (+added / −removed / ↑upgraded)", deps),
+            ("Vulnerable functions in released binaries (+new / −removed)", binary),
+            ("Release verification changed", integrity), ("OpenSSF Scorecard changed", scores),
+            ("Workflow findings (+new / −resolved)", workflows),
             ("Hash changed without a version change (sbomlyze integrity drift)", drift), ("Scan problems", failed),
         ]
         parts = ['<h2 id="this-week">This week</h2>']
-        for title, items in sections:
+        for title, items in groups:
             if not items:
                 continue
             shown = items[:40]
@@ -248,22 +314,32 @@ class ReportSite:
             entries = run["projects"]
             totals = {s: sum((item.get("vulnerabilities") or {}).get(s, 0) for item in entries) for s in SHOWN_SEVERITIES}
             with_findings = sum(1 for item in entries if any((item.get("vulnerabilities") or {}).get(s) for s in ("Critical", "High")))
+            go_tools = [item for item in entries if item.get("in_binary")]
+            go_vulnerable = sum(1 for item in go_tools if item["in_binary"]["total"])
+            with_assets = [item for item in entries if item.get("release_integrity") not in (None, "no-assets", "no-linux-binary")]
+            verified = sum(1 for item in with_assets if item.get("release_integrity") == "verified")
+            scores = sorted(item["scorecard"] for item in entries if isinstance(item.get("scorecard"), (int, float)))
+            median = scores[len(scores) // 2] if scores else None
             body = (
                 "<h1>Weekly supply-chain report for open-source security tools</h1>"
                 f'<p class="lede">Every week, each of the {len(entries)} active tools in the '
                 f'<a href="https://github.com/{esc(self.repository)}">Awesome Security Pipeline</a> catalog is scanned at its latest release: '
-                "an SBOM is generated, known vulnerabilities are matched against its dependencies, and the result is compared with the previous week.</p>"
-                f'<p class="meta">Week of {esc(run["date"])} · {self.tools_line(run)} · <a href="data/runs/{esc(run["date"])}.json">JSON</a></p>'
+                "its dependencies and known vulnerabilities, which vulnerable code actually ships in its binary, whether the release can be "
+                "verified, how its repository and CI are secured, and what changed since the previous week.</p>"
+                f'<p class="meta">Week of {esc(run["date"])} · <a href="#how-it-works">How this report is made</a> · '
+                f'<a href="data/runs/{esc(run["date"])}.json">JSON</a></p>'
                 '<div class="cards">'
-                f'<div class="card"><div class="big">{len(entries)}</div><div class="small">projects scanned</div></div>'
-                f'<div class="card"><div class="big">{sum(item.get("dependencies") or 0 for item in entries)}</div><div class="small">declared dependencies</div></div>'
-                f'<div class="card"><div class="big">{totals["Critical"]} / {totals["High"]}</div><div class="small">critical / high advisories matched</div></div>'
-                f'<div class="card"><div class="big">{with_findings}</div><div class="small">projects with a critical or high match</div></div>'
+                f'<div class="card"><div class="big">{len(entries)}</div><div class="small">projects scanned, {sum(item.get("dependencies") or 0 for item in entries)} declared dependencies</div></div>'
+                f'<div class="card"><div class="big">{totals["Critical"]} / {totals["High"]}</div><div class="small">critical / high advisories matched in {with_findings} projects</div></div>'
+                f'<div class="card"><div class="big">{go_vulnerable} / {len(go_tools)}</div><div class="small">Go tools ship vulnerable functions in their release binary</div></div>'
+                f'<div class="card"><div class="big">{verified} / {len(with_assets)}</div><div class="small">Linux releases verifiable by signature, provenance, or attestation</div></div>'
+                f'<div class="card"><div class="big">{median if median is not None else "—"}</div><div class="small">median OpenSSF Scorecard ({len(scores)} scored)</div></div>'
                 "</div>"
                 + self.this_week()
                 + '<h2 id="projects">All projects</h2>'
                 + f'<p class="small">{esc(VULNERABILITY_NOTE)} Rows marked on the left changed since last week. Select a project for its full inventory, advisories, and history.</p>'
                 + self.project_table(entries, depth=0)
+                + sections.pipeline_section(run.get("tools") or {}, len(entries))
             )
         self.write("index.html", self.page(
             "Weekly supply-chain report for open-source security tools", 0, body,
@@ -298,17 +374,27 @@ class ReportSite:
             parts.append('<div class="banner"><strong class="bad">The latest scan failed.</strong> '
                          + esc("; ".join(project["errors"]))
                          + (" Showing the last successful scan." if project.get("stale") else "") + "</div>")
-        ntia = ((project.get("compliance") or {}).get("standards") or {}).get("ntia") or {}
         cards = [
             f'<div class="card"><div class="big">{len(components)}</div><div class="small">declared dependencies</div></div>',
             f'<div class="card"><div class="big">{(counts or {}).get("Critical", 0)} / {(counts or {}).get("High", 0)}</div><div class="small">critical / high advisories</div></div>'
             if counts is not None else '<div class="card"><div class="big">—</div><div class="small">vulnerability scan unavailable</div></div>',
             f'<div class="card"><div class="big">{fixable}</div><div class="small">advisories with a fixed version</div></div>',
-            f'<div class="card"><div class="big">{ntia.get("score", "—")}</div><div class="small">NTIA minimum-element score</div></div>',
         ]
+        go = project.get("go_binary")
+        if go:
+            symbols = sum(1 for item in go["findings"] if item["level"] == "symbol")
+            cards.append(f'<div class="card"><div class="big">{symbols}</div><div class="small">advisories with vulnerable code in the {esc(go["go_version"])} binary</div></div>')
+        card = project.get("scorecard") or {}
+        cards.append(f'<div class="card"><div class="big">{esc(card.get("score", "—"))}</div><div class="small">OpenSSF Scorecard (of 10)</div></div>')
+        cards.append(f'<div class="card"><div class="big">{sections.verdict_cell((project.get("release_integrity") or {}).get("verdict"))}</div><div class="small">release verification</div></div>')
         parts.append(f'<div class="cards">{"".join(cards)}</div>')
         parts.append(self.project_changes(change))
         parts.append(self.project_vulnerabilities(vulns))
+        parts.append(sections.osv_section(project.get("osv")))
+        parts.append(sections.reachability_section(go, vulns, project.get("go_binary_note")))
+        parts.append(sections.release_section(project.get("release_integrity"), repository))
+        parts.append(sections.scorecard_section(project.get("scorecard"), project.get("scorecard_note"), repository))
+        parts.append(sections.workflow_section(project.get("workflow_audit"), repository, project.get("ref") or "HEAD"))
         parts.append(self.project_dependencies(components))
         parts.append(self.project_history(stored.get("history") or []))
         parts.append(self.project_compliance(project.get("compliance") or {}))
@@ -325,6 +411,7 @@ class ReportSite:
             + ", ".join(f"<code>{esc(path)}</code>" for path in manifests) + "</p></details>"
             + f'<p class="small"><a href="{root}data/projects/{esc(project["id"])}.json">Full JSON for this project</a></p>'
         )
+        parts.append(sections.pipeline_section((self.latest or {}).get("tools") or {}, len((self.latest or {}).get("projects") or [])))
         self.write(f"{project_path(repository)}index.html", self.page(
             f"{project.get('name') or repository} supply-chain report", depth, "\n".join(parts),
             f"Weekly SBOM, known vulnerabilities, and dependency history for {repository}.",
@@ -371,15 +458,22 @@ class ReportSite:
             link = f'<a href="{esc(item["url"])}">{esc(item["id"])}</a>' if item.get("url") else esc(item["id"])
             aliases = f'<div class="small">{esc(", ".join(item["aliases"]))}</div>' if item.get("aliases") else ""
             fixed = esc(", ".join(item.get("fixed_in") or [])) or '<span class="small">no fix listed</span>'
+            osv = '<span class="ok" title="Also reported by OSV-Scanner">✓</span>' if item.get("osv_confirmed") else '<span class="zero">—</span>'
+            shipped = item.get("in_binary")
+            shipped_cell = (f'<span class="{"bad" if shipped in ("vulnerable code in binary", "package in binary") else "zero"}">{esc(shipped)}</span>'
+                            if shipped else '<span class="zero">—</span>')
             rows.append(
                 f"<tr><td>{badge(item['severity'])}</td><td>{link}{aliases}</td>"
                 f"<td><code>{esc(item['package'])}</code><div class=\"small\">{esc(item['ecosystem'])}</div></td><td><code>{esc(item['version'])}</code></td>"
-                f"<td>{fixed}</td><td class=\"small\"><code>{esc(item.get('location') or '')}</code></td></tr>"
+                f"<td>{fixed}</td><td class=\"num\">{osv}</td><td class=\"small\">{shipped_cell}</td>"
+                f"<td class=\"small\"><code>{esc(item.get('location') or '')}</code></td></tr>"
             )
         return (
             f'<h2 id="vulnerabilities">Known vulnerabilities ({len(vulns)})</h2>'
-            f'<p class="small">{esc(VULNERABILITY_NOTE)}</p>'
-            '<div class="scroll"><table><thead><tr><th>Severity</th><th>Advisory</th><th>Package</th><th>Version</th><th>Fixed in</th><th>Declared in</th></tr></thead><tbody>'
+            f'<p class="small">{esc(VULNERABILITY_NOTE)} <strong>OSV</strong>: also reported by OSV-Scanner. '
+            "<strong>Released binary</strong>: for Go tools, whether govulncheck found the vulnerable code in the shipped Linux binary.</p>"
+            '<div class="scroll"><table><thead><tr><th>Severity</th><th>Advisory</th><th>Package</th><th>Version</th><th>Fixed in</th>'
+            '<th>OSV</th><th>Released binary</th><th>Declared in</th></tr></thead><tbody>'
             + "".join(rows) + "</tbody></table></div>"
         )
 
@@ -449,7 +543,7 @@ class ReportSite:
         rows = "".join(
             f"<tr><td>{esc(STANDARD_NAMES.get(key, key))}</td><td class=\"num\">{value.get('score')}</td><td class=\"num\">{value.get('passed')}/{value.get('total')}</td>"
             f"<td class=\"small\">{esc(', '.join(value.get('failed_checks') or []) or 'none')}</td></tr>"
-            for key, value in build_sbom_site.ordered_standards(standards)
+            for key, value in ordered_standards(standards)
         )
         return (
             '<h2 id="minimum-elements">SBOM minimum elements</h2>'
@@ -489,7 +583,7 @@ class ReportSite:
 
     # ----- assets -------------------------------------------------------------------------
     def assets(self) -> None:
-        self.write("style.css", STYLE.strip() + "\n" + EXTRA_STYLE.strip() + "\n")
+        self.write("style.css", STYLE.strip() + "\n" + EXTRA_STYLE.strip() + "\n" + sections.PIPELINE_STYLE.strip() + "\n")
         (self.out / ".nojekyll").write_text("", encoding="utf-8")
         data = self.args.supply_chain_data
         if data and data.is_dir():
@@ -518,23 +612,12 @@ class ReportSite:
         self.history()
 
 
-def build_benchmark(args: argparse.Namespace) -> None:
-    if not args.benchmark_data or not (args.benchmark_data / "runs").is_dir():
-        return
-    namespace = argparse.Namespace(
-        data_dir=args.benchmark_data, config=args.benchmark_config, artifacts_dir=args.benchmark_artifacts,
-        repository=args.repository, output=args.output,
-    )
-    build_sbom_site.Site(namespace).build(standalone=False)
-
-
 def main() -> int:
     args = parse_args()
     if args.output.exists():
         shutil.rmtree(args.output)
     args.output.mkdir(parents=True)
     ReportSite(args).build()
-    build_benchmark(args)
     print(f"Site written to {args.output}")
     return 0
 

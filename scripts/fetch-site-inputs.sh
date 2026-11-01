@@ -1,7 +1,6 @@
 #!/usr/bin/env bash
-# Gather everything the Pages site needs: both data branches and, for whichever report the
-# current workflow did not produce, the latest artifacts from its last default-branch run.
-# A Pages deployment replaces the whole site, so every deploy must include both reports.
+# Gather the supply-chain data branch and, when this run did not produce them, the latest
+# scan artifacts (SBOMs, Grype reports, sbomlyze diffs) from the last default-branch run.
 
 set -euo pipefail
 
@@ -28,18 +27,7 @@ latest_run() {
     --jq '[.[] | select(.event != "pull_request")][0].databaseId // empty'
 }
 
-fetch_branch sbom-benchmark-data "$root/benchmark-data"
 fetch_branch supply-chain-data "$root/supply-chain-data"
-
-if [[ ! -d "$root/benchmark-artifacts" ]]; then
-  run_id=$(latest_run sbom-benchmark.yml)
-  if [[ -n "$run_id" ]] && gh run download "$run_id" --repo "$repository" \
-      --name "sbom-benchmark-$run_id" --dir "$root/benchmark-run" 2>/dev/null; then
-    mv "$root/benchmark-run/sbomlyze" "$root/benchmark-artifacts" 2>/dev/null || mkdir -p "$root/benchmark-artifacts"
-    rm -rf "$root/benchmark-run"
-    echo "Loaded benchmark artifacts from run $run_id"
-  fi
-fi
 
 if [[ ! -d "$root/supply-chain-artifacts" ]]; then
   run_id=$(latest_run supply-chain-report.yml)
