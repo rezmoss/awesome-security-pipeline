@@ -27,7 +27,7 @@ Start with a working pipeline, not an empty checklist. The included GitHub Actio
 | Choose a smaller or more specialized stack | [Project-type selection matrix](#choose-your-baseline) |
 | Compare GitHub Actions security tools and permissions | [Open-source stack comparison](comparisons/github-actions-security-tools.md) |
 | Choose an SBOM generator and validation workflow | [SBOM tools comparison](comparisons/sbom-tools.md) |
-| Inspect continuously tested SBOM compatibility history | [SBOM benchmark reports](reports/sbom/README.md) |
+| See how SBOM generators score against independent ground truth, updated weekly | [SBOM generator benchmark](https://rezmoss.github.io/awesome-security-pipeline/sbom-benchmark/) |
 | Evaluate why these tools were selected | [Reference stack decision](docs/reference-stack.md) |
 | Check how projects are selected and classified | [Curation and verification methodology](docs/methodology.md) |
 
@@ -116,7 +116,7 @@ Generate Software Bill of Materials for supply chain visibility.
 - [cdxgen](https://github.com/CycloneDX/cdxgen) - Create CycloneDX SBOMs for various languages. ![Active](https://img.shields.io/badge/status-active-brightgreen) ![Stars](https://img.shields.io/github/stars/CycloneDX/cdxgen) ![Last Commit](https://img.shields.io/github/last-commit/CycloneDX/cdxgen)
 - [cyclonedx-cli](https://github.com/CycloneDX/cyclonedx-cli) - Inspect, convert, and merge CycloneDX SBOMs. ![Active](https://img.shields.io/badge/status-active-brightgreen) ![Stars](https://img.shields.io/github/stars/CycloneDX/cyclonedx-cli) ![Last Commit](https://img.shields.io/github/last-commit/CycloneDX/cyclonedx-cli)
 - [sbom-tool](https://github.com/microsoft/sbom-tool) - Generate SBOMs for build artifacts and source repositories. ![Active](https://img.shields.io/badge/status-active-brightgreen) ![Stars](https://img.shields.io/github/stars/microsoft/sbom-tool) ![Last Commit](https://img.shields.io/github/last-commit/microsoft/sbom-tool)
-- [sbomlyze](https://github.com/rezmoss/sbomlyze) - Compare SBOMs to detect supply-chain drift. ![Active](https://img.shields.io/badge/status-active-brightgreen) ![Stars](https://img.shields.io/github/stars/rezmoss/sbomlyze) ![Last Commit](https://img.shields.io/github/last-commit/rezmoss/sbomlyze)
+- [sbomlyze](https://github.com/rezmoss/sbomlyze) - Compare SBOMs to detect supply-chain drift. *(Disclosure: maintained by this list's maintainer.)* ![Active](https://img.shields.io/badge/status-active-brightgreen) ![Stars](https://img.shields.io/github/stars/rezmoss/sbomlyze) ![Last Commit](https://img.shields.io/github/last-commit/rezmoss/sbomlyze)
 - [syft](https://github.com/anchore/syft) - Generate SBOMs from container images and filesystems. ![Active](https://img.shields.io/badge/status-active-brightgreen) ![Stars](https://img.shields.io/github/stars/anchore/syft) ![Last Commit](https://img.shields.io/github/last-commit/anchore/syft)
 
 ## Artifact Signing & Verification

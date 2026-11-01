@@ -213,11 +213,37 @@ install_cyclonedx_cli() {
   record_tool cyclonedx-cli "$repository" "$tag" "$published_at" "$asset" "$digest" recorded-only "$release_lookup"
 }
 
+install_sbomlyze() {
+  # sbomlyze is maintained by this repository's maintainer; it is used only for drift and
+  # minimum-element analysis, never for ground-truth scoring.
+  local repository=rezmoss/sbomlyze
+  local release tag version published_at archive checksums digest release_lookup
+  release=$(release_json "$repository")
+  tag=$(jq -r '.tag_name' <<<"$release")
+  version=${tag#v}
+  published_at=$(jq -r '.published_at // ""' <<<"$release")
+  release_lookup=$(jq -r '._benchmark_source' <<<"$release")
+  archive="sbomlyze_${version}_Linux_x86_64.tar.gz"
+  checksums="checksums.txt"
+
+  download_asset "$release" "$archive" "$work_dir/$archive"
+  download_asset "$release" "$checksums" "$work_dir/sbomlyze-$checksums"
+  (cd "$work_dir" && grep "  $archive$" "sbomlyze-$checksums" | sha256sum --check --strict)
+  gh attestation verify "$work_dir/$archive" \
+    --repo "$repository" \
+    --signer-workflow "$repository/.github/workflows/release.yml" >/dev/null
+  tar -xzf "$work_dir/$archive" -C "$install_dir" sbomlyze
+  chmod 0755 "$install_dir/sbomlyze"
+  digest=$(sha256sum "$work_dir/$archive" | awk '{print $1}')
+  record_tool sbomlyze "$repository" "$tag" "$published_at" "$archive" "$digest" upstream-checksum+attestation "$release_lookup"
+}
+
 install_syft
 install_trivy
 install_cdxgen
 install_microsoft_sbom_tool
 install_cyclonedx_cli
+install_sbomlyze
 
 jq -s \
   --arg resolved_at "$(date -u '+%Y-%m-%dT%H:%M:%SZ')" \

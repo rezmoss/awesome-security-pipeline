@@ -1,5 +1,9 @@
 #!/usr/bin/env python3
-"""Publish a normalized SBOM benchmark result into reviewed repository history."""
+"""Record a normalized SBOM benchmark run in the benchmark data branch.
+
+The data branch keeps one compact JSON file per run (package-level inventory, scores, and
+sbomlyze summaries). Raw SBOMs are not committed; the published site serves the latest set.
+"""
 
 from __future__ import annotations
 
@@ -7,19 +11,27 @@ import argparse
 import json
 import pathlib
 import re
-import shutil
 import sys
 from typing import Any
 
+sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent.parent))
+
+from scripts import sbom_benchmark  # noqa: E402
 
 DATE_PATTERN = re.compile(r"^\d{4}-\d{2}-\d{2}$")
+SUPPORTED_SCHEMAS = {1, 2}
 
 
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--result", required=True, type=pathlib.Path)
-    parser.add_argument("--report", required=True, type=pathlib.Path)
-    parser.add_argument("--root", required=True, type=pathlib.Path)
+    parser.add_argument("--data-dir", required=True, type=pathlib.Path)
+    parser.add_argument("--config", required=True, type=pathlib.Path)
+    parser.add_argument("--result", type=pathlib.Path)
+    parser.add_argument("--sbomlyze", type=pathlib.Path)
+    parser.add_argument(
+        "--seed", type=pathlib.Path, action="append", default=[],
+        help="legacy snapshot to import when the data branch has no run for that date",
+    )
     return parser.parse_args()
 
 
@@ -31,72 +43,120 @@ def load_json(path: pathlib.Path) -> dict[str, Any]:
     return value
 
 
-def tool_versions(result: dict[str, Any]) -> str:
-    return ", ".join(f"{item['id']} {item['version']}" for item in result.get("tools") or [])
+def write_json(path: pathlib.Path, value: Any, indent: int | None = 2) -> None:
+    path.parent.mkdir(parents=True, exist_ok=True)
+    with path.open("w", encoding="utf-8") as handle:
+        separators = None if indent else (",", ":")
+        json.dump(value, handle, indent=indent, sort_keys=True, separators=separators)
+        handle.write("\n")
 
 
-def render_index(root: pathlib.Path) -> str:
-    history = root / "history"
-    entries = []
-    for data_path in sorted(history.glob("*.json"), reverse=True):
-        result = load_json(data_path)
-        date = str(result.get("run_date", data_path.stem))
-        report_path = data_path.with_suffix(".md")
-        fixture_count = len(result.get("fixtures") or [])
-        run_count = sum(len(item.get("runs") or []) for item in result.get("fixtures") or [])
-        entries.append(
-            f"| {date} | {str(result.get('status', 'unknown')).upper()} | {fixture_count} / {run_count} "
-            f"| {tool_versions(result)} | [report](history/{report_path.name}) | [JSON](history/{data_path.name}) |"
-        )
+def fixture_config(config: dict[str, Any], fixture: dict[str, Any]) -> dict[str, Any] | None:
+    """Return the current fixture definition when it describes the same target as the run."""
+    for item in config.get("fixtures") or []:
+        if item["id"] != fixture.get("id"):
+            continue
+        target = item.get("path") or item.get("source_image")
+        if fixture.get("target") in (None, target):
+            return item
+    return None
 
-    lines = [
-        "# SBOM benchmark reports",
-        "",
-        "These are maintainer-reviewed monthly snapshots from the "
-        "[SBOM compatibility benchmark](../../benchmarks/sbom/README.md). The suite still runs weekly; raw SBOMs "
-        "and logs remain workflow artifacts for 90 days, while normalized monthly evidence is retained here.",
-        "",
-        "[Read the latest report](latest.md) · [Download the latest normalized JSON](latest.json)",
-        "",
-        "## History",
-        "",
-        "| Date | Status | Fixtures / tool runs | Tool versions | Report | Data |",
-        "|---|---|---:|---|---|---|",
-    ]
-    lines.extend(entries or ["| — | No reviewed snapshots | 0 / 0 | — | — | — |"])
-    lines.extend([
-        "",
-        "A passing snapshot means the configured commands completed, documents validated structurally, minimum "
-        "inventory rules passed, and every configured identity was found. It is not a security certification, "
-        "vulnerability assessment, license audit, or proof of complete component discovery.",
-        "",
-    ])
-    return "\n".join(lines)
+
+def compact(result: dict[str, Any], config: dict[str, Any]) -> dict[str, Any]:
+    """Bring any supported snapshot to the compact schema-2 shape with ground-truth scores."""
+    if result.get("schema_version") not in SUPPORTED_SCHEMAS:
+        raise ValueError(f"unsupported benchmark result schema: {result.get('schema_version')}")
+    compacted = json.loads(json.dumps(result))
+    for fixture in compacted.get("fixtures") or []:
+        definition = fixture_config(config, fixture)
+        for run in fixture.get("runs") or []:
+            components = run.get("components") or []
+            if "inventory_only_counts" not in run:
+                packages, counts, digest = sbom_benchmark.split_inventory(components)
+                run["components"] = packages
+                run["relationships"] = sbom_benchmark.package_relationships(
+                    run.get("relationships") or [], packages
+                )
+                run["inventory_only_counts"] = counts
+                run["inventory_only_digest"] = digest
+                run.pop("change_from_previous", None)
+            if definition and "score" not in run:
+                run["score"] = sbom_benchmark.score_run(definition, run["components"])
+                run["score"]["retroactive"] = True
+            run.pop("log_tail", None)
+    return compacted
+
+
+def with_changes(runs: list[dict[str, Any]]) -> None:
+    """Recompute package-level changes between consecutive runs (oldest first)."""
+    previous: dict[str, Any] = {}
+    for result in runs:
+        for fixture in result.get("fixtures") or []:
+            for run in fixture.get("runs") or []:
+                old = sbom_benchmark.previous_run(previous, fixture["id"], run["tool"])
+                run["change_from_previous"] = sbom_benchmark.change_from_previous(
+                    run, old, bool(previous)
+                )
+        result["previous_run_date"] = previous.get("run_date")
+        result["tool_changes"] = sbom_benchmark.tool_changes(result.get("tools") or [], previous)
+        previous = result
+
+
+def index_entry(result: dict[str, Any]) -> dict[str, Any]:
+    return {
+        "run_date": result["run_date"],
+        "status": result.get("status", "unknown"),
+        "commit": result.get("commit"),
+        "tools": {tool["id"]: tool["version"] for tool in result.get("tools") or []},
+        "fixtures": len(result.get("fixtures") or []),
+        "runs": sum(len(fixture.get("runs") or []) for fixture in result.get("fixtures") or []),
+    }
+
+
+DATA_README = """# SBOM benchmark data
+
+Machine-written by `.github/workflows/sbom-benchmark.yml` on the default branch. Each file in
+`runs/` is one weekly run in the compact normalized schema: package-level components,
+ground-truth scores, file and cryptographic-asset counts with a digest, tool versions, and
+asset digests. `runs/<date>.sbomlyze.json` holds sbomlyze minimum-element and drift summaries.
+
+Do not edit by hand; the published report site is rebuilt from this branch.
+"""
 
 
 def main() -> int:
     args = parse_args()
-    result = load_json(args.result)
-    run_date = str(result.get("run_date", ""))
-    if result.get("schema_version") != 1:
-        raise ValueError("unsupported benchmark result schema")
-    if not DATE_PATTERN.fullmatch(run_date):
-        raise ValueError(f"invalid run date: {run_date!r}")
-    if not args.report.is_file():
-        raise ValueError(f"report not found: {args.report}")
+    config = load_json(args.config)
+    runs_dir = args.data_dir / "runs"
+    runs_dir.mkdir(parents=True, exist_ok=True)
 
-    history = args.root / "history"
-    history.mkdir(parents=True, exist_ok=True)
-    dated_json = history / f"{run_date}.json"
-    dated_report = history / f"{run_date}.md"
+    for seed in args.seed:
+        legacy = load_json(seed)
+        date = str(legacy.get("run_date", ""))
+        if DATE_PATTERN.fullmatch(date) and not (runs_dir / f"{date}.json").exists():
+            write_json(runs_dir / f"{date}.json", compact(legacy, config), indent=None)
+            print(f"Imported legacy snapshot {date}")
 
-    shutil.copyfile(args.result, dated_json)
-    shutil.copyfile(args.report, dated_report)
-    shutil.copyfile(args.result, args.root / "latest.json")
-    shutil.copyfile(args.report, args.root / "latest.md")
-    (args.root / "README.md").write_text(render_index(args.root), encoding="utf-8")
+    if args.result:
+        result = load_json(args.result)
+        date = str(result.get("run_date", ""))
+        if not DATE_PATTERN.fullmatch(date):
+            raise ValueError(f"invalid run date: {date!r}")
+        write_json(runs_dir / f"{date}.json", compact(result, config), indent=None)
+        if args.sbomlyze and args.sbomlyze.is_file():
+            write_json(runs_dir / f"{date}.sbomlyze.json", load_json(args.sbomlyze), indent=None)
+        print(f"Recorded run {date} with status {result.get('status')}")
 
-    print(f"Published normalized snapshot for {run_date} with status {result['status']}")
+    paths = sorted(path for path in runs_dir.glob("*.json") if DATE_PATTERN.fullmatch(path.stem))
+    runs = [load_json(path) for path in paths]
+    with_changes(runs)
+    for path, result in zip(paths, runs):
+        write_json(path, result, indent=None)
+    write_json(args.data_dir / "index.json", {"runs": [index_entry(item) for item in reversed(runs)]})
+    if runs:
+        write_json(args.data_dir / "latest.json", runs[-1])
+    (args.data_dir / "README.md").write_text(DATA_README, encoding="utf-8")
+    print(f"Data branch holds {len(runs)} runs")
     return 0
 
 
