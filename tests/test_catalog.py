@@ -117,12 +117,23 @@ class CatalogTest(unittest.TestCase):
         self.assertIn("**2 actively maintained tools · 1 legacy references", rendered)
         self.assertIn("- [Pre-commit & Secrets Detection](#pre-commit--secrets-detection)", rendered)
         self.assertIn("### Python", rendered)
-        self.assertIn("| [**gitleaks**](https://github.com/gitleaks/gitleaks) | Detect things with gitleaks | 🟢&nbsp;Active<br><sub>Oct 2026</sub> | 30.6k | [5.1](https://example.invalid/r/) | Checksums |", rendered)
-        self.assertIn("<sub>*Maintained by us.*</sub>", rendered)
+        self.assertIn('<tr><td align="left"><a href="https://github.com/gitleaks/gitleaks"><b>gitleaks</b></a></td>'
+                      '<td align="left">Detect things with gitleaks</td><td align="left">🟢&nbsp;Active<br><sub>Oct 2026</sub></td>'
+                      '<td align="right">30.6k</td><td align="left"><a href="https://example.invalid/r/">5.1</a></td>'
+                      '<td align="left">Checksums</td></tr>', rendered)
+        self.assertIn("<sub><i>Maintained by us.</i></sub>", rendered)
         self.assertIn("### Pre-commit & Secrets Detection", rendered.split("## Legacy and Reference Tools")[1])
-        self.assertIn("[gitleaks](https://github.com/gitleaks/gitleaks) |", rendered.split("## Legacy")[1])
+        self.assertIn('<a href="https://github.com/gitleaks/gitleaks">gitleaks</a></td></tr>', rendered.split("## Legacy")[1])
         self.assertTrue(rendered.endswith("end"))
         self.assertEqual(catalog.render_readme(rendered, tools, CATEGORIES), rendered)
+
+    def test_tables_use_percentage_columns_with_one_auto_column(self):
+        rendered = catalog.table(catalog.ACTIVE_COLUMNS, [["<b>x</b>", "a &amp; b", "s", "1", "2", "3"]])
+        widths = [int(value) for value in __import__("re").findall(r'width="(\d+)%"', rendered)]
+        self.assertEqual(sum(widths), 100)
+        self.assertEqual(rendered.count("<th "), 6)
+        self.assertEqual(len(widths), 5)
+        self.assertEqual(catalog.describe({"disclosure": None}, "Use <b> & co."), "Use &lt;b&gt; &amp; co")
 
     def test_repository_files_are_valid_and_readme_is_current(self):
         root = pathlib.Path(__file__).resolve().parent.parent

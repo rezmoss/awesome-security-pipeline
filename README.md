@@ -108,60 +108,75 @@ Entries are organized by where they operate in a delivery pipeline. Status refle
 
 Catch secrets and credentials before they enter your repository.
 
-| Tool<br><img src="assets/blank.gif" width="105" height="1" alt=""> | What it does<br><img src="assets/blank.gif" width="270" height="1" alt=""> | Status<br><img src="assets/blank.gif" width="95" height="1" alt=""> | ★<br><img src="assets/blank.gif" width="45" height="1" alt=""> | Scorecard<br><img src="assets/blank.gif" width="72" height="1" alt=""> | Release<br><img src="assets/blank.gif" width="82" height="1" alt=""> |
-|:---|:---|:---|---:|:---|:---|
-| [**detect-secrets**](https://github.com/Yelp/detect-secrets) | Prevent secrets from entering codebases | 🟡&nbsp;Stale<br><sub>Apr 2026</sub> | 4.7k | [3.5](https://rezmoss.github.io/awesome-security-pipeline/projects/Yelp/detect-secrets/) | — |
-| [**gitleaks**](https://github.com/gitleaks/gitleaks) | Detect and prevent secrets in git repos | 🟢&nbsp;Active<br><sub>Oct 2026</sub> | 30.6k | [report](https://rezmoss.github.io/awesome-security-pipeline/projects/gitleaks/gitleaks/) | Checksums |
-| [**pre-commit**](https://github.com/pre-commit/pre-commit) | Manage multi-language pre-commit hooks | 🟢&nbsp;Active<br><sub>Oct 2026</sub> | 15.7k | [4.5](https://rezmoss.github.io/awesome-security-pipeline/projects/pre-commit/pre-commit/) | — |
-| [**talisman**](https://github.com/thoughtworks/talisman) | Detect secrets with pre-push and pre-commit hooks | 🟡&nbsp;Stale<br><sub>Nov 2025</sub> | 2.1k | [3.3](https://rezmoss.github.io/awesome-security-pipeline/projects/thoughtworks/talisman/) | Checksums |
-| [**trufflehog**](https://github.com/trufflesecurity/trufflehog) | Find credentials in git history and live systems | 🟢&nbsp;Active<br><sub>Nov 2026</sub> | 28.8k | [7.9](https://rezmoss.github.io/awesome-security-pipeline/projects/trufflesecurity/trufflehog/) | ✓&nbsp;Verified |
+<table>
+<thead><tr><th width="16%" align="left">Tool</th><th width="44%" align="left">What it does</th><th width="15%" align="left">Status</th><th align="right">★</th><th width="12%" align="left">Scorecard</th><th width="13%" align="left">Release</th></tr></thead>
+<tbody>
+<tr><td align="left"><a href="https://github.com/Yelp/detect-secrets"><b>detect-secrets</b></a></td><td align="left">Prevent secrets from entering codebases</td><td align="left">🟡&nbsp;Stale<br><sub>Apr 2026</sub></td><td align="right">4.7k</td><td align="left"><a href="https://rezmoss.github.io/awesome-security-pipeline/projects/Yelp/detect-secrets/">3.5</a></td><td align="left">—</td></tr>
+<tr><td align="left"><a href="https://github.com/gitleaks/gitleaks"><b>gitleaks</b></a></td><td align="left">Detect and prevent secrets in git repos</td><td align="left">🟢&nbsp;Active<br><sub>Oct 2026</sub></td><td align="right">30.6k</td><td align="left"><a href="https://rezmoss.github.io/awesome-security-pipeline/projects/gitleaks/gitleaks/">report</a></td><td align="left">Checksums</td></tr>
+<tr><td align="left"><a href="https://github.com/pre-commit/pre-commit"><b>pre-commit</b></a></td><td align="left">Manage multi-language pre-commit hooks</td><td align="left">🟢&nbsp;Active<br><sub>Oct 2026</sub></td><td align="right">15.7k</td><td align="left"><a href="https://rezmoss.github.io/awesome-security-pipeline/projects/pre-commit/pre-commit/">4.5</a></td><td align="left">—</td></tr>
+<tr><td align="left"><a href="https://github.com/thoughtworks/talisman"><b>talisman</b></a></td><td align="left">Detect secrets with pre-push and pre-commit hooks</td><td align="left">🟡&nbsp;Stale<br><sub>Nov 2025</sub></td><td align="right">2.1k</td><td align="left"><a href="https://rezmoss.github.io/awesome-security-pipeline/projects/thoughtworks/talisman/">3.3</a></td><td align="left">Checksums</td></tr>
+<tr><td align="left"><a href="https://github.com/trufflesecurity/trufflehog"><b>trufflehog</b></a></td><td align="left">Find credentials in git history and live systems</td><td align="left">🟢&nbsp;Active<br><sub>Nov 2026</sub></td><td align="right">28.8k</td><td align="left"><a href="https://rezmoss.github.io/awesome-security-pipeline/projects/trufflesecurity/trufflehog/">7.9</a></td><td align="left">✓&nbsp;Verified</td></tr>
+</tbody>
+</table>
 
 ## SBOM Generation
 
 Generate Software Bill of Materials for supply chain visibility.
 
-| Tool<br><img src="assets/blank.gif" width="105" height="1" alt=""> | What it does<br><img src="assets/blank.gif" width="270" height="1" alt=""> | Status<br><img src="assets/blank.gif" width="95" height="1" alt=""> | ★<br><img src="assets/blank.gif" width="45" height="1" alt=""> | Scorecard<br><img src="assets/blank.gif" width="72" height="1" alt=""> | Release<br><img src="assets/blank.gif" width="82" height="1" alt=""> |
-|:---|:---|:---|---:|:---|:---|
-| [**cdxgen**](https://github.com/CycloneDX/cdxgen) | Create CycloneDX SBOMs for various languages | 🟢&nbsp;Active<br><sub>Nov 2026</sub> | 1.1k | [report](https://rezmoss.github.io/awesome-security-pipeline/projects/CycloneDX/cdxgen/) | Checksums |
-| [**cyclonedx-cli**](https://github.com/CycloneDX/cyclonedx-cli) | Inspect, convert, and merge CycloneDX SBOMs | 🟢&nbsp;Active<br><sub>Jul 2026</sub> | 552 | [report](https://rezmoss.github.io/awesome-security-pipeline/projects/CycloneDX/cyclonedx-cli/) | — |
-| [**sbom-tool**](https://github.com/microsoft/sbom-tool) | Generate SBOMs for build artifacts and source repositories | 🟢&nbsp;Active<br><sub>Sep 2026</sub> | 2.1k | [report](https://rezmoss.github.io/awesome-security-pipeline/projects/microsoft/sbom-tool/) | — |
-| [**sbomlyze**](https://github.com/rezmoss/sbomlyze) | Compare SBOMs to detect supply-chain drift <sub>*Maintained by this list's maintainer.*</sub> | 🟢&nbsp;Active<br><sub>Nov 2026</sub> | 26 | [7.9](https://rezmoss.github.io/awesome-security-pipeline/projects/rezmoss/sbomlyze/) | ✓&nbsp;Verified |
-| [**syft**](https://github.com/anchore/syft) | Generate SBOMs from container images and filesystems | 🟢&nbsp;Active<br><sub>Nov 2026</sub> | 9.8k | [8.7](https://rezmoss.github.io/awesome-security-pipeline/projects/anchore/syft/) | ✓&nbsp;Verified |
+<table>
+<thead><tr><th width="16%" align="left">Tool</th><th width="44%" align="left">What it does</th><th width="15%" align="left">Status</th><th align="right">★</th><th width="12%" align="left">Scorecard</th><th width="13%" align="left">Release</th></tr></thead>
+<tbody>
+<tr><td align="left"><a href="https://github.com/CycloneDX/cdxgen"><b>cdxgen</b></a></td><td align="left">Create CycloneDX SBOMs for various languages</td><td align="left">🟢&nbsp;Active<br><sub>Nov 2026</sub></td><td align="right">1.1k</td><td align="left"><a href="https://rezmoss.github.io/awesome-security-pipeline/projects/CycloneDX/cdxgen/">report</a></td><td align="left">Checksums</td></tr>
+<tr><td align="left"><a href="https://github.com/CycloneDX/cyclonedx-cli"><b>cyclonedx-cli</b></a></td><td align="left">Inspect, convert, and merge CycloneDX SBOMs</td><td align="left">🟢&nbsp;Active<br><sub>Jul 2026</sub></td><td align="right">552</td><td align="left"><a href="https://rezmoss.github.io/awesome-security-pipeline/projects/CycloneDX/cyclonedx-cli/">report</a></td><td align="left">—</td></tr>
+<tr><td align="left"><a href="https://github.com/microsoft/sbom-tool"><b>sbom-tool</b></a></td><td align="left">Generate SBOMs for build artifacts and source repositories</td><td align="left">🟢&nbsp;Active<br><sub>Sep 2026</sub></td><td align="right">2.1k</td><td align="left"><a href="https://rezmoss.github.io/awesome-security-pipeline/projects/microsoft/sbom-tool/">report</a></td><td align="left">—</td></tr>
+<tr><td align="left"><a href="https://github.com/rezmoss/sbomlyze"><b>sbomlyze</b></a></td><td align="left">Compare SBOMs to detect supply-chain drift <sub><i>Maintained by this list&#x27;s maintainer.</i></sub></td><td align="left">🟢&nbsp;Active<br><sub>Nov 2026</sub></td><td align="right">26</td><td align="left"><a href="https://rezmoss.github.io/awesome-security-pipeline/projects/rezmoss/sbomlyze/">7.9</a></td><td align="left">✓&nbsp;Verified</td></tr>
+<tr><td align="left"><a href="https://github.com/anchore/syft"><b>syft</b></a></td><td align="left">Generate SBOMs from container images and filesystems</td><td align="left">🟢&nbsp;Active<br><sub>Nov 2026</sub></td><td align="right">9.8k</td><td align="left"><a href="https://rezmoss.github.io/awesome-security-pipeline/projects/anchore/syft/">8.7</a></td><td align="left">✓&nbsp;Verified</td></tr>
+</tbody>
+</table>
 
 ## Artifact Signing & Verification
 
 Sign and verify container images and artifacts for supply chain security.
 
-| Tool<br><img src="assets/blank.gif" width="105" height="1" alt=""> | What it does<br><img src="assets/blank.gif" width="270" height="1" alt=""> | Status<br><img src="assets/blank.gif" width="95" height="1" alt=""> | ★<br><img src="assets/blank.gif" width="45" height="1" alt=""> | Scorecard<br><img src="assets/blank.gif" width="72" height="1" alt=""> | Release<br><img src="assets/blank.gif" width="82" height="1" alt=""> |
-|:---|:---|:---|---:|:---|:---|
-| [**cosign**](https://github.com/sigstore/cosign) | Sign and verify container images | 🟢&nbsp;Active<br><sub>Oct 2026</sub> | 6.4k | [8.2](https://rezmoss.github.io/awesome-security-pipeline/projects/sigstore/cosign/) | ✓&nbsp;Verified |
-| [**notation**](https://github.com/notaryproject/notation) | Sign and verify OCI artifacts with Notary Project specifications | 🟢&nbsp;Active<br><sub>Oct 2026</sub> | 502 | [6.5](https://rezmoss.github.io/awesome-security-pipeline/projects/notaryproject/notation/) | Checksums |
-| [**rekor**](https://github.com/sigstore/rekor) | Record signed artifacts in a tamper-resistant transparency log | 🟢&nbsp;Active<br><sub>Oct 2026</sub> | 1.2k | [8.6](https://rezmoss.github.io/awesome-security-pipeline/projects/sigstore/rekor/) | ✓&nbsp;Verified |
+<table>
+<thead><tr><th width="16%" align="left">Tool</th><th width="44%" align="left">What it does</th><th width="15%" align="left">Status</th><th align="right">★</th><th width="12%" align="left">Scorecard</th><th width="13%" align="left">Release</th></tr></thead>
+<tbody>
+<tr><td align="left"><a href="https://github.com/sigstore/cosign"><b>cosign</b></a></td><td align="left">Sign and verify container images</td><td align="left">🟢&nbsp;Active<br><sub>Oct 2026</sub></td><td align="right">6.4k</td><td align="left"><a href="https://rezmoss.github.io/awesome-security-pipeline/projects/sigstore/cosign/">8.2</a></td><td align="left">✓&nbsp;Verified</td></tr>
+<tr><td align="left"><a href="https://github.com/notaryproject/notation"><b>notation</b></a></td><td align="left">Sign and verify OCI artifacts with Notary Project specifications</td><td align="left">🟢&nbsp;Active<br><sub>Oct 2026</sub></td><td align="right">502</td><td align="left"><a href="https://rezmoss.github.io/awesome-security-pipeline/projects/notaryproject/notation/">6.5</a></td><td align="left">Checksums</td></tr>
+<tr><td align="left"><a href="https://github.com/sigstore/rekor"><b>rekor</b></a></td><td align="left">Record signed artifacts in a tamper-resistant transparency log</td><td align="left">🟢&nbsp;Active<br><sub>Oct 2026</sub></td><td align="right">1.2k</td><td align="left"><a href="https://rezmoss.github.io/awesome-security-pipeline/projects/sigstore/rekor/">8.6</a></td><td align="left">✓&nbsp;Verified</td></tr>
+</tbody>
+</table>
 
 ## Supply Chain Compliance
 
 Audit and verify supply chain security against industry benchmarks.
 
-| Tool<br><img src="assets/blank.gif" width="105" height="1" alt=""> | What it does<br><img src="assets/blank.gif" width="270" height="1" alt=""> | Status<br><img src="assets/blank.gif" width="95" height="1" alt=""> | ★<br><img src="assets/blank.gif" width="45" height="1" alt=""> | Scorecard<br><img src="assets/blank.gif" width="72" height="1" alt=""> | Release<br><img src="assets/blank.gif" width="82" height="1" alt=""> |
-|:---|:---|:---|---:|:---|:---|
-| [**in-toto**](https://github.com/in-toto/in-toto) | Protect software supply-chain integrity with signed metadata | 🟢&nbsp;Active<br><sub>Aug 2026</sub> | 1.1k | [6.5](https://rezmoss.github.io/awesome-security-pipeline/projects/in-toto/in-toto/) | — |
-| [**scorecard**](https://github.com/ossf/scorecard) | Measure open-source project security practices with OpenSSF checks | 🟢&nbsp;Active<br><sub>Oct 2026</sub> | 5.8k | [8.6](https://rezmoss.github.io/awesome-security-pipeline/projects/ossf/scorecard/) | ✓&nbsp;Verified |
-| [**slsa-verifier**](https://github.com/slsa-framework/slsa-verifier) | Verify SLSA provenance for supply chain security | 🟢&nbsp;Active<br><sub>Aug 2026</sub> | 352 | [report](https://rezmoss.github.io/awesome-security-pipeline/projects/slsa-framework/slsa-verifier/) | ✓&nbsp;Verified |
+<table>
+<thead><tr><th width="16%" align="left">Tool</th><th width="44%" align="left">What it does</th><th width="15%" align="left">Status</th><th align="right">★</th><th width="12%" align="left">Scorecard</th><th width="13%" align="left">Release</th></tr></thead>
+<tbody>
+<tr><td align="left"><a href="https://github.com/in-toto/in-toto"><b>in-toto</b></a></td><td align="left">Protect software supply-chain integrity with signed metadata</td><td align="left">🟢&nbsp;Active<br><sub>Aug 2026</sub></td><td align="right">1.1k</td><td align="left"><a href="https://rezmoss.github.io/awesome-security-pipeline/projects/in-toto/in-toto/">6.5</a></td><td align="left">—</td></tr>
+<tr><td align="left"><a href="https://github.com/ossf/scorecard"><b>scorecard</b></a></td><td align="left">Measure open-source project security practices with OpenSSF checks</td><td align="left">🟢&nbsp;Active<br><sub>Oct 2026</sub></td><td align="right">5.8k</td><td align="left"><a href="https://rezmoss.github.io/awesome-security-pipeline/projects/ossf/scorecard/">8.6</a></td><td align="left">✓&nbsp;Verified</td></tr>
+<tr><td align="left"><a href="https://github.com/slsa-framework/slsa-verifier"><b>slsa-verifier</b></a></td><td align="left">Verify SLSA provenance for supply chain security</td><td align="left">🟢&nbsp;Active<br><sub>Aug 2026</sub></td><td align="right">352</td><td align="left"><a href="https://rezmoss.github.io/awesome-security-pipeline/projects/slsa-framework/slsa-verifier/">report</a></td><td align="left">✓&nbsp;Verified</td></tr>
+</tbody>
+</table>
 
 ## Software Composition Analysis (SCA)
 
 Scan dependencies for known vulnerabilities.
 
-| Tool<br><img src="assets/blank.gif" width="105" height="1" alt=""> | What it does<br><img src="assets/blank.gif" width="270" height="1" alt=""> | Status<br><img src="assets/blank.gif" width="95" height="1" alt=""> | ★<br><img src="assets/blank.gif" width="45" height="1" alt=""> | Scorecard<br><img src="assets/blank.gif" width="72" height="1" alt=""> | Release<br><img src="assets/blank.gif" width="82" height="1" alt=""> |
-|:---|:---|:---|---:|:---|:---|
-| [**bomber**](https://github.com/devops-kung-fu/bomber) | Scan SBOMs for vulnerabilities | 🟡&nbsp;Stale<br><sub>Feb 2026</sub> | 629 | [report](https://rezmoss.github.io/awesome-security-pipeline/projects/devops-kung-fu/bomber/) | Checksums |
-| [**dependency-track**](https://github.com/DependencyTrack/dependency-track) | Track components and analyze dependency risk from SBOMs | 🟢&nbsp;Active<br><sub>Nov 2026</sub> | 4.4k | [7.5](https://rezmoss.github.io/awesome-security-pipeline/projects/DependencyTrack/dependency-track/) | — |
-| [**grype**](https://github.com/anchore/grype) | Scan filesystems and SBOMs for dependency vulnerabilities | 🟢&nbsp;Active<br><sub>Oct 2026</sub> | 13.2k | [7.9](https://rezmoss.github.io/awesome-security-pipeline/projects/anchore/grype/) | ✓&nbsp;Verified |
-| [**osv-scanner**](https://github.com/google/osv-scanner) | Scan dependencies for vulnerabilities in the OSV database | 🟢&nbsp;Active<br><sub>Oct 2026</sub> | 11.3k | [8.6](https://rezmoss.github.io/awesome-security-pipeline/projects/google/osv-scanner/) | ✓&nbsp;Verified |
-| [**safe-chain**](https://github.com/AikidoSec/safe-chain) | Block malicious packages during npm/pip install | 🟢&nbsp;Active<br><sub>Nov 2026</sub> | 1.8k | [4.5](https://rezmoss.github.io/awesome-security-pipeline/projects/AikidoSec/safe-chain/) | ✓&nbsp;Verified |
-| [**snyk-cli**](https://github.com/snyk/cli) | Find and fix vulnerabilities in dependencies | 🟢&nbsp;Active<br><sub>Oct 2026</sub> | 5.7k | [report](https://rezmoss.github.io/awesome-security-pipeline/projects/snyk/cli/) | Checksums |
-| [**trivy**](https://github.com/aquasecurity/trivy) | Scan operating-system and language dependencies for vulnerabilities | 🟢&nbsp;Active<br><sub>Oct 2026</sub> | 38.9k | [7.1](https://rezmoss.github.io/awesome-security-pipeline/projects/aquasecurity/trivy/) | ✓&nbsp;Verified |
-| [**vet**](https://github.com/safedep/vet) | Enforce dependency policies and report supply-chain risks | 🟢&nbsp;Active<br><sub>Nov 2026</sub> | 1.1k | [7.4](https://rezmoss.github.io/awesome-security-pipeline/projects/safedep/vet/) | ✓&nbsp;Verified |
+<table>
+<thead><tr><th width="16%" align="left">Tool</th><th width="44%" align="left">What it does</th><th width="15%" align="left">Status</th><th align="right">★</th><th width="12%" align="left">Scorecard</th><th width="13%" align="left">Release</th></tr></thead>
+<tbody>
+<tr><td align="left"><a href="https://github.com/devops-kung-fu/bomber"><b>bomber</b></a></td><td align="left">Scan SBOMs for vulnerabilities</td><td align="left">🟡&nbsp;Stale<br><sub>Feb 2026</sub></td><td align="right">629</td><td align="left"><a href="https://rezmoss.github.io/awesome-security-pipeline/projects/devops-kung-fu/bomber/">report</a></td><td align="left">Checksums</td></tr>
+<tr><td align="left"><a href="https://github.com/DependencyTrack/dependency-track"><b>dependency-track</b></a></td><td align="left">Track components and analyze dependency risk from SBOMs</td><td align="left">🟢&nbsp;Active<br><sub>Nov 2026</sub></td><td align="right">4.4k</td><td align="left"><a href="https://rezmoss.github.io/awesome-security-pipeline/projects/DependencyTrack/dependency-track/">7.5</a></td><td align="left">—</td></tr>
+<tr><td align="left"><a href="https://github.com/anchore/grype"><b>grype</b></a></td><td align="left">Scan filesystems and SBOMs for dependency vulnerabilities</td><td align="left">🟢&nbsp;Active<br><sub>Oct 2026</sub></td><td align="right">13.2k</td><td align="left"><a href="https://rezmoss.github.io/awesome-security-pipeline/projects/anchore/grype/">7.9</a></td><td align="left">✓&nbsp;Verified</td></tr>
+<tr><td align="left"><a href="https://github.com/google/osv-scanner"><b>osv-scanner</b></a></td><td align="left">Scan dependencies for vulnerabilities in the OSV database</td><td align="left">🟢&nbsp;Active<br><sub>Oct 2026</sub></td><td align="right">11.3k</td><td align="left"><a href="https://rezmoss.github.io/awesome-security-pipeline/projects/google/osv-scanner/">8.6</a></td><td align="left">✓&nbsp;Verified</td></tr>
+<tr><td align="left"><a href="https://github.com/AikidoSec/safe-chain"><b>safe-chain</b></a></td><td align="left">Block malicious packages during npm/pip install</td><td align="left">🟢&nbsp;Active<br><sub>Nov 2026</sub></td><td align="right">1.8k</td><td align="left"><a href="https://rezmoss.github.io/awesome-security-pipeline/projects/AikidoSec/safe-chain/">4.5</a></td><td align="left">✓&nbsp;Verified</td></tr>
+<tr><td align="left"><a href="https://github.com/snyk/cli"><b>snyk-cli</b></a></td><td align="left">Find and fix vulnerabilities in dependencies</td><td align="left">🟢&nbsp;Active<br><sub>Oct 2026</sub></td><td align="right">5.7k</td><td align="left"><a href="https://rezmoss.github.io/awesome-security-pipeline/projects/snyk/cli/">report</a></td><td align="left">Checksums</td></tr>
+<tr><td align="left"><a href="https://github.com/aquasecurity/trivy"><b>trivy</b></a></td><td align="left">Scan operating-system and language dependencies for vulnerabilities</td><td align="left">🟢&nbsp;Active<br><sub>Oct 2026</sub></td><td align="right">38.9k</td><td align="left"><a href="https://rezmoss.github.io/awesome-security-pipeline/projects/aquasecurity/trivy/">7.1</a></td><td align="left">✓&nbsp;Verified</td></tr>
+<tr><td align="left"><a href="https://github.com/safedep/vet"><b>vet</b></a></td><td align="left">Enforce dependency policies and report supply-chain risks</td><td align="left">🟢&nbsp;Active<br><sub>Nov 2026</sub></td><td align="right">1.1k</td><td align="left"><a href="https://rezmoss.github.io/awesome-security-pipeline/projects/safedep/vet/">7.4</a></td><td align="left">✓&nbsp;Verified</td></tr>
+</tbody>
+</table>
 
 ## Static Application Security Testing (SAST)
 
@@ -171,13 +186,16 @@ Analyze source code for security vulnerabilities.
 
 Tools that support multiple programming languages.
 
-| Tool<br><img src="assets/blank.gif" width="105" height="1" alt=""> | What it does<br><img src="assets/blank.gif" width="270" height="1" alt=""> | Status<br><img src="assets/blank.gif" width="95" height="1" alt=""> | ★<br><img src="assets/blank.gif" width="45" height="1" alt=""> | Scorecard<br><img src="assets/blank.gif" width="72" height="1" alt=""> | Release<br><img src="assets/blank.gif" width="82" height="1" alt=""> |
-|:---|:---|:---|---:|:---|:---|
-| [**bearer**](https://github.com/Bearer/bearer) | Trace sensitive data flows and detect security risks in code | 🟢&nbsp;Active<br><sub>Oct 2026</sub> | 2.8k | [6.3](https://rezmoss.github.io/awesome-security-pipeline/projects/Bearer/bearer/) | Checksums |
-| [**codeql**](https://github.com/github/codeql) | Analyze code semantically with GitHub's query engine | 🟢&nbsp;Active<br><sub>Oct 2026</sub> | 10.3k | [5.8](https://rezmoss.github.io/awesome-security-pipeline/projects/github/codeql/) | — |
-| [**semgrep**](https://github.com/semgrep/semgrep) | Scan source code with multi-language static-analysis rules | 🟢&nbsp;Active<br><sub>Oct 2026</sub> | 17.4k | [report](https://rezmoss.github.io/awesome-security-pipeline/projects/semgrep/semgrep/) | — |
-| [**sonarqube**](https://github.com/SonarSource/sonarqube) | Inspect code continuously for quality and security issues | 🟢&nbsp;Active<br><sub>Oct 2026</sub> | 11.1k | [4.9](https://rezmoss.github.io/awesome-security-pipeline/projects/SonarSource/sonarqube/) | — |
-| [**spotbugs**](https://github.com/spotbugs/spotbugs) | Find bug patterns in Java bytecode | 🟢&nbsp;Active<br><sub>Oct 2026</sub> | 4k | [4.6](https://rezmoss.github.io/awesome-security-pipeline/projects/spotbugs/spotbugs/) | — |
+<table>
+<thead><tr><th width="16%" align="left">Tool</th><th width="44%" align="left">What it does</th><th width="15%" align="left">Status</th><th align="right">★</th><th width="12%" align="left">Scorecard</th><th width="13%" align="left">Release</th></tr></thead>
+<tbody>
+<tr><td align="left"><a href="https://github.com/Bearer/bearer"><b>bearer</b></a></td><td align="left">Trace sensitive data flows and detect security risks in code</td><td align="left">🟢&nbsp;Active<br><sub>Oct 2026</sub></td><td align="right">2.8k</td><td align="left"><a href="https://rezmoss.github.io/awesome-security-pipeline/projects/Bearer/bearer/">6.3</a></td><td align="left">Checksums</td></tr>
+<tr><td align="left"><a href="https://github.com/github/codeql"><b>codeql</b></a></td><td align="left">Analyze code semantically with GitHub&#x27;s query engine</td><td align="left">🟢&nbsp;Active<br><sub>Oct 2026</sub></td><td align="right">10.3k</td><td align="left"><a href="https://rezmoss.github.io/awesome-security-pipeline/projects/github/codeql/">5.8</a></td><td align="left">—</td></tr>
+<tr><td align="left"><a href="https://github.com/semgrep/semgrep"><b>semgrep</b></a></td><td align="left">Scan source code with multi-language static-analysis rules</td><td align="left">🟢&nbsp;Active<br><sub>Oct 2026</sub></td><td align="right">17.4k</td><td align="left"><a href="https://rezmoss.github.io/awesome-security-pipeline/projects/semgrep/semgrep/">report</a></td><td align="left">—</td></tr>
+<tr><td align="left"><a href="https://github.com/SonarSource/sonarqube"><b>sonarqube</b></a></td><td align="left">Inspect code continuously for quality and security issues</td><td align="left">🟢&nbsp;Active<br><sub>Oct 2026</sub></td><td align="right">11.1k</td><td align="left"><a href="https://rezmoss.github.io/awesome-security-pipeline/projects/SonarSource/sonarqube/">4.9</a></td><td align="left">—</td></tr>
+<tr><td align="left"><a href="https://github.com/spotbugs/spotbugs"><b>spotbugs</b></a></td><td align="left">Find bug patterns in Java bytecode</td><td align="left">🟢&nbsp;Active<br><sub>Oct 2026</sub></td><td align="right">4k</td><td align="left"><a href="https://rezmoss.github.io/awesome-security-pipeline/projects/spotbugs/spotbugs/">4.6</a></td><td align="left">—</td></tr>
+</tbody>
+</table>
 
 ### Language-specific
 
@@ -185,56 +203,77 @@ Specialized tools for individual programming languages.
 
 #### Python
 
-| Tool<br><img src="assets/blank.gif" width="105" height="1" alt=""> | What it does<br><img src="assets/blank.gif" width="270" height="1" alt=""> | Status<br><img src="assets/blank.gif" width="95" height="1" alt=""> | ★<br><img src="assets/blank.gif" width="45" height="1" alt=""> | Scorecard<br><img src="assets/blank.gif" width="72" height="1" alt=""> | Release<br><img src="assets/blank.gif" width="82" height="1" alt=""> |
-|:---|:---|:---|---:|:---|:---|
-| [**bandit**](https://github.com/PyCQA/bandit) | Find common security issues in Python code | 🟢&nbsp;Active<br><sub>Oct 2026</sub> | 8.4k | [5.8](https://rezmoss.github.io/awesome-security-pipeline/projects/PyCQA/bandit/) | — |
-| [**safety**](https://github.com/pyupio/safety) | Check Python dependencies for vulnerabilities | 🟢&nbsp;Active<br><sub>Sep 2026</sub> | 2k | [4.7](https://rezmoss.github.io/awesome-security-pipeline/projects/pyupio/safety/) | — |
+<table>
+<thead><tr><th width="16%" align="left">Tool</th><th width="44%" align="left">What it does</th><th width="15%" align="left">Status</th><th align="right">★</th><th width="12%" align="left">Scorecard</th><th width="13%" align="left">Release</th></tr></thead>
+<tbody>
+<tr><td align="left"><a href="https://github.com/PyCQA/bandit"><b>bandit</b></a></td><td align="left">Find common security issues in Python code</td><td align="left">🟢&nbsp;Active<br><sub>Oct 2026</sub></td><td align="right">8.4k</td><td align="left"><a href="https://rezmoss.github.io/awesome-security-pipeline/projects/PyCQA/bandit/">5.8</a></td><td align="left">—</td></tr>
+<tr><td align="left"><a href="https://github.com/pyupio/safety"><b>safety</b></a></td><td align="left">Check Python dependencies for vulnerabilities</td><td align="left">🟢&nbsp;Active<br><sub>Sep 2026</sub></td><td align="right">2k</td><td align="left"><a href="https://rezmoss.github.io/awesome-security-pipeline/projects/pyupio/safety/">4.7</a></td><td align="left">—</td></tr>
+</tbody>
+</table>
 
 #### JavaScript/Node.js
 
-| Tool<br><img src="assets/blank.gif" width="105" height="1" alt=""> | What it does<br><img src="assets/blank.gif" width="270" height="1" alt=""> | Status<br><img src="assets/blank.gif" width="95" height="1" alt=""> | ★<br><img src="assets/blank.gif" width="45" height="1" alt=""> | Scorecard<br><img src="assets/blank.gif" width="72" height="1" alt=""> | Release<br><img src="assets/blank.gif" width="82" height="1" alt=""> |
-|:---|:---|:---|---:|:---|:---|
-| [**eslint-plugin-security**](https://github.com/eslint-community/eslint-plugin-security) | Detect security patterns in Node.js with ESLint rules | 🟢&nbsp;Active<br><sub>Oct 2026</sub> | 2.4k | [report](https://rezmoss.github.io/awesome-security-pipeline/projects/eslint-community/eslint-plugin-security/) | — |
-| [**njsscan**](https://github.com/ajinabraham/njsscan) | Analyze Node.js applications with semantic SAST rules | 🟢&nbsp;Active<br><sub>Oct 2026</sub> | 458 | — | — |
+<table>
+<thead><tr><th width="16%" align="left">Tool</th><th width="44%" align="left">What it does</th><th width="15%" align="left">Status</th><th align="right">★</th><th width="12%" align="left">Scorecard</th><th width="13%" align="left">Release</th></tr></thead>
+<tbody>
+<tr><td align="left"><a href="https://github.com/eslint-community/eslint-plugin-security"><b>eslint-plugin-security</b></a></td><td align="left">Detect security patterns in Node.js with ESLint rules</td><td align="left">🟢&nbsp;Active<br><sub>Oct 2026</sub></td><td align="right">2.4k</td><td align="left"><a href="https://rezmoss.github.io/awesome-security-pipeline/projects/eslint-community/eslint-plugin-security/">report</a></td><td align="left">—</td></tr>
+<tr><td align="left"><a href="https://github.com/ajinabraham/njsscan"><b>njsscan</b></a></td><td align="left">Analyze Node.js applications with semantic SAST rules</td><td align="left">🟢&nbsp;Active<br><sub>Oct 2026</sub></td><td align="right">458</td><td align="left">—</td><td align="left">—</td></tr>
+</tbody>
+</table>
 
 #### Go
 
-| Tool<br><img src="assets/blank.gif" width="105" height="1" alt=""> | What it does<br><img src="assets/blank.gif" width="270" height="1" alt=""> | Status<br><img src="assets/blank.gif" width="95" height="1" alt=""> | ★<br><img src="assets/blank.gif" width="45" height="1" alt=""> | Scorecard<br><img src="assets/blank.gif" width="72" height="1" alt=""> | Release<br><img src="assets/blank.gif" width="82" height="1" alt=""> |
-|:---|:---|:---|---:|:---|:---|
-| [**gosec**](https://github.com/securego/gosec) | Find security issues in Go source code | 🟢&nbsp;Active<br><sub>Oct 2026</sub> | 9k | [6.6](https://rezmoss.github.io/awesome-security-pipeline/projects/securego/gosec/) | ✓&nbsp;Verified |
-| [**govulncheck**](https://github.com/golang/vuln) | Report reachable Go vulnerabilities in source and binaries | 🟢&nbsp;Active<br><sub>Oct 2026</sub> | 532 | [3.7](https://rezmoss.github.io/awesome-security-pipeline/projects/golang/vuln/) | — |
+<table>
+<thead><tr><th width="16%" align="left">Tool</th><th width="44%" align="left">What it does</th><th width="15%" align="left">Status</th><th align="right">★</th><th width="12%" align="left">Scorecard</th><th width="13%" align="left">Release</th></tr></thead>
+<tbody>
+<tr><td align="left"><a href="https://github.com/securego/gosec"><b>gosec</b></a></td><td align="left">Find security issues in Go source code</td><td align="left">🟢&nbsp;Active<br><sub>Oct 2026</sub></td><td align="right">9k</td><td align="left"><a href="https://rezmoss.github.io/awesome-security-pipeline/projects/securego/gosec/">6.6</a></td><td align="left">✓&nbsp;Verified</td></tr>
+<tr><td align="left"><a href="https://github.com/golang/vuln"><b>govulncheck</b></a></td><td align="left">Report reachable Go vulnerabilities in source and binaries</td><td align="left">🟢&nbsp;Active<br><sub>Oct 2026</sub></td><td align="right">532</td><td align="left"><a href="https://rezmoss.github.io/awesome-security-pipeline/projects/golang/vuln/">3.7</a></td><td align="left">—</td></tr>
+</tbody>
+</table>
 
 #### Ruby
 
-| Tool<br><img src="assets/blank.gif" width="105" height="1" alt=""> | What it does<br><img src="assets/blank.gif" width="270" height="1" alt=""> | Status<br><img src="assets/blank.gif" width="95" height="1" alt=""> | ★<br><img src="assets/blank.gif" width="45" height="1" alt=""> | Scorecard<br><img src="assets/blank.gif" width="72" height="1" alt=""> | Release<br><img src="assets/blank.gif" width="82" height="1" alt=""> |
-|:---|:---|:---|---:|:---|:---|
-| [**brakeman**](https://github.com/presidentbeef/brakeman) | Scan Ruby on Rails applications with static analysis | 🟢&nbsp;Active<br><sub>Oct 2026</sub> | 7.3k | [6.0](https://rezmoss.github.io/awesome-security-pipeline/projects/presidentbeef/brakeman/) | — |
+<table>
+<thead><tr><th width="16%" align="left">Tool</th><th width="44%" align="left">What it does</th><th width="15%" align="left">Status</th><th align="right">★</th><th width="12%" align="left">Scorecard</th><th width="13%" align="left">Release</th></tr></thead>
+<tbody>
+<tr><td align="left"><a href="https://github.com/presidentbeef/brakeman"><b>brakeman</b></a></td><td align="left">Scan Ruby on Rails applications with static analysis</td><td align="left">🟢&nbsp;Active<br><sub>Oct 2026</sub></td><td align="right">7.3k</td><td align="left"><a href="https://rezmoss.github.io/awesome-security-pipeline/projects/presidentbeef/brakeman/">6.0</a></td><td align="left">—</td></tr>
+</tbody>
+</table>
 
 #### PHP
 
-| Tool<br><img src="assets/blank.gif" width="105" height="1" alt=""> | What it does<br><img src="assets/blank.gif" width="270" height="1" alt=""> | Status<br><img src="assets/blank.gif" width="95" height="1" alt=""> | ★<br><img src="assets/blank.gif" width="45" height="1" alt=""> | Scorecard<br><img src="assets/blank.gif" width="72" height="1" alt=""> | Release<br><img src="assets/blank.gif" width="82" height="1" alt=""> |
-|:---|:---|:---|---:|:---|:---|
-| [**phpstan**](https://github.com/phpstan/phpstan) | Analyze PHP code without running it | 🟢&nbsp;Active<br><sub>Nov 2026</sub> | 14.1k | [4.8](https://rezmoss.github.io/awesome-security-pipeline/projects/phpstan/phpstan/) | — |
-| [**psalm**](https://github.com/vimeo/psalm) | Analyze PHP code for type and security issues | 🟢&nbsp;Active<br><sub>Nov 2026</sub> | 5.9k | [4.7](https://rezmoss.github.io/awesome-security-pipeline/projects/vimeo/psalm/) | — |
+<table>
+<thead><tr><th width="16%" align="left">Tool</th><th width="44%" align="left">What it does</th><th width="15%" align="left">Status</th><th align="right">★</th><th width="12%" align="left">Scorecard</th><th width="13%" align="left">Release</th></tr></thead>
+<tbody>
+<tr><td align="left"><a href="https://github.com/phpstan/phpstan"><b>phpstan</b></a></td><td align="left">Analyze PHP code without running it</td><td align="left">🟢&nbsp;Active<br><sub>Nov 2026</sub></td><td align="right">14.1k</td><td align="left"><a href="https://rezmoss.github.io/awesome-security-pipeline/projects/phpstan/phpstan/">4.8</a></td><td align="left">—</td></tr>
+<tr><td align="left"><a href="https://github.com/vimeo/psalm"><b>psalm</b></a></td><td align="left">Analyze PHP code for type and security issues</td><td align="left">🟢&nbsp;Active<br><sub>Nov 2026</sub></td><td align="right">5.9k</td><td align="left"><a href="https://rezmoss.github.io/awesome-security-pipeline/projects/vimeo/psalm/">4.7</a></td><td align="left">—</td></tr>
+</tbody>
+</table>
 
 #### Rust
 
-| Tool<br><img src="assets/blank.gif" width="105" height="1" alt=""> | What it does<br><img src="assets/blank.gif" width="270" height="1" alt=""> | Status<br><img src="assets/blank.gif" width="95" height="1" alt=""> | ★<br><img src="assets/blank.gif" width="45" height="1" alt=""> | Scorecard<br><img src="assets/blank.gif" width="72" height="1" alt=""> | Release<br><img src="assets/blank.gif" width="82" height="1" alt=""> |
-|:---|:---|:---|---:|:---|:---|
-| [**cargo-audit**](https://github.com/RustSec/rustsec) | Audit Cargo.lock for crates with security vulnerabilities | 🟢&nbsp;Active<br><sub>Oct 2026</sub> | 2k | [report](https://rezmoss.github.io/awesome-security-pipeline/projects/RustSec/rustsec/) | — |
+<table>
+<thead><tr><th width="16%" align="left">Tool</th><th width="44%" align="left">What it does</th><th width="15%" align="left">Status</th><th align="right">★</th><th width="12%" align="left">Scorecard</th><th width="13%" align="left">Release</th></tr></thead>
+<tbody>
+<tr><td align="left"><a href="https://github.com/RustSec/rustsec"><b>cargo-audit</b></a></td><td align="left">Audit Cargo.lock for crates with security vulnerabilities</td><td align="left">🟢&nbsp;Active<br><sub>Oct 2026</sub></td><td align="right">2k</td><td align="left"><a href="https://rezmoss.github.io/awesome-security-pipeline/projects/RustSec/rustsec/">report</a></td><td align="left">—</td></tr>
+</tbody>
+</table>
 
 ## Infrastructure as Code Security
 
 Scan infrastructure configurations for security misconfigurations.
 
-| Tool<br><img src="assets/blank.gif" width="105" height="1" alt=""> | What it does<br><img src="assets/blank.gif" width="270" height="1" alt=""> | Status<br><img src="assets/blank.gif" width="95" height="1" alt=""> | ★<br><img src="assets/blank.gif" width="45" height="1" alt=""> | Scorecard<br><img src="assets/blank.gif" width="72" height="1" alt=""> | Release<br><img src="assets/blank.gif" width="82" height="1" alt=""> |
-|:---|:---|:---|---:|:---|:---|
-| [**cfn-lint**](https://github.com/aws-cloudformation/cfn-lint) | Lint AWS CloudFormation templates with security rules | 🟢&nbsp;Active<br><sub>Oct 2026</sub> | 2.6k | [report](https://rezmoss.github.io/awesome-security-pipeline/projects/aws-cloudformation/cfn-lint/) | — |
-| [**checkov**](https://github.com/bridgecrewio/checkov) | Scan cloud infrastructure configurations | 🟢&nbsp;Active<br><sub>Oct 2026</sub> | 9.1k | [report](https://rezmoss.github.io/awesome-security-pipeline/projects/bridgecrewio/checkov/) | — |
-| [**kics**](https://github.com/Checkmarx/kics) | Find security vulnerabilities and compliance issues in IaC | 🟢&nbsp;Active<br><sub>Oct 2026</sub> | 2.7k | [report](https://rezmoss.github.io/awesome-security-pipeline/projects/Checkmarx/kics/) | — |
-| [**snyk-cli**](https://github.com/snyk/cli) | Scan infrastructure as code for security issues | 🟢&nbsp;Active<br><sub>Oct 2026</sub> | 5.7k | [report](https://rezmoss.github.io/awesome-security-pipeline/projects/snyk/cli/) | Checksums |
-| [**trivy**](https://github.com/aquasecurity/trivy) | Scan Terraform, CloudFormation, and other IaC for misconfigurations | 🟢&nbsp;Active<br><sub>Oct 2026</sub> | 38.9k | [7.1](https://rezmoss.github.io/awesome-security-pipeline/projects/aquasecurity/trivy/) | ✓&nbsp;Verified |
-| [**zizmor**](https://github.com/zizmorcore/zizmor) | Analyze GitHub Actions workflows for security issues | 🟢&nbsp;Active<br><sub>Oct 2026</sub> | 6.9k | [report](https://rezmoss.github.io/awesome-security-pipeline/projects/zizmorcore/zizmor/) | ✓&nbsp;Verified |
+<table>
+<thead><tr><th width="16%" align="left">Tool</th><th width="44%" align="left">What it does</th><th width="15%" align="left">Status</th><th align="right">★</th><th width="12%" align="left">Scorecard</th><th width="13%" align="left">Release</th></tr></thead>
+<tbody>
+<tr><td align="left"><a href="https://github.com/aws-cloudformation/cfn-lint"><b>cfn-lint</b></a></td><td align="left">Lint AWS CloudFormation templates with security rules</td><td align="left">🟢&nbsp;Active<br><sub>Oct 2026</sub></td><td align="right">2.6k</td><td align="left"><a href="https://rezmoss.github.io/awesome-security-pipeline/projects/aws-cloudformation/cfn-lint/">report</a></td><td align="left">—</td></tr>
+<tr><td align="left"><a href="https://github.com/bridgecrewio/checkov"><b>checkov</b></a></td><td align="left">Scan cloud infrastructure configurations</td><td align="left">🟢&nbsp;Active<br><sub>Oct 2026</sub></td><td align="right">9.1k</td><td align="left"><a href="https://rezmoss.github.io/awesome-security-pipeline/projects/bridgecrewio/checkov/">report</a></td><td align="left">—</td></tr>
+<tr><td align="left"><a href="https://github.com/Checkmarx/kics"><b>kics</b></a></td><td align="left">Find security vulnerabilities and compliance issues in IaC</td><td align="left">🟢&nbsp;Active<br><sub>Oct 2026</sub></td><td align="right">2.7k</td><td align="left"><a href="https://rezmoss.github.io/awesome-security-pipeline/projects/Checkmarx/kics/">report</a></td><td align="left">—</td></tr>
+<tr><td align="left"><a href="https://github.com/snyk/cli"><b>snyk-cli</b></a></td><td align="left">Scan infrastructure as code for security issues</td><td align="left">🟢&nbsp;Active<br><sub>Oct 2026</sub></td><td align="right">5.7k</td><td align="left"><a href="https://rezmoss.github.io/awesome-security-pipeline/projects/snyk/cli/">report</a></td><td align="left">Checksums</td></tr>
+<tr><td align="left"><a href="https://github.com/aquasecurity/trivy"><b>trivy</b></a></td><td align="left">Scan Terraform, CloudFormation, and other IaC for misconfigurations</td><td align="left">🟢&nbsp;Active<br><sub>Oct 2026</sub></td><td align="right">38.9k</td><td align="left"><a href="https://rezmoss.github.io/awesome-security-pipeline/projects/aquasecurity/trivy/">7.1</a></td><td align="left">✓&nbsp;Verified</td></tr>
+<tr><td align="left"><a href="https://github.com/zizmorcore/zizmor"><b>zizmor</b></a></td><td align="left">Analyze GitHub Actions workflows for security issues</td><td align="left">🟢&nbsp;Active<br><sub>Oct 2026</sub></td><td align="right">6.9k</td><td align="left"><a href="https://rezmoss.github.io/awesome-security-pipeline/projects/zizmorcore/zizmor/">report</a></td><td align="left">✓&nbsp;Verified</td></tr>
+</tbody>
+</table>
 
 ## Container Security
 
@@ -244,87 +283,108 @@ Secure container images and runtime environments.
 
 Scan container images for vulnerabilities before deployment.
 
-| Tool<br><img src="assets/blank.gif" width="105" height="1" alt=""> | What it does<br><img src="assets/blank.gif" width="270" height="1" alt=""> | Status<br><img src="assets/blank.gif" width="95" height="1" alt=""> | ★<br><img src="assets/blank.gif" width="45" height="1" alt=""> | Scorecard<br><img src="assets/blank.gif" width="72" height="1" alt=""> | Release<br><img src="assets/blank.gif" width="82" height="1" alt=""> |
-|:---|:---|:---|---:|:---|:---|
-| [**clair**](https://github.com/quay/clair) | Analyze container images for known vulnerabilities | 🟢&nbsp;Active<br><sub>Oct 2026</sub> | 11.1k | [5.0](https://rezmoss.github.io/awesome-security-pipeline/projects/quay/clair/) | — |
-| [**dive**](https://github.com/wagoodman/dive) | Inspect image layers and contents; it does not scan vulnerability databases | 🟢&nbsp;Active<br><sub>Oct 2026</sub> | 54.7k | — | — |
-| [**docker-bench-security**](https://github.com/docker/docker-bench-security) | Check Docker deployment against CIS benchmarks | 🟢&nbsp;Active<br><sub>Jun 2026</sub> | 9.7k | [6.7](https://rezmoss.github.io/awesome-security-pipeline/projects/docker/docker-bench-security/) | — |
-| [**dockle**](https://github.com/goodwithtech/dockle) | Lint container images for security best practices | 🟢&nbsp;Active<br><sub>Jul 2026</sub> | 3.3k | [4.1](https://rezmoss.github.io/awesome-security-pipeline/projects/goodwithtech/dockle/) | Checksums |
-| [**grype**](https://github.com/anchore/grype) | Scan container images for operating-system and library vulnerabilities | 🟢&nbsp;Active<br><sub>Oct 2026</sub> | 13.2k | [7.9](https://rezmoss.github.io/awesome-security-pipeline/projects/anchore/grype/) | ✓&nbsp;Verified |
-| [**hadolint**](https://github.com/hadolint/hadolint) | Lint Dockerfiles for security and build best practices | 🟢&nbsp;Active<br><sub>Oct 2026</sub> | 12.5k | [4.7](https://rezmoss.github.io/awesome-security-pipeline/projects/hadolint/hadolint/) | ✓&nbsp;Verified |
-| [**trivy**](https://github.com/aquasecurity/trivy) | Scan container images for operating-system and library vulnerabilities | 🟢&nbsp;Active<br><sub>Oct 2026</sub> | 38.9k | [7.1](https://rezmoss.github.io/awesome-security-pipeline/projects/aquasecurity/trivy/) | ✓&nbsp;Verified |
+<table>
+<thead><tr><th width="16%" align="left">Tool</th><th width="44%" align="left">What it does</th><th width="15%" align="left">Status</th><th align="right">★</th><th width="12%" align="left">Scorecard</th><th width="13%" align="left">Release</th></tr></thead>
+<tbody>
+<tr><td align="left"><a href="https://github.com/quay/clair"><b>clair</b></a></td><td align="left">Analyze container images for known vulnerabilities</td><td align="left">🟢&nbsp;Active<br><sub>Oct 2026</sub></td><td align="right">11.1k</td><td align="left"><a href="https://rezmoss.github.io/awesome-security-pipeline/projects/quay/clair/">5.0</a></td><td align="left">—</td></tr>
+<tr><td align="left"><a href="https://github.com/wagoodman/dive"><b>dive</b></a></td><td align="left">Inspect image layers and contents; it does not scan vulnerability databases</td><td align="left">🟢&nbsp;Active<br><sub>Oct 2026</sub></td><td align="right">54.7k</td><td align="left">—</td><td align="left">—</td></tr>
+<tr><td align="left"><a href="https://github.com/docker/docker-bench-security"><b>docker-bench-security</b></a></td><td align="left">Check Docker deployment against CIS benchmarks</td><td align="left">🟢&nbsp;Active<br><sub>Jun 2026</sub></td><td align="right">9.7k</td><td align="left"><a href="https://rezmoss.github.io/awesome-security-pipeline/projects/docker/docker-bench-security/">6.7</a></td><td align="left">—</td></tr>
+<tr><td align="left"><a href="https://github.com/goodwithtech/dockle"><b>dockle</b></a></td><td align="left">Lint container images for security best practices</td><td align="left">🟢&nbsp;Active<br><sub>Jul 2026</sub></td><td align="right">3.3k</td><td align="left"><a href="https://rezmoss.github.io/awesome-security-pipeline/projects/goodwithtech/dockle/">4.1</a></td><td align="left">Checksums</td></tr>
+<tr><td align="left"><a href="https://github.com/anchore/grype"><b>grype</b></a></td><td align="left">Scan container images for operating-system and library vulnerabilities</td><td align="left">🟢&nbsp;Active<br><sub>Oct 2026</sub></td><td align="right">13.2k</td><td align="left"><a href="https://rezmoss.github.io/awesome-security-pipeline/projects/anchore/grype/">7.9</a></td><td align="left">✓&nbsp;Verified</td></tr>
+<tr><td align="left"><a href="https://github.com/hadolint/hadolint"><b>hadolint</b></a></td><td align="left">Lint Dockerfiles for security and build best practices</td><td align="left">🟢&nbsp;Active<br><sub>Oct 2026</sub></td><td align="right">12.5k</td><td align="left"><a href="https://rezmoss.github.io/awesome-security-pipeline/projects/hadolint/hadolint/">4.7</a></td><td align="left">✓&nbsp;Verified</td></tr>
+<tr><td align="left"><a href="https://github.com/aquasecurity/trivy"><b>trivy</b></a></td><td align="left">Scan container images for operating-system and library vulnerabilities</td><td align="left">🟢&nbsp;Active<br><sub>Oct 2026</sub></td><td align="right">38.9k</td><td align="left"><a href="https://rezmoss.github.io/awesome-security-pipeline/projects/aquasecurity/trivy/">7.1</a></td><td align="left">✓&nbsp;Verified</td></tr>
+</tbody>
+</table>
 
 ### Runtime Security
 
 Monitor and protect containers at runtime.
 
-| Tool<br><img src="assets/blank.gif" width="105" height="1" alt=""> | What it does<br><img src="assets/blank.gif" width="270" height="1" alt=""> | Status<br><img src="assets/blank.gif" width="95" height="1" alt=""> | ★<br><img src="assets/blank.gif" width="45" height="1" alt=""> | Scorecard<br><img src="assets/blank.gif" width="72" height="1" alt=""> | Release<br><img src="assets/blank.gif" width="82" height="1" alt=""> |
-|:---|:---|:---|---:|:---|:---|
-| [**falco**](https://github.com/falcosecurity/falco) | Detect runtime threats in cloud-native environments | 🟢&nbsp;Active<br><sub>Oct 2026</sub> | 9.5k | [7.5](https://rezmoss.github.io/awesome-security-pipeline/projects/falcosecurity/falco/) | — |
-| [**sysdig-inspect**](https://github.com/draios/sysdig-inspect) | Visualize system calls and analyze containers | 🟢&nbsp;Active<br><sub>Jul 2026</sub> | 1k | — | — |
-| [**tetragon**](https://github.com/cilium/tetragon) | Observe and enforce runtime security with eBPF | 🟢&nbsp;Active<br><sub>Oct 2026</sub> | 5.1k | [report](https://rezmoss.github.io/awesome-security-pipeline/projects/cilium/tetragon/) | — |
-| [**tracee**](https://github.com/aquasecurity/tracee) | Trace Linux runtime activity and security events with eBPF | 🟢&nbsp;Active<br><sub>Sep 2026</sub> | 4.7k | [7.0](https://rezmoss.github.io/awesome-security-pipeline/projects/aquasecurity/tracee/) | Checksums |
+<table>
+<thead><tr><th width="16%" align="left">Tool</th><th width="44%" align="left">What it does</th><th width="15%" align="left">Status</th><th align="right">★</th><th width="12%" align="left">Scorecard</th><th width="13%" align="left">Release</th></tr></thead>
+<tbody>
+<tr><td align="left"><a href="https://github.com/falcosecurity/falco"><b>falco</b></a></td><td align="left">Detect runtime threats in cloud-native environments</td><td align="left">🟢&nbsp;Active<br><sub>Oct 2026</sub></td><td align="right">9.5k</td><td align="left"><a href="https://rezmoss.github.io/awesome-security-pipeline/projects/falcosecurity/falco/">7.5</a></td><td align="left">—</td></tr>
+<tr><td align="left"><a href="https://github.com/draios/sysdig-inspect"><b>sysdig-inspect</b></a></td><td align="left">Visualize system calls and analyze containers</td><td align="left">🟢&nbsp;Active<br><sub>Jul 2026</sub></td><td align="right">1k</td><td align="left">—</td><td align="left">—</td></tr>
+<tr><td align="left"><a href="https://github.com/cilium/tetragon"><b>tetragon</b></a></td><td align="left">Observe and enforce runtime security with eBPF</td><td align="left">🟢&nbsp;Active<br><sub>Oct 2026</sub></td><td align="right">5.1k</td><td align="left"><a href="https://rezmoss.github.io/awesome-security-pipeline/projects/cilium/tetragon/">report</a></td><td align="left">—</td></tr>
+<tr><td align="left"><a href="https://github.com/aquasecurity/tracee"><b>tracee</b></a></td><td align="left">Trace Linux runtime activity and security events with eBPF</td><td align="left">🟢&nbsp;Active<br><sub>Sep 2026</sub></td><td align="right">4.7k</td><td align="left"><a href="https://rezmoss.github.io/awesome-security-pipeline/projects/aquasecurity/tracee/">7.0</a></td><td align="left">Checksums</td></tr>
+</tbody>
+</table>
 
 ## Kubernetes Security
 
 Secure Kubernetes clusters, manifests, and workloads.
 
-| Tool<br><img src="assets/blank.gif" width="105" height="1" alt=""> | What it does<br><img src="assets/blank.gif" width="270" height="1" alt=""> | Status<br><img src="assets/blank.gif" width="95" height="1" alt=""> | ★<br><img src="assets/blank.gif" width="45" height="1" alt=""> | Scorecard<br><img src="assets/blank.gif" width="72" height="1" alt=""> | Release<br><img src="assets/blank.gif" width="82" height="1" alt=""> |
-|:---|:---|:---|---:|:---|:---|
-| [**kube-bench**](https://github.com/aquasecurity/kube-bench) | Check Kubernetes against CIS benchmarks | 🟢&nbsp;Active<br><sub>Oct 2026</sub> | 8.2k | [5.8](https://rezmoss.github.io/awesome-security-pipeline/projects/aquasecurity/kube-bench/) | Checksums |
-| [**kube-linter**](https://github.com/stackrox/kube-linter) | Analyze Kubernetes YAML and Helm charts before deployment | 🟢&nbsp;Active<br><sub>Oct 2026</sub> | 3.5k | [7.4](https://rezmoss.github.io/awesome-security-pipeline/projects/stackrox/kube-linter/) | Signed |
-| [**kubescape**](https://github.com/kubescape/kubescape) | Analyze Kubernetes security risk and configuration compliance | 🟢&nbsp;Active<br><sub>Oct 2026</sub> | 11.8k | [7.6](https://rezmoss.github.io/awesome-security-pipeline/projects/kubescape/kubescape/) | ✓&nbsp;Verified |
-| [**KubeStellar Console**](https://github.com/kubestellar/console) | View security signals across multiple Kubernetes clusters | 🟢&nbsp;Active<br><sub>Nov 2026</sub> | 152 | [report](https://rezmoss.github.io/awesome-security-pipeline/projects/kubestellar/console/) | ✓&nbsp;Verified |
-| [**kyverno**](https://github.com/kyverno/kyverno) | Enforce policies with Kubernetes-native resources | 🟢&nbsp;Active<br><sub>Nov 2026</sub> | 8.3k | [7.8](https://rezmoss.github.io/awesome-security-pipeline/projects/kyverno/kyverno/) | ✓&nbsp;Verified |
-| [**polaris**](https://github.com/FairwindsOps/polaris) | Validate Kubernetes best practices and policies | 🟢&nbsp;Active<br><sub>Oct 2026</sub> | 3.4k | [5.1](https://rezmoss.github.io/awesome-security-pipeline/projects/FairwindsOps/polaris/) | Signed |
-| [**trivy-operator**](https://github.com/aquasecurity/trivy-operator) | Generate Kubernetes-native security reports | 🟢&nbsp;Active<br><sub>Oct 2026</sub> | 2k | [7.5](https://rezmoss.github.io/awesome-security-pipeline/projects/aquasecurity/trivy-operator/) | ✓&nbsp;Verified |
+<table>
+<thead><tr><th width="16%" align="left">Tool</th><th width="44%" align="left">What it does</th><th width="15%" align="left">Status</th><th align="right">★</th><th width="12%" align="left">Scorecard</th><th width="13%" align="left">Release</th></tr></thead>
+<tbody>
+<tr><td align="left"><a href="https://github.com/aquasecurity/kube-bench"><b>kube-bench</b></a></td><td align="left">Check Kubernetes against CIS benchmarks</td><td align="left">🟢&nbsp;Active<br><sub>Oct 2026</sub></td><td align="right">8.2k</td><td align="left"><a href="https://rezmoss.github.io/awesome-security-pipeline/projects/aquasecurity/kube-bench/">5.8</a></td><td align="left">Checksums</td></tr>
+<tr><td align="left"><a href="https://github.com/stackrox/kube-linter"><b>kube-linter</b></a></td><td align="left">Analyze Kubernetes YAML and Helm charts before deployment</td><td align="left">🟢&nbsp;Active<br><sub>Oct 2026</sub></td><td align="right">3.5k</td><td align="left"><a href="https://rezmoss.github.io/awesome-security-pipeline/projects/stackrox/kube-linter/">7.4</a></td><td align="left">Signed</td></tr>
+<tr><td align="left"><a href="https://github.com/kubescape/kubescape"><b>kubescape</b></a></td><td align="left">Analyze Kubernetes security risk and configuration compliance</td><td align="left">🟢&nbsp;Active<br><sub>Oct 2026</sub></td><td align="right">11.8k</td><td align="left"><a href="https://rezmoss.github.io/awesome-security-pipeline/projects/kubescape/kubescape/">7.6</a></td><td align="left">✓&nbsp;Verified</td></tr>
+<tr><td align="left"><a href="https://github.com/kubestellar/console"><b>KubeStellar Console</b></a></td><td align="left">View security signals across multiple Kubernetes clusters</td><td align="left">🟢&nbsp;Active<br><sub>Nov 2026</sub></td><td align="right">152</td><td align="left"><a href="https://rezmoss.github.io/awesome-security-pipeline/projects/kubestellar/console/">report</a></td><td align="left">✓&nbsp;Verified</td></tr>
+<tr><td align="left"><a href="https://github.com/kyverno/kyverno"><b>kyverno</b></a></td><td align="left">Enforce policies with Kubernetes-native resources</td><td align="left">🟢&nbsp;Active<br><sub>Nov 2026</sub></td><td align="right">8.3k</td><td align="left"><a href="https://rezmoss.github.io/awesome-security-pipeline/projects/kyverno/kyverno/">7.8</a></td><td align="left">✓&nbsp;Verified</td></tr>
+<tr><td align="left"><a href="https://github.com/FairwindsOps/polaris"><b>polaris</b></a></td><td align="left">Validate Kubernetes best practices and policies</td><td align="left">🟢&nbsp;Active<br><sub>Oct 2026</sub></td><td align="right">3.4k</td><td align="left"><a href="https://rezmoss.github.io/awesome-security-pipeline/projects/FairwindsOps/polaris/">5.1</a></td><td align="left">Signed</td></tr>
+<tr><td align="left"><a href="https://github.com/aquasecurity/trivy-operator"><b>trivy-operator</b></a></td><td align="left">Generate Kubernetes-native security reports</td><td align="left">🟢&nbsp;Active<br><sub>Oct 2026</sub></td><td align="right">2k</td><td align="left"><a href="https://rezmoss.github.io/awesome-security-pipeline/projects/aquasecurity/trivy-operator/">7.5</a></td><td align="left">✓&nbsp;Verified</td></tr>
+</tbody>
+</table>
 
 ## Policy as Code
 
 Define and enforce security policies as code across your infrastructure.
 
-| Tool<br><img src="assets/blank.gif" width="105" height="1" alt=""> | What it does<br><img src="assets/blank.gif" width="270" height="1" alt=""> | Status<br><img src="assets/blank.gif" width="95" height="1" alt=""> | ★<br><img src="assets/blank.gif" width="45" height="1" alt=""> | Scorecard<br><img src="assets/blank.gif" width="72" height="1" alt=""> | Release<br><img src="assets/blank.gif" width="82" height="1" alt=""> |
-|:---|:---|:---|---:|:---|:---|
-| [**conftest**](https://github.com/open-policy-agent/conftest) | Test configuration files against OPA policies | 🟢&nbsp;Active<br><sub>Oct 2026</sub> | 3.3k | [7.2](https://rezmoss.github.io/awesome-security-pipeline/projects/open-policy-agent/conftest/) | ✓&nbsp;Verified |
-| [**gatekeeper**](https://github.com/open-policy-agent/gatekeeper) | Enforce OPA policies through Kubernetes admission control | 🟢&nbsp;Active<br><sub>Oct 2026</sub> | 4.3k | [report](https://rezmoss.github.io/awesome-security-pipeline/projects/open-policy-agent/gatekeeper/) | ✓&nbsp;Verified |
-| [**opa**](https://github.com/open-policy-agent/opa) | Evaluate policy as code across application and infrastructure systems | 🟢&nbsp;Active<br><sub>Nov 2026</sub> | 12.4k | [8.0](https://rezmoss.github.io/awesome-security-pipeline/projects/open-policy-agent/opa/) | ✓&nbsp;Verified |
+<table>
+<thead><tr><th width="16%" align="left">Tool</th><th width="44%" align="left">What it does</th><th width="15%" align="left">Status</th><th align="right">★</th><th width="12%" align="left">Scorecard</th><th width="13%" align="left">Release</th></tr></thead>
+<tbody>
+<tr><td align="left"><a href="https://github.com/open-policy-agent/conftest"><b>conftest</b></a></td><td align="left">Test configuration files against OPA policies</td><td align="left">🟢&nbsp;Active<br><sub>Oct 2026</sub></td><td align="right">3.3k</td><td align="left"><a href="https://rezmoss.github.io/awesome-security-pipeline/projects/open-policy-agent/conftest/">7.2</a></td><td align="left">✓&nbsp;Verified</td></tr>
+<tr><td align="left"><a href="https://github.com/open-policy-agent/gatekeeper"><b>gatekeeper</b></a></td><td align="left">Enforce OPA policies through Kubernetes admission control</td><td align="left">🟢&nbsp;Active<br><sub>Oct 2026</sub></td><td align="right">4.3k</td><td align="left"><a href="https://rezmoss.github.io/awesome-security-pipeline/projects/open-policy-agent/gatekeeper/">report</a></td><td align="left">✓&nbsp;Verified</td></tr>
+<tr><td align="left"><a href="https://github.com/open-policy-agent/opa"><b>opa</b></a></td><td align="left">Evaluate policy as code across application and infrastructure systems</td><td align="left">🟢&nbsp;Active<br><sub>Nov 2026</sub></td><td align="right">12.4k</td><td align="left"><a href="https://rezmoss.github.io/awesome-security-pipeline/projects/open-policy-agent/opa/">8.0</a></td><td align="left">✓&nbsp;Verified</td></tr>
+</tbody>
+</table>
 
 ## Secret Management
 
 Securely manage and distribute secrets in Kubernetes and GitOps workflows.
 
-| Tool<br><img src="assets/blank.gif" width="105" height="1" alt=""> | What it does<br><img src="assets/blank.gif" width="270" height="1" alt=""> | Status<br><img src="assets/blank.gif" width="95" height="1" alt=""> | ★<br><img src="assets/blank.gif" width="45" height="1" alt=""> | Scorecard<br><img src="assets/blank.gif" width="72" height="1" alt=""> | Release<br><img src="assets/blank.gif" width="82" height="1" alt=""> |
-|:---|:---|:---|---:|:---|:---|
-| [**external-secrets**](https://github.com/external-secrets/external-secrets) | Sync secrets from AWS/Vault/Azure into Kubernetes | 🟢&nbsp;Active<br><sub>Oct 2026</sub> | 6.9k | [8.3](https://rezmoss.github.io/awesome-security-pipeline/projects/external-secrets/external-secrets/) | — |
-| [**infisical**](https://github.com/Infisical/infisical) | Manage application secrets with automation integrations | 🟢&nbsp;Active<br><sub>Nov 2026</sub> | 30.2k | [6.9](https://rezmoss.github.io/awesome-security-pipeline/projects/Infisical/infisical/) | — |
-| [**sealed-secrets**](https://github.com/bitnami-labs/sealed-secrets) | Encrypt secrets locally, decrypt only in cluster | 🟢&nbsp;Active<br><sub>Oct 2026</sub> | 9.3k | [6.8](https://rezmoss.github.io/awesome-security-pipeline/projects/bitnami-labs/sealed-secrets/) | Signed |
-| [**sops**](https://github.com/getsops/sops) | Encrypt structured files while preserving editor workflows | 🟢&nbsp;Active<br><sub>Oct 2026</sub> | 23.6k | [report](https://rezmoss.github.io/awesome-security-pipeline/projects/getsops/sops/) | ✓&nbsp;Verified |
-| [**vault**](https://github.com/hashicorp/vault) | Manage secrets, encryption, and privileged access | 🟢&nbsp;Active<br><sub>Oct 2026</sub> | 36.5k | [6.5](https://rezmoss.github.io/awesome-security-pipeline/projects/hashicorp/vault/) | — |
+<table>
+<thead><tr><th width="16%" align="left">Tool</th><th width="44%" align="left">What it does</th><th width="15%" align="left">Status</th><th align="right">★</th><th width="12%" align="left">Scorecard</th><th width="13%" align="left">Release</th></tr></thead>
+<tbody>
+<tr><td align="left"><a href="https://github.com/external-secrets/external-secrets"><b>external-secrets</b></a></td><td align="left">Sync secrets from AWS/Vault/Azure into Kubernetes</td><td align="left">🟢&nbsp;Active<br><sub>Oct 2026</sub></td><td align="right">6.9k</td><td align="left"><a href="https://rezmoss.github.io/awesome-security-pipeline/projects/external-secrets/external-secrets/">8.3</a></td><td align="left">—</td></tr>
+<tr><td align="left"><a href="https://github.com/Infisical/infisical"><b>infisical</b></a></td><td align="left">Manage application secrets with automation integrations</td><td align="left">🟢&nbsp;Active<br><sub>Nov 2026</sub></td><td align="right">30.2k</td><td align="left"><a href="https://rezmoss.github.io/awesome-security-pipeline/projects/Infisical/infisical/">6.9</a></td><td align="left">—</td></tr>
+<tr><td align="left"><a href="https://github.com/bitnami-labs/sealed-secrets"><b>sealed-secrets</b></a></td><td align="left">Encrypt secrets locally, decrypt only in cluster</td><td align="left">🟢&nbsp;Active<br><sub>Oct 2026</sub></td><td align="right">9.3k</td><td align="left"><a href="https://rezmoss.github.io/awesome-security-pipeline/projects/bitnami-labs/sealed-secrets/">6.8</a></td><td align="left">Signed</td></tr>
+<tr><td align="left"><a href="https://github.com/getsops/sops"><b>sops</b></a></td><td align="left">Encrypt structured files while preserving editor workflows</td><td align="left">🟢&nbsp;Active<br><sub>Oct 2026</sub></td><td align="right">23.6k</td><td align="left"><a href="https://rezmoss.github.io/awesome-security-pipeline/projects/getsops/sops/">report</a></td><td align="left">✓&nbsp;Verified</td></tr>
+<tr><td align="left"><a href="https://github.com/hashicorp/vault"><b>vault</b></a></td><td align="left">Manage secrets, encryption, and privileged access</td><td align="left">🟢&nbsp;Active<br><sub>Oct 2026</sub></td><td align="right">36.5k</td><td align="left"><a href="https://rezmoss.github.io/awesome-security-pipeline/projects/hashicorp/vault/">6.5</a></td><td align="left">—</td></tr>
+</tbody>
+</table>
 
 ## API & Dynamic Testing (DAST)
 
 Test running applications for vulnerabilities.
 
-| Tool<br><img src="assets/blank.gif" width="105" height="1" alt=""> | What it does<br><img src="assets/blank.gif" width="270" height="1" alt=""> | Status<br><img src="assets/blank.gif" width="95" height="1" alt=""> | ★<br><img src="assets/blank.gif" width="45" height="1" alt=""> | Scorecard<br><img src="assets/blank.gif" width="72" height="1" alt=""> | Release<br><img src="assets/blank.gif" width="82" height="1" alt=""> |
-|:---|:---|:---|---:|:---|:---|
-| [**Dark-Moon**](https://github.com/ASCIT31/Dark-Moon) | Autonomous AI penetration testing platform that exercises running web, API, Active Directory and Kubernetes targets with proof of exploitation | 🟢&nbsp;Active<br><sub>Oct 2026</sub> | 1.2k | [3.8](https://rezmoss.github.io/awesome-security-pipeline/projects/ASCIT31/Dark-Moon/) | — |
-| [**nikto**](https://github.com/sullo/nikto) | Scan web servers for dangerous files and known vulnerabilities | 🟢&nbsp;Active<br><sub>Aug 2026</sub> | 10.8k | [3.8](https://rezmoss.github.io/awesome-security-pipeline/projects/sullo/nikto/) | — |
-| [**nuclei**](https://github.com/projectdiscovery/nuclei) | Scan applications and infrastructure with customizable templates | 🟢&nbsp;Active<br><sub>Oct 2026</sub> | 32.5k | [6.8](https://rezmoss.github.io/awesome-security-pipeline/projects/projectdiscovery/nuclei/) | Checksums |
-| [**sqlmap**](https://github.com/sqlmapproject/sqlmap) | Detect and validate SQL injection vulnerabilities | 🟢&nbsp;Active<br><sub>Oct 2026</sub> | 38.8k | [4.9](https://rezmoss.github.io/awesome-security-pipeline/projects/sqlmapproject/sqlmap/) | — |
-| [**wapiti**](https://github.com/wapiti-scanner/wapiti) | Scan web applications for vulnerabilities with black-box testing | 🟢&nbsp;Active<br><sub>Oct 2026</sub> | 1.9k | [report](https://rezmoss.github.io/awesome-security-pipeline/projects/wapiti-scanner/wapiti/) | — |
-| [**zap**](https://github.com/zaproxy/zaproxy) | Scan web applications dynamically with OWASP ZAP | 🟢&nbsp;Active<br><sub>Nov 2026</sub> | 16.1k | [6.8](https://rezmoss.github.io/awesome-security-pipeline/projects/zaproxy/zaproxy/) | — |
+<table>
+<thead><tr><th width="16%" align="left">Tool</th><th width="44%" align="left">What it does</th><th width="15%" align="left">Status</th><th align="right">★</th><th width="12%" align="left">Scorecard</th><th width="13%" align="left">Release</th></tr></thead>
+<tbody>
+<tr><td align="left"><a href="https://github.com/ASCIT31/Dark-Moon"><b>Dark-Moon</b></a></td><td align="left">Autonomous AI penetration testing platform that exercises running web, API, Active Directory and Kubernetes targets with proof of exploitation</td><td align="left">🟢&nbsp;Active<br><sub>Oct 2026</sub></td><td align="right">1.2k</td><td align="left"><a href="https://rezmoss.github.io/awesome-security-pipeline/projects/ASCIT31/Dark-Moon/">3.8</a></td><td align="left">—</td></tr>
+<tr><td align="left"><a href="https://github.com/sullo/nikto"><b>nikto</b></a></td><td align="left">Scan web servers for dangerous files and known vulnerabilities</td><td align="left">🟢&nbsp;Active<br><sub>Aug 2026</sub></td><td align="right">10.8k</td><td align="left"><a href="https://rezmoss.github.io/awesome-security-pipeline/projects/sullo/nikto/">3.8</a></td><td align="left">—</td></tr>
+<tr><td align="left"><a href="https://github.com/projectdiscovery/nuclei"><b>nuclei</b></a></td><td align="left">Scan applications and infrastructure with customizable templates</td><td align="left">🟢&nbsp;Active<br><sub>Oct 2026</sub></td><td align="right">32.5k</td><td align="left"><a href="https://rezmoss.github.io/awesome-security-pipeline/projects/projectdiscovery/nuclei/">6.8</a></td><td align="left">Checksums</td></tr>
+<tr><td align="left"><a href="https://github.com/sqlmapproject/sqlmap"><b>sqlmap</b></a></td><td align="left">Detect and validate SQL injection vulnerabilities</td><td align="left">🟢&nbsp;Active<br><sub>Oct 2026</sub></td><td align="right">38.8k</td><td align="left"><a href="https://rezmoss.github.io/awesome-security-pipeline/projects/sqlmapproject/sqlmap/">4.9</a></td><td align="left">—</td></tr>
+<tr><td align="left"><a href="https://github.com/wapiti-scanner/wapiti"><b>wapiti</b></a></td><td align="left">Scan web applications for vulnerabilities with black-box testing</td><td align="left">🟢&nbsp;Active<br><sub>Oct 2026</sub></td><td align="right">1.9k</td><td align="left"><a href="https://rezmoss.github.io/awesome-security-pipeline/projects/wapiti-scanner/wapiti/">report</a></td><td align="left">—</td></tr>
+<tr><td align="left"><a href="https://github.com/zaproxy/zaproxy"><b>zap</b></a></td><td align="left">Scan web applications dynamically with OWASP ZAP</td><td align="left">🟢&nbsp;Active<br><sub>Nov 2026</sub></td><td align="right">16.1k</td><td align="left"><a href="https://rezmoss.github.io/awesome-security-pipeline/projects/zaproxy/zaproxy/">6.8</a></td><td align="left">—</td></tr>
+</tbody>
+</table>
 
 ## Cloud Security
 
 Assess and audit cloud infrastructure security posture.
 
-| Tool<br><img src="assets/blank.gif" width="105" height="1" alt=""> | What it does<br><img src="assets/blank.gif" width="270" height="1" alt=""> | Status<br><img src="assets/blank.gif" width="95" height="1" alt=""> | ★<br><img src="assets/blank.gif" width="45" height="1" alt=""> | Scorecard<br><img src="assets/blank.gif" width="72" height="1" alt=""> | Release<br><img src="assets/blank.gif" width="82" height="1" alt=""> |
-|:---|:---|:---|---:|:---|:---|
-| [**cartography**](https://github.com/lyft/cartography) | Map infrastructure relationships and attack surface | 🟢&nbsp;Active<br><sub>Nov 2026</sub> | 4.2k | [8.1](https://rezmoss.github.io/awesome-security-pipeline/projects/lyft/cartography/) | — |
-| [**cloudquery**](https://github.com/cloudquery/cloudquery) | Inventory cloud assets and analyze them with SQL | 🟢&nbsp;Active<br><sub>Nov 2026</sub> | 6.6k | [6.0](https://rezmoss.github.io/awesome-security-pipeline/projects/cloudquery/cloudquery/) | Checksums |
-| [**cloudsplaining**](https://github.com/salesforce/cloudsplaining) | Assess AWS IAM policies for risky permissions | 🟢&nbsp;Active<br><sub>Oct 2026</sub> | 2.3k | [5.7](https://rezmoss.github.io/awesome-security-pipeline/projects/salesforce/cloudsplaining/) | — |
-| [**prowler**](https://github.com/prowler-cloud/prowler) | Assess AWS, Azure, and GCP security configurations | 🟢&nbsp;Active<br><sub>Oct 2026</sub> | 15.2k | [report](https://rezmoss.github.io/awesome-security-pipeline/projects/prowler-cloud/prowler/) | — |
-| [**steampipe**](https://github.com/turbot/steampipe) | Query cloud resources using SQL | 🟢&nbsp;Active<br><sub>Nov 2026</sub> | 8k | [6.8](https://rezmoss.github.io/awesome-security-pipeline/projects/turbot/steampipe/) | ✓&nbsp;Verified |
+<table>
+<thead><tr><th width="16%" align="left">Tool</th><th width="44%" align="left">What it does</th><th width="15%" align="left">Status</th><th align="right">★</th><th width="12%" align="left">Scorecard</th><th width="13%" align="left">Release</th></tr></thead>
+<tbody>
+<tr><td align="left"><a href="https://github.com/lyft/cartography"><b>cartography</b></a></td><td align="left">Map infrastructure relationships and attack surface</td><td align="left">🟢&nbsp;Active<br><sub>Nov 2026</sub></td><td align="right">4.2k</td><td align="left"><a href="https://rezmoss.github.io/awesome-security-pipeline/projects/lyft/cartography/">8.1</a></td><td align="left">—</td></tr>
+<tr><td align="left"><a href="https://github.com/cloudquery/cloudquery"><b>cloudquery</b></a></td><td align="left">Inventory cloud assets and analyze them with SQL</td><td align="left">🟢&nbsp;Active<br><sub>Nov 2026</sub></td><td align="right">6.6k</td><td align="left"><a href="https://rezmoss.github.io/awesome-security-pipeline/projects/cloudquery/cloudquery/">6.0</a></td><td align="left">Checksums</td></tr>
+<tr><td align="left"><a href="https://github.com/salesforce/cloudsplaining"><b>cloudsplaining</b></a></td><td align="left">Assess AWS IAM policies for risky permissions</td><td align="left">🟢&nbsp;Active<br><sub>Oct 2026</sub></td><td align="right">2.3k</td><td align="left"><a href="https://rezmoss.github.io/awesome-security-pipeline/projects/salesforce/cloudsplaining/">5.7</a></td><td align="left">—</td></tr>
+<tr><td align="left"><a href="https://github.com/prowler-cloud/prowler"><b>prowler</b></a></td><td align="left">Assess AWS, Azure, and GCP security configurations</td><td align="left">🟢&nbsp;Active<br><sub>Oct 2026</sub></td><td align="right">15.2k</td><td align="left"><a href="https://rezmoss.github.io/awesome-security-pipeline/projects/prowler-cloud/prowler/">report</a></td><td align="left">—</td></tr>
+<tr><td align="left"><a href="https://github.com/turbot/steampipe"><b>steampipe</b></a></td><td align="left">Query cloud resources using SQL</td><td align="left">🟢&nbsp;Active<br><sub>Nov 2026</sub></td><td align="right">8k</td><td align="left"><a href="https://rezmoss.github.io/awesome-security-pipeline/projects/turbot/steampipe/">6.8</a></td><td align="left">✓&nbsp;Verified</td></tr>
+</tbody>
+</table>
 
 ## Legacy and Reference Tools
 
@@ -332,73 +392,106 @@ These projects are kept for migration research and historical context, not recom
 
 ### Pre-commit & Secrets Detection
 
-| Tool<br><img src="assets/blank.gif" width="105" height="1" alt=""> | What it did<br><img src="assets/blank.gif" width="240" height="1" alt=""> | Status<br><img src="assets/blank.gif" width="118" height="1" alt=""> | ★<br><img src="assets/blank.gif" width="45" height="1" alt=""> | Use instead<br><img src="assets/blank.gif" width="161" height="1" alt=""> |
-|:---|:---|:---|---:|:---|
-| [**git-secrets**](https://github.com/awslabs/git-secrets) | Prevent committing AWS credentials and secrets | 🔴&nbsp;Unmaintained<br><sub>Sep 2025</sub> | 13.4k | — |
-| [**whispers**](https://github.com/Skyscanner/whispers) | Identify hardcoded secrets in static code analysis | ⚪&nbsp;Archived<br><sub>Oct 2021</sub> | 506 | — |
+<table>
+<thead><tr><th width="16%" align="left">Tool</th><th width="42%" align="left">What it did</th><th width="17%" align="left">Status</th><th align="right">★</th><th width="25%" align="left">Use instead</th></tr></thead>
+<tbody>
+<tr><td align="left"><a href="https://github.com/awslabs/git-secrets"><b>git-secrets</b></a></td><td align="left">Prevent committing AWS credentials and secrets</td><td align="left">🔴&nbsp;Unmaintained<br><sub>Sep 2025</sub></td><td align="right">13.4k</td><td align="left">—</td></tr>
+<tr><td align="left"><a href="https://github.com/Skyscanner/whispers"><b>whispers</b></a></td><td align="left">Identify hardcoded secrets in static code analysis</td><td align="left">⚪&nbsp;Archived<br><sub>Oct 2021</sub></td><td align="right">506</td><td align="left">—</td></tr>
+</tbody>
+</table>
 
 ### SBOM Generation
 
-| Tool<br><img src="assets/blank.gif" width="105" height="1" alt=""> | What it did<br><img src="assets/blank.gif" width="240" height="1" alt=""> | Status<br><img src="assets/blank.gif" width="118" height="1" alt=""> | ★<br><img src="assets/blank.gif" width="45" height="1" alt=""> | Use instead<br><img src="assets/blank.gif" width="161" height="1" alt=""> |
-|:---|:---|:---|---:|:---|
-| [**spdx-sbom-generator**](https://github.com/opensbom-generator/spdx-sbom-generator) | Generate SPDX format SBOMs from source code | ⚪&nbsp;Archived<br><sub>Jan 2025</sub> | 427 | — |
-| [**tern**](https://github.com/tern-tools/tern) | Analyze container images for software composition | 🔴&nbsp;Unmaintained<br><sub>Dec 2023</sub> | 1k | — |
+<table>
+<thead><tr><th width="16%" align="left">Tool</th><th width="42%" align="left">What it did</th><th width="17%" align="left">Status</th><th align="right">★</th><th width="25%" align="left">Use instead</th></tr></thead>
+<tbody>
+<tr><td align="left"><a href="https://github.com/opensbom-generator/spdx-sbom-generator"><b>spdx-sbom-generator</b></a></td><td align="left">Generate SPDX format SBOMs from source code</td><td align="left">⚪&nbsp;Archived<br><sub>Jan 2025</sub></td><td align="right">427</td><td align="left">—</td></tr>
+<tr><td align="left"><a href="https://github.com/tern-tools/tern"><b>tern</b></a></td><td align="left">Analyze container images for software composition</td><td align="left">🔴&nbsp;Unmaintained<br><sub>Dec 2023</sub></td><td align="right">1k</td><td align="left">—</td></tr>
+</tbody>
+</table>
 
 ### Supply Chain Compliance
 
-| Tool<br><img src="assets/blank.gif" width="105" height="1" alt=""> | What it did<br><img src="assets/blank.gif" width="240" height="1" alt=""> | Status<br><img src="assets/blank.gif" width="118" height="1" alt=""> | ★<br><img src="assets/blank.gif" width="45" height="1" alt=""> | Use instead<br><img src="assets/blank.gif" width="161" height="1" alt=""> |
-|:---|:---|:---|---:|:---|
-| [**chain-bench**](https://github.com/aquasecurity/chain-bench) | Audit supply chain against CIS benchmarks | 🔴&nbsp;Unmaintained<br><sub>Jul 2024</sub> | 772 | — |
+<table>
+<thead><tr><th width="16%" align="left">Tool</th><th width="42%" align="left">What it did</th><th width="17%" align="left">Status</th><th align="right">★</th><th width="25%" align="left">Use instead</th></tr></thead>
+<tbody>
+<tr><td align="left"><a href="https://github.com/aquasecurity/chain-bench"><b>chain-bench</b></a></td><td align="left">Audit supply chain against CIS benchmarks</td><td align="left">🔴&nbsp;Unmaintained<br><sub>Jul 2024</sub></td><td align="right">772</td><td align="left">—</td></tr>
+</tbody>
+</table>
 
 ### Static Application Security Testing (SAST) › Multi-language
 
-| Tool<br><img src="assets/blank.gif" width="105" height="1" alt=""> | What it did<br><img src="assets/blank.gif" width="240" height="1" alt=""> | Status<br><img src="assets/blank.gif" width="118" height="1" alt=""> | ★<br><img src="assets/blank.gif" width="45" height="1" alt=""> | Use instead<br><img src="assets/blank.gif" width="161" height="1" alt=""> |
-|:---|:---|:---|---:|:---|
-| [**horusec**](https://github.com/ZupIT/horusec) | Analyze source code across multiple languages | 🔴&nbsp;Unmaintained<br><sub>Aug 2023</sub> | 1.3k | — |
+<table>
+<thead><tr><th width="16%" align="left">Tool</th><th width="42%" align="left">What it did</th><th width="17%" align="left">Status</th><th align="right">★</th><th width="25%" align="left">Use instead</th></tr></thead>
+<tbody>
+<tr><td align="left"><a href="https://github.com/ZupIT/horusec"><b>horusec</b></a></td><td align="left">Analyze source code across multiple languages</td><td align="left">🔴&nbsp;Unmaintained<br><sub>Aug 2023</sub></td><td align="right">1.3k</td><td align="left">—</td></tr>
+</tbody>
+</table>
 
 ### Static Application Security Testing (SAST) › Language-specific › Python
 
-| Tool<br><img src="assets/blank.gif" width="105" height="1" alt=""> | What it did<br><img src="assets/blank.gif" width="240" height="1" alt=""> | Status<br><img src="assets/blank.gif" width="118" height="1" alt=""> | ★<br><img src="assets/blank.gif" width="45" height="1" alt=""> | Use instead<br><img src="assets/blank.gif" width="161" height="1" alt=""> |
-|:---|:---|:---|---:|:---|
-| [**pyre-check**](https://github.com/facebook/pyre-check) | Analyze Python types and selected security properties | ⚪&nbsp;Archived<br><sub>Jun 2026</sub> | 7.2k | — |
+<table>
+<thead><tr><th width="16%" align="left">Tool</th><th width="42%" align="left">What it did</th><th width="17%" align="left">Status</th><th align="right">★</th><th width="25%" align="left">Use instead</th></tr></thead>
+<tbody>
+<tr><td align="left"><a href="https://github.com/facebook/pyre-check"><b>pyre-check</b></a></td><td align="left">Analyze Python types and selected security properties</td><td align="left">⚪&nbsp;Archived<br><sub>Jun 2026</sub></td><td align="right">7.2k</td><td align="left">—</td></tr>
+</tbody>
+</table>
 
 ### Infrastructure as Code Security
 
-| Tool<br><img src="assets/blank.gif" width="105" height="1" alt=""> | What it did<br><img src="assets/blank.gif" width="240" height="1" alt=""> | Status<br><img src="assets/blank.gif" width="118" height="1" alt=""> | ★<br><img src="assets/blank.gif" width="45" height="1" alt=""> | Use instead<br><img src="assets/blank.gif" width="161" height="1" alt=""> |
-|:---|:---|:---|---:|:---|
-| [**terrascan**](https://github.com/tenable/terrascan) | Detect compliance and security violations in IaC | ⚪&nbsp;Archived<br><sub>Nov 2025</sub> | 5.2k | — |
-| [**tfsec**](https://github.com/aquasecurity/tfsec) | Scan Terraform code for security issues | 🔴&nbsp;Unmaintained<br><sub>May 2025</sub> | 7.1k | — |
+<table>
+<thead><tr><th width="16%" align="left">Tool</th><th width="42%" align="left">What it did</th><th width="17%" align="left">Status</th><th align="right">★</th><th width="25%" align="left">Use instead</th></tr></thead>
+<tbody>
+<tr><td align="left"><a href="https://github.com/tenable/terrascan"><b>terrascan</b></a></td><td align="left">Detect compliance and security violations in IaC</td><td align="left">⚪&nbsp;Archived<br><sub>Nov 2025</sub></td><td align="right">5.2k</td><td align="left">—</td></tr>
+<tr><td align="left"><a href="https://github.com/aquasecurity/tfsec"><b>tfsec</b></a></td><td align="left">Scan Terraform code for security issues</td><td align="left">🔴&nbsp;Unmaintained<br><sub>May 2025</sub></td><td align="right">7.1k</td><td align="left">—</td></tr>
+</tbody>
+</table>
 
 ### Container Security › Image Scanning
 
-| Tool<br><img src="assets/blank.gif" width="105" height="1" alt=""> | What it did<br><img src="assets/blank.gif" width="240" height="1" alt=""> | Status<br><img src="assets/blank.gif" width="118" height="1" alt=""> | ★<br><img src="assets/blank.gif" width="45" height="1" alt=""> | Use instead<br><img src="assets/blank.gif" width="161" height="1" alt=""> |
-|:---|:---|:---|---:|:---|
-| [**anchore-engine**](https://github.com/anchore/anchore-engine) | Analyze containers and evaluate image policies | ⚪&nbsp;Archived<br><sub>Jan 2023</sub> | 1.6k | [syft](https://github.com/anchore/syft), [grype](https://github.com/anchore/grype) |
+<table>
+<thead><tr><th width="16%" align="left">Tool</th><th width="42%" align="left">What it did</th><th width="17%" align="left">Status</th><th align="right">★</th><th width="25%" align="left">Use instead</th></tr></thead>
+<tbody>
+<tr><td align="left"><a href="https://github.com/anchore/anchore-engine"><b>anchore-engine</b></a></td><td align="left">Analyze containers and evaluate image policies</td><td align="left">⚪&nbsp;Archived<br><sub>Jan 2023</sub></td><td align="right">1.6k</td><td align="left"><a href="https://github.com/anchore/syft">syft</a>, <a href="https://github.com/anchore/grype">grype</a></td></tr>
+</tbody>
+</table>
 
 ### Kubernetes Security
 
-| Tool<br><img src="assets/blank.gif" width="105" height="1" alt=""> | What it did<br><img src="assets/blank.gif" width="240" height="1" alt=""> | Status<br><img src="assets/blank.gif" width="118" height="1" alt=""> | ★<br><img src="assets/blank.gif" width="45" height="1" alt=""> | Use instead<br><img src="assets/blank.gif" width="161" height="1" alt=""> |
-|:---|:---|:---|---:|:---|
-| [**kube-hunter**](https://github.com/aquasecurity/kube-hunter) | Hunt for security weaknesses in Kubernetes clusters | 🔴&nbsp;Unmaintained<br><sub>Mar 2024</sub> | 5.1k | — |
-| [**kubiscan**](https://github.com/cyberark/KubiScan) | Scan Kubernetes RBAC for risky permissions | 🔴&nbsp;Unmaintained<br><sub>May 2025</sub> | 1.4k | — |
+<table>
+<thead><tr><th width="16%" align="left">Tool</th><th width="42%" align="left">What it did</th><th width="17%" align="left">Status</th><th align="right">★</th><th width="25%" align="left">Use instead</th></tr></thead>
+<tbody>
+<tr><td align="left"><a href="https://github.com/aquasecurity/kube-hunter"><b>kube-hunter</b></a></td><td align="left">Hunt for security weaknesses in Kubernetes clusters</td><td align="left">🔴&nbsp;Unmaintained<br><sub>Mar 2024</sub></td><td align="right">5.1k</td><td align="left">—</td></tr>
+<tr><td align="left"><a href="https://github.com/cyberark/KubiScan"><b>kubiscan</b></a></td><td align="left">Scan Kubernetes RBAC for risky permissions</td><td align="left">🔴&nbsp;Unmaintained<br><sub>May 2025</sub></td><td align="right">1.4k</td><td align="left">—</td></tr>
+</tbody>
+</table>
 
 ### Policy as Code
 
-| Tool<br><img src="assets/blank.gif" width="105" height="1" alt=""> | What it did<br><img src="assets/blank.gif" width="240" height="1" alt=""> | Status<br><img src="assets/blank.gif" width="118" height="1" alt=""> | ★<br><img src="assets/blank.gif" width="45" height="1" alt=""> | Use instead<br><img src="assets/blank.gif" width="161" height="1" alt=""> |
-|:---|:---|:---|---:|:---|
-| [**datree**](https://github.com/datreeio/datree) | Prevent Kubernetes misconfigurations | ⚪&nbsp;Archived<br><sub>Aug 2023</sub> | 6.3k | — |
+<table>
+<thead><tr><th width="16%" align="left">Tool</th><th width="42%" align="left">What it did</th><th width="17%" align="left">Status</th><th align="right">★</th><th width="25%" align="left">Use instead</th></tr></thead>
+<tbody>
+<tr><td align="left"><a href="https://github.com/datreeio/datree"><b>datree</b></a></td><td align="left">Prevent Kubernetes misconfigurations</td><td align="left">⚪&nbsp;Archived<br><sub>Aug 2023</sub></td><td align="right">6.3k</td><td align="left">—</td></tr>
+</tbody>
+</table>
 
 ### API & Dynamic Testing (DAST)
 
-| Tool<br><img src="assets/blank.gif" width="105" height="1" alt=""> | What it did<br><img src="assets/blank.gif" width="240" height="1" alt=""> | Status<br><img src="assets/blank.gif" width="118" height="1" alt=""> | ★<br><img src="assets/blank.gif" width="45" height="1" alt=""> | Use instead<br><img src="assets/blank.gif" width="161" height="1" alt=""> |
-|:---|:---|:---|---:|:---|
-| [**arachni**](https://github.com/Arachni/arachni) | Scan web applications for security issues | ⚪&nbsp;Archived<br><sub>Apr 2026</sub> | 4k | [zap](https://github.com/zaproxy/zaproxy), [nuclei](https://github.com/projectdiscovery/nuclei) |
+<table>
+<thead><tr><th width="16%" align="left">Tool</th><th width="42%" align="left">What it did</th><th width="17%" align="left">Status</th><th align="right">★</th><th width="25%" align="left">Use instead</th></tr></thead>
+<tbody>
+<tr><td align="left"><a href="https://github.com/Arachni/arachni"><b>arachni</b></a></td><td align="left">Scan web applications for security issues</td><td align="left">⚪&nbsp;Archived<br><sub>Apr 2026</sub></td><td align="right">4k</td><td align="left"><a href="https://github.com/zaproxy/zaproxy">zap</a>, <a href="https://github.com/projectdiscovery/nuclei">nuclei</a></td></tr>
+</tbody>
+</table>
 
 ### Cloud Security
 
-| Tool<br><img src="assets/blank.gif" width="105" height="1" alt=""> | What it did<br><img src="assets/blank.gif" width="240" height="1" alt=""> | Status<br><img src="assets/blank.gif" width="118" height="1" alt=""> | ★<br><img src="assets/blank.gif" width="45" height="1" alt=""> | Use instead<br><img src="assets/blank.gif" width="161" height="1" alt=""> |
-|:---|:---|:---|---:|:---|
-| [**ScoutSuite**](https://github.com/nccgroup/ScoutSuite) | Audit security configurations across multiple cloud providers | 🔴&nbsp;Unmaintained<br><sub>May 2024</sub> | 7.9k | — |
+<table>
+<thead><tr><th width="16%" align="left">Tool</th><th width="42%" align="left">What it did</th><th width="17%" align="left">Status</th><th align="right">★</th><th width="25%" align="left">Use instead</th></tr></thead>
+<tbody>
+<tr><td align="left"><a href="https://github.com/nccgroup/ScoutSuite"><b>ScoutSuite</b></a></td><td align="left">Audit security configurations across multiple cloud providers</td><td align="left">🔴&nbsp;Unmaintained<br><sub>May 2024</sub></td><td align="right">7.9k</td><td align="left">—</td></tr>
+</tbody>
+</table>
 
 <!-- catalog:end -->
 

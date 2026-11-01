@@ -15,6 +15,7 @@ from __future__ import annotations
 
 import argparse
 import datetime as dt
+import html
 import json
 import pathlib
 import re
@@ -27,7 +28,6 @@ SITE = "https://rezmoss.github.io/awesome-security-pipeline/"
 CATALOG_START, CATALOG_END = "<!-- catalog:start -->", "<!-- catalog:end -->"
 TOC_START, TOC_END = "<!-- catalog-toc:start -->", "<!-- catalog-toc:end -->"
 STATS_START, STATS_END = "<!-- catalog-stats:start -->", "<!-- catalog-stats:end -->"
-SPACER = "assets/blank.gif"
 LISTING_KEYS = {"name", "repository", "categories", "disclosure", "use_instead", "exception"}
 REPOSITORY = re.compile(r"^[A-Za-z0-9_.-]+/[A-Za-z0-9_.-]+$")
 FILE_NAME = re.compile(r"^[a-z0-9][a-z0-9._-]*\.json$")
@@ -278,23 +278,31 @@ def github_anchor(title: str) -> str:
     return re.sub(r"[^a-z0-9 _-]", "", title.lower()).replace(" ", "-")
 
 
-def spacer(width: int) -> str:
-    return f'<img src="{SPACER}" width="{width}" height="1" alt="">'
+def esc(text: Any) -> str:
+    return html.escape(str(text), quote=True)
 
 
-def header(columns: list[tuple[str, int]]) -> str:
-    """Invisible spacers give every column a fixed width, so all tables are the same width and their
-    columns line up. Some browsers treat the spacers as minimum widths, so together with cell padding
-    (26px per column) they must fit GitHub's README width (about 830px) or the tables would scroll."""
-    cells = [f"{title}<br>{spacer(width)}" for title, width in columns]
-    return "| " + " | ".join(cells) + " |\n|" + "|".join("---:" if title == "★" else ":---" for title, _ in columns) + "|"
-
-
-ACTIVE_COLUMNS = [("Tool", 105), ("What it does", 270), ("Status", 95), ("★", 45), ("Scorecard", 72), ("Release", 82)]
-LEGACY_COLUMNS = [("Tool", 105), ("What it did", 240), ("Status", 118), ("★", 45), ("Use instead", 161)]
-MAX_TABLE_WIDTH = 830
+# Column widths as percentages. All columns but ★ have a percentage and together they make 100%, which
+# makes the browser stretch every table to the full README width with identical columns; ★ (no width)
+# keeps only the space its numbers need. Nothing sets a minimum width, so a table can never overflow.
+ACTIVE_COLUMNS = [("Tool", 16, "left"), ("What it does", 44, "left"), ("Status", 15, "left"), ("★", 0, "right"),
+                  ("Scorecard", 12, "left"), ("Release", 13, "left")]
+LEGACY_COLUMNS = [("Tool", 16, "left"), ("What it did", 42, "left"), ("Status", 17, "left"), ("★", 0, "right"),
+                  ("Use instead", 25, "left")]
 for _columns in (ACTIVE_COLUMNS, LEGACY_COLUMNS):
-    assert sum(width for _, width in _columns) + 26 * len(_columns) <= MAX_TABLE_WIDTH
+    assert sum(width for _, width, _ in _columns) == 100
+
+
+def table(columns: list[tuple[str, int, str]], rows: list[list[str]]) -> str:
+    head = "".join(
+        f'<th width="{width}%" align="{align}">{esc(title)}</th>' if width else f'<th align="{align}">{esc(title)}</th>'
+        for title, width, align in columns
+    )
+    body = "\n".join(
+        "<tr>" + "".join(f'<td align="{columns[index][2]}">{value}</td>' for index, value in enumerate(row)) + "</tr>"
+        for row in rows
+    )
+    return f"<table>\n<thead><tr>{head}</tr></thead>\n<tbody>\n{body}\n</tbody>\n</table>"
 
 
 def status_cell(automated: dict[str, Any]) -> str:
@@ -307,48 +315,45 @@ def status_cell(automated: dict[str, Any]) -> str:
     return f"{icon}&nbsp;{label}<br><sub>{when}</sub>" if when else f"{icon}&nbsp;{label}"
 
 
-def cell(text: str) -> str:
-    return text.replace("|", "\\|").replace("\n", " ")
+def link(text: str, url: str, bold: bool = False) -> str:
+    label = f"<b>{esc(text)}</b>" if bold else esc(text)
+    return f'<a href="{esc(url)}">{label}</a>'
 
 
 def tool_link(listing: dict[str, Any]) -> str:
-    return f"[**{cell(listing['name'])}**](https://github.com/{listing['repository']})"
+    return link(listing["name"], f"https://github.com/{listing['repository']}", bold=True)
 
 
 def describe(listing: dict[str, Any], description: str) -> str:
-    text = cell(description.rstrip("."))
+    text = esc(description.rstrip("."))
     if listing.get("disclosure"):
-        text += f" <sub>*{cell(listing['disclosure'].rstrip('.'))}.*</sub>"
+        text += f" <sub><i>{esc(listing['disclosure'].rstrip('.'))}.</i></sub>"
     return text
 
 
-def active_row(listing: dict[str, Any], automated: dict[str, Any], description: str) -> str:
+def stars_cell(automated: dict[str, Any]) -> str:
+    return display_stars(automated.get("stars")) if automated.get("stars") is not None else "—"
+
+
+def active_row(listing: dict[str, Any], automated: dict[str, Any], description: str) -> list[str]:
     report = automated.get("report") or {}
     score = report.get("scorecard")
     if report.get("url"):
-        scorecard = f"[{score:.1f}]({report['url']})" if isinstance(score, (int, float)) else f"[report]({report['url']})"
+        scorecard = link(f"{score:.1f}" if isinstance(score, (int, float)) else "report", report["url"])
     else:
         scorecard = f"{score:.1f}" if isinstance(score, (int, float)) else "—"
-    cells = [
-        tool_link(listing), describe(listing, description), status_cell(automated),
-        display_stars(automated.get("stars")) if automated.get("stars") is not None else "—",
-        scorecard, RELEASE.get(report.get("release"), "—"),
-    ]
-    return "| " + " | ".join(cells) + " |"
+    return [tool_link(listing), describe(listing, description), status_cell(automated), stars_cell(automated),
+            scorecard, RELEASE.get(report.get("release"), "—")]
 
 
 def legacy_row(listing: dict[str, Any], automated: dict[str, Any], description: str,
-               tools: dict[str, dict[str, Any]] | None = None) -> str:
+               tools: dict[str, dict[str, Any]] | None = None) -> list[str]:
     alternatives = [
-        f"[{tools[f'{item}.json']['listing']['name']}](https://github.com/{tools[f'{item}.json']['listing']['repository']})"
+        link(tools[f"{item}.json"]["listing"]["name"], f"https://github.com/{tools[f'{item}.json']['listing']['repository']}")
         for item in listing.get("use_instead") or [] if tools and f"{item}.json" in tools
     ]
-    cells = [
-        tool_link(listing), describe(listing, description), status_cell(automated),
-        display_stars(automated.get("stars")) if automated.get("stars") is not None else "—",
-        ", ".join(alternatives) or "—",
-    ]
-    return "| " + " | ".join(cells) + " |"
+    return [tool_link(listing), describe(listing, description), status_cell(automated), stars_cell(automated),
+            ", ".join(alternatives) or "—"]
 
 
 def category_path(categories: list[dict[str, Any]], category_id: str) -> list[dict[str, Any]]:
@@ -387,14 +392,14 @@ def render_catalog(tools: dict[str, dict[str, Any]], categories: list[dict[str, 
         if category.get("description"):
             lines += [category["description"], ""]
         if category["id"] in leaves and active.get(category["id"]):
-            lines += [header(ACTIVE_COLUMNS), *(active_row(*row) for row in active[category["id"]]), ""]
+            lines += [table(ACTIVE_COLUMNS, [active_row(*row) for row in active[category["id"]]]), ""]
     if legacy:
         lines += ["## Legacy and Reference Tools", "", LEGACY_INTRO, ""]
         for category in categories:
             if not legacy.get(category["id"]):
                 continue
             title = " › ".join(item["title"] for item in category_path(categories, category["id"]))
-            lines += [f"### {title}", "", header(LEGACY_COLUMNS), *(legacy_row(*row, tools) for row in legacy[category["id"]]), ""]
+            lines += [f"### {title}", "", table(LEGACY_COLUMNS, [legacy_row(*row, tools) for row in legacy[category["id"]]]), ""]
     lines.append(CATALOG_END)
     return "\n".join(lines)
 
