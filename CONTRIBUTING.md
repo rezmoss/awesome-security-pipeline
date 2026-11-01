@@ -65,27 +65,121 @@ The following will result in immediate rejection:
 
 ## How to Contribute
 
-### Adding a New Tool
+### Adding a tool
 
-1. Fork this repository
-2. Add your tool in the appropriate category section
-3. Follow the existing format exactly:
+The catalog is built from one JSON file per tool in [`tools/`](tools/); the README tables are generated from those files. **A pull request that adds a tool contains exactly one new file and nothing else.**
 
-```markdown
-- [Tool Name](https://github.com/org/repo) - Brief description (one sentence). ![Stars](https://img.shields.io/github/stars/org/repo) ![Last Commit](https://img.shields.io/github/last-commit/org/repo)
+#### File name
+
+`tools/<tool-id>.json`, where `<tool-id>` is the tool's name in lower case, with spaces replaced by `-`, using only letters, digits, `.`, `_`, and `-`. The id is also how other tool files refer to this tool (in `use_instead`).
+
+| Tool name | File to add |
+|---|---|
+| gitleaks | `tools/gitleaks.json` |
+| OWASP ZAP | `tools/owasp-zap.json` |
+| kube-bench | `tools/kube-bench.json` |
+
+If a file with that name already exists for a different project, add the owner as a prefix, for example `tools/example-org-scanner.json`.
+
+#### Minimal example: `tools/gitleaks.json`
+
+```json
+{
+  "listing": {
+    "name": "gitleaks",
+    "repository": "gitleaks/gitleaks",
+    "categories": [
+      {
+        "category": "secrets",
+        "description": "Detect and prevent secrets in git repos."
+      }
+    ],
+    "disclosure": null,
+    "use_instead": [],
+    "exception": null
+  }
+}
 ```
 
-4. Keep descriptions concise (under 100 characters ideally)
-5. Place the tool alphabetically within its category
-6. Submit a pull request with a clear title
-7. Complete all checkboxes in the PR template
+#### Full example: every optional field, `tools/example-scanner.json`
 
-### Format Requirements
+```json
+{
+  "listing": {
+    "name": "example-scanner",
+    "repository": "example-org/example-scanner",
+    "categories": [
+      {
+        "category": "sca",
+        "description": "Scan dependency lockfiles for known vulnerabilities."
+      },
+      {
+        "category": "container-image",
+        "description": "Scan container images for vulnerable OS and language packages."
+      }
+    ],
+    "disclosure": "Maintained by the contributor of this pull request",
+    "use_instead": ["trivy", "grype"],
+    "exception": null
+  }
+}
+```
 
-- **Tool Name**: Use the official name, properly capitalized
-- **URL**: Link to the main repository (prefer GitHub)
-- **Description**: Start with a verb, end with a period, no marketing language
-- **Badges**: Include both Stars and Last Commit badges using shields.io
+- Two `categories` entries list the tool in two sections, each with its own description.
+- `disclosure` is required if you are affiliated with the tool; it appears next to the description.
+- `use_instead` names up to three existing tool ids (file names in `tools/` without `.json`). It is shown if the tool ever moves to Legacy.
+- Do not add an `automated` section; it is created and maintained by the weekly refresh.
+
+#### Steps
+
+1. Fork this repository and add the file. Do not edit `README.md`; the catalog part is regenerated automatically after merge.
+2. Optionally check it locally: `python3 scripts/catalog.py validate`.
+3. Open a pull request with a clear title and complete the PR template, including any affiliation.
+4. Automated checks validate the file and the repository (see [Automated validation](#automated-validation)).
+
+After merge, a workflow fills in the tool's status, stars, and last update and adds it to the README. The tool joins the [weekly supply-chain report](https://rezmoss.github.io/awesome-security-pipeline/) at the next weekly scan.
+
+### Tool file fields
+
+Only the `listing` section is written by contributors. The `automated` section (status, section, stars, last commit, report summary) is maintained by the weekly refresh, and pull requests that edit it are rejected.
+
+| Field | Required | Meaning |
+|---|---|---|
+| `name` | Yes | Official tool name, as the project writes it |
+| `repository` | Yes | Canonical GitHub repository, `owner/repo` |
+| `categories` | Yes | One or more `{"category", "description"}` entries. A multi-purpose tool may be listed in more than one category with a category-specific description |
+| `disclosure` | No | Affiliation note shown next to the description, for example `"Maintained by this list's maintainer"` |
+| `use_instead` | No | Up to three alternatives for a tool that is (or may become) legacy, as tool ids: other file names in `tools/` without `.json` |
+| `exception` | No | Reason a feature-complete tool without recent commits should stay in the active catalog; reviewed by the maintainer |
+
+Descriptions are 10 to 160 characters, start with a verb, and cannot contain `|` or line breaks.
+
+### Categories
+
+Use one of these category ids (defined in [`tools/categories.json`](tools/categories.json)):
+
+| Id | Category |
+|---|---|
+| `secrets` | Pre-commit & Secrets Detection |
+| `sbom` | SBOM Generation |
+| `signing` | Artifact Signing & Verification |
+| `supply-chain` | Supply Chain Compliance |
+| `sca` | Software Composition Analysis (SCA) |
+| `sast-multi` | Static Application Security Testing (SAST) › Multi-language |
+| `sast-python` | Static Application Security Testing (SAST) › Language-specific › Python |
+| `sast-javascript` | Static Application Security Testing (SAST) › Language-specific › JavaScript/Node.js |
+| `sast-go` | Static Application Security Testing (SAST) › Language-specific › Go |
+| `sast-ruby` | Static Application Security Testing (SAST) › Language-specific › Ruby |
+| `sast-php` | Static Application Security Testing (SAST) › Language-specific › PHP |
+| `sast-rust` | Static Application Security Testing (SAST) › Language-specific › Rust |
+| `iac` | Infrastructure as Code Security |
+| `container-image` | Container Security › Image Scanning |
+| `container-runtime` | Container Security › Runtime Security |
+| `kubernetes` | Kubernetes Security |
+| `policy` | Policy as Code |
+| `secret-management` | Secret Management |
+| `dast` | API & Dynamic Testing (DAST) |
+| `cloud` | Cloud Security |
 
 ### Good Description Examples
 
@@ -113,26 +207,28 @@ If you think a new category is needed:
 - **Outdated information**: Open an issue with correct information
 - **Tool no longer maintained**: Open an issue with evidence (last commit date, archived repo, etc.)
 
-## Automated Validation
+## Automated validation
 
-All pull requests are automatically validated by our GitHub Action which checks:
+Every pull request that changes `tools/` or `README.md` is checked automatically:
 
-| Check | Requirement | Auto-enforced |
-|-------|-------------|---------------|
+| Check | Requirement | Enforced |
+|-------|-------------|----------|
+| Tool file | Valid fields, known category, description length, no duplicate repository, `use_instead` points to existing tools | Yes |
+| Generated sections | The README catalog is not edited by hand | Yes |
+| Bot-maintained data | The `automated` section is unchanged | Yes |
 | Repository exists | Must be accessible | Yes |
 | Repository age | Minimum 1 month | Yes |
 | Star count | Minimum 5 stars | Yes |
 | Recent activity | Updated within 12 months | Yes |
 | Not archived | Repository must be active | Yes |
 | Has license | OSI-approved license required | Yes |
-| Format | Correct badge format | Yes |
 | Not a fork | Warning if forked | Warning only |
 
-PRs that fail automated checks will not be merged until issues are resolved.
+Pull requests that fail automated checks are not merged until the issues are resolved.
 
 ## Pull Request Process
 
-1. Ensure your PR follows all format requirements
+1. Ensure your tool file passes the automated checks
 2. One tool per PR (unless adding a new category)
 3. Complete all checkboxes in the PR template
 4. Disclose any affiliation with the tool
@@ -154,18 +250,18 @@ Undisclosed self-promotion will result in rejection and potential ban from futur
 
 All participation is governed by the [Code of Conduct](CODE_OF_CONDUCT.md). Be respectful and constructive, disclose affiliations, and focus discussion on verifiable tool quality rather than personal preference. Conduct concerns must be reported through the private channel described there, not in a public issue.
 
-## Maintenance Status Indicators
+## Maintenance status
 
-Tools in the README have maintenance status indicators that are **automatically updated weekly** by our GitHub Action:
+A weekly workflow refreshes every tool file from GitHub and from the weekly supply-chain report, then regenerates the README and opens one pull request summarizing the changes:
 
-| Indicator | Meaning |
-|-----------|---------|
-| ![Active](https://img.shields.io/badge/status-active-brightgreen) | Actively maintained - updated within the last 6 months |
-| ![Stale](https://img.shields.io/badge/status-stale-yellow) | Not updated in 6-12 months; use with caution |
-| ![Unmaintained](https://img.shields.io/badge/status-unmaintained-red) | Not updated in 12+ months; consider alternatives |
-| ![Archived](https://img.shields.io/badge/status-archived-lightgrey) | Repository has been archived by owner |
+| Status | Meaning | Section |
+|--------|---------|---------|
+| 🟢 Active | Commit in the last 6 months | Active catalog |
+| 🟡 Stale | No commit for 6–12 months | Active catalog |
+| 🔴 Unmaintained | No commit for over 12 months | Moved to Legacy, unless the tool has a documented `exception` |
+| ⚪ Archived | Repository archived by its owner | Moved to Legacy |
 
-The Last Commit badge shows the actual last update date for transparency. Status badges are automatically refreshed every week.
+A Legacy tool returns to the active catalog automatically once it has a commit within 12 months again.
 
 ## Questions?
 

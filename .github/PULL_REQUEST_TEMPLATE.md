@@ -20,9 +20,8 @@
 
 ### General Requirements
 - [ ] I have read the [CONTRIBUTING.md](../CONTRIBUTING.md) guidelines
-- [ ] The entry follows the correct format with Stars and Last Commit badges
-- [ ] The tool is placed in the appropriate category
-- [ ] The tool is placed alphabetically within its category
+- [ ] I added one file in `tools/` (see [Adding a tool](../CONTRIBUTING.md#adding-a-tool)) and did not edit the README catalog
+- [ ] The tool is listed under the appropriate category id
 
 ### Tool Eligibility (for new tools)
 - [ ] The tool is open source with an OSI-approved license

@@ -1,0 +1,95 @@
+name: Catalog Refresh
+
+on:
+  schedule:
+    # Sunday, after the supply-chain report (05:47 UTC) has published its results.
+    - cron: "17 7 * * 0"
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - "tools/**"
+
+permissions: {}
+
+concurrency:
+  group: catalog-refresh
+  cancel-in-progress: false
+
+jobs:
+  refresh:
+    name: Refresh tool status and README
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    permissions:
+      contents: write
+      pull-requests: write
+    steps:
+      - name: Check out default branch
+        uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4
+
+      - name: Load the latest supply-chain report results
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p "$RUNNER_TEMP/supply-chain-data"
+          if git ls-remote --exit-code --heads origin supply-chain-data >/dev/null; then
+            git fetch --quiet --depth=1 origin supply-chain-data
+            git archive FETCH_HEAD | tar -x -C "$RUNNER_TEMP/supply-chain-data"
+          fi
+
+      - name: Validate tool files
+        shell: bash
+        run: python3 scripts/catalog.py validate
+
+      - name: Refresh status, sections, and README
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          # A merged tool change only fills in new tools; the weekly run refreshes every tool,
+          # moves unmaintained or archived tools to Legacy, and returns active ones.
+          only_new=()
+          if [[ "$GITHUB_EVENT_NAME" == "push" ]]; then
+            only_new=(--only-new)
+          fi
+          python3 scripts/catalog.py refresh \
+            --report-data "$RUNNER_TEMP/supply-chain-data" \
+            --summary "$RUNNER_TEMP/summary.md" \
+            "${only_new[@]}"
+          cat "$RUNNER_TEMP/summary.md" >> "$GITHUB_STEP_SUMMARY"
+          python3 scripts/catalog.py render --check
+
+      - name: Publish a merged tool change directly
+        if: github.event_name == 'push'
+        shell: bash
+        run: |
+          set -euo pipefail
+          if git diff --quiet -- tools README.md; then
+            echo "Nothing to update"
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add tools README.md
+          git commit -m "chore: refresh catalog for new tools [skip ci]"
+          git push
+
+      - name: Open or update the weekly refresh pull request
+        if: github.event_name != 'push'
+        uses: peter-evans/create-pull-request@5f6978faf089d4d20b00c7766989d076bb2fc7f1 # v8.1.1
+        with:
+          token: ${{ github.token }}
+          branch: catalog-refresh
+          base: main
+          delete-branch: true
+          add-paths: |
+            tools/**
+            README.md
+          commit-message: "chore: weekly catalog refresh"
+          title: "chore: weekly catalog refresh"
+          body-path: ${{ runner.temp }}/summary.md
+          labels: |
+            automated
+            maintenance
