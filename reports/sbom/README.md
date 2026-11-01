@@ -8,6 +8,7 @@ These are maintainer-reviewed monthly snapshots from the [SBOM compatibility ben
 
 | Date | Status | Fixtures / tool runs | Tool versions | Report | Data |
 |---|---|---:|---|---|---|
+| 2026-11-01 | PASSED | 3 / 12 | syft v1.55.0, trivy v0.76.1, cdxgen v13.6.0, microsoft-sbom-tool v4.1.5, cyclonedx-cli v0.33.1 | [report](history/2026-11-01.md) | [JSON](history/2026-11-01.json) |
 | 2026-10-04 | PASSED | 3 / 12 | syft v1.54.0, trivy v0.75.0, cdxgen v13.3.0, microsoft-sbom-tool v4.1.5, cyclonedx-cli v0.33.1 | [report](history/2026-10-04.md) | [JSON](history/2026-10-04.json) |
 | 2026-09-06 | PASSED | 3 / 12 | syft v1.51.1, trivy v0.74.0, cdxgen v13.1.0, microsoft-sbom-tool v4.1.5, cyclonedx-cli v0.33.1 | [report](history/2026-09-06.md) | [JSON](history/2026-09-06.json) |
 | 2026-08-02 | PASSED | 3 / 12 | syft v1.50.0, trivy v0.72.0, cdxgen v12.8.2, microsoft-sbom-tool v4.1.5, cyclonedx-cli v0.33.1 | [report](history/2026-08-02.md) | [JSON](history/2026-08-02.json) |

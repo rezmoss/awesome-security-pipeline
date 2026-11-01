@@ -1,18 +1,18 @@
-# SBOM compatibility benchmark — 2026-10-04
+# SBOM compatibility benchmark — 2026-11-01
 
 **Overall status:** PASS  
-**Commit:** `67c9d44c2e07e95abfd78c1ef41d29397b4e6061`  
-**Generated:** 2026-10-04T06:03:03+00:00  
+**Commit:** `65c4a40d60f3b6a8d5ad4328b8580393c722a62f`  
+**Generated:** 2026-11-01T04:27:03+00:00  
 **Release policy:** `latest-stable`  
-**Tool releases resolved:** 2026-10-04T06:01:53Z
+**Tool releases resolved:** 2026-11-01T04:25:59Z
 
 ## Tool releases
 
 | Tool | Version | Release asset SHA-256 | Verification |
 |---|---:|---|---|
-| syft | [v1.54.0](https://github.com/anchore/syft/releases/tag/v1.54.0) | `54a87372498168b2d033e876fd41fa4e8035b872699e525a57046e1f2f09c860` | upstream-checksum |
-| trivy | [v0.75.0](https://github.com/aquasecurity/trivy/releases/tag/v0.75.0) | `c6e65abddb348e25f10549df887045629cf28cc72453cd1c63acb717316b3f3f` | upstream-checksum |
-| cdxgen | [v13.3.0](https://github.com/cdxgen/cdxgen/releases/tag/v13.3.0) | `1a1decfa0236284e12797f120d8638608af76a91baa4b17a244948182ca47952` | upstream-checksum |
+| syft | [v1.55.0](https://github.com/anchore/syft/releases/tag/v1.55.0) | `bb65249542db5fedeeb4d3f9b018b75e7264dbfbbb10486f044581a92f90490d` | upstream-checksum |
+| trivy | [v0.76.1](https://github.com/aquasecurity/trivy/releases/tag/v0.76.1) | `c7cbe3137fb8a48a17574bede3dd6beb16742d1e9772929940fc90082c39d9c0` | upstream-checksum |
+| cdxgen | [v13.6.0](https://github.com/cdxgen/cdxgen/releases/tag/v13.6.0) | `8b2df49fdea1b21094a7ad4be0d369fe477981a4f36d75f25805970c5b2f2764` | upstream-checksum |
 | microsoft-sbom-tool | [v4.1.5](https://github.com/microsoft/sbom-tool/releases/tag/v4.1.5) | `bf5d4f99bc98c119d549d08fc02ae92598a7a42772f17317c01031a92632e05b` | recorded-only |
 | cyclonedx-cli | [v0.33.1](https://github.com/CycloneDX/cyclonedx-cli/releases/tag/v0.33.1) | `bfc8b2538da86fe239bc53658bbb63c1c8c510a293c1e6891aa5bea5d3c58746` | recorded-only |
 
@@ -20,20 +20,20 @@
 
 | Fixture | Tool | Status | Format | Components | Dependency edges | Expected | Runtime | Change |
 |---|---|---|---|---:|---:|---:|---:|---|
-| `go-direct-lockless` | syft | PASS | CycloneDX 1.7 | 3 | 0 | 1/1 | 1.169s | components +0/-0; edges +0/-0 |
+| `go-direct-lockless` | syft | PASS | CycloneDX 1.7 | 3 | 0 | 1/1 | 1.417s | components +0/-0; edges +0/-0 |
 | `go-direct-lockless` | trivy | PASS | CycloneDX 1.7 | 4 | 3 | 1/1 | 0.114s | components +0/-0; edges +0/-0 |
-| `go-direct-lockless` | cdxgen | PASS | CycloneDX 1.6 | 2 | 1 | 1/1 | 1.322s | components +0/-0; edges +0/-0 |
-| `go-direct-lockless` | microsoft-sbom-tool | PASS | SPDX 2.2 | 2 | 1 | 1/1 | 3.224s | components +0/-0; edges +0/-0 |
-| `npm-lock-transitive` | syft | PASS | CycloneDX 1.7 | 5 | 2 | 2/2 | 1.067s | components +0/-0; edges +0/-0 |
+| `go-direct-lockless` | cdxgen | PASS | CycloneDX 1.6 | 2 | 1 | 1/1 | 1.368s | components +0/-0; edges +0/-0 |
+| `go-direct-lockless` | microsoft-sbom-tool | PASS | SPDX 2.2 | 2 | 1 | 1/1 | 5.377s | components +0/-0; edges +0/-0 |
+| `npm-lock-transitive` | syft | PASS | CycloneDX 1.7 | 5 | 2 | 2/2 | 1.166s | components +0/-0; edges +0/-0 |
 | `npm-lock-transitive` | trivy | PASS | CycloneDX 1.7 | 4 | 3 | 2/2 | 0.114s | components +0/-0; edges +0/-0 |
-| `npm-lock-transitive` | cdxgen | PASS | CycloneDX 1.6 | 3 | 2 | 2/2 | 0.917s | components +0/-0; edges +0/-0 |
-| `npm-lock-transitive` | microsoft-sbom-tool | PASS | SPDX 2.2 | 4 | 3 | 2/2 | 3.173s | components +0/-0; edges +0/-0 |
-| `pinned-container-image` | syft | PASS | CycloneDX 1.7 | 244 | 37 | n/a | 4.678s | components +0/-0; edges +0/-0 |
-| `pinned-container-image` | trivy | PASS | CycloneDX 1.7 | 30 | 54 | n/a | 2.670s | components +0/-0; edges +0/-0 |
-| `pinned-container-image` | cdxgen | PASS | CycloneDX 1.6 | 376 | 371 | n/a | 21.569s | components +0/-0; edges +0/-0 |
-| `pinned-container-image` | microsoft-sbom-tool | PASS | SPDX 2.2 | 18 | 17 | n/a | 11.956s | components +0/-0; edges +0/-0 |
+| `npm-lock-transitive` | cdxgen | PASS | CycloneDX 1.6 | 3 | 2 | 2/2 | 0.919s | components +0/-0; edges +0/-0 |
+| `npm-lock-transitive` | microsoft-sbom-tool | PASS | SPDX 2.2 | 4 | 3 | 2/2 | 2.773s | components +0/-0; edges +0/-0 |
+| `pinned-container-image` | syft | PASS | CycloneDX 1.7 | 244 | 37 | n/a | 4.076s | components +0/-0; edges +0/-0 |
+| `pinned-container-image` | trivy | PASS | CycloneDX 1.7 | 30 | 54 | n/a | 2.471s | components +0/-0; edges +0/-0 |
+| `pinned-container-image` | cdxgen | PASS | CycloneDX 1.6 | 505 | 502 | n/a | 18.409s | components +249/-120; edges +473/-342 |
+| `pinned-container-image` | microsoft-sbom-tool | PASS | SPDX 2.2 | 18 | 17 | n/a | 12.306s | components +0/-0; edges +0/-0 |
 
-Changes compare normalized component identities with the reviewed snapshot from 2026-09-06. A count change is evidence to inspect, not automatically a regression.
+Changes compare normalized component identities with the reviewed snapshot from 2026-10-04. A count change is evidence to inspect, not automatically a regression.
 
 ## Fixture details
 
@@ -206,14 +206,14 @@ Normalized inventory preview (the JSON result retains the complete inventory):
 |---|---|---|---|
 | file | `00-alpine.conf` | `—` | `pkg:generic/00-alpine.conf#usr/lib/sysctl.d/00-alpine.conf` |
 | file | `20locale.sh` | `—` | `pkg:generic/20locale.sh#etc/profile.d/20locale.sh` |
-| cryptographic-asset | `AC RAIZ FNMT-RCM SERVIDORES SEGUROS` | `8e3f237813d3f3e2f5767bc2a694a7557f84bb79fd60ef1adc25afd0c1fc5ef6` | `—` |
+| cryptographic-asset | `AC RAIZ FNMT-RCM` | `ebc5570c29018c4d67b1aa127baf12f703b4611ebc17b7dab5573894179b93fa` | `—` |
+| cryptographic-asset | `AC RAIZ FNMT-RCM SERVIDORES SEGUROS` | `554153b13d2cf9ddb753bfbe1a4e0ae08d0aa4187058fe60a2b862b2e4b87bcb` | `—` |
 | file | `AC_RAIZ_FNMT-RCM.crt` | `—` | `pkg:generic/AC_RAIZ_FNMT-RCM.crt#usr/share/ca-certificates/mozilla/AC_RAIZ_FNMT-RCM.crt` |
-| cryptographic-asset | `AC_RAIZ_FNMT-RCM.crt` | `aa18ea4c9a8441a461bb436a1c90beb994ac841980b8fd62c72de9a62ddf8ae3` | `—` |
 | file | `AC_RAIZ_FNMT-RCM_SERVIDORES_SEGUROS.crt` | `—` | `pkg:generic/AC_RAIZ_FNMT-RCM_SERVIDORES_SEGUROS.crt#usr/share/ca-certificates/mozilla/AC_RAIZ_FNMT-RCM_SERVIDORES_SEGUROS.crt` |
-| cryptographic-asset | `ACCVRAIZ1` | `04846f73d9d0421c60076fd02bad7f0a81a3f11a028d653b0de53290e41dcead` | `—` |
+| cryptographic-asset | `ACCVRAIZ1` | `9a6ec012e1a7da9dbe34194d478ad7c0db1822fb071df12981496ed104384113` | `—` |
 | file | `ACCVRAIZ1.crt` | `—` | `pkg:generic/ACCVRAIZ1.crt#usr/share/ca-certificates/mozilla/ACCVRAIZ1.crt` |
 | file | `acpid` | `—` | `pkg:generic/acpid#etc/logrotate.d/acpid` |
-| cryptographic-asset | `Actalis Authentication Root CA` | `c6d25347727f267774611677588d76f8a54a6e14d3e99dd69ef2c20612ed87c5` | `—` |
+| cryptographic-asset | `Actalis Authentication Root CA` | `55926084ec963a64b96e2abe01ce0ba86a64fbfebcc7aab5afc155b37fd76066` | `—` |
 | file | `Actalis_Authentication_Root_CA.crt` | `—` | `pkg:generic/Actalis_Authentication_Root_CA.crt#usr/share/ca-certificates/mozilla/Actalis_Authentication_Root_CA.crt` |
 | file | `afalg.so` | `—` | `pkg:generic/afalg.so#usr/lib/engines-3/afalg.so` |
 
