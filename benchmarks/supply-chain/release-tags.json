@@ -1,0 +1,8 @@
+{
+  "description": "Tag patterns for monorepos whose GitHub 'latest release' is not the catalogued tool. The newest non-draft, non-prerelease release whose tag matches the pattern is scanned.",
+  "projects": {
+    "RustSec/rustsec": {"pattern": "^cargo-audit/", "reason": "The catalog entry is cargo-audit; the repository also releases platforms, cvss, and cargo-lock crates."},
+    "cloudquery/cloudquery": {"pattern": "^cli-v", "reason": "The repository releases dozens of plugins; the catalog entry is the CLI."},
+    "external-secrets/external-secrets": {"pattern": "^v[0-9]", "reason": "Helm chart releases share the repository with application releases."}
+  }
+}

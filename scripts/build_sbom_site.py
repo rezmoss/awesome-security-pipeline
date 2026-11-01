@@ -130,7 +130,7 @@ class Site:
 </head>
 <body>
 <header>
-<nav aria-label="Benchmark"><a href="{root}index.html">Overview</a>{''.join(f'<a href="{root}tools/{tool}/index.html">{esc(tool_name(tool))}</a>' for tool in GENERATORS)}<a href="{root}history/index.html">History</a><a href="{root}data/latest.json">Data</a><a href="{repo}">Repository</a></nav>
+<nav aria-label="Benchmark"><a href="{root}../index.html">All projects</a><a href="{root}index.html">Generator accuracy</a>{''.join(f'<a href="{root}tools/{tool}/index.html">{esc(tool_name(tool))}</a>' for tool in GENERATORS)}<a href="{root}history/index.html">History</a><a href="{root}data/latest.json">Data</a><a href="{repo}">Repository</a></nav>
 </header>
 <main>
 {body}
@@ -395,11 +395,11 @@ class Site:
         result = self.latest
         status = '<span class="ok">PASS</span>' if result.get("status") == "passed" else '<span class="bad">FAIL</span>'
         body = (
-            "<h1>SBOM generator benchmark</h1>"
+            "<h1>SBOM generator accuracy benchmark</h1>"
             '<p class="lede">Syft, Trivy, cdxgen, and Microsoft SBOM Tool run every week against the same Go module, '
             "npm lockfile, and pinned container image. Each SBOM is validated, scored against an inventory read directly "
             "from the input, checked for minimum elements, and compared with the previous week.</p>"
-            f'<p class="meta">Latest run {esc(result["run_date"])} · {status} · {len(self.runs)} runs recorded · '
+            f'<p class="meta">Latest run {esc(result["run_date"])} · {status} · {len(self.runs)} {"run" if len(self.runs) == 1 else "runs"} recorded · '
             f'runs every Sunday · <a href="data/runs/{esc(result["run_date"])}.json">JSON for this run</a></p>'
             + self.run_report(result, depth=0, latest=True)
             + self.limits()
@@ -593,6 +593,8 @@ class Site:
                 if (artifacts / name).is_dir():
                     shutil.copytree(artifacts / name, self.out / target, dirs_exist_ok=True)
         self.args.output.mkdir(parents=True, exist_ok=True)
+        if not getattr(self, "standalone", True):
+            return
         (self.args.output / "index.html").write_text(
             '<!DOCTYPE html>\n<html lang="en"><head><meta charset="utf-8">'
             f'<meta http-equiv="refresh" content="0; url={SECTION}/index.html">'
@@ -602,9 +604,12 @@ class Site:
         )
         (self.args.output / ".nojekyll").write_text("", encoding="utf-8")
 
-    def build(self) -> None:
-        if self.args.output.exists():
+    def build(self, standalone: bool = True) -> None:
+        if standalone and self.args.output.exists():
             shutil.rmtree(self.args.output)
+        elif self.out.exists():
+            shutil.rmtree(self.out)
+        self.standalone = standalone
         self.assets()
         self.overview()
         for tool in GENERATORS:

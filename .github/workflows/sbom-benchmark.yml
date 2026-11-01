@@ -17,6 +17,8 @@ on:
       - "scripts/derive_image_ground_truth.py"
       - "scripts/publish_sbom_benchmark.py"
       - "scripts/build_sbom_site.py"
+      - "scripts/build_site.py"
+      - "scripts/fetch-site-inputs.sh"
       - "tests/test_sbom_benchmark.py"
   push:
     branches: [main]
@@ -30,6 +32,8 @@ on:
       - "scripts/derive_image_ground_truth.py"
       - "scripts/publish_sbom_benchmark.py"
       - "scripts/build_sbom_site.py"
+      - "scripts/build_site.py"
+      - "scripts/fetch-site-inputs.sh"
       - "tests/test_sbom_benchmark.py"
 
 permissions: {}
@@ -307,6 +311,7 @@ jobs:
     timeout-minutes: 10
     permissions:
       contents: read
+      actions: read
     steps:
       - name: Check out source without persisted credentials
         uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4
@@ -319,18 +324,21 @@ jobs:
           name: sbom-benchmark-${{ github.run_id }}
           path: benchmark-output
 
-      - name: Load recorded runs and include this run
+      - name: Fetch data branches and the latest supply-chain artifacts
+        env:
+          GH_TOKEN: ${{ github.token }}
         shell: bash
         run: |
-          set -euo pipefail
-          mkdir -p data
-          if git ls-remote --exit-code --heads origin "$DATA_BRANCH" >/dev/null; then
-            git fetch --depth=1 origin "$DATA_BRANCH"
-            git archive FETCH_HEAD | tar -x -C data
-          fi
+          mkdir -p site-input
+          cp -R benchmark-output/sbomlyze site-input/benchmark-artifacts
+          bash scripts/fetch-site-inputs.sh site-input
+
+      - name: Include this run
+        shell: bash
+        run: |
           # Idempotent on the default branch; adds this run for pull-request previews.
           python3 scripts/publish_sbom_benchmark.py \
-            --data-dir data \
+            --data-dir site-input/benchmark-data \
             --config benchmarks/sbom/fixtures.json \
             --result benchmark-output/result.json \
             --sbomlyze benchmark-output/sbomlyze/sbomlyze.json
@@ -338,12 +346,13 @@ jobs:
       - name: Build static site
         shell: bash
         run: |
-          python3 scripts/build_sbom_site.py \
-            --data-dir data \
-            --config benchmarks/sbom/fixtures.json \
-            --artifacts-dir benchmark-output/sbomlyze \
+          python3 scripts/build_site.py \
+            --output site \
             --repository "$GITHUB_REPOSITORY" \
-            --output site
+            --supply-chain-data site-input/supply-chain-data \
+            --supply-chain-artifacts site-input/supply-chain-artifacts \
+            --benchmark-data site-input/benchmark-data \
+            --benchmark-artifacts site-input/benchmark-artifacts
 
       - name: Upload Pages artifact
         if: needs.benchmark.outputs.publish == 'true'
@@ -365,6 +374,9 @@ jobs:
     if: always() && needs.site.result == 'success' && needs.benchmark.outputs.publish == 'true'
     runs-on: ubuntu-latest
     timeout-minutes: 10
+    concurrency:
+      group: pages-deploy
+      cancel-in-progress: false
     permissions:
       pages: write
       id-token: write
