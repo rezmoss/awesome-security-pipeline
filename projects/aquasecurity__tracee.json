@@ -9,8 +9,8 @@
       "fixable": 74,
       "go_version": "go1.24.9",
       "in_binary": {
-        "dependencies": 17,
-        "stdlib": 40,
+        "dependencies": 18,
+        "stdlib": 39,
         "total": 57
       },
       "new_vulnerabilities": 0,
@@ -1652,7 +1652,7 @@
         "version": "UNKNOWN"
       }
     ],
-    "description": "Trace Linux runtime activity and security events with eBPF.",
+    "description": "Trace Linux runtime activity and security events with eBPF",
     "errors": [],
     "go_binary": {
       "asset": "tracee-x86_64.v0.24.1.tar.gz",
@@ -1857,17 +1857,6 @@
           "level": "symbol",
           "module": "stdlib",
           "summary": "Bypass of meta content URL escaping causes XSS in html/template",
-          "version": "v1.24.9"
-        },
-        {
-          "aliases": [
-            "CVE-2026-39821"
-          ],
-          "fixed_version": "v1.25.13",
-          "id": "GO-2026-5026",
-          "level": "symbol",
-          "module": "stdlib",
-          "summary": "Invoking failure to reject ASCII-only Punycode-encoded labels in golang.org/x/net/idna",
           "version": "v1.24.9"
         },
         {
@@ -2103,6 +2092,78 @@
         },
         {
           "aliases": [
+            "CVE-2026-53492",
+            "GHSA-33vj-92qq-66hc"
+          ],
+          "fixed_version": "",
+          "id": "GO-2026-5064",
+          "level": "symbol",
+          "module": "github.com/containerd/containerd",
+          "summary": "containerd CRI checkpoint restore CDI annotation smuggling in github.com/containerd/containerd",
+          "version": "v1.7.29"
+        },
+        {
+          "aliases": [
+            "CVE-2026-50195",
+            "GHSA-cvxm-645q-p574"
+          ],
+          "fixed_version": "",
+          "id": "GO-2026-5338",
+          "level": "symbol",
+          "module": "github.com/containerd/containerd",
+          "summary": "containerd: CRI checkpoint import allows local image tag poisoning in github.com/containerd/containerd",
+          "version": "v1.7.29"
+        },
+        {
+          "aliases": [
+            "CVE-2026-46680",
+            "GHSA-fqw6-gf59-qr4w"
+          ],
+          "fixed_version": "v1.7.32",
+          "id": "GO-2026-5378",
+          "level": "symbol",
+          "module": "github.com/containerd/containerd",
+          "summary": "containerd user ID handling bypass allows runAsNonRoot evasion in github.com/containerd/containerd",
+          "version": "v1.7.29"
+        },
+        {
+          "aliases": [
+            "CVE-2026-47262",
+            "GHSA-jpcc-p29g-p8mq"
+          ],
+          "fixed_version": "v1.7.33",
+          "id": "GO-2026-5475",
+          "level": "symbol",
+          "module": "github.com/containerd/containerd",
+          "summary": "containerd image-triggered runtime DoS via unbounded group parsing in github.com/containerd/containerd",
+          "version": "v1.7.29"
+        },
+        {
+          "aliases": [
+            "CVE-2026-53489",
+            "GHSA-rgh6-rfwx-v388"
+          ],
+          "fixed_version": "",
+          "id": "GO-2026-5622",
+          "level": "symbol",
+          "module": "github.com/containerd/containerd",
+          "summary": "Arbitrary host CRI log file read via symlink following in CRI checkpoint restore in github.com/containerd/containerd",
+          "version": "v1.7.29"
+        },
+        {
+          "aliases": [
+            "CVE-2026-53488",
+            "GHSA-xhf5-7wjv-pqxp"
+          ],
+          "fixed_version": "v1.7.33",
+          "id": "GO-2026-5758",
+          "level": "symbol",
+          "module": "github.com/containerd/containerd",
+          "summary": "containerd CRI \u2014 image-config `LABEL` flows to restart-monitor `binary://` logger: host-root command execution from an image pull in github.com/containerd/containerd",
+          "version": "v1.7.29"
+        },
+        {
+          "aliases": [
             "CVE-2026-53495",
             "GHSA-7jxh-36q5-gcqv"
           ],
@@ -2115,87 +2176,15 @@
         },
         {
           "aliases": [
-            "CVE-2026-53492",
-            "GHSA-33vj-92qq-66hc"
-          ],
-          "fixed_version": "",
-          "id": "GO-2026-5064",
-          "level": "symbol",
-          "module": "github.com/containerd/containerd/api",
-          "summary": "containerd CRI checkpoint restore CDI annotation smuggling in github.com/containerd/containerd",
-          "version": "v1.8.0"
-        },
-        {
-          "aliases": [
-            "CVE-2026-50195",
-            "GHSA-cvxm-645q-p574"
-          ],
-          "fixed_version": "",
-          "id": "GO-2026-5338",
-          "level": "symbol",
-          "module": "github.com/containerd/containerd/api",
-          "summary": "containerd: CRI checkpoint import allows local image tag poisoning in github.com/containerd/containerd",
-          "version": "v1.8.0"
-        },
-        {
-          "aliases": [
-            "CVE-2026-46680",
-            "GHSA-fqw6-gf59-qr4w"
-          ],
-          "fixed_version": "",
-          "id": "GO-2026-5378",
-          "level": "symbol",
-          "module": "github.com/containerd/containerd/api",
-          "summary": "containerd user ID handling bypass allows runAsNonRoot evasion in github.com/containerd/containerd",
-          "version": "v1.8.0"
-        },
-        {
-          "aliases": [
-            "CVE-2026-47262",
-            "GHSA-jpcc-p29g-p8mq"
-          ],
-          "fixed_version": "",
-          "id": "GO-2026-5475",
-          "level": "symbol",
-          "module": "github.com/containerd/containerd/api",
-          "summary": "containerd image-triggered runtime DoS via unbounded group parsing in github.com/containerd/containerd",
-          "version": "v1.8.0"
-        },
-        {
-          "aliases": [
-            "CVE-2026-53489",
-            "GHSA-rgh6-rfwx-v388"
-          ],
-          "fixed_version": "",
-          "id": "GO-2026-5622",
-          "level": "symbol",
-          "module": "github.com/containerd/containerd/api",
-          "summary": "Arbitrary host CRI log file read via symlink following in CRI checkpoint restore in github.com/containerd/containerd",
-          "version": "v1.8.0"
-        },
-        {
-          "aliases": [
-            "CVE-2026-53488",
-            "GHSA-xhf5-7wjv-pqxp"
-          ],
-          "fixed_version": "",
-          "id": "GO-2026-5758",
-          "level": "symbol",
-          "module": "github.com/containerd/containerd/api",
-          "summary": "containerd CRI \u2014 image-config `LABEL` flows to restart-monitor `binary://` logger: host-root command execution from an image pull in github.com/containerd/containerd",
-          "version": "v1.8.0"
-        },
-        {
-          "aliases": [
             "CVE-2026-53493",
             "GHSA-pg57-6jwg-q645"
           ],
-          "fixed_version": "",
+          "fixed_version": "v1.7.36",
           "id": "GO-2026-6597",
           "level": "symbol",
-          "module": "github.com/containerd/containerd/api",
+          "module": "github.com/containerd/containerd",
           "summary": "Containerd has image-pull DoS via crafted OCI index graph amplification in github.com/containerd/containerd",
-          "version": "v1.8.0"
+          "version": "v1.7.29"
         },
         {
           "aliases": [
@@ -2205,21 +2194,21 @@
           "fixed_version": "",
           "id": "GO-2026-6791",
           "level": "symbol",
-          "module": "github.com/containerd/containerd/api",
+          "module": "github.com/containerd/containerd",
           "summary": "containerd CRI plugin: Checkpoint restore bypasses destination security context in github.com/containerd/containerd",
-          "version": "v1.8.0"
+          "version": "v1.7.29"
         },
         {
           "aliases": [
             "CVE-2026-95838",
             "GHSA-rp3h-jf77-q9p4"
           ],
-          "fixed_version": "",
+          "fixed_version": "v1.7.35",
           "id": "GO-2026-6796",
           "level": "symbol",
-          "module": "github.com/containerd/containerd/api",
+          "module": "github.com/containerd/containerd",
           "summary": "containerd: Unpack DoS via repeated opaque whiteouts in github.com/containerd/containerd",
-          "version": "v1.8.0"
+          "version": "v1.7.29"
         },
         {
           "aliases": [
@@ -2255,6 +2244,17 @@
           "module": "github.com/gorilla/websocket",
           "summary": "Gorilla WebSocket Uses Cryptographically Weak PRNG for WebSocket Mask Key in github.com/gorilla/websocket",
           "version": "v1.5.1"
+        },
+        {
+          "aliases": [
+            "CVE-2026-39821"
+          ],
+          "fixed_version": "v0.55.0",
+          "id": "GO-2026-5026",
+          "level": "symbol",
+          "module": "golang.org/x/net",
+          "summary": "Invoking failure to reject ASCII-only Punycode-encoded labels in golang.org/x/net/idna",
+          "version": "v0.42.0"
         },
         {
           "aliases": [
@@ -2885,7 +2885,7 @@
       ],
       "removed": 0
     },
-    "scanned_at": "2026-11-01T18:17:37+00:00",
+    "scanned_at": "2026-11-01T19:05:28+00:00",
     "scorecard": {
       "checks": [
         {
