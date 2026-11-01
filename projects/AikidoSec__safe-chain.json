@@ -1,0 +1,165 @@
+{
+  "history": [
+    {
+      "added": 0,
+      "commit": "1c37c007d2b625cf9a89f2484634c8ed7a725270",
+      "date": "2026-11-01",
+      "dependencies": 7,
+      "errors": [],
+      "fixable": 1,
+      "new_vulnerabilities": 0,
+      "ref": "1.5.27",
+      "release_changed": false,
+      "removed": 0,
+      "resolved_vulnerabilities": 0,
+      "upgraded": 0,
+      "vulnerabilities": {
+        "Critical": 0,
+        "High": 1,
+        "Low": 0,
+        "Medium": 0,
+        "Negligible": 0,
+        "Unknown": 0
+      }
+    }
+  ],
+  "latest": {
+    "archived": false,
+    "category": "Software Composition Analysis (SCA)",
+    "changes": {
+      "baseline": true
+    },
+    "commit": "1c37c007d2b625cf9a89f2484634c8ed7a725270",
+    "compliance": {
+      "overall_score": 55,
+      "standards": {
+        "bsi_tr03183": {
+          "failed_checks": [
+            "Component Creator",
+            "Distribution Licences",
+            "SHA-512 Hash",
+            "Dependency Relationship",
+            "SBOM Creator Contact"
+          ],
+          "passed": 4,
+          "score": 44,
+          "total": 9
+        },
+        "cisa": {
+          "failed_checks": [
+            "Software Producer",
+            "Dependency Relationship",
+            "License Information",
+            "Component Hash",
+            "SBOM Author"
+          ],
+          "passed": 5,
+          "score": 50,
+          "total": 10
+        },
+        "ntia": {
+          "failed_checks": [
+            "Supplier Name",
+            "Dependency Relationship"
+          ],
+          "passed": 5,
+          "score": 71,
+          "total": 7
+        }
+      }
+    },
+    "components": [
+      {
+        "ecosystem": "github",
+        "licenses": [],
+        "location": ".github/workflows/build-and-release.yml",
+        "name": "actions/checkout",
+        "purl": "pkg:github/actions/checkout@v3",
+        "version": "v3"
+      },
+      {
+        "ecosystem": "github",
+        "licenses": [],
+        "location": ".github/workflows/bump-endpoint.yml",
+        "name": "actions/checkout",
+        "purl": "pkg:github/actions/checkout@v4",
+        "version": "v4"
+      },
+      {
+        "ecosystem": "github",
+        "licenses": [],
+        "location": ".github/workflows/build-and-release.yml",
+        "name": "actions/download-artifact",
+        "purl": "pkg:github/actions/download-artifact@v4",
+        "version": "v4"
+      },
+      {
+        "ecosystem": "github",
+        "licenses": [],
+        "location": ".github/workflows/build-and-release.yml",
+        "name": "actions/setup-node",
+        "purl": "pkg:github/actions/setup-node@v3",
+        "version": "v3"
+      },
+      {
+        "ecosystem": "github",
+        "licenses": [],
+        "location": ".github/workflows/test-on-pr.yml",
+        "name": "actions/setup-node",
+        "purl": "pkg:github/actions/setup-node@v4",
+        "version": "v4"
+      },
+      {
+        "ecosystem": "github",
+        "licenses": [],
+        "location": ".github/workflows/create-artifact.yml",
+        "name": "actions/upload-artifact",
+        "purl": "pkg:github/actions/upload-artifact@v4",
+        "version": "v4"
+      },
+      {
+        "ecosystem": "unknown",
+        "licenses": [],
+        "location": ".github/workflows/build-and-release.yml",
+        "name": "./.github/workflows/create-artifact.yml",
+        "purl": "",
+        "version": "UNKNOWN"
+      }
+    ],
+    "description": "Block malicious packages during npm/pip install.",
+    "errors": [],
+    "id": "AikidoSec__safe-chain",
+    "manifests": [
+      ".github/workflows/build-and-release.yml",
+      ".github/workflows/bump-endpoint.yml",
+      ".github/workflows/create-artifact.yml",
+      ".github/workflows/test-on-pr.yml",
+      "npm-shrinkwrap.json",
+      "package.json",
+      "packages/safe-chain/package.json"
+    ],
+    "name": "safe-chain",
+    "ref": "1.5.27",
+    "ref_kind": "release",
+    "released_at": "2026-10-30T08:13:34Z",
+    "repository": "AikidoSec/safe-chain",
+    "scanned_at": "2026-11-01T16:22:16+00:00",
+    "vulnerabilities": [
+      {
+        "aliases": [],
+        "ecosystem": "github",
+        "fix_state": "fixed",
+        "fixed_in": [
+          "4.1.3"
+        ],
+        "id": "GHSA-cxww-7g56-2vh6",
+        "location": ".github/workflows/create-artifact.yml",
+        "package": "actions/download-artifact",
+        "severity": "High",
+        "url": "https://github.com/advisories/GHSA-cxww-7g56-2vh6",
+        "version": "v4"
+      }
+    ]
+  },
+  "updated": "2026-11-01"
+}
