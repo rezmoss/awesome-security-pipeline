@@ -7,11 +7,21 @@
       "dependencies": 644,
       "errors": [],
       "fixable": 11,
+      "go_version": "go1.26.9",
+      "in_binary": {
+        "dependencies": 11,
+        "stdlib": 1,
+        "total": 12
+      },
       "new_vulnerabilities": 0,
+      "osv_confirmed": 19,
+      "osv_only": 4,
       "ref": "v4.0.17",
       "release_changed": false,
+      "release_integrity": "verified",
       "removed": 0,
       "resolved_vulnerabilities": 0,
+      "scorecard": 7.6,
       "upgraded": 0,
       "vulnerabilities": {
         "Critical": 1,
@@ -20,6 +30,12 @@
         "Medium": 5,
         "Negligible": 0,
         "Unknown": 4
+      },
+      "workflow": {
+        "High": 1,
+        "Low": 4,
+        "Medium": 2,
+        "files": 7
       }
     }
   ],
@@ -5234,6 +5250,239 @@
     ],
     "description": "Analyze Kubernetes security risk and configuration compliance.",
     "errors": [],
+    "go_binary": {
+      "asset": "kubescape_4.0.17_linux_amd64.tar.gz",
+      "binary": "kubescape",
+      "findings": [
+        {
+          "aliases": [
+            "CVE-2026-111943"
+          ],
+          "fixed_version": "v1.26.10",
+          "id": "GO-2026-6809",
+          "level": "symbol",
+          "module": "stdlib",
+          "summary": "Distrust compromised intermediate certificates in crypto/x509",
+          "version": "v1.26.9"
+        },
+        {
+          "aliases": [
+            "CVE-2026-33634",
+            "GHSA-69fq-xp46-6x23"
+          ],
+          "fixed_version": "",
+          "id": "GO-2026-4919",
+          "level": "symbol",
+          "module": "github.com/aquasecurity/trivy",
+          "summary": "Trivy ecosystem supply chain was briefly compromised in github.com/aquasecurity/trivy",
+          "version": "v0.72.0"
+        },
+        {
+          "aliases": [
+            "CVE-2026-33997",
+            "GHSA-pxq6-2prw-chj9"
+          ],
+          "fixed_version": "",
+          "id": "GO-2026-4883",
+          "level": "symbol",
+          "module": "github.com/docker/docker",
+          "summary": "Moby has an Off-by-one error in its plugin privilege validation in github.com/docker/docker",
+          "version": "v28.5.2+incompatible"
+        },
+        {
+          "aliases": [
+            "CVE-2026-34040",
+            "GHSA-x744-4wpc-v9h2"
+          ],
+          "fixed_version": "",
+          "id": "GO-2026-4887",
+          "level": "symbol",
+          "module": "github.com/docker/docker",
+          "summary": "Moby has AuthZ plugin bypass when provided oversized request bodies in github.com/docker/docker",
+          "version": "v28.5.2+incompatible"
+        },
+        {
+          "aliases": [
+            "CVE-2026-10517",
+            "GHSA-698x-9w2p-7vvp"
+          ],
+          "fixed_version": "",
+          "id": "GO-2026-5939",
+          "level": "symbol",
+          "module": "github.com/quay/claircore",
+          "summary": "Claircore: Unauthenticated attackers can submit manifests with URIs pointing to internal services or cloud metadata endpoints in github.com/quay/claircore",
+          "version": "v1.6.1"
+        },
+        {
+          "aliases": [],
+          "fixed_version": "",
+          "id": "GO-2026-5932",
+          "level": "symbol",
+          "module": "golang.org/x/crypto",
+          "summary": "The golang.org/x/crypto/openpgp package is unmaintained, unsafe by design, and has known security issues",
+          "version": "v0.57.0"
+        },
+        {
+          "aliases": [
+            "CVE-2026-46603"
+          ],
+          "fixed_version": "v0.45.0",
+          "id": "GO-2026-6222",
+          "level": "symbol",
+          "module": "golang.org/x/image",
+          "summary": "Excessive memory allocation during VP8L decoding in golang.org/x/image",
+          "version": "v0.44.0"
+        },
+        {
+          "aliases": [
+            "CVE-2026-78659"
+          ],
+          "fixed_version": "v0.60.0",
+          "id": "GO-2026-6603",
+          "level": "symbol",
+          "module": "golang.org/x/net",
+          "summary": "HTTP/2 server memory exhaustion due to Trailer headers in net/http",
+          "version": "v0.59.0"
+        },
+        {
+          "aliases": [
+            "CVE-2026-78660"
+          ],
+          "fixed_version": "v0.60.0",
+          "id": "GO-2026-6610",
+          "level": "symbol",
+          "module": "golang.org/x/net",
+          "summary": "HTTP/2 transport accepts malformed framing-related headers in net/http",
+          "version": "v0.59.0"
+        },
+        {
+          "aliases": [
+            "CVE-2026-78669"
+          ],
+          "fixed_version": "v0.60.0",
+          "id": "GO-2026-6611",
+          "level": "symbol",
+          "module": "golang.org/x/net",
+          "summary": "Excessive CPU consumption from repeated initial window changes in net/http",
+          "version": "v0.59.0"
+        },
+        {
+          "aliases": [
+            "CVE-2026-78663"
+          ],
+          "fixed_version": "v0.60.0",
+          "id": "GO-2026-6612",
+          "level": "symbol",
+          "module": "golang.org/x/net",
+          "summary": "Double flow control refund on HTTP/2 server streams in net/http",
+          "version": "v0.59.0"
+        },
+        {
+          "aliases": [
+            "CVE-2026-97032"
+          ],
+          "fixed_version": "v0.60.0",
+          "id": "GO-2026-6617",
+          "level": "symbol",
+          "module": "golang.org/x/net",
+          "summary": "HTTP/2 server crash due to HPACK encoder race in net/http",
+          "version": "v0.59.0"
+        },
+        {
+          "aliases": [],
+          "fixed_version": "",
+          "id": "GO-2026-6225",
+          "level": "package",
+          "module": "github.com/chrismellard/docker-credential-acr-env",
+          "summary": "Credential leakage to untrusted hosts in github.com/chrismellard/docker-credential-acr-env",
+          "version": "v0.0.0-20230304212654-82a0ddb27589"
+        },
+        {
+          "aliases": [
+            "CVE-2026-78661"
+          ],
+          "fixed_version": "v0.62.0",
+          "id": "GO-2026-6860",
+          "level": "package",
+          "module": "golang.org/x/net",
+          "summary": "Avoid quadratic complexity when coalescing text nodes in html in golang.org/x/net",
+          "version": "v0.59.0"
+        },
+        {
+          "aliases": [
+            "CVE-2026-97045"
+          ],
+          "fixed_version": "v0.62.0",
+          "id": "GO-2026-6866",
+          "level": "package",
+          "module": "golang.org/x/net",
+          "summary": "Check all ancestor namespace transitions when rendering raw text in html in golang.org/x/net",
+          "version": "v0.59.0"
+        },
+        {
+          "aliases": [
+            "CVE-2020-8912",
+            "GHSA-7f33-f4f5-xwgw"
+          ],
+          "fixed_version": "",
+          "id": "GO-2022-0635",
+          "level": "module",
+          "module": "github.com/aws/aws-sdk-go",
+          "summary": "In-band key negotiation issue in AWS S3 Crypto SDK for golang in github.com/aws/aws-sdk-go",
+          "version": "v1.55.8"
+        },
+        {
+          "aliases": [
+            "CVE-2020-8911",
+            "GHSA-f5pg-7wfw-84q9"
+          ],
+          "fixed_version": "",
+          "id": "GO-2022-0646",
+          "level": "module",
+          "module": "github.com/aws/aws-sdk-go",
+          "summary": "CBC padding oracle issue in AWS S3 Crypto SDK for golang in github.com/aws/aws-sdk-go",
+          "version": "v1.55.8"
+        },
+        {
+          "aliases": [
+            "CVE-2026-42306",
+            "GHSA-rg2x-37c3-w2rh"
+          ],
+          "fixed_version": "",
+          "id": "GO-2026-5617",
+          "level": "module",
+          "module": "github.com/docker/docker",
+          "summary": "Race condition in 'docker cp' in github.com/docker/docker allows bind mount redirection",
+          "version": "v28.5.2+incompatible"
+        },
+        {
+          "aliases": [
+            "CVE-2026-41568",
+            "GHSA-vp62-88p7-qqf5"
+          ],
+          "fixed_version": "",
+          "id": "GO-2026-5668",
+          "level": "module",
+          "module": "github.com/docker/docker",
+          "summary": "Race condition in 'docker cp' in github.com/docker/docker allows creation of arbitrary files",
+          "version": "v28.5.2+incompatible"
+        },
+        {
+          "aliases": [
+            "CVE-2026-41567",
+            "GHSA-x86f-5xw2-fm2r"
+          ],
+          "fixed_version": "",
+          "id": "GO-2026-5746",
+          "level": "module",
+          "module": "github.com/docker/docker",
+          "summary": "Docker: 'PUT /containers/{id}/archive' executes container binary on the host in github.com/docker/docker",
+          "version": "v28.5.2+incompatible"
+        }
+      ],
+      "go_version": "go1.26.9",
+      "main_module": "github.com/kubescape/kubescape/v4"
+    },
     "id": "kubescape__kubescape",
     "manifests": [
       ".github/actions/tag-action/action.yaml",
@@ -5247,8 +5496,89 @@
       "go.sum"
     ],
     "name": "kubescape",
+    "osv": {
+      "advisories": 23,
+      "available": true,
+      "confirmed": 19,
+      "osv_only": [
+        {
+          "ecosystem": "Go",
+          "ids": [
+            "CVE-2026-33634",
+            "GHSA-69fq-xp46-6x23",
+            "GO-2026-4919"
+          ],
+          "package": "github.com/aquasecurity/trivy",
+          "score": "",
+          "severity": "Unknown",
+          "version": "0.72.0"
+        },
+        {
+          "ecosystem": "Go",
+          "ids": [
+            "CVE-2020-8912",
+            "GHSA-7f33-f4f5-xwgw",
+            "GO-2022-0635"
+          ],
+          "package": "github.com/aws/aws-sdk-go",
+          "score": "",
+          "severity": "Unknown",
+          "version": "1.55.8"
+        },
+        {
+          "ecosystem": "Go",
+          "ids": [
+            "CVE-2020-8911",
+            "GHSA-f5pg-7wfw-84q9",
+            "GO-2022-0646"
+          ],
+          "package": "github.com/aws/aws-sdk-go",
+          "score": "",
+          "severity": "Unknown",
+          "version": "1.55.8"
+        },
+        {
+          "ecosystem": "Go",
+          "ids": [
+            "CVE-2026-10517",
+            "GHSA-698x-9w2p-7vvp",
+            "GO-2026-5939"
+          ],
+          "package": "github.com/quay/claircore",
+          "score": "",
+          "severity": "Unknown",
+          "version": "1.6.1"
+        }
+      ],
+      "warning": null
+    },
     "ref": "v4.0.17",
     "ref_kind": "release",
+    "release_integrity": {
+      "asset": "kubescape_4.0.17_linux_amd64.tar.gz",
+      "assets": 31,
+      "checksums_published": true,
+      "digest_matches_github": true,
+      "methods": [
+        {
+          "covers": "checksums file checksums.sha256",
+          "identity": "GitHub Actions workflow in kubescape/kubescape",
+          "method": "cosign",
+          "status": "verified"
+        },
+        {
+          "method": "github-attestation",
+          "predicates": [
+            "https://slsa.dev/provenance/v1"
+          ],
+          "status": "verified"
+        }
+      ],
+      "provenance_published": false,
+      "sbom_published": true,
+      "signatures_published": true,
+      "verdict": "verified"
+    },
     "released_at": "2026-10-28T10:29:34Z",
     "repository": "kubescape/kubescape",
     "sbomlyze_diff": {
@@ -5261,7 +5591,105 @@
       ],
       "removed": 0
     },
-    "scanned_at": "2026-11-01T16:37:24+00:00",
+    "scanned_at": "2026-11-01T17:50:06+00:00",
+    "scorecard": {
+      "checks": [
+        {
+          "name": "Fuzzing",
+          "reason": "project is not fuzzed",
+          "score": 0
+        },
+        {
+          "name": "SAST",
+          "reason": "SAST tool is not run on all commits -- score normalized to 0",
+          "score": 0
+        },
+        {
+          "name": "Vulnerabilities",
+          "reason": "23 existing vulnerabilities detected",
+          "score": 0
+        },
+        {
+          "name": "CII-Best-Practices",
+          "reason": "badge detected: InProgress",
+          "score": 2
+        },
+        {
+          "name": "Branch-Protection",
+          "reason": "branch protection is not maximal on development and all release branches",
+          "score": 6
+        },
+        {
+          "name": "Pinned-Dependencies",
+          "reason": "dependency not pinned by hash detected -- score normalized to 8",
+          "score": 8
+        },
+        {
+          "name": "Signed-Releases",
+          "reason": "5 out of the last 5 releases have a total of 5 signed artifacts.",
+          "score": 8
+        },
+        {
+          "name": "Security-Policy",
+          "reason": "security policy file detected",
+          "score": 9
+        },
+        {
+          "name": "Binary-Artifacts",
+          "reason": "no binaries found in the repo",
+          "score": 10
+        },
+        {
+          "name": "CI-Tests",
+          "reason": "30 out of 30 merged PRs checked by a CI test -- score normalized to 10",
+          "score": 10
+        },
+        {
+          "name": "Code-Review",
+          "reason": "all changesets reviewed",
+          "score": 10
+        },
+        {
+          "name": "Contributors",
+          "reason": "project has 20 contributing companies or organizations",
+          "score": 10
+        },
+        {
+          "name": "Dangerous-Workflow",
+          "reason": "no dangerous workflow patterns detected",
+          "score": 10
+        },
+        {
+          "name": "Dependency-Update-Tool",
+          "reason": "update tool detected",
+          "score": 10
+        },
+        {
+          "name": "License",
+          "reason": "license file detected",
+          "score": 10
+        },
+        {
+          "name": "Maintained",
+          "reason": "30 commit(s) and 0 issue activity found in the last 90 days -- score normalized to 10",
+          "score": 10
+        },
+        {
+          "name": "Packaging",
+          "reason": "packaging workflow detected",
+          "score": 10
+        },
+        {
+          "name": "Token-Permissions",
+          "reason": "GitHub workflow tokens follow principle of least privilege",
+          "score": 10
+        }
+      ],
+      "date": "2026-10-30",
+      "score": 7.6,
+      "source": "openssf-api",
+      "version": "v5.6.0"
+    },
     "vulnerabilities": [
       {
         "aliases": [
@@ -5273,7 +5701,9 @@
           "0.60.0"
         ],
         "id": "GO-2026-6612",
+        "in_binary": "vulnerable code in binary",
         "location": "go.mod",
+        "osv_confirmed": true,
         "package": "golang.org/x/net",
         "severity": "Critical",
         "url": "https://go.dev/cl/847187",
@@ -5287,7 +5717,9 @@
         "fix_state": "not-fixed",
         "fixed_in": [],
         "id": "GHSA-rg2x-37c3-w2rh",
+        "in_binary": "module in binary",
         "location": "go.mod",
+        "osv_confirmed": true,
         "package": "github.com/docker/docker",
         "severity": "High",
         "url": "https://github.com/advisories/GHSA-rg2x-37c3-w2rh",
@@ -5301,7 +5733,9 @@
         "fix_state": "not-fixed",
         "fixed_in": [],
         "id": "GHSA-x86f-5xw2-fm2r",
+        "in_binary": "module in binary",
         "location": "go.mod",
+        "osv_confirmed": true,
         "package": "github.com/docker/docker",
         "severity": "High",
         "url": "https://github.com/advisories/GHSA-x86f-5xw2-fm2r",
@@ -5316,7 +5750,9 @@
         "fix_state": "unknown",
         "fixed_in": [],
         "id": "GO-2026-4887",
+        "in_binary": "vulnerable code in binary",
         "location": "go.mod",
+        "osv_confirmed": true,
         "package": "github.com/docker/docker",
         "severity": "High",
         "url": "https://github.com/moby/moby/security/advisories/GHSA-x744-4wpc-v9h2",
@@ -5332,7 +5768,9 @@
           "4.1.6"
         ],
         "id": "GHSA-mgcc-cww5-fp2q",
+        "in_binary": "vulnerable code not in binary",
         "location": "go.mod",
+        "osv_confirmed": true,
         "package": "github.com/go-jose/go-jose/v4",
         "severity": "High",
         "url": "https://github.com/advisories/GHSA-mgcc-cww5-fp2q",
@@ -5348,7 +5786,9 @@
           "0.45.0"
         ],
         "id": "GO-2026-6222",
+        "in_binary": "vulnerable code in binary",
         "location": "go.mod",
+        "osv_confirmed": true,
         "package": "golang.org/x/image",
         "severity": "High",
         "url": "https://go.dev/issue/80069",
@@ -5364,7 +5804,9 @@
           "0.60.0"
         ],
         "id": "GO-2026-6603",
+        "in_binary": "vulnerable code in binary",
         "location": "go.mod",
+        "osv_confirmed": true,
         "package": "golang.org/x/net",
         "severity": "High",
         "url": "https://go.dev/cl/847185",
@@ -5380,7 +5822,9 @@
           "0.60.0"
         ],
         "id": "GO-2026-6610",
+        "in_binary": "vulnerable code in binary",
         "location": "go.mod",
+        "osv_confirmed": true,
         "package": "golang.org/x/net",
         "severity": "High",
         "url": "https://go.dev/cl/835145",
@@ -5396,7 +5840,9 @@
           "0.60.0"
         ],
         "id": "GO-2026-6611",
+        "in_binary": "vulnerable code in binary",
         "location": "go.mod",
+        "osv_confirmed": true,
         "package": "golang.org/x/net",
         "severity": "High",
         "url": "https://go.dev/cl/847186",
@@ -5412,7 +5858,9 @@
           "0.60.0"
         ],
         "id": "GO-2026-6617",
+        "in_binary": "vulnerable code in binary",
         "location": "go.mod",
+        "osv_confirmed": true,
         "package": "golang.org/x/net",
         "severity": "High",
         "url": "https://go.dev/cl/847188",
@@ -5426,7 +5874,9 @@
         "fix_state": "not-fixed",
         "fixed_in": [],
         "id": "GHSA-685w-q87j-wqw3",
+        "in_binary": "vulnerable code not in binary",
         "location": "go.mod",
+        "osv_confirmed": true,
         "package": "github.com/docker/distribution",
         "severity": "Medium",
         "url": "https://github.com/advisories/GHSA-685w-q87j-wqw3",
@@ -5440,7 +5890,9 @@
         "fix_state": "not-fixed",
         "fixed_in": [],
         "id": "GHSA-pxq6-2prw-chj9",
+        "in_binary": "vulnerable code in binary",
         "location": "go.mod",
+        "osv_confirmed": true,
         "package": "github.com/docker/docker",
         "severity": "Medium",
         "url": "https://github.com/advisories/GHSA-pxq6-2prw-chj9",
@@ -5454,7 +5906,9 @@
         "fix_state": "not-fixed",
         "fixed_in": [],
         "id": "GHSA-vp62-88p7-qqf5",
+        "in_binary": "module in binary",
         "location": "go.mod",
+        "osv_confirmed": true,
         "package": "github.com/docker/docker",
         "severity": "Medium",
         "url": "https://github.com/advisories/GHSA-vp62-88p7-qqf5",
@@ -5470,7 +5924,9 @@
           "4.1.5"
         ],
         "id": "GHSA-4w3g-jfj2-cw2q",
+        "in_binary": "vulnerable code not in binary",
         "location": "go.mod",
+        "osv_confirmed": true,
         "package": "github.com/go-jose/go-jose/v4",
         "severity": "Medium",
         "url": "https://github.com/advisories/GHSA-4w3g-jfj2-cw2q",
@@ -5486,7 +5942,9 @@
           "4.1.5"
         ],
         "id": "GHSA-vvm8-gf78-28g4",
+        "in_binary": "vulnerable code not in binary",
         "location": "go.mod",
+        "osv_confirmed": true,
         "package": "github.com/go-jose/go-jose/v4",
         "severity": "Medium",
         "url": "https://github.com/advisories/GHSA-vvm8-gf78-28g4",
@@ -5498,7 +5956,9 @@
         "fix_state": "unknown",
         "fixed_in": [],
         "id": "GO-2026-6225",
+        "in_binary": "package in binary",
         "location": "go.mod",
+        "osv_confirmed": true,
         "package": "github.com/chrismellard/docker-credential-acr-env",
         "severity": "Unknown",
         "url": "https://github.com/chrismellard/docker-credential-acr-env/issues/21",
@@ -5510,7 +5970,9 @@
         "fix_state": "unknown",
         "fixed_in": [],
         "id": "GO-2026-5932",
+        "in_binary": "vulnerable code in binary",
         "location": "go.mod",
+        "osv_confirmed": true,
         "package": "golang.org/x/crypto",
         "severity": "Unknown",
         "url": "https://go.dev/issue/44226",
@@ -5526,7 +5988,9 @@
           "0.62.0"
         ],
         "id": "GO-2026-6860",
+        "in_binary": "package in binary",
         "location": "go.mod",
+        "osv_confirmed": true,
         "package": "golang.org/x/net",
         "severity": "Unknown",
         "url": "https://go.dev/cl/849365",
@@ -5542,13 +6006,90 @@
           "0.62.0"
         ],
         "id": "GO-2026-6866",
+        "in_binary": "package in binary",
         "location": "go.mod",
+        "osv_confirmed": true,
         "package": "golang.org/x/net",
         "severity": "Unknown",
         "url": "https://go.dev/cl/855121",
         "version": "v0.59.0"
       }
-    ]
+    ],
+    "workflow_audit": {
+      "files": 7,
+      "findings": [
+        {
+          "confidence": "High",
+          "description": "dangerous use of GitHub App tokens",
+          "file": ".github/workflows/00-pr-scanner.yaml",
+          "line": 147,
+          "note": "app token inherits blanket installation permissions",
+          "rule": "github-app",
+          "severity": "High",
+          "url": "https://docs.zizmor.sh/audits/#github-app"
+        },
+        {
+          "confidence": "High",
+          "description": "overly broad permissions",
+          "file": ".github/workflows/00-pr-scanner.yaml",
+          "line": 2,
+          "note": "uses read-all permissions",
+          "rule": "excessive-permissions",
+          "severity": "Medium",
+          "url": "https://docs.zizmor.sh/audits/#excessive-permissions"
+        },
+        {
+          "confidence": "High",
+          "description": "secrets unconditionally inherited by called workflow",
+          "file": ".github/workflows/00-pr-scanner.yaml",
+          "line": 92,
+          "note": "this reusable workflow",
+          "rule": "secrets-inherit",
+          "severity": "Medium",
+          "url": "https://docs.zizmor.sh/audits/#secrets-inherit"
+        },
+        {
+          "confidence": "High",
+          "description": "use GitHub's dedicated self-repository syntax",
+          "file": ".github/workflows/00-pr-scanner.yaml",
+          "line": 73,
+          "note": "this job",
+          "rule": "self-repository",
+          "severity": "Low",
+          "url": "https://docs.zizmor.sh/audits/#self-repository"
+        },
+        {
+          "confidence": "High",
+          "description": "code injection via template expansion",
+          "file": ".github/workflows/a-pr-scanner.yaml",
+          "line": 52,
+          "note": "this step",
+          "rule": "template-injection",
+          "severity": "Low",
+          "url": "https://docs.zizmor.sh/audits/#template-injection"
+        },
+        {
+          "confidence": "High",
+          "description": "code injection via template expansion",
+          "file": ".github/workflows/a-pr-scanner.yaml",
+          "line": 55,
+          "note": "this step",
+          "rule": "template-injection",
+          "severity": "Low",
+          "url": "https://docs.zizmor.sh/audits/#template-injection"
+        },
+        {
+          "confidence": "High",
+          "description": "code injection via template expansion",
+          "file": ".github/workflows/a-pr-scanner.yaml",
+          "line": 77,
+          "note": "this step",
+          "rule": "template-injection",
+          "severity": "Low",
+          "url": "https://docs.zizmor.sh/audits/#template-injection"
+        }
+      ]
+    }
   },
   "updated": "2026-11-01"
 }

@@ -7,11 +7,21 @@
       "dependencies": 101,
       "errors": [],
       "fixable": 8,
+      "go_version": "go1.26.3",
+      "in_binary": {
+        "dependencies": 3,
+        "stdlib": 26,
+        "total": 29
+      },
       "new_vulnerabilities": 0,
+      "osv_confirmed": 8,
+      "osv_only": 0,
       "ref": "v0.16.0",
       "release_changed": false,
+      "release_integrity": "checksums-only",
       "removed": 0,
       "resolved_vulnerabilities": 0,
+      "scorecard": 5.8,
       "upgraded": 0,
       "vulnerabilities": {
         "Critical": 1,
@@ -20,6 +30,12 @@
         "Medium": 0,
         "Negligible": 0,
         "Unknown": 2
+      },
+      "workflow": {
+        "High": 1,
+        "Low": 0,
+        "Medium": 8,
+        "files": 4
       }
     }
   ],
@@ -890,6 +906,333 @@
     ],
     "description": "Check Kubernetes against CIS benchmarks.",
     "errors": [],
+    "go_binary": {
+      "asset": "kube-bench_0.16.0_linux_amd64.tar.gz",
+      "binary": "kube-bench",
+      "findings": [
+        {
+          "aliases": [
+            "CVE-2026-39822"
+          ],
+          "fixed_version": "v1.26.5",
+          "id": "GO-2026-4970",
+          "level": "symbol",
+          "module": "stdlib",
+          "summary": "Root escape via symlink plus trailing slash in os",
+          "version": "v1.26.3"
+        },
+        {
+          "aliases": [
+            "CVE-2026-39821"
+          ],
+          "fixed_version": "v1.26.6",
+          "id": "GO-2026-5026",
+          "level": "symbol",
+          "module": "stdlib",
+          "summary": "Invoking failure to reject ASCII-only Punycode-encoded labels in golang.org/x/net/idna",
+          "version": "v1.26.3"
+        },
+        {
+          "aliases": [
+            "CVE-2026-27145"
+          ],
+          "fixed_version": "v1.26.4",
+          "id": "GO-2026-5037",
+          "level": "symbol",
+          "module": "stdlib",
+          "summary": "Inefficient candidate hostname parsing in crypto/x509",
+          "version": "v1.26.3"
+        },
+        {
+          "aliases": [
+            "CVE-2026-42504"
+          ],
+          "fixed_version": "v1.26.4",
+          "id": "GO-2026-5038",
+          "level": "symbol",
+          "module": "stdlib",
+          "summary": "Quadratic complexity in WordDecoder.DecodeHeader in mime",
+          "version": "v1.26.3"
+        },
+        {
+          "aliases": [
+            "CVE-2026-42507"
+          ],
+          "fixed_version": "v1.26.4",
+          "id": "GO-2026-5039",
+          "level": "symbol",
+          "module": "stdlib",
+          "summary": "Arbitrary inputs are included in errors without any escaping in net/textproto",
+          "version": "v1.26.3"
+        },
+        {
+          "aliases": [
+            "CVE-2026-42505"
+          ],
+          "fixed_version": "v1.26.5",
+          "id": "GO-2026-5856",
+          "level": "symbol",
+          "module": "stdlib",
+          "summary": "Invoking Encrypted Client Hello privacy leak in crypto/tls",
+          "version": "v1.26.3"
+        },
+        {
+          "aliases": [
+            "CVE-2026-46600"
+          ],
+          "fixed_version": "v1.26.6",
+          "id": "GO-2026-5942",
+          "level": "symbol",
+          "module": "stdlib",
+          "summary": "Parsing an invalid SVCB or HTTPS RR can panic in golang.org/x/net/dns/dnsmessage",
+          "version": "v1.26.3"
+        },
+        {
+          "aliases": [
+            "CVE-2026-33818"
+          ],
+          "fixed_version": "v1.26.6",
+          "id": "GO-2026-5972",
+          "level": "symbol",
+          "module": "stdlib",
+          "summary": "Enforce maximum recursion depth in encoding/asn1",
+          "version": "v1.26.3"
+        },
+        {
+          "aliases": [
+            "CVE-2026-56859"
+          ],
+          "fixed_version": "v1.26.6",
+          "id": "GO-2026-6088",
+          "level": "symbol",
+          "module": "stdlib",
+          "summary": "Add recursion depth guard during decode in encoding/xml",
+          "version": "v1.26.3"
+        },
+        {
+          "aliases": [
+            "CVE-2026-56853"
+          ],
+          "fixed_version": "v1.26.6",
+          "id": "GO-2026-6089",
+          "level": "symbol",
+          "module": "stdlib",
+          "summary": "Apply ReadHeaderTimeout when doing unencrypted HTTP/2 check in net/http",
+          "version": "v1.26.3"
+        },
+        {
+          "aliases": [
+            "CVE-2026-56862"
+          ],
+          "fixed_version": "v1.26.6",
+          "id": "GO-2026-6090",
+          "level": "symbol",
+          "module": "stdlib",
+          "summary": "Limit handshake messages we are willing to accept post-handshake in crypto/tls",
+          "version": "v1.26.3"
+        },
+        {
+          "aliases": [
+            "CVE-2026-56858"
+          ],
+          "fixed_version": "v1.26.6",
+          "id": "GO-2026-6091",
+          "level": "symbol",
+          "module": "stdlib",
+          "summary": "Fix Javascript regexp context tracking in html/template",
+          "version": "v1.26.3"
+        },
+        {
+          "aliases": [
+            "CVE-2026-56860"
+          ],
+          "fixed_version": "v1.26.6",
+          "id": "GO-2026-6218",
+          "level": "symbol",
+          "module": "stdlib",
+          "summary": "Avoid quadratic complexity in resolvePath in net/url",
+          "version": "v1.26.3"
+        },
+        {
+          "aliases": [
+            "CVE-2026-94448"
+          ],
+          "fixed_version": "v1.26.9",
+          "id": "GO-2026-6599",
+          "level": "symbol",
+          "module": "stdlib",
+          "summary": "Reset context tracking on consecutive template expressions in html/template",
+          "version": "v1.26.3"
+        },
+        {
+          "aliases": [
+            "CVE-2026-97030"
+          ],
+          "fixed_version": "v1.26.9",
+          "id": "GO-2026-6600",
+          "level": "symbol",
+          "module": "stdlib",
+          "summary": "Recognize yield as regexp preceder keyword in html/template",
+          "version": "v1.26.3"
+        },
+        {
+          "aliases": [
+            "CVE-2026-78659"
+          ],
+          "fixed_version": "v1.26.9",
+          "id": "GO-2026-6603",
+          "level": "symbol",
+          "module": "stdlib",
+          "summary": "HTTP/2 server memory exhaustion due to Trailer headers in net/http",
+          "version": "v1.26.3"
+        },
+        {
+          "aliases": [
+            "CVE-2026-56866"
+          ],
+          "fixed_version": "v1.26.9",
+          "id": "GO-2026-6605",
+          "level": "symbol",
+          "module": "stdlib",
+          "summary": "HTTP/1 client connection desynchronization after CONNECT rejection in net/http",
+          "version": "v1.26.3"
+        },
+        {
+          "aliases": [
+            "CVE-2026-97031"
+          ],
+          "fixed_version": "v1.26.9",
+          "id": "GO-2026-6607",
+          "level": "symbol",
+          "module": "stdlib",
+          "summary": "Reject malformed ECH outer extension references in crypto/tls",
+          "version": "v1.26.3"
+        },
+        {
+          "aliases": [
+            "CVE-2026-94440"
+          ],
+          "fixed_version": "v1.26.9",
+          "id": "GO-2026-6608",
+          "level": "symbol",
+          "module": "stdlib",
+          "summary": "Memory limit bypass when parsing MIME headers in net/textproto, mime/multipart",
+          "version": "v1.26.3"
+        },
+        {
+          "aliases": [
+            "CVE-2026-78667"
+          ],
+          "fixed_version": "v1.26.9",
+          "id": "GO-2026-6609",
+          "level": "symbol",
+          "module": "stdlib",
+          "summary": "Lack of limit on size of parsed Range headers in net/http",
+          "version": "v1.26.3"
+        },
+        {
+          "aliases": [
+            "CVE-2026-78660"
+          ],
+          "fixed_version": "v1.26.9",
+          "id": "GO-2026-6610",
+          "level": "symbol",
+          "module": "stdlib",
+          "summary": "HTTP/2 transport accepts malformed framing-related headers in net/http",
+          "version": "v1.26.3"
+        },
+        {
+          "aliases": [
+            "CVE-2026-78669"
+          ],
+          "fixed_version": "v1.26.9",
+          "id": "GO-2026-6611",
+          "level": "symbol",
+          "module": "stdlib",
+          "summary": "Excessive CPU consumption from repeated initial window changes in net/http",
+          "version": "v1.26.3"
+        },
+        {
+          "aliases": [
+            "CVE-2026-78663"
+          ],
+          "fixed_version": "v1.26.9",
+          "id": "GO-2026-6612",
+          "level": "symbol",
+          "module": "stdlib",
+          "summary": "Double flow control refund on HTTP/2 server streams in net/http",
+          "version": "v1.26.3"
+        },
+        {
+          "aliases": [
+            "CVE-2026-94439"
+          ],
+          "fixed_version": "v1.26.9",
+          "id": "GO-2026-6613",
+          "level": "symbol",
+          "module": "stdlib",
+          "summary": "HTTP/1 server connection desynchronization after 2xx CONNECT response in net/http",
+          "version": "v1.26.3"
+        },
+        {
+          "aliases": [
+            "CVE-2026-97032"
+          ],
+          "fixed_version": "v1.26.9",
+          "id": "GO-2026-6617",
+          "level": "symbol",
+          "module": "stdlib",
+          "summary": "HTTP/2 server crash due to HPACK encoder race in net/http",
+          "version": "v1.26.3"
+        },
+        {
+          "aliases": [
+            "CVE-2026-111943"
+          ],
+          "fixed_version": "v1.26.10",
+          "id": "GO-2026-6809",
+          "level": "symbol",
+          "module": "stdlib",
+          "summary": "Distrust compromised intermediate certificates in crypto/x509",
+          "version": "v1.26.3"
+        },
+        {
+          "aliases": [
+            "CVE-2026-78661"
+          ],
+          "fixed_version": "v0.62.0",
+          "id": "GO-2026-6860",
+          "level": "symbol",
+          "module": "golang.org/x/net",
+          "summary": "Avoid quadratic complexity when coalescing text nodes in html in golang.org/x/net",
+          "version": "v0.56.0"
+        },
+        {
+          "aliases": [
+            "CVE-2026-97045"
+          ],
+          "fixed_version": "v0.62.0",
+          "id": "GO-2026-6866",
+          "level": "symbol",
+          "module": "golang.org/x/net",
+          "summary": "Check all ancestor namespace transitions when rendering raw text in html in golang.org/x/net",
+          "version": "v0.56.0"
+        },
+        {
+          "aliases": [
+            "CVE-2026-56851"
+          ],
+          "fixed_version": "v0.41.0",
+          "id": "GO-2026-6629",
+          "level": "symbol",
+          "module": "golang.org/x/text",
+          "summary": "Panic parsing crafted input in x/text/secure/precis in golang.org/x/text",
+          "version": "v0.39.0"
+        }
+      ],
+      "go_version": "go1.26.3",
+      "main_module": "github.com/aquasecurity/kube-bench"
+    },
     "id": "aquasecurity__kube-bench",
     "manifests": [
       ".github/workflows/build.yml",
@@ -900,8 +1243,26 @@
       "go.sum"
     ],
     "name": "kube-bench",
+    "osv": {
+      "advisories": 8,
+      "available": true,
+      "confirmed": 8,
+      "osv_only": [],
+      "warning": null
+    },
     "ref": "v0.16.0",
     "ref_kind": "release",
+    "release_integrity": {
+      "asset": "kube-bench_0.16.0_linux_amd64.tar.gz",
+      "assets": 21,
+      "checksums_published": true,
+      "digest_matches_github": true,
+      "methods": [],
+      "provenance_published": false,
+      "sbom_published": false,
+      "signatures_published": false,
+      "verdict": "checksums-only"
+    },
     "released_at": "2026-08-05T12:16:28Z",
     "repository": "aquasecurity/kube-bench",
     "sbomlyze_diff": {
@@ -914,7 +1275,105 @@
       ],
       "removed": 0
     },
-    "scanned_at": "2026-11-01T16:37:05+00:00",
+    "scanned_at": "2026-11-01T17:49:12+00:00",
+    "scorecard": {
+      "checks": [
+        {
+          "name": "CII-Best-Practices",
+          "reason": "no effort to earn an OpenSSF best practices badge detected",
+          "score": 0
+        },
+        {
+          "name": "Fuzzing",
+          "reason": "project is not fuzzed",
+          "score": 0
+        },
+        {
+          "name": "SAST",
+          "reason": "SAST tool is not run on all commits -- score normalized to 0",
+          "score": 0
+        },
+        {
+          "name": "Security-Policy",
+          "reason": "security policy file not detected",
+          "score": 0
+        },
+        {
+          "name": "Signed-Releases",
+          "reason": "Project has not signed or included provenance with any releases.",
+          "score": 0
+        },
+        {
+          "name": "Token-Permissions",
+          "reason": "detected GitHub workflow tokens with excessive permissions",
+          "score": 0
+        },
+        {
+          "name": "Vulnerabilities",
+          "reason": "8 existing vulnerabilities detected",
+          "score": 2
+        },
+        {
+          "name": "Branch-Protection",
+          "reason": "branch protection is not maximal on development and all release branches",
+          "score": 5
+        },
+        {
+          "name": "Pinned-Dependencies",
+          "reason": "dependency not pinned by hash detected -- score normalized to 6",
+          "score": 6
+        },
+        {
+          "name": "Binary-Artifacts",
+          "reason": "no binaries found in the repo",
+          "score": 10
+        },
+        {
+          "name": "CI-Tests",
+          "reason": "30 out of 30 merged PRs checked by a CI test -- score normalized to 10",
+          "score": 10
+        },
+        {
+          "name": "Code-Review",
+          "reason": "all changesets reviewed",
+          "score": 10
+        },
+        {
+          "name": "Contributors",
+          "reason": "project has 20 contributing companies or organizations",
+          "score": 10
+        },
+        {
+          "name": "Dangerous-Workflow",
+          "reason": "no dangerous workflow patterns detected",
+          "score": 10
+        },
+        {
+          "name": "Dependency-Update-Tool",
+          "reason": "update tool detected",
+          "score": 10
+        },
+        {
+          "name": "License",
+          "reason": "license file detected",
+          "score": 10
+        },
+        {
+          "name": "Maintained",
+          "reason": "12 commit(s) and 4 issue activity found in the last 90 days -- score normalized to 10",
+          "score": 10
+        },
+        {
+          "name": "Packaging",
+          "reason": "packaging workflow detected",
+          "score": 10
+        }
+      ],
+      "date": "2026-11-01",
+      "score": 5.8,
+      "source": "scorecard-cli",
+      "version": "v5.6.0"
+    },
     "vulnerabilities": [
       {
         "aliases": [
@@ -926,7 +1385,9 @@
           "0.60.0"
         ],
         "id": "GO-2026-6612",
+        "in_binary": "vulnerable code in binary",
         "location": "go.mod",
+        "osv_confirmed": true,
         "package": "golang.org/x/net",
         "severity": "Critical",
         "url": "https://go.dev/cl/847187",
@@ -942,7 +1403,9 @@
           "0.60.0"
         ],
         "id": "GO-2026-6603",
+        "in_binary": "vulnerable code in binary",
         "location": "go.mod",
+        "osv_confirmed": true,
         "package": "golang.org/x/net",
         "severity": "High",
         "url": "https://go.dev/cl/847185",
@@ -958,7 +1421,9 @@
           "0.60.0"
         ],
         "id": "GO-2026-6610",
+        "in_binary": "vulnerable code in binary",
         "location": "go.mod",
+        "osv_confirmed": true,
         "package": "golang.org/x/net",
         "severity": "High",
         "url": "https://go.dev/cl/835145",
@@ -974,7 +1439,9 @@
           "0.60.0"
         ],
         "id": "GO-2026-6611",
+        "in_binary": "vulnerable code in binary",
         "location": "go.mod",
+        "osv_confirmed": true,
         "package": "golang.org/x/net",
         "severity": "High",
         "url": "https://go.dev/cl/847186",
@@ -990,7 +1457,9 @@
           "0.60.0"
         ],
         "id": "GO-2026-6617",
+        "in_binary": "vulnerable code in binary",
         "location": "go.mod",
+        "osv_confirmed": true,
         "package": "golang.org/x/net",
         "severity": "High",
         "url": "https://go.dev/cl/847188",
@@ -1006,7 +1475,9 @@
           "0.41.0"
         ],
         "id": "GO-2026-6629",
+        "in_binary": "vulnerable code in binary",
         "location": "go.mod",
+        "osv_confirmed": true,
         "package": "golang.org/x/text",
         "severity": "High",
         "url": "https://go.dev/cl/793360",
@@ -1022,7 +1493,9 @@
           "0.62.0"
         ],
         "id": "GO-2026-6860",
+        "in_binary": "vulnerable code in binary",
         "location": "go.mod",
+        "osv_confirmed": true,
         "package": "golang.org/x/net",
         "severity": "Unknown",
         "url": "https://go.dev/cl/849365",
@@ -1038,13 +1511,110 @@
           "0.62.0"
         ],
         "id": "GO-2026-6866",
+        "in_binary": "vulnerable code in binary",
         "location": "go.mod",
+        "osv_confirmed": true,
         "package": "golang.org/x/net",
         "severity": "Unknown",
         "url": "https://go.dev/cl/855121",
         "version": "v0.56.0"
       }
-    ]
+    ],
+    "workflow_audit": {
+      "files": 4,
+      "findings": [
+        {
+          "confidence": "High",
+          "description": "code injection via template expansion",
+          "file": ".github/workflows/mkdocs-deploy.yaml",
+          "line": 36,
+          "note": "this step",
+          "rule": "template-injection",
+          "severity": "High",
+          "url": "https://docs.zizmor.sh/audits/#template-injection"
+        },
+        {
+          "confidence": "Medium",
+          "description": "overly broad permissions",
+          "file": ".github/workflows/build.yml",
+          "line": 2,
+          "note": "default permissions used due to no permissions: block",
+          "rule": "excessive-permissions",
+          "severity": "Medium",
+          "url": "https://docs.zizmor.sh/audits/#excessive-permissions"
+        },
+        {
+          "confidence": "Medium",
+          "description": "overly broad permissions",
+          "file": ".github/workflows/build.yml",
+          "line": 21,
+          "note": "this job",
+          "rule": "excessive-permissions",
+          "severity": "Medium",
+          "url": "https://docs.zizmor.sh/audits/#excessive-permissions"
+        },
+        {
+          "confidence": "Medium",
+          "description": "overly broad permissions",
+          "file": ".github/workflows/build.yml",
+          "line": 38,
+          "note": "this job",
+          "rule": "excessive-permissions",
+          "severity": "Medium",
+          "url": "https://docs.zizmor.sh/audits/#excessive-permissions"
+        },
+        {
+          "confidence": "Medium",
+          "description": "overly broad permissions",
+          "file": ".github/workflows/build.yml",
+          "line": 54,
+          "note": "this job",
+          "rule": "excessive-permissions",
+          "severity": "Medium",
+          "url": "https://docs.zizmor.sh/audits/#excessive-permissions"
+        },
+        {
+          "confidence": "Medium",
+          "description": "overly broad permissions",
+          "file": ".github/workflows/build.yml",
+          "line": 83,
+          "note": "this job",
+          "rule": "excessive-permissions",
+          "severity": "Medium",
+          "url": "https://docs.zizmor.sh/audits/#excessive-permissions"
+        },
+        {
+          "confidence": "Medium",
+          "description": "overly broad permissions",
+          "file": ".github/workflows/mkdocs-deploy.yaml",
+          "line": 14,
+          "note": "this job",
+          "rule": "excessive-permissions",
+          "severity": "Medium",
+          "url": "https://docs.zizmor.sh/audits/#excessive-permissions"
+        },
+        {
+          "confidence": "Medium",
+          "description": "overly broad permissions",
+          "file": ".github/workflows/publish.yml",
+          "line": 14,
+          "note": "this job",
+          "rule": "excessive-permissions",
+          "severity": "Medium",
+          "url": "https://docs.zizmor.sh/audits/#excessive-permissions"
+        },
+        {
+          "confidence": "Medium",
+          "description": "overly broad permissions",
+          "file": ".github/workflows/release.yml",
+          "line": 12,
+          "note": "this job",
+          "rule": "excessive-permissions",
+          "severity": "Medium",
+          "url": "https://docs.zizmor.sh/audits/#excessive-permissions"
+        }
+      ]
+    }
   },
   "updated": "2026-11-01"
 }

@@ -7,11 +7,21 @@
       "dependencies": 156,
       "errors": [],
       "fixable": 4,
+      "go_version": "go1.27.3",
+      "in_binary": {
+        "dependencies": 0,
+        "stdlib": 0,
+        "total": 0
+      },
       "new_vulnerabilities": 0,
+      "osv_confirmed": 5,
+      "osv_only": 0,
       "ref": "v1.22.0",
       "release_changed": false,
+      "release_integrity": "verified",
       "removed": 0,
       "resolved_vulnerabilities": 0,
+      "scorecard": 8,
       "upgraded": 0,
       "vulnerabilities": {
         "Critical": 0,
@@ -20,6 +30,12 @@
         "Medium": 0,
         "Negligible": 0,
         "Unknown": 3
+      },
+      "workflow": {
+        "High": 1,
+        "Low": 6,
+        "Medium": 1,
+        "files": 15
       }
     }
   ],
@@ -1387,6 +1403,45 @@
     ],
     "description": "Evaluate policy as code across application and infrastructure systems.",
     "errors": [],
+    "go_binary": {
+      "asset": "opa_linux_amd64",
+      "binary": "opa_linux_amd64",
+      "findings": [
+        {
+          "aliases": [],
+          "fixed_version": "",
+          "id": "GO-2026-5932",
+          "level": "module",
+          "module": "golang.org/x/crypto",
+          "summary": "The golang.org/x/crypto/openpgp package is unmaintained, unsafe by design, and has known security issues",
+          "version": "v0.57.0"
+        },
+        {
+          "aliases": [
+            "CVE-2026-78661"
+          ],
+          "fixed_version": "v0.62.0",
+          "id": "GO-2026-6860",
+          "level": "module",
+          "module": "golang.org/x/net",
+          "summary": "Avoid quadratic complexity when coalescing text nodes in html in golang.org/x/net",
+          "version": "v0.60.0"
+        },
+        {
+          "aliases": [
+            "CVE-2026-97045"
+          ],
+          "fixed_version": "v0.62.0",
+          "id": "GO-2026-6866",
+          "level": "module",
+          "module": "golang.org/x/net",
+          "summary": "Check all ancestor namespace transitions when rendering raw text in html in golang.org/x/net",
+          "version": "v0.60.0"
+        }
+      ],
+      "go_version": "go1.27.3",
+      "main_module": "github.com/open-policy-agent/opa"
+    },
     "id": "open-policy-agent__opa",
     "manifests": [
       ".github/actions/build-opa/action.yml",
@@ -1412,8 +1467,32 @@
       "go.sum"
     ],
     "name": "opa",
+    "osv": {
+      "advisories": 5,
+      "available": true,
+      "confirmed": 5,
+      "osv_only": [],
+      "warning": null
+    },
     "ref": "v1.22.0",
     "ref_kind": "release",
+    "release_integrity": {
+      "asset": "opa_linux_amd64",
+      "assets": 16,
+      "checksums_published": true,
+      "digest_matches_github": true,
+      "methods": [
+        {
+          "detail": "GitHub attests the file is unchanged since the release was published",
+          "method": "github-immutable-release",
+          "status": "verified"
+        }
+      ],
+      "provenance_published": false,
+      "sbom_published": false,
+      "signatures_published": false,
+      "verdict": "verified"
+    },
     "released_at": "2026-10-29T15:34:18Z",
     "repository": "open-policy-agent/opa",
     "sbomlyze_diff": {
@@ -1426,7 +1505,105 @@
       ],
       "removed": 0
     },
-    "scanned_at": "2026-11-01T16:37:28+00:00",
+    "scanned_at": "2026-11-01T17:50:21+00:00",
+    "scorecard": {
+      "checks": [
+        {
+          "name": "Signed-Releases",
+          "reason": "Project has not signed or included provenance with any releases.",
+          "score": 0
+        },
+        {
+          "name": "Vulnerabilities",
+          "reason": "8 existing vulnerabilities detected",
+          "score": 2
+        },
+        {
+          "name": "CII-Best-Practices",
+          "reason": "badge detected: Passing",
+          "score": 5
+        },
+        {
+          "name": "SAST",
+          "reason": "SAST tool detected but not run on all commits",
+          "score": 7
+        },
+        {
+          "name": "Binary-Artifacts",
+          "reason": "binaries present in source code",
+          "score": 9
+        },
+        {
+          "name": "Pinned-Dependencies",
+          "reason": "dependency not pinned by hash detected -- score normalized to 9",
+          "score": 9
+        },
+        {
+          "name": "Security-Policy",
+          "reason": "security policy file detected",
+          "score": 9
+        },
+        {
+          "name": "Token-Permissions",
+          "reason": "detected GitHub workflow tokens with excessive permissions",
+          "score": 9
+        },
+        {
+          "name": "CI-Tests",
+          "reason": "30 out of 30 merged PRs checked by a CI test -- score normalized to 10",
+          "score": 10
+        },
+        {
+          "name": "Code-Review",
+          "reason": "all changesets reviewed",
+          "score": 10
+        },
+        {
+          "name": "Contributors",
+          "reason": "project has 29 contributing companies or organizations",
+          "score": 10
+        },
+        {
+          "name": "Dangerous-Workflow",
+          "reason": "no dangerous workflow patterns detected",
+          "score": 10
+        },
+        {
+          "name": "Dependency-Update-Tool",
+          "reason": "update tool detected",
+          "score": 10
+        },
+        {
+          "name": "Fuzzing",
+          "reason": "project is fuzzed",
+          "score": 10
+        },
+        {
+          "name": "License",
+          "reason": "license file detected",
+          "score": 10
+        },
+        {
+          "name": "Maintained",
+          "reason": "30 commit(s) and 10 issue activity found in the last 90 days -- score normalized to 10",
+          "score": 10
+        },
+        {
+          "name": "Branch-Protection",
+          "reason": "internal error: error during branchesHandler.setup: internal error: some github tokens can't read classic branch protection rules: https://github.com/ossf/scorecard-action/blob/main/docs/authentication/fine-grained-auth-token.md",
+          "score": -1
+        },
+        {
+          "name": "Packaging",
+          "reason": "packaging workflow not detected",
+          "score": -1
+        }
+      ],
+      "date": "2026-10-30",
+      "score": 8,
+      "source": "openssf-api",
+      "version": "v5.5.0"
+    },
     "vulnerabilities": [
       {
         "aliases": [
@@ -1438,7 +1615,9 @@
           "0.40.0"
         ],
         "id": "GO-2026-6179",
+        "in_binary": "not in released binary",
         "location": "build/tools/go.mod",
+        "osv_confirmed": true,
         "package": "golang.org/x/mod",
         "severity": "High",
         "url": "https://go.dev/issue/80744",
@@ -1454,7 +1633,9 @@
           "0.40.0"
         ],
         "id": "GO-2026-6180",
+        "in_binary": "not in released binary",
         "location": "build/tools/go.mod",
+        "osv_confirmed": true,
         "package": "golang.org/x/mod",
         "severity": "High",
         "url": "https://go.dev/issue/80745",
@@ -1466,7 +1647,9 @@
         "fix_state": "unknown",
         "fixed_in": [],
         "id": "GO-2026-5932",
+        "in_binary": "module in binary",
         "location": "go.mod",
+        "osv_confirmed": true,
         "package": "golang.org/x/crypto",
         "severity": "Unknown",
         "url": "https://go.dev/issue/44226",
@@ -1482,7 +1665,9 @@
           "0.62.0"
         ],
         "id": "GO-2026-6860",
+        "in_binary": "module in binary",
         "location": "go.mod",
+        "osv_confirmed": true,
         "package": "golang.org/x/net",
         "severity": "Unknown",
         "url": "https://go.dev/cl/849365",
@@ -1498,13 +1683,100 @@
           "0.62.0"
         ],
         "id": "GO-2026-6866",
+        "in_binary": "module in binary",
         "location": "go.mod",
+        "osv_confirmed": true,
         "package": "golang.org/x/net",
         "severity": "Unknown",
         "url": "https://go.dev/cl/855121",
         "version": "v0.60.0"
       }
-    ]
+    ],
+    "workflow_audit": {
+      "files": 15,
+      "findings": [
+        {
+          "confidence": "High",
+          "description": "code injection via template expansion",
+          "file": ".github/workflows/pull-request.yaml",
+          "line": 528,
+          "note": "this step",
+          "rule": "template-injection",
+          "severity": "High",
+          "url": "https://docs.zizmor.sh/audits/#template-injection"
+        },
+        {
+          "confidence": "High",
+          "description": "overly broad permissions",
+          "file": ".github/workflows/pull-request.yaml",
+          "line": 13,
+          "note": "security-events: write is overly broad at the workflow level",
+          "rule": "excessive-permissions",
+          "severity": "Medium",
+          "url": "https://docs.zizmor.sh/audits/#excessive-permissions"
+        },
+        {
+          "confidence": "High",
+          "description": "use GitHub's dedicated self-repository syntax",
+          "file": ".github/workflows/nightly.yaml",
+          "line": 96,
+          "note": "this job",
+          "rule": "self-repository",
+          "severity": "Low",
+          "url": "https://docs.zizmor.sh/audits/#self-repository"
+        },
+        {
+          "confidence": "High",
+          "description": "use GitHub's dedicated self-repository syntax",
+          "file": ".github/workflows/nightly.yaml",
+          "line": 102,
+          "note": "this job",
+          "rule": "self-repository",
+          "severity": "Low",
+          "url": "https://docs.zizmor.sh/audits/#self-repository"
+        },
+        {
+          "confidence": "High",
+          "description": "use GitHub's dedicated self-repository syntax",
+          "file": ".github/workflows/nightly.yaml",
+          "line": 108,
+          "note": "this job",
+          "rule": "self-repository",
+          "severity": "Low",
+          "url": "https://docs.zizmor.sh/audits/#self-repository"
+        },
+        {
+          "confidence": "High",
+          "description": "use GitHub's dedicated self-repository syntax",
+          "file": ".github/workflows/pull-request.yaml",
+          "line": 649,
+          "note": "this step",
+          "rule": "self-repository",
+          "severity": "Low",
+          "url": "https://docs.zizmor.sh/audits/#self-repository"
+        },
+        {
+          "confidence": "High",
+          "description": "use GitHub's dedicated self-repository syntax",
+          "file": ".github/workflows/pull-request.yaml",
+          "line": 676,
+          "note": "this job",
+          "rule": "self-repository",
+          "severity": "Low",
+          "url": "https://docs.zizmor.sh/audits/#self-repository"
+        },
+        {
+          "confidence": "High",
+          "description": "use GitHub's dedicated self-repository syntax",
+          "file": ".github/workflows/pull-request.yaml",
+          "line": 681,
+          "note": "this job",
+          "rule": "self-repository",
+          "severity": "Low",
+          "url": "https://docs.zizmor.sh/audits/#self-repository"
+        }
+      ]
+    }
   },
   "updated": "2026-11-01"
 }
