@@ -10,7 +10,7 @@ This benchmark runs Syft, Trivy, cdxgen, and Microsoft SBOM Tool against the sam
 | `npm-lock-transitive` | npm lockfile parsing and transitive dependency retention | Both locked packages and the `is-odd → is-number` edge; missing any fails the run |
 | `pinned-container-image` | Container and operating-system package inventory from an immutable Linux/amd64 image | The 17 packages in the image's apk database (`/lib/apk/db/installed`) plus the Go toolchain from `/usr/local/go/VERSION` |
 
-The image fixture uses the immutable Linux/amd64 manifest resolved from the OCI index already pinned by the security demo's Dockerfile. Both digests are recorded in `fixtures.json`. The workflow pulls that exact platform manifest once and gives every generator the same local tag.
+The image fixture uses the immutable Linux/amd64 manifest of `golang:1.26.5-alpine`, which the security demo built with when the benchmark started. It is deliberately not updated with the demo so that every run scans the same bytes; changing it resets the comparable history. Both digests are recorded in `fixtures.json`. The workflow pulls that exact platform manifest once and gives every generator the same local tag.
 
 The container ground truth is derived without any SBOM generator by [`scripts/derive_image_ground_truth.py`](../../scripts/derive_image_ground_truth.py), and every run re-derives it from the pulled image and fails if `fixtures.json` disagrees. When the pinned digest changes, regenerate it with `--write`.
 
