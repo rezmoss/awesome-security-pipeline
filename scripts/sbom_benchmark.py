@@ -19,6 +19,10 @@ from typing import Any
 
 
 TOOLS = ("syft", "trivy", "cdxgen", "microsoft-sbom-tool")
+SCHEMA_VERSION = 2
+# File and cryptographic-asset entries are retained as per-type counts plus a digest; they are
+# real inventory, but they would otherwise drown package-level changes in every comparison.
+INVENTORY_ONLY_TYPES = frozenset({"file", "cryptographic-asset"})
 
 
 def parse_args() -> argparse.Namespace:
@@ -263,19 +267,104 @@ def normalized_relationship(
     }
 
 
+def normalize_version(version: str) -> str:
+    """Compare versions without the cosmetic `v`/`go` prefixes generators disagree on."""
+    clean = version.strip()
+    for prefix in ("go", "v"):
+        if clean.startswith(prefix) and clean[len(prefix):][:1].isdigit():
+            return clean[len(prefix):]
+    return clean
+
+
+def identity_found(wanted: dict[str, Any], components: list[dict[str, Any]]) -> bool:
+    name = str(wanted["name"]).casefold()
+    version = normalize_version(str(wanted["version"]))
+    return any(
+        item["name"].casefold() == name and normalize_version(item["version"]) == version
+        for item in components
+        if not item.get("subject")
+    )
+
+
 def expected_results(
     expected: list[dict[str, Any]], components: list[dict[str, Any]]
 ) -> list[dict[str, Any]]:
-    results = []
-    for wanted in expected:
-        name = str(wanted["name"])
-        version = str(wanted["version"])
-        found = any(
-            item["name"].casefold() == name.casefold() and item["version"] == version
-            for item in components
-        )
-        results.append({**wanted, "found": found})
-    return results
+    return [{**wanted, "found": identity_found(wanted, components)} for wanted in expected]
+
+
+def purl_type(purl: str) -> str:
+    if not purl.startswith("pkg:"):
+        return ""
+    return purl[4:].split("/", 1)[0].lower()
+
+
+def is_inventory_only(component: dict[str, Any]) -> bool:
+    return str(component.get("type", "")).lower() in INVENTORY_ONLY_TYPES
+
+
+def split_inventory(
+    components: list[dict[str, Any]],
+) -> tuple[list[dict[str, Any]], dict[str, int], str]:
+    """Return package-level components, per-type counts of the rest, and a digest of the rest."""
+    packages = [item for item in components if not is_inventory_only(item)]
+    others = [item for item in components if is_inventory_only(item)]
+    counts: dict[str, int] = {}
+    for item in others:
+        counts[item["type"]] = counts.get(item["type"], 0) + 1
+    digest = hashlib.sha256(
+        "\n".join(sorted(component_key(item) for item in others)).encode("utf-8")
+    ).hexdigest()
+    return packages, dict(sorted(counts.items())), digest
+
+
+def package_relationships(
+    relationships: list[dict[str, Any]], packages: list[dict[str, Any]]
+) -> list[dict[str, Any]]:
+    """Keep only edges whose endpoints are both package-level components."""
+    known = {(item["name"], item["version"], item["purl"]) for item in packages}
+    return [
+        item for item in relationships
+        if (item["from_name"], item["from_version"], item["from_purl"]) in known
+        and (item["to_name"], item["to_version"], item["to_purl"]) in known
+    ]
+
+
+def score_run(fixture: dict[str, Any], components: list[dict[str, Any]]) -> dict[str, Any]:
+    """Score a tool's package-level inventory against the fixture's independent ground truth."""
+    packages = [
+        item for item in components if not item.get("subject") and not is_inventory_only(item)
+    ]
+    # Operating-system and container entries describe the target, not an installed package.
+    described = [
+        item for item in packages
+        if str(item.get("type", "")).lower() not in {"operating-system", "container"}
+    ]
+    expected = fixture.get("expected_components") or []
+    found = [item for item in expected if identity_found(item, packages)]
+    missed = [item for item in expected if not identity_found(item, packages)]
+    scope = {value.lower() for value in fixture.get("complete_purl_types") or []}
+    expected_names = {str(item["name"]).casefold() for item in expected}
+    extra = sorted(
+        {
+            f"{item['name']}@{item['version']}"
+            for item in packages
+            if purl_type(item["purl"]) in scope and item["name"].casefold() not in expected_names
+        }
+    )
+    return {
+        "expected": len(expected),
+        "found": len(found),
+        "missed": [f"{item['name']}@{item['version']}" for item in missed],
+        "extra": extra,
+        "extra_scope": sorted(scope),
+        "packages": len(packages),
+        "missing_purl": sorted(
+            f"{item['name']}@{item['version']}" if item["version"] else item["name"]
+            for item in described
+            if not item["purl"]
+        ),
+        "versionless": sorted(item["name"] for item in described if not item["version"]),
+    }
 
 
 def expected_relationship_results(
@@ -384,26 +473,73 @@ def validation_command(tool: str, document: pathlib.Path, validation_target: pat
     ]
 
 
-def previous_components(previous: dict[str, Any], fixture_id: str, tool: str) -> set[str]:
+def previous_run(previous: dict[str, Any], fixture_id: str, tool: str) -> dict[str, Any] | None:
     for fixture in previous.get("fixtures") or []:
         if fixture.get("id") != fixture_id:
             continue
         for run in fixture.get("runs") or []:
             if run.get("tool") == tool:
-                return {component_key(item) for item in run.get("components") or []}
-    return set()
+                return run
+    return None
 
 
-def previous_relationships(previous: dict[str, Any], fixture_id: str, tool: str) -> set[str]:
-    for fixture in previous.get("fixtures") or []:
-        if fixture.get("id") != fixture_id:
-            continue
-        for run in fixture.get("runs") or []:
-            if run.get("tool") == tool:
-                return {
-                    relationship_key(item) for item in run.get("relationships") or []
-                }
-    return set()
+def package_keys(run: dict[str, Any] | None) -> set[str]:
+    # Schema 1 snapshots stored every component; compare only the package-level subset.
+    return {
+        component_key(item)
+        for item in (run or {}).get("components") or []
+        if not is_inventory_only(item)
+    }
+
+
+def relationship_keys(run: dict[str, Any] | None) -> set[str]:
+    return {relationship_key(item) for item in (run or {}).get("relationships") or []}
+
+
+def inventory_counts(run: dict[str, Any] | None) -> dict[str, int]:
+    if not run:
+        return {}
+    if "inventory_only_counts" in run:
+        return dict(run["inventory_only_counts"])
+    counts: dict[str, int] = {}
+    for item in run.get("components") or []:
+        if is_inventory_only(item):
+            counts[item["type"]] = counts.get(item["type"], 0) + 1
+    return counts
+
+
+def change_from_previous(
+    run: dict[str, Any], old: dict[str, Any] | None, has_previous: bool
+) -> dict[str, Any]:
+    if not has_previous:
+        return {"baseline": True}
+    current = package_keys(run)
+    before = package_keys(old)
+    current_edges = relationship_keys(run)
+    before_edges = relationship_keys(old)
+    old_counts = inventory_counts(old)
+    new_counts = run.get("inventory_only_counts") or {}
+    old_total = sum(old_counts.values())
+    new_total = sum(new_counts.values())
+    return {
+        "baseline": old is None,
+        "added": sorted(current - before),
+        "removed": sorted(before - current),
+        "relationships_added": sorted(current_edges - before_edges),
+        "relationships_removed": sorted(before_edges - current_edges),
+        "inventory_only_before": old_total,
+        "inventory_only_after": new_total,
+        "inventory_only_changed": (
+            old is not None
+            and (old_counts != new_counts or inventory_digest(old) != run.get("inventory_only_digest"))
+        ),
+    }
+
+
+def inventory_digest(run: dict[str, Any]) -> str:
+    if "inventory_only_digest" in run:
+        return str(run["inventory_only_digest"])
+    return split_inventory(run.get("components") or [])[2]
 
 
 def benchmark_fixture(
@@ -498,10 +634,27 @@ def benchmark_fixture(
         run["expected_components"] = expected_results(
             fixture.get("expected_components") or [], run["components"]
         )
-        missing = [item for item in run["expected_components"] if not item["found"]]
+        missing = [
+            item for item in run["expected_components"]
+            if not item["found"] and item.get("gate", True)
+        ]
         if missing:
             wanted = ", ".join(f"{item['name']}@{item['version']}" for item in missing)
             run["errors"].append(f"missing expected components: {wanted}")
+        # Scored (non-gating) identities fail only when a tool loses one it found last run.
+        old = previous_run(previous, fixture["id"], tool)
+        if old is not None:
+            old_components = old.get("components") or []
+            lost = [
+                item for item in run["expected_components"]
+                if not item["found"]
+                and not item.get("gate", True)
+                and identity_found(item, old_components)
+            ]
+            if lost:
+                wanted = ", ".join(f"{item['name']}@{item['version']}" for item in lost)
+                run["errors"].append(f"lost ground-truth components found by the previous run: {wanted}")
+        run["score"] = score_run(fixture, run["components"])
         run["expected_relationships"] = expected_relationship_results(
             fixture.get("expected_relationships") or [], run.get("relationships") or []
         )
@@ -521,22 +674,12 @@ def benchmark_fixture(
                 f"normalized component count {run['component_count']} is below minimum {minimum}"
             )
 
-        current_keys = {component_key(item) for item in run["components"]}
-        old_keys = previous_components(previous, fixture["id"], tool)
-        current_relationships = {
-            relationship_key(item) for item in run.get("relationships") or []
-        }
-        old_relationships = previous_relationships(previous, fixture["id"], tool)
-        run["change_from_previous"] = {
-            "added": sorted(current_keys - old_keys) if previous else [],
-            "removed": sorted(old_keys - current_keys) if previous else [],
-            "relationships_added": (
-                sorted(current_relationships - old_relationships) if previous else []
-            ),
-            "relationships_removed": (
-                sorted(old_relationships - current_relationships) if previous else []
-            ),
-        }
+        packages, counts, digest = split_inventory(run["components"])
+        run["components"] = packages
+        run["relationships"] = package_relationships(run.get("relationships") or [], packages)
+        run["inventory_only_counts"] = counts
+        run["inventory_only_digest"] = digest
+        run["change_from_previous"] = change_from_previous(run, old, bool(previous))
         if not run["errors"] and run["validation"] == "passed":
             run["status"] = "passed"
         else:
@@ -545,122 +688,124 @@ def benchmark_fixture(
     return result
 
 
+def status_text(run: dict[str, Any]) -> str:
+    return "PASS" if run["status"] == "passed" else "FAIL"
+
+
+def score_text(run: dict[str, Any]) -> str:
+    score = run.get("score") or {}
+    if not score.get("expected"):
+        return "n/a"
+    return f"{score['found']}/{score['expected']}"
+
+
+def change_text(change: dict[str, Any]) -> str:
+    if change.get("baseline"):
+        return "baseline"
+    parts = [f"packages +{len(change['added'])}/-{len(change['removed'])}"]
+    if change.get("relationships_added") or change.get("relationships_removed"):
+        parts.append(
+            f"edges +{len(change['relationships_added'])}/-{len(change['relationships_removed'])}"
+        )
+    if change.get("inventory_only_changed"):
+        parts.append(
+            f"files/crypto {change['inventory_only_before']}→{change['inventory_only_after']}"
+        )
+    return "; ".join(parts)
+
+
+def notable_differences(result: dict[str, Any], names: dict[str, str] | None = None) -> list[str]:
+    notes = []
+    for fixture in result["fixtures"]:
+        for run in fixture["runs"]:
+            score = run.get("score") or {}
+            label = f"{(names or {}).get(run['tool'], run['tool'])} on `{fixture['id']}`"
+            if score.get("missed"):
+                notes.append(f"{label} missed {len(score['missed'])}: " + ", ".join(score["missed"]))
+            if score.get("extra"):
+                notes.append(
+                    f"{label} reported {len(score['extra'])} {'/'.join(score['extra_scope'])} "
+                    "package(s) that are not installed: " + ", ".join(score["extra"])
+                )
+            if score.get("missing_purl") and score.get("packages"):
+                notes.append(
+                    f"{label}: {len(score['missing_purl'])} of {score['packages']} packages have no package URL"
+                )
+            if score.get("versionless"):
+                notes.append(f"{label}: {len(score['versionless'])} component(s) have no version")
+    return notes
+
+
 def render_report(result: dict[str, Any]) -> str:
     passed = result["status"] == "passed"
+    tools = ", ".join(f"{tool['id']} {tool['version']}" for tool in result["tools"])
     lines = [
         f"# SBOM compatibility benchmark — {result['run_date']}",
         "",
         f"**Overall status:** {'PASS' if passed else 'FAIL'}  ",
         f"**Commit:** `{result['commit']}`  ",
-        f"**Generated:** {result['generated_at']}  ",
-        f"**Release policy:** `{result['release_policy']}`  ",
-        f"**Tool releases resolved:** {result.get('tools_resolved_at') or 'not recorded'}",
+        f"**Tools:** {tools}",
         "",
-        "## Tool releases",
+        "## Results at a glance",
         "",
-        "| Tool | Version | Release asset SHA-256 | Verification |",
-        "|---|---:|---|---|",
-    ]
-    for tool in result["tools"]:
-        lines.append(
-            f"| {tool['id']} | [{tool['version']}](https://github.com/{tool['repository']}/releases/tag/{tool['version']}) "
-            f"| `{tool['sha256']}` | {tool['verification']} |"
-        )
-
-    lines.extend([
+        "Ground truth is read from the fixture itself (declared manifests, the lockfile, or the image's "
+        "package database), never from a generator.",
         "",
-        "## Result summary",
-        "",
-        "| Fixture | Tool | Status | Format | Components | Dependency edges | Expected | Runtime | Change |",
+        "| Fixture | Tool | Status | Format | Ground truth found | Extra | Packages | Files/crypto | Change |",
         "|---|---|---|---|---:|---:|---:|---:|---|",
-    ])
+    ]
     for fixture in result["fixtures"]:
         for run in fixture["runs"]:
-            expected = run.get("expected_components") or []
-            found = sum(1 for item in expected if item["found"])
-            expected_text = f"{found}/{len(expected)}" if expected else "n/a"
-            change = run["change_from_previous"]
-            change_text = (
-                f"components +{len(change['added'])}/-{len(change['removed'])}; "
-                f"edges +{len(change['relationships_added'])}/-{len(change['relationships_removed'])}"
-                if result.get("previous_run_date") else "baseline"
-            )
+            score = run.get("score") or {}
             lines.append(
-                f"| `{fixture['id']}` | {run['tool']} | {'PASS' if run['status'] == 'passed' else 'FAIL'} "
-                f"| {run.get('specification', 'none')} | {run['component_count']} | {run['dependency_edge_count']} "
-                f"| {expected_text} | {run['duration_seconds']:.3f}s | {change_text} |"
+                f"| `{fixture['id']}` | {run['tool']} | {status_text(run)} "
+                f"| {run.get('specification', 'none')} | {score_text(run)} | {len(score.get('extra') or [])} "
+                f"| {score.get('packages', 0)} | {sum((run.get('inventory_only_counts') or {}).values())} "
+                f"| {change_text(run['change_from_previous'])} |"
             )
-
+    notes = notable_differences(result)
+    if notes:
+        lines.extend(["", "## Notable differences", ""])
+        lines.extend(f"- {note}" for note in notes)
+    if result.get("tool_changes"):
+        lines.extend(["", "## Tool upgrades since the previous run", ""])
+        lines.extend(
+            f"- {tool}: {change['before']} → {change['after']}"
+            for tool, change in result["tool_changes"].items()
+        )
+    failures = [
+        (fixture["id"], run) for fixture in result["fixtures"] for run in fixture["runs"]
+        if run["status"] != "passed"
+    ]
+    if failures:
+        lines.extend(["", "## Failures", ""])
+        for fixture_id, run in failures:
+            lines.append(f"- `{fixture_id}` / {run['tool']}: " + "; ".join(run["errors"]))
     if result.get("previous_run_date"):
         lines.extend([
             "",
-            f"Changes compare normalized component identities with the reviewed snapshot from {result['previous_run_date']}. "
-            "A count change is evidence to inspect, not automatically a regression.",
+            f"Changes compare package-level identities with the run from {result['previous_run_date']}; "
+            "file and cryptographic-asset entries are compared as counts plus a digest.",
         ])
-
-    lines.extend(["", "## Fixture details", ""])
-    for fixture in result["fixtures"]:
-        lines.extend([
-            f"### {fixture['id']}",
-            "",
-            fixture["description"],
-            "",
-        ])
-        expected = fixture.get("expected_components") or []
-        if expected:
-            lines.extend([
-                "Expected identities: " + ", ".join(
-                    f"`{item['name']}@{item['version']}` ({item['relationship']})" for item in expected
-                ) + ".",
-                "",
-            ])
-        expected_edges = fixture.get("expected_relationships") or []
-        if expected_edges:
-            lines.extend([
-                "Expected dependency edges: " + ", ".join(
-                    f"`{item['from_name']}@{item['from_version']} → "
-                    f"{item['to_name']}@{item['to_version']}`" for item in expected_edges
-                ) + ".",
-                "",
-            ])
-        for run in fixture["runs"]:
-            lines.extend([
-                f"#### {run['tool']} — {'PASS' if run['status'] == 'passed' else 'FAIL'}",
-                "",
-                f"Command: `{run['command']}`",
-                "",
-            ])
-            if run["errors"]:
-                lines.append("Errors:")
-                lines.append("")
-                lines.extend(f"- {error}" for error in run["errors"])
-                lines.append("")
-            preview = run["components"][:12]
-            if preview:
-                lines.extend([
-                    "Normalized inventory preview (the JSON result retains the complete inventory):",
-                    "",
-                    "| Type | Name | Version | PURL |",
-                    "|---|---|---|---|",
-                ])
-                for component in preview:
-                    lines.append(
-                        f"| {component['type']} | `{component['name']}` | `{component['version'] or '—'}` "
-                        f"| `{component['purl'] or '—'}` |"
-                    )
-                lines.append("")
-
     lines.extend([
+        "",
         "## Interpretation limits",
         "",
         "- Component counts are not rankings; subjects, files, packages, and relationships are modeled differently.",
-        "- Runtime is diagnostic data from one GitHub-hosted run, not a general performance benchmark.",
         "- Structural validation does not prove inventory completeness or identity accuracy.",
         "- The benchmark does not evaluate vulnerabilities, license correctness, or policy suitability.",
-        "- Raw SBOMs and logs are retained with the workflow artifact; the normalized JSON is the durable comparison record.",
         "",
     ])
     return "\n".join(lines)
+
+
+def tool_changes(result_tools: list[dict[str, Any]], previous: dict[str, Any]) -> dict[str, Any]:
+    before = {tool["id"]: tool["version"] for tool in previous.get("tools") or []}
+    return {
+        tool["id"]: {"before": before[tool["id"]], "after": tool["version"]}
+        for tool in result_tools
+        if tool["id"] in before and before[tool["id"]] != tool["version"]
+    }
 
 
 def main() -> int:
@@ -691,7 +836,7 @@ def main() -> int:
         if run["status"] != "passed"
     ]
     result = {
-        "schema_version": 1,
+        "schema_version": SCHEMA_VERSION,
         "run_date": args.run_date,
         "generated_at": dt.datetime.now(dt.timezone.utc).replace(microsecond=0).isoformat(),
         "commit": args.commit,
@@ -707,6 +852,7 @@ def main() -> int:
         "fixtures": fixtures,
         "skipped_fixtures": skipped,
         "previous_run_date": previous.get("run_date"),
+        "tool_changes": tool_changes(metadata.get("tools") or [], previous),
     }
     write_json(args.output_dir / "result.json", result)
     (args.output_dir / "report.md").write_text(render_report(result), encoding="utf-8")

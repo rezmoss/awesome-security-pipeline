@@ -4,7 +4,7 @@ Which open-source SBOM tool should you run in CI? The answer depends less on com
 
 This comparison covers four generators—[Syft](https://github.com/anchore/syft), [Trivy](https://github.com/aquasecurity/trivy), [cdxgen](https://github.com/cdxgen/cdxgen), and [Microsoft SBOM Tool](https://github.com/microsoft/sbom-tool)—plus [CycloneDX CLI](https://github.com/CycloneDX/cyclonedx-cli), which operates on existing BOMs rather than discovering dependencies. All four generators were run against the same committed Go fixture on July 16, 2026.
 
-For current evidence rather than this dated snapshot, use the [continuously verified SBOM compatibility benchmark](../benchmarks/sbom/README.md). It runs all four generators every week against lockless Go, direct/transitive npm lockfile, and pinned container fixtures; retains raw evidence for 90 days; and prepares a reviewed, normalized history snapshot each month under [SBOM benchmark reports](../reports/sbom/README.md).
+For current evidence rather than this dated snapshot, see the **[SBOM generator benchmark site](https://rezmoss.github.io/awesome-security-pipeline/sbom-benchmark/)**. Every week it runs all four generators against a lockless Go manifest, an npm lockfile with a known transitive edge, and a pinned container image; scores each SBOM against an inventory read directly from the input (for the image, its apk database); checks NTIA, CISA 2025, and BSI TR-03183 minimum elements; and compares each tool with its previous run. Each generator has its own page with its full history. The [benchmark documentation](../benchmarks/sbom/README.md) describes the method.
 
 ## Quick selection
 
