@@ -315,7 +315,7 @@ These projects are retained for migration research and historical context, not r
 ### Container Security › Image Scanning
 
 - [anchore-engine](https://github.com/anchore/anchore-engine) - Analyze containers and evaluate image policies. ![Archived](https://img.shields.io/badge/status-archived-lightgrey) ![Stars](https://img.shields.io/github/stars/anchore/anchore-engine) ![Last Commit](https://img.shields.io/github/last-commit/anchore/anchore-engine) *(Migrate to [Syft](https://github.com/anchore/syft) + [Grype](https://github.com/anchore/grype))*
-- [dive](https://github.com/wagoodman/dive) - Inspect image layers and contents; it does not scan vulnerability databases. ![Unmaintained](https://img.shields.io/badge/status-unmaintained-red) ![Stars](https://img.shields.io/github/stars/wagoodman/dive) ![Last Commit](https://img.shields.io/github/last-commit/wagoodman/dive)
+- [dive](https://github.com/wagoodman/dive) - Inspect image layers and contents; it does not scan vulnerability databases. ![Active](https://img.shields.io/badge/status-active-brightgreen) ![Stars](https://img.shields.io/github/stars/wagoodman/dive) ![Last Commit](https://img.shields.io/github/last-commit/wagoodman/dive)
 
 ### Container Security › Runtime Security
 
