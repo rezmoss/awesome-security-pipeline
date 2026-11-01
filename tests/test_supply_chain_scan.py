@@ -9,7 +9,7 @@ from scripts import supply_chain_checks as checks
 from scripts import supply_chain_scan as scan
 
 
-README = """# List
+UNUSED_README = """# List
 
 ## Secrets Detection
 
@@ -37,12 +37,14 @@ def finding(identifier, package, severity="High"):
 
 
 class SupplyChainScanTest(unittest.TestCase):
-    def test_catalog_parsing_stops_at_legacy_section_and_deduplicates(self):
-        entries = scan.parse_catalog(README)
+    def test_targets_come_from_active_tool_files(self):
+        root = pathlib.Path(__file__).resolve().parent.parent
+        entries = scan.active_catalog(root / "tools")
+        repositories = {item["repository"] for item in entries}
 
-        self.assertEqual([item["repository"] for item in entries], ["aquasecurity/trivy", "gitleaks/gitleaks"])
-        self.assertEqual(entries[1]["category"], "Secrets Detection")
-        self.assertEqual(entries[0]["category"], "Secrets Detection › Container Security › Image Scanning")
+        self.assertIn("gitleaks/gitleaks", repositories)
+        self.assertTrue(all(item["category"] and item["description"] for item in entries))
+        self.assertEqual(len(repositories), len(entries))
 
     def test_only_manifests_outside_test_and_fixture_directories_are_fetched(self):
         self.assertTrue(scan.wanted_path("go.mod"))

@@ -47,6 +47,8 @@ Status is calculated from the latest commit on the canonical repository's defaul
 | Deprecated | The upstream maintainers explicitly state that the project is deprecated or superseded. |
 | Unknown | Repository metadata or commit history could not be verified. Unknown is never silently treated as active. |
 
+Placement follows status automatically: archived and unmaintained tools are listed under *Legacy and Reference Tools*, and a legacy tool returns to the active catalog once it is active or stale again. A documented exception (the `exception` field of the tool's file in `tools/`) can keep a feature-complete, unarchived tool in the active catalog. Each tool's file records the current status, when it last changed, and the latest supply-chain report summary.
+
 An automated commit is still repository activity, but it does not by itself prove meaningful product maintenance. Before publishing ecosystem reports, unexpected activity changes are manually reviewed to distinguish releases and fixes from badge refreshes, mirrors, generated files, or dependency-only churn.
 
 ## Exceptions

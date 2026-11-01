@@ -6,7 +6,7 @@
 
 > The practical, continuously verified guide to selecting and implementing open-source security tools at every CI/CD pipeline stage.
 
-**92 metadata-verified repositories · 6 recipe-tested controls · catalog verified July 16, 2026**
+<!-- catalog-stats:start -->**78 actively maintained tools · 15 legacy references · status and supply-chain checks refreshed weekly**<!-- catalog-stats:end -->
 
 Start with a working pipeline, not an empty checklist. The included GitHub Actions baseline runs Gitleaks, Semgrep, OSV-Scanner, Trivy, Syft, and keyless Cosign against a safe demo, retains machine-readable evidence, and [passed end to end in 2m21s](https://github.com/rezmoss/awesome-security-pipeline/actions/runs/29529702096) on GitHub-hosted runners.
 
@@ -71,6 +71,7 @@ Use the smallest set that covers the artifacts you actually ship. “Regulated�
 - [Start here](#start-here)
 - [10-minute quick start](#10-minute-quick-start)
 - [Choose your baseline](#choose-your-baseline)
+<!-- catalog-toc:start -->
 - [Tool catalog](#tool-catalog)
 - [Pre-commit & Secrets Detection](#pre-commit--secrets-detection)
 - [SBOM Generation](#sbom-generation)
@@ -90,65 +91,77 @@ Use the smallest set that covers the artifacts you actually ship. “Regulated�
 - [API & Dynamic Testing (DAST)](#api--dynamic-testing-dast)
 - [Cloud Security](#cloud-security)
 - [Legacy and Reference Tools](#legacy-and-reference-tools)
-- [Reading the Badges](#reading-the-badges)
+<!-- catalog-toc:end -->
 - [Contributing](#contributing)
 - [License](#license)
 
 ---
 
+<!-- catalog:start -->
 ## Tool catalog
 
-Entries below are organized by where they operate in a delivery pipeline. Status reflects repository activity, not security effectiveness; stars indicate adoption, not quality. Multi-purpose tools may appear in more than one category with a category-specific description.
+Entries are organized by where they operate in a delivery pipeline. Status reflects repository activity, not security effectiveness; stars indicate adoption, not quality. Multi-purpose tools may appear in more than one category with a category-specific description.
+
+**Status:** 🟢 Active (commit in the last 6 months) · 🟡 Stale (6–12 months) · 🔴 Unmaintained (over 12 months) · ⚪ Archived. Unmaintained and archived tools move to [Legacy](#legacy-and-reference-tools) automatically and return when they are active again. **Scorecard** (OpenSSF, out of 10) and **Release** (whether the Linux release file's signature, provenance, or attestation verifies) come from the [weekly supply-chain report](https://rezmoss.github.io/awesome-security-pipeline/); select a Scorecard value for the tool's full report. Every column is refreshed weekly from each tool's file in [`tools/`](tools/).
 
 ## Pre-commit & Secrets Detection
 
 Catch secrets and credentials before they enter your repository.
 
-- [detect-secrets](https://github.com/Yelp/detect-secrets) - Prevent secrets from entering codebases. ![Stale](https://img.shields.io/badge/status-stale-yellow) ![Stars](https://img.shields.io/github/stars/Yelp/detect-secrets) ![Last Commit](https://img.shields.io/github/last-commit/Yelp/detect-secrets)
-- [git-secrets](https://github.com/awslabs/git-secrets) - Prevent committing AWS credentials and secrets. ![Unmaintained](https://img.shields.io/badge/status-unmaintained-red) ![Stars](https://img.shields.io/github/stars/awslabs/git-secrets) ![Last Commit](https://img.shields.io/github/last-commit/awslabs/git-secrets)
-- [gitleaks](https://github.com/gitleaks/gitleaks) - Detect and prevent secrets in git repos. ![Active](https://img.shields.io/badge/status-active-brightgreen) ![Stars](https://img.shields.io/github/stars/gitleaks/gitleaks) ![Last Commit](https://img.shields.io/github/last-commit/gitleaks/gitleaks)
-- [pre-commit](https://github.com/pre-commit/pre-commit) - Manage multi-language pre-commit hooks. ![Active](https://img.shields.io/badge/status-active-brightgreen) ![Stars](https://img.shields.io/github/stars/pre-commit/pre-commit) ![Last Commit](https://img.shields.io/github/last-commit/pre-commit/pre-commit)
-- [talisman](https://github.com/thoughtworks/talisman) - Detect secrets with pre-push and pre-commit hooks. ![Stale](https://img.shields.io/badge/status-stale-yellow) ![Stars](https://img.shields.io/github/stars/thoughtworks/talisman) ![Last Commit](https://img.shields.io/github/last-commit/thoughtworks/talisman)
-- [trufflehog](https://github.com/trufflesecurity/trufflehog) - Find credentials in git history and live systems. ![Active](https://img.shields.io/badge/status-active-brightgreen) ![Stars](https://img.shields.io/github/stars/trufflesecurity/trufflehog) ![Last Commit](https://img.shields.io/github/last-commit/trufflesecurity/trufflehog)
+| Tool | What it does<br><img src="assets/blank.gif" width="700" height="1" alt=""> | Status | ★ | Scorecard | Release |
+|:---|:---|:---|---:|:---|:---|
+| [**detect-secrets**](https://github.com/Yelp/detect-secrets) | Prevent secrets from entering codebases | 🟡&nbsp;Stale<br><sub>Apr 2026</sub> | 4.7k | [3.5](https://rezmoss.github.io/awesome-security-pipeline/projects/Yelp/detect-secrets/) | — |
+| [**gitleaks**](https://github.com/gitleaks/gitleaks) | Detect and prevent secrets in git repos | 🟢&nbsp;Active<br><sub>Oct 2026</sub> | 30.6k | [report](https://rezmoss.github.io/awesome-security-pipeline/projects/gitleaks/gitleaks/) | Checksums |
+| [**pre-commit**](https://github.com/pre-commit/pre-commit) | Manage multi-language pre-commit hooks | 🟢&nbsp;Active<br><sub>Oct 2026</sub> | 15.7k | [4.5](https://rezmoss.github.io/awesome-security-pipeline/projects/pre-commit/pre-commit/) | — |
+| [**talisman**](https://github.com/thoughtworks/talisman) | Detect secrets with pre-push and pre-commit hooks | 🟡&nbsp;Stale<br><sub>Nov 2025</sub> | 2.1k | [3.3](https://rezmoss.github.io/awesome-security-pipeline/projects/thoughtworks/talisman/) | Checksums |
+| [**trufflehog**](https://github.com/trufflesecurity/trufflehog) | Find credentials in git history and live systems | 🟢&nbsp;Active<br><sub>Nov 2026</sub> | 28.8k | [7.9](https://rezmoss.github.io/awesome-security-pipeline/projects/trufflesecurity/trufflehog/) | ✓&nbsp;Verified |
 
 ## SBOM Generation
 
 Generate Software Bill of Materials for supply chain visibility.
 
-- [cdxgen](https://github.com/CycloneDX/cdxgen) - Create CycloneDX SBOMs for various languages. ![Active](https://img.shields.io/badge/status-active-brightgreen) ![Stars](https://img.shields.io/github/stars/CycloneDX/cdxgen) ![Last Commit](https://img.shields.io/github/last-commit/CycloneDX/cdxgen)
-- [cyclonedx-cli](https://github.com/CycloneDX/cyclonedx-cli) - Inspect, convert, and merge CycloneDX SBOMs. ![Active](https://img.shields.io/badge/status-active-brightgreen) ![Stars](https://img.shields.io/github/stars/CycloneDX/cyclonedx-cli) ![Last Commit](https://img.shields.io/github/last-commit/CycloneDX/cyclonedx-cli)
-- [sbom-tool](https://github.com/microsoft/sbom-tool) - Generate SBOMs for build artifacts and source repositories. ![Active](https://img.shields.io/badge/status-active-brightgreen) ![Stars](https://img.shields.io/github/stars/microsoft/sbom-tool) ![Last Commit](https://img.shields.io/github/last-commit/microsoft/sbom-tool)
-- [sbomlyze](https://github.com/rezmoss/sbomlyze) - Compare SBOMs to detect supply-chain drift. *(Disclosure: maintained by this list's maintainer.)* ![Active](https://img.shields.io/badge/status-active-brightgreen) ![Stars](https://img.shields.io/github/stars/rezmoss/sbomlyze) ![Last Commit](https://img.shields.io/github/last-commit/rezmoss/sbomlyze)
-- [syft](https://github.com/anchore/syft) - Generate SBOMs from container images and filesystems. ![Active](https://img.shields.io/badge/status-active-brightgreen) ![Stars](https://img.shields.io/github/stars/anchore/syft) ![Last Commit](https://img.shields.io/github/last-commit/anchore/syft)
+| Tool | What it does<br><img src="assets/blank.gif" width="700" height="1" alt=""> | Status | ★ | Scorecard | Release |
+|:---|:---|:---|---:|:---|:---|
+| [**cdxgen**](https://github.com/CycloneDX/cdxgen) | Create CycloneDX SBOMs for various languages | 🟢&nbsp;Active<br><sub>Nov 2026</sub> | 1.1k | [report](https://rezmoss.github.io/awesome-security-pipeline/projects/CycloneDX/cdxgen/) | Checksums |
+| [**cyclonedx-cli**](https://github.com/CycloneDX/cyclonedx-cli) | Inspect, convert, and merge CycloneDX SBOMs | 🟢&nbsp;Active<br><sub>Jul 2026</sub> | 552 | [report](https://rezmoss.github.io/awesome-security-pipeline/projects/CycloneDX/cyclonedx-cli/) | — |
+| [**sbom-tool**](https://github.com/microsoft/sbom-tool) | Generate SBOMs for build artifacts and source repositories | 🟢&nbsp;Active<br><sub>Sep 2026</sub> | 2.1k | [report](https://rezmoss.github.io/awesome-security-pipeline/projects/microsoft/sbom-tool/) | — |
+| [**sbomlyze**](https://github.com/rezmoss/sbomlyze) | Compare SBOMs to detect supply-chain drift <sub>*Maintained by this list's maintainer.*</sub> | 🟢&nbsp;Active<br><sub>Nov 2026</sub> | 26 | [7.9](https://rezmoss.github.io/awesome-security-pipeline/projects/rezmoss/sbomlyze/) | ✓&nbsp;Verified |
+| [**syft**](https://github.com/anchore/syft) | Generate SBOMs from container images and filesystems | 🟢&nbsp;Active<br><sub>Nov 2026</sub> | 9.8k | [8.7](https://rezmoss.github.io/awesome-security-pipeline/projects/anchore/syft/) | ✓&nbsp;Verified |
 
 ## Artifact Signing & Verification
 
 Sign and verify container images and artifacts for supply chain security.
 
-- [cosign](https://github.com/sigstore/cosign) - Sign and verify container images. ![Active](https://img.shields.io/badge/status-active-brightgreen) ![Stars](https://img.shields.io/github/stars/sigstore/cosign) ![Last Commit](https://img.shields.io/github/last-commit/sigstore/cosign)
-- [notation](https://github.com/notaryproject/notation) - Sign and verify OCI artifacts with Notary Project specifications. ![Active](https://img.shields.io/badge/status-active-brightgreen) ![Stars](https://img.shields.io/github/stars/notaryproject/notation) ![Last Commit](https://img.shields.io/github/last-commit/notaryproject/notation)
-- [rekor](https://github.com/sigstore/rekor) - Record signed artifacts in a tamper-resistant transparency log. ![Active](https://img.shields.io/badge/status-active-brightgreen) ![Stars](https://img.shields.io/github/stars/sigstore/rekor) ![Last Commit](https://img.shields.io/github/last-commit/sigstore/rekor)
+| Tool | What it does<br><img src="assets/blank.gif" width="700" height="1" alt=""> | Status | ★ | Scorecard | Release |
+|:---|:---|:---|---:|:---|:---|
+| [**cosign**](https://github.com/sigstore/cosign) | Sign and verify container images | 🟢&nbsp;Active<br><sub>Oct 2026</sub> | 6.4k | [8.2](https://rezmoss.github.io/awesome-security-pipeline/projects/sigstore/cosign/) | ✓&nbsp;Verified |
+| [**notation**](https://github.com/notaryproject/notation) | Sign and verify OCI artifacts with Notary Project specifications | 🟢&nbsp;Active<br><sub>Oct 2026</sub> | 502 | [6.5](https://rezmoss.github.io/awesome-security-pipeline/projects/notaryproject/notation/) | Checksums |
+| [**rekor**](https://github.com/sigstore/rekor) | Record signed artifacts in a tamper-resistant transparency log | 🟢&nbsp;Active<br><sub>Oct 2026</sub> | 1.2k | [8.6](https://rezmoss.github.io/awesome-security-pipeline/projects/sigstore/rekor/) | ✓&nbsp;Verified |
 
 ## Supply Chain Compliance
 
 Audit and verify supply chain security against industry benchmarks.
 
-- [in-toto](https://github.com/in-toto/in-toto) - Protect software supply-chain integrity with signed metadata. ![Active](https://img.shields.io/badge/status-active-brightgreen) ![Stars](https://img.shields.io/github/stars/in-toto/in-toto) ![Last Commit](https://img.shields.io/github/last-commit/in-toto/in-toto)
-- [scorecard](https://github.com/ossf/scorecard) - Measure open-source project security practices with OpenSSF checks. ![Active](https://img.shields.io/badge/status-active-brightgreen) ![Stars](https://img.shields.io/github/stars/ossf/scorecard) ![Last Commit](https://img.shields.io/github/last-commit/ossf/scorecard)
-- [slsa-verifier](https://github.com/slsa-framework/slsa-verifier) - Verify SLSA provenance for supply chain security. ![Active](https://img.shields.io/badge/status-active-brightgreen) ![Stars](https://img.shields.io/github/stars/slsa-framework/slsa-verifier) ![Last Commit](https://img.shields.io/github/last-commit/slsa-framework/slsa-verifier)
+| Tool | What it does<br><img src="assets/blank.gif" width="700" height="1" alt=""> | Status | ★ | Scorecard | Release |
+|:---|:---|:---|---:|:---|:---|
+| [**in-toto**](https://github.com/in-toto/in-toto) | Protect software supply-chain integrity with signed metadata | 🟢&nbsp;Active<br><sub>Aug 2026</sub> | 1.1k | [6.5](https://rezmoss.github.io/awesome-security-pipeline/projects/in-toto/in-toto/) | — |
+| [**scorecard**](https://github.com/ossf/scorecard) | Measure open-source project security practices with OpenSSF checks | 🟢&nbsp;Active<br><sub>Oct 2026</sub> | 5.8k | [8.6](https://rezmoss.github.io/awesome-security-pipeline/projects/ossf/scorecard/) | ✓&nbsp;Verified |
+| [**slsa-verifier**](https://github.com/slsa-framework/slsa-verifier) | Verify SLSA provenance for supply chain security | 🟢&nbsp;Active<br><sub>Aug 2026</sub> | 352 | [report](https://rezmoss.github.io/awesome-security-pipeline/projects/slsa-framework/slsa-verifier/) | ✓&nbsp;Verified |
 
 ## Software Composition Analysis (SCA)
 
 Scan dependencies for known vulnerabilities.
 
-- [bomber](https://github.com/devops-kung-fu/bomber) - Scan SBOMs for vulnerabilities. ![Stale](https://img.shields.io/badge/status-stale-yellow) ![Stars](https://img.shields.io/github/stars/devops-kung-fu/bomber) ![Last Commit](https://img.shields.io/github/last-commit/devops-kung-fu/bomber)
-- [dependency-track](https://github.com/DependencyTrack/dependency-track) - Track components and analyze dependency risk from SBOMs. ![Active](https://img.shields.io/badge/status-active-brightgreen) ![Stars](https://img.shields.io/github/stars/DependencyTrack/dependency-track) ![Last Commit](https://img.shields.io/github/last-commit/DependencyTrack/dependency-track)
-- [grype](https://github.com/anchore/grype) - Scan filesystems and SBOMs for dependency vulnerabilities. ![Active](https://img.shields.io/badge/status-active-brightgreen) ![Stars](https://img.shields.io/github/stars/anchore/grype) ![Last Commit](https://img.shields.io/github/last-commit/anchore/grype)
-- [osv-scanner](https://github.com/google/osv-scanner) - Scan dependencies for vulnerabilities in the OSV database. ![Active](https://img.shields.io/badge/status-active-brightgreen) ![Stars](https://img.shields.io/github/stars/google/osv-scanner) ![Last Commit](https://img.shields.io/github/last-commit/google/osv-scanner)
-- [safe-chain](https://github.com/AikidoSec/safe-chain) - Block malicious packages during npm/pip install. ![Active](https://img.shields.io/badge/status-active-brightgreen) ![Stars](https://img.shields.io/github/stars/AikidoSec/safe-chain) ![Last Commit](https://img.shields.io/github/last-commit/AikidoSec/safe-chain)
-- [snyk-cli](https://github.com/snyk/cli) - Find and fix vulnerabilities in dependencies. ![Active](https://img.shields.io/badge/status-active-brightgreen) ![Stars](https://img.shields.io/github/stars/snyk/cli) ![Last Commit](https://img.shields.io/github/last-commit/snyk/cli)
-- [trivy](https://github.com/aquasecurity/trivy) - Scan operating-system and language dependencies for vulnerabilities. ![Active](https://img.shields.io/badge/status-active-brightgreen) ![Stars](https://img.shields.io/github/stars/aquasecurity/trivy) ![Last Commit](https://img.shields.io/github/last-commit/aquasecurity/trivy)
-- [vet](https://github.com/safedep/vet) - Enforce dependency policies and report supply-chain risks. ![Active](https://img.shields.io/badge/status-active-brightgreen) ![Stars](https://img.shields.io/github/stars/safedep/vet) ![Last Commit](https://img.shields.io/github/last-commit/safedep/vet)
+| Tool | What it does<br><img src="assets/blank.gif" width="700" height="1" alt=""> | Status | ★ | Scorecard | Release |
+|:---|:---|:---|---:|:---|:---|
+| [**bomber**](https://github.com/devops-kung-fu/bomber) | Scan SBOMs for vulnerabilities | 🟡&nbsp;Stale<br><sub>Feb 2026</sub> | 629 | [report](https://rezmoss.github.io/awesome-security-pipeline/projects/devops-kung-fu/bomber/) | Checksums |
+| [**dependency-track**](https://github.com/DependencyTrack/dependency-track) | Track components and analyze dependency risk from SBOMs | 🟢&nbsp;Active<br><sub>Nov 2026</sub> | 4.4k | [7.5](https://rezmoss.github.io/awesome-security-pipeline/projects/DependencyTrack/dependency-track/) | — |
+| [**grype**](https://github.com/anchore/grype) | Scan filesystems and SBOMs for dependency vulnerabilities | 🟢&nbsp;Active<br><sub>Oct 2026</sub> | 13.2k | [7.9](https://rezmoss.github.io/awesome-security-pipeline/projects/anchore/grype/) | ✓&nbsp;Verified |
+| [**osv-scanner**](https://github.com/google/osv-scanner) | Scan dependencies for vulnerabilities in the OSV database | 🟢&nbsp;Active<br><sub>Oct 2026</sub> | 11.3k | [8.6](https://rezmoss.github.io/awesome-security-pipeline/projects/google/osv-scanner/) | ✓&nbsp;Verified |
+| [**safe-chain**](https://github.com/AikidoSec/safe-chain) | Block malicious packages during npm/pip install | 🟢&nbsp;Active<br><sub>Nov 2026</sub> | 1.8k | [4.5](https://rezmoss.github.io/awesome-security-pipeline/projects/AikidoSec/safe-chain/) | ✓&nbsp;Verified |
+| [**snyk-cli**](https://github.com/snyk/cli) | Find and fix vulnerabilities in dependencies | 🟢&nbsp;Active<br><sub>Oct 2026</sub> | 5.7k | [report](https://rezmoss.github.io/awesome-security-pipeline/projects/snyk/cli/) | Checksums |
+| [**trivy**](https://github.com/aquasecurity/trivy) | Scan operating-system and language dependencies for vulnerabilities | 🟢&nbsp;Active<br><sub>Oct 2026</sub> | 38.9k | [7.1](https://rezmoss.github.io/awesome-security-pipeline/projects/aquasecurity/trivy/) | ✓&nbsp;Verified |
+| [**vet**](https://github.com/safedep/vet) | Enforce dependency policies and report supply-chain risks | 🟢&nbsp;Active<br><sub>Nov 2026</sub> | 1.1k | [7.4](https://rezmoss.github.io/awesome-security-pipeline/projects/safedep/vet/) | ✓&nbsp;Verified |
 
 ## Static Application Security Testing (SAST)
 
@@ -158,11 +171,13 @@ Analyze source code for security vulnerabilities.
 
 Tools that support multiple programming languages.
 
-- [bearer](https://github.com/Bearer/bearer) - Trace sensitive data flows and detect security risks in code. ![Active](https://img.shields.io/badge/status-active-brightgreen) ![Stars](https://img.shields.io/github/stars/Bearer/bearer) ![Last Commit](https://img.shields.io/github/last-commit/Bearer/bearer)
-- [codeql](https://github.com/github/codeql) - Analyze code semantically with GitHub's query engine. ![Active](https://img.shields.io/badge/status-active-brightgreen) ![Stars](https://img.shields.io/github/stars/github/codeql) ![Last Commit](https://img.shields.io/github/last-commit/github/codeql)
-- [semgrep](https://github.com/semgrep/semgrep) - Scan source code with multi-language static-analysis rules. ![Active](https://img.shields.io/badge/status-active-brightgreen) ![Stars](https://img.shields.io/github/stars/semgrep/semgrep) ![Last Commit](https://img.shields.io/github/last-commit/semgrep/semgrep)
-- [sonarqube](https://github.com/SonarSource/sonarqube) - Inspect code continuously for quality and security issues. ![Active](https://img.shields.io/badge/status-active-brightgreen) ![Stars](https://img.shields.io/github/stars/SonarSource/sonarqube) ![Last Commit](https://img.shields.io/github/last-commit/SonarSource/sonarqube)
-- [spotbugs](https://github.com/spotbugs/spotbugs) - Find bug patterns in Java bytecode. ![Active](https://img.shields.io/badge/status-active-brightgreen) ![Stars](https://img.shields.io/github/stars/spotbugs/spotbugs) ![Last Commit](https://img.shields.io/github/last-commit/spotbugs/spotbugs)
+| Tool | What it does<br><img src="assets/blank.gif" width="700" height="1" alt=""> | Status | ★ | Scorecard | Release |
+|:---|:---|:---|---:|:---|:---|
+| [**bearer**](https://github.com/Bearer/bearer) | Trace sensitive data flows and detect security risks in code | 🟢&nbsp;Active<br><sub>Oct 2026</sub> | 2.8k | [6.3](https://rezmoss.github.io/awesome-security-pipeline/projects/Bearer/bearer/) | Checksums |
+| [**codeql**](https://github.com/github/codeql) | Analyze code semantically with GitHub's query engine | 🟢&nbsp;Active<br><sub>Oct 2026</sub> | 10.3k | [5.8](https://rezmoss.github.io/awesome-security-pipeline/projects/github/codeql/) | — |
+| [**semgrep**](https://github.com/semgrep/semgrep) | Scan source code with multi-language static-analysis rules | 🟢&nbsp;Active<br><sub>Oct 2026</sub> | 17.4k | [report](https://rezmoss.github.io/awesome-security-pipeline/projects/semgrep/semgrep/) | — |
+| [**sonarqube**](https://github.com/SonarSource/sonarqube) | Inspect code continuously for quality and security issues | 🟢&nbsp;Active<br><sub>Oct 2026</sub> | 11.1k | [4.9](https://rezmoss.github.io/awesome-security-pipeline/projects/SonarSource/sonarqube/) | — |
+| [**spotbugs**](https://github.com/spotbugs/spotbugs) | Find bug patterns in Java bytecode | 🟢&nbsp;Active<br><sub>Oct 2026</sub> | 4k | [4.6](https://rezmoss.github.io/awesome-security-pipeline/projects/spotbugs/spotbugs/) | — |
 
 ### Language-specific
 
@@ -170,41 +185,56 @@ Specialized tools for individual programming languages.
 
 #### Python
 
-- [bandit](https://github.com/PyCQA/bandit) - Find common security issues in Python code. ![Active](https://img.shields.io/badge/status-active-brightgreen) ![Stars](https://img.shields.io/github/stars/PyCQA/bandit) ![Last Commit](https://img.shields.io/github/last-commit/PyCQA/bandit)
-- [safety](https://github.com/pyupio/safety) - Check Python dependencies for vulnerabilities. ![Active](https://img.shields.io/badge/status-active-brightgreen) ![Stars](https://img.shields.io/github/stars/pyupio/safety) ![Last Commit](https://img.shields.io/github/last-commit/pyupio/safety)
+| Tool | What it does<br><img src="assets/blank.gif" width="700" height="1" alt=""> | Status | ★ | Scorecard | Release |
+|:---|:---|:---|---:|:---|:---|
+| [**bandit**](https://github.com/PyCQA/bandit) | Find common security issues in Python code | 🟢&nbsp;Active<br><sub>Oct 2026</sub> | 8.4k | [5.8](https://rezmoss.github.io/awesome-security-pipeline/projects/PyCQA/bandit/) | — |
+| [**safety**](https://github.com/pyupio/safety) | Check Python dependencies for vulnerabilities | 🟢&nbsp;Active<br><sub>Sep 2026</sub> | 2k | [4.7](https://rezmoss.github.io/awesome-security-pipeline/projects/pyupio/safety/) | — |
 
 #### JavaScript/Node.js
 
-- [eslint-plugin-security](https://github.com/eslint-community/eslint-plugin-security) - Detect security patterns in Node.js with ESLint rules. ![Active](https://img.shields.io/badge/status-active-brightgreen) ![Stars](https://img.shields.io/github/stars/eslint-community/eslint-plugin-security) ![Last Commit](https://img.shields.io/github/last-commit/eslint-community/eslint-plugin-security)
+| Tool | What it does<br><img src="assets/blank.gif" width="700" height="1" alt=""> | Status | ★ | Scorecard | Release |
+|:---|:---|:---|---:|:---|:---|
+| [**eslint-plugin-security**](https://github.com/eslint-community/eslint-plugin-security) | Detect security patterns in Node.js with ESLint rules | 🟢&nbsp;Active<br><sub>Oct 2026</sub> | 2.4k | [report](https://rezmoss.github.io/awesome-security-pipeline/projects/eslint-community/eslint-plugin-security/) | — |
+| [**njsscan**](https://github.com/ajinabraham/njsscan) | Analyze Node.js applications with semantic SAST rules | 🟢&nbsp;Active<br><sub>Oct 2026</sub> | 458 | — | — |
 
 #### Go
 
-- [gosec](https://github.com/securego/gosec) - Find security issues in Go source code. ![Active](https://img.shields.io/badge/status-active-brightgreen) ![Stars](https://img.shields.io/github/stars/securego/gosec) ![Last Commit](https://img.shields.io/github/last-commit/securego/gosec)
-- [govulncheck](https://github.com/golang/vuln) - Report reachable Go vulnerabilities in source and binaries. ![Active](https://img.shields.io/badge/status-active-brightgreen) ![Stars](https://img.shields.io/github/stars/golang/vuln) ![Last Commit](https://img.shields.io/github/last-commit/golang/vuln)
+| Tool | What it does<br><img src="assets/blank.gif" width="700" height="1" alt=""> | Status | ★ | Scorecard | Release |
+|:---|:---|:---|---:|:---|:---|
+| [**gosec**](https://github.com/securego/gosec) | Find security issues in Go source code | 🟢&nbsp;Active<br><sub>Oct 2026</sub> | 9k | [6.6](https://rezmoss.github.io/awesome-security-pipeline/projects/securego/gosec/) | ✓&nbsp;Verified |
+| [**govulncheck**](https://github.com/golang/vuln) | Report reachable Go vulnerabilities in source and binaries | 🟢&nbsp;Active<br><sub>Oct 2026</sub> | 532 | [3.7](https://rezmoss.github.io/awesome-security-pipeline/projects/golang/vuln/) | — |
 
 #### Ruby
 
-- [brakeman](https://github.com/presidentbeef/brakeman) - Scan Ruby on Rails applications with static analysis. ![Active](https://img.shields.io/badge/status-active-brightgreen) ![Stars](https://img.shields.io/github/stars/presidentbeef/brakeman) ![Last Commit](https://img.shields.io/github/last-commit/presidentbeef/brakeman)
+| Tool | What it does<br><img src="assets/blank.gif" width="700" height="1" alt=""> | Status | ★ | Scorecard | Release |
+|:---|:---|:---|---:|:---|:---|
+| [**brakeman**](https://github.com/presidentbeef/brakeman) | Scan Ruby on Rails applications with static analysis | 🟢&nbsp;Active<br><sub>Oct 2026</sub> | 7.3k | [6.0](https://rezmoss.github.io/awesome-security-pipeline/projects/presidentbeef/brakeman/) | — |
 
 #### PHP
 
-- [phpstan](https://github.com/phpstan/phpstan) - Analyze PHP code without running it. ![Active](https://img.shields.io/badge/status-active-brightgreen) ![Stars](https://img.shields.io/github/stars/phpstan/phpstan) ![Last Commit](https://img.shields.io/github/last-commit/phpstan/phpstan)
-- [psalm](https://github.com/vimeo/psalm) - Analyze PHP code for type and security issues. ![Active](https://img.shields.io/badge/status-active-brightgreen) ![Stars](https://img.shields.io/github/stars/vimeo/psalm) ![Last Commit](https://img.shields.io/github/last-commit/vimeo/psalm)
+| Tool | What it does<br><img src="assets/blank.gif" width="700" height="1" alt=""> | Status | ★ | Scorecard | Release |
+|:---|:---|:---|---:|:---|:---|
+| [**phpstan**](https://github.com/phpstan/phpstan) | Analyze PHP code without running it | 🟢&nbsp;Active<br><sub>Nov 2026</sub> | 14.1k | [4.8](https://rezmoss.github.io/awesome-security-pipeline/projects/phpstan/phpstan/) | — |
+| [**psalm**](https://github.com/vimeo/psalm) | Analyze PHP code for type and security issues | 🟢&nbsp;Active<br><sub>Nov 2026</sub> | 5.9k | [4.7](https://rezmoss.github.io/awesome-security-pipeline/projects/vimeo/psalm/) | — |
 
 #### Rust
 
-- [cargo-audit](https://github.com/RustSec/rustsec) - Audit Cargo.lock for crates with security vulnerabilities. ![Active](https://img.shields.io/badge/status-active-brightgreen) ![Stars](https://img.shields.io/github/stars/RustSec/rustsec) ![Last Commit](https://img.shields.io/github/last-commit/RustSec/rustsec)
+| Tool | What it does<br><img src="assets/blank.gif" width="700" height="1" alt=""> | Status | ★ | Scorecard | Release |
+|:---|:---|:---|---:|:---|:---|
+| [**cargo-audit**](https://github.com/RustSec/rustsec) | Audit Cargo.lock for crates with security vulnerabilities | 🟢&nbsp;Active<br><sub>Oct 2026</sub> | 2k | [report](https://rezmoss.github.io/awesome-security-pipeline/projects/RustSec/rustsec/) | — |
 
 ## Infrastructure as Code Security
 
 Scan infrastructure configurations for security misconfigurations.
 
-- [cfn-lint](https://github.com/aws-cloudformation/cfn-lint) - Lint AWS CloudFormation templates with security rules. ![Active](https://img.shields.io/badge/status-active-brightgreen) ![Stars](https://img.shields.io/github/stars/aws-cloudformation/cfn-lint) ![Last Commit](https://img.shields.io/github/last-commit/aws-cloudformation/cfn-lint)
-- [checkov](https://github.com/bridgecrewio/checkov) - Scan cloud infrastructure configurations. ![Active](https://img.shields.io/badge/status-active-brightgreen) ![Stars](https://img.shields.io/github/stars/bridgecrewio/checkov) ![Last Commit](https://img.shields.io/github/last-commit/bridgecrewio/checkov)
-- [kics](https://github.com/Checkmarx/kics) - Find security vulnerabilities and compliance issues in IaC. ![Active](https://img.shields.io/badge/status-active-brightgreen) ![Stars](https://img.shields.io/github/stars/Checkmarx/kics) ![Last Commit](https://img.shields.io/github/last-commit/Checkmarx/kics)
-- [snyk-iac](https://github.com/snyk/cli) - Scan infrastructure as code for security issues. ![Active](https://img.shields.io/badge/status-active-brightgreen) ![Stars](https://img.shields.io/github/stars/snyk/cli) ![Last Commit](https://img.shields.io/github/last-commit/snyk/cli)
-- [trivy](https://github.com/aquasecurity/trivy) - Scan Terraform, CloudFormation, and other IaC for misconfigurations. ![Active](https://img.shields.io/badge/status-active-brightgreen) ![Stars](https://img.shields.io/github/stars/aquasecurity/trivy) ![Last Commit](https://img.shields.io/github/last-commit/aquasecurity/trivy)
-- [zizmor](https://github.com/zizmorcore/zizmor) - Analyze GitHub Actions workflows for security issues. ![Active](https://img.shields.io/badge/status-active-brightgreen) ![Stars](https://img.shields.io/github/stars/zizmorcore/zizmor) ![Last Commit](https://img.shields.io/github/last-commit/zizmorcore/zizmor)
+| Tool | What it does<br><img src="assets/blank.gif" width="700" height="1" alt=""> | Status | ★ | Scorecard | Release |
+|:---|:---|:---|---:|:---|:---|
+| [**cfn-lint**](https://github.com/aws-cloudformation/cfn-lint) | Lint AWS CloudFormation templates with security rules | 🟢&nbsp;Active<br><sub>Oct 2026</sub> | 2.6k | [report](https://rezmoss.github.io/awesome-security-pipeline/projects/aws-cloudformation/cfn-lint/) | — |
+| [**checkov**](https://github.com/bridgecrewio/checkov) | Scan cloud infrastructure configurations | 🟢&nbsp;Active<br><sub>Oct 2026</sub> | 9.1k | [report](https://rezmoss.github.io/awesome-security-pipeline/projects/bridgecrewio/checkov/) | — |
+| [**kics**](https://github.com/Checkmarx/kics) | Find security vulnerabilities and compliance issues in IaC | 🟢&nbsp;Active<br><sub>Oct 2026</sub> | 2.7k | [report](https://rezmoss.github.io/awesome-security-pipeline/projects/Checkmarx/kics/) | — |
+| [**snyk-cli**](https://github.com/snyk/cli) | Scan infrastructure as code for security issues | 🟢&nbsp;Active<br><sub>Oct 2026</sub> | 5.7k | [report](https://rezmoss.github.io/awesome-security-pipeline/projects/snyk/cli/) | Checksums |
+| [**trivy**](https://github.com/aquasecurity/trivy) | Scan Terraform, CloudFormation, and other IaC for misconfigurations | 🟢&nbsp;Active<br><sub>Oct 2026</sub> | 38.9k | [7.1](https://rezmoss.github.io/awesome-security-pipeline/projects/aquasecurity/trivy/) | ✓&nbsp;Verified |
+| [**zizmor**](https://github.com/zizmorcore/zizmor) | Analyze GitHub Actions workflows for security issues | 🟢&nbsp;Active<br><sub>Oct 2026</sub> | 6.9k | [report](https://rezmoss.github.io/awesome-security-pipeline/projects/zizmorcore/zizmor/) | ✓&nbsp;Verified |
 
 ## Container Security
 
@@ -214,164 +244,171 @@ Secure container images and runtime environments.
 
 Scan container images for vulnerabilities before deployment.
 
-- [clair](https://github.com/quay/clair) - Analyze container images for known vulnerabilities. ![Active](https://img.shields.io/badge/status-active-brightgreen) ![Stars](https://img.shields.io/github/stars/quay/clair) ![Last Commit](https://img.shields.io/github/last-commit/quay/clair)
-- [docker-bench-security](https://github.com/docker/docker-bench-security) - Check Docker deployment against CIS benchmarks. ![Active](https://img.shields.io/badge/status-active-brightgreen) ![Stars](https://img.shields.io/github/stars/docker/docker-bench-security) ![Last Commit](https://img.shields.io/github/last-commit/docker/docker-bench-security)
-- [dockle](https://github.com/goodwithtech/dockle) - Lint container images for security best practices. ![Active](https://img.shields.io/badge/status-active-brightgreen) ![Stars](https://img.shields.io/github/stars/goodwithtech/dockle) ![Last Commit](https://img.shields.io/github/last-commit/goodwithtech/dockle)
-- [grype](https://github.com/anchore/grype) - Scan container images for operating-system and library vulnerabilities. ![Active](https://img.shields.io/badge/status-active-brightgreen) ![Stars](https://img.shields.io/github/stars/anchore/grype) ![Last Commit](https://img.shields.io/github/last-commit/anchore/grype)
-- [hadolint](https://github.com/hadolint/hadolint) - Lint Dockerfiles for security and build best practices. ![Active](https://img.shields.io/badge/status-active-brightgreen) ![Stars](https://img.shields.io/github/stars/hadolint/hadolint) ![Last Commit](https://img.shields.io/github/last-commit/hadolint/hadolint)
-- [trivy](https://github.com/aquasecurity/trivy) - Scan container images for operating-system and library vulnerabilities. ![Active](https://img.shields.io/badge/status-active-brightgreen) ![Stars](https://img.shields.io/github/stars/aquasecurity/trivy) ![Last Commit](https://img.shields.io/github/last-commit/aquasecurity/trivy)
+| Tool | What it does<br><img src="assets/blank.gif" width="700" height="1" alt=""> | Status | ★ | Scorecard | Release |
+|:---|:---|:---|---:|:---|:---|
+| [**clair**](https://github.com/quay/clair) | Analyze container images for known vulnerabilities | 🟢&nbsp;Active<br><sub>Oct 2026</sub> | 11.1k | [5.0](https://rezmoss.github.io/awesome-security-pipeline/projects/quay/clair/) | — |
+| [**dive**](https://github.com/wagoodman/dive) | Inspect image layers and contents; it does not scan vulnerability databases | 🟢&nbsp;Active<br><sub>Oct 2026</sub> | 54.7k | — | — |
+| [**docker-bench-security**](https://github.com/docker/docker-bench-security) | Check Docker deployment against CIS benchmarks | 🟢&nbsp;Active<br><sub>Jun 2026</sub> | 9.7k | [6.7](https://rezmoss.github.io/awesome-security-pipeline/projects/docker/docker-bench-security/) | — |
+| [**dockle**](https://github.com/goodwithtech/dockle) | Lint container images for security best practices | 🟢&nbsp;Active<br><sub>Jul 2026</sub> | 3.3k | [4.1](https://rezmoss.github.io/awesome-security-pipeline/projects/goodwithtech/dockle/) | Checksums |
+| [**grype**](https://github.com/anchore/grype) | Scan container images for operating-system and library vulnerabilities | 🟢&nbsp;Active<br><sub>Oct 2026</sub> | 13.2k | [7.9](https://rezmoss.github.io/awesome-security-pipeline/projects/anchore/grype/) | ✓&nbsp;Verified |
+| [**hadolint**](https://github.com/hadolint/hadolint) | Lint Dockerfiles for security and build best practices | 🟢&nbsp;Active<br><sub>Oct 2026</sub> | 12.5k | [4.7](https://rezmoss.github.io/awesome-security-pipeline/projects/hadolint/hadolint/) | ✓&nbsp;Verified |
+| [**trivy**](https://github.com/aquasecurity/trivy) | Scan container images for operating-system and library vulnerabilities | 🟢&nbsp;Active<br><sub>Oct 2026</sub> | 38.9k | [7.1](https://rezmoss.github.io/awesome-security-pipeline/projects/aquasecurity/trivy/) | ✓&nbsp;Verified |
 
 ### Runtime Security
 
 Monitor and protect containers at runtime.
 
-- [falco](https://github.com/falcosecurity/falco) - Detect runtime threats in cloud-native environments. ![Active](https://img.shields.io/badge/status-active-brightgreen) ![Stars](https://img.shields.io/github/stars/falcosecurity/falco) ![Last Commit](https://img.shields.io/github/last-commit/falcosecurity/falco)
-- [tetragon](https://github.com/cilium/tetragon) - Observe and enforce runtime security with eBPF. ![Active](https://img.shields.io/badge/status-active-brightgreen) ![Stars](https://img.shields.io/github/stars/cilium/tetragon) ![Last Commit](https://img.shields.io/github/last-commit/cilium/tetragon)
-- [tracee](https://github.com/aquasecurity/tracee) - Trace Linux runtime activity and security events with eBPF. ![Active](https://img.shields.io/badge/status-active-brightgreen) ![Stars](https://img.shields.io/github/stars/aquasecurity/tracee) ![Last Commit](https://img.shields.io/github/last-commit/aquasecurity/tracee)
+| Tool | What it does<br><img src="assets/blank.gif" width="700" height="1" alt=""> | Status | ★ | Scorecard | Release |
+|:---|:---|:---|---:|:---|:---|
+| [**falco**](https://github.com/falcosecurity/falco) | Detect runtime threats in cloud-native environments | 🟢&nbsp;Active<br><sub>Oct 2026</sub> | 9.5k | [7.5](https://rezmoss.github.io/awesome-security-pipeline/projects/falcosecurity/falco/) | — |
+| [**sysdig-inspect**](https://github.com/draios/sysdig-inspect) | Visualize system calls and analyze containers | 🟢&nbsp;Active<br><sub>Jul 2026</sub> | 1k | — | — |
+| [**tetragon**](https://github.com/cilium/tetragon) | Observe and enforce runtime security with eBPF | 🟢&nbsp;Active<br><sub>Oct 2026</sub> | 5.1k | [report](https://rezmoss.github.io/awesome-security-pipeline/projects/cilium/tetragon/) | — |
+| [**tracee**](https://github.com/aquasecurity/tracee) | Trace Linux runtime activity and security events with eBPF | 🟢&nbsp;Active<br><sub>Sep 2026</sub> | 4.7k | [7.0](https://rezmoss.github.io/awesome-security-pipeline/projects/aquasecurity/tracee/) | Checksums |
 
 ## Kubernetes Security
 
 Secure Kubernetes clusters, manifests, and workloads.
 
-- [kube-bench](https://github.com/aquasecurity/kube-bench) - Check Kubernetes against CIS benchmarks. ![Active](https://img.shields.io/badge/status-active-brightgreen) ![Stars](https://img.shields.io/github/stars/aquasecurity/kube-bench) ![Last Commit](https://img.shields.io/github/last-commit/aquasecurity/kube-bench)
-- [kube-linter](https://github.com/stackrox/kube-linter) - Analyze Kubernetes YAML and Helm charts before deployment. ![Active](https://img.shields.io/badge/status-active-brightgreen) ![Stars](https://img.shields.io/github/stars/stackrox/kube-linter) ![Last Commit](https://img.shields.io/github/last-commit/stackrox/kube-linter)
-- [kubescape](https://github.com/kubescape/kubescape) - Analyze Kubernetes security risk and configuration compliance. ![Active](https://img.shields.io/badge/status-active-brightgreen) ![Stars](https://img.shields.io/github/stars/kubescape/kubescape) ![Last Commit](https://img.shields.io/github/last-commit/kubescape/kubescape)
-- [KubeStellar Console](https://github.com/kubestellar/console) - View security signals across multiple Kubernetes clusters. ![Active](https://img.shields.io/badge/status-active-brightgreen) ![Stars](https://img.shields.io/github/stars/kubestellar/console) ![Last Commit](https://img.shields.io/github/last-commit/kubestellar/console)
-- [kyverno](https://github.com/kyverno/kyverno) - Enforce policies with Kubernetes-native resources. ![Active](https://img.shields.io/badge/status-active-brightgreen) ![Stars](https://img.shields.io/github/stars/kyverno/kyverno) ![Last Commit](https://img.shields.io/github/last-commit/kyverno/kyverno)
-- [polaris](https://github.com/FairwindsOps/polaris) - Validate Kubernetes best practices and policies. ![Active](https://img.shields.io/badge/status-active-brightgreen) ![Stars](https://img.shields.io/github/stars/FairwindsOps/polaris) ![Last Commit](https://img.shields.io/github/last-commit/FairwindsOps/polaris)
-- [trivy-operator](https://github.com/aquasecurity/trivy-operator) - Generate Kubernetes-native security reports. ![Active](https://img.shields.io/badge/status-active-brightgreen) ![Stars](https://img.shields.io/github/stars/aquasecurity/trivy-operator) ![Last Commit](https://img.shields.io/github/last-commit/aquasecurity/trivy-operator)
+| Tool | What it does<br><img src="assets/blank.gif" width="700" height="1" alt=""> | Status | ★ | Scorecard | Release |
+|:---|:---|:---|---:|:---|:---|
+| [**kube-bench**](https://github.com/aquasecurity/kube-bench) | Check Kubernetes against CIS benchmarks | 🟢&nbsp;Active<br><sub>Oct 2026</sub> | 8.2k | [5.8](https://rezmoss.github.io/awesome-security-pipeline/projects/aquasecurity/kube-bench/) | Checksums |
+| [**kube-linter**](https://github.com/stackrox/kube-linter) | Analyze Kubernetes YAML and Helm charts before deployment | 🟢&nbsp;Active<br><sub>Oct 2026</sub> | 3.5k | [7.4](https://rezmoss.github.io/awesome-security-pipeline/projects/stackrox/kube-linter/) | Signed |
+| [**kubescape**](https://github.com/kubescape/kubescape) | Analyze Kubernetes security risk and configuration compliance | 🟢&nbsp;Active<br><sub>Oct 2026</sub> | 11.8k | [7.6](https://rezmoss.github.io/awesome-security-pipeline/projects/kubescape/kubescape/) | ✓&nbsp;Verified |
+| [**KubeStellar Console**](https://github.com/kubestellar/console) | View security signals across multiple Kubernetes clusters | 🟢&nbsp;Active<br><sub>Nov 2026</sub> | 152 | [report](https://rezmoss.github.io/awesome-security-pipeline/projects/kubestellar/console/) | ✓&nbsp;Verified |
+| [**kyverno**](https://github.com/kyverno/kyverno) | Enforce policies with Kubernetes-native resources | 🟢&nbsp;Active<br><sub>Nov 2026</sub> | 8.3k | [7.8](https://rezmoss.github.io/awesome-security-pipeline/projects/kyverno/kyverno/) | ✓&nbsp;Verified |
+| [**polaris**](https://github.com/FairwindsOps/polaris) | Validate Kubernetes best practices and policies | 🟢&nbsp;Active<br><sub>Oct 2026</sub> | 3.4k | [5.1](https://rezmoss.github.io/awesome-security-pipeline/projects/FairwindsOps/polaris/) | Signed |
+| [**trivy-operator**](https://github.com/aquasecurity/trivy-operator) | Generate Kubernetes-native security reports | 🟢&nbsp;Active<br><sub>Oct 2026</sub> | 2k | [7.5](https://rezmoss.github.io/awesome-security-pipeline/projects/aquasecurity/trivy-operator/) | ✓&nbsp;Verified |
 
 ## Policy as Code
 
 Define and enforce security policies as code across your infrastructure.
 
-- [conftest](https://github.com/open-policy-agent/conftest) - Test configuration files against OPA policies. ![Active](https://img.shields.io/badge/status-active-brightgreen) ![Stars](https://img.shields.io/github/stars/open-policy-agent/conftest) ![Last Commit](https://img.shields.io/github/last-commit/open-policy-agent/conftest)
-- [gatekeeper](https://github.com/open-policy-agent/gatekeeper) - Enforce OPA policies through Kubernetes admission control. ![Active](https://img.shields.io/badge/status-active-brightgreen) ![Stars](https://img.shields.io/github/stars/open-policy-agent/gatekeeper) ![Last Commit](https://img.shields.io/github/last-commit/open-policy-agent/gatekeeper)
-- [opa](https://github.com/open-policy-agent/opa) - Evaluate policy as code across application and infrastructure systems. ![Active](https://img.shields.io/badge/status-active-brightgreen) ![Stars](https://img.shields.io/github/stars/open-policy-agent/opa) ![Last Commit](https://img.shields.io/github/last-commit/open-policy-agent/opa)
+| Tool | What it does<br><img src="assets/blank.gif" width="700" height="1" alt=""> | Status | ★ | Scorecard | Release |
+|:---|:---|:---|---:|:---|:---|
+| [**conftest**](https://github.com/open-policy-agent/conftest) | Test configuration files against OPA policies | 🟢&nbsp;Active<br><sub>Oct 2026</sub> | 3.3k | [7.2](https://rezmoss.github.io/awesome-security-pipeline/projects/open-policy-agent/conftest/) | ✓&nbsp;Verified |
+| [**gatekeeper**](https://github.com/open-policy-agent/gatekeeper) | Enforce OPA policies through Kubernetes admission control | 🟢&nbsp;Active<br><sub>Oct 2026</sub> | 4.3k | [report](https://rezmoss.github.io/awesome-security-pipeline/projects/open-policy-agent/gatekeeper/) | ✓&nbsp;Verified |
+| [**opa**](https://github.com/open-policy-agent/opa) | Evaluate policy as code across application and infrastructure systems | 🟢&nbsp;Active<br><sub>Nov 2026</sub> | 12.4k | [8.0](https://rezmoss.github.io/awesome-security-pipeline/projects/open-policy-agent/opa/) | ✓&nbsp;Verified |
 
 ## Secret Management
 
 Securely manage and distribute secrets in Kubernetes and GitOps workflows.
 
-- [external-secrets](https://github.com/external-secrets/external-secrets) - Sync secrets from AWS/Vault/Azure into Kubernetes. ![Active](https://img.shields.io/badge/status-active-brightgreen) ![Stars](https://img.shields.io/github/stars/external-secrets/external-secrets) ![Last Commit](https://img.shields.io/github/last-commit/external-secrets/external-secrets)
-- [infisical](https://github.com/Infisical/infisical) - Manage application secrets with automation integrations. ![Active](https://img.shields.io/badge/status-active-brightgreen) ![Stars](https://img.shields.io/github/stars/Infisical/infisical) ![Last Commit](https://img.shields.io/github/last-commit/Infisical/infisical)
-- [sealed-secrets](https://github.com/bitnami-labs/sealed-secrets) - Encrypt secrets locally, decrypt only in cluster. ![Active](https://img.shields.io/badge/status-active-brightgreen) ![Stars](https://img.shields.io/github/stars/bitnami-labs/sealed-secrets) ![Last Commit](https://img.shields.io/github/last-commit/bitnami-labs/sealed-secrets)
-- [sops](https://github.com/getsops/sops) - Encrypt structured files while preserving editor workflows. ![Active](https://img.shields.io/badge/status-active-brightgreen) ![Stars](https://img.shields.io/github/stars/getsops/sops) ![Last Commit](https://img.shields.io/github/last-commit/getsops/sops)
-- [vault](https://github.com/hashicorp/vault) - Manage secrets, encryption, and privileged access. ![Active](https://img.shields.io/badge/status-active-brightgreen) ![Stars](https://img.shields.io/github/stars/hashicorp/vault) ![Last Commit](https://img.shields.io/github/last-commit/hashicorp/vault)
+| Tool | What it does<br><img src="assets/blank.gif" width="700" height="1" alt=""> | Status | ★ | Scorecard | Release |
+|:---|:---|:---|---:|:---|:---|
+| [**external-secrets**](https://github.com/external-secrets/external-secrets) | Sync secrets from AWS/Vault/Azure into Kubernetes | 🟢&nbsp;Active<br><sub>Oct 2026</sub> | 6.9k | [8.3](https://rezmoss.github.io/awesome-security-pipeline/projects/external-secrets/external-secrets/) | — |
+| [**infisical**](https://github.com/Infisical/infisical) | Manage application secrets with automation integrations | 🟢&nbsp;Active<br><sub>Nov 2026</sub> | 30.2k | [6.9](https://rezmoss.github.io/awesome-security-pipeline/projects/Infisical/infisical/) | — |
+| [**sealed-secrets**](https://github.com/bitnami-labs/sealed-secrets) | Encrypt secrets locally, decrypt only in cluster | 🟢&nbsp;Active<br><sub>Oct 2026</sub> | 9.3k | [6.8](https://rezmoss.github.io/awesome-security-pipeline/projects/bitnami-labs/sealed-secrets/) | Signed |
+| [**sops**](https://github.com/getsops/sops) | Encrypt structured files while preserving editor workflows | 🟢&nbsp;Active<br><sub>Oct 2026</sub> | 23.6k | [report](https://rezmoss.github.io/awesome-security-pipeline/projects/getsops/sops/) | ✓&nbsp;Verified |
+| [**vault**](https://github.com/hashicorp/vault) | Manage secrets, encryption, and privileged access | 🟢&nbsp;Active<br><sub>Oct 2026</sub> | 36.5k | [6.5](https://rezmoss.github.io/awesome-security-pipeline/projects/hashicorp/vault/) | — |
 
 ## API & Dynamic Testing (DAST)
 
 Test running applications for vulnerabilities.
 
-- [nikto](https://github.com/sullo/nikto) - Scan web servers for dangerous files and known vulnerabilities. ![Active](https://img.shields.io/badge/status-active-brightgreen) ![Stars](https://img.shields.io/github/stars/sullo/nikto) ![Last Commit](https://img.shields.io/github/last-commit/sullo/nikto)
-- [nuclei](https://github.com/projectdiscovery/nuclei) - Scan applications and infrastructure with customizable templates. ![Active](https://img.shields.io/badge/status-active-brightgreen) ![Stars](https://img.shields.io/github/stars/projectdiscovery/nuclei) ![Last Commit](https://img.shields.io/github/last-commit/projectdiscovery/nuclei)
-- [sqlmap](https://github.com/sqlmapproject/sqlmap) - Detect and validate SQL injection vulnerabilities. ![Active](https://img.shields.io/badge/status-active-brightgreen) ![Stars](https://img.shields.io/github/stars/sqlmapproject/sqlmap) ![Last Commit](https://img.shields.io/github/last-commit/sqlmapproject/sqlmap)
-- [wapiti](https://github.com/wapiti-scanner/wapiti) - Scan web applications for vulnerabilities with black-box testing. ![Active](https://img.shields.io/badge/status-active-brightgreen) ![Stars](https://img.shields.io/github/stars/wapiti-scanner/wapiti) ![Last Commit](https://img.shields.io/github/last-commit/wapiti-scanner/wapiti)
-- [Dark-Moon](https://github.com/ASCIT31/Dark-Moon) - Autonomous AI penetration testing platform that exercises running web, API, Active Directory and Kubernetes targets with proof of exploitation. ![Active](https://img.shields.io/badge/status-active-brightgreen) ![Stars](https://img.shields.io/github/stars/ASCIT31/Dark-Moon) ![Last Commit](https://img.shields.io/github/last-commit/ASCIT31/Dark-Moon)
-- [zap](https://github.com/zaproxy/zaproxy) - Scan web applications dynamically with OWASP ZAP. ![Active](https://img.shields.io/badge/status-active-brightgreen) ![Stars](https://img.shields.io/github/stars/zaproxy/zaproxy) ![Last Commit](https://img.shields.io/github/last-commit/zaproxy/zaproxy)
+| Tool | What it does<br><img src="assets/blank.gif" width="700" height="1" alt=""> | Status | ★ | Scorecard | Release |
+|:---|:---|:---|---:|:---|:---|
+| [**Dark-Moon**](https://github.com/ASCIT31/Dark-Moon) | Autonomous AI penetration testing platform that exercises running web, API, Active Directory and Kubernetes targets with proof of exploitation | 🟢&nbsp;Active<br><sub>Oct 2026</sub> | 1.2k | [3.8](https://rezmoss.github.io/awesome-security-pipeline/projects/ASCIT31/Dark-Moon/) | — |
+| [**nikto**](https://github.com/sullo/nikto) | Scan web servers for dangerous files and known vulnerabilities | 🟢&nbsp;Active<br><sub>Aug 2026</sub> | 10.8k | [3.8](https://rezmoss.github.io/awesome-security-pipeline/projects/sullo/nikto/) | — |
+| [**nuclei**](https://github.com/projectdiscovery/nuclei) | Scan applications and infrastructure with customizable templates | 🟢&nbsp;Active<br><sub>Oct 2026</sub> | 32.5k | [6.8](https://rezmoss.github.io/awesome-security-pipeline/projects/projectdiscovery/nuclei/) | Checksums |
+| [**sqlmap**](https://github.com/sqlmapproject/sqlmap) | Detect and validate SQL injection vulnerabilities | 🟢&nbsp;Active<br><sub>Oct 2026</sub> | 38.8k | [4.9](https://rezmoss.github.io/awesome-security-pipeline/projects/sqlmapproject/sqlmap/) | — |
+| [**wapiti**](https://github.com/wapiti-scanner/wapiti) | Scan web applications for vulnerabilities with black-box testing | 🟢&nbsp;Active<br><sub>Oct 2026</sub> | 1.9k | [report](https://rezmoss.github.io/awesome-security-pipeline/projects/wapiti-scanner/wapiti/) | — |
+| [**zap**](https://github.com/zaproxy/zaproxy) | Scan web applications dynamically with OWASP ZAP | 🟢&nbsp;Active<br><sub>Nov 2026</sub> | 16.1k | [6.8](https://rezmoss.github.io/awesome-security-pipeline/projects/zaproxy/zaproxy/) | — |
 
 ## Cloud Security
 
 Assess and audit cloud infrastructure security posture.
 
-- [cartography](https://github.com/lyft/cartography) - Map infrastructure relationships and attack surface. ![Active](https://img.shields.io/badge/status-active-brightgreen) ![Stars](https://img.shields.io/github/stars/lyft/cartography) ![Last Commit](https://img.shields.io/github/last-commit/lyft/cartography)
-- [cloudquery](https://github.com/cloudquery/cloudquery) - Inventory cloud assets and analyze them with SQL. ![Active](https://img.shields.io/badge/status-active-brightgreen) ![Stars](https://img.shields.io/github/stars/cloudquery/cloudquery) ![Last Commit](https://img.shields.io/github/last-commit/cloudquery/cloudquery)
-- [cloudsplaining](https://github.com/salesforce/cloudsplaining) - Assess AWS IAM policies for risky permissions. ![Active](https://img.shields.io/badge/status-active-brightgreen) ![Stars](https://img.shields.io/github/stars/salesforce/cloudsplaining) ![Last Commit](https://img.shields.io/github/last-commit/salesforce/cloudsplaining)
-- [prowler](https://github.com/prowler-cloud/prowler) - Assess AWS, Azure, and GCP security configurations. ![Active](https://img.shields.io/badge/status-active-brightgreen) ![Stars](https://img.shields.io/github/stars/prowler-cloud/prowler) ![Last Commit](https://img.shields.io/github/last-commit/prowler-cloud/prowler)
-- [steampipe](https://github.com/turbot/steampipe) - Query cloud resources using SQL. ![Active](https://img.shields.io/badge/status-active-brightgreen) ![Stars](https://img.shields.io/github/stars/turbot/steampipe) ![Last Commit](https://img.shields.io/github/last-commit/turbot/steampipe)
+| Tool | What it does<br><img src="assets/blank.gif" width="700" height="1" alt=""> | Status | ★ | Scorecard | Release |
+|:---|:---|:---|---:|:---|:---|
+| [**cartography**](https://github.com/lyft/cartography) | Map infrastructure relationships and attack surface | 🟢&nbsp;Active<br><sub>Nov 2026</sub> | 4.2k | [8.1](https://rezmoss.github.io/awesome-security-pipeline/projects/lyft/cartography/) | — |
+| [**cloudquery**](https://github.com/cloudquery/cloudquery) | Inventory cloud assets and analyze them with SQL | 🟢&nbsp;Active<br><sub>Nov 2026</sub> | 6.6k | [6.0](https://rezmoss.github.io/awesome-security-pipeline/projects/cloudquery/cloudquery/) | Checksums |
+| [**cloudsplaining**](https://github.com/salesforce/cloudsplaining) | Assess AWS IAM policies for risky permissions | 🟢&nbsp;Active<br><sub>Oct 2026</sub> | 2.3k | [5.7](https://rezmoss.github.io/awesome-security-pipeline/projects/salesforce/cloudsplaining/) | — |
+| [**prowler**](https://github.com/prowler-cloud/prowler) | Assess AWS, Azure, and GCP security configurations | 🟢&nbsp;Active<br><sub>Oct 2026</sub> | 15.2k | [report](https://rezmoss.github.io/awesome-security-pipeline/projects/prowler-cloud/prowler/) | — |
+| [**steampipe**](https://github.com/turbot/steampipe) | Query cloud resources using SQL | 🟢&nbsp;Active<br><sub>Nov 2026</sub> | 8k | [6.8](https://rezmoss.github.io/awesome-security-pipeline/projects/turbot/steampipe/) | ✓&nbsp;Verified |
 
 ## Legacy and Reference Tools
 
-These projects are retained for migration research and historical context, not recommended for new adoption. They are separated from the active catalog because their repositories are archived or exceed the project's unmaintained threshold. Prefer the maintained alternatives noted beside an entry or select one from the active category above.
+These projects are kept for migration research and historical context, not recommended for new adoption. They are listed here because their repositories are archived or have had no commit for over 12 months. Prefer the alternative noted beside an entry or a maintained tool from the matching category above.
 
 ### Pre-commit & Secrets Detection
 
-- [whispers](https://github.com/Skyscanner/whispers) - Identify hardcoded secrets in static code analysis. ![Archived](https://img.shields.io/badge/status-archived-lightgrey) ![Stars](https://img.shields.io/github/stars/Skyscanner/whispers) ![Last Commit](https://img.shields.io/github/last-commit/Skyscanner/whispers)
+| Tool | What it did<br><img src="assets/blank.gif" width="600" height="1" alt=""> | Status | ★ | Use instead |
+|:---|:---|:---|---:|:---|
+| [**git-secrets**](https://github.com/awslabs/git-secrets) | Prevent committing AWS credentials and secrets | 🔴&nbsp;Unmaintained<br><sub>Sep 2025</sub> | 13.4k | — |
+| [**whispers**](https://github.com/Skyscanner/whispers) | Identify hardcoded secrets in static code analysis | ⚪&nbsp;Archived<br><sub>Oct 2021</sub> | 506 | — |
 
 ### SBOM Generation
 
-- [spdx-sbom-generator](https://github.com/opensbom-generator/spdx-sbom-generator) - Generate SPDX format SBOMs from source code. ![Archived](https://img.shields.io/badge/status-archived-lightgrey) ![Stars](https://img.shields.io/github/stars/opensbom-generator/spdx-sbom-generator) ![Last Commit](https://img.shields.io/github/last-commit/opensbom-generator/spdx-sbom-generator)
-- [tern](https://github.com/tern-tools/tern) - Analyze container images for software composition. ![Unmaintained](https://img.shields.io/badge/status-unmaintained-red) ![Stars](https://img.shields.io/github/stars/tern-tools/tern) ![Last Commit](https://img.shields.io/github/last-commit/tern-tools/tern)
+| Tool | What it did<br><img src="assets/blank.gif" width="600" height="1" alt=""> | Status | ★ | Use instead |
+|:---|:---|:---|---:|:---|
+| [**spdx-sbom-generator**](https://github.com/opensbom-generator/spdx-sbom-generator) | Generate SPDX format SBOMs from source code | ⚪&nbsp;Archived<br><sub>Jan 2025</sub> | 427 | — |
+| [**tern**](https://github.com/tern-tools/tern) | Analyze container images for software composition | 🔴&nbsp;Unmaintained<br><sub>Dec 2023</sub> | 1k | — |
 
 ### Supply Chain Compliance
 
-- [chain-bench](https://github.com/aquasecurity/chain-bench) - Audit supply chain against CIS benchmarks. ![Unmaintained](https://img.shields.io/badge/status-unmaintained-red) ![Stars](https://img.shields.io/github/stars/aquasecurity/chain-bench) ![Last Commit](https://img.shields.io/github/last-commit/aquasecurity/chain-bench)
+| Tool | What it did<br><img src="assets/blank.gif" width="600" height="1" alt=""> | Status | ★ | Use instead |
+|:---|:---|:---|---:|:---|
+| [**chain-bench**](https://github.com/aquasecurity/chain-bench) | Audit supply chain against CIS benchmarks | 🔴&nbsp;Unmaintained<br><sub>Jul 2024</sub> | 772 | — |
 
 ### Static Application Security Testing (SAST) › Multi-language
 
-- [horusec](https://github.com/ZupIT/horusec) - Analyze source code across multiple languages. ![Unmaintained](https://img.shields.io/badge/status-unmaintained-red) ![Stars](https://img.shields.io/github/stars/ZupIT/horusec) ![Last Commit](https://img.shields.io/github/last-commit/ZupIT/horusec)
+| Tool | What it did<br><img src="assets/blank.gif" width="600" height="1" alt=""> | Status | ★ | Use instead |
+|:---|:---|:---|---:|:---|
+| [**horusec**](https://github.com/ZupIT/horusec) | Analyze source code across multiple languages | 🔴&nbsp;Unmaintained<br><sub>Aug 2023</sub> | 1.3k | — |
 
 ### Static Application Security Testing (SAST) › Language-specific › Python
 
-- [pyre-check](https://github.com/facebook/pyre-check) - Analyze Python types and selected security properties. ![Archived](https://img.shields.io/badge/status-archived-lightgrey) ![Stars](https://img.shields.io/github/stars/facebook/pyre-check) ![Last Commit](https://img.shields.io/github/last-commit/facebook/pyre-check)
-
-### Static Application Security Testing (SAST) › Language-specific › JavaScript/Node.js
-
-- [njsscan](https://github.com/ajinabraham/njsscan) - Analyze Node.js applications with semantic SAST rules. ![Active](https://img.shields.io/badge/status-active-brightgreen) ![Stars](https://img.shields.io/github/stars/ajinabraham/njsscan) ![Last Commit](https://img.shields.io/github/last-commit/ajinabraham/njsscan)
+| Tool | What it did<br><img src="assets/blank.gif" width="600" height="1" alt=""> | Status | ★ | Use instead |
+|:---|:---|:---|---:|:---|
+| [**pyre-check**](https://github.com/facebook/pyre-check) | Analyze Python types and selected security properties | ⚪&nbsp;Archived<br><sub>Jun 2026</sub> | 7.2k | — |
 
 ### Infrastructure as Code Security
 
-- [terrascan](https://github.com/tenable/terrascan) - Detect compliance and security violations in IaC. ![Archived](https://img.shields.io/badge/status-archived-lightgrey) ![Stars](https://img.shields.io/github/stars/tenable/terrascan) ![Last Commit](https://img.shields.io/github/last-commit/tenable/terrascan)
-- [tfsec](https://github.com/aquasecurity/tfsec) - Scan Terraform code for security issues. ![Unmaintained](https://img.shields.io/badge/status-unmaintained-red) ![Stars](https://img.shields.io/github/stars/aquasecurity/tfsec) ![Last Commit](https://img.shields.io/github/last-commit/aquasecurity/tfsec)
+| Tool | What it did<br><img src="assets/blank.gif" width="600" height="1" alt=""> | Status | ★ | Use instead |
+|:---|:---|:---|---:|:---|
+| [**terrascan**](https://github.com/tenable/terrascan) | Detect compliance and security violations in IaC | ⚪&nbsp;Archived<br><sub>Nov 2025</sub> | 5.2k | — |
+| [**tfsec**](https://github.com/aquasecurity/tfsec) | Scan Terraform code for security issues | 🔴&nbsp;Unmaintained<br><sub>May 2025</sub> | 7.1k | — |
 
 ### Container Security › Image Scanning
 
-- [anchore-engine](https://github.com/anchore/anchore-engine) - Analyze containers and evaluate image policies. ![Archived](https://img.shields.io/badge/status-archived-lightgrey) ![Stars](https://img.shields.io/github/stars/anchore/anchore-engine) ![Last Commit](https://img.shields.io/github/last-commit/anchore/anchore-engine) *(Migrate to [Syft](https://github.com/anchore/syft) + [Grype](https://github.com/anchore/grype))*
-- [dive](https://github.com/wagoodman/dive) - Inspect image layers and contents; it does not scan vulnerability databases. ![Active](https://img.shields.io/badge/status-active-brightgreen) ![Stars](https://img.shields.io/github/stars/wagoodman/dive) ![Last Commit](https://img.shields.io/github/last-commit/wagoodman/dive)
-
-### Container Security › Runtime Security
-
-- [sysdig-inspect](https://github.com/draios/sysdig-inspect) - Visualize system calls and analyze containers. ![Active](https://img.shields.io/badge/status-active-brightgreen) ![Stars](https://img.shields.io/github/stars/draios/sysdig-inspect) ![Last Commit](https://img.shields.io/github/last-commit/draios/sysdig-inspect)
+| Tool | What it did<br><img src="assets/blank.gif" width="600" height="1" alt=""> | Status | ★ | Use instead |
+|:---|:---|:---|---:|:---|
+| [**anchore-engine**](https://github.com/anchore/anchore-engine) | Analyze containers and evaluate image policies | ⚪&nbsp;Archived<br><sub>Jan 2023</sub> | 1.6k | [syft](https://github.com/anchore/syft), [grype](https://github.com/anchore/grype) |
 
 ### Kubernetes Security
 
-- [kube-hunter](https://github.com/aquasecurity/kube-hunter) - Hunt for security weaknesses in Kubernetes clusters. ![Unmaintained](https://img.shields.io/badge/status-unmaintained-red) ![Stars](https://img.shields.io/github/stars/aquasecurity/kube-hunter) ![Last Commit](https://img.shields.io/github/last-commit/aquasecurity/kube-hunter)
-- [kubiscan](https://github.com/cyberark/KubiScan) - Scan Kubernetes RBAC for risky permissions. ![Unmaintained](https://img.shields.io/badge/status-unmaintained-red) ![Stars](https://img.shields.io/github/stars/cyberark/KubiScan) ![Last Commit](https://img.shields.io/github/last-commit/cyberark/KubiScan)
+| Tool | What it did<br><img src="assets/blank.gif" width="600" height="1" alt=""> | Status | ★ | Use instead |
+|:---|:---|:---|---:|:---|
+| [**kube-hunter**](https://github.com/aquasecurity/kube-hunter) | Hunt for security weaknesses in Kubernetes clusters | 🔴&nbsp;Unmaintained<br><sub>Mar 2024</sub> | 5.1k | — |
+| [**kubiscan**](https://github.com/cyberark/KubiScan) | Scan Kubernetes RBAC for risky permissions | 🔴&nbsp;Unmaintained<br><sub>May 2025</sub> | 1.4k | — |
 
 ### Policy as Code
 
-- [datree](https://github.com/datreeio/datree) - Prevent Kubernetes misconfigurations. ![Archived](https://img.shields.io/badge/status-archived-lightgrey) ![Stars](https://img.shields.io/github/stars/datreeio/datree) ![Last Commit](https://img.shields.io/github/last-commit/datreeio/datree)
+| Tool | What it did<br><img src="assets/blank.gif" width="600" height="1" alt=""> | Status | ★ | Use instead |
+|:---|:---|:---|---:|:---|
+| [**datree**](https://github.com/datreeio/datree) | Prevent Kubernetes misconfigurations | ⚪&nbsp;Archived<br><sub>Aug 2023</sub> | 6.3k | — |
 
 ### API & Dynamic Testing (DAST)
 
-- [arachni](https://github.com/Arachni/arachni) - Scan web applications for security issues. ![Archived](https://img.shields.io/badge/status-archived-lightgrey) ![Stars](https://img.shields.io/github/stars/Arachni/arachni) ![Last Commit](https://img.shields.io/github/last-commit/Arachni/arachni) *(Consider [ZAP](https://github.com/zaproxy/zaproxy) or [Nuclei](https://github.com/projectdiscovery/nuclei) instead)*
+| Tool | What it did<br><img src="assets/blank.gif" width="600" height="1" alt=""> | Status | ★ | Use instead |
+|:---|:---|:---|---:|:---|
+| [**arachni**](https://github.com/Arachni/arachni) | Scan web applications for security issues | ⚪&nbsp;Archived<br><sub>Apr 2026</sub> | 4k | [zap](https://github.com/zaproxy/zaproxy), [nuclei](https://github.com/projectdiscovery/nuclei) |
 
 ### Cloud Security
 
-- [ScoutSuite](https://github.com/nccgroup/ScoutSuite) - Audit security configurations across multiple cloud providers. ![Unmaintained](https://img.shields.io/badge/status-unmaintained-red) ![Stars](https://img.shields.io/github/stars/nccgroup/ScoutSuite) ![Last Commit](https://img.shields.io/github/last-commit/nccgroup/ScoutSuite)
+| Tool | What it did<br><img src="assets/blank.gif" width="600" height="1" alt=""> | Status | ★ | Use instead |
+|:---|:---|:---|---:|:---|
+| [**ScoutSuite**](https://github.com/nccgroup/ScoutSuite) | Audit security configurations across multiple cloud providers | 🔴&nbsp;Unmaintained<br><sub>May 2024</sub> | 7.9k | — |
+
+<!-- catalog:end -->
 
 ---
-
-## Reading the Badges
-
-Each tool displays status and activity badges for transparency.
-
-### Maintenance Status (Updated Weekly)
-
-Status badges are **automatically updated every week** by our GitHub Action to reflect current maintenance status.
-
-| Badge | Meaning |
-|-------|---------|
-| ![Active](https://img.shields.io/badge/status-active-brightgreen) | **Active** - Updated within the last 6 months |
-| ![Stale](https://img.shields.io/badge/status-stale-yellow) | **Stale** - No updates in 6-12 months; use with caution |
-| ![Unmaintained](https://img.shields.io/badge/status-unmaintained-red) | **Unmaintained** - No updates in 12+ months; consider alternatives |
-| ![Archived](https://img.shields.io/badge/status-archived-lightgrey) | **Archived** - Repository has been archived by owner |
-| ![Deprecated](https://img.shields.io/badge/status-deprecated-lightgrey) | **Deprecated** - Officially superseded; migration recommended |
-
-### Activity Badges
-
-| Badge | Meaning |
-|-------|---------|
-| ![Stars](https://img.shields.io/badge/stars-★-blue) | GitHub star count - indicates community adoption |
-| ![Last Commit](https://img.shields.io/badge/last%20commit-date-green) | Last commit date - shows exact update time |
-
-> **Tip:** While we update status badges weekly, always verify the "Last Commit" badge for the most current information before adopting a tool.
 
 ## Contributing
 
 Contributions are welcome! Please read the [contribution guidelines](CONTRIBUTING.md) first.
 
-**Before submitting:**
+**To add a tool**, add one JSON file in [`tools/`](tools/); the catalog above is generated from those files. **Before submitting:**
 - Repository must be **at least 1 month old** (anti-spam requirement)
 - Repository must have **at least 5 stars**
 - Tool must have been **updated within the last 12 months**

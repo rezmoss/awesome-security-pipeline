@@ -10,10 +10,12 @@ on:
       - ".github/workflows/supply-chain-report.yml"
       - "scripts/supply_chain_scan.py"
       - "scripts/supply_chain_checks.py"
+      - "scripts/catalog.py"
       - "scripts/build_site.py"
       - "scripts/fetch-site-inputs.sh"
       - "scripts/install-supply-chain-tools.sh"
       - "tests/test_supply_chain_scan.py"
+      - "tests/test_catalog.py"
   push:
     branches: [main]
     paths:
@@ -51,7 +53,7 @@ jobs:
 
       - name: Test scanner and site generation
         shell: bash
-        run: python3 -m unittest tests/test_supply_chain_scan.py
+        run: python3 -m unittest tests/test_supply_chain_scan.py tests/test_catalog.py
 
       - name: Resolve the latest release of every active catalog project
         id: targets
@@ -68,7 +70,7 @@ jobs:
           elif [[ "$GITHUB_REF" == "refs/heads/main" ]]; then
             publish=true
           fi
-          matrix=$(python3 scripts/supply_chain_scan.py targets --readme README.md \
+          matrix=$(python3 scripts/supply_chain_scan.py targets --tools tools \
             --shards "$SHARDS" --output targets.json "${limit[@]}")
           echo "matrix=$matrix" >> "$GITHUB_OUTPUT"
           echo "publish=$publish" >> "$GITHUB_OUTPUT"

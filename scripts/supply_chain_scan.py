@@ -2,7 +2,7 @@
 """Weekly supply-chain report for every active tool in the catalog.
 
 Subcommands:
-  targets  parse the README catalog, resolve each project's latest release, and shard the list
+  targets  read the active tools from tools/, resolve each project's latest release, and shard the list
   scan     fetch the manifests and lockfiles at each release tag, then run Syft, Grype, and sbomlyze
   publish  record the week's results in the data branch and compute changes from the previous week
 
@@ -28,11 +28,10 @@ from typing import Any
 
 sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent.parent))
 
+from scripts import catalog  # noqa: E402
 from scripts import supply_chain_checks as checks  # noqa: E402
 
 SCHEMA_VERSION = 1
-CATALOG_END = "## Legacy and Reference Tools"
-ENTRY = re.compile(r"^- \[(?P<name>[^\]]+)\]\(https://github\.com/(?P<repo>[A-Za-z0-9_.-]+/[A-Za-z0-9_.-]+)\) - (?P<description>[^!]*)")
 MANIFESTS = (
     "go.mod", "go.sum", "package.json", "package-lock.json", "npm-shrinkwrap.json", "yarn.lock",
     "pnpm-lock.yaml", "bun.lock", "requirements*.txt", "pyproject.toml", "poetry.lock", "Pipfile",
@@ -87,27 +86,23 @@ def utc_now() -> str:
 
 # ----- targets ---------------------------------------------------------------------------
 
-def parse_catalog(readme: str) -> list[dict[str, str]]:
-    """Return active catalog entries (everything before the legacy section), with their category."""
-    entries: dict[str, dict[str, str]] = {}
-    category = ""
-    for line in readme.split(CATALOG_END, 1)[0].splitlines():
-        if line.startswith("## ") or line.startswith("### ") or line.startswith("#### "):
-            heading = line.lstrip("#").strip()
-            if line.startswith("## "):
-                category = heading
-            else:
-                category = f"{category.split(' › ')[0]} › {heading}" if category else heading
+def active_catalog(tools_dir: pathlib.Path) -> list[dict[str, str]]:
+    """Active catalog entries from tools/*.json, with the category path of their first listing."""
+    tools = catalog.load_tools(tools_dir)
+    categories = catalog.load_categories(tools_dir)
+    entries = []
+    for tool in tools.values():
+        if (tool.get("automated") or {}).get("section", "active") != "active":
             continue
-        match = ENTRY.match(line)
-        if match and match["repo"] not in entries:
-            entries[match["repo"]] = {
-                "repository": match["repo"],
-                "name": match["name"],
-                "description": match["description"].strip(),
-                "category": category,
-            }
-    return sorted(entries.values(), key=lambda item: item["repository"].lower())
+        listing = tool["listing"]
+        first = listing["categories"][0]
+        entries.append({
+            "repository": listing["repository"],
+            "name": listing["name"],
+            "description": first["description"].rstrip("."),
+            "category": " › ".join(item["title"] for item in catalog.category_path(categories, first["category"])),
+        })
+    return sorted(entries, key=lambda item: item["repository"].lower())
 
 
 def resolve_release(target: dict[str, str], tag_patterns: dict[str, Any]) -> dict[str, Any]:
@@ -140,7 +135,7 @@ def resolve_release(target: dict[str, str], tag_patterns: dict[str, Any]) -> dic
 
 
 def command_targets(args: argparse.Namespace) -> int:
-    entries = parse_catalog(args.readme.read_text(encoding="utf-8"))
+    entries = active_catalog(args.tools)
     if args.only:
         wanted = {item.lower() for item in args.only}
         entries = [item for item in entries if item["repository"].lower() in wanted]
@@ -664,7 +659,7 @@ def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     commands = parser.add_subparsers(dest="command", required=True)
     targets = commands.add_parser("targets")
-    targets.add_argument("--readme", type=pathlib.Path, default=pathlib.Path("README.md"))
+    targets.add_argument("--tools", type=pathlib.Path, default=pathlib.Path("tools"))
     targets.add_argument("--shards", type=int, default=8)
     targets.add_argument("--tag-patterns", type=pathlib.Path,
                          default=pathlib.Path("benchmarks/supply-chain/release-tags.json"))
