@@ -1,0 +1,57 @@
+name: Supply-chain Data Verification
+
+# Independently re-checks the published report data: every run file recomputes from the project
+# files, SHA256SUMS matches, the data branch was only appended to, every evidence release tag is
+# still in its history, and the newest data carries a valid attestation from the report workflow.
+# A push to supply-chain-data cannot trigger this (that branch holds no workflows), so it runs the
+# day after each weekly report and on changes to the verifier; the report's publish job runs the
+# same checks on every commit before pushing it.
+
+on:
+  schedule:
+    - cron: "17 6 * * 1"
+  workflow_dispatch:
+  pull_request:
+    paths:
+      - ".github/workflows/supply-chain-verify.yml"
+      - "scripts/supply_chain_scan.py"
+  push:
+    branches: [main]
+    paths:
+      - ".github/workflows/supply-chain-verify.yml"
+      - "scripts/supply_chain_scan.py"
+
+permissions: {}
+
+jobs:
+  verify:
+    name: Verify the data branch
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    permissions:
+      contents: read
+      attestations: read
+    steps:
+      - name: Check out the verifier without persisted credentials
+        uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4
+        with:
+          persist-credentials: false
+
+      - name: Clone the data branch with full history and release tags
+        shell: bash
+        run: |
+          set -euo pipefail
+          git clone --quiet --single-branch --branch supply-chain-data \
+            "$GITHUB_SERVER_URL/$GITHUB_REPOSITORY.git" "$RUNNER_TEMP/data"
+          git -C "$RUNNER_TEMP/data" fetch --quiet origin "+refs/tags/report-*:refs/tags/report-*"
+
+      - name: Verify recomputation, checksums, history, and attestation
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: bash
+        run: |
+          python3 scripts/supply_chain_scan.py verify --data-dir "$RUNNER_TEMP/data" \
+            --history --attestations --repository "$GITHUB_REPOSITORY" | tee verify.txt
+          status=${PIPESTATUS[0]}
+          { echo '### Supply-chain data verification'; echo '```'; cat verify.txt; echo '```'; } >> "$GITHUB_STEP_SUMMARY"
+          exit "$status"

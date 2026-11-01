@@ -2,9 +2,11 @@
 """Weekly supply-chain report for every active tool in the catalog.
 
 Subcommands:
-  targets  read the active tools from tools/, resolve each project's latest release, and shard the list
-  scan     fetch the manifests and lockfiles at each release tag, then run Syft, Grype, and sbomlyze
-  publish  record the week's results in the data branch and compute changes from the previous week
+  targets   read the active tools from tools/, resolve each project's latest release, and shard the list
+  scan      fetch the manifests and lockfiles at each release tag, then run Syft, Grype, and sbomlyze
+  publish   record the week's results in the data branch and compute changes from the previous week
+  baseline  print the run that produced the previous week's data, for drift comparison
+  verify    check the data branch: recomputation, checksums, append-only history, and attestations
 
 Only dependency manifests and lockfiles are fetched (a blobless, sparse checkout). Test, fixture,
 example, documentation, and vendored directories are excluded because security tools ship
@@ -16,6 +18,7 @@ from __future__ import annotations
 import argparse
 import datetime as dt
 import fnmatch
+import hashlib
 import json
 import os
 import pathlib
@@ -31,7 +34,10 @@ sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent.parent))
 from scripts import catalog  # noqa: E402
 from scripts import supply_chain_checks as checks  # noqa: E402
 
-SCHEMA_VERSION = 1
+SCHEMA_VERSION = 2
+WORKFLOW_PATH = ".github/workflows/supply-chain-report.yml"
+GO_VULN_INDEX = "https://vuln.go.dev/index/db.json"
+CHECKSUMS_FILE = "SHA256SUMS"
 MANIFESTS = (
     "go.mod", "go.sum", "package.json", "package-lock.json", "npm-shrinkwrap.json", "yarn.lock",
     "pnpm-lock.yaml", "bun.lock", "requirements*.txt", "pyproject.toml", "poetry.lock", "Pipfile",
@@ -345,7 +351,7 @@ def check(summary: dict[str, Any], name: str, function: Any, *arguments: Any) ->
         return None
 
 
-def release_checks(target: dict[str, Any], summary: dict[str, Any], work: pathlib.Path) -> None:
+def release_checks(target: dict[str, Any], summary: dict[str, Any], work: pathlib.Path, evidence: pathlib.Path) -> None:
     asset = checks.select_linux_asset(target.get("assets") or [], target["repository"])
     file = None
     if asset:
@@ -354,7 +360,7 @@ def release_checks(target: dict[str, Any], summary: dict[str, Any], work: pathli
         binaries = checks.extract_binaries(file, work / "extracted")
         is_go = any(path.endswith("go.mod") for path in summary.get("manifests") or [])
         for binary in binaries if is_go else []:
-            result = checks.govulncheck_binary(binary)
+            result = checks.govulncheck_binary(binary, evidence / "govulncheck.json")
             if result:
                 summary["go_binary"] = {**result, "asset": asset["name"]}
                 break
@@ -394,7 +400,7 @@ def scan_target(target: dict[str, Any], output: pathlib.Path, previous_dir: path
         if syft.returncode != 0 or not sbom.is_file():
             summary["errors"].append(f"syft failed: {syft.stderr.strip()[:300]}")
             return summary
-        osv = check(summary, "osv-scanner", checks.osv_scan, source) or {}
+        osv = check(summary, "osv-scanner", checks.osv_scan, source, directory / "osv-scanner.json") or {}
         if osv.get("error"):
             summary["errors"].append(osv["error"])
         workflows = check(summary, "zizmor", checks.zizmor_audit, source)
@@ -420,7 +426,7 @@ def scan_target(target: dict[str, Any], output: pathlib.Path, previous_dir: path
         summary["osv"]["osv_only"] = summary["osv"]["osv_only"][:100]
     if target.get("ref_kind") == "release":
         with tempfile.TemporaryDirectory() as temporary:
-            check(summary, "release checks", release_checks, target, summary, pathlib.Path(temporary))
+            check(summary, "release checks", release_checks, target, summary, pathlib.Path(temporary), directory)
     checks.annotate_reachability(summary["vulnerabilities"], summary.get("go_binary"))
     if summary.get("go_binary"):
         summary["go_binary"].pop("modules", None)
@@ -454,10 +460,8 @@ def command_scan(args: argparse.Namespace) -> int:
         "slsa-verifier": tool_version("slsa-verifier", ["version"]),
         "sbomlyze": tool_version(args.sbomlyze, ["--version"]),
     }
-    db = run(["grype", "db", "status", "-o", "json"], timeout=120)
-    if db.returncode == 0 and db.stdout.strip():
-        status = json.loads(db.stdout)
-        tools["grype_db_built"] = status.get("built")
+    environment = scan_environment(args.shard)
+    tools["grype_db_built"] = (environment.get("grype_db") or {}).get("built")
     results = []
     budget = args.scorecard_cli_limit
     for target in shard:
@@ -471,8 +475,45 @@ def command_scan(args: argparse.Namespace) -> int:
             results.append({"id": project_id(target["repository"]), **target, "errors": [f"scan crashed: {exc}"]})
         if results[-1]["errors"]:
             print(f"  errors: {results[-1]['errors']}", flush=True)
-    write_json(args.output_dir / f"shard-{args.shard}.json", {"tools": tools, "projects": results})
+    environment["finished_at"] = utc_now()
+    write_json(args.output_dir / f"shard-{args.shard}.json", {"tools": tools, "environment": environment, "projects": results})
     return 0
+
+
+def grype_database() -> dict[str, Any]:
+    """What `grype db status` reports, plus our own hash of the database file that was used."""
+    completed = run(["grype", "db", "status", "-o", "json"], timeout=120)
+    if completed.returncode != 0 or not completed.stdout.strip():
+        return {"error": completed.stderr.strip()[:200] or "grype db status failed"}
+    status = json.loads(completed.stdout)
+    result = {key: status.get(key) for key in ("schemaVersion", "built", "from", "valid") if status.get(key) is not None}
+    path = pathlib.Path(str(status.get("path") or ""))
+    database = path / "vulnerability.db" if path.is_dir() else path
+    if status.get("path") and database.is_file():
+        result["sha256"] = checks.sha256(database)
+    return result
+
+
+def go_vulnerability_database() -> dict[str, Any]:
+    try:
+        return {"url": "https://vuln.go.dev", "modified": checks.fetch_json(GO_VULN_INDEX).get("modified")}
+    except Exception as exc:  # noqa: BLE001 - provenance is best effort
+        return {"url": "https://vuln.go.dev", "error": str(exc)[:200]}
+
+
+def scan_environment(shard: int) -> dict[str, Any]:
+    """Where and against which databases this shard ran, recorded with the results."""
+    return {
+        "shard": shard,
+        "started_at": utc_now(),
+        "runner": {key: os.environ.get(name) for key, name in (
+            ("os", "ImageOS"), ("image_version", "ImageVersion"), ("name", "RUNNER_NAME"), ("arch", "RUNNER_ARCH"))
+            if os.environ.get(name)},
+        "grype_db": grype_database(),
+        "go_vulndb": go_vulnerability_database(),
+        # OSV-Scanner has no local snapshot in this mode: each project is queried live against osv.dev.
+        "osv": {"mode": "live osv.dev API", "url": "https://api.osv.dev"},
+    }
 
 
 # ----- publish ---------------------------------------------------------------------------
@@ -555,6 +596,7 @@ def changes(previous: dict[str, Any] | None, current: dict[str, Any]) -> dict[st
 def history_entry(date: str, project: dict[str, Any]) -> dict[str, Any]:
     change = project.get("changes") or {}
     vulns = project.get("vulnerabilities")
+    card = project.get("scorecard") or {}
     return {
         "date": date,
         "ref": project.get("ref"),
@@ -573,9 +615,24 @@ def history_entry(date: str, project: dict[str, Any]) -> dict[str, Any]:
         "in_binary": in_binary_counts(project.get("go_binary")),
         "go_version": (project.get("go_binary") or {}).get("go_version"),
         "workflow": workflow_counts(project.get("workflow_audit")),
-        "scorecard": (project.get("scorecard") or {}).get("score"),
+        "scorecard": card.get("score"),
+        "scorecard_source": ("carried-forward" if card.get("carried_forward") else card.get("source")) if card else None,
+        "scorecard_date": card.get("date") if card else None,
+        "scorecard_note": project.get("scorecard_note") if not card else None,
         "release_integrity": (project.get("release_integrity") or {}).get("verdict"),
         "errors": project.get("errors") or [],
+    }
+
+
+def run_row(project: dict[str, Any], entry: dict[str, Any]) -> dict[str, Any]:
+    """One project's row in runs/<date>.json; `verify` recomputes it from the project file."""
+    return {
+        **entry, "id": project["id"], "repository": project["repository"], "name": project.get("name"),
+        "category": project.get("category"), "ref_kind": project.get("ref_kind"),
+        "released_at": project.get("released_at"), "stale": bool(project.get("stale")),
+        "compliance": (project.get("compliance") or {}).get("standards"),
+        "change_any": bool((project.get("changes") or {}).get("any")),
+        "integrity_drift": (project.get("changes") or {}).get("integrity_drift", 0),
     }
 
 
@@ -600,21 +657,103 @@ def workflow_counts(audit: dict[str, Any] | None) -> dict[str, int] | None:
     return {**counts, "files": audit.get("files", 0)}
 
 
+def run_provenance(args: argparse.Namespace) -> dict[str, Any]:
+    """The workflow run that produced this data, from the standard GitHub Actions environment."""
+    server = os.environ.get("GITHUB_SERVER_URL", "https://github.com")
+    repository = os.environ.get("GITHUB_REPOSITORY", "")
+    run_id = os.environ.get("GITHUB_RUN_ID")
+    attempt = int(os.environ.get("GITHUB_RUN_ATTEMPT") or 1)
+    event = os.environ.get("GITHUB_EVENT_NAME", "local")
+    reason = args.reason or ("scheduled weekly scan" if event == "schedule" else f"{event} run")
+    if attempt > 1:
+        reason += f" (re-run attempt {attempt})"
+    return {
+        "repository": repository or None,
+        "workflow": WORKFLOW_PATH,
+        "id": int(run_id) if run_id else None,
+        "attempt": attempt,
+        "url": f"{server}/{repository}/actions/runs/{run_id}/attempts/{attempt}" if run_id and repository else None,
+        "event": event,
+        "commit": args.commit,
+        "ref": os.environ.get("GITHUB_REF"),
+        "reason": reason,
+    }
+
+
+def git(data_dir: pathlib.Path, *arguments: str, check: bool = True) -> str:
+    completed = run(["git", "-C", str(data_dir), *arguments], timeout=120)
+    if check and completed.returncode != 0:
+        raise RuntimeError(f"git {' '.join(arguments[:2])} failed: {completed.stderr.strip()[:200]}")
+    return completed.stdout
+
+
+def is_git_repository(path: pathlib.Path) -> bool:
+    return run(["git", "-C", str(path), "rev-parse", "--is-inside-work-tree"], timeout=30).stdout.strip() == "true"
+
+
+def show_json(data_dir: pathlib.Path, commit: str, path: str) -> Any:
+    completed = run(["git", "-C", str(data_dir), "show", f"{commit}:{path}"], timeout=120)
+    return json.loads(completed.stdout) if completed.returncode == 0 and completed.stdout.strip() else None
+
+
+def previous_week_commit(data_dir: pathlib.Path, date: str) -> str | None:
+    """The newest data commit whose latest run is older than `date`, so re-runs compare with last week."""
+    if not is_git_repository(data_dir):
+        return None
+    for commit in git(data_dir, "rev-list", "--first-parent", "HEAD", check=False).split():
+        index = show_json(data_dir, commit, "index.json") or {}
+        if index.get("latest") and index["latest"] < date:
+            return commit
+    return None
+
+
+def write_checksums(data_dir: pathlib.Path) -> None:
+    lines = [f"{checks.sha256(path)}  {path.relative_to(data_dir).as_posix()}" for path in data_files(data_dir)]
+    (data_dir / CHECKSUMS_FILE).write_text("\n".join(lines) + "\n", encoding="utf-8")
+
+
+def data_files(data_dir: pathlib.Path) -> list[pathlib.Path]:
+    return sorted(
+        path for path in data_dir.rglob("*")
+        if path.is_file() and ".git" not in path.relative_to(data_dir).parts and path.name != CHECKSUMS_FILE
+    )
+
+
 def command_publish(args: argparse.Namespace) -> int:
     projects_dir = args.data_dir / "projects"
     runs_dir = args.data_dir / "runs"
     shards = sorted(args.shards_dir.glob("**/shard-*.json"))
     if not shards:
         raise ValueError(f"no shard results in {args.shards_dir}")
+    provenance = run_provenance(args)
+    run_file = runs_dir / f"{args.date}.json"
+    superseded = None
+    if run_file.is_file():
+        # A second run for the same week replaces the first; the replaced record is kept.
+        old = load_json(run_file)
+        old_run = (old.get("provenance") or {}).get("run") or {}
+        name = (f"{old_run['id']}-{old_run.get('attempt', 1)}" if old_run.get("id")
+                else "unrecorded-" + re.sub(r"[^0-9T]", "", str(old.get("generated_at") or "")))
+        superseded = runs_dir / "superseded" / args.date / f"{name}.json"
+        superseded.parent.mkdir(parents=True, exist_ok=True)
+        shutil.copyfile(run_file, superseded)
+    baseline_commit = previous_week_commit(args.data_dir, args.date) if superseded else None
     tools: dict[str, Any] = {}
+    environments = []
     week = []
     for shard_path in shards:
         shard = load_json(shard_path)
         tools.update(shard.get("tools") or {})
+        if shard.get("environment"):
+            environments.append(shard["environment"])
         for project in shard["projects"]:
             path = projects_dir / f"{project['id']}.json"
             stored = load_json(path) if path.is_file() else {}
             previous = stored.get("latest")
+            if stored.get("updated") == args.date:
+                # Same-week re-run: compare with the previous week, not with the run being replaced.
+                prior = show_json(args.data_dir, baseline_commit, f"projects/{project['id']}.json") if baseline_commit else None
+                previous = (prior or {}).get("latest") if baseline_commit else previous
             if project.get("components") is None and previous:
                 # A failed scan keeps last week's inventory visible and is marked as failed.
                 project = {**previous, "errors": project.get("errors"), "scanned_at": project.get("scanned_at"), "stale": True}
@@ -628,29 +767,184 @@ def command_publish(args: argparse.Namespace) -> int:
             history.append(history_entry(args.date, project))
             history.sort(key=lambda item: item["date"])
             write_json(path, {"latest": project, "history": history, "updated": args.date})
-            week.append({
-                **history[-1], "id": project["id"], "repository": project["repository"], "name": project.get("name"),
-                "category": project.get("category"), "ref_kind": project.get("ref_kind"),
-                "released_at": project.get("released_at"), "stale": bool(project.get("stale")),
-                "compliance": (project.get("compliance") or {}).get("standards"),
-                "change_any": bool((project.get("changes") or {}).get("any")),
-                "integrity_drift": (project.get("changes") or {}).get("integrity_drift", 0),
-            })
+            week.append(run_row(project, history[-1]))
     week.sort(key=lambda item: item["repository"].lower())
-    write_json(runs_dir / f"{args.date}.json", {
+    environments.sort(key=lambda item: item.get("shard", 0))
+    write_json(run_file, {
         "schema_version": SCHEMA_VERSION, "date": args.date, "generated_at": utc_now(),
         "commit": args.commit, "tools": tools, "projects": week,
+        "provenance": {"run": provenance, "shards": environments},
+        "evidence_release": args.evidence_release,
+        "supersedes": superseded.relative_to(args.data_dir).as_posix() if superseded else None,
     }, indent=None)
     dates = sorted(path.stem for path in runs_dir.glob("*.json"))
-    write_json(args.data_dir / "index.json", {"runs": list(reversed(dates)), "latest": dates[-1]})
+    replaced = {
+        directory.name: sorted(item.relative_to(args.data_dir).as_posix() for item in directory.glob("*.json"))
+        for directory in sorted((runs_dir / "superseded").glob("*")) if directory.is_dir()
+    }
+    write_json(args.data_dir / "index.json", {"runs": list(reversed(dates)), "latest": dates[-1], "superseded": replaced})
     (args.data_dir / "README.md").write_text(
         "# Supply-chain report data\n\nMachine-written by `.github/workflows/supply-chain-report.yml`. "
         "`projects/<owner>__<repo>.json` holds the latest inventory, findings, and weekly history for one "
-        "catalog project; `runs/<date>.json` summarizes one weekly run. Do not edit by hand.\n",
+        "catalog project; `runs/<date>.json` summarizes one weekly run, including the workflow run, commit, "
+        "runner image, and vulnerability databases that produced it. When a week is re-run, the replaced "
+        "summary is kept under `runs/superseded/<date>/`. `SHA256SUMS` lists every file; each file is covered "
+        "by a GitHub artifact attestation from the workflow (`gh attestation verify <file> --repo "
+        f"{provenance['repository'] or '<owner>/<repo>'}`). Do not edit by hand: history is append-only and checked by "
+        "`scripts/supply_chain_scan.py verify`.\n",
         encoding="utf-8",
     )
-    print(f"Recorded {len(week)} projects for {args.date}")
+    write_checksums(args.data_dir)
+    print(f"Recorded {len(week)} projects for {args.date}" + (f" (superseding {superseded.name})" if superseded else ""))
     return 0
+
+
+# ----- baseline --------------------------------------------------------------------------
+
+def command_baseline(args: argparse.Namespace) -> int:
+    """Print the previous week's canonical run, for downloading its SBOMs."""
+    result: dict[str, Any] = {"date": None, "run_id": None, "generated_at": None}
+    index_path = args.data_dir / "index.json"
+    if index_path.is_file():
+        earlier = [date for date in load_json(index_path).get("runs") or [] if date < args.date]
+        if earlier:
+            previous = load_json(args.data_dir / "runs" / f"{earlier[0]}.json")
+            result.update(date=earlier[0], generated_at=previous.get("generated_at"),
+                          run_id=((previous.get("provenance") or {}).get("run") or {}).get("id"))
+    print(json.dumps(result))
+    return 0
+
+
+# ----- verify ----------------------------------------------------------------------------
+
+HISTORY_KEYS = ("ref", "commit", "dependencies", "vulnerabilities", "fixable", "added", "removed", "upgraded",
+                "new_vulnerabilities", "resolved_vulnerabilities", "release_changed", "scorecard", "errors")
+
+
+def verify_tree(data_dir: pathlib.Path) -> list[str]:
+    """Problems in one checkout of the data branch; an empty list means it is consistent."""
+    problems = []
+    runs_dir = data_dir / "runs"
+    index = load_json(data_dir / "index.json")
+    dates = sorted(path.stem for path in runs_dir.glob("*.json"))
+    if index.get("runs") != list(reversed(dates)) or index.get("latest") != (dates[-1] if dates else None):
+        problems.append("index.json does not match the run files")
+    projects = {path.stem: load_json(path) for path in sorted((data_dir / "projects").glob("*.json"))}
+    for date in dates:
+        run_data = load_json(runs_dir / f"{date}.json")
+        if run_data.get("date") != date:
+            problems.append(f"runs/{date}.json records date {run_data.get('date')}")
+        for row in run_data.get("projects") or []:
+            stored = projects.get(row["id"])
+            entry = next((item for item in (stored or {}).get("history") or [] if item["date"] == date), None)
+            if entry is None:
+                problems.append(f"runs/{date}.json lists {row['id']} but its project history has no {date} entry")
+                continue
+            if date == dates[-1] and stored.get("updated") == date:
+                expected = run_row(stored["latest"], entry)
+                if row != expected:
+                    keys = sorted(key for key in set(row) | set(expected) if row.get(key) != expected.get(key))
+                    problems.append(f"runs/{date}.json row for {row['id']} differs from the project file: {', '.join(keys)}")
+            else:
+                keys = [key for key in HISTORY_KEYS if key in entry and row.get(key) != entry.get(key)]
+                if keys:
+                    problems.append(f"runs/{date}.json row for {row['id']} differs from its history entry: {', '.join(keys)}")
+    for directory, files in (index.get("superseded") or {}).items():
+        for name in files:
+            if not (data_dir / name).is_file():
+                problems.append(f"index.json lists missing superseded run {name}")
+    checksums = data_dir / CHECKSUMS_FILE
+    if checksums.is_file():
+        listed = {}
+        for line in checksums.read_text(encoding="utf-8").splitlines():
+            digest, _, name = line.partition("  ")
+            listed[name] = digest
+        actual = {path.relative_to(data_dir).as_posix(): path for path in data_files(data_dir)}
+        for name in sorted(set(listed) ^ set(actual)):
+            problems.append(f"{CHECKSUMS_FILE} {'lists missing' if name in listed else 'does not list'} {name}")
+        for name in sorted(set(listed) & set(actual)):
+            if checks.sha256(actual[name]) != listed[name]:
+                problems.append(f"{name} does not match its {CHECKSUMS_FILE} digest")
+    return problems
+
+
+def verify_step(data_dir: pathlib.Path, before: str, after: str) -> list[str]:
+    """Rules for one data commit: only the newest week may be replaced, and nothing may be deleted."""
+    problems = []
+    short = after[:12]
+    latest = (show_json(data_dir, before, "index.json") or {}).get("latest") or ""
+    archived = run(["git", "-C", str(data_dir), "cat-file", "-e", f"{after}:{CHECKSUMS_FILE}"], timeout=30).returncode == 0
+    for line in git(data_dir, "diff", "--name-status", "--no-renames", before, after).splitlines():
+        status, _, path = line.partition("\t")
+        if path in ("index.json", "README.md", CHECKSUMS_FILE):
+            continue
+        if status == "A":
+            name = pathlib.PurePosixPath(path)
+            if name.parent.as_posix() == "runs" and latest and name.stem < latest:
+                problems.append(f"{short} adds {path}, which is older than the newest week ({latest})")
+            continue
+        if status == "D":
+            problems.append(f"{short} deletes {path}")
+        elif path.startswith("runs/superseded/"):
+            problems.append(f"{short} modifies superseded run {path}")
+        elif path.startswith("runs/"):
+            date = pathlib.PurePosixPath(path).stem
+            if date != latest:
+                problems.append(f"{short} rewrites {path}, which is older than the newest week ({latest})")
+            elif archived and not (show_json(data_dir, after, "runs/" + date + ".json") or {}).get("supersedes"):
+                problems.append(f"{short} replaces {path} without keeping the replaced run")
+        elif path.startswith("projects/"):
+            old = {item["date"]: item for item in (show_json(data_dir, before, path) or {}).get("history") or []}
+            new = {item["date"]: item for item in (show_json(data_dir, after, path) or {}).get("history") or []}
+            for date in sorted(old):
+                if date != latest and old[date] != new.get(date):
+                    problems.append(f"{short} rewrites the {date} history of {path}")
+    return problems
+
+
+def verify_history(data_dir: pathlib.Path, anchors: list[str]) -> tuple[list[str], int]:
+    problems = []
+    if git(data_dir, "rev-list", "--merges", "HEAD").strip():
+        problems.append("the data branch contains merge commits")
+    commits = git(data_dir, "rev-list", "--first-parent", "--reverse", "HEAD").split()
+    for before, after in zip(commits, commits[1:]):
+        problems.extend(verify_step(data_dir, before, after))
+    for tag in anchors:
+        # Every evidence release pins a data commit; a rewritten branch would no longer contain it.
+        if run(["git", "-C", str(data_dir), "merge-base", "--is-ancestor", tag, "HEAD"], timeout=30).returncode != 0:
+            problems.append(f"release tag {tag} is not in the data branch history")
+    return problems, len(commits)
+
+
+def verify_attestation(path: pathlib.Path, repository: str) -> str | None:
+    completed = run(["gh", "attestation", "verify", str(path), "--repo", repository,
+                     "--signer-workflow", f"{repository}/{WORKFLOW_PATH}"], timeout=120)
+    return None if completed.returncode == 0 else (completed.stderr.strip().splitlines() or ["failed"])[-1][:300]
+
+
+def command_verify(args: argparse.Namespace) -> int:
+    problems = verify_tree(args.data_dir)
+    print(f"tree: {len(problems)} problem(s)")
+    if args.history:
+        anchors = git(args.data_dir, "tag", "--list", "report-*").split()
+        found, count = verify_history(args.data_dir, anchors)
+        problems.extend(found)
+        print(f"history: {count} commit(s), {len(anchors)} release anchor(s), {len(found)} problem(s)")
+    if args.attestations:
+        checksums = args.data_dir / CHECKSUMS_FILE
+        latest = (load_json(args.data_dir / "index.json").get("latest") or "")
+        legacy = not (load_json(args.data_dir / "runs" / f"{latest}.json").get("provenance") if latest else None)
+        if not checksums.is_file() and legacy:
+            print(f"attestation: skipped, the newest week ({latest}) predates attestation")
+        elif not checksums.is_file():
+            problems.append(f"no {CHECKSUMS_FILE}, but the newest week records provenance")
+        elif error := verify_attestation(checksums, args.repository):
+            problems.append(f"{CHECKSUMS_FILE} attestation did not verify: {error}")
+        else:
+            print(f"attestation: {CHECKSUMS_FILE} verified for {args.repository}")
+    for problem in problems:
+        print(f"  - {problem}")
+    return 1 if problems else 0
 
 
 # ----- entry point -----------------------------------------------------------------------
@@ -679,17 +973,28 @@ def parse_args() -> argparse.Namespace:
     publish.add_argument("--data-dir", type=pathlib.Path, required=True)
     publish.add_argument("--date", default=dt.datetime.now(dt.timezone.utc).date().isoformat())
     publish.add_argument("--commit", default=os.environ.get("GITHUB_SHA", "local"))
+    publish.add_argument("--reason", default="", help="why this run was started, recorded with its provenance")
+    publish.add_argument("--evidence-release", default=None, help="tag of the release holding this run's raw evidence")
+    baseline = commands.add_parser("baseline")
+    baseline.add_argument("--data-dir", type=pathlib.Path, required=True)
+    baseline.add_argument("--date", default=dt.datetime.now(dt.timezone.utc).date().isoformat())
+    verify = commands.add_parser("verify")
+    verify.add_argument("--data-dir", type=pathlib.Path, required=True)
+    verify.add_argument("--history", action="store_true", help="check every data commit (needs full git history)")
+    verify.add_argument("--attestations", action="store_true", help="verify the SHA256SUMS attestation with gh")
+    verify.add_argument("--repository", default=os.environ.get("GITHUB_REPOSITORY", "rezmoss/awesome-security-pipeline"))
     return parser.parse_args()
 
 
 def main() -> int:
     args = parse_args()
-    return {"targets": command_targets, "scan": command_scan, "publish": command_publish}[args.command](args)
+    return {"targets": command_targets, "scan": command_scan, "publish": command_publish,
+            "baseline": command_baseline, "verify": command_verify}[args.command](args)
 
 
 if __name__ == "__main__":
     try:
         sys.exit(main())
-    except (OSError, ValueError, KeyError, json.JSONDecodeError) as exc:
+    except (OSError, ValueError, KeyError, RuntimeError, json.JSONDecodeError) as exc:
         print(f"supply-chain report failed: {exc}", file=sys.stderr)
         sys.exit(1)

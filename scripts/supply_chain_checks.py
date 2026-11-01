@@ -77,9 +77,18 @@ def cvss_bucket(score: str | float | None) -> str:
 
 # ----- OSV-Scanner --------------------------------------------------------------------
 
-def osv_scan(source: pathlib.Path) -> dict[str, Any]:
+def strip_paths(text: str, paths: list[str]) -> str:
+    for path in sorted(paths, key=len, reverse=True):
+        text = text.replace(path, "")
+    return text
+
+
+def osv_scan(source: pathlib.Path, raw: pathlib.Path | None = None) -> dict[str, Any]:
     completed = run(["osv-scanner", "scan", "source", "-r", str(source), "--format", "json", "--no-call-analysis=all"])
     output = completed.stdout.strip()
+    if raw is not None and output:
+        # Kept as evidence; runner-local paths are removed so the file is reproducible to read.
+        raw.write_text(strip_paths(output, [str(source.resolve()) + "/", str(source) + "/"]) + "\n", encoding="utf-8")
     if not output.startswith("{"):
         if completed.returncode in (0, 128):  # 128: no supported packages found
             return {"groups": []}
@@ -208,6 +217,12 @@ def download(url: str, destination: pathlib.Path) -> None:
             handle.write(chunk)
 
 
+def fetch_json(url: str, timeout: int = 30) -> Any:
+    request = urllib.request.Request(url, headers={"User-Agent": "awesome-security-pipeline-supply-chain-report"})
+    with urllib.request.urlopen(request, timeout=timeout) as response:
+        return json.load(response)
+
+
 def sha256(path: pathlib.Path) -> str:
     digest = hashlib.sha256()
     with path.open("rb") as handle:
@@ -245,7 +260,7 @@ def extract_binaries(archive: pathlib.Path, destination: pathlib.Path) -> list[p
 LEVELS = {"symbol": 3, "package": 2, "module": 1}
 
 
-def govulncheck_binary(binary: pathlib.Path) -> dict[str, Any] | None:
+def govulncheck_binary(binary: pathlib.Path, raw: pathlib.Path | None = None) -> dict[str, Any] | None:
     completed = run(["govulncheck", "-mode=binary", "-format", "json", str(binary)])
     if completed.returncode != 0 or not completed.stdout.strip():
         return None  # not a Go binary, or analysis failed
@@ -253,6 +268,9 @@ def govulncheck_binary(binary: pathlib.Path) -> dict[str, Any] | None:
     sbom = next((item["SBOM"] for item in objects if "SBOM" in item), {})
     if not sbom.get("go_version"):
         return None
+    if raw is not None:
+        raw.write_text(strip_paths(completed.stdout, [str(binary.parent.resolve()) + "/", str(binary.parent) + "/"]), encoding="utf-8")
+    config = next((item["config"] for item in objects if "config" in item), {})
     advisories = {item["osv"]["id"]: item["osv"] for item in objects if "osv" in item}
     levels: dict[str, dict[str, Any]] = {}
     for item in objects:
@@ -283,6 +301,8 @@ def govulncheck_binary(binary: pathlib.Path) -> dict[str, Any] | None:
         "main_module": (sbom.get("roots") or [""])[0] if sbom.get("roots") else "",
         "modules": [module.get("path") for module in sbom.get("modules") or []],
         "findings": findings,
+        "db": config.get("db", ""),
+        "db_last_modified": config.get("db_last_modified", ""),
     }
 
 
@@ -459,25 +479,34 @@ def release_integrity(target: dict[str, Any], asset: dict[str, Any] | None, file
 # ----- OpenSSF Scorecard --------------------------------------------------------------
 
 def scorecard(repository: str, allow_cli: bool) -> dict[str, Any]:
+    """Prefer the OpenSSF public dataset; fall back to the Scorecard CLI while the weekly budget lasts."""
     try:
         request = urllib.request.Request(SCORECARD_API.format(repository=repository), headers={"Accept": "application/json"})
         with urllib.request.urlopen(request, timeout=30) as response:
             data = json.load(response)
         date = str(data.get("date", ""))[:10]
-        age = (dt.date.today() - dt.date.fromisoformat(date)).days if date else 999
-        if age <= SCORECARD_MAX_AGE_DAYS:
+        age = (dt.date.today() - dt.date.fromisoformat(date)).days if date else None
+        if age is not None and age <= SCORECARD_MAX_AGE_DAYS:
             return summarize_scorecard(data, "openssf-api")
-    except (urllib.error.URLError, json.JSONDecodeError, ValueError, TimeoutError):
-        data = None
+        reason = (f"the OpenSSF public dataset entry is {age} days old (limit {SCORECARD_MAX_AGE_DAYS})"
+                  if age is not None else "the OpenSSF public dataset entry has no date")
+    except urllib.error.HTTPError as exc:
+        reason = ("the project is not in the OpenSSF public dataset" if exc.code == 404
+                  else f"the OpenSSF API returned HTTP {exc.code}")
+    except (urllib.error.URLError, TimeoutError) as exc:
+        reason = f"the OpenSSF API could not be reached ({getattr(exc, 'reason', exc)})"
+    except (json.JSONDecodeError, ValueError):
+        reason = "the OpenSSF API returned an unreadable response"
     if not allow_cli:
-        return {"error": "not in the OpenSSF dataset this week; run budget exhausted"}
+        return {"error": f"{reason}; the Scorecard CLI fallback was skipped because this shard's weekly budget was used"}
     token = os.environ.get("SCORECARD_TOKEN") or os.environ.get("GITHUB_TOKEN") or os.environ.get("GH_TOKEN")
     if not token:
-        return {"error": "no token available for the Scorecard CLI"}
+        return {"error": f"{reason}; no token is available for the Scorecard CLI fallback"}
     completed = run(["scorecard", f"--repo=github.com/{repository}", "--format=json"], timeout=600,
                     env={**os.environ, "GITHUB_AUTH_TOKEN": token})
     if completed.returncode != 0 or not completed.stdout.strip():
-        return {"error": f"scorecard exited with {completed.returncode}: {completed.stderr.strip()[-300:]}"}
+        detail = completed.stderr.strip().splitlines()[-1][:200] if completed.stderr.strip() else "no output"
+        return {"error": f"{reason}; the Scorecard CLI fallback failed (exit {completed.returncode}: {detail})"}
     return summarize_scorecard(json.loads(completed.stdout), "scorecard-cli")
 
 

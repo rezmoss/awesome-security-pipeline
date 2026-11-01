@@ -1,8 +1,8 @@
 {
-  "description": "Tag patterns for monorepos whose GitHub 'latest release' is not the catalogued tool. The newest non-draft, non-prerelease release whose tag matches the pattern is scanned.",
+  "description": "Tag patterns for monorepos whose GitHub 'latest release' is not the catalogued tool. The newest non-draft, non-prerelease release whose tag matches the pattern is scanned. Every entry needs a reason, the date it was added, and the pull request that added it; they are listed on the report's corrections page.",
   "projects": {
-    "RustSec/rustsec": {"pattern": "^cargo-audit/", "reason": "The catalog entry is cargo-audit; the repository also releases platforms, cvss, and cargo-lock crates."},
-    "cloudquery/cloudquery": {"pattern": "^cli-v", "reason": "The repository releases dozens of plugins; the catalog entry is the CLI."},
-    "external-secrets/external-secrets": {"pattern": "^v[0-9]", "reason": "Helm chart releases share the repository with application releases."}
+    "RustSec/rustsec": {"pattern": "^cargo-audit/", "reason": "The catalog entry is cargo-audit; the repository also releases platforms, cvss, and cargo-lock crates.", "added": "2026-11-01", "pr": 44},
+    "cloudquery/cloudquery": {"pattern": "^cli-v", "reason": "The repository releases dozens of plugins; the catalog entry is the CLI.", "added": "2026-11-01", "pr": 44},
+    "external-secrets/external-secrets": {"pattern": "^v[0-9]", "reason": "Helm chart releases share the repository with application releases.", "added": "2026-11-01", "pr": 44}
   }
 }

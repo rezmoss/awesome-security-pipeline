@@ -1,11 +1,12 @@
 #!/usr/bin/env bash
-# Gather the supply-chain data branch and, when this run did not produce them, the latest
-# scan artifacts (SBOMs, Grype reports, sbomlyze diffs) from the last default-branch run.
+# Gather the supply-chain data branch and, when this run did not produce them, the scan artifacts
+# (SBOMs, Grype reports, sbomlyze diffs) of the run that produced the newest week.
 
 set -euo pipefail
 
 root=${1:?usage: $0 OUTPUT_DIR}
 repository=${GITHUB_REPOSITORY:?GITHUB_REPOSITORY is required}
+script_dir=$(cd "$(dirname "$0")" && pwd)
 mkdir -p "$root"
 
 fetch_branch() {
@@ -20,17 +21,10 @@ fetch_branch() {
   fi
 }
 
-latest_run() {
-  local workflow=$1
-  gh run list --repo "$repository" --workflow "$workflow" --branch main --status success \
-    --limit 10 --json databaseId,event \
-    --jq '[.[] | select(.event != "pull_request")][0].databaseId // empty'
-}
-
 fetch_branch supply-chain-data "$root/supply-chain-data"
 
 if [[ ! -d "$root/supply-chain-artifacts" ]]; then
-  run_id=$(latest_run supply-chain-report.yml)
+  run_id=$(bash "$script_dir/report-run.sh" "$root/supply-chain-data")
   if [[ -n "$run_id" ]] && gh run download "$run_id" --repo "$repository" \
       --pattern "supply-chain-shard-*" --dir "$root/supply-chain-artifacts" 2>/dev/null; then
     echo "Loaded supply-chain artifacts from run $run_id"

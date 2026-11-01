@@ -2,7 +2,7 @@
 """Build the GitHub Pages site for the weekly supply-chain report.
 
 Pages: an overview table of every catalog project, one page per project with full details
-and history, and a page per week.
+and history, a page per week, how to verify the data, and every manual correction.
 """
 
 from __future__ import annotations
@@ -11,14 +11,18 @@ import argparse
 import html
 import json
 import pathlib
+import re
 import shutil
 import sys
 from typing import Any
 
 sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent.parent))
 
+from scripts import catalog  # noqa: E402
 from scripts import site_sections as sections  # noqa: E402
-from scripts.supply_chain_scan import SEVERITIES, severity_counts  # noqa: E402
+from scripts.supply_chain_scan import CHECKSUMS_FILE, SEVERITIES, WORKFLOW_PATH, severity_counts  # noqa: E402
+
+ROOT = pathlib.Path(__file__).resolve().parent.parent
 
 SHOWN_SEVERITIES = ("Critical", "High", "Medium", "Low")
 STANDARD_NAMES = {"ntia": "NTIA 2021", "cisa": "CISA 2025", "bsi_tr03183": "BSI TR-03183"}
@@ -75,6 +79,9 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--repository", default="rezmoss/awesome-security-pipeline")
     parser.add_argument("--supply-chain-data", type=pathlib.Path)
     parser.add_argument("--supply-chain-artifacts", type=pathlib.Path, help="scan shard output for the latest week")
+    parser.add_argument("--tools", type=pathlib.Path, default=ROOT / "tools")
+    parser.add_argument("--tag-patterns", type=pathlib.Path, default=ROOT / "benchmarks/supply-chain/release-tags.json")
+    parser.add_argument("--corrections", type=pathlib.Path, default=ROOT / "benchmarks/supply-chain/corrections.json")
     return parser.parse_args()
 
 
@@ -85,6 +92,11 @@ def load_json(path: pathlib.Path) -> Any:
 
 def project_path(repository: str) -> str:
     return f"projects/{repository}/"
+
+
+def anchor(*parts: Any) -> str:
+    """A stable fragment id, for example adv-ghsa-xxxx-golang-org-x-net."""
+    return re.sub(r"[^a-z0-9]+", "-", "-".join(str(part) for part in parts).lower()).strip("-")
 
 
 def pill(severity: str, count: int) -> str:
@@ -129,6 +141,24 @@ def change_summary(change: dict[str, Any]) -> str:
     return "; ".join(parts) or "no change"
 
 
+SCORECARD_SOURCES = {"openssf-api": ("", "OpenSSF public dataset"), "scorecard-cli": ("*", "Scorecard CLI run by this workflow"),
+                     "carried-forward": ("†", "carried forward from an earlier week")}
+
+
+def advisory_anchor(item: dict[str, Any]) -> str:
+    return anchor("adv", item["id"], item["package"], item.get("version", ""))
+
+
+def scorecard_cell(entry: dict[str, Any]) -> str:
+    score = entry.get("scorecard")
+    if not isinstance(score, (int, float)):
+        reason = entry.get("scorecard_note") or "no Scorecard result recorded"
+        return f'<span class="zero" title="{esc(reason)}">—</span>'
+    marker, label = SCORECARD_SOURCES.get(entry.get("scorecard_source") or "", ("", "source not recorded"))
+    title = label + (f", assessed {entry['scorecard_date']}" if entry.get("scorecard_date") else "")
+    return f'<span title="{esc(title)}">{score:.1f}{marker}</span>'
+
+
 class ReportSite:
     def __init__(self, args: argparse.Namespace) -> None:
         self.args = args
@@ -143,10 +173,33 @@ class ReportSite:
                 stored = load_json(path)
                 self.projects[stored["latest"]["repository"]] = stored
         self.latest = self.runs[-1] if self.runs else None
+        self.index = load_json(data / "index.json") if data and (data / "index.json").is_file() else {}
+        self.superseded = {
+            path.relative_to(data).as_posix(): load_json(path) for path in sorted((data / "runs" / "superseded").glob("*/*.json"))
+        } if data and (data / "runs" / "superseded").is_dir() else {}
 
-    def page(self, title: str, depth: int, body: str, description: str) -> str:
+    def provenance_line(self, run: dict[str, Any] | None, root: str) -> str:
+        if not run:
+            return ""
+        repo = f"https://github.com/{self.repository}"
+        info = (run.get("provenance") or {}).get("run") or {}
+        commit = str(run.get("commit") or info.get("commit") or "")
+        commit_link = (f'<a href="{repo}/tree/{esc(commit)}"><code>{esc(commit[:7])}</code></a>'
+                       if re.fullmatch(r"[0-9a-f]{40}", commit) else esc(commit or "unknown"))
+        if info.get("id"):
+            produced = (f'Data for {esc(run["date"])} produced by <a href="{esc(info["url"])}">run #{esc(info["id"])}</a> '
+                        f"(attempt {esc(info.get('attempt', 1))}, {esc(info.get('event'))}) of "
+                        f'<a href="{repo}/blob/{esc(commit)}/{WORKFLOW_PATH}">the workflow</a> at commit {commit_link}')
+        else:
+            produced = (f"Data for {esc(run['date'])} produced at commit {commit_link}; this week predates "
+                        "run-level provenance, which is recorded from 2026-11-08")
+        return (f'<p>{produced}, generated {esc(str(run.get("generated_at") or "")[:16].replace("T", " "))} UTC. '
+                f'<a href="{root}verify/index.html">Verify the data</a> · <a href="{root}corrections/index.html">Corrections</a></p>')
+
+    def page(self, title: str, depth: int, body: str, description: str, run: dict[str, Any] | None = None) -> str:
         root = "../" * depth
         repo = f"https://github.com/{self.repository}"
+        provenance = self.provenance_line(run or self.latest, root)
         return f"""<!DOCTYPE html>
 <html lang="en">
 <head>
@@ -158,12 +211,13 @@ class ReportSite:
 </head>
 <body>
 <header>
-<nav aria-label="Report"><a href="{root}index.html">All projects</a><a href="{root}history/index.html">History</a><a href="{root}data/index.json">Data</a><a href="{repo}">Repository</a></nav>
+<nav aria-label="Report"><a href="{root}index.html">All projects</a><a href="{root}history/index.html">History</a><a href="{root}verify/index.html">Verify</a><a href="{root}corrections/index.html">Corrections</a><a href="{root}data/index.json">Data</a><a href="{repo}">Repository</a></nav>
 </header>
 <main>
 {body}
 </main>
 <footer>
+{provenance}
 <p>{esc(SCOPE_NOTE)}</p>
 <p>{esc(VULNERABILITY_NOTE)}</p>
 <p>Generated by <a href="{repo}/blob/main/.github/workflows/supply-chain-report.yml">the weekly supply-chain workflow</a> in <a href="{repo}">{esc(self.repository)}</a> with Syft, Grype, and sbomlyze. sbomlyze is developed by this repository's maintainer and is used for SBOM diffs and minimum-element checks.</p>
@@ -192,9 +246,13 @@ class ReportSite:
         rows = []
         for entry in entries:
             vulns = entry.get("vulnerabilities")
-            counts = "".join(f"<td class=\"num\">{pill(s, (vulns or {}).get(s, 0))}</td>" for s in SHOWN_SEVERITIES) if vulns else (
-                '<td colspan="4" class="small">not scanned</td>'
-            )
+            if not vulns:
+                counts = '<td colspan="4" class="small">not scanned</td>'
+            elif entry.get("dependencies") == 0:
+                # Zero matches against zero dependencies is not a clean result.
+                counts = '<td colspan="4" class="small">no dependencies found to match</td>'
+            else:
+                counts = "".join(f"<td class=\"num\">{pill(s, vulns.get(s, 0))}</td>" for s in SHOWN_SEVERITIES)
             fixable = entry.get("fixable")
             change = (self.projects.get(entry["repository"]) or {}).get("latest", {}).get("changes") if depth == 0 else None
             summary = change_summary(change) if change is not None else self.history_change_text(entry)
@@ -210,10 +268,9 @@ class ReportSite:
             workflow = entry.get("workflow")
             workflow_cell = (pill("High", workflow["High"]) if workflow and workflow["High"] else
                              ('<span class="pill zero">0</span>' if workflow else '<span class="zero">—</span>'))
-            score = entry.get("scorecard")
-            score_cell = f"{score:.1f}" if isinstance(score, (int, float)) else '<span class="zero">—</span>'
+            score_cell = scorecard_cell(entry)
             rows.append(
-                f"<tr class=\"{'changed' if entry.get('change_any') else ''}\">"
+                f"<tr id=\"{esc(anchor(entry['id']))}\" class=\"{'changed' if entry.get('change_any') else ''}\">"
                 f"<td><a href=\"{root}{project_path(entry['repository'])}index.html\">{esc(entry.get('name') or entry['repository'])}</a>"
                 f"<div class=\"small\">{esc(entry.get('category') or '')}</div></td>"
                 f"<td>{ref}{status}</td>"
@@ -234,7 +291,9 @@ class ReportSite:
             '<th>Change since last week</th></tr></thead><tbody>'
             + "".join(rows) + "</tbody></table></div>"
             + '<p class="small"><strong>In binary</strong>: Go tools only, advisories whose vulnerable functions are compiled into the '
-            "released Linux binary. <strong>Scorecard</strong>: OpenSSF repository practices out of 10. <strong>Workflow</strong>: high-severity "
+            "released Linux binary. <strong>Scorecard</strong>: OpenSSF repository practices out of 10; * marks a score from the "
+            "Scorecard CLI run by this workflow, † a score carried forward from an earlier week (hover for source and date, or for why "
+            "a score is missing). <strong>Workflow</strong>: high-severity "
             "GitHub Actions findings from zizmor. <strong>Release</strong>: whether the Linux release file's signature, SLSA provenance, or "
             "GitHub attestation verifies against the project's own workflows.</p>"
         )
@@ -256,7 +315,9 @@ class ReportSite:
         binary, workflows, scores, integrity = [], [], [], []
         for project in sorted(latest, key=lambda item: item["repository"].lower()):
             change = project.get("changes") or {}
-            link = f'<a href="{project_path(project["repository"])}index.html">{esc(project.get("name") or project["repository"])}</a>'
+            page = f'{project_path(project["repository"])}index.html'
+            name = esc(project.get("name") or project["repository"])
+            link = f'<a href="{page}#changes">{name}</a>'
             if change.get("scan_failed") or project.get("errors"):
                 failed.append(f"{link}: {esc('; '.join(project.get('errors') or []))}")
             if change.get("baseline"):
@@ -266,7 +327,8 @@ class ReportSite:
             for item in change.get("new_vulnerabilities") or []:
                 new_vulns.append((SEVERITIES.index(item["severity"]) if item["severity"] in SEVERITIES else 99,
                                   f"{link}: {badge(item['severity'], item['severity'][0])} "
-                                  f"<code>{esc(item['id'])}</code> in <code>{esc(item['package'])}@{esc(item['version'])}</code>"))
+                                  f'<a href="{page}#{esc(advisory_anchor(item))}"><code>{esc(item["id"])}</code></a> '
+                                  f"in <code>{esc(item['package'])}@{esc(item['version'])}</code>"))
             if change.get("resolved_vulnerabilities"):
                 resolved.append(f"{link}: {len(change['resolved_vulnerabilities'])}")
             count = len(change.get("added") or []) + len(change.get("removed") or []) + len(change.get("upgraded") or [])
@@ -347,6 +409,12 @@ class ReportSite:
             "Weekly SBOMs, known-vulnerability matches, and dependency drift for every tool in the Awesome Security Pipeline catalog.",
         ))
 
+    def evidence_release(self, run: dict[str, Any] | None) -> str:
+        tag = (run or {}).get("evidence_release")
+        if not tag:
+            return ""
+        return f'<a href="https://github.com/{esc(self.repository)}/releases/tag/{esc(tag)}">release <code>{esc(tag)}</code></a>'
+
     # ----- project pages ------------------------------------------------------------------
     def project_page(self, repository: str, stored: dict[str, Any]) -> None:
         project = stored["latest"]
@@ -386,18 +454,20 @@ class ReportSite:
             symbols = sum(1 for item in go["findings"] if item["level"] == "symbol")
             cards.append(f'<div class="card"><div class="big">{symbols}</div><div class="small">advisories with vulnerable code in the {esc(go["go_version"])} binary</div></div>')
         card = project.get("scorecard") or {}
-        cards.append(f'<div class="card"><div class="big">{esc(card.get("score", "—"))}</div><div class="small">OpenSSF Scorecard (of 10)</div></div>')
+        source = ("carried forward from " + str(card.get("date") or "an earlier week") if card.get("carried_forward")
+                  else SCORECARD_SOURCES.get(card.get("source") or "", ("", ""))[1]) if card else "no result this week"
+        cards.append(f'<div class="card"><div class="big">{esc(card.get("score", "—"))}</div><div class="small">OpenSSF Scorecard (of 10); {esc(source)}</div></div>')
         cards.append(f'<div class="card"><div class="big">{sections.verdict_cell((project.get("release_integrity") or {}).get("verdict"))}</div><div class="small">release verification</div></div>')
         parts.append(f'<div class="cards">{"".join(cards)}</div>')
         parts.append(self.project_changes(change))
-        parts.append(self.project_vulnerabilities(vulns))
+        parts.append(self.project_vulnerabilities(vulns, len(components)))
         parts.append(sections.osv_section(project.get("osv")))
         parts.append(sections.reachability_section(go, vulns, project.get("go_binary_note")))
         parts.append(sections.release_section(project.get("release_integrity"), repository))
         parts.append(sections.scorecard_section(project.get("scorecard"), project.get("scorecard_note"), repository))
         parts.append(sections.workflow_section(project.get("workflow_audit"), repository, project.get("ref") or "HEAD"))
         parts.append(self.project_dependencies(components))
-        parts.append(self.project_history(stored.get("history") or []))
+        parts.append(self.project_history(stored.get("history") or [], project["id"]))
         parts.append(self.project_compliance(project.get("compliance") or {}))
         downloads = []
         directory = self.out / project_path(repository)
@@ -405,9 +475,19 @@ class ReportSite:
             if (directory / name).is_file():
                 downloads.append(f'<a href="{name}">{label}</a>')
         manifests = project.get("manifests") or []
+        release = self.evidence_release(self.latest)
+        if project.get("stale"):
+            permanent = ""
+        elif release:
+            permanent = (f"<p>Permanent copy of the raw SBOM, Grype, OSV-Scanner, and govulncheck output and release checks: "
+                         f"{release}, folder <code>supply-chain-shard-*/{esc(project['id'])}/</code>.</p>")
+        else:
+            permanent = ('<p class="small">Raw evidence for this week is kept as a workflow artifact for 90 days; '
+                         "permanent evidence releases start with the 2026-11-08 scan.</p>")
         parts.append(
             '<h2 id="evidence">Evidence</h2>'
             + (f"<p>Downloads for this week: {' · '.join(downloads)}</p>" if downloads else "")
+            + permanent
             + f"<details><summary>{len(manifests)} manifests and lockfiles scanned</summary><p>"
             + ", ".join(f"<code>{esc(path)}</code>" for path in manifests) + "</p></details>"
             + f'<p class="small"><a href="{root}data/projects/{esc(project["id"])}.json">Full JSON for this project</a></p>'
@@ -449,9 +529,12 @@ class ReportSite:
         return "\n".join(parts)
 
     @staticmethod
-    def project_vulnerabilities(vulns: list[dict[str, Any]] | None) -> str:
+    def project_vulnerabilities(vulns: list[dict[str, Any]] | None, dependencies: int | None = None) -> str:
         if vulns is None:
             return '<h2 id="vulnerabilities">Known vulnerabilities</h2><p>The vulnerability scan did not complete this week.</p>'
+        if not vulns and dependencies == 0:
+            return ('<h2 id="vulnerabilities">Known vulnerabilities</h2><p>No dependencies were found in the scanned manifests, '
+                    "so there was nothing to match advisories against. This is not a clean result.</p>")
         if not vulns:
             return '<h2 id="vulnerabilities">Known vulnerabilities</h2><p class="ok">No known advisories matched the declared dependencies.</p>'
         rows = []
@@ -464,7 +547,7 @@ class ReportSite:
             shipped_cell = (f'<span class="{"bad" if shipped in ("vulnerable code in binary", "package in binary") else "zero"}">{esc(shipped)}</span>'
                             if shipped else '<span class="zero">—</span>')
             rows.append(
-                f"<tr><td>{badge(item['severity'])}</td><td>{link}{aliases}</td>"
+                f"<tr id=\"{esc(advisory_anchor(item))}\"><td>{badge(item['severity'])}</td><td>{link}{aliases}</td>"
                 f"<td><code>{esc(item['package'])}</code><div class=\"small\">{esc(item['ecosystem'])}</div></td><td><code>{esc(item['version'])}</code></td>"
                 f"<td>{fixed}</td><td class=\"num\">{osv}</td><td class=\"small\">{shipped_cell}</td>"
                 f"<td class=\"small\"><code>{esc(item.get('location') or '')}</code></td></tr>"
@@ -497,7 +580,7 @@ class ReportSite:
         ]
         for name, items in sorted(groups.items(), key=lambda kv: -len(kv[1])):
             rows = "".join(
-                f"<tr><td><code>{esc(item['name'])}</code></td><td><code>{esc(item['version'] or '—')}</code></td>"
+                f"<tr id=\"{esc(anchor('dep', item['ecosystem'], item['name'], item['version']))}\"><td><code>{esc(item['name'])}</code></td><td><code>{esc(item['version'] or '—')}</code></td>"
                 f"<td class=\"small\">{esc(', '.join(item.get('licenses') or []))}</td><td class=\"small\"><code>{esc(item.get('location') or '')}</code></td></tr>"
                 for item in items
             )
@@ -508,7 +591,7 @@ class ReportSite:
         return "\n".join(parts)
 
     @staticmethod
-    def project_history(history: list[dict[str, Any]]) -> str:
+    def project_history(history: list[dict[str, Any]], pid: str = "") -> str:
         rows = []
         for item in reversed(history):
             vulns = item.get("vulnerabilities")
@@ -526,7 +609,7 @@ class ReportSite:
             if item.get("errors"):
                 changes.append("scan error")
             rows.append(
-                f"<tr><td><a href=\"../../../history/{esc(item['date'])}/index.html\">{esc(item['date'])}</a></td><td>{esc(item.get('ref') or '—')}</td>"
+                f"<tr id=\"{esc(anchor('week', item['date']))}\"><td><a href=\"../../../history/{esc(item['date'])}/index.html#{esc(anchor(pid))}\">{esc(item['date'])}</a></td><td>{esc(item.get('ref') or '—')}</td>"
                 f"<td class=\"num\">{item['dependencies'] if item.get('dependencies') is not None else '—'}</td>{counts}<td>{esc(' · '.join(changes) or '—')}</td></tr>"
             )
         return (
@@ -562,18 +645,20 @@ class ReportSite:
             new = sum(item.get("new_vulnerabilities") or 0 for item in entries)
             resolved = sum(item.get("resolved_vulnerabilities") or 0 for item in entries)
             changed = sum(1 for item in entries if item.get("change_any"))
+            release = self.evidence_release(run)
             rows.append(
-                f"<tr><td><a href=\"{esc(run['date'])}/index.html\">{esc(run['date'])}</a></td><td class=\"num\">{len(entries)}</td>"
+                f"<tr id=\"{esc(anchor('week', run['date']))}\"><td><a href=\"{esc(run['date'])}/index.html\">{esc(run['date'])}</a></td><td class=\"num\">{len(entries)}</td>"
                 f"<td class=\"num\">{changed}</td><td class=\"num\">{releases}</td><td class=\"num\">{new}</td><td class=\"num\">{resolved}</td>"
-                f"<td><a href=\"../data/runs/{esc(run['date'])}.json\">JSON</a></td></tr>"
+                f"<td><a href=\"../data/runs/{esc(run['date'])}.json\">JSON</a>{' · ' + release if release else ''}</td></tr>"
             )
             body = (
                 f"<h1>Supply-chain report: week of {esc(run['date'])}</h1>"
-                f'<p class="meta">{self.tools_line(run)} · <a href="../../data/runs/{esc(run["date"])}.json">JSON</a></p>'
+                f'<p class="meta">{self.tools_line(run)} · <a href="../../data/runs/{esc(run["date"])}.json">JSON</a>'
+                + (f" · raw evidence: {release}" if release else "") + "</p>"
                 + self.project_table(entries, depth=2)
             )
             self.write(f"history/{run['date']}/index.html", self.page(
-                f"Supply-chain report {run['date']}", 2, body, f"Supply-chain scan of security tools for the week of {run['date']}."))
+                f"Supply-chain report {run['date']}", 2, body, f"Supply-chain scan of security tools for the week of {run['date']}.", run))
         body = (
             "<h1>Weekly history</h1>"
             '<div class="scroll"><table><thead><tr><th>Week</th><th class="num">Projects</th><th class="num">Changed</th>'
@@ -581,6 +666,145 @@ class ReportSite:
             + "".join(rows) + "</tbody></table></div>"
         )
         self.write("history/index.html", self.page("Supply-chain report history", 1, body, "Weekly history of the supply-chain report."))
+
+    # ----- verification and corrections ---------------------------------------------------
+    def verify_page(self) -> None:
+        repo = self.repository
+        workflow = f"{repo}/{WORKFLOW_PATH}"
+        run = self.latest or {}
+        tag = run.get("evidence_release") or "report-YYYY-MM-DD"
+        commands = "\n".join((
+            f"git clone https://github.com/{repo}.git source",
+            f"git clone --branch supply-chain-data https://github.com/{repo}.git report-data",
+            "cd report-data",
+            f"gh attestation verify {CHECKSUMS_FILE} --repo {repo} --signer-workflow {workflow}",
+            f"sha256sum -c {CHECKSUMS_FILE}        # macOS: shasum -a 256 -c {CHECKSUMS_FILE}",
+            "# append-only history, recomputation, and release anchors:",
+            "python3 ../source/scripts/supply_chain_scan.py verify --data-dir . --history --attestations",
+        ))
+        single = f"gh attestation verify projects/gitleaks__gitleaks.json --repo {repo} --signer-workflow {workflow}"
+        evidence = f"gh release download {tag} --repo {repo}\ngh attestation verify supply-chain-evidence-*.tar.gz --repo {repo} --signer-workflow {workflow}"
+        body = (
+            "<h1>Verify this data</h1>"
+            '<p class="lede">Every file in the report data is published by one GitHub Actions workflow and covered by a '
+            "GitHub artifact attestation: a Sigstore-signed statement, recorded in the public Rekor transparency log, that names "
+            "the exact file digest, the workflow file, the commit it ran at, and the run.</p>"
+            '<h2 id="commands">Check it yourself</h2>'
+            "<p>Requires <code>git</code>, <code>sha256sum</code>, and the <a href=\"https://cli.github.com/\">GitHub CLI</a>.</p>"
+            f"<pre><code>{esc(commands)}</code></pre>"
+            "<p>Any single file can also be checked on its own, for example one project's JSON downloaded from this site:</p>"
+            f"<pre><code>{esc(single)}</code></pre>"
+            "<p>Raw SBOMs, Grype, OSV-Scanner, and govulncheck output for each week are attached to an immutable GitHub release "
+            "with their own attestation:</p>"
+            f"<pre><code>{esc(evidence)}</code></pre>"
+            '<h2 id="proves">What a successful check proves</h2><ul class="tight">'
+            f"<li>The bytes you have were produced by <code>{esc(WORKFLOW_PATH)}</code> in <code>{esc(repo)}</code>, at the commit and run "
+            "named in the attestation. The commit is public, so the code that produced the data can be read.</li>"
+            "<li>The files were not changed after that run: any edit changes the digest and the check fails.</li>"
+            "<li><code>verify --history</code> shows the data branch was only appended to: earlier weeks were never rewritten, "
+            "and a replaced run for the same week is kept under <code>runs/superseded/</code>.</li></ul>"
+            '<h2 id="limits">What it does not prove</h2><ul class="tight">'
+            "<li>That the scanners are right. Results are what Syft, Grype, OSV-Scanner, govulncheck, zizmor, and Scorecard "
+            "reported; their databases and the OpenSSF dataset are outside this repository's control.</li>"
+            "<li>That the workflow is correct or neutral. It proves which code ran, not that the code is good; review the commit.</li>"
+            "<li>Anything about weeks published before 2026-11-08, which predate attestation. Their content is still covered by "
+            "the history check and by later attestations of the whole data tree.</li>"
+            "<li>That the repository owner cannot publish new data. The owner controls the workflow; every change to it is a "
+            "public commit, and manual interventions are listed on the corrections page.</li></ul>"
+            + self.provenance_detail(run)
+        )
+        self.write("verify/index.html", self.page("Verify the supply-chain report data", 1, body,
+                                                  "How to verify the weekly supply-chain report data with GitHub artifact attestations."))
+
+    def provenance_detail(self, run: dict[str, Any]) -> str:
+        shards = (run.get("provenance") or {}).get("shards") or []
+        if not shards:
+            return ""
+        rows = []
+        for shard in shards:
+            runner = shard.get("runner") or {}
+            grype = shard.get("grype_db") or {}
+            go = shard.get("go_vulndb") or {}
+            rows.append(
+                f"<tr><td class=\"num\">{esc(shard.get('shard'))}</td><td>{esc(runner.get('os', '?'))} {esc(runner.get('image_version', ''))}</td>"
+                f"<td>{esc(grype.get('schemaVersion', ''))}, built {esc(str(grype.get('built') or '?')[:16])}"
+                f"<div class=\"small\"><code>{esc(str(grype.get('sha256') or '')[:16])}</code></div></td>"
+                f"<td>{esc(str(go.get('modified') or go.get('error') or '?')[:19])}</td>"
+                f"<td>{esc((shard.get('osv') or {}).get('mode', ''))}</td>"
+                f"<td class=\"small\">{esc(str(shard.get('started_at') or '')[11:16])}–{esc(str(shard.get('finished_at') or '')[11:16])}</td></tr>"
+            )
+        return (
+            f'<h2 id="environment">Scan environment for {esc(run.get("date"))}</h2>'
+            '<div class="scroll"><table><thead><tr><th class="num">Shard</th><th>Runner image</th><th>Grype database</th>'
+            "<th>Go vulnerability database modified</th><th>OSV</th><th>UTC</th></tr></thead><tbody>"
+            + "".join(rows) + "</tbody></table></div>"
+        )
+
+    def corrections_page(self) -> None:
+        repo = f"https://github.com/{self.repository}"
+        documented = load_json(self.args.corrections) if self.args.corrections.is_file() else {}
+
+        def source(entry: dict[str, Any]) -> str:
+            links = []
+            if entry.get("pr"):
+                links.append(f'<a href="{repo}/pull/{esc(entry["pr"])}">PR #{esc(entry["pr"])}</a>')
+            if entry.get("link"):
+                links.append(f'<a href="{esc(entry["link"])}">details</a>')
+            return " · ".join(links) or "—"
+
+        pins = (load_json(self.args.tag_patterns).get("projects") or {}) if self.args.tag_patterns.is_file() else {}
+        pin_rows = "".join(
+            f"<tr><td>{esc(entry.get('added', '—'))}</td><td><code>{esc(name)}</code></td><td><code>{esc(entry['pattern'])}</code></td>"
+            f"<td>{esc(entry.get('reason', ''))}</td><td>{source(entry)}</td></tr>"
+            for name, entry in sorted(pins.items(), key=lambda kv: kv[0].lower())
+        )
+        exceptions = documented.get("catalog_exceptions") or {}
+        exception_rows = []
+        if self.args.tools.is_dir():
+            for name, tool in sorted(catalog.load_tools(self.args.tools).items()):
+                text = (tool.get("listing") or {}).get("exception")
+                if text:
+                    meta = exceptions.get(name) or {}
+                    exception_rows.append(f"<tr><td>{esc(meta.get('added', '—'))}</td><td><code>{esc(name)}</code></td>"
+                                          f"<td>{esc(text)}</td><td>{source(meta)}</td></tr>")
+        superseded_rows = []
+        for run in self.runs:
+            for name in (self.index.get("superseded") or {}).get(run["date"], []):
+                old = self.superseded.get(name) or {}
+                old_run = (old.get("provenance") or {}).get("run") or {}
+                new_run = (run.get("provenance") or {}).get("run") or {}
+                replaced = (f'<a href="{esc(old_run["url"])}">run #{esc(old_run["id"])}</a>' if old_run.get("url")
+                            else f"unrecorded run, generated {esc(str(old.get('generated_at') or '?')[:16])}")
+                superseded_rows.append(
+                    f"<tr><td>{esc(run['date'])}</td><td>{replaced} · <a href=\"../data/{esc(name)}\">JSON</a></td>"
+                    f"<td>{esc(new_run.get('reason') or 'not recorded')}</td></tr>")
+        other_rows = "".join(
+            f"<tr><td>{esc(entry.get('date', ''))}</td><td>{esc(entry.get('scope', ''))}</td><td>{esc(entry.get('summary', ''))}</td>"
+            f"<td>{source(entry)}</td></tr>"
+            for entry in sorted(documented.get("entries") or [], key=lambda item: item.get("date", ""), reverse=True)
+        )
+
+        def table(title: str, ident: str, intro: str, head: list[str], rows: str) -> str:
+            header = "".join(f"<th>{esc(item)}</th>" for item in head)
+            content = (f'<div class="scroll"><table><thead><tr>{header}</tr></thead><tbody>{rows}</tbody></table></div>'
+                       if rows else "<p>None.</p>")
+            return f'<h2 id="{ident}">{esc(title)}</h2><p class="small">{esc(intro)}</p>{content}'
+
+        body = (
+            "<h1>Corrections and manual overrides</h1>"
+            '<p class="lede">Everything a person changed about what the report scans or publishes, with when and why. '
+            "Automated results are never edited by hand; when a week is re-run, the earlier run is kept.</p>"
+            + table("Release tag pins", "tag-pins", "Monorepos whose latest GitHub release is not the catalogued tool are scanned at the newest release matching a pattern.",
+                    ["Since", "Repository", "Tag pattern", "Reason", "Source"], pin_rows)
+            + table("Catalog exceptions", "catalog-exceptions", "Tools kept in an active category although the automated rules would classify them otherwise.",
+                    ["Since", "Tool", "Justification", "Source"], "".join(exception_rows))
+            + table("Re-run weeks", "superseded-runs", "A week published more than once. The replaced run summary remains available.",
+                    ["Week", "Replaced run", "Reason for the new run"], "".join(superseded_rows))
+            + table("Other corrections", "other", "Data or methodology corrections not covered above.",
+                    ["Date", "Scope", "Correction", "Source"], other_rows)
+        )
+        self.write("corrections/index.html", self.page("Supply-chain report corrections", 1, body,
+                                                       "Manual overrides, re-runs, and corrections to the weekly supply-chain report."))
 
     # ----- assets -------------------------------------------------------------------------
     def assets(self) -> None:
@@ -591,8 +815,9 @@ class ReportSite:
             for sub in ("runs", "projects"):
                 if (data / sub).is_dir():
                     shutil.copytree(data / sub, self.out / "data" / sub, dirs_exist_ok=True)
-            if (data / "index.json").is_file():
-                shutil.copyfile(data / "index.json", self.out / "data" / "index.json")
+            for name in ("index.json", CHECKSUMS_FILE):
+                if (data / name).is_file():
+                    shutil.copyfile(data / name, self.out / "data" / name)
         artifacts = self.args.supply_chain_artifacts
         if artifacts and artifacts.is_dir():
             for summary in artifacts.glob("**/summary.json"):
@@ -611,6 +836,8 @@ class ReportSite:
         for repository, stored in self.projects.items():
             self.project_page(repository, stored)
         self.history()
+        self.verify_page()
+        self.corrections_page()
 
 
 def main() -> int:
