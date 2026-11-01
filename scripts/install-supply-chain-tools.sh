@@ -287,9 +287,19 @@ install_slsa_verifier() {
 install_govulncheck() {
   # Built from source through the Go module proxy, verified by the Go checksum database.
   # golang/vuln publishes module versions more often than GitHub releases, so use the module.
-  local tag
-  tag=$(go list -m -json golang.org/x/vuln@latest | jq -r '.Version')
-  GOBIN="$install_dir" go install "golang.org/x/vuln/cmd/govulncheck@$tag"
+  local tag="" attempt
+  for attempt in 1 2 3 4; do
+    if tag=$(go list -m -json golang.org/x/vuln@latest | jq -r '.Version') && [[ -n "$tag" ]] \
+      && GOBIN="$install_dir" go install "golang.org/x/vuln/cmd/govulncheck@$tag"; then
+      break
+    fi
+    if [[ $attempt -eq 4 ]]; then
+      echo "could not install govulncheck from the Go module proxy" >&2
+      return 1
+    fi
+    echo "Go module proxy request failed (attempt $attempt/4); retrying in $((attempt * 10))s" >&2
+    sleep $((attempt * 10))
+  done
   record_tool govulncheck golang/vuln "$tag" "" "golang.org/x/vuln/cmd/govulncheck@$tag" \
     "" go-checksum-database go-module-proxy
 }
