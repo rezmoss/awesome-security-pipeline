@@ -5,6 +5,15 @@ on:
     # Weekly on Sunday.
     - cron: "47 5 * * 0"
   workflow_dispatch:
+    inputs:
+      publish:
+        description: "Record the results in the data branch and deploy the site (a second run for the same week replaces it and is listed on the corrections page)"
+        type: boolean
+        default: true
+      reason:
+        description: "Why this run is needed; recorded with the run's provenance"
+        type: string
+        required: false
   pull_request:
     paths:
       - ".github/workflows/supply-chain-report.yml"
@@ -12,17 +21,24 @@ on:
       - "scripts/supply_chain_checks.py"
       - "scripts/catalog.py"
       - "scripts/build_site.py"
+      - "scripts/site_sections.py"
       - "scripts/fetch-site-inputs.sh"
+      - "scripts/report-run.sh"
       - "scripts/install-supply-chain-tools.sh"
+      - "benchmarks/supply-chain/*.json"
       - "tests/test_supply_chain_scan.py"
       - "tests/test_catalog.py"
   push:
+    # Code changes on main only rebuild and redeploy the site from the recorded data; they never
+    # scan or publish, so a mid-week merge cannot replace the week or move the drift baseline.
     branches: [main]
     paths:
       - ".github/workflows/supply-chain-report.yml"
-      - "scripts/supply_chain_scan.py"
-      - "scripts/supply_chain_checks.py"
       - "scripts/build_site.py"
+      - "scripts/site_sections.py"
+      - "scripts/fetch-site-inputs.sh"
+      - "scripts/report-run.sh"
+      - "benchmarks/supply-chain/*.json"
 
 permissions: {}
 
@@ -43,8 +59,9 @@ jobs:
       contents: read
     outputs:
       matrix: ${{ steps.targets.outputs.matrix }}
-      publish: ${{ steps.targets.outputs.publish }}
+      mode: ${{ steps.targets.outputs.mode }}
       date: ${{ steps.targets.outputs.date }}
+      baseline_run: ${{ steps.baseline.outputs.run_id }}
     steps:
       - name: Check out source without persisted credentials
         uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4
@@ -59,26 +76,59 @@ jobs:
         id: targets
         env:
           GH_TOKEN: ${{ github.token }}
+          PUBLISH_INPUT: ${{ inputs.publish }}
         shell: bash
         run: |
           set -euo pipefail
           limit=()
-          publish=false
+          # publish: full scan recorded in the data branch. preview: scan, build a site artifact only.
+          # site: no scan; rebuild and redeploy the site from the recorded data.
+          mode=preview
           if [[ "$GITHUB_EVENT_NAME" == "pull_request" ]]; then
             # Pull requests scan a small, varied sample to validate the pipeline.
             limit=(--only gitleaks/gitleaks --only PyCQA/bandit --only aquasecurity/trivy --only semgrep/semgrep)
-          elif [[ "$GITHUB_REF" == "refs/heads/main" ]]; then
-            publish=true
+          elif [[ "$GITHUB_REF" != "refs/heads/main" ]]; then
+            mode=preview
+          elif [[ "$GITHUB_EVENT_NAME" == "schedule" ]]; then
+            mode=publish
+          elif [[ "$GITHUB_EVENT_NAME" == "workflow_dispatch" && "$PUBLISH_INPUT" == "true" ]]; then
+            mode=publish
+          elif [[ "$GITHUB_EVENT_NAME" == "push" ]]; then
+            mode=site
           fi
-          matrix=$(python3 scripts/supply_chain_scan.py targets --tools tools \
-            --shards "$SHARDS" --output targets.json "${limit[@]}")
+          if [[ "$mode" == "site" ]]; then
+            matrix='[]'
+            echo '{"targets": [], "shards": []}' > targets.json
+          else
+            matrix=$(python3 scripts/supply_chain_scan.py targets --tools tools \
+              --shards "$SHARDS" --output targets.json "${limit[@]}")
+          fi
           echo "matrix=$matrix" >> "$GITHUB_OUTPUT"
-          echo "publish=$publish" >> "$GITHUB_OUTPUT"
+          echo "mode=$mode" >> "$GITHUB_OUTPUT"
           echo "date=$(date -u +%F)" >> "$GITHUB_OUTPUT"
-          echo "### Supply-chain targets" >> "$GITHUB_STEP_SUMMARY"
+          echo "### Supply-chain targets ($mode)" >> "$GITHUB_STEP_SUMMARY"
           jq -r '.targets[] | "- \(.repository) @ \(.ref // "unresolved") (\(.ref_kind))"' targets.json >> "$GITHUB_STEP_SUMMARY"
 
+      - name: Find the run that produced last week's data
+        id: baseline
+        if: steps.targets.outputs.mode != 'site'
+        env:
+          GH_TOKEN: ${{ github.token }}
+          DATE: ${{ steps.targets.outputs.date }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p "$RUNNER_TEMP/data"
+          if git ls-remote --exit-code --heads origin "$DATA_BRANCH" >/dev/null; then
+            git fetch --quiet --depth=1 origin "$DATA_BRANCH"
+            git archive FETCH_HEAD | tar -x -C "$RUNNER_TEMP/data"
+          fi
+          run_id=$(bash scripts/report-run.sh "$RUNNER_TEMP/data" "$DATE")
+          echo "run_id=$run_id" >> "$GITHUB_OUTPUT"
+          echo "Drift baseline: ${run_id:-none (first week)}" >> "$GITHUB_STEP_SUMMARY"
+
       - name: Retain target list
+        if: steps.targets.outputs.mode != 'site'
         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
         with:
           name: supply-chain-targets
@@ -88,6 +138,7 @@ jobs:
   scan:
     name: Scan shard ${{ matrix.shard }}
     needs: targets
+    if: needs.targets.outputs.mode != 'site'
     runs-on: ubuntu-latest
     timeout-minutes: 90
     permissions:
@@ -124,12 +175,11 @@ jobs:
       - name: Download last week's SBOMs for drift comparison
         env:
           GH_TOKEN: ${{ github.token }}
+          BASELINE_RUN: ${{ needs.targets.outputs.baseline_run }}
         shell: bash
         run: |
           set -euo pipefail
-          run_id=$(gh run list --repo "$GITHUB_REPOSITORY" --workflow supply-chain-report.yml \
-            --branch main --status success --limit 10 --json databaseId,event \
-            --jq "[.[] | select(.databaseId != $GITHUB_RUN_ID and .event != \"pull_request\")][0].databaseId // empty")
+          run_id=$BASELINE_RUN
           mkdir -p "$RUNNER_TEMP/previous"
           if [[ -n "$run_id" ]] && gh run download "$run_id" --repo "$GITHUB_REPOSITORY" \
               --pattern "supply-chain-shard-*" --dir "$RUNNER_TEMP/previous-download" 2>/dev/null; then
@@ -171,25 +221,36 @@ jobs:
           retention-days: 90
 
   publish:
-    name: Record the week in the data branch
+    name: Record, attest, and release the week
     needs: [targets, scan]
-    if: always() && needs.targets.outputs.publish == 'true' && needs.scan.result != 'cancelled'
+    if: always() && needs.targets.outputs.mode == 'publish' && needs.scan.result != 'cancelled'
     runs-on: ubuntu-latest
-    timeout-minutes: 10
+    timeout-minutes: 15
     permissions:
       contents: write
+      id-token: write
+      attestations: write
+    env:
+      DATE: ${{ needs.targets.outputs.date }}
     steps:
       # This job never executes downloaded tool binaries; it only runs repository Python on
       # the normalized JSON produced by the read-only scan jobs.
-      - name: Check out default branch
+      - name: Check out default branch with full history
         uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4
         with:
           ref: main
+          fetch-depth: 0
 
       - name: Download shard results
         uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093 # v4
         with:
           pattern: supply-chain-shard-*
+          path: shards
+
+      - name: Download target list
+        uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093 # v4
+        with:
+          name: supply-chain-targets
           path: shards
 
       - name: Prepare the data branch worktree
@@ -205,13 +266,32 @@ jobs:
             git -C data rm -rf --quiet .
           fi
 
+      - name: Choose the evidence release tag
+        id: tag
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          tag="report-$DATE"
+          if git rev-parse -q --verify "refs/tags/$tag" >/dev/null || gh release view "$tag" >/dev/null 2>&1; then
+            # Releases are immutable; a re-run of the week gets its own tag.
+            tag="report-$DATE-run$GITHUB_RUN_ID-$GITHUB_RUN_ATTEMPT"
+          fi
+          echo "tag=$tag" >> "$GITHUB_OUTPUT"
+
       - name: Record results and changes
+        env:
+          REASON: ${{ inputs.reason }}
+          TAG: ${{ steps.tag.outputs.tag }}
         shell: bash
         run: |
           python3 scripts/supply_chain_scan.py publish \
-            --shards-dir shards --data-dir data --date "${{ needs.targets.outputs.date }}"
+            --shards-dir shards --data-dir data --date "$DATE" \
+            --reason "$REASON" --evidence-release "$TAG"
 
-      - name: Commit and push the data branch
+      - name: Commit the data branch
+        id: commit
         shell: bash
         run: |
           set -euo pipefail
@@ -221,10 +301,74 @@ jobs:
           git add --all
           if git diff --cached --quiet; then
             echo "No data changes"
+            echo "changed=false" >> "$GITHUB_OUTPUT"
             exit 0
           fi
-          git commit --quiet -m "record supply-chain scan ${{ needs.targets.outputs.date }}"
-          git push origin "HEAD:$DATA_BRANCH"
+          git commit --quiet -m "record supply-chain scan $DATE (run $GITHUB_RUN_ID, attempt $GITHUB_RUN_ATTEMPT)"
+          echo "changed=true" >> "$GITHUB_OUTPUT"
+          echo "sha=$(git rev-parse HEAD)" >> "$GITHUB_OUTPUT"
+
+      - name: Verify the new commit before publishing it
+        if: steps.commit.outputs.changed == 'true'
+        shell: bash
+        run: python3 scripts/supply_chain_scan.py verify --data-dir data --history
+
+      - name: Bundle the raw evidence
+        if: steps.commit.outputs.changed == 'true'
+        shell: bash
+        run: |
+          set -euo pipefail
+          tar --sort=name --owner=0 --group=0 --numeric-owner -czf "supply-chain-evidence-$DATE.tar.gz" -C shards .
+          cp data/SHA256SUMS data-SHA256SUMS
+
+      - name: Attest every data file
+        if: steps.commit.outputs.changed == 'true'
+        uses: actions/attest@1e69f48acb82d1966a394da916b4c1698aa569d6 # v4.2.2
+        with:
+          subject-checksums: data/SHA256SUMS
+
+      - name: Attest the checksum list and the evidence bundle
+        if: steps.commit.outputs.changed == 'true'
+        uses: actions/attest@1e69f48acb82d1966a394da916b4c1698aa569d6 # v4.2.2
+        with:
+          subject-path: |
+            data/SHA256SUMS
+            supply-chain-evidence-${{ needs.targets.outputs.date }}.tar.gz
+
+      - name: Check the new attestation
+        if: steps.commit.outputs.changed == 'true'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: bash
+        run: python3 scripts/supply_chain_scan.py verify --data-dir data --attestations
+
+      - name: Push the data branch
+        if: steps.commit.outputs.changed == 'true'
+        shell: bash
+        run: git -C data push origin "HEAD:$DATA_BRANCH"
+
+      - name: Publish the evidence release
+        if: steps.commit.outputs.changed == 'true'
+        env:
+          GH_TOKEN: ${{ github.token }}
+          TAG: ${{ steps.tag.outputs.tag }}
+          SHA: ${{ steps.commit.outputs.sha }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          projects=$(jq '.projects | length' "data/runs/$DATE.json")
+          site="https://${GITHUB_REPOSITORY_OWNER}.github.io/${GITHUB_REPOSITORY#*/}"
+          {
+            echo "Raw evidence for the [weekly supply-chain report]($site/history/$DATE/index.html) of $DATE: $projects catalog projects."
+            echo
+            echo "- Produced by [run $GITHUB_RUN_ID (attempt $GITHUB_RUN_ATTEMPT)]($GITHUB_SERVER_URL/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID) at commit $GITHUB_SHA."
+            echo "- \`supply-chain-evidence-$DATE.tar.gz\`: per project, the CycloneDX SBOM, Grype, OSV-Scanner, and govulncheck output, sbomlyze diff, and \`summary.json\` with release-integrity details; plus the target list."
+            echo "- \`data-SHA256SUMS\`: digests of every file in the data branch at commit $SHA, which this tag points to."
+            echo
+            echo "Verify: \`gh attestation verify supply-chain-evidence-$DATE.tar.gz --repo $GITHUB_REPOSITORY --signer-workflow $GITHUB_REPOSITORY/.github/workflows/supply-chain-report.yml\`. See $site/verify/index.html for what this proves."
+          } > release-notes.md
+          gh release create "$TAG" "supply-chain-evidence-$DATE.tar.gz" data-SHA256SUMS \
+            --target "$SHA" --title "Supply-chain report evidence $DATE" --notes-file release-notes.md --latest=false
 
   site:
     name: Build the report site
@@ -245,6 +389,7 @@ jobs:
           persist-credentials: false
 
       - name: Download this week's shard results
+        if: needs.targets.outputs.mode != 'site'
         uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093 # v4
         with:
           pattern: supply-chain-shard-*
@@ -256,14 +401,16 @@ jobs:
         shell: bash
         run: bash scripts/fetch-site-inputs.sh site-input
 
-      - name: Include this run in pull-request previews
-        if: needs.targets.outputs.publish != 'true'
+      - name: Include this run in previews
+        if: needs.targets.outputs.mode == 'preview'
+        env:
+          DATE: ${{ needs.targets.outputs.date }}
         shell: bash
         run: |
           python3 scripts/supply_chain_scan.py publish \
             --shards-dir site-input/supply-chain-artifacts \
             --data-dir site-input/supply-chain-data \
-            --date "${{ needs.targets.outputs.date }}"
+            --date "$DATE" --reason "preview, not published"
 
       - name: Build static site
         shell: bash
@@ -275,7 +422,7 @@ jobs:
             --supply-chain-artifacts site-input/supply-chain-artifacts
 
       - name: Upload Pages artifact
-        if: needs.targets.outputs.publish == 'true'
+        if: needs.targets.outputs.mode != 'preview'
         uses: actions/upload-pages-artifact@fc324d3547104276b827a68afc52ff2a11cc49c9 # v5.0.0
         with:
           path: site
@@ -283,7 +430,7 @@ jobs:
           name: github-pages-${{ github.run_attempt }}
 
       - name: Upload site preview
-        if: needs.targets.outputs.publish != 'true'
+        if: needs.targets.outputs.mode == 'preview'
         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
         with:
           name: supply-chain-site-preview
@@ -293,7 +440,7 @@ jobs:
   deploy:
     name: Deploy the report site
     needs: [targets, site]
-    if: always() && needs.site.result == 'success' && needs.targets.outputs.publish == 'true'
+    if: always() && needs.site.result == 'success' && needs.targets.outputs.mode != 'preview'
     runs-on: ubuntu-latest
     timeout-minutes: 10
     permissions:

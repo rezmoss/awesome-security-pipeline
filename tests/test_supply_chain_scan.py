@@ -1,12 +1,18 @@
+import io
 import json
+import os
 import pathlib
+import subprocess
 import tempfile
 import unittest
 import unittest.mock
+import urllib.error
 
 from scripts import build_site
 from scripts import supply_chain_checks as checks
 from scripts import supply_chain_scan as scan
+
+ROOT = pathlib.Path(__file__).resolve().parent.parent
 
 
 UNUSED_README = """# List
@@ -176,9 +182,7 @@ class SupplyChainScanTest(unittest.TestCase):
         self.write_shard(root / "week2", "v2", [component("a", "2")], [finding("GHSA-9", "a", "Critical")])
         self.write_shard(root / "week3", "v2", None, None, errors=["clone failed"])
         for week, date in (("week1", "2026-11-01"), ("week2", "2026-11-08"), ("week3", "2026-11-15")):
-            argv = ["scan", "publish", "--shards-dir", str(root / week), "--data-dir", str(data), "--date", date]
-            with unittest.mock.patch("sys.argv", argv):
-                self.assertEqual(scan.main(), 0)
+            self.publish(root / week, data, date)
 
         stored = json.loads((data / "projects" / "gitleaks__gitleaks.json").read_text())
         self.assertEqual([item["date"] for item in stored["history"]], ["2026-11-01", "2026-11-08", "2026-11-15"])
@@ -199,8 +203,126 @@ class SupplyChainScanTest(unittest.TestCase):
         self.assertIn("GHSA-9", page)
         self.assertIn("Detect &lt;secrets&gt;.", page)
         self.assertNotIn("Detect <secrets>", page)
+        self.assertIn('id="gitleaks-gitleaks"', overview)
+        self.assertIn('id="adv-ghsa-9-a-1"', page)
+        self.assertIn("history/2026-11-15/index.html#gitleaks-gitleaks", page)
+        self.assertIn("predates run-level provenance", page)
+        corrections = (site / "corrections" / "index.html").read_text()
+        self.assertIn("cargo-audit", corrections)
+        self.assertIn("gh attestation verify", (site / "verify" / "index.html").read_text())
         for path in ("history/index.html", "history/2026-11-08/index.html", "data/index.json", "style.css"):
             self.assertTrue((site / path).is_file(), path)
+
+    def publish(self, shards, data, date, **environment):
+        """Publish with only the given GitHub Actions variables, so tests behave the same in CI."""
+        argv = ["scan", "publish", "--shards-dir", str(shards), "--data-dir", str(data), "--date", date]
+        clean = {key: value for key, value in os.environ.items() if not key.startswith("GITHUB_")}
+        with unittest.mock.patch("sys.argv", argv), unittest.mock.patch.dict(os.environ, {**clean, **environment}, clear=True):
+            self.assertEqual(scan.main(), 0)
+
+    def test_scorecard_errors_name_the_actual_cause(self):
+        def fail(error):
+            return unittest.mock.patch("urllib.request.urlopen", side_effect=error)
+
+        with fail(urllib.error.HTTPError("u", 404, "missing", {}, io.BytesIO())):
+            self.assertIn("not in the OpenSSF public dataset", checks.scorecard("a/b", False)["error"])
+        with fail(urllib.error.URLError("timed out")):
+            self.assertIn("could not be reached (timed out)", checks.scorecard("a/b", False)["error"])
+        old = io.BytesIO(json.dumps({"date": "2020-01-01", "score": 5}).encode())
+        with unittest.mock.patch("urllib.request.urlopen", return_value=unittest.mock.MagicMock(__enter__=lambda self: old)):
+            error = checks.scorecard("a/b", False)["error"]
+        self.assertIn("days old (limit 30)", error)
+        self.assertIn("budget was used", error)
+
+    def test_publication_records_provenance_checksums_and_scorecard_source(self):
+        temporary = tempfile.TemporaryDirectory()
+        self.addCleanup(temporary.cleanup)
+        root = pathlib.Path(temporary.name)
+        data = root / "data"
+        self.write_shard(root / "week1", "v1", [component("a", "1")], [])
+        shard = json.loads((root / "week1" / "shard-0.json").read_text())
+        shard["projects"][0]["scorecard"] = {"score": 6.2, "date": "2026-10-30", "source": "openssf-api", "checks": []}
+        shard["environment"] = {"shard": 0, "runner": {"os": "ubuntu24"}, "grype_db": {"built": "2026-11-01"}}
+        (root / "week1" / "shard-0.json").write_text(json.dumps(shard))
+        self.write_shard(root / "week2", "v1", [component("a", "1")], [])
+        self.publish(root / "week1", data, "2026-11-01", GITHUB_RUN_ID="7", GITHUB_RUN_ATTEMPT="2",
+                     GITHUB_REPOSITORY="o/r", GITHUB_EVENT_NAME="schedule")
+        run = json.loads((data / "runs" / "2026-11-01.json").read_text())
+        self.assertEqual(run["provenance"]["run"]["id"], 7)
+        self.assertEqual(run["provenance"]["run"]["reason"], "scheduled weekly scan (re-run attempt 2)")
+        self.assertEqual(run["provenance"]["run"]["url"], "https://github.com/o/r/actions/runs/7/attempts/2")
+        self.assertEqual(run["provenance"]["shards"][0]["runner"], {"os": "ubuntu24"})
+        self.assertEqual(run["projects"][0]["scorecard_source"], "openssf-api")
+        self.publish(root / "week2", data, "2026-11-08")
+        row = json.loads((data / "runs" / "2026-11-08.json").read_text())["projects"][0]
+        self.assertEqual((row["scorecard"], row["scorecard_source"], row["scorecard_date"]), (6.2, "carried-forward", "2026-10-30"))
+        listed = (data / "SHA256SUMS").read_text()
+        self.assertIn("  projects/gitleaks__gitleaks.json\n", listed)
+        self.assertNotIn("SHA256SUMS", listed)
+        self.assertEqual(scan.verify_tree(data), [])
+
+        # A hand edit anywhere is caught by recomputation or by the checksum list.
+        path = data / "projects" / "gitleaks__gitleaks.json"
+        stored = json.loads(path.read_text())
+        stored["history"][0]["dependencies"] = 99
+        path.write_text(json.dumps(stored))
+        problems = scan.verify_tree(data)
+        self.assertTrue(any("differs from its history entry: dependencies" in item for item in problems), problems)
+        self.assertTrue(any("does not match its SHA256SUMS digest" in item for item in problems), problems)
+
+    def test_rerun_of_a_week_keeps_the_replaced_run_and_compares_with_the_previous_week(self):
+        temporary = tempfile.TemporaryDirectory()
+        self.addCleanup(temporary.cleanup)
+        root = pathlib.Path(temporary.name)
+        data = root / "data"
+        data.mkdir()
+
+        def git(*arguments):
+            subprocess.run(["git", "-C", str(data), *arguments], check=True, capture_output=True)
+
+        def commit(message):
+            git("add", "--all")
+            git("-c", "user.name=t", "-c", "user.email=t@example.com", "commit", "--quiet", "-m", message)
+
+        git("init", "--quiet")
+        self.write_shard(root / "week1", "v1", [component("a", "1")], [])
+        self.write_shard(root / "week2", "v2", [component("a", "2")], [])
+        self.publish(root / "week1", data, "2026-11-01", GITHUB_RUN_ID="1")
+        commit("week 1")
+        self.publish(root / "week2", data, "2026-11-08", GITHUB_RUN_ID="2")
+        commit("week 2")
+        git("tag", "report-2026-11-08")
+        self.publish(root / "week2", data, "2026-11-08", GITHUB_RUN_ID="3")
+        commit("week 2 again")
+
+        stored = json.loads((data / "projects" / "gitleaks__gitleaks.json").read_text())
+        self.assertEqual(len(stored["latest"]["changes"]["upgraded"]), 1, "re-run must compare with 2026-11-01")
+        run = json.loads((data / "runs" / "2026-11-08.json").read_text())
+        self.assertEqual(run["supersedes"], "runs/superseded/2026-11-08/2-1.json")
+        self.assertEqual(json.loads((data / run["supersedes"]).read_text())["provenance"]["run"]["id"], 2)
+        problems, count = scan.verify_history(data, ["report-2026-11-08"])
+        self.assertEqual((problems, count), ([], 3))
+
+        # Rewriting an earlier week is reported.
+        path = data / "runs" / "2026-11-01.json"
+        path.write_text(path.read_text().replace('"v1"', '"v0"'))
+        commit("rewrite")
+        problems, _ = scan.verify_history(data, [])
+        self.assertTrue(any("rewrites runs/2026-11-01.json" in item for item in problems), problems)
+
+    def test_every_manual_override_is_documented(self):
+        pins = json.loads((ROOT / "benchmarks/supply-chain/release-tags.json").read_text())["projects"]
+        for name, entry in pins.items():
+            self.assertTrue(entry.get("reason") and entry.get("added") and entry.get("pr"), name)
+        corrections = json.loads((ROOT / "benchmarks/supply-chain/corrections.json").read_text())
+        for entry in corrections["entries"]:
+            self.assertTrue(entry.get("date") and entry.get("summary") and (entry.get("pr") or entry.get("link")), entry)
+        documented = corrections["catalog_exceptions"]
+        for path in sorted((ROOT / "tools").glob("*.json")):
+            tool = json.loads(path.read_text())
+            if (tool.get("listing") or {}).get("exception"):
+                meta = documented.get(path.stem) or {}
+                self.assertTrue(meta.get("added") and meta.get("pr"), f"{path.name} has an undocumented catalog exception")
 
 
 if __name__ == "__main__":
