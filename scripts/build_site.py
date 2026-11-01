@@ -55,7 +55,8 @@ SCOPE_NOTE = (
 EXTRA_STYLE = """
 .sev-Critical{color:#fff;background:#a40e26}.sev-High{color:#fff;background:#cf222e}.sev-Medium{color:#1f2328;background:#f2cc60}.sev-Low{color:#1f2328;background:#d1d9e0}
 .pill{display:inline-block;min-width:1.8em;padding:0 6px;border-radius:10px;text-align:center;font-size:13px;font-weight:600}
-.zero{color:var(--muted)}td.change{font-size:14px}tr.changed td:first-child{border-left:3px solid var(--warn)}
+.zero{color:var(--muted)}td.change{font-size:14px;min-width:180px}tr.changed td:first-child{border-left:3px solid var(--warn)}
+header,main,footer{max-width:1600px}
 """
 
 
