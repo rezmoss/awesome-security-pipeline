@@ -7,11 +7,21 @@
       "dependencies": 975,
       "errors": [],
       "fixable": 65,
+      "go_version": "go1.27.3",
+      "in_binary": {
+        "dependencies": 8,
+        "stdlib": 0,
+        "total": 8
+      },
       "new_vulnerabilities": 0,
+      "osv_confirmed": 73,
+      "osv_only": 0,
       "ref": "cli-v6.49.2",
       "release_changed": false,
+      "release_integrity": "checksums-only",
       "removed": 0,
       "resolved_vulnerabilities": 0,
+      "scorecard": 6,
       "upgraded": 0,
       "vulnerabilities": {
         "Critical": 3,
@@ -20,6 +30,12 @@
         "Medium": 27,
         "Negligible": 0,
         "Unknown": 6
+      },
+      "workflow": {
+        "High": 14,
+        "Low": 20,
+        "Medium": 3,
+        "files": 60
       }
     }
   ],
@@ -7882,6 +7898,105 @@
     ],
     "description": "Inventory cloud assets and analyze them with SQL.",
     "errors": [],
+    "go_binary": {
+      "asset": "cloudquery_linux_amd64.zip",
+      "binary": "cloudquery",
+      "findings": [
+        {
+          "aliases": [
+            "CVE-2026-33997",
+            "GHSA-pxq6-2prw-chj9"
+          ],
+          "fixed_version": "",
+          "id": "GO-2026-4883",
+          "level": "symbol",
+          "module": "github.com/docker/docker",
+          "summary": "Moby has an Off-by-one error in its plugin privilege validation in github.com/docker/docker",
+          "version": "v28.5.2+incompatible"
+        },
+        {
+          "aliases": [
+            "CVE-2026-34040",
+            "GHSA-x744-4wpc-v9h2"
+          ],
+          "fixed_version": "",
+          "id": "GO-2026-4887",
+          "level": "symbol",
+          "module": "github.com/docker/docker",
+          "summary": "Moby has AuthZ plugin bypass when provided oversized request bodies in github.com/docker/docker",
+          "version": "v28.5.2+incompatible"
+        },
+        {
+          "aliases": [
+            "CVE-2026-42306",
+            "GHSA-rg2x-37c3-w2rh"
+          ],
+          "fixed_version": "",
+          "id": "GO-2026-5617",
+          "level": "symbol",
+          "module": "github.com/docker/docker",
+          "summary": "Race condition in 'docker cp' in github.com/docker/docker allows bind mount redirection",
+          "version": "v28.5.2+incompatible"
+        },
+        {
+          "aliases": [
+            "CVE-2026-41568",
+            "GHSA-vp62-88p7-qqf5"
+          ],
+          "fixed_version": "",
+          "id": "GO-2026-5668",
+          "level": "symbol",
+          "module": "github.com/docker/docker",
+          "summary": "Race condition in 'docker cp' in github.com/docker/docker allows creation of arbitrary files",
+          "version": "v28.5.2+incompatible"
+        },
+        {
+          "aliases": [
+            "CVE-2026-41567",
+            "GHSA-x86f-5xw2-fm2r"
+          ],
+          "fixed_version": "",
+          "id": "GO-2026-5746",
+          "level": "symbol",
+          "module": "github.com/docker/docker",
+          "summary": "Docker: 'PUT /containers/{id}/archive' executes container binary on the host in github.com/docker/docker",
+          "version": "v28.5.2+incompatible"
+        },
+        {
+          "aliases": [],
+          "fixed_version": "",
+          "id": "GO-2026-5932",
+          "level": "symbol",
+          "module": "golang.org/x/crypto",
+          "summary": "The golang.org/x/crypto/openpgp package is unmaintained, unsafe by design, and has known security issues",
+          "version": "v0.58.0"
+        },
+        {
+          "aliases": [
+            "CVE-2026-78661"
+          ],
+          "fixed_version": "v0.62.0",
+          "id": "GO-2026-6860",
+          "level": "symbol",
+          "module": "golang.org/x/net",
+          "summary": "Avoid quadratic complexity when coalescing text nodes in html in golang.org/x/net",
+          "version": "v0.61.0"
+        },
+        {
+          "aliases": [
+            "CVE-2026-97045"
+          ],
+          "fixed_version": "v0.62.0",
+          "id": "GO-2026-6866",
+          "level": "symbol",
+          "module": "golang.org/x/net",
+          "summary": "Check all ancestor namespace transitions when rendering raw text in html in golang.org/x/net",
+          "version": "v0.61.0"
+        }
+      ],
+      "go_version": "go1.27.3",
+      "main_module": ""
+    },
     "id": "cloudquery__cloudquery",
     "manifests": [
       ".github/actions/release-pr-hub-comment/action.yml",
@@ -8014,8 +8129,26 @@
       "scripts/table_diff/go.sum"
     ],
     "name": "cloudquery",
+    "osv": {
+      "advisories": 248,
+      "available": true,
+      "confirmed": 73,
+      "osv_only": [],
+      "warning": null
+    },
     "ref": "cli-v6.49.2",
     "ref_kind": "release",
+    "release_integrity": {
+      "asset": "cloudquery_linux_amd64.zip",
+      "assets": 11,
+      "checksums_published": true,
+      "digest_matches_github": true,
+      "methods": [],
+      "provenance_published": false,
+      "sbom_published": false,
+      "signatures_published": false,
+      "verdict": "checksums-only"
+    },
     "released_at": "2026-10-22T18:17:01Z",
     "repository": "cloudquery/cloudquery",
     "sbomlyze_diff": {
@@ -8028,7 +8161,85 @@
       ],
       "removed": 0
     },
-    "scanned_at": "2026-11-01T16:36:38+00:00",
+    "scanned_at": "2026-11-01T17:43:41+00:00",
+    "scorecard": {
+      "checks": [
+        {
+          "name": "CII-Best-Practices",
+          "reason": "no effort to earn an OpenSSF best practices badge detected",
+          "score": 0
+        },
+        {
+          "name": "Dangerous-Workflow",
+          "reason": "dangerous workflow patterns detected",
+          "score": 0
+        },
+        {
+          "name": "Fuzzing",
+          "reason": "project is not fuzzed",
+          "score": 0
+        },
+        {
+          "name": "Token-Permissions",
+          "reason": "detected GitHub workflow tokens with excessive permissions",
+          "score": 0
+        },
+        {
+          "name": "SAST",
+          "reason": "SAST tool detected but not run on all commits",
+          "score": 7
+        },
+        {
+          "name": "Pinned-Dependencies",
+          "reason": "dependency not pinned by hash detected -- score normalized to 8",
+          "score": 8
+        },
+        {
+          "name": "Binary-Artifacts",
+          "reason": "binaries present in source code",
+          "score": 9
+        },
+        {
+          "name": "Code-Review",
+          "reason": "all changesets reviewed",
+          "score": 10
+        },
+        {
+          "name": "License",
+          "reason": "license file detected",
+          "score": 10
+        },
+        {
+          "name": "Maintained",
+          "reason": "30 commit(s) and 0 issue activity found in the last 90 days -- score normalized to 10",
+          "score": 10
+        },
+        {
+          "name": "Packaging",
+          "reason": "packaging workflow detected",
+          "score": 10
+        },
+        {
+          "name": "Security-Policy",
+          "reason": "security policy file detected",
+          "score": 10
+        },
+        {
+          "name": "Branch-Protection",
+          "reason": "internal error: error during branchesHandler.setup: internal error: some github tokens can't read classic branch protection rules: https://github.com/ossf/scorecard-action/blob/main/docs/authentication/fine-grained-auth-token.md",
+          "score": -1
+        },
+        {
+          "name": "Signed-Releases",
+          "reason": "no releases found",
+          "score": -1
+        }
+      ],
+      "date": "2026-10-26",
+      "score": 6,
+      "source": "openssf-api",
+      "version": "v5.6.0"
+    },
     "vulnerabilities": [
       {
         "aliases": [
@@ -8040,7 +8251,9 @@
           "0.60.0"
         ],
         "id": "GO-2026-6612",
+        "in_binary": "vulnerable code not in binary",
         "location": "plugins/transformer/jsonflattener/go.mod",
+        "osv_confirmed": true,
         "package": "golang.org/x/net",
         "severity": "Critical",
         "url": "https://go.dev/cl/847187",
@@ -8057,6 +8270,7 @@
         ],
         "id": "GHSA-xq3m-2v4x-88gg",
         "location": "plugins/source/airtable/pnpm-lock.yaml",
+        "osv_confirmed": true,
         "package": "protobufjs",
         "severity": "Critical",
         "url": "https://github.com/advisories/GHSA-xq3m-2v4x-88gg",
@@ -8073,6 +8287,7 @@
         ],
         "id": "GHSA-23hp-3jrh-7fpw",
         "location": "plugins/source/airtable/pnpm-lock.yaml",
+        "osv_confirmed": true,
         "package": "tar",
         "severity": "Critical",
         "url": "https://github.com/advisories/GHSA-23hp-3jrh-7fpw",
@@ -8089,6 +8304,7 @@
         ],
         "id": "GHSA-5375-pq7m-f5r2",
         "location": "plugins/source/airtable/pnpm-lock.yaml",
+        "osv_confirmed": true,
         "package": "@grpc/grpc-js",
         "severity": "High",
         "url": "https://github.com/advisories/GHSA-5375-pq7m-f5r2",
@@ -8105,6 +8321,7 @@
         ],
         "id": "GHSA-99f4-grh7-6pcq",
         "location": "plugins/source/airtable/pnpm-lock.yaml",
+        "osv_confirmed": true,
         "package": "@grpc/grpc-js",
         "severity": "High",
         "url": "https://github.com/advisories/GHSA-99f4-grh7-6pcq",
@@ -8121,6 +8338,7 @@
         ],
         "id": "GHSA-m9gg-hp2v-232j",
         "location": "plugins/source/airtable/pnpm-lock.yaml",
+        "osv_confirmed": true,
         "package": "@grpc/grpc-js",
         "severity": "High",
         "url": "https://github.com/advisories/GHSA-m9gg-hp2v-232j",
@@ -8137,6 +8355,7 @@
         ],
         "id": "GHSA-cg8m-r9f2-5wm2",
         "location": "plugins/source/square/uv.lock",
+        "osv_confirmed": true,
         "package": "black",
         "severity": "High",
         "url": "https://github.com/advisories/GHSA-cg8m-r9f2-5wm2",
@@ -8153,6 +8372,7 @@
         ],
         "id": "GHSA-4c8g-83qw-93j6",
         "location": "plugins/source/airtable/pnpm-lock.yaml",
+        "osv_confirmed": true,
         "package": "fast-uri",
         "severity": "High",
         "url": "https://github.com/advisories/GHSA-4c8g-83qw-93j6",
@@ -8169,6 +8389,7 @@
         ],
         "id": "GHSA-7p8r-x3mc-p8w7",
         "location": "plugins/source/airtable/pnpm-lock.yaml",
+        "osv_confirmed": true,
         "package": "fast-uri",
         "severity": "High",
         "url": "https://github.com/advisories/GHSA-7p8r-x3mc-p8w7",
@@ -8185,6 +8406,7 @@
         ],
         "id": "GHSA-f65p-4m7j-42xc",
         "location": "plugins/source/airtable/pnpm-lock.yaml",
+        "osv_confirmed": true,
         "package": "fast-uri",
         "severity": "High",
         "url": "https://github.com/advisories/GHSA-f65p-4m7j-42xc",
@@ -8201,6 +8423,7 @@
         ],
         "id": "GHSA-fph4-wmhf-6fwf",
         "location": "plugins/source/airtable/pnpm-lock.yaml",
+        "osv_confirmed": true,
         "package": "fast-uri",
         "severity": "High",
         "url": "https://github.com/advisories/GHSA-fph4-wmhf-6fwf",
@@ -8217,6 +8440,7 @@
         ],
         "id": "GHSA-jqff-g426-hqxp",
         "location": "plugins/source/airtable/pnpm-lock.yaml",
+        "osv_confirmed": true,
         "package": "fast-uri",
         "severity": "High",
         "url": "https://github.com/advisories/GHSA-jqff-g426-hqxp",
@@ -8233,6 +8457,7 @@
         ],
         "id": "GHSA-qw65-cvwx-89v3",
         "location": "plugins/source/airtable/pnpm-lock.yaml",
+        "osv_confirmed": true,
         "package": "fast-uri",
         "severity": "High",
         "url": "https://github.com/advisories/GHSA-qw65-cvwx-89v3",
@@ -8249,6 +8474,7 @@
         ],
         "id": "GHSA-v2hh-gcrm-f6hx",
         "location": "plugins/source/airtable/pnpm-lock.yaml",
+        "osv_confirmed": true,
         "package": "fast-uri",
         "severity": "High",
         "url": "https://github.com/advisories/GHSA-v2hh-gcrm-f6hx",
@@ -8262,7 +8488,9 @@
         "fix_state": "not-fixed",
         "fixed_in": [],
         "id": "GHSA-rg2x-37c3-w2rh",
+        "in_binary": "vulnerable code in binary",
         "location": "cli/go.mod",
+        "osv_confirmed": true,
         "package": "github.com/docker/docker",
         "severity": "High",
         "url": "https://github.com/advisories/GHSA-rg2x-37c3-w2rh",
@@ -8276,7 +8504,9 @@
         "fix_state": "not-fixed",
         "fixed_in": [],
         "id": "GHSA-x86f-5xw2-fm2r",
+        "in_binary": "vulnerable code in binary",
         "location": "go.mod",
+        "osv_confirmed": true,
         "package": "github.com/docker/docker",
         "severity": "High",
         "url": "https://github.com/advisories/GHSA-x86f-5xw2-fm2r",
@@ -8291,7 +8521,9 @@
         "fix_state": "unknown",
         "fixed_in": [],
         "id": "GO-2026-4887",
+        "in_binary": "vulnerable code in binary",
         "location": "go.mod",
+        "osv_confirmed": true,
         "package": "github.com/docker/docker",
         "severity": "High",
         "url": "https://github.com/moby/moby/security/advisories/GHSA-x744-4wpc-v9h2",
@@ -8307,7 +8539,9 @@
           "4.1.6"
         ],
         "id": "GHSA-mgcc-cww5-fp2q",
+        "in_binary": "not in released binary",
         "location": "plugins/destination/gcs/go.mod",
+        "osv_confirmed": true,
         "package": "github.com/go-jose/go-jose/v4",
         "severity": "High",
         "url": "https://github.com/advisories/GHSA-mgcc-cww5-fp2q",
@@ -8323,7 +8557,9 @@
           "0.60.0"
         ],
         "id": "GO-2026-6603",
+        "in_binary": "vulnerable code not in binary",
         "location": "plugins/destination/meilisearch/go.mod",
+        "osv_confirmed": true,
         "package": "golang.org/x/net",
         "severity": "High",
         "url": "https://go.dev/cl/847185",
@@ -8339,7 +8575,9 @@
           "0.60.0"
         ],
         "id": "GO-2026-6610",
+        "in_binary": "vulnerable code not in binary",
         "location": "plugins/destination/kafka/go.mod",
+        "osv_confirmed": true,
         "package": "golang.org/x/net",
         "severity": "High",
         "url": "https://go.dev/cl/835145",
@@ -8355,7 +8593,9 @@
           "0.60.0"
         ],
         "id": "GO-2026-6611",
+        "in_binary": "vulnerable code not in binary",
         "location": "go.mod",
+        "osv_confirmed": true,
         "package": "golang.org/x/net",
         "severity": "High",
         "url": "https://go.dev/cl/847186",
@@ -8371,7 +8611,9 @@
           "0.60.0"
         ],
         "id": "GO-2026-6617",
+        "in_binary": "vulnerable code not in binary",
         "location": "plugins/destination/snowflake/go.mod",
+        "osv_confirmed": true,
         "package": "golang.org/x/net",
         "severity": "High",
         "url": "https://go.dev/cl/847188",
@@ -8388,6 +8630,7 @@
         ],
         "id": "GHSA-r5fr-rjxr-66jc",
         "location": "plugins/source/airtable/pnpm-lock.yaml",
+        "osv_confirmed": true,
         "package": "lodash",
         "severity": "High",
         "url": "https://github.com/advisories/GHSA-r5fr-rjxr-66jc",
@@ -8404,6 +8647,7 @@
         ],
         "id": "GHSA-66ff-xgx4-vchm",
         "location": "plugins/source/airtable/pnpm-lock.yaml",
+        "osv_confirmed": true,
         "package": "protobufjs",
         "severity": "High",
         "url": "https://github.com/advisories/GHSA-66ff-xgx4-vchm",
@@ -8420,6 +8664,7 @@
         ],
         "id": "GHSA-685m-2w69-288q",
         "location": "plugins/source/airtable/pnpm-lock.yaml",
+        "osv_confirmed": true,
         "package": "protobufjs",
         "severity": "High",
         "url": "https://github.com/advisories/GHSA-685m-2w69-288q",
@@ -8436,6 +8681,7 @@
         ],
         "id": "GHSA-75px-5xx7-5xc7",
         "location": "plugins/source/airtable/pnpm-lock.yaml",
+        "osv_confirmed": true,
         "package": "protobufjs",
         "severity": "High",
         "url": "https://github.com/advisories/GHSA-75px-5xx7-5xc7",
@@ -8452,6 +8698,7 @@
         ],
         "id": "GHSA-jvwf-75h9-cwgg",
         "location": "plugins/source/airtable/pnpm-lock.yaml",
+        "osv_confirmed": true,
         "package": "protobufjs",
         "severity": "High",
         "url": "https://github.com/advisories/GHSA-jvwf-75h9-cwgg",
@@ -8468,6 +8715,7 @@
         ],
         "id": "GHSA-wcpc-wj8m-hjx6",
         "location": "plugins/source/airtable/pnpm-lock.yaml",
+        "osv_confirmed": true,
         "package": "protobufjs",
         "severity": "High",
         "url": "https://github.com/advisories/GHSA-wcpc-wj8m-hjx6",
@@ -8484,6 +8732,7 @@
         ],
         "id": "GHSA-68fv-2mgg-jv7q",
         "location": "plugins/source/airtable/pnpm-lock.yaml",
+        "osv_confirmed": true,
         "package": "source-map-js",
         "severity": "High",
         "url": "https://github.com/advisories/GHSA-68fv-2mgg-jv7q",
@@ -8500,6 +8749,7 @@
         ],
         "id": "GHSA-8x88-c5mf-7j5w",
         "location": "plugins/source/airtable/pnpm-lock.yaml",
+        "osv_confirmed": true,
         "package": "tar",
         "severity": "High",
         "url": "https://github.com/advisories/GHSA-8x88-c5mf-7j5w",
@@ -8516,6 +8766,7 @@
         ],
         "id": "GHSA-r292-9mhp-454m",
         "location": "plugins/source/airtable/pnpm-lock.yaml",
+        "osv_confirmed": true,
         "package": "tar",
         "severity": "High",
         "url": "https://github.com/advisories/GHSA-r292-9mhp-454m",
@@ -8532,6 +8783,7 @@
         ],
         "id": "GHSA-8988-9cw3-xx77",
         "location": "plugins/destination/sqlite-python/uv.lock",
+        "osv_confirmed": true,
         "package": "urllib3",
         "severity": "High",
         "url": "https://github.com/advisories/GHSA-8988-9cw3-xx77",
@@ -8548,6 +8800,7 @@
         ],
         "id": "GHSA-mf9v-mfxr-j63j",
         "location": "plugins/destination/sqlite-python/uv.lock",
+        "osv_confirmed": true,
         "package": "urllib3",
         "severity": "High",
         "url": "https://github.com/advisories/GHSA-mf9v-mfxr-j63j",
@@ -8564,6 +8817,7 @@
         ],
         "id": "GHSA-qccp-gfcp-xxvc",
         "location": "plugins/destination/sqlite-python/uv.lock",
+        "osv_confirmed": true,
         "package": "urllib3",
         "severity": "High",
         "url": "https://github.com/advisories/GHSA-qccp-gfcp-xxvc",
@@ -8580,6 +8834,7 @@
         ],
         "id": "GHSA-vxq7-64xx-v4gw",
         "location": "plugins/destination/sqlite-python/uv.lock",
+        "osv_confirmed": true,
         "package": "urllib3",
         "severity": "High",
         "url": "https://github.com/advisories/GHSA-vxq7-64xx-v4gw",
@@ -8596,6 +8851,7 @@
         ],
         "id": "GHSA-q6x5-8v7m-xcrf",
         "location": "plugins/source/airtable/pnpm-lock.yaml",
+        "osv_confirmed": true,
         "package": "@protobufjs/utf8",
         "severity": "Medium",
         "url": "https://github.com/advisories/GHSA-q6x5-8v7m-xcrf",
@@ -8612,6 +8868,7 @@
         ],
         "id": "GHSA-hrr3-gc8f-f4qj",
         "location": "plugins/source/airtable/pnpm-lock.yaml",
+        "osv_confirmed": true,
         "package": "fast-uri",
         "severity": "Medium",
         "url": "https://github.com/advisories/GHSA-hrr3-gc8f-f4qj",
@@ -8628,6 +8885,7 @@
         ],
         "id": "GHSA-w74x-v6f9-j3xg",
         "location": "plugins/source/airtable/pnpm-lock.yaml",
+        "osv_confirmed": true,
         "package": "fast-uri",
         "severity": "Medium",
         "url": "https://github.com/advisories/GHSA-w74x-v6f9-j3xg",
@@ -8641,7 +8899,9 @@
         "fix_state": "not-fixed",
         "fixed_in": [],
         "id": "GHSA-685w-q87j-wqw3",
+        "in_binary": "vulnerable code not in binary",
         "location": "go.mod",
+        "osv_confirmed": true,
         "package": "github.com/docker/distribution",
         "severity": "Medium",
         "url": "https://github.com/advisories/GHSA-685w-q87j-wqw3",
@@ -8655,7 +8915,9 @@
         "fix_state": "not-fixed",
         "fixed_in": [],
         "id": "GHSA-pxq6-2prw-chj9",
+        "in_binary": "vulnerable code in binary",
         "location": "go.mod",
+        "osv_confirmed": true,
         "package": "github.com/docker/docker",
         "severity": "Medium",
         "url": "https://github.com/advisories/GHSA-pxq6-2prw-chj9",
@@ -8669,7 +8931,9 @@
         "fix_state": "not-fixed",
         "fixed_in": [],
         "id": "GHSA-vp62-88p7-qqf5",
+        "in_binary": "vulnerable code in binary",
         "location": "go.mod",
+        "osv_confirmed": true,
         "package": "github.com/docker/docker",
         "severity": "Medium",
         "url": "https://github.com/advisories/GHSA-vp62-88p7-qqf5",
@@ -8685,7 +8949,9 @@
           "4.1.5"
         ],
         "id": "GHSA-4w3g-jfj2-cw2q",
+        "in_binary": "not in released binary",
         "location": "plugins/destination/gcs/go.mod",
+        "osv_confirmed": true,
         "package": "github.com/go-jose/go-jose/v4",
         "severity": "Medium",
         "url": "https://github.com/advisories/GHSA-4w3g-jfj2-cw2q",
@@ -8701,7 +8967,9 @@
           "4.1.5"
         ],
         "id": "GHSA-vvm8-gf78-28g4",
+        "in_binary": "not in released binary",
         "location": "plugins/destination/gcs/go.mod",
+        "osv_confirmed": true,
         "package": "github.com/go-jose/go-jose/v4",
         "severity": "Medium",
         "url": "https://github.com/advisories/GHSA-vvm8-gf78-28g4",
@@ -8718,6 +8986,7 @@
         ],
         "id": "GHSA-3g3m-2fjr-6pw4",
         "location": "plugins/source/airtable/pnpm-lock.yaml",
+        "osv_confirmed": true,
         "package": "glob",
         "severity": "Medium",
         "url": "https://github.com/advisories/GHSA-3g3m-2fjr-6pw4",
@@ -8734,6 +9003,7 @@
         ],
         "id": "GHSA-65pc-fj4g-8rjx",
         "location": "plugins/destination/sqlite-python/uv.lock",
+        "osv_confirmed": true,
         "package": "idna",
         "severity": "Medium",
         "url": "https://github.com/advisories/GHSA-65pc-fj4g-8rjx",
@@ -8750,6 +9020,7 @@
         ],
         "id": "GHSA-f23m-r3pf-42rh",
         "location": "plugins/source/airtable/pnpm-lock.yaml",
+        "osv_confirmed": true,
         "package": "lodash",
         "severity": "Medium",
         "url": "https://github.com/advisories/GHSA-f23m-r3pf-42rh",
@@ -8766,6 +9037,7 @@
         ],
         "id": "GHSA-g3hv-75wg-m249",
         "location": "plugins/source/airtable/pnpm-lock.yaml",
+        "osv_confirmed": true,
         "package": "minimatch",
         "severity": "Medium",
         "url": "https://github.com/advisories/GHSA-g3hv-75wg-m249",
@@ -8782,6 +9054,7 @@
         ],
         "id": "GHSA-g3hv-75wg-m249",
         "location": "plugins/source/airtable/pnpm-lock.yaml",
+        "osv_confirmed": true,
         "package": "minimatch",
         "severity": "Medium",
         "url": "https://github.com/advisories/GHSA-g3hv-75wg-m249",
@@ -8798,6 +9071,7 @@
         ],
         "id": "GHSA-g3hv-75wg-m249",
         "location": "plugins/source/airtable/pnpm-lock.yaml",
+        "osv_confirmed": true,
         "package": "minimatch",
         "severity": "Medium",
         "url": "https://github.com/advisories/GHSA-g3hv-75wg-m249",
@@ -8814,6 +9088,7 @@
         ],
         "id": "GHSA-2pr8-phx7-x9h3",
         "location": "plugins/source/airtable/pnpm-lock.yaml",
+        "osv_confirmed": true,
         "package": "protobufjs",
         "severity": "Medium",
         "url": "https://github.com/advisories/GHSA-2pr8-phx7-x9h3",
@@ -8830,6 +9105,7 @@
         ],
         "id": "GHSA-f38q-mgvj-vph7",
         "location": "plugins/source/airtable/pnpm-lock.yaml",
+        "osv_confirmed": true,
         "package": "protobufjs",
         "severity": "Medium",
         "url": "https://github.com/advisories/GHSA-f38q-mgvj-vph7",
@@ -8846,6 +9122,7 @@
         ],
         "id": "GHSA-fx83-v9x8-x52w",
         "location": "plugins/source/airtable/pnpm-lock.yaml",
+        "osv_confirmed": true,
         "package": "protobufjs",
         "severity": "Medium",
         "url": "https://github.com/advisories/GHSA-fx83-v9x8-x52w",
@@ -8862,6 +9139,7 @@
         ],
         "id": "GHSA-j3f2-48v5-ccww",
         "location": "plugins/source/airtable/pnpm-lock.yaml",
+        "osv_confirmed": true,
         "package": "protobufjs",
         "severity": "Medium",
         "url": "https://github.com/advisories/GHSA-j3f2-48v5-ccww",
@@ -8878,6 +9156,7 @@
         ],
         "id": "GHSA-jggg-4jg4-v7c6",
         "location": "plugins/source/airtable/pnpm-lock.yaml",
+        "osv_confirmed": true,
         "package": "protobufjs",
         "severity": "Medium",
         "url": "https://github.com/advisories/GHSA-jggg-4jg4-v7c6",
@@ -8894,6 +9173,7 @@
         ],
         "id": "GHSA-q6x5-8v7m-xcrf",
         "location": "plugins/source/airtable/pnpm-lock.yaml",
+        "osv_confirmed": true,
         "package": "protobufjs",
         "severity": "Medium",
         "url": "https://github.com/advisories/GHSA-q6x5-8v7m-xcrf",
@@ -8910,6 +9190,7 @@
         ],
         "id": "GHSA-6w46-j5rx-g56g",
         "location": "plugins/destination/sqlite-python/uv.lock",
+        "osv_confirmed": true,
         "package": "pytest",
         "severity": "Medium",
         "url": "https://github.com/advisories/GHSA-6w46-j5rx-g56g",
@@ -8926,6 +9207,7 @@
         ],
         "id": "GHSA-h35f-9h28-mq5c",
         "location": "plugins/source/typeform/uv.lock",
+        "osv_confirmed": true,
         "package": "setuptools",
         "severity": "Medium",
         "url": "https://github.com/advisories/GHSA-h35f-9h28-mq5c",
@@ -8942,6 +9224,7 @@
         ],
         "id": "GHSA-gvwx-54wh-qm9j",
         "location": "plugins/source/airtable/pnpm-lock.yaml",
+        "osv_confirmed": true,
         "package": "tar",
         "severity": "Medium",
         "url": "https://github.com/advisories/GHSA-gvwx-54wh-qm9j",
@@ -8958,6 +9241,7 @@
         ],
         "id": "GHSA-vmf3-w455-68vh",
         "location": "plugins/source/airtable/pnpm-lock.yaml",
+        "osv_confirmed": true,
         "package": "tar",
         "severity": "Medium",
         "url": "https://github.com/advisories/GHSA-vmf3-w455-68vh",
@@ -8974,6 +9258,7 @@
         ],
         "id": "GHSA-w8wr-v893-vjvp",
         "location": "plugins/source/airtable/pnpm-lock.yaml",
+        "osv_confirmed": true,
         "package": "tar",
         "severity": "Medium",
         "url": "https://github.com/advisories/GHSA-w8wr-v893-vjvp",
@@ -8990,6 +9275,7 @@
         ],
         "id": "GHSA-gh4c-6fx4-qh6g",
         "location": "plugins/destination/sqlite-python/uv.lock",
+        "osv_confirmed": true,
         "package": "urllib3",
         "severity": "Medium",
         "url": "https://github.com/advisories/GHSA-gh4c-6fx4-qh6g",
@@ -9006,6 +9292,7 @@
         ],
         "id": "GHSA-w5hq-g745-h8pq",
         "location": "plugins/source/airtable/pnpm-lock.yaml",
+        "osv_confirmed": true,
         "package": "uuid",
         "severity": "Medium",
         "url": "https://github.com/advisories/GHSA-w5hq-g745-h8pq",
@@ -9022,6 +9309,7 @@
         ],
         "id": "GHSA-f596-whhp-79r4",
         "location": "plugins/source/airtable/pnpm-lock.yaml",
+        "osv_confirmed": true,
         "package": "@grpc/grpc-js",
         "severity": "Low",
         "url": "https://github.com/advisories/GHSA-f596-whhp-79r4",
@@ -9038,6 +9326,7 @@
         ],
         "id": "GHSA-333x-w4r6-6crp",
         "location": "plugins/source/airtable/pnpm-lock.yaml",
+        "osv_confirmed": true,
         "package": "fast-uri",
         "severity": "Low",
         "url": "https://github.com/advisories/GHSA-333x-w4r6-6crp",
@@ -9054,6 +9343,7 @@
         ],
         "id": "GHSA-xhq7-xmqj-769h",
         "location": "plugins/source/airtable/pnpm-lock.yaml",
+        "osv_confirmed": true,
         "package": "fast-uri",
         "severity": "Low",
         "url": "https://github.com/advisories/GHSA-xhq7-xmqj-769h",
@@ -9070,6 +9360,7 @@
         ],
         "id": "GHSA-5239-wwwm-4pmq",
         "location": "plugins/destination/sqlite-python/uv.lock",
+        "osv_confirmed": true,
         "package": "pygments",
         "severity": "Low",
         "url": "https://github.com/advisories/GHSA-5239-wwwm-4pmq",
@@ -9084,6 +9375,7 @@
         ],
         "id": "GHSA-xmj3-9gf7-h52w",
         "location": "plugins/source/square/uv.lock",
+        "osv_confirmed": true,
         "package": "setuptools",
         "severity": "Low",
         "url": "https://github.com/advisories/GHSA-xmj3-9gf7-h52w",
@@ -9095,7 +9387,9 @@
         "fix_state": "unknown",
         "fixed_in": [],
         "id": "GO-2026-5932",
+        "in_binary": "vulnerable code in binary",
         "location": "plugins/destination/mssql/go.mod",
+        "osv_confirmed": true,
         "package": "golang.org/x/crypto",
         "severity": "Unknown",
         "url": "https://go.dev/issue/44226",
@@ -9107,7 +9401,9 @@
         "fix_state": "unknown",
         "fixed_in": [],
         "id": "GO-2026-5932",
+        "in_binary": "vulnerable code in binary",
         "location": "cli/go.mod",
+        "osv_confirmed": true,
         "package": "golang.org/x/crypto",
         "severity": "Unknown",
         "url": "https://go.dev/issue/44226",
@@ -9123,7 +9419,9 @@
           "0.62.0"
         ],
         "id": "GO-2026-6860",
+        "in_binary": "vulnerable code in binary",
         "location": "plugins/transformer/jsonflattener/go.mod",
+        "osv_confirmed": true,
         "package": "golang.org/x/net",
         "severity": "Unknown",
         "url": "https://go.dev/cl/849365",
@@ -9139,7 +9437,9 @@
           "0.62.0"
         ],
         "id": "GO-2026-6860",
+        "in_binary": "vulnerable code in binary",
         "location": "plugins/destination/mysql/go.mod",
+        "osv_confirmed": true,
         "package": "golang.org/x/net",
         "severity": "Unknown",
         "url": "https://go.dev/cl/849365",
@@ -9155,7 +9455,9 @@
           "0.62.0"
         ],
         "id": "GO-2026-6866",
+        "in_binary": "vulnerable code in binary",
         "location": "plugins/destination/firehose/go.mod",
+        "osv_confirmed": true,
         "package": "golang.org/x/net",
         "severity": "Unknown",
         "url": "https://go.dev/cl/855121",
@@ -9171,13 +9473,390 @@
           "0.62.0"
         ],
         "id": "GO-2026-6866",
+        "in_binary": "vulnerable code in binary",
         "location": "cli/go.mod",
+        "osv_confirmed": true,
         "package": "golang.org/x/net",
         "severity": "Unknown",
         "url": "https://go.dev/cl/855121",
         "version": "v0.61.0"
       }
-    ]
+    ],
+    "workflow_audit": {
+      "files": 60,
+      "findings": [
+        {
+          "confidence": "Medium",
+          "description": "use of fundamentally insecure workflow trigger",
+          "file": ".github/workflows/docs_changes_summary.yml",
+          "line": 3,
+          "note": "this workflow",
+          "rule": "dangerous-triggers",
+          "severity": "High",
+          "url": "https://docs.zizmor.sh/audits/#dangerous-triggers"
+        },
+        {
+          "confidence": "High",
+          "description": "code injection via template expansion",
+          "file": ".github/workflows/docs_changes_summary.yml",
+          "line": 38,
+          "note": "this step",
+          "rule": "template-injection",
+          "severity": "High",
+          "url": "https://docs.zizmor.sh/audits/#template-injection"
+        },
+        {
+          "confidence": "Medium",
+          "description": "use of fundamentally insecure workflow trigger",
+          "file": ".github/workflows/manual_commands.yml",
+          "line": 3,
+          "note": "this workflow",
+          "rule": "dangerous-triggers",
+          "severity": "High",
+          "url": "https://docs.zizmor.sh/audits/#dangerous-triggers"
+        },
+        {
+          "confidence": "High",
+          "description": "code injection via template expansion",
+          "file": ".github/workflows/publish_plugin_to_hub.yml",
+          "line": 30,
+          "note": "this step",
+          "rule": "template-injection",
+          "severity": "High",
+          "url": "https://docs.zizmor.sh/audits/#template-injection"
+        },
+        {
+          "confidence": "High",
+          "description": "code injection via template expansion",
+          "file": ".github/workflows/publish_plugin_to_hub_duckdb.yml",
+          "line": 24,
+          "note": "this step",
+          "rule": "template-injection",
+          "severity": "High",
+          "url": "https://docs.zizmor.sh/audits/#template-injection"
+        },
+        {
+          "confidence": "High",
+          "description": "code injection via template expansion",
+          "file": ".github/workflows/publish_plugin_to_hub_fips.yml",
+          "line": 22,
+          "note": "this step",
+          "rule": "template-injection",
+          "severity": "High",
+          "url": "https://docs.zizmor.sh/audits/#template-injection"
+        },
+        {
+          "confidence": "High",
+          "description": "code injection via template expansion",
+          "file": ".github/workflows/publish_plugin_to_hub_snowflake.yml",
+          "line": 24,
+          "note": "this step",
+          "rule": "template-injection",
+          "severity": "High",
+          "url": "https://docs.zizmor.sh/audits/#template-injection"
+        },
+        {
+          "confidence": "High",
+          "description": "code injection via template expansion",
+          "file": ".github/workflows/publish_plugin_to_hub_sqlite.yml",
+          "line": 24,
+          "note": "this step",
+          "rule": "template-injection",
+          "severity": "High",
+          "url": "https://docs.zizmor.sh/audits/#template-injection"
+        },
+        {
+          "confidence": "High",
+          "description": "code injection via template expansion",
+          "file": ".github/workflows/release_cli.yml",
+          "line": 32,
+          "note": "this step",
+          "rule": "template-injection",
+          "severity": "High",
+          "url": "https://docs.zizmor.sh/audits/#template-injection"
+        },
+        {
+          "confidence": "High",
+          "description": "code injection via template expansion",
+          "file": ".github/workflows/release_cli.yml",
+          "line": 129,
+          "note": "this step",
+          "rule": "template-injection",
+          "severity": "High",
+          "url": "https://docs.zizmor.sh/audits/#template-injection"
+        },
+        {
+          "confidence": "High",
+          "description": "code injection via template expansion",
+          "file": ".github/workflows/release_scaffold.yml",
+          "line": 30,
+          "note": "this step",
+          "rule": "template-injection",
+          "severity": "High",
+          "url": "https://docs.zizmor.sh/audits/#template-injection"
+        },
+        {
+          "confidence": "High",
+          "description": "code injection via template expansion",
+          "file": ".github/workflows/release_scaffold.yml",
+          "line": 114,
+          "note": "this step",
+          "rule": "template-injection",
+          "severity": "High",
+          "url": "https://docs.zizmor.sh/audits/#template-injection"
+        },
+        {
+          "confidence": "High",
+          "description": "overly broad permissions",
+          "file": ".github/workflows/release_summary.yml",
+          "line": 11,
+          "note": "pull-requests: write is overly broad at the workflow level",
+          "rule": "excessive-permissions",
+          "severity": "High",
+          "url": "https://docs.zizmor.sh/audits/#excessive-permissions"
+        },
+        {
+          "confidence": "High",
+          "description": "code injection via template expansion",
+          "file": ".github/workflows/release_summary.yml",
+          "line": 55,
+          "note": "this step",
+          "rule": "template-injection",
+          "severity": "High",
+          "url": "https://docs.zizmor.sh/audits/#template-injection"
+        },
+        {
+          "confidence": "Medium",
+          "description": "code injection via template expansion",
+          "file": ".github/workflows/publish_ui_dir.yml",
+          "line": 120,
+          "note": "this step",
+          "rule": "template-injection",
+          "severity": "Medium",
+          "url": "https://docs.zizmor.sh/audits/#template-injection"
+        },
+        {
+          "confidence": "Medium",
+          "description": "code injection via template expansion",
+          "file": ".github/workflows/publish_ui_dir.yml",
+          "line": 120,
+          "note": "this step",
+          "rule": "template-injection",
+          "severity": "Medium",
+          "url": "https://docs.zizmor.sh/audits/#template-injection"
+        },
+        {
+          "confidence": "Medium",
+          "description": "code injection via template expansion",
+          "file": ".github/workflows/publish_ui_dir.yml",
+          "line": 120,
+          "note": "this step",
+          "rule": "template-injection",
+          "severity": "Medium",
+          "url": "https://docs.zizmor.sh/audits/#template-injection"
+        },
+        {
+          "confidence": "High",
+          "description": "ad-hoc installation of packages",
+          "file": ".github/workflows/auto_sort_files.yml",
+          "line": 29,
+          "note": "this step",
+          "rule": "adhoc-packages",
+          "severity": "Low",
+          "url": "https://docs.zizmor.sh/audits/#adhoc-packages"
+        },
+        {
+          "confidence": "High",
+          "description": "ad-hoc installation of packages",
+          "file": ".github/workflows/auto_sort_files.yml",
+          "line": 29,
+          "note": "this step",
+          "rule": "adhoc-packages",
+          "severity": "Low",
+          "url": "https://docs.zizmor.sh/audits/#adhoc-packages"
+        },
+        {
+          "confidence": "High",
+          "description": "ad-hoc installation of packages",
+          "file": ".github/workflows/changed_files.yml",
+          "line": 37,
+          "note": "this step",
+          "rule": "adhoc-packages",
+          "severity": "Low",
+          "url": "https://docs.zizmor.sh/audits/#adhoc-packages"
+        },
+        {
+          "confidence": "High",
+          "description": "use GitHub's dedicated self-repository syntax",
+          "file": ".github/workflows/deps_trigger_gen.yml",
+          "line": 13,
+          "note": "this job",
+          "rule": "self-repository",
+          "severity": "Low",
+          "url": "https://docs.zizmor.sh/audits/#self-repository"
+        },
+        {
+          "confidence": "High",
+          "description": "ad-hoc installation of packages",
+          "file": ".github/workflows/docs_changes_summary.yml",
+          "line": 123,
+          "note": "this step",
+          "rule": "adhoc-packages",
+          "severity": "Low",
+          "url": "https://docs.zizmor.sh/audits/#adhoc-packages"
+        },
+        {
+          "confidence": "High",
+          "description": "ad-hoc installation of packages",
+          "file": ".github/workflows/publish_plugin_to_hub.yml",
+          "line": 209,
+          "note": "this step",
+          "rule": "adhoc-packages",
+          "severity": "Low",
+          "url": "https://docs.zizmor.sh/audits/#adhoc-packages"
+        },
+        {
+          "confidence": "High",
+          "description": "ad-hoc installation of packages",
+          "file": ".github/workflows/publish_plugin_to_hub.yml",
+          "line": 324,
+          "note": "this step",
+          "rule": "adhoc-packages",
+          "severity": "Low",
+          "url": "https://docs.zizmor.sh/audits/#adhoc-packages"
+        },
+        {
+          "confidence": "High",
+          "description": "ad-hoc installation of packages",
+          "file": ".github/workflows/publish_plugin_to_hub.yml",
+          "line": 426,
+          "note": "this step",
+          "rule": "adhoc-packages",
+          "severity": "Low",
+          "url": "https://docs.zizmor.sh/audits/#adhoc-packages"
+        },
+        {
+          "confidence": "High",
+          "description": "ad-hoc installation of packages",
+          "file": ".github/workflows/publish_plugin_to_hub.yml",
+          "line": 537,
+          "note": "this step",
+          "rule": "adhoc-packages",
+          "severity": "Low",
+          "url": "https://docs.zizmor.sh/audits/#adhoc-packages"
+        },
+        {
+          "confidence": "High",
+          "description": "use GitHub's dedicated self-repository syntax",
+          "file": ".github/workflows/publish_plugin_to_hub.yml",
+          "line": 626,
+          "note": "this step",
+          "rule": "self-repository",
+          "severity": "Low",
+          "url": "https://docs.zizmor.sh/audits/#self-repository"
+        },
+        {
+          "confidence": "High",
+          "description": "ad-hoc installation of packages",
+          "file": ".github/workflows/publish_plugin_to_hub_duckdb.yml",
+          "line": 126,
+          "note": "this step",
+          "rule": "adhoc-packages",
+          "severity": "Low",
+          "url": "https://docs.zizmor.sh/audits/#adhoc-packages"
+        },
+        {
+          "confidence": "High",
+          "description": "use GitHub's dedicated self-repository syntax",
+          "file": ".github/workflows/publish_plugin_to_hub_duckdb.yml",
+          "line": 181,
+          "note": "this step",
+          "rule": "self-repository",
+          "severity": "Low",
+          "url": "https://docs.zizmor.sh/audits/#self-repository"
+        },
+        {
+          "confidence": "High",
+          "description": "ad-hoc installation of packages",
+          "file": ".github/workflows/publish_plugin_to_hub_fips.yml",
+          "line": 82,
+          "note": "this step",
+          "rule": "adhoc-packages",
+          "severity": "Low",
+          "url": "https://docs.zizmor.sh/audits/#adhoc-packages"
+        },
+        {
+          "confidence": "High",
+          "description": "ad-hoc installation of packages",
+          "file": ".github/workflows/publish_plugin_to_hub_snowflake.yml",
+          "line": 128,
+          "note": "this step",
+          "rule": "adhoc-packages",
+          "severity": "Low",
+          "url": "https://docs.zizmor.sh/audits/#adhoc-packages"
+        },
+        {
+          "confidence": "High",
+          "description": "use GitHub's dedicated self-repository syntax",
+          "file": ".github/workflows/publish_plugin_to_hub_snowflake.yml",
+          "line": 183,
+          "note": "this step",
+          "rule": "self-repository",
+          "severity": "Low",
+          "url": "https://docs.zizmor.sh/audits/#self-repository"
+        },
+        {
+          "confidence": "High",
+          "description": "ad-hoc installation of packages",
+          "file": ".github/workflows/publish_plugin_to_hub_sqlite.yml",
+          "line": 126,
+          "note": "this step",
+          "rule": "adhoc-packages",
+          "severity": "Low",
+          "url": "https://docs.zizmor.sh/audits/#adhoc-packages"
+        },
+        {
+          "confidence": "High",
+          "description": "use GitHub's dedicated self-repository syntax",
+          "file": ".github/workflows/publish_plugin_to_hub_sqlite.yml",
+          "line": 181,
+          "note": "this step",
+          "rule": "self-repository",
+          "severity": "Low",
+          "url": "https://docs.zizmor.sh/audits/#self-repository"
+        },
+        {
+          "confidence": "High",
+          "description": "use GitHub's dedicated self-repository syntax",
+          "file": ".github/workflows/publish_ui_dir.yml",
+          "line": 17,
+          "note": "this job",
+          "rule": "self-repository",
+          "severity": "Low",
+          "url": "https://docs.zizmor.sh/audits/#self-repository"
+        },
+        {
+          "confidence": "High",
+          "description": "ad-hoc installation of packages",
+          "file": ".github/workflows/release_all.yml",
+          "line": 28,
+          "note": "this step",
+          "rule": "adhoc-packages",
+          "severity": "Low",
+          "url": "https://docs.zizmor.sh/audits/#adhoc-packages"
+        },
+        {
+          "confidence": "High",
+          "description": "use GitHub's dedicated self-repository syntax",
+          "file": ".github/workflows/wait_for_required_workflows.yml",
+          "line": 16,
+          "note": "this job",
+          "rule": "self-repository",
+          "severity": "Low",
+          "url": "https://docs.zizmor.sh/audits/#self-repository"
+        }
+      ]
+    }
   },
   "updated": "2026-11-01"
 }

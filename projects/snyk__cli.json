@@ -7,11 +7,21 @@
       "dependencies": 749,
       "errors": [],
       "fixable": 19,
+      "go_version": "go1.26.10",
+      "in_binary": {
+        "dependencies": 6,
+        "stdlib": 0,
+        "total": 6
+      },
       "new_vulnerabilities": 0,
+      "osv_confirmed": 15,
+      "osv_only": 67,
       "ref": "v1.1308.3",
       "release_changed": false,
+      "release_integrity": "checksums-only",
       "removed": 0,
       "resolved_vulnerabilities": 0,
+      "scorecard": null,
       "upgraded": 0,
       "vulnerabilities": {
         "Critical": 0,
@@ -20,6 +30,12 @@
         "Medium": 8,
         "Negligible": 0,
         "Unknown": 3
+      },
+      "workflow": {
+        "High": 38,
+        "Low": 27,
+        "Medium": 22,
+        "files": 9
       }
     }
   ],
@@ -6858,6 +6874,93 @@
     ],
     "description": "Find and fix vulnerabilities in dependencies.",
     "errors": [],
+    "go_binary": {
+      "asset": "snyk-linux",
+      "binary": "snyk-linux",
+      "findings": [
+        {
+          "aliases": [
+            "CVE-2026-61711",
+            "GHSA-7236-3392-c5c6"
+          ],
+          "fixed_version": "v0.31.1",
+          "id": "GO-2026-6255",
+          "level": "symbol",
+          "module": "github.com/moby/buildkit",
+          "summary": "BuildKit: Custom frontend could bypass Seccomp/AppArmor in github.com/moby/buildkit",
+          "version": "v0.30.0"
+        },
+        {
+          "aliases": [
+            "CVE-2026-61712",
+            "GHSA-72x6-4j93-7w86"
+          ],
+          "fixed_version": "v0.31.1",
+          "id": "GO-2026-6256",
+          "level": "symbol",
+          "module": "github.com/moby/buildkit",
+          "summary": "BuildKit has a possible runtime DoS via unbounded group parsing in github.com/moby/buildkit",
+          "version": "v0.30.0"
+        },
+        {
+          "aliases": [
+            "CVE-2025-46569",
+            "GHSA-6m8w-jc87-6cr7"
+          ],
+          "fixed_version": "v1.4.0",
+          "id": "GO-2025-3660",
+          "level": "symbol",
+          "module": "github.com/open-policy-agent/opa",
+          "summary": "OPA server Data API HTTP path injection of Rego in github.com/open-policy-agent/opa",
+          "version": "v0.69.0"
+        },
+        {
+          "aliases": [],
+          "fixed_version": "",
+          "id": "GO-2026-5932",
+          "level": "symbol",
+          "module": "golang.org/x/crypto",
+          "summary": "The golang.org/x/crypto/openpgp package is unmaintained, unsafe by design, and has known security issues",
+          "version": "v0.57.0"
+        },
+        {
+          "aliases": [
+            "CVE-2026-78661"
+          ],
+          "fixed_version": "v0.62.0",
+          "id": "GO-2026-6860",
+          "level": "symbol",
+          "module": "golang.org/x/net",
+          "summary": "Avoid quadratic complexity when coalescing text nodes in html in golang.org/x/net",
+          "version": "v0.60.0"
+        },
+        {
+          "aliases": [
+            "CVE-2026-97045"
+          ],
+          "fixed_version": "v0.62.0",
+          "id": "GO-2026-6866",
+          "level": "symbol",
+          "module": "golang.org/x/net",
+          "summary": "Check all ancestor namespace transitions when rendering raw text in html in golang.org/x/net",
+          "version": "v0.60.0"
+        },
+        {
+          "aliases": [
+            "CVE-2025-6624",
+            "GHSA-6hwc-9h8r-3vmf"
+          ],
+          "fixed_version": "",
+          "id": "GO-2025-3789",
+          "level": "module",
+          "module": "github.com/snyk/go-application-framework",
+          "summary": "Snyk CLI Insertion of Sensitive Information into Log File allowed in DEBUG or DEBUG/TRACE mode in github.com/snyk/go-application-framework",
+          "version": "v0.30.2"
+        }
+      ],
+      "go_version": "go1.26.10",
+      "main_module": "github.com/snyk/cli/cliv2-private"
+    },
     "id": "snyk__cli",
     "manifests": [
       ".github/scripts/deployment-monitor/go.mod",
@@ -6885,8 +6988,768 @@
       "ts-binary-wrapper/package.json"
     ],
     "name": "snyk-cli",
+    "osv": {
+      "advisories": 92,
+      "available": true,
+      "confirmed": 15,
+      "osv_only": [
+        {
+          "ecosystem": "Go",
+          "ids": [
+            "CVE-2025-6624",
+            "GHSA-6hwc-9h8r-3vmf",
+            "GO-2025-3789"
+          ],
+          "package": "github.com/snyk/go-application-framework",
+          "score": "7.2",
+          "severity": "High",
+          "version": "0.30.2"
+        },
+        {
+          "ecosystem": "Go",
+          "ids": [
+            "CVE-2025-6624",
+            "GHSA-6hwc-9h8r-3vmf",
+            "GO-2025-3789"
+          ],
+          "package": "github.com/snyk/go-application-framework",
+          "score": "7.2",
+          "severity": "High",
+          "version": "0.30.2"
+        },
+        {
+          "ecosystem": "npm",
+          "ids": [
+            "CVE-2026-59873",
+            "GHSA-23hp-3jrh-7fpw"
+          ],
+          "package": "tar",
+          "score": "9.2",
+          "severity": "Critical",
+          "version": "6.2.1"
+        },
+        {
+          "ecosystem": "npm",
+          "ids": [
+            "CVE-2026-24842",
+            "GHSA-34x7-hfp2-rc4v"
+          ],
+          "package": "tar",
+          "score": "8.2",
+          "severity": "High",
+          "version": "6.2.1"
+        },
+        {
+          "ecosystem": "npm",
+          "ids": [
+            "CVE-2026-26960",
+            "GHSA-83g3-92jg-28cx"
+          ],
+          "package": "tar",
+          "score": "7.1",
+          "severity": "High",
+          "version": "6.2.1"
+        },
+        {
+          "ecosystem": "npm",
+          "ids": [
+            "CVE-2026-23745",
+            "GHSA-8qq5-rm4j-mr97"
+          ],
+          "package": "tar",
+          "score": "8.2",
+          "severity": "High",
+          "version": "6.2.1"
+        },
+        {
+          "ecosystem": "npm",
+          "ids": [
+            "CVE-2026-59874",
+            "GHSA-8x88-c5mf-7j5w"
+          ],
+          "package": "tar",
+          "score": "8.7",
+          "severity": "High",
+          "version": "6.2.1"
+        },
+        {
+          "ecosystem": "npm",
+          "ids": [
+            "CVE-2026-31802",
+            "GHSA-9ppj-qmqm-q256"
+          ],
+          "package": "tar",
+          "score": "8.2",
+          "severity": "High",
+          "version": "6.2.1"
+        },
+        {
+          "ecosystem": "npm",
+          "ids": [
+            "CVE-2026-59875",
+            "GHSA-gvwx-54wh-qm9j"
+          ],
+          "package": "tar",
+          "score": "5.3",
+          "severity": "Medium",
+          "version": "6.2.1"
+        },
+        {
+          "ecosystem": "npm",
+          "ids": [
+            "CVE-2026-29786",
+            "GHSA-qffp-2rhf-9h96"
+          ],
+          "package": "tar",
+          "score": "8.2",
+          "severity": "High",
+          "version": "6.2.1"
+        },
+        {
+          "ecosystem": "npm",
+          "ids": [
+            "CVE-2026-73566",
+            "GHSA-r292-9mhp-454m"
+          ],
+          "package": "tar",
+          "score": "7.5",
+          "severity": "High",
+          "version": "6.2.1"
+        },
+        {
+          "ecosystem": "npm",
+          "ids": [
+            "CVE-2026-23950",
+            "GHSA-r6q2-hw4h-h46w"
+          ],
+          "package": "tar",
+          "score": "8.8",
+          "severity": "High",
+          "version": "6.2.1"
+        },
+        {
+          "ecosystem": "npm",
+          "ids": [
+            "CVE-2026-53655",
+            "GHSA-vmf3-w455-68vh"
+          ],
+          "package": "tar",
+          "score": "6.9",
+          "severity": "Medium",
+          "version": "6.2.1"
+        },
+        {
+          "ecosystem": "npm",
+          "ids": [
+            "CVE-2026-59871",
+            "GHSA-w8wr-v893-vjvp"
+          ],
+          "package": "tar",
+          "score": "5.3",
+          "severity": "Medium",
+          "version": "6.2.1"
+        },
+        {
+          "ecosystem": "npm",
+          "ids": [
+            "CVE-2025-54798",
+            "GHSA-52f5-9888-hmc6"
+          ],
+          "package": "tmp",
+          "score": "2.5",
+          "severity": "Low",
+          "version": "0.0.33"
+        },
+        {
+          "ecosystem": "npm",
+          "ids": [
+            "CVE-2026-44705",
+            "GHSA-ph9p-34f9-6g65"
+          ],
+          "package": "tmp",
+          "score": "7.7",
+          "severity": "High",
+          "version": "0.0.33"
+        },
+        {
+          "ecosystem": "npm",
+          "ids": [
+            "CVE-2026-84947",
+            "GHSA-2gqq-gqf2-x968"
+          ],
+          "package": "undici",
+          "score": "3.7",
+          "severity": "Low",
+          "version": "7.29.0"
+        },
+        {
+          "ecosystem": "npm",
+          "ids": [
+            "CVE-2026-84933",
+            "GHSA-2jfj-6hjv-fm6j"
+          ],
+          "package": "undici",
+          "score": "6.5",
+          "severity": "Medium",
+          "version": "7.29.0"
+        },
+        {
+          "ecosystem": "npm",
+          "ids": [
+            "CVE-2026-109383",
+            "GHSA-2m5v-pch6-74hx"
+          ],
+          "package": "undici",
+          "score": "7.4",
+          "severity": "High",
+          "version": "7.29.0"
+        },
+        {
+          "ecosystem": "npm",
+          "ids": [
+            "CVE-2026-85024",
+            "GHSA-3wwx-pv8p-q78v"
+          ],
+          "package": "undici",
+          "score": "5.9",
+          "severity": "Medium",
+          "version": "7.29.0"
+        },
+        {
+          "ecosystem": "npm",
+          "ids": [
+            "CVE-2026-84890",
+            "GHSA-3xpg-4rpp-hhhm"
+          ],
+          "package": "undici",
+          "score": "5.9",
+          "severity": "Medium",
+          "version": "7.29.0"
+        },
+        {
+          "ecosystem": "npm",
+          "ids": [
+            "CVE-2026-109924",
+            "GHSA-4qv8-2p9j-2685"
+          ],
+          "package": "undici",
+          "score": "5.9",
+          "severity": "Medium",
+          "version": "7.29.0"
+        },
+        {
+          "ecosystem": "npm",
+          "ids": [
+            "CVE-2026-109829",
+            "GHSA-4w7w-5xrc-9h26"
+          ],
+          "package": "undici",
+          "score": "7.4",
+          "severity": "High",
+          "version": "7.29.0"
+        },
+        {
+          "ecosystem": "npm",
+          "ids": [
+            "CVE-2026-87029",
+            "GHSA-55wc-3pg8-jfw6"
+          ],
+          "package": "undici",
+          "score": "5.9",
+          "severity": "Medium",
+          "version": "7.29.0"
+        },
+        {
+          "ecosystem": "npm",
+          "ids": [
+            "CVE-2026-85008",
+            "GHSA-8436-99hf-9mmv"
+          ],
+          "package": "undici",
+          "score": "3.7",
+          "severity": "Low",
+          "version": "7.29.0"
+        },
+        {
+          "ecosystem": "npm",
+          "ids": [
+            "CVE-2026-109932",
+            "GHSA-9fm3-97px-rjf6"
+          ],
+          "package": "undici",
+          "score": "5.9",
+          "severity": "Medium",
+          "version": "7.29.0"
+        },
+        {
+          "ecosystem": "npm",
+          "ids": [
+            "CVE-2026-109841",
+            "GHSA-f72v-6w45-q472"
+          ],
+          "package": "undici",
+          "score": "5.9",
+          "severity": "Medium",
+          "version": "7.29.0"
+        },
+        {
+          "ecosystem": "npm",
+          "ids": [
+            "CVE-2026-18149",
+            "GHSA-pmjh-fq2x-6v4x"
+          ],
+          "package": "undici",
+          "score": "5.9",
+          "severity": "Medium",
+          "version": "7.29.0"
+        },
+        {
+          "ecosystem": "npm",
+          "ids": [
+            "CVE-2026-87018",
+            "GHSA-qrxm-fqhp-jwvm"
+          ],
+          "package": "undici",
+          "score": "7.5",
+          "severity": "High",
+          "version": "7.29.0"
+        },
+        {
+          "ecosystem": "npm",
+          "ids": [
+            "CVE-2026-18540",
+            "GHSA-r53p-7pc4-xj5r"
+          ],
+          "package": "undici",
+          "score": "3.7",
+          "severity": "Low",
+          "version": "7.29.0"
+        },
+        {
+          "ecosystem": "npm",
+          "ids": [
+            "CVE-2026-19534",
+            "GHSA-rfgv-xxqx-mfg5"
+          ],
+          "package": "undici",
+          "score": "7.5",
+          "severity": "High",
+          "version": "7.29.0"
+        },
+        {
+          "ecosystem": "npm",
+          "ids": [
+            "CVE-2026-85014",
+            "GHSA-rx4f-c7p8-82vq"
+          ],
+          "package": "undici",
+          "score": "5.9",
+          "severity": "Medium",
+          "version": "7.29.0"
+        },
+        {
+          "ecosystem": "npm",
+          "ids": [
+            "CVE-2026-84961",
+            "GHSA-w293-vg96-wgc3"
+          ],
+          "package": "undici",
+          "score": "7.4",
+          "severity": "High",
+          "version": "7.29.0"
+        },
+        {
+          "ecosystem": "npm",
+          "ids": [
+            "CVE-2026-109869",
+            "GHSA-xjj6-f33q-929c"
+          ],
+          "package": "undici",
+          "score": "7.5",
+          "severity": "High",
+          "version": "7.29.0"
+        },
+        {
+          "ecosystem": "npm",
+          "ids": [
+            "CVE-2026-41907",
+            "CVE-2026-41988",
+            "GHSA-w5hq-g745-h8pq"
+          ],
+          "package": "uuid",
+          "score": "7.5",
+          "severity": "High",
+          "version": "8.3.2"
+        },
+        {
+          "ecosystem": "Go",
+          "ids": [
+            "CVE-2022-32149",
+            "GHSA-69ch-w2m2-3vjp",
+            "GO-2022-1059"
+          ],
+          "package": "golang.org/x/text",
+          "score": "7.5",
+          "severity": "High",
+          "version": "0.3.7"
+        },
+        {
+          "ecosystem": "Go",
+          "ids": [
+            "CVE-2026-56852",
+            "GO-2026-5970"
+          ],
+          "package": "golang.org/x/text",
+          "score": "",
+          "severity": "Unknown",
+          "version": "0.3.7"
+        },
+        {
+          "ecosystem": "Go",
+          "ids": [
+            "CVE-2026-56851",
+            "GO-2026-6629"
+          ],
+          "package": "golang.org/x/text",
+          "score": "",
+          "severity": "Unknown",
+          "version": "0.3.7"
+        },
+        {
+          "ecosystem": "Go",
+          "ids": [
+            "CVE-2022-28948",
+            "GHSA-hp87-p4gw-j4gq",
+            "GO-2022-0603"
+          ],
+          "package": "gopkg.in/yaml.v3",
+          "score": "7.5",
+          "severity": "High",
+          "version": "3.0.0-20200313102051-9f266ea9e77c"
+        },
+        {
+          "ecosystem": "npm",
+          "ids": [
+            "CVE-2026-49356",
+            "GHSA-4x5r-pxfx-6jf8"
+          ],
+          "package": "@babel/core",
+          "score": "3.2",
+          "severity": "Low",
+          "version": "7.20.12"
+        },
+        {
+          "ecosystem": "npm",
+          "ids": [
+            "CVE-2025-27789",
+            "GHSA-968p-4wvh-cqc8"
+          ],
+          "package": "@babel/helpers",
+          "score": "6.2",
+          "severity": "Medium",
+          "version": "7.20.13"
+        },
+        {
+          "ecosystem": "npm",
+          "ids": [
+            "CVE-2023-45133",
+            "GHSA-67hx-6x53-jw92"
+          ],
+          "package": "@babel/traverse",
+          "score": "9.3",
+          "severity": "Critical",
+          "version": "7.20.13"
+        },
+        {
+          "ecosystem": "npm",
+          "ids": [
+            "CVE-2026-13149",
+            "GHSA-3jxr-9vmj-r5cp"
+          ],
+          "package": "brace-expansion",
+          "score": "7.7",
+          "severity": "High",
+          "version": "1.1.11"
+        },
+        {
+          "ecosystem": "npm",
+          "ids": [
+            "CVE-2026-102276",
+            "GHSA-6j4f-fj2g-mc7p"
+          ],
+          "package": "brace-expansion",
+          "score": "7.5",
+          "severity": "High",
+          "version": "1.1.11"
+        },
+        {
+          "ecosystem": "npm",
+          "ids": [
+            "CVE-2026-33750",
+            "GHSA-f886-m6hf-6m8v"
+          ],
+          "package": "brace-expansion",
+          "score": "6.5",
+          "severity": "Medium",
+          "version": "1.1.11"
+        },
+        {
+          "ecosystem": "npm",
+          "ids": [
+            "CVE-2026-14257",
+            "GHSA-mh99-v99m-4gvg"
+          ],
+          "package": "brace-expansion",
+          "score": "7.5",
+          "severity": "High",
+          "version": "1.1.11"
+        },
+        {
+          "ecosystem": "npm",
+          "ids": [
+            "CVE-2026-102277",
+            "GHSA-q2hr-2g5m-vwhr"
+          ],
+          "package": "brace-expansion",
+          "score": "5.3",
+          "severity": "Medium",
+          "version": "1.1.11"
+        },
+        {
+          "ecosystem": "npm",
+          "ids": [
+            "CVE-2026-102278",
+            "GHSA-qhr7-859c-m2p7"
+          ],
+          "package": "brace-expansion",
+          "score": "7.5",
+          "severity": "High",
+          "version": "1.1.11"
+        },
+        {
+          "ecosystem": "npm",
+          "ids": [
+            "CVE-2026-69152",
+            "GHSA-rgw5-rvv9-x895"
+          ],
+          "package": "brace-expansion",
+          "score": "7.5",
+          "severity": "High",
+          "version": "1.1.11"
+        },
+        {
+          "ecosystem": "npm",
+          "ids": [
+            "CVE-2025-5889",
+            "GHSA-v6h2-p8h4-qcjw"
+          ],
+          "package": "brace-expansion",
+          "score": "3.1",
+          "severity": "Low",
+          "version": "1.1.11"
+        },
+        {
+          "ecosystem": "npm",
+          "ids": [
+            "CVE-2024-4068",
+            "GHSA-grv7-fg5c-xmjg"
+          ],
+          "package": "braces",
+          "score": "7.5",
+          "severity": "High",
+          "version": "3.0.2"
+        },
+        {
+          "ecosystem": "npm",
+          "ids": [
+            "CVE-2026-73088",
+            "GHSA-73wf-gq98-2v4g"
+          ],
+          "package": "browserslist",
+          "score": "7.5",
+          "severity": "High",
+          "version": "4.21.5"
+        },
+        {
+          "ecosystem": "npm",
+          "ids": [
+            "CVE-2026-73089",
+            "GHSA-c83g-rgw3-j3cx"
+          ],
+          "package": "browserslist",
+          "score": "7.5",
+          "severity": "High",
+          "version": "4.21.5"
+        },
+        {
+          "ecosystem": "npm",
+          "ids": [
+            "CVE-2024-21538",
+            "GHSA-3xgq-45jj-v275"
+          ],
+          "package": "cross-spawn",
+          "score": "7.7",
+          "severity": "High",
+          "version": "7.0.3"
+        },
+        {
+          "ecosystem": "npm",
+          "ids": [
+            "CVE-2026-93753",
+            "GHSA-gcqx-w48m-w2h4"
+          ],
+          "package": "deepmerge",
+          "score": "5.3",
+          "severity": "Medium",
+          "version": "4.3.0"
+        },
+        {
+          "ecosystem": "npm",
+          "ids": [
+            "CVE-2026-84375",
+            "GHSA-2883-xcg3-v3hh"
+          ],
+          "package": "js-yaml",
+          "score": "7.5",
+          "severity": "High",
+          "version": "3.14.1"
+        },
+        {
+          "ecosystem": "npm",
+          "ids": [
+            "CVE-2026-59869",
+            "GHSA-52cp-r559-cp3m"
+          ],
+          "package": "js-yaml",
+          "score": "7.5",
+          "severity": "High",
+          "version": "3.14.1"
+        },
+        {
+          "ecosystem": "npm",
+          "ids": [
+            "GHSA-5p4m-2wfm-xmqj"
+          ],
+          "package": "js-yaml",
+          "score": "7.5",
+          "severity": "High",
+          "version": "3.14.1"
+        },
+        {
+          "ecosystem": "npm",
+          "ids": [
+            "CVE-2026-53550",
+            "GHSA-h67p-54hq-rp68"
+          ],
+          "package": "js-yaml",
+          "score": "5.3",
+          "severity": "Medium",
+          "version": "3.14.1"
+        },
+        {
+          "ecosystem": "npm",
+          "ids": [
+            "CVE-2025-64718",
+            "GHSA-mh29-5h37-fv8m"
+          ],
+          "package": "js-yaml",
+          "score": "5.3",
+          "severity": "Medium",
+          "version": "3.14.1"
+        },
+        {
+          "ecosystem": "npm",
+          "ids": [
+            "CVE-2024-4067",
+            "GHSA-952p-6rrq-rcjv"
+          ],
+          "package": "micromatch",
+          "score": "5.3",
+          "severity": "Medium",
+          "version": "4.0.5"
+        },
+        {
+          "ecosystem": "npm",
+          "ids": [
+            "CVE-2026-26996",
+            "GHSA-3ppc-4f35-3m26"
+          ],
+          "package": "minimatch",
+          "score": "8.7",
+          "severity": "High",
+          "version": "3.1.2"
+        },
+        {
+          "ecosystem": "npm",
+          "ids": [
+            "CVE-2026-27903",
+            "GHSA-7r86-cg39-jmmj"
+          ],
+          "package": "minimatch",
+          "score": "7.5",
+          "severity": "High",
+          "version": "3.1.2"
+        },
+        {
+          "ecosystem": "npm",
+          "ids": [
+            "CVE-2026-33672",
+            "GHSA-3v7f-55p6-f55p"
+          ],
+          "package": "picomatch",
+          "score": "5.3",
+          "severity": "Medium",
+          "version": "2.3.1"
+        },
+        {
+          "ecosystem": "npm",
+          "ids": [
+            "CVE-2026-33671",
+            "GHSA-c2c7-rcm5-vvqj"
+          ],
+          "package": "picomatch",
+          "score": "7.5",
+          "severity": "High",
+          "version": "2.3.1"
+        },
+        {
+          "ecosystem": "npm",
+          "ids": [
+            "CVE-2022-25883",
+            "GHSA-c2qf-rxjj-qqgw"
+          ],
+          "package": "semver",
+          "score": "7.5",
+          "severity": "High",
+          "version": "6.3.0"
+        },
+        {
+          "ecosystem": "npm",
+          "ids": [
+            "CVE-2022-25883",
+            "GHSA-c2qf-rxjj-qqgw"
+          ],
+          "package": "semver",
+          "score": "7.5",
+          "severity": "High",
+          "version": "7.3.8"
+        }
+      ],
+      "warning": null
+    },
     "ref": "v1.1308.3",
     "ref_kind": "release",
+    "release_integrity": {
+      "asset": "snyk-linux",
+      "assets": 16,
+      "checksums_published": true,
+      "digest_matches_github": true,
+      "methods": [],
+      "provenance_published": false,
+      "sbom_published": false,
+      "signatures_published": true,
+      "verdict": "checksums-only"
+    },
     "released_at": "2026-10-23T10:47:03Z",
     "repository": "snyk/cli",
     "sbomlyze_diff": {
@@ -6899,7 +7762,9 @@
       ],
       "removed": 0
     },
-    "scanned_at": "2026-11-01T16:37:39+00:00",
+    "scanned_at": "2026-11-01T17:43:43+00:00",
+    "scorecard": null,
+    "scorecard_note": "not in the OpenSSF dataset this week; run budget exhausted",
     "vulnerabilities": [
       {
         "aliases": [],
@@ -6910,6 +7775,7 @@
         ],
         "id": "GHSA-cxww-7g56-2vh6",
         "location": ".github/workflows/deployment-monitor.yml",
+        "osv_confirmed": false,
         "package": "actions/download-artifact",
         "severity": "High",
         "url": "https://github.com/advisories/GHSA-cxww-7g56-2vh6",
@@ -6925,7 +7791,9 @@
           "4.1.6"
         ],
         "id": "GHSA-mgcc-cww5-fp2q",
+        "in_binary": "vulnerable code not in binary",
         "location": "cliv2-private/go.mod",
+        "osv_confirmed": true,
         "package": "github.com/go-jose/go-jose/v4",
         "severity": "High",
         "url": "https://github.com/advisories/GHSA-mgcc-cww5-fp2q",
@@ -6941,7 +7809,9 @@
           "1.4.0"
         ],
         "id": "GHSA-6m8w-jc87-6cr7",
+        "in_binary": "vulnerable code in binary",
         "location": "cliv2-private/go.mod",
+        "osv_confirmed": true,
         "package": "github.com/open-policy-agent/opa",
         "severity": "High",
         "url": "https://github.com/advisories/GHSA-6m8w-jc87-6cr7",
@@ -6956,6 +7826,7 @@
         "fixed_in": [],
         "id": "GHSA-p6mc-m468-83gw",
         "location": "package-lock.json",
+        "osv_confirmed": false,
         "package": "lodash.pick",
         "severity": "High",
         "url": "https://github.com/advisories/GHSA-p6mc-m468-83gw",
@@ -6972,6 +7843,7 @@
         ],
         "id": "GHSA-23c5-xmqv-rm74",
         "location": "package-lock.json",
+        "osv_confirmed": true,
         "package": "minimatch",
         "severity": "High",
         "url": "https://github.com/advisories/GHSA-23c5-xmqv-rm74",
@@ -6988,6 +7860,7 @@
         ],
         "id": "GHSA-4vrv-93c7-m92j",
         "location": "ts-binary-wrapper/package-lock.json",
+        "osv_confirmed": false,
         "package": "snyk",
         "severity": "High",
         "url": "https://github.com/advisories/GHSA-4vrv-93c7-m92j",
@@ -7004,6 +7877,7 @@
         ],
         "id": "GHSA-hpqj-7cj6-hfj8",
         "location": "package-lock.json",
+        "osv_confirmed": false,
         "package": "snyk",
         "severity": "High",
         "url": "https://github.com/advisories/GHSA-hpqj-7cj6-hfj8",
@@ -7020,6 +7894,7 @@
         ],
         "id": "GHSA-mrrh-fwg8-r2c3",
         "location": ".github/workflows/iac-smoke-tests-pulls.yml",
+        "osv_confirmed": false,
         "package": "tj-actions/changed-files",
         "severity": "High",
         "url": "https://github.com/advisories/GHSA-mrrh-fwg8-r2c3",
@@ -7033,7 +7908,9 @@
         "fix_state": "not-fixed",
         "fixed_in": [],
         "id": "GHSA-685w-q87j-wqw3",
+        "in_binary": "vulnerable code not in binary",
         "location": "cliv2-private/go.mod",
+        "osv_confirmed": true,
         "package": "github.com/docker/distribution",
         "severity": "Medium",
         "url": "https://github.com/advisories/GHSA-685w-q87j-wqw3",
@@ -7049,7 +7926,9 @@
           "4.1.5"
         ],
         "id": "GHSA-4w3g-jfj2-cw2q",
+        "in_binary": "vulnerable code not in binary",
         "location": "cliv2/go.mod",
+        "osv_confirmed": true,
         "package": "github.com/go-jose/go-jose/v4",
         "severity": "Medium",
         "url": "https://github.com/advisories/GHSA-4w3g-jfj2-cw2q",
@@ -7065,7 +7944,9 @@
           "4.1.5"
         ],
         "id": "GHSA-vvm8-gf78-28g4",
+        "in_binary": "vulnerable code not in binary",
         "location": "cliv2/go.mod",
+        "osv_confirmed": true,
         "package": "github.com/go-jose/go-jose/v4",
         "severity": "Medium",
         "url": "https://github.com/advisories/GHSA-vvm8-gf78-28g4",
@@ -7081,7 +7962,9 @@
           "0.31.1"
         ],
         "id": "GHSA-7236-3392-c5c6",
+        "in_binary": "vulnerable code in binary",
         "location": "cliv2-private/go.mod",
+        "osv_confirmed": true,
         "package": "github.com/moby/buildkit",
         "severity": "Medium",
         "url": "https://github.com/advisories/GHSA-7236-3392-c5c6",
@@ -7098,6 +7981,7 @@
         ],
         "id": "GHSA-g3hv-75wg-m249",
         "location": "package-lock.json",
+        "osv_confirmed": true,
         "package": "minimatch",
         "severity": "Medium",
         "url": "https://github.com/advisories/GHSA-g3hv-75wg-m249",
@@ -7114,6 +7998,7 @@
         ],
         "id": "GHSA-g3hv-75wg-m249",
         "location": "package-lock.json",
+        "osv_confirmed": true,
         "package": "minimatch",
         "severity": "Medium",
         "url": "https://github.com/advisories/GHSA-g3hv-75wg-m249",
@@ -7130,6 +8015,7 @@
         ],
         "id": "GHSA-g3hv-75wg-m249",
         "location": "package-lock.json",
+        "osv_confirmed": true,
         "package": "minimatch",
         "severity": "Medium",
         "url": "https://github.com/advisories/GHSA-g3hv-75wg-m249",
@@ -7146,6 +8032,7 @@
         ],
         "id": "GHSA-4x6g-3cmx-w76r",
         "location": "ts-binary-wrapper/package-lock.json",
+        "osv_confirmed": false,
         "package": "snyk",
         "severity": "Medium",
         "url": "https://github.com/advisories/GHSA-4x6g-3cmx-w76r",
@@ -7162,6 +8049,7 @@
         ],
         "id": "GHSA-pxg6-pf52-xh8x",
         "location": "ts-binary-wrapper/package-lock.json",
+        "osv_confirmed": true,
         "package": "cookie",
         "severity": "Low",
         "url": "https://github.com/advisories/GHSA-pxg6-pf52-xh8x",
@@ -7177,7 +8065,9 @@
           "0.31.1"
         ],
         "id": "GHSA-72x6-4j93-7w86",
+        "in_binary": "vulnerable code in binary",
         "location": "cliv2-private/go.mod",
+        "osv_confirmed": true,
         "package": "github.com/moby/buildkit",
         "severity": "Low",
         "url": "https://github.com/advisories/GHSA-72x6-4j93-7w86",
@@ -7194,6 +8084,7 @@
         ],
         "id": "GHSA-6hwc-9h8r-3vmf",
         "location": "ts-binary-wrapper/package-lock.json",
+        "osv_confirmed": false,
         "package": "snyk",
         "severity": "Low",
         "url": "https://github.com/advisories/GHSA-6hwc-9h8r-3vmf",
@@ -7205,7 +8096,9 @@
         "fix_state": "unknown",
         "fixed_in": [],
         "id": "GO-2026-5932",
+        "in_binary": "vulnerable code in binary",
         "location": "cliv2/go.mod",
+        "osv_confirmed": true,
         "package": "golang.org/x/crypto",
         "severity": "Unknown",
         "url": "https://go.dev/issue/44226",
@@ -7221,7 +8114,9 @@
           "0.62.0"
         ],
         "id": "GO-2026-6860",
+        "in_binary": "vulnerable code in binary",
         "location": "cliv2/go.mod",
+        "osv_confirmed": true,
         "package": "golang.org/x/net",
         "severity": "Unknown",
         "url": "https://go.dev/cl/849365",
@@ -7237,13 +8132,890 @@
           "0.62.0"
         ],
         "id": "GO-2026-6866",
+        "in_binary": "vulnerable code in binary",
         "location": "cliv2-private/go.mod",
+        "osv_confirmed": true,
         "package": "golang.org/x/net",
         "severity": "Unknown",
         "url": "https://go.dev/cl/855121",
         "version": "v0.60.0"
       }
-    ]
+    ],
+    "workflow_audit": {
+      "files": 9,
+      "findings": [
+        {
+          "confidence": "High",
+          "description": "unpinned action reference",
+          "file": ".github/workflows/create-build-image.yml",
+          "line": 31,
+          "note": "this step",
+          "rule": "unpinned-uses",
+          "severity": "High",
+          "url": "https://docs.zizmor.sh/audits/#unpinned-uses"
+        },
+        {
+          "confidence": "High",
+          "description": "unpinned action reference",
+          "file": ".github/workflows/create-build-image.yml",
+          "line": 32,
+          "note": "this step",
+          "rule": "unpinned-uses",
+          "severity": "High",
+          "url": "https://docs.zizmor.sh/audits/#unpinned-uses"
+        },
+        {
+          "confidence": "High",
+          "description": "unpinned action reference",
+          "file": ".github/workflows/create-build-image.yml",
+          "line": 33,
+          "note": "this step",
+          "rule": "unpinned-uses",
+          "severity": "High",
+          "url": "https://docs.zizmor.sh/audits/#unpinned-uses"
+        },
+        {
+          "confidence": "High",
+          "description": "unpinned action reference",
+          "file": ".github/workflows/deployment-monitor.yml",
+          "line": 28,
+          "note": "this step",
+          "rule": "unpinned-uses",
+          "severity": "High",
+          "url": "https://docs.zizmor.sh/audits/#unpinned-uses"
+        },
+        {
+          "confidence": "High",
+          "description": "unpinned action reference",
+          "file": ".github/workflows/deployment-monitor.yml",
+          "line": 45,
+          "note": "this step",
+          "rule": "unpinned-uses",
+          "severity": "High",
+          "url": "https://docs.zizmor.sh/audits/#unpinned-uses"
+        },
+        {
+          "confidence": "High",
+          "description": "unpinned action reference",
+          "file": ".github/workflows/deployment-monitor.yml",
+          "line": 48,
+          "note": "this step",
+          "rule": "unpinned-uses",
+          "severity": "High",
+          "url": "https://docs.zizmor.sh/audits/#unpinned-uses"
+        },
+        {
+          "confidence": "High",
+          "description": "unpinned action reference",
+          "file": ".github/workflows/deployment-monitor.yml",
+          "line": 75,
+          "note": "this step",
+          "rule": "unpinned-uses",
+          "severity": "High",
+          "url": "https://docs.zizmor.sh/audits/#unpinned-uses"
+        },
+        {
+          "confidence": "High",
+          "description": "unpinned action reference",
+          "file": ".github/workflows/deployment-monitor.yml",
+          "line": 87,
+          "note": "this step",
+          "rule": "unpinned-uses",
+          "severity": "High",
+          "url": "https://docs.zizmor.sh/audits/#unpinned-uses"
+        },
+        {
+          "confidence": "High",
+          "description": "unpinned action reference",
+          "file": ".github/workflows/deployment-monitor.yml",
+          "line": 88,
+          "note": "this step",
+          "rule": "unpinned-uses",
+          "severity": "High",
+          "url": "https://docs.zizmor.sh/audits/#unpinned-uses"
+        },
+        {
+          "confidence": "High",
+          "description": "unpinned action reference",
+          "file": ".github/workflows/deployment-monitor.yml",
+          "line": 91,
+          "note": "this step",
+          "rule": "unpinned-uses",
+          "severity": "High",
+          "url": "https://docs.zizmor.sh/audits/#unpinned-uses"
+        },
+        {
+          "confidence": "High",
+          "description": "unpinned action reference",
+          "file": ".github/workflows/deployment-monitor.yml",
+          "line": 103,
+          "note": "this step",
+          "rule": "unpinned-uses",
+          "severity": "High",
+          "url": "https://docs.zizmor.sh/audits/#unpinned-uses"
+        },
+        {
+          "confidence": "High",
+          "description": "unpinned action reference",
+          "file": ".github/workflows/deployment-monitor.yml",
+          "line": 115,
+          "note": "this step",
+          "rule": "unpinned-uses",
+          "severity": "High",
+          "url": "https://docs.zizmor.sh/audits/#unpinned-uses"
+        },
+        {
+          "confidence": "High",
+          "description": "unpinned action reference",
+          "file": ".github/workflows/deployment-monitor.yml",
+          "line": 197,
+          "note": "this step",
+          "rule": "unpinned-uses",
+          "severity": "High",
+          "url": "https://docs.zizmor.sh/audits/#unpinned-uses"
+        },
+        {
+          "confidence": "High",
+          "description": "unpinned action reference",
+          "file": ".github/workflows/deployment-monitor.yml",
+          "line": 209,
+          "note": "this step",
+          "rule": "unpinned-uses",
+          "severity": "High",
+          "url": "https://docs.zizmor.sh/audits/#unpinned-uses"
+        },
+        {
+          "confidence": "High",
+          "description": "unpinned action reference",
+          "file": ".github/workflows/deployment-monitor.yml",
+          "line": 210,
+          "note": "this step",
+          "rule": "unpinned-uses",
+          "severity": "High",
+          "url": "https://docs.zizmor.sh/audits/#unpinned-uses"
+        },
+        {
+          "confidence": "High",
+          "description": "unpinned action reference",
+          "file": ".github/workflows/deployment-monitor.yml",
+          "line": 213,
+          "note": "this step",
+          "rule": "unpinned-uses",
+          "severity": "High",
+          "url": "https://docs.zizmor.sh/audits/#unpinned-uses"
+        },
+        {
+          "confidence": "High",
+          "description": "unpinned action reference",
+          "file": ".github/workflows/deployment-monitor.yml",
+          "line": 216,
+          "note": "this step",
+          "rule": "unpinned-uses",
+          "severity": "High",
+          "url": "https://docs.zizmor.sh/audits/#unpinned-uses"
+        },
+        {
+          "confidence": "High",
+          "description": "unpinned action reference",
+          "file": ".github/workflows/deployment-monitor.yml",
+          "line": 231,
+          "note": "this step",
+          "rule": "unpinned-uses",
+          "severity": "High",
+          "url": "https://docs.zizmor.sh/audits/#unpinned-uses"
+        },
+        {
+          "confidence": "High",
+          "description": "unpinned action reference",
+          "file": ".github/workflows/deployment-monitor.yml",
+          "line": 245,
+          "note": "this step",
+          "rule": "unpinned-uses",
+          "severity": "High",
+          "url": "https://docs.zizmor.sh/audits/#unpinned-uses"
+        },
+        {
+          "confidence": "High",
+          "description": "unpinned action reference",
+          "file": ".github/workflows/deployment-monitor.yml",
+          "line": 246,
+          "note": "this step",
+          "rule": "unpinned-uses",
+          "severity": "High",
+          "url": "https://docs.zizmor.sh/audits/#unpinned-uses"
+        },
+        {
+          "confidence": "High",
+          "description": "unpinned action reference",
+          "file": ".github/workflows/deployment-monitor.yml",
+          "line": 258,
+          "note": "this step",
+          "rule": "unpinned-uses",
+          "severity": "High",
+          "url": "https://docs.zizmor.sh/audits/#unpinned-uses"
+        },
+        {
+          "confidence": "High",
+          "description": "unpinned action reference",
+          "file": ".github/workflows/deployment-monitor.yml",
+          "line": 279,
+          "note": "this step",
+          "rule": "unpinned-uses",
+          "severity": "High",
+          "url": "https://docs.zizmor.sh/audits/#unpinned-uses"
+        },
+        {
+          "confidence": "High",
+          "description": "unpinned action reference",
+          "file": ".github/workflows/deployment-monitor.yml",
+          "line": 280,
+          "note": "this step",
+          "rule": "unpinned-uses",
+          "severity": "High",
+          "url": "https://docs.zizmor.sh/audits/#unpinned-uses"
+        },
+        {
+          "confidence": "High",
+          "description": "unpinned action reference",
+          "file": ".github/workflows/deployment-monitor.yml",
+          "line": 289,
+          "note": "this step",
+          "rule": "unpinned-uses",
+          "severity": "High",
+          "url": "https://docs.zizmor.sh/audits/#unpinned-uses"
+        },
+        {
+          "confidence": "High",
+          "description": "unpinned action reference",
+          "file": ".github/workflows/deployment-monitor.yml",
+          "line": 340,
+          "note": "this step",
+          "rule": "unpinned-uses",
+          "severity": "High",
+          "url": "https://docs.zizmor.sh/audits/#unpinned-uses"
+        },
+        {
+          "confidence": "High",
+          "description": "unpinned action reference",
+          "file": ".github/workflows/iac-smoke-tests-pulls.yml",
+          "line": 15,
+          "note": "this step",
+          "rule": "unpinned-uses",
+          "severity": "High",
+          "url": "https://docs.zizmor.sh/audits/#unpinned-uses"
+        },
+        {
+          "confidence": "High",
+          "description": "unpinned action reference",
+          "file": ".github/workflows/iac-smoke-tests-pulls.yml",
+          "line": 21,
+          "note": "this step",
+          "rule": "unpinned-uses",
+          "severity": "High",
+          "url": "https://docs.zizmor.sh/audits/#unpinned-uses"
+        },
+        {
+          "confidence": "High",
+          "description": "unpinned action reference",
+          "file": ".github/workflows/iac-smoke-tests-pulls.yml",
+          "line": 28,
+          "note": "this step",
+          "rule": "unpinned-uses",
+          "severity": "High",
+          "url": "https://docs.zizmor.sh/audits/#unpinned-uses"
+        },
+        {
+          "confidence": "High",
+          "description": "unpinned action reference",
+          "file": ".github/workflows/pr-housekeeping.yml",
+          "line": 13,
+          "note": "this step",
+          "rule": "unpinned-uses",
+          "severity": "High",
+          "url": "https://docs.zizmor.sh/audits/#unpinned-uses"
+        },
+        {
+          "confidence": "High",
+          "description": "unpinned action reference",
+          "file": ".github/workflows/snyk-protect-production-smoke-tests.yml",
+          "line": 22,
+          "note": "this step",
+          "rule": "unpinned-uses",
+          "severity": "High",
+          "url": "https://docs.zizmor.sh/audits/#unpinned-uses"
+        },
+        {
+          "confidence": "High",
+          "description": "unpinned action reference",
+          "file": ".github/workflows/snyk-protect-production-smoke-tests.yml",
+          "line": 24,
+          "note": "this step",
+          "rule": "unpinned-uses",
+          "severity": "High",
+          "url": "https://docs.zizmor.sh/audits/#unpinned-uses"
+        },
+        {
+          "confidence": "High",
+          "description": "unpinned action reference",
+          "file": ".github/workflows/snyk-protect-production-smoke-tests.yml",
+          "line": 32,
+          "note": "this step",
+          "rule": "unpinned-uses",
+          "severity": "High",
+          "url": "https://docs.zizmor.sh/audits/#unpinned-uses"
+        },
+        {
+          "confidence": "High",
+          "description": "unpinned action reference",
+          "file": ".github/workflows/sync-cli-help-to-user-docs.yml",
+          "line": 16,
+          "note": "this step",
+          "rule": "unpinned-uses",
+          "severity": "High",
+          "url": "https://docs.zizmor.sh/audits/#unpinned-uses"
+        },
+        {
+          "confidence": "High",
+          "description": "unpinned action reference",
+          "file": ".github/workflows/sync-cli-help-to-user-docs.yml",
+          "line": 24,
+          "note": "this step",
+          "rule": "unpinned-uses",
+          "severity": "High",
+          "url": "https://docs.zizmor.sh/audits/#unpinned-uses"
+        },
+        {
+          "confidence": "High",
+          "description": "code injection via template expansion",
+          "file": ".github/workflows/sync-cli-help-to-user-docs.yml",
+          "line": 92,
+          "note": "this step",
+          "rule": "template-injection",
+          "severity": "High",
+          "url": "https://docs.zizmor.sh/audits/#template-injection"
+        },
+        {
+          "confidence": "High",
+          "description": "unpinned action reference",
+          "file": ".github/workflows/sync-cli-readme.yml",
+          "line": 16,
+          "note": "this step",
+          "rule": "unpinned-uses",
+          "severity": "High",
+          "url": "https://docs.zizmor.sh/audits/#unpinned-uses"
+        },
+        {
+          "confidence": "High",
+          "description": "unpinned action reference",
+          "file": ".github/workflows/sync-cli-readme.yml",
+          "line": 24,
+          "note": "this step",
+          "rule": "unpinned-uses",
+          "severity": "High",
+          "url": "https://docs.zizmor.sh/audits/#unpinned-uses"
+        },
+        {
+          "confidence": "High",
+          "description": "code injection via template expansion",
+          "file": ".github/workflows/sync-cli-readme.yml",
+          "line": 105,
+          "note": "this step",
+          "rule": "template-injection",
+          "severity": "High",
+          "url": "https://docs.zizmor.sh/audits/#template-injection"
+        },
+        {
+          "confidence": "Medium",
+          "description": "overly broad permissions",
+          "file": ".github/workflows/create-build-image.yml",
+          "line": 1,
+          "note": "default permissions used due to no permissions: block",
+          "rule": "excessive-permissions",
+          "severity": "Medium",
+          "url": "https://docs.zizmor.sh/audits/#excessive-permissions"
+        },
+        {
+          "confidence": "Medium",
+          "description": "overly broad permissions",
+          "file": ".github/workflows/create-build-image.yml",
+          "line": 9,
+          "note": "this job",
+          "rule": "excessive-permissions",
+          "severity": "Medium",
+          "url": "https://docs.zizmor.sh/audits/#excessive-permissions"
+        },
+        {
+          "confidence": "Medium",
+          "description": "overly broad permissions",
+          "file": ".github/workflows/create-build-image.yml",
+          "line": 18,
+          "note": "this job",
+          "rule": "excessive-permissions",
+          "severity": "Medium",
+          "url": "https://docs.zizmor.sh/audits/#excessive-permissions"
+        },
+        {
+          "confidence": "Medium",
+          "description": "overly broad permissions",
+          "file": ".github/workflows/deployment-monitor.yml",
+          "line": 1,
+          "note": "default permissions used due to no permissions: block",
+          "rule": "excessive-permissions",
+          "severity": "Medium",
+          "url": "https://docs.zizmor.sh/audits/#excessive-permissions"
+        },
+        {
+          "confidence": "Medium",
+          "description": "overly broad permissions",
+          "file": ".github/workflows/deployment-monitor.yml",
+          "line": 19,
+          "note": "this job",
+          "rule": "excessive-permissions",
+          "severity": "Medium",
+          "url": "https://docs.zizmor.sh/audits/#excessive-permissions"
+        },
+        {
+          "confidence": "Medium",
+          "description": "overly broad permissions",
+          "file": ".github/workflows/deployment-monitor.yml",
+          "line": 34,
+          "note": "this job",
+          "rule": "excessive-permissions",
+          "severity": "Medium",
+          "url": "https://docs.zizmor.sh/audits/#excessive-permissions"
+        },
+        {
+          "confidence": "Medium",
+          "description": "overly broad permissions",
+          "file": ".github/workflows/deployment-monitor.yml",
+          "line": 82,
+          "note": "this job",
+          "rule": "excessive-permissions",
+          "severity": "Medium",
+          "url": "https://docs.zizmor.sh/audits/#excessive-permissions"
+        },
+        {
+          "confidence": "Medium",
+          "description": "overly broad permissions",
+          "file": ".github/workflows/deployment-monitor.yml",
+          "line": 110,
+          "note": "this job",
+          "rule": "excessive-permissions",
+          "severity": "Medium",
+          "url": "https://docs.zizmor.sh/audits/#excessive-permissions"
+        },
+        {
+          "confidence": "Medium",
+          "description": "overly broad permissions",
+          "file": ".github/workflows/deployment-monitor.yml",
+          "line": 204,
+          "note": "this job",
+          "rule": "excessive-permissions",
+          "severity": "Medium",
+          "url": "https://docs.zizmor.sh/audits/#excessive-permissions"
+        },
+        {
+          "confidence": "Medium",
+          "description": "overly broad permissions",
+          "file": ".github/workflows/deployment-monitor.yml",
+          "line": 238,
+          "note": "this job",
+          "rule": "excessive-permissions",
+          "severity": "Medium",
+          "url": "https://docs.zizmor.sh/audits/#excessive-permissions"
+        },
+        {
+          "confidence": "Medium",
+          "description": "overly broad permissions",
+          "file": ".github/workflows/deployment-monitor.yml",
+          "line": 265,
+          "note": "this job",
+          "rule": "excessive-permissions",
+          "severity": "Medium",
+          "url": "https://docs.zizmor.sh/audits/#excessive-permissions"
+        },
+        {
+          "confidence": "Medium",
+          "description": "overly broad permissions",
+          "file": ".github/workflows/deployment-monitor.yml",
+          "line": 297,
+          "note": "this job",
+          "rule": "excessive-permissions",
+          "severity": "Medium",
+          "url": "https://docs.zizmor.sh/audits/#excessive-permissions"
+        },
+        {
+          "confidence": "Medium",
+          "description": "overly broad permissions",
+          "file": ".github/workflows/deployment-monitor.yml",
+          "line": 316,
+          "note": "this job",
+          "rule": "excessive-permissions",
+          "severity": "Medium",
+          "url": "https://docs.zizmor.sh/audits/#excessive-permissions"
+        },
+        {
+          "confidence": "Medium",
+          "description": "overly broad permissions",
+          "file": ".github/workflows/deployment-monitor.yml",
+          "line": 334,
+          "note": "this job",
+          "rule": "excessive-permissions",
+          "severity": "Medium",
+          "url": "https://docs.zizmor.sh/audits/#excessive-permissions"
+        },
+        {
+          "confidence": "Medium",
+          "description": "overly broad permissions",
+          "file": ".github/workflows/iac-smoke-tests-pulls.yml",
+          "line": 1,
+          "note": "default permissions used due to no permissions: block",
+          "rule": "excessive-permissions",
+          "severity": "Medium",
+          "url": "https://docs.zizmor.sh/audits/#excessive-permissions"
+        },
+        {
+          "confidence": "Medium",
+          "description": "overly broad permissions",
+          "file": ".github/workflows/iac-smoke-tests-pulls.yml",
+          "line": 8,
+          "note": "this job",
+          "rule": "excessive-permissions",
+          "severity": "Medium",
+          "url": "https://docs.zizmor.sh/audits/#excessive-permissions"
+        },
+        {
+          "confidence": "Medium",
+          "description": "overly broad permissions",
+          "file": ".github/workflows/iac-smoke-tests-pulls.yml",
+          "line": 87,
+          "note": "this job",
+          "rule": "excessive-permissions",
+          "severity": "Medium",
+          "url": "https://docs.zizmor.sh/audits/#excessive-permissions"
+        },
+        {
+          "confidence": "High",
+          "description": "secrets unconditionally inherited by called workflow",
+          "file": ".github/workflows/iac-smoke-tests-pulls.yml",
+          "line": 89,
+          "note": "this reusable workflow",
+          "rule": "secrets-inherit",
+          "severity": "Medium",
+          "url": "https://docs.zizmor.sh/audits/#secrets-inherit"
+        },
+        {
+          "confidence": "Medium",
+          "description": "overly broad permissions",
+          "file": ".github/workflows/pr-housekeeping.yml",
+          "line": 9,
+          "note": "this job",
+          "rule": "excessive-permissions",
+          "severity": "Medium",
+          "url": "https://docs.zizmor.sh/audits/#excessive-permissions"
+        },
+        {
+          "confidence": "Medium",
+          "description": "overly broad permissions",
+          "file": ".github/workflows/snyk-protect-production-smoke-tests.yml",
+          "line": 12,
+          "note": "this job",
+          "rule": "excessive-permissions",
+          "severity": "Medium",
+          "url": "https://docs.zizmor.sh/audits/#excessive-permissions"
+        },
+        {
+          "confidence": "Medium",
+          "description": "overly broad permissions",
+          "file": ".github/workflows/sync-cli-help-to-user-docs.yml",
+          "line": 12,
+          "note": "this job",
+          "rule": "excessive-permissions",
+          "severity": "Medium",
+          "url": "https://docs.zizmor.sh/audits/#excessive-permissions"
+        },
+        {
+          "confidence": "Medium",
+          "description": "overly broad permissions",
+          "file": ".github/workflows/sync-cli-readme.yml",
+          "line": 12,
+          "note": "this job",
+          "rule": "excessive-permissions",
+          "severity": "Medium",
+          "url": "https://docs.zizmor.sh/audits/#excessive-permissions"
+        },
+        {
+          "confidence": "High",
+          "description": "ad-hoc installation of packages",
+          "file": ".github/workflows/check-dependencies.yml",
+          "line": 28,
+          "note": "this step",
+          "rule": "adhoc-packages",
+          "severity": "Low",
+          "url": "https://docs.zizmor.sh/audits/#adhoc-packages"
+        },
+        {
+          "confidence": "High",
+          "description": "ad-hoc installation of packages",
+          "file": ".github/workflows/danger-zone.yml",
+          "line": 33,
+          "note": "this step",
+          "rule": "adhoc-packages",
+          "severity": "Low",
+          "url": "https://docs.zizmor.sh/audits/#adhoc-packages"
+        },
+        {
+          "confidence": "High",
+          "description": "code injection via template expansion",
+          "file": ".github/workflows/deployment-monitor.yml",
+          "line": 23,
+          "note": "this step",
+          "rule": "template-injection",
+          "severity": "Low",
+          "url": "https://docs.zizmor.sh/audits/#template-injection"
+        },
+        {
+          "confidence": "High",
+          "description": "code injection via template expansion",
+          "file": ".github/workflows/deployment-monitor.yml",
+          "line": 67,
+          "note": "this step",
+          "rule": "template-injection",
+          "severity": "Low",
+          "url": "https://docs.zizmor.sh/audits/#template-injection"
+        },
+        {
+          "confidence": "High",
+          "description": "code injection via template expansion",
+          "file": ".github/workflows/deployment-monitor.yml",
+          "line": 67,
+          "note": "this step",
+          "rule": "template-injection",
+          "severity": "Low",
+          "url": "https://docs.zizmor.sh/audits/#template-injection"
+        },
+        {
+          "confidence": "High",
+          "description": "code injection via template expansion",
+          "file": ".github/workflows/deployment-monitor.yml",
+          "line": 67,
+          "note": "this step",
+          "rule": "template-injection",
+          "severity": "Low",
+          "url": "https://docs.zizmor.sh/audits/#template-injection"
+        },
+        {
+          "confidence": "High",
+          "description": "code injection via template expansion",
+          "file": ".github/workflows/deployment-monitor.yml",
+          "line": 67,
+          "note": "this step",
+          "rule": "template-injection",
+          "severity": "Low",
+          "url": "https://docs.zizmor.sh/audits/#template-injection"
+        },
+        {
+          "confidence": "High",
+          "description": "code injection via template expansion",
+          "file": ".github/workflows/deployment-monitor.yml",
+          "line": 125,
+          "note": "this step",
+          "rule": "template-injection",
+          "severity": "Low",
+          "url": "https://docs.zizmor.sh/audits/#template-injection"
+        },
+        {
+          "confidence": "High",
+          "description": "code injection via template expansion",
+          "file": ".github/workflows/deployment-monitor.yml",
+          "line": 125,
+          "note": "this step",
+          "rule": "template-injection",
+          "severity": "Low",
+          "url": "https://docs.zizmor.sh/audits/#template-injection"
+        },
+        {
+          "confidence": "High",
+          "description": "ad-hoc installation of packages",
+          "file": ".github/workflows/deployment-monitor.yml",
+          "line": 221,
+          "note": "this step",
+          "rule": "adhoc-packages",
+          "severity": "Low",
+          "url": "https://docs.zizmor.sh/audits/#adhoc-packages"
+        },
+        {
+          "confidence": "High",
+          "description": "use GitHub's dedicated self-repository syntax",
+          "file": ".github/workflows/iac-smoke-tests-pulls.yml",
+          "line": 88,
+          "note": "this job",
+          "rule": "self-repository",
+          "severity": "Low",
+          "url": "https://docs.zizmor.sh/audits/#self-repository"
+        },
+        {
+          "confidence": "High",
+          "description": "code injection via template expansion",
+          "file": ".github/workflows/sync-cli-help-to-user-docs.yml",
+          "line": 46,
+          "note": "this step",
+          "rule": "template-injection",
+          "severity": "Low",
+          "url": "https://docs.zizmor.sh/audits/#template-injection"
+        },
+        {
+          "confidence": "High",
+          "description": "code injection via template expansion",
+          "file": ".github/workflows/sync-cli-help-to-user-docs.yml",
+          "line": 46,
+          "note": "this step",
+          "rule": "template-injection",
+          "severity": "Low",
+          "url": "https://docs.zizmor.sh/audits/#template-injection"
+        },
+        {
+          "confidence": "High",
+          "description": "code injection via template expansion",
+          "file": ".github/workflows/sync-cli-help-to-user-docs.yml",
+          "line": 46,
+          "note": "this step",
+          "rule": "template-injection",
+          "severity": "Low",
+          "url": "https://docs.zizmor.sh/audits/#template-injection"
+        },
+        {
+          "confidence": "High",
+          "description": "code injection via template expansion",
+          "file": ".github/workflows/sync-cli-help-to-user-docs.yml",
+          "line": 46,
+          "note": "this step",
+          "rule": "template-injection",
+          "severity": "Low",
+          "url": "https://docs.zizmor.sh/audits/#template-injection"
+        },
+        {
+          "confidence": "High",
+          "description": "code injection via template expansion",
+          "file": ".github/workflows/sync-cli-help-to-user-docs.yml",
+          "line": 46,
+          "note": "this step",
+          "rule": "template-injection",
+          "severity": "Low",
+          "url": "https://docs.zizmor.sh/audits/#template-injection"
+        },
+        {
+          "confidence": "High",
+          "description": "code injection via template expansion",
+          "file": ".github/workflows/sync-cli-help-to-user-docs.yml",
+          "line": 84,
+          "note": "this step",
+          "rule": "template-injection",
+          "severity": "Low",
+          "url": "https://docs.zizmor.sh/audits/#template-injection"
+        },
+        {
+          "confidence": "High",
+          "description": "code injection via template expansion",
+          "file": ".github/workflows/sync-cli-help-to-user-docs.yml",
+          "line": 92,
+          "note": "this step",
+          "rule": "template-injection",
+          "severity": "Low",
+          "url": "https://docs.zizmor.sh/audits/#template-injection"
+        },
+        {
+          "confidence": "High",
+          "description": "code injection via template expansion",
+          "file": ".github/workflows/sync-cli-help-to-user-docs.yml",
+          "line": 92,
+          "note": "this step",
+          "rule": "template-injection",
+          "severity": "Low",
+          "url": "https://docs.zizmor.sh/audits/#template-injection"
+        },
+        {
+          "confidence": "High",
+          "description": "code injection via template expansion",
+          "file": ".github/workflows/sync-cli-readme.yml",
+          "line": 45,
+          "note": "this step",
+          "rule": "template-injection",
+          "severity": "Low",
+          "url": "https://docs.zizmor.sh/audits/#template-injection"
+        },
+        {
+          "confidence": "High",
+          "description": "code injection via template expansion",
+          "file": ".github/workflows/sync-cli-readme.yml",
+          "line": 45,
+          "note": "this step",
+          "rule": "template-injection",
+          "severity": "Low",
+          "url": "https://docs.zizmor.sh/audits/#template-injection"
+        },
+        {
+          "confidence": "High",
+          "description": "code injection via template expansion",
+          "file": ".github/workflows/sync-cli-readme.yml",
+          "line": 45,
+          "note": "this step",
+          "rule": "template-injection",
+          "severity": "Low",
+          "url": "https://docs.zizmor.sh/audits/#template-injection"
+        },
+        {
+          "confidence": "High",
+          "description": "code injection via template expansion",
+          "file": ".github/workflows/sync-cli-readme.yml",
+          "line": 45,
+          "note": "this step",
+          "rule": "template-injection",
+          "severity": "Low",
+          "url": "https://docs.zizmor.sh/audits/#template-injection"
+        },
+        {
+          "confidence": "High",
+          "description": "code injection via template expansion",
+          "file": ".github/workflows/sync-cli-readme.yml",
+          "line": 45,
+          "note": "this step",
+          "rule": "template-injection",
+          "severity": "Low",
+          "url": "https://docs.zizmor.sh/audits/#template-injection"
+        },
+        {
+          "confidence": "High",
+          "description": "code injection via template expansion",
+          "file": ".github/workflows/sync-cli-readme.yml",
+          "line": 97,
+          "note": "this step",
+          "rule": "template-injection",
+          "severity": "Low",
+          "url": "https://docs.zizmor.sh/audits/#template-injection"
+        },
+        {
+          "confidence": "High",
+          "description": "code injection via template expansion",
+          "file": ".github/workflows/sync-cli-readme.yml",
+          "line": 105,
+          "note": "this step",
+          "rule": "template-injection",
+          "severity": "Low",
+          "url": "https://docs.zizmor.sh/audits/#template-injection"
+        },
+        {
+          "confidence": "High",
+          "description": "code injection via template expansion",
+          "file": ".github/workflows/sync-cli-readme.yml",
+          "line": 105,
+          "note": "this step",
+          "rule": "template-injection",
+          "severity": "Low",
+          "url": "https://docs.zizmor.sh/audits/#template-injection"
+        }
+      ]
+    }
   },
   "updated": "2026-11-01"
 }

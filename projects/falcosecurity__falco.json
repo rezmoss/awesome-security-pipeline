@@ -7,11 +7,17 @@
       "dependencies": 42,
       "errors": [],
       "fixable": 0,
+      "go_version": null,
+      "in_binary": null,
       "new_vulnerabilities": 0,
+      "osv_confirmed": 0,
+      "osv_only": 0,
       "ref": "0.45.2",
       "release_changed": false,
+      "release_integrity": "none",
       "removed": 0,
       "resolved_vulnerabilities": 0,
+      "scorecard": 7.5,
       "upgraded": 0,
       "vulnerabilities": {
         "Critical": 0,
@@ -20,6 +26,12 @@
         "Medium": 0,
         "Negligible": 0,
         "Unknown": 0
+      },
+      "workflow": {
+        "High": 106,
+        "Low": 34,
+        "Medium": 13,
+        "files": 22
       }
     }
   ],
@@ -444,8 +456,26 @@
       ".github/workflows/staticanalysis.yaml"
     ],
     "name": "falco",
+    "osv": {
+      "advisories": 0,
+      "available": true,
+      "confirmed": 0,
+      "osv_only": [],
+      "warning": null
+    },
     "ref": "0.45.2",
     "ref_kind": "release",
+    "release_integrity": {
+      "asset": "falco-x86_64.debug",
+      "assets": 2,
+      "checksums_published": false,
+      "digest_matches_github": true,
+      "methods": [],
+      "provenance_published": false,
+      "sbom_published": false,
+      "signatures_published": false,
+      "verdict": "none"
+    },
     "released_at": "2026-10-29T16:48:27Z",
     "repository": "falcosecurity/falco",
     "sbomlyze_diff": {
@@ -458,8 +488,1651 @@
       ],
       "removed": 0
     },
-    "scanned_at": "2026-11-01T16:37:19+00:00",
-    "vulnerabilities": []
+    "scanned_at": "2026-11-01T17:42:49+00:00",
+    "scorecard": {
+      "checks": [
+        {
+          "name": "Fuzzing",
+          "reason": "project is not fuzzed",
+          "score": 0
+        },
+        {
+          "name": "Signed-Releases",
+          "reason": "Project has not signed or included provenance with any releases.",
+          "score": 0
+        },
+        {
+          "name": "Vulnerabilities",
+          "reason": "14 existing vulnerabilities detected",
+          "score": 0
+        },
+        {
+          "name": "CII-Best-Practices",
+          "reason": "badge detected: Passing",
+          "score": 5
+        },
+        {
+          "name": "Pinned-Dependencies",
+          "reason": "dependency not pinned by hash detected -- score normalized to 7",
+          "score": 7
+        },
+        {
+          "name": "SAST",
+          "reason": "SAST tool detected but not run on all commits",
+          "score": 9
+        },
+        {
+          "name": "Binary-Artifacts",
+          "reason": "no binaries found in the repo",
+          "score": 10
+        },
+        {
+          "name": "CI-Tests",
+          "reason": "20 out of 20 merged PRs checked by a CI test -- score normalized to 10",
+          "score": 10
+        },
+        {
+          "name": "Code-Review",
+          "reason": "all changesets reviewed",
+          "score": 10
+        },
+        {
+          "name": "Contributors",
+          "reason": "project has 36 contributing companies or organizations",
+          "score": 10
+        },
+        {
+          "name": "Dangerous-Workflow",
+          "reason": "no dangerous workflow patterns detected",
+          "score": 10
+        },
+        {
+          "name": "Dependency-Update-Tool",
+          "reason": "update tool detected",
+          "score": 10
+        },
+        {
+          "name": "License",
+          "reason": "license file detected",
+          "score": 10
+        },
+        {
+          "name": "Maintained",
+          "reason": "30 commit(s) and 13 issue activity found in the last 90 days -- score normalized to 10",
+          "score": 10
+        },
+        {
+          "name": "Security-Policy",
+          "reason": "security policy file detected",
+          "score": 10
+        },
+        {
+          "name": "Token-Permissions",
+          "reason": "GitHub workflow tokens follow principle of least privilege",
+          "score": 10
+        },
+        {
+          "name": "Branch-Protection",
+          "reason": "internal error: error during branchesHandler.setup: internal error: some github tokens can't read classic branch protection rules: https://github.com/ossf/scorecard-action/blob/main/docs/authentication/fine-grained-auth-token.md",
+          "score": -1
+        },
+        {
+          "name": "Packaging",
+          "reason": "packaging workflow not detected",
+          "score": -1
+        }
+      ],
+      "date": "2026-10-30",
+      "score": 7.5,
+      "source": "openssf-api",
+      "version": "v5.5.0"
+    },
+    "vulnerabilities": [],
+    "workflow_audit": {
+      "files": 22,
+      "findings": [
+        {
+          "confidence": "Medium",
+          "description": "use of fundamentally insecure workflow trigger",
+          "file": ".github/workflows/engine-version-weakcheck.yaml",
+          "line": 6,
+          "note": "this workflow",
+          "rule": "dangerous-triggers",
+          "severity": "High",
+          "url": "https://docs.zizmor.sh/audits/#dangerous-triggers"
+        },
+        {
+          "confidence": "High",
+          "description": "code injection via template expansion",
+          "file": ".github/workflows/release.yaml",
+          "line": 29,
+          "note": "this step",
+          "rule": "template-injection",
+          "severity": "High",
+          "url": "https://docs.zizmor.sh/audits/#template-injection"
+        },
+        {
+          "confidence": "High",
+          "description": "code injection via template expansion",
+          "file": ".github/workflows/release.yaml",
+          "line": 175,
+          "note": "this step",
+          "rule": "template-injection",
+          "severity": "High",
+          "url": "https://docs.zizmor.sh/audits/#template-injection"
+        },
+        {
+          "confidence": "High",
+          "description": "code injection via template expansion",
+          "file": ".github/workflows/release.yaml",
+          "line": 189,
+          "note": "this step",
+          "rule": "template-injection",
+          "severity": "High",
+          "url": "https://docs.zizmor.sh/audits/#template-injection"
+        },
+        {
+          "confidence": "High",
+          "description": "code injection via template expansion",
+          "file": ".github/workflows/reusable_build_dev.yaml",
+          "line": 62,
+          "note": "this step",
+          "rule": "template-injection",
+          "severity": "High",
+          "url": "https://docs.zizmor.sh/audits/#template-injection"
+        },
+        {
+          "confidence": "High",
+          "description": "code injection via template expansion",
+          "file": ".github/workflows/reusable_build_dev.yaml",
+          "line": 87,
+          "note": "this step",
+          "rule": "template-injection",
+          "severity": "High",
+          "url": "https://docs.zizmor.sh/audits/#template-injection"
+        },
+        {
+          "confidence": "High",
+          "description": "code injection via template expansion",
+          "file": ".github/workflows/reusable_build_docker.yaml",
+          "line": 44,
+          "note": "this step",
+          "rule": "template-injection",
+          "severity": "High",
+          "url": "https://docs.zizmor.sh/audits/#template-injection"
+        },
+        {
+          "confidence": "High",
+          "description": "code injection via template expansion",
+          "file": ".github/workflows/reusable_build_docker.yaml",
+          "line": 44,
+          "note": "this step",
+          "rule": "template-injection",
+          "severity": "High",
+          "url": "https://docs.zizmor.sh/audits/#template-injection"
+        },
+        {
+          "confidence": "High",
+          "description": "code injection via template expansion",
+          "file": ".github/workflows/reusable_build_docker.yaml",
+          "line": 44,
+          "note": "this step",
+          "rule": "template-injection",
+          "severity": "High",
+          "url": "https://docs.zizmor.sh/audits/#template-injection"
+        },
+        {
+          "confidence": "High",
+          "description": "code injection via template expansion",
+          "file": ".github/workflows/reusable_build_docker.yaml",
+          "line": 44,
+          "note": "this step",
+          "rule": "template-injection",
+          "severity": "High",
+          "url": "https://docs.zizmor.sh/audits/#template-injection"
+        },
+        {
+          "confidence": "High",
+          "description": "code injection via template expansion",
+          "file": ".github/workflows/reusable_build_docker.yaml",
+          "line": 44,
+          "note": "this step",
+          "rule": "template-injection",
+          "severity": "High",
+          "url": "https://docs.zizmor.sh/audits/#template-injection"
+        },
+        {
+          "confidence": "High",
+          "description": "code injection via template expansion",
+          "file": ".github/workflows/reusable_build_docker.yaml",
+          "line": 44,
+          "note": "this step",
+          "rule": "template-injection",
+          "severity": "High",
+          "url": "https://docs.zizmor.sh/audits/#template-injection"
+        },
+        {
+          "confidence": "High",
+          "description": "code injection via template expansion",
+          "file": ".github/workflows/reusable_build_docker.yaml",
+          "line": 44,
+          "note": "this step",
+          "rule": "template-injection",
+          "severity": "High",
+          "url": "https://docs.zizmor.sh/audits/#template-injection"
+        },
+        {
+          "confidence": "High",
+          "description": "code injection via template expansion",
+          "file": ".github/workflows/reusable_build_docker.yaml",
+          "line": 54,
+          "note": "this step",
+          "rule": "template-injection",
+          "severity": "High",
+          "url": "https://docs.zizmor.sh/audits/#template-injection"
+        },
+        {
+          "confidence": "High",
+          "description": "code injection via template expansion",
+          "file": ".github/workflows/reusable_build_docker.yaml",
+          "line": 54,
+          "note": "this step",
+          "rule": "template-injection",
+          "severity": "High",
+          "url": "https://docs.zizmor.sh/audits/#template-injection"
+        },
+        {
+          "confidence": "High",
+          "description": "code injection via template expansion",
+          "file": ".github/workflows/reusable_build_docker.yaml",
+          "line": 54,
+          "note": "this step",
+          "rule": "template-injection",
+          "severity": "High",
+          "url": "https://docs.zizmor.sh/audits/#template-injection"
+        },
+        {
+          "confidence": "High",
+          "description": "code injection via template expansion",
+          "file": ".github/workflows/reusable_build_docker.yaml",
+          "line": 54,
+          "note": "this step",
+          "rule": "template-injection",
+          "severity": "High",
+          "url": "https://docs.zizmor.sh/audits/#template-injection"
+        },
+        {
+          "confidence": "High",
+          "description": "code injection via template expansion",
+          "file": ".github/workflows/reusable_build_docker.yaml",
+          "line": 54,
+          "note": "this step",
+          "rule": "template-injection",
+          "severity": "High",
+          "url": "https://docs.zizmor.sh/audits/#template-injection"
+        },
+        {
+          "confidence": "High",
+          "description": "code injection via template expansion",
+          "file": ".github/workflows/reusable_build_docker.yaml",
+          "line": 54,
+          "note": "this step",
+          "rule": "template-injection",
+          "severity": "High",
+          "url": "https://docs.zizmor.sh/audits/#template-injection"
+        },
+        {
+          "confidence": "High",
+          "description": "code injection via template expansion",
+          "file": ".github/workflows/reusable_build_docker.yaml",
+          "line": 54,
+          "note": "this step",
+          "rule": "template-injection",
+          "severity": "High",
+          "url": "https://docs.zizmor.sh/audits/#template-injection"
+        },
+        {
+          "confidence": "High",
+          "description": "code injection via template expansion",
+          "file": ".github/workflows/reusable_build_docker.yaml",
+          "line": 64,
+          "note": "this step",
+          "rule": "template-injection",
+          "severity": "High",
+          "url": "https://docs.zizmor.sh/audits/#template-injection"
+        },
+        {
+          "confidence": "High",
+          "description": "code injection via template expansion",
+          "file": ".github/workflows/reusable_build_docker.yaml",
+          "line": 64,
+          "note": "this step",
+          "rule": "template-injection",
+          "severity": "High",
+          "url": "https://docs.zizmor.sh/audits/#template-injection"
+        },
+        {
+          "confidence": "High",
+          "description": "code injection via template expansion",
+          "file": ".github/workflows/reusable_build_docker.yaml",
+          "line": 64,
+          "note": "this step",
+          "rule": "template-injection",
+          "severity": "High",
+          "url": "https://docs.zizmor.sh/audits/#template-injection"
+        },
+        {
+          "confidence": "High",
+          "description": "code injection via template expansion",
+          "file": ".github/workflows/reusable_build_docker.yaml",
+          "line": 64,
+          "note": "this step",
+          "rule": "template-injection",
+          "severity": "High",
+          "url": "https://docs.zizmor.sh/audits/#template-injection"
+        },
+        {
+          "confidence": "High",
+          "description": "code injection via template expansion",
+          "file": ".github/workflows/reusable_build_docker.yaml",
+          "line": 64,
+          "note": "this step",
+          "rule": "template-injection",
+          "severity": "High",
+          "url": "https://docs.zizmor.sh/audits/#template-injection"
+        },
+        {
+          "confidence": "High",
+          "description": "code injection via template expansion",
+          "file": ".github/workflows/reusable_build_docker.yaml",
+          "line": 64,
+          "note": "this step",
+          "rule": "template-injection",
+          "severity": "High",
+          "url": "https://docs.zizmor.sh/audits/#template-injection"
+        },
+        {
+          "confidence": "High",
+          "description": "code injection via template expansion",
+          "file": ".github/workflows/reusable_build_docker.yaml",
+          "line": 64,
+          "note": "this step",
+          "rule": "template-injection",
+          "severity": "High",
+          "url": "https://docs.zizmor.sh/audits/#template-injection"
+        },
+        {
+          "confidence": "High",
+          "description": "code injection via template expansion",
+          "file": ".github/workflows/reusable_build_docker.yaml",
+          "line": 64,
+          "note": "this step",
+          "rule": "template-injection",
+          "severity": "High",
+          "url": "https://docs.zizmor.sh/audits/#template-injection"
+        },
+        {
+          "confidence": "High",
+          "description": "code injection via template expansion",
+          "file": ".github/workflows/reusable_build_docker.yaml",
+          "line": 75,
+          "note": "this step",
+          "rule": "template-injection",
+          "severity": "High",
+          "url": "https://docs.zizmor.sh/audits/#template-injection"
+        },
+        {
+          "confidence": "High",
+          "description": "code injection via template expansion",
+          "file": ".github/workflows/reusable_build_docker.yaml",
+          "line": 75,
+          "note": "this step",
+          "rule": "template-injection",
+          "severity": "High",
+          "url": "https://docs.zizmor.sh/audits/#template-injection"
+        },
+        {
+          "confidence": "High",
+          "description": "code injection via template expansion",
+          "file": ".github/workflows/reusable_build_docker.yaml",
+          "line": 75,
+          "note": "this step",
+          "rule": "template-injection",
+          "severity": "High",
+          "url": "https://docs.zizmor.sh/audits/#template-injection"
+        },
+        {
+          "confidence": "High",
+          "description": "code injection via template expansion",
+          "file": ".github/workflows/reusable_build_docker.yaml",
+          "line": 75,
+          "note": "this step",
+          "rule": "template-injection",
+          "severity": "High",
+          "url": "https://docs.zizmor.sh/audits/#template-injection"
+        },
+        {
+          "confidence": "High",
+          "description": "code injection via template expansion",
+          "file": ".github/workflows/reusable_build_docker.yaml",
+          "line": 75,
+          "note": "this step",
+          "rule": "template-injection",
+          "severity": "High",
+          "url": "https://docs.zizmor.sh/audits/#template-injection"
+        },
+        {
+          "confidence": "High",
+          "description": "code injection via template expansion",
+          "file": ".github/workflows/reusable_build_docker.yaml",
+          "line": 75,
+          "note": "this step",
+          "rule": "template-injection",
+          "severity": "High",
+          "url": "https://docs.zizmor.sh/audits/#template-injection"
+        },
+        {
+          "confidence": "High",
+          "description": "code injection via template expansion",
+          "file": ".github/workflows/reusable_build_docker.yaml",
+          "line": 75,
+          "note": "this step",
+          "rule": "template-injection",
+          "severity": "High",
+          "url": "https://docs.zizmor.sh/audits/#template-injection"
+        },
+        {
+          "confidence": "High",
+          "description": "code injection via template expansion",
+          "file": ".github/workflows/reusable_build_packages.yaml",
+          "line": 61,
+          "note": "this step",
+          "rule": "template-injection",
+          "severity": "High",
+          "url": "https://docs.zizmor.sh/audits/#template-injection"
+        },
+        {
+          "confidence": "High",
+          "description": "code injection via template expansion",
+          "file": ".github/workflows/reusable_build_packages.yaml",
+          "line": 85,
+          "note": "this step",
+          "rule": "template-injection",
+          "severity": "High",
+          "url": "https://docs.zizmor.sh/audits/#template-injection"
+        },
+        {
+          "confidence": "High",
+          "description": "unpinned action reference",
+          "file": ".github/workflows/reusable_build_packages.yaml",
+          "line": 100,
+          "note": "this step",
+          "rule": "unpinned-uses",
+          "severity": "High",
+          "url": "https://docs.zizmor.sh/audits/#unpinned-uses"
+        },
+        {
+          "confidence": "High",
+          "description": "code injection via template expansion",
+          "file": ".github/workflows/reusable_build_packages.yaml",
+          "line": 104,
+          "note": "this step",
+          "rule": "template-injection",
+          "severity": "High",
+          "url": "https://docs.zizmor.sh/audits/#template-injection"
+        },
+        {
+          "confidence": "High",
+          "description": "unpinned action reference",
+          "file": ".github/workflows/reusable_build_packages.yaml",
+          "line": 173,
+          "note": "this step",
+          "rule": "unpinned-uses",
+          "severity": "High",
+          "url": "https://docs.zizmor.sh/audits/#unpinned-uses"
+        },
+        {
+          "confidence": "High",
+          "description": "code injection via template expansion",
+          "file": ".github/workflows/reusable_build_packages.yaml",
+          "line": 177,
+          "note": "this step",
+          "rule": "template-injection",
+          "severity": "High",
+          "url": "https://docs.zizmor.sh/audits/#template-injection"
+        },
+        {
+          "confidence": "High",
+          "description": "code injection via template expansion",
+          "file": ".github/workflows/reusable_build_packages.yaml",
+          "line": 225,
+          "note": "this step",
+          "rule": "template-injection",
+          "severity": "High",
+          "url": "https://docs.zizmor.sh/audits/#template-injection"
+        },
+        {
+          "confidence": "High",
+          "description": "code injection via template expansion",
+          "file": ".github/workflows/reusable_build_packages.yaml",
+          "line": 274,
+          "note": "this step",
+          "rule": "template-injection",
+          "severity": "High",
+          "url": "https://docs.zizmor.sh/audits/#template-injection"
+        },
+        {
+          "confidence": "High",
+          "description": "code injection via template expansion",
+          "file": ".github/workflows/reusable_build_packages.yaml",
+          "line": 295,
+          "note": "this step",
+          "rule": "template-injection",
+          "severity": "High",
+          "url": "https://docs.zizmor.sh/audits/#template-injection"
+        },
+        {
+          "confidence": "High",
+          "description": "code injection via template expansion",
+          "file": ".github/workflows/reusable_build_packages.yaml",
+          "line": 295,
+          "note": "this step",
+          "rule": "template-injection",
+          "severity": "High",
+          "url": "https://docs.zizmor.sh/audits/#template-injection"
+        },
+        {
+          "confidence": "High",
+          "description": "code injection via template expansion",
+          "file": ".github/workflows/reusable_build_packages.yaml",
+          "line": 327,
+          "note": "this step",
+          "rule": "template-injection",
+          "severity": "High",
+          "url": "https://docs.zizmor.sh/audits/#template-injection"
+        },
+        {
+          "confidence": "High",
+          "description": "code injection via template expansion",
+          "file": ".github/workflows/reusable_build_packages.yaml",
+          "line": 371,
+          "note": "this step",
+          "rule": "template-injection",
+          "severity": "High",
+          "url": "https://docs.zizmor.sh/audits/#template-injection"
+        },
+        {
+          "confidence": "High",
+          "description": "code injection via template expansion",
+          "file": ".github/workflows/reusable_build_packages.yaml",
+          "line": 405,
+          "note": "this step",
+          "rule": "template-injection",
+          "severity": "High",
+          "url": "https://docs.zizmor.sh/audits/#template-injection"
+        },
+        {
+          "confidence": "High",
+          "description": "code injection via template expansion",
+          "file": ".github/workflows/reusable_publish_docker.yaml",
+          "line": 78,
+          "note": "this step",
+          "rule": "template-injection",
+          "severity": "High",
+          "url": "https://docs.zizmor.sh/audits/#template-injection"
+        },
+        {
+          "confidence": "High",
+          "description": "code injection via template expansion",
+          "file": ".github/workflows/reusable_publish_docker.yaml",
+          "line": 78,
+          "note": "this step",
+          "rule": "template-injection",
+          "severity": "High",
+          "url": "https://docs.zizmor.sh/audits/#template-injection"
+        },
+        {
+          "confidence": "High",
+          "description": "code injection via template expansion",
+          "file": ".github/workflows/reusable_publish_docker.yaml",
+          "line": 78,
+          "note": "this step",
+          "rule": "template-injection",
+          "severity": "High",
+          "url": "https://docs.zizmor.sh/audits/#template-injection"
+        },
+        {
+          "confidence": "High",
+          "description": "code injection via template expansion",
+          "file": ".github/workflows/reusable_publish_docker.yaml",
+          "line": 78,
+          "note": "this step",
+          "rule": "template-injection",
+          "severity": "High",
+          "url": "https://docs.zizmor.sh/audits/#template-injection"
+        },
+        {
+          "confidence": "High",
+          "description": "code injection via template expansion",
+          "file": ".github/workflows/reusable_publish_docker.yaml",
+          "line": 78,
+          "note": "this step",
+          "rule": "template-injection",
+          "severity": "High",
+          "url": "https://docs.zizmor.sh/audits/#template-injection"
+        },
+        {
+          "confidence": "High",
+          "description": "code injection via template expansion",
+          "file": ".github/workflows/reusable_publish_docker.yaml",
+          "line": 78,
+          "note": "this step",
+          "rule": "template-injection",
+          "severity": "High",
+          "url": "https://docs.zizmor.sh/audits/#template-injection"
+        },
+        {
+          "confidence": "High",
+          "description": "code injection via template expansion",
+          "file": ".github/workflows/reusable_publish_docker.yaml",
+          "line": 78,
+          "note": "this step",
+          "rule": "template-injection",
+          "severity": "High",
+          "url": "https://docs.zizmor.sh/audits/#template-injection"
+        },
+        {
+          "confidence": "High",
+          "description": "code injection via template expansion",
+          "file": ".github/workflows/reusable_publish_docker.yaml",
+          "line": 78,
+          "note": "this step",
+          "rule": "template-injection",
+          "severity": "High",
+          "url": "https://docs.zizmor.sh/audits/#template-injection"
+        },
+        {
+          "confidence": "High",
+          "description": "code injection via template expansion",
+          "file": ".github/workflows/reusable_publish_docker.yaml",
+          "line": 89,
+          "note": "this step",
+          "rule": "template-injection",
+          "severity": "High",
+          "url": "https://docs.zizmor.sh/audits/#template-injection"
+        },
+        {
+          "confidence": "High",
+          "description": "code injection via template expansion",
+          "file": ".github/workflows/reusable_publish_docker.yaml",
+          "line": 89,
+          "note": "this step",
+          "rule": "template-injection",
+          "severity": "High",
+          "url": "https://docs.zizmor.sh/audits/#template-injection"
+        },
+        {
+          "confidence": "High",
+          "description": "code injection via template expansion",
+          "file": ".github/workflows/reusable_publish_docker.yaml",
+          "line": 89,
+          "note": "this step",
+          "rule": "template-injection",
+          "severity": "High",
+          "url": "https://docs.zizmor.sh/audits/#template-injection"
+        },
+        {
+          "confidence": "High",
+          "description": "code injection via template expansion",
+          "file": ".github/workflows/reusable_publish_docker.yaml",
+          "line": 96,
+          "note": "this step",
+          "rule": "template-injection",
+          "severity": "High",
+          "url": "https://docs.zizmor.sh/audits/#template-injection"
+        },
+        {
+          "confidence": "High",
+          "description": "code injection via template expansion",
+          "file": ".github/workflows/reusable_publish_docker.yaml",
+          "line": 96,
+          "note": "this step",
+          "rule": "template-injection",
+          "severity": "High",
+          "url": "https://docs.zizmor.sh/audits/#template-injection"
+        },
+        {
+          "confidence": "High",
+          "description": "code injection via template expansion",
+          "file": ".github/workflows/reusable_publish_docker.yaml",
+          "line": 96,
+          "note": "this step",
+          "rule": "template-injection",
+          "severity": "High",
+          "url": "https://docs.zizmor.sh/audits/#template-injection"
+        },
+        {
+          "confidence": "High",
+          "description": "code injection via template expansion",
+          "file": ".github/workflows/reusable_publish_docker.yaml",
+          "line": 103,
+          "note": "this step",
+          "rule": "template-injection",
+          "severity": "High",
+          "url": "https://docs.zizmor.sh/audits/#template-injection"
+        },
+        {
+          "confidence": "High",
+          "description": "code injection via template expansion",
+          "file": ".github/workflows/reusable_publish_docker.yaml",
+          "line": 103,
+          "note": "this step",
+          "rule": "template-injection",
+          "severity": "High",
+          "url": "https://docs.zizmor.sh/audits/#template-injection"
+        },
+        {
+          "confidence": "High",
+          "description": "code injection via template expansion",
+          "file": ".github/workflows/reusable_publish_docker.yaml",
+          "line": 103,
+          "note": "this step",
+          "rule": "template-injection",
+          "severity": "High",
+          "url": "https://docs.zizmor.sh/audits/#template-injection"
+        },
+        {
+          "confidence": "High",
+          "description": "code injection via template expansion",
+          "file": ".github/workflows/reusable_publish_docker.yaml",
+          "line": 110,
+          "note": "this step",
+          "rule": "template-injection",
+          "severity": "High",
+          "url": "https://docs.zizmor.sh/audits/#template-injection"
+        },
+        {
+          "confidence": "High",
+          "description": "code injection via template expansion",
+          "file": ".github/workflows/reusable_publish_docker.yaml",
+          "line": 110,
+          "note": "this step",
+          "rule": "template-injection",
+          "severity": "High",
+          "url": "https://docs.zizmor.sh/audits/#template-injection"
+        },
+        {
+          "confidence": "High",
+          "description": "code injection via template expansion",
+          "file": ".github/workflows/reusable_publish_docker.yaml",
+          "line": 110,
+          "note": "this step",
+          "rule": "template-injection",
+          "severity": "High",
+          "url": "https://docs.zizmor.sh/audits/#template-injection"
+        },
+        {
+          "confidence": "High",
+          "description": "code injection via template expansion",
+          "file": ".github/workflows/reusable_publish_docker.yaml",
+          "line": 117,
+          "note": "this step",
+          "rule": "template-injection",
+          "severity": "High",
+          "url": "https://docs.zizmor.sh/audits/#template-injection"
+        },
+        {
+          "confidence": "High",
+          "description": "code injection via template expansion",
+          "file": ".github/workflows/reusable_publish_docker.yaml",
+          "line": 117,
+          "note": "this step",
+          "rule": "template-injection",
+          "severity": "High",
+          "url": "https://docs.zizmor.sh/audits/#template-injection"
+        },
+        {
+          "confidence": "High",
+          "description": "code injection via template expansion",
+          "file": ".github/workflows/reusable_publish_docker.yaml",
+          "line": 117,
+          "note": "this step",
+          "rule": "template-injection",
+          "severity": "High",
+          "url": "https://docs.zizmor.sh/audits/#template-injection"
+        },
+        {
+          "confidence": "High",
+          "description": "code injection via template expansion",
+          "file": ".github/workflows/reusable_publish_docker.yaml",
+          "line": 117,
+          "note": "this step",
+          "rule": "template-injection",
+          "severity": "High",
+          "url": "https://docs.zizmor.sh/audits/#template-injection"
+        },
+        {
+          "confidence": "High",
+          "description": "code injection via template expansion",
+          "file": ".github/workflows/reusable_publish_docker.yaml",
+          "line": 125,
+          "note": "this step",
+          "rule": "template-injection",
+          "severity": "High",
+          "url": "https://docs.zizmor.sh/audits/#template-injection"
+        },
+        {
+          "confidence": "High",
+          "description": "code injection via template expansion",
+          "file": ".github/workflows/reusable_publish_docker.yaml",
+          "line": 125,
+          "note": "this step",
+          "rule": "template-injection",
+          "severity": "High",
+          "url": "https://docs.zizmor.sh/audits/#template-injection"
+        },
+        {
+          "confidence": "High",
+          "description": "code injection via template expansion",
+          "file": ".github/workflows/reusable_publish_docker.yaml",
+          "line": 125,
+          "note": "this step",
+          "rule": "template-injection",
+          "severity": "High",
+          "url": "https://docs.zizmor.sh/audits/#template-injection"
+        },
+        {
+          "confidence": "High",
+          "description": "code injection via template expansion",
+          "file": ".github/workflows/reusable_publish_docker.yaml",
+          "line": 125,
+          "note": "this step",
+          "rule": "template-injection",
+          "severity": "High",
+          "url": "https://docs.zizmor.sh/audits/#template-injection"
+        },
+        {
+          "confidence": "High",
+          "description": "code injection via template expansion",
+          "file": ".github/workflows/reusable_publish_docker.yaml",
+          "line": 125,
+          "note": "this step",
+          "rule": "template-injection",
+          "severity": "High",
+          "url": "https://docs.zizmor.sh/audits/#template-injection"
+        },
+        {
+          "confidence": "High",
+          "description": "code injection via template expansion",
+          "file": ".github/workflows/reusable_publish_docker.yaml",
+          "line": 125,
+          "note": "this step",
+          "rule": "template-injection",
+          "severity": "High",
+          "url": "https://docs.zizmor.sh/audits/#template-injection"
+        },
+        {
+          "confidence": "High",
+          "description": "code injection via template expansion",
+          "file": ".github/workflows/reusable_publish_docker.yaml",
+          "line": 125,
+          "note": "this step",
+          "rule": "template-injection",
+          "severity": "High",
+          "url": "https://docs.zizmor.sh/audits/#template-injection"
+        },
+        {
+          "confidence": "High",
+          "description": "code injection via template expansion",
+          "file": ".github/workflows/reusable_publish_docker.yaml",
+          "line": 125,
+          "note": "this step",
+          "rule": "template-injection",
+          "severity": "High",
+          "url": "https://docs.zizmor.sh/audits/#template-injection"
+        },
+        {
+          "confidence": "High",
+          "description": "code injection via template expansion",
+          "file": ".github/workflows/reusable_publish_docker.yaml",
+          "line": 132,
+          "note": "this step",
+          "rule": "template-injection",
+          "severity": "High",
+          "url": "https://docs.zizmor.sh/audits/#template-injection"
+        },
+        {
+          "confidence": "High",
+          "description": "code injection via template expansion",
+          "file": ".github/workflows/reusable_publish_docker.yaml",
+          "line": 132,
+          "note": "this step",
+          "rule": "template-injection",
+          "severity": "High",
+          "url": "https://docs.zizmor.sh/audits/#template-injection"
+        },
+        {
+          "confidence": "High",
+          "description": "code injection via template expansion",
+          "file": ".github/workflows/reusable_publish_docker.yaml",
+          "line": 132,
+          "note": "this step",
+          "rule": "template-injection",
+          "severity": "High",
+          "url": "https://docs.zizmor.sh/audits/#template-injection"
+        },
+        {
+          "confidence": "High",
+          "description": "code injection via template expansion",
+          "file": ".github/workflows/reusable_publish_docker.yaml",
+          "line": 132,
+          "note": "this step",
+          "rule": "template-injection",
+          "severity": "High",
+          "url": "https://docs.zizmor.sh/audits/#template-injection"
+        },
+        {
+          "confidence": "High",
+          "description": "code injection via template expansion",
+          "file": ".github/workflows/reusable_publish_docker.yaml",
+          "line": 132,
+          "note": "this step",
+          "rule": "template-injection",
+          "severity": "High",
+          "url": "https://docs.zizmor.sh/audits/#template-injection"
+        },
+        {
+          "confidence": "High",
+          "description": "code injection via template expansion",
+          "file": ".github/workflows/reusable_publish_docker.yaml",
+          "line": 132,
+          "note": "this step",
+          "rule": "template-injection",
+          "severity": "High",
+          "url": "https://docs.zizmor.sh/audits/#template-injection"
+        },
+        {
+          "confidence": "High",
+          "description": "code injection via template expansion",
+          "file": ".github/workflows/reusable_publish_docker.yaml",
+          "line": 132,
+          "note": "this step",
+          "rule": "template-injection",
+          "severity": "High",
+          "url": "https://docs.zizmor.sh/audits/#template-injection"
+        },
+        {
+          "confidence": "High",
+          "description": "code injection via template expansion",
+          "file": ".github/workflows/reusable_publish_docker.yaml",
+          "line": 132,
+          "note": "this step",
+          "rule": "template-injection",
+          "severity": "High",
+          "url": "https://docs.zizmor.sh/audits/#template-injection"
+        },
+        {
+          "confidence": "High",
+          "description": "code injection via template expansion",
+          "file": ".github/workflows/reusable_publish_packages.yaml",
+          "line": 85,
+          "note": "this step",
+          "rule": "template-injection",
+          "severity": "High",
+          "url": "https://docs.zizmor.sh/audits/#template-injection"
+        },
+        {
+          "confidence": "High",
+          "description": "code injection via template expansion",
+          "file": ".github/workflows/reusable_publish_packages.yaml",
+          "line": 89,
+          "note": "this step",
+          "rule": "template-injection",
+          "severity": "High",
+          "url": "https://docs.zizmor.sh/audits/#template-injection"
+        },
+        {
+          "confidence": "High",
+          "description": "code injection via template expansion",
+          "file": ".github/workflows/reusable_publish_packages.yaml",
+          "line": 89,
+          "note": "this step",
+          "rule": "template-injection",
+          "severity": "High",
+          "url": "https://docs.zizmor.sh/audits/#template-injection"
+        },
+        {
+          "confidence": "High",
+          "description": "code injection via template expansion",
+          "file": ".github/workflows/reusable_publish_packages.yaml",
+          "line": 89,
+          "note": "this step",
+          "rule": "template-injection",
+          "severity": "High",
+          "url": "https://docs.zizmor.sh/audits/#template-injection"
+        },
+        {
+          "confidence": "High",
+          "description": "code injection via template expansion",
+          "file": ".github/workflows/reusable_publish_packages.yaml",
+          "line": 93,
+          "note": "this step",
+          "rule": "template-injection",
+          "severity": "High",
+          "url": "https://docs.zizmor.sh/audits/#template-injection"
+        },
+        {
+          "confidence": "High",
+          "description": "code injection via template expansion",
+          "file": ".github/workflows/reusable_publish_packages.yaml",
+          "line": 93,
+          "note": "this step",
+          "rule": "template-injection",
+          "severity": "High",
+          "url": "https://docs.zizmor.sh/audits/#template-injection"
+        },
+        {
+          "confidence": "High",
+          "description": "code injection via template expansion",
+          "file": ".github/workflows/reusable_publish_packages.yaml",
+          "line": 93,
+          "note": "this step",
+          "rule": "template-injection",
+          "severity": "High",
+          "url": "https://docs.zizmor.sh/audits/#template-injection"
+        },
+        {
+          "confidence": "High",
+          "description": "code injection via template expansion",
+          "file": ".github/workflows/reusable_publish_packages.yaml",
+          "line": 93,
+          "note": "this step",
+          "rule": "template-injection",
+          "severity": "High",
+          "url": "https://docs.zizmor.sh/audits/#template-injection"
+        },
+        {
+          "confidence": "High",
+          "description": "code injection via template expansion",
+          "file": ".github/workflows/reusable_publish_packages.yaml",
+          "line": 98,
+          "note": "this step",
+          "rule": "template-injection",
+          "severity": "High",
+          "url": "https://docs.zizmor.sh/audits/#template-injection"
+        },
+        {
+          "confidence": "High",
+          "description": "code injection via template expansion",
+          "file": ".github/workflows/reusable_publish_packages.yaml",
+          "line": 98,
+          "note": "this step",
+          "rule": "template-injection",
+          "severity": "High",
+          "url": "https://docs.zizmor.sh/audits/#template-injection"
+        },
+        {
+          "confidence": "High",
+          "description": "code injection via template expansion",
+          "file": ".github/workflows/reusable_publish_packages.yaml",
+          "line": 139,
+          "note": "this step",
+          "rule": "template-injection",
+          "severity": "High",
+          "url": "https://docs.zizmor.sh/audits/#template-injection"
+        },
+        {
+          "confidence": "High",
+          "description": "code injection via template expansion",
+          "file": ".github/workflows/reusable_publish_packages.yaml",
+          "line": 139,
+          "note": "this step",
+          "rule": "template-injection",
+          "severity": "High",
+          "url": "https://docs.zizmor.sh/audits/#template-injection"
+        },
+        {
+          "confidence": "High",
+          "description": "code injection via template expansion",
+          "file": ".github/workflows/reusable_publish_packages.yaml",
+          "line": 139,
+          "note": "this step",
+          "rule": "template-injection",
+          "severity": "High",
+          "url": "https://docs.zizmor.sh/audits/#template-injection"
+        },
+        {
+          "confidence": "High",
+          "description": "code injection via template expansion",
+          "file": ".github/workflows/reusable_test_packages.yaml",
+          "line": 45,
+          "note": "this step",
+          "rule": "template-injection",
+          "severity": "High",
+          "url": "https://docs.zizmor.sh/audits/#template-injection"
+        },
+        {
+          "confidence": "High",
+          "description": "code injection via template expansion",
+          "file": ".github/workflows/reusable_test_packages.yaml",
+          "line": 45,
+          "note": "this step",
+          "rule": "template-injection",
+          "severity": "High",
+          "url": "https://docs.zizmor.sh/audits/#template-injection"
+        },
+        {
+          "confidence": "High",
+          "description": "unpinned action reference",
+          "file": ".github/workflows/reusable_test_packages.yaml",
+          "line": 69,
+          "note": "this step",
+          "rule": "unpinned-uses",
+          "severity": "High",
+          "url": "https://docs.zizmor.sh/audits/#unpinned-uses"
+        },
+        {
+          "confidence": "High",
+          "description": "code injection via template expansion",
+          "file": ".github/workflows/reusable_test_packages_with_evtgen.yaml",
+          "line": 54,
+          "note": "this step",
+          "rule": "template-injection",
+          "severity": "High",
+          "url": "https://docs.zizmor.sh/audits/#template-injection"
+        },
+        {
+          "confidence": "High",
+          "description": "code injection via template expansion",
+          "file": ".github/workflows/reusable_test_packages_with_evtgen.yaml",
+          "line": 54,
+          "note": "this step",
+          "rule": "template-injection",
+          "severity": "High",
+          "url": "https://docs.zizmor.sh/audits/#template-injection"
+        },
+        {
+          "confidence": "Medium",
+          "description": "overly broad permissions",
+          "file": ".github/workflows/helm-check.yaml",
+          "line": 26,
+          "note": "this job",
+          "rule": "excessive-permissions",
+          "severity": "Medium",
+          "url": "https://docs.zizmor.sh/audits/#excessive-permissions"
+        },
+        {
+          "confidence": "High",
+          "description": "secrets unconditionally inherited by called workflow",
+          "file": ".github/workflows/master.yaml",
+          "line": 20,
+          "note": "this reusable workflow",
+          "rule": "secrets-inherit",
+          "severity": "Medium",
+          "url": "https://docs.zizmor.sh/audits/#secrets-inherit"
+        },
+        {
+          "confidence": "High",
+          "description": "secrets unconditionally inherited by called workflow",
+          "file": ".github/workflows/master.yaml",
+          "line": 28,
+          "note": "this reusable workflow",
+          "rule": "secrets-inherit",
+          "severity": "Medium",
+          "url": "https://docs.zizmor.sh/audits/#secrets-inherit"
+        },
+        {
+          "confidence": "High",
+          "description": "secrets unconditionally inherited by called workflow",
+          "file": ".github/workflows/master.yaml",
+          "line": 77,
+          "note": "this reusable workflow",
+          "rule": "secrets-inherit",
+          "severity": "Medium",
+          "url": "https://docs.zizmor.sh/audits/#secrets-inherit"
+        },
+        {
+          "confidence": "High",
+          "description": "secrets unconditionally inherited by called workflow",
+          "file": ".github/workflows/master.yaml",
+          "line": 85,
+          "note": "this reusable workflow",
+          "rule": "secrets-inherit",
+          "severity": "Medium",
+          "url": "https://docs.zizmor.sh/audits/#secrets-inherit"
+        },
+        {
+          "confidence": "High",
+          "description": "secrets unconditionally inherited by called workflow",
+          "file": ".github/workflows/master.yaml",
+          "line": 95,
+          "note": "this reusable workflow",
+          "rule": "secrets-inherit",
+          "severity": "Medium",
+          "url": "https://docs.zizmor.sh/audits/#secrets-inherit"
+        },
+        {
+          "confidence": "High",
+          "description": "secrets unconditionally inherited by called workflow",
+          "file": ".github/workflows/master.yaml",
+          "line": 109,
+          "note": "this reusable workflow",
+          "rule": "secrets-inherit",
+          "severity": "Medium",
+          "url": "https://docs.zizmor.sh/audits/#secrets-inherit"
+        },
+        {
+          "confidence": "High",
+          "description": "secrets unconditionally inherited by called workflow",
+          "file": ".github/workflows/release.yaml",
+          "line": 58,
+          "note": "this reusable workflow",
+          "rule": "secrets-inherit",
+          "severity": "Medium",
+          "url": "https://docs.zizmor.sh/audits/#secrets-inherit"
+        },
+        {
+          "confidence": "High",
+          "description": "secrets unconditionally inherited by called workflow",
+          "file": ".github/workflows/release.yaml",
+          "line": 67,
+          "note": "this reusable workflow",
+          "rule": "secrets-inherit",
+          "severity": "Medium",
+          "url": "https://docs.zizmor.sh/audits/#secrets-inherit"
+        },
+        {
+          "confidence": "High",
+          "description": "secrets unconditionally inherited by called workflow",
+          "file": ".github/workflows/release.yaml",
+          "line": 116,
+          "note": "this reusable workflow",
+          "rule": "secrets-inherit",
+          "severity": "Medium",
+          "url": "https://docs.zizmor.sh/audits/#secrets-inherit"
+        },
+        {
+          "confidence": "High",
+          "description": "secrets unconditionally inherited by called workflow",
+          "file": ".github/workflows/release.yaml",
+          "line": 125,
+          "note": "this reusable workflow",
+          "rule": "secrets-inherit",
+          "severity": "Medium",
+          "url": "https://docs.zizmor.sh/audits/#secrets-inherit"
+        },
+        {
+          "confidence": "High",
+          "description": "secrets unconditionally inherited by called workflow",
+          "file": ".github/workflows/release.yaml",
+          "line": 135,
+          "note": "this reusable workflow",
+          "rule": "secrets-inherit",
+          "severity": "Medium",
+          "url": "https://docs.zizmor.sh/audits/#secrets-inherit"
+        },
+        {
+          "confidence": "High",
+          "description": "secrets unconditionally inherited by called workflow",
+          "file": ".github/workflows/release.yaml",
+          "line": 149,
+          "note": "this reusable workflow",
+          "rule": "secrets-inherit",
+          "severity": "Medium",
+          "url": "https://docs.zizmor.sh/audits/#secrets-inherit"
+        },
+        {
+          "confidence": "High",
+          "description": "use GitHub's dedicated self-repository syntax",
+          "file": ".github/workflows/ci.yml",
+          "line": 19,
+          "note": "this job",
+          "rule": "self-repository",
+          "severity": "Low",
+          "url": "https://docs.zizmor.sh/audits/#self-repository"
+        },
+        {
+          "confidence": "High",
+          "description": "use GitHub's dedicated self-repository syntax",
+          "file": ".github/workflows/ci.yml",
+          "line": 22,
+          "note": "this job",
+          "rule": "self-repository",
+          "severity": "Low",
+          "url": "https://docs.zizmor.sh/audits/#self-repository"
+        },
+        {
+          "confidence": "High",
+          "description": "use GitHub's dedicated self-repository syntax",
+          "file": ".github/workflows/ci.yml",
+          "line": 32,
+          "note": "this job",
+          "rule": "self-repository",
+          "severity": "Low",
+          "url": "https://docs.zizmor.sh/audits/#self-repository"
+        },
+        {
+          "confidence": "High",
+          "description": "use GitHub's dedicated self-repository syntax",
+          "file": ".github/workflows/ci.yml",
+          "line": 41,
+          "note": "this job",
+          "rule": "self-repository",
+          "severity": "Low",
+          "url": "https://docs.zizmor.sh/audits/#self-repository"
+        },
+        {
+          "confidence": "High",
+          "description": "use GitHub's dedicated self-repository syntax",
+          "file": ".github/workflows/ci.yml",
+          "line": 59,
+          "note": "this job",
+          "rule": "self-repository",
+          "severity": "Low",
+          "url": "https://docs.zizmor.sh/audits/#self-repository"
+        },
+        {
+          "confidence": "High",
+          "description": "use GitHub's dedicated self-repository syntax",
+          "file": ".github/workflows/ci.yml",
+          "line": 66,
+          "note": "this job",
+          "rule": "self-repository",
+          "severity": "Low",
+          "url": "https://docs.zizmor.sh/audits/#self-repository"
+        },
+        {
+          "confidence": "High",
+          "description": "use GitHub's dedicated self-repository syntax",
+          "file": ".github/workflows/ci.yml",
+          "line": 73,
+          "note": "this job",
+          "rule": "self-repository",
+          "severity": "Low",
+          "url": "https://docs.zizmor.sh/audits/#self-repository"
+        },
+        {
+          "confidence": "High",
+          "description": "use GitHub's dedicated self-repository syntax",
+          "file": ".github/workflows/ci.yml",
+          "line": 80,
+          "note": "this job",
+          "rule": "self-repository",
+          "severity": "Low",
+          "url": "https://docs.zizmor.sh/audits/#self-repository"
+        },
+        {
+          "confidence": "High",
+          "description": "use GitHub's dedicated self-repository syntax",
+          "file": ".github/workflows/ci.yml",
+          "line": 88,
+          "note": "this job",
+          "rule": "self-repository",
+          "severity": "Low",
+          "url": "https://docs.zizmor.sh/audits/#self-repository"
+        },
+        {
+          "confidence": "High",
+          "description": "use GitHub's dedicated self-repository syntax",
+          "file": ".github/workflows/ci.yml",
+          "line": 102,
+          "note": "this job",
+          "rule": "self-repository",
+          "severity": "Low",
+          "url": "https://docs.zizmor.sh/audits/#self-repository"
+        },
+        {
+          "confidence": "High",
+          "description": "use GitHub's dedicated self-repository syntax",
+          "file": ".github/workflows/image-trust.yaml",
+          "line": 23,
+          "note": "this job",
+          "rule": "self-repository",
+          "severity": "Low",
+          "url": "https://docs.zizmor.sh/audits/#self-repository"
+        },
+        {
+          "confidence": "High",
+          "description": "use GitHub's dedicated self-repository syntax",
+          "file": ".github/workflows/master.yaml",
+          "line": 15,
+          "note": "this job",
+          "rule": "self-repository",
+          "severity": "Low",
+          "url": "https://docs.zizmor.sh/audits/#self-repository"
+        },
+        {
+          "confidence": "High",
+          "description": "use GitHub's dedicated self-repository syntax",
+          "file": ".github/workflows/master.yaml",
+          "line": 18,
+          "note": "this job",
+          "rule": "self-repository",
+          "severity": "Low",
+          "url": "https://docs.zizmor.sh/audits/#self-repository"
+        },
+        {
+          "confidence": "High",
+          "description": "use GitHub's dedicated self-repository syntax",
+          "file": ".github/workflows/master.yaml",
+          "line": 26,
+          "note": "this job",
+          "rule": "self-repository",
+          "severity": "Low",
+          "url": "https://docs.zizmor.sh/audits/#self-repository"
+        },
+        {
+          "confidence": "High",
+          "description": "use GitHub's dedicated self-repository syntax",
+          "file": ".github/workflows/master.yaml",
+          "line": 34,
+          "note": "this job",
+          "rule": "self-repository",
+          "severity": "Low",
+          "url": "https://docs.zizmor.sh/audits/#self-repository"
+        },
+        {
+          "confidence": "High",
+          "description": "use GitHub's dedicated self-repository syntax",
+          "file": ".github/workflows/master.yaml",
+          "line": 50,
+          "note": "this job",
+          "rule": "self-repository",
+          "severity": "Low",
+          "url": "https://docs.zizmor.sh/audits/#self-repository"
+        },
+        {
+          "confidence": "High",
+          "description": "use GitHub's dedicated self-repository syntax",
+          "file": ".github/workflows/master.yaml",
+          "line": 57,
+          "note": "this job",
+          "rule": "self-repository",
+          "severity": "Low",
+          "url": "https://docs.zizmor.sh/audits/#self-repository"
+        },
+        {
+          "confidence": "High",
+          "description": "use GitHub's dedicated self-repository syntax",
+          "file": ".github/workflows/master.yaml",
+          "line": 64,
+          "note": "this job",
+          "rule": "self-repository",
+          "severity": "Low",
+          "url": "https://docs.zizmor.sh/audits/#self-repository"
+        },
+        {
+          "confidence": "High",
+          "description": "use GitHub's dedicated self-repository syntax",
+          "file": ".github/workflows/master.yaml",
+          "line": 71,
+          "note": "this job",
+          "rule": "self-repository",
+          "severity": "Low",
+          "url": "https://docs.zizmor.sh/audits/#self-repository"
+        },
+        {
+          "confidence": "High",
+          "description": "use GitHub's dedicated self-repository syntax",
+          "file": ".github/workflows/master.yaml",
+          "line": 83,
+          "note": "this job",
+          "rule": "self-repository",
+          "severity": "Low",
+          "url": "https://docs.zizmor.sh/audits/#self-repository"
+        },
+        {
+          "confidence": "High",
+          "description": "use GitHub's dedicated self-repository syntax",
+          "file": ".github/workflows/master.yaml",
+          "line": 93,
+          "note": "this job",
+          "rule": "self-repository",
+          "severity": "Low",
+          "url": "https://docs.zizmor.sh/audits/#self-repository"
+        },
+        {
+          "confidence": "High",
+          "description": "use GitHub's dedicated self-repository syntax",
+          "file": ".github/workflows/master.yaml",
+          "line": 103,
+          "note": "this job",
+          "rule": "self-repository",
+          "severity": "Low",
+          "url": "https://docs.zizmor.sh/audits/#self-repository"
+        },
+        {
+          "confidence": "High",
+          "description": "use GitHub's dedicated self-repository syntax",
+          "file": ".github/workflows/release.yaml",
+          "line": 56,
+          "note": "this job",
+          "rule": "self-repository",
+          "severity": "Low",
+          "url": "https://docs.zizmor.sh/audits/#self-repository"
+        },
+        {
+          "confidence": "High",
+          "description": "use GitHub's dedicated self-repository syntax",
+          "file": ".github/workflows/release.yaml",
+          "line": 65,
+          "note": "this job",
+          "rule": "self-repository",
+          "severity": "Low",
+          "url": "https://docs.zizmor.sh/audits/#self-repository"
+        },
+        {
+          "confidence": "High",
+          "description": "use GitHub's dedicated self-repository syntax",
+          "file": ".github/workflows/release.yaml",
+          "line": 74,
+          "note": "this job",
+          "rule": "self-repository",
+          "severity": "Low",
+          "url": "https://docs.zizmor.sh/audits/#self-repository"
+        },
+        {
+          "confidence": "High",
+          "description": "use GitHub's dedicated self-repository syntax",
+          "file": ".github/workflows/release.yaml",
+          "line": 90,
+          "note": "this job",
+          "rule": "self-repository",
+          "severity": "Low",
+          "url": "https://docs.zizmor.sh/audits/#self-repository"
+        },
+        {
+          "confidence": "High",
+          "description": "use GitHub's dedicated self-repository syntax",
+          "file": ".github/workflows/release.yaml",
+          "line": 97,
+          "note": "this job",
+          "rule": "self-repository",
+          "severity": "Low",
+          "url": "https://docs.zizmor.sh/audits/#self-repository"
+        },
+        {
+          "confidence": "High",
+          "description": "use GitHub's dedicated self-repository syntax",
+          "file": ".github/workflows/release.yaml",
+          "line": 104,
+          "note": "this job",
+          "rule": "self-repository",
+          "severity": "Low",
+          "url": "https://docs.zizmor.sh/audits/#self-repository"
+        },
+        {
+          "confidence": "High",
+          "description": "use GitHub's dedicated self-repository syntax",
+          "file": ".github/workflows/release.yaml",
+          "line": 111,
+          "note": "this job",
+          "rule": "self-repository",
+          "severity": "Low",
+          "url": "https://docs.zizmor.sh/audits/#self-repository"
+        },
+        {
+          "confidence": "High",
+          "description": "use GitHub's dedicated self-repository syntax",
+          "file": ".github/workflows/release.yaml",
+          "line": 123,
+          "note": "this job",
+          "rule": "self-repository",
+          "severity": "Low",
+          "url": "https://docs.zizmor.sh/audits/#self-repository"
+        },
+        {
+          "confidence": "High",
+          "description": "use GitHub's dedicated self-repository syntax",
+          "file": ".github/workflows/release.yaml",
+          "line": 133,
+          "note": "this job",
+          "rule": "self-repository",
+          "severity": "Low",
+          "url": "https://docs.zizmor.sh/audits/#self-repository"
+        },
+        {
+          "confidence": "High",
+          "description": "use GitHub's dedicated self-repository syntax",
+          "file": ".github/workflows/release.yaml",
+          "line": 143,
+          "note": "this job",
+          "rule": "self-repository",
+          "severity": "Low",
+          "url": "https://docs.zizmor.sh/audits/#self-repository"
+        },
+        {
+          "confidence": "High",
+          "description": "use GitHub's dedicated self-repository syntax",
+          "file": ".github/workflows/reusable_test_packages_with_evtgen.yaml",
+          "line": 66,
+          "note": "this step",
+          "rule": "self-repository",
+          "severity": "Low",
+          "url": "https://docs.zizmor.sh/audits/#self-repository"
+        },
+        {
+          "confidence": "High",
+          "description": "use GitHub's dedicated self-repository syntax",
+          "file": ".github/workflows/reusable_test_packages_with_evtgen.yaml",
+          "line": 71,
+          "note": "this step",
+          "rule": "self-repository",
+          "severity": "Low",
+          "url": "https://docs.zizmor.sh/audits/#self-repository"
+        },
+        {
+          "confidence": "High",
+          "description": "action functionality is already included by the runner",
+          "file": ".github/workflows/release.yaml",
+          "line": 210,
+          "note": "this step",
+          "rule": "superfluous-actions",
+          "severity": "Informational",
+          "url": "https://docs.zizmor.sh/audits/#superfluous-actions"
+        }
+      ]
+    }
   },
   "updated": "2026-11-01"
 }

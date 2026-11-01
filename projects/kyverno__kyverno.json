@@ -7,11 +7,21 @@
       "dependencies": 491,
       "errors": [],
       "fixable": 10,
+      "go_version": "go1.26.9",
+      "in_binary": {
+        "dependencies": 5,
+        "stdlib": 1,
+        "total": 6
+      },
       "new_vulnerabilities": 0,
+      "osv_confirmed": 12,
+      "osv_only": 0,
       "ref": "v1.19.2",
       "release_changed": false,
+      "release_integrity": "verified",
       "removed": 0,
       "resolved_vulnerabilities": 0,
+      "scorecard": 7.8,
       "upgraded": 0,
       "vulnerabilities": {
         "Critical": 0,
@@ -20,6 +30,12 @@
         "Medium": 3,
         "Negligible": 0,
         "Unknown": 4
+      },
+      "workflow": {
+        "High": 54,
+        "Low": 169,
+        "Medium": 2,
+        "files": 62
       }
     }
   ],
@@ -4010,6 +4026,123 @@
     ],
     "description": "Enforce policies with Kubernetes-native resources.",
     "errors": [],
+    "go_binary": {
+      "asset": "kyverno-cli_v1.19.2_linux_x86_64.tar.gz",
+      "binary": "kyverno",
+      "findings": [
+        {
+          "aliases": [
+            "CVE-2026-111943"
+          ],
+          "fixed_version": "v1.26.10",
+          "id": "GO-2026-6809",
+          "level": "symbol",
+          "module": "stdlib",
+          "summary": "Distrust compromised intermediate certificates in crypto/x509",
+          "version": "v1.26.9"
+        },
+        {
+          "aliases": [],
+          "fixed_version": "",
+          "id": "GO-2026-6225",
+          "level": "symbol",
+          "module": "github.com/chrismellard/docker-credential-acr-env",
+          "summary": "Credential leakage to untrusted hosts in github.com/chrismellard/docker-credential-acr-env",
+          "version": "v0.0.0-20230304212654-82a0ddb27589"
+        },
+        {
+          "aliases": [
+            "CVE-2026-73500",
+            "GHSA-6vch-q96h-7gc3"
+          ],
+          "fixed_version": "v3.6.14",
+          "id": "GO-2026-6107",
+          "level": "symbol",
+          "module": "go.etcd.io/etcd/client/pkg/v3",
+          "summary": "Unbounded TLS handshake goroutines in go.etcd.io/etcd/client/pkg/v3",
+          "version": "v3.6.8"
+        },
+        {
+          "aliases": [],
+          "fixed_version": "",
+          "id": "GO-2026-5932",
+          "level": "symbol",
+          "module": "golang.org/x/crypto",
+          "summary": "The golang.org/x/crypto/openpgp package is unmaintained, unsafe by design, and has known security issues",
+          "version": "v0.57.0"
+        },
+        {
+          "aliases": [
+            "CVE-2026-78661"
+          ],
+          "fixed_version": "v0.62.0",
+          "id": "GO-2026-6860",
+          "level": "symbol",
+          "module": "golang.org/x/net",
+          "summary": "Avoid quadratic complexity when coalescing text nodes in html in golang.org/x/net",
+          "version": "v0.60.0"
+        },
+        {
+          "aliases": [
+            "CVE-2026-97045"
+          ],
+          "fixed_version": "v0.62.0",
+          "id": "GO-2026-6866",
+          "level": "symbol",
+          "module": "golang.org/x/net",
+          "summary": "Check all ancestor namespace transitions when rendering raw text in html in golang.org/x/net",
+          "version": "v0.60.0"
+        },
+        {
+          "aliases": [
+            "GHSA-459x-q9hg-4gpq"
+          ],
+          "fixed_version": "",
+          "id": "GO-2025-3615",
+          "level": "module",
+          "module": "github.com/kyverno/kyverno",
+          "summary": "Kyverno vulnerable to SSRF via Service Calls in github.com/kyverno/kyverno",
+          "version": "v1.19.2+dirty"
+        },
+        {
+          "aliases": [
+            "CVE-2026-41068",
+            "GHSA-cvq5-hhx3-f99p"
+          ],
+          "fixed_version": "",
+          "id": "GO-2026-5337",
+          "level": "module",
+          "module": "github.com/kyverno/kyverno",
+          "summary": "Kyverno: Cross-Namespace Read Bypasses RBAC Isolation (CVE-2026-22039 Incomplete Fix) in github.com/kyverno/kyverno",
+          "version": "v1.19.2+dirty"
+        },
+        {
+          "aliases": [
+            "GHSA-qr4g-8hrp-c4rw"
+          ],
+          "fixed_version": "",
+          "id": "GO-2026-5594",
+          "level": "module",
+          "module": "github.com/kyverno/kyverno",
+          "summary": "Kyverno has unrestricted outbound requests in Kyverno apiCall enabling SSRF in github.com/kyverno/kyverno",
+          "version": "v1.19.2+dirty"
+        },
+        {
+          "aliases": [
+            "CVE-2026-81870",
+            "GHSA-8wmf-6v46-5gfg"
+          ],
+          "fixed_version": "v1.45.0",
+          "id": "GO-2026-6505",
+          "level": "module",
+          "module": "go.opentelemetry.io/otel/exporters/otlp/otlptrace",
+          "summary": "OpenTelemetry-Go: Exporter config logging may leak endpoint URLs in info logs in go.opentelemetry.io/otel/exporters/otlp/otlptrace",
+          "version": "v1.44.0"
+        }
+      ],
+      "go_version": "go1.26.9",
+      "main_module": "github.com/kyverno/kyverno"
+    },
     "id": "kyverno__kyverno",
     "manifests": [
       ".github/actions/git/cherry-pick/action.yaml",
@@ -4082,8 +4215,33 @@
       "hack/controller-gen/go.sum"
     ],
     "name": "kyverno",
+    "osv": {
+      "advisories": 16,
+      "available": true,
+      "confirmed": 12,
+      "osv_only": [],
+      "warning": null
+    },
     "ref": "v1.19.2",
     "ref_kind": "release",
+    "release_integrity": {
+      "asset": "kyverno-cli_v1.19.2_linux_x86_64.tar.gz",
+      "assets": 41,
+      "checksums_published": true,
+      "digest_matches_github": true,
+      "methods": [
+        {
+          "covers": "asset",
+          "identity": "GitHub Actions workflow in kyverno/kyverno",
+          "method": "cosign",
+          "status": "verified"
+        }
+      ],
+      "provenance_published": false,
+      "sbom_published": false,
+      "signatures_published": true,
+      "verdict": "verified"
+    },
     "released_at": "2026-10-20T23:50:19Z",
     "repository": "kyverno/kyverno",
     "sbomlyze_diff": {
@@ -4096,7 +4254,105 @@
       ],
       "removed": 0
     },
-    "scanned_at": "2026-11-01T16:37:35+00:00",
+    "scanned_at": "2026-11-01T17:43:39+00:00",
+    "scorecard": {
+      "checks": [
+        {
+          "name": "SAST",
+          "reason": "SAST tool is not run on all commits -- score normalized to 0",
+          "score": 0
+        },
+        {
+          "name": "Token-Permissions",
+          "reason": "detected GitHub workflow tokens with excessive permissions",
+          "score": 0
+        },
+        {
+          "name": "Branch-Protection",
+          "reason": "branch protection is not maximal on development and all release branches",
+          "score": 5
+        },
+        {
+          "name": "CII-Best-Practices",
+          "reason": "badge detected: Passing",
+          "score": 5
+        },
+        {
+          "name": "Vulnerabilities",
+          "reason": "3 existing vulnerabilities detected",
+          "score": 7
+        },
+        {
+          "name": "Pinned-Dependencies",
+          "reason": "dependency not pinned by hash detected -- score normalized to 8",
+          "score": 8
+        },
+        {
+          "name": "Signed-Releases",
+          "reason": "5 out of the last 5 releases have a total of 5 signed artifacts.",
+          "score": 8
+        },
+        {
+          "name": "Security-Policy",
+          "reason": "security policy file detected",
+          "score": 9
+        },
+        {
+          "name": "Binary-Artifacts",
+          "reason": "no binaries found in the repo",
+          "score": 10
+        },
+        {
+          "name": "CI-Tests",
+          "reason": "30 out of 30 merged PRs checked by a CI test -- score normalized to 10",
+          "score": 10
+        },
+        {
+          "name": "Code-Review",
+          "reason": "all changesets reviewed",
+          "score": 10
+        },
+        {
+          "name": "Contributors",
+          "reason": "project has 42 contributing companies or organizations",
+          "score": 10
+        },
+        {
+          "name": "Dangerous-Workflow",
+          "reason": "no dangerous workflow patterns detected",
+          "score": 10
+        },
+        {
+          "name": "Dependency-Update-Tool",
+          "reason": "update tool detected",
+          "score": 10
+        },
+        {
+          "name": "Fuzzing",
+          "reason": "project is fuzzed",
+          "score": 10
+        },
+        {
+          "name": "License",
+          "reason": "license file detected",
+          "score": 10
+        },
+        {
+          "name": "Maintained",
+          "reason": "30 commit(s) and 4 issue activity found in the last 90 days -- score normalized to 10",
+          "score": 10
+        },
+        {
+          "name": "Packaging",
+          "reason": "packaging workflow detected",
+          "score": 10
+        }
+      ],
+      "date": "2026-10-13",
+      "score": 7.8,
+      "source": "openssf-api",
+      "version": "v5.5.0"
+    },
     "vulnerabilities": [
       {
         "aliases": [
@@ -4108,7 +4364,9 @@
           "4.1.6"
         ],
         "id": "GHSA-mgcc-cww5-fp2q",
+        "in_binary": "vulnerable code not in binary",
         "location": "go.mod",
+        "osv_confirmed": true,
         "package": "github.com/go-jose/go-jose/v4",
         "severity": "High",
         "url": "https://github.com/advisories/GHSA-mgcc-cww5-fp2q",
@@ -4127,7 +4385,9 @@
           "3.7.1"
         ],
         "id": "GO-2026-6107",
+        "in_binary": "vulnerable code in binary",
         "location": "go.mod",
+        "osv_confirmed": true,
         "package": "go.etcd.io/etcd/client/pkg/v3",
         "severity": "High",
         "url": "https://github.com/etcd-io/etcd/security/advisories/GHSA-6vch-q96h-7gc3",
@@ -4143,7 +4403,9 @@
           "5.4.0"
         ],
         "id": "GHSA-j6qf-3m9c-vwj3",
+        "in_binary": "vulnerable code not in binary",
         "location": "go.mod",
+        "osv_confirmed": true,
         "package": "github.com/go-chi/chi/v5",
         "severity": "Medium",
         "url": "https://github.com/advisories/GHSA-j6qf-3m9c-vwj3",
@@ -4159,7 +4421,9 @@
           "4.1.5"
         ],
         "id": "GHSA-4w3g-jfj2-cw2q",
+        "in_binary": "vulnerable code not in binary",
         "location": "go.mod",
+        "osv_confirmed": true,
         "package": "github.com/go-jose/go-jose/v4",
         "severity": "Medium",
         "url": "https://github.com/advisories/GHSA-4w3g-jfj2-cw2q",
@@ -4175,7 +4439,9 @@
           "4.1.5"
         ],
         "id": "GHSA-vvm8-gf78-28g4",
+        "in_binary": "vulnerable code not in binary",
         "location": "go.mod",
+        "osv_confirmed": true,
         "package": "github.com/go-jose/go-jose/v4",
         "severity": "Medium",
         "url": "https://github.com/advisories/GHSA-vvm8-gf78-28g4",
@@ -4191,7 +4457,9 @@
           "1.45.0"
         ],
         "id": "GHSA-8wmf-6v46-5gfg",
+        "in_binary": "module in binary",
         "location": "go.mod",
+        "osv_confirmed": true,
         "package": "go.opentelemetry.io/otel/exporters/otlp/otlptrace",
         "severity": "Low",
         "url": "https://github.com/advisories/GHSA-8wmf-6v46-5gfg",
@@ -4207,7 +4475,9 @@
           "1.45.0"
         ],
         "id": "GHSA-8wmf-6v46-5gfg",
+        "in_binary": "module in binary",
         "location": "go.mod",
+        "osv_confirmed": true,
         "package": "go.opentelemetry.io/otel/exporters/otlp/otlptrace/otlptracegrpc",
         "severity": "Low",
         "url": "https://github.com/advisories/GHSA-8wmf-6v46-5gfg",
@@ -4223,7 +4493,9 @@
           "1.45.0"
         ],
         "id": "GHSA-8wmf-6v46-5gfg",
+        "in_binary": "module in binary",
         "location": "go.mod",
+        "osv_confirmed": true,
         "package": "go.opentelemetry.io/otel/sdk",
         "severity": "Low",
         "url": "https://github.com/advisories/GHSA-8wmf-6v46-5gfg",
@@ -4235,7 +4507,9 @@
         "fix_state": "unknown",
         "fixed_in": [],
         "id": "GO-2026-6225",
+        "in_binary": "vulnerable code in binary",
         "location": "go.mod",
+        "osv_confirmed": true,
         "package": "github.com/chrismellard/docker-credential-acr-env",
         "severity": "Unknown",
         "url": "https://github.com/chrismellard/docker-credential-acr-env/issues/21",
@@ -4247,7 +4521,9 @@
         "fix_state": "unknown",
         "fixed_in": [],
         "id": "GO-2026-5932",
+        "in_binary": "vulnerable code in binary",
         "location": "go.mod",
+        "osv_confirmed": true,
         "package": "golang.org/x/crypto",
         "severity": "Unknown",
         "url": "https://go.dev/issue/44226",
@@ -4263,7 +4539,9 @@
           "0.62.0"
         ],
         "id": "GO-2026-6860",
+        "in_binary": "vulnerable code in binary",
         "location": "hack/api-group-resources/go.mod",
+        "osv_confirmed": true,
         "package": "golang.org/x/net",
         "severity": "Unknown",
         "url": "https://go.dev/cl/849365",
@@ -4279,13 +4557,2290 @@
           "0.62.0"
         ],
         "id": "GO-2026-6866",
+        "in_binary": "vulnerable code in binary",
         "location": "go.mod",
+        "osv_confirmed": true,
         "package": "golang.org/x/net",
         "severity": "Unknown",
         "url": "https://go.dev/cl/855121",
         "version": "v0.60.0"
       }
-    ]
+    ],
+    "workflow_audit": {
+      "files": 62,
+      "findings": [
+        {
+          "confidence": "High",
+          "description": "code injection via template expansion",
+          "file": ".github/actions/image/publish/action.yaml",
+          "line": 48,
+          "note": "this step",
+          "rule": "template-injection",
+          "severity": "High",
+          "url": "https://docs.zizmor.sh/audits/#template-injection"
+        },
+        {
+          "confidence": "High",
+          "description": "code injection via template expansion",
+          "file": ".github/actions/image/publish/action.yaml",
+          "line": 48,
+          "note": "this step",
+          "rule": "template-injection",
+          "severity": "High",
+          "url": "https://docs.zizmor.sh/audits/#template-injection"
+        },
+        {
+          "confidence": "High",
+          "description": "code injection via template expansion",
+          "file": ".github/actions/image/publish/action.yaml",
+          "line": 66,
+          "note": "this step",
+          "rule": "template-injection",
+          "severity": "High",
+          "url": "https://docs.zizmor.sh/audits/#template-injection"
+        },
+        {
+          "confidence": "High",
+          "description": "code injection via template expansion",
+          "file": ".github/actions/image/publish/action.yaml",
+          "line": 78,
+          "note": "this step",
+          "rule": "template-injection",
+          "severity": "High",
+          "url": "https://docs.zizmor.sh/audits/#template-injection"
+        },
+        {
+          "confidence": "High",
+          "description": "code injection via template expansion",
+          "file": ".github/actions/tests/conformance/run/action.yaml",
+          "line": 104,
+          "note": "this step",
+          "rule": "template-injection",
+          "severity": "High",
+          "url": "https://docs.zizmor.sh/audits/#template-injection"
+        },
+        {
+          "confidence": "High",
+          "description": "code injection via template expansion",
+          "file": ".github/actions/tests/conformance/run/action.yaml",
+          "line": 104,
+          "note": "this step",
+          "rule": "template-injection",
+          "severity": "High",
+          "url": "https://docs.zizmor.sh/audits/#template-injection"
+        },
+        {
+          "confidence": "High",
+          "description": "code injection via template expansion",
+          "file": ".github/actions/tests/conformance/run/action.yaml",
+          "line": 134,
+          "note": "this step",
+          "rule": "template-injection",
+          "severity": "High",
+          "url": "https://docs.zizmor.sh/audits/#template-injection"
+        },
+        {
+          "confidence": "High",
+          "description": "code injection via template expansion",
+          "file": ".github/actions/tests/conformance/run/action.yaml",
+          "line": 134,
+          "note": "this step",
+          "rule": "template-injection",
+          "severity": "High",
+          "url": "https://docs.zizmor.sh/audits/#template-injection"
+        },
+        {
+          "confidence": "High",
+          "description": "code injection via template expansion",
+          "file": ".github/actions/tests/conformance/run/action.yaml",
+          "line": 134,
+          "note": "this step",
+          "rule": "template-injection",
+          "severity": "High",
+          "url": "https://docs.zizmor.sh/audits/#template-injection"
+        },
+        {
+          "confidence": "High",
+          "description": "code injection via template expansion",
+          "file": ".github/actions/tests/conformance/run/action.yaml",
+          "line": 167,
+          "note": "this step",
+          "rule": "template-injection",
+          "severity": "High",
+          "url": "https://docs.zizmor.sh/audits/#template-injection"
+        },
+        {
+          "confidence": "High",
+          "description": "code injection via template expansion",
+          "file": ".github/actions/tests/conformance/run/action.yaml",
+          "line": 167,
+          "note": "this step",
+          "rule": "template-injection",
+          "severity": "High",
+          "url": "https://docs.zizmor.sh/audits/#template-injection"
+        },
+        {
+          "confidence": "High",
+          "description": "code injection via template expansion",
+          "file": ".github/actions/tests/conformance/run/action.yaml",
+          "line": 167,
+          "note": "this step",
+          "rule": "template-injection",
+          "severity": "High",
+          "url": "https://docs.zizmor.sh/audits/#template-injection"
+        },
+        {
+          "confidence": "High",
+          "description": "code injection via template expansion",
+          "file": ".github/actions/tests/conformance/run/action.yaml",
+          "line": 167,
+          "note": "this step",
+          "rule": "template-injection",
+          "severity": "High",
+          "url": "https://docs.zizmor.sh/audits/#template-injection"
+        },
+        {
+          "confidence": "High",
+          "description": "code injection via template expansion",
+          "file": ".github/actions/workflow/failure-issue/action.yaml",
+          "line": 18,
+          "note": "this step",
+          "rule": "template-injection",
+          "severity": "High",
+          "url": "https://docs.zizmor.sh/audits/#template-injection"
+        },
+        {
+          "confidence": "High",
+          "description": "code injection via template expansion",
+          "file": ".github/actions/workflow/failure-issue/action.yaml",
+          "line": 18,
+          "note": "this step",
+          "rule": "template-injection",
+          "severity": "High",
+          "url": "https://docs.zizmor.sh/audits/#template-injection"
+        },
+        {
+          "confidence": "High",
+          "description": "code injection via template expansion",
+          "file": ".github/workflows/cache.yaml",
+          "line": 58,
+          "note": "this step",
+          "rule": "template-injection",
+          "severity": "High",
+          "url": "https://docs.zizmor.sh/audits/#template-injection"
+        },
+        {
+          "confidence": "High",
+          "description": "unpinned image references",
+          "file": ".github/workflows/check-ah-lint.yaml",
+          "line": 26,
+          "note": "container image is unpinned",
+          "rule": "unpinned-images",
+          "severity": "High",
+          "url": "https://docs.zizmor.sh/audits/#unpinned-images"
+        },
+        {
+          "confidence": "High",
+          "description": "code injection via template expansion",
+          "file": ".github/workflows/check-cli-tests.yaml",
+          "line": 42,
+          "note": "this step",
+          "rule": "template-injection",
+          "severity": "High",
+          "url": "https://docs.zizmor.sh/audits/#template-injection"
+        },
+        {
+          "confidence": "High",
+          "description": "code injection via template expansion",
+          "file": ".github/workflows/check-tests.yaml",
+          "line": 28,
+          "note": "this step",
+          "rule": "template-injection",
+          "severity": "High",
+          "url": "https://docs.zizmor.sh/audits/#template-injection"
+        },
+        {
+          "confidence": "High",
+          "description": "code injection via template expansion",
+          "file": ".github/workflows/check-tests.yaml",
+          "line": 48,
+          "note": "this step",
+          "rule": "template-injection",
+          "severity": "High",
+          "url": "https://docs.zizmor.sh/audits/#template-injection"
+        },
+        {
+          "confidence": "Medium",
+          "description": "use of fundamentally insecure workflow trigger",
+          "file": ".github/workflows/code-freeze.yaml",
+          "line": 9,
+          "note": "this workflow",
+          "rule": "dangerous-triggers",
+          "severity": "High",
+          "url": "https://docs.zizmor.sh/audits/#dangerous-triggers"
+        },
+        {
+          "confidence": "Medium",
+          "description": "use of fundamentally insecure workflow trigger",
+          "file": ".github/workflows/comment-cherry-pick.yaml",
+          "line": 7,
+          "note": "this workflow",
+          "rule": "dangerous-triggers",
+          "severity": "High",
+          "url": "https://docs.zizmor.sh/audits/#dangerous-triggers"
+        },
+        {
+          "confidence": "Medium",
+          "description": "use of fundamentally insecure workflow trigger",
+          "file": ".github/workflows/comment-conformance.yaml",
+          "line": 7,
+          "note": "this workflow",
+          "rule": "dangerous-triggers",
+          "severity": "High",
+          "url": "https://docs.zizmor.sh/audits/#dangerous-triggers"
+        },
+        {
+          "confidence": "High",
+          "description": "code injection via template expansion",
+          "file": ".github/workflows/comment-conformance.yaml",
+          "line": 32,
+          "note": "this step",
+          "rule": "template-injection",
+          "severity": "High",
+          "url": "https://docs.zizmor.sh/audits/#template-injection"
+        },
+        {
+          "confidence": "High",
+          "description": "code injection via template expansion",
+          "file": ".github/workflows/comment-conformance.yaml",
+          "line": 60,
+          "note": "this step",
+          "rule": "template-injection",
+          "severity": "High",
+          "url": "https://docs.zizmor.sh/audits/#template-injection"
+        },
+        {
+          "confidence": "Medium",
+          "description": "use of fundamentally insecure workflow trigger",
+          "file": ".github/workflows/comment-prow.yaml",
+          "line": 7,
+          "note": "this workflow",
+          "rule": "dangerous-triggers",
+          "severity": "High",
+          "url": "https://docs.zizmor.sh/audits/#dangerous-triggers"
+        },
+        {
+          "confidence": "High",
+          "description": "unpinned image references",
+          "file": ".github/workflows/helm-release.yaml",
+          "line": 64,
+          "note": "container image is unpinned",
+          "rule": "unpinned-images",
+          "severity": "High",
+          "url": "https://docs.zizmor.sh/audits/#unpinned-images"
+        },
+        {
+          "confidence": "High",
+          "description": "code injection via template expansion",
+          "file": ".github/workflows/helm-release.yaml",
+          "line": 93,
+          "note": "this step",
+          "rule": "template-injection",
+          "severity": "High",
+          "url": "https://docs.zizmor.sh/audits/#template-injection"
+        },
+        {
+          "confidence": "High",
+          "description": "code injection via template expansion",
+          "file": ".github/workflows/helm-release.yaml",
+          "line": 93,
+          "note": "this step",
+          "rule": "template-injection",
+          "severity": "High",
+          "url": "https://docs.zizmor.sh/audits/#template-injection"
+        },
+        {
+          "confidence": "High",
+          "description": "code injection via template expansion",
+          "file": ".github/workflows/helm-release.yaml",
+          "line": 126,
+          "note": "this step",
+          "rule": "template-injection",
+          "severity": "High",
+          "url": "https://docs.zizmor.sh/audits/#template-injection"
+        },
+        {
+          "confidence": "High",
+          "description": "unpinned action reference",
+          "file": ".github/workflows/images-publish.yaml",
+          "line": 168,
+          "note": "this job",
+          "rule": "unpinned-uses",
+          "severity": "High",
+          "url": "https://docs.zizmor.sh/audits/#unpinned-uses"
+        },
+        {
+          "confidence": "High",
+          "description": "unpinned action reference",
+          "file": ".github/workflows/images-publish.yaml",
+          "line": 183,
+          "note": "this job",
+          "rule": "unpinned-uses",
+          "severity": "High",
+          "url": "https://docs.zizmor.sh/audits/#unpinned-uses"
+        },
+        {
+          "confidence": "High",
+          "description": "unpinned action reference",
+          "file": ".github/workflows/images-publish.yaml",
+          "line": 198,
+          "note": "this job",
+          "rule": "unpinned-uses",
+          "severity": "High",
+          "url": "https://docs.zizmor.sh/audits/#unpinned-uses"
+        },
+        {
+          "confidence": "High",
+          "description": "unpinned action reference",
+          "file": ".github/workflows/images-publish.yaml",
+          "line": 213,
+          "note": "this job",
+          "rule": "unpinned-uses",
+          "severity": "High",
+          "url": "https://docs.zizmor.sh/audits/#unpinned-uses"
+        },
+        {
+          "confidence": "High",
+          "description": "unpinned action reference",
+          "file": ".github/workflows/images-publish.yaml",
+          "line": 228,
+          "note": "this job",
+          "rule": "unpinned-uses",
+          "severity": "High",
+          "url": "https://docs.zizmor.sh/audits/#unpinned-uses"
+        },
+        {
+          "confidence": "High",
+          "description": "unpinned action reference",
+          "file": ".github/workflows/images-publish.yaml",
+          "line": 243,
+          "note": "this job",
+          "rule": "unpinned-uses",
+          "severity": "High",
+          "url": "https://docs.zizmor.sh/audits/#unpinned-uses"
+        },
+        {
+          "confidence": "High",
+          "description": "unpinned action reference",
+          "file": ".github/workflows/images-publish.yaml",
+          "line": 258,
+          "note": "this job",
+          "rule": "unpinned-uses",
+          "severity": "High",
+          "url": "https://docs.zizmor.sh/audits/#unpinned-uses"
+        },
+        {
+          "confidence": "Medium",
+          "description": "use of fundamentally insecure workflow trigger",
+          "file": ".github/workflows/pr-labelling.yaml",
+          "line": 5,
+          "note": "this workflow",
+          "rule": "dangerous-triggers",
+          "severity": "High",
+          "url": "https://docs.zizmor.sh/audits/#dangerous-triggers"
+        },
+        {
+          "confidence": "High",
+          "description": "overly broad permissions",
+          "file": ".github/workflows/pr-labelling.yaml",
+          "line": 18,
+          "note": "pull-requests: write is overly broad at the workflow level",
+          "rule": "excessive-permissions",
+          "severity": "High",
+          "url": "https://docs.zizmor.sh/audits/#excessive-permissions"
+        },
+        {
+          "confidence": "Medium",
+          "description": "use of fundamentally insecure workflow trigger",
+          "file": ".github/workflows/pr-rate-limiter.yaml",
+          "line": 7,
+          "note": "this workflow",
+          "rule": "dangerous-triggers",
+          "severity": "High",
+          "url": "https://docs.zizmor.sh/audits/#dangerous-triggers"
+        },
+        {
+          "confidence": "High",
+          "description": "unpinned action reference",
+          "file": ".github/workflows/release.yaml",
+          "line": 162,
+          "note": "this job",
+          "rule": "unpinned-uses",
+          "severity": "High",
+          "url": "https://docs.zizmor.sh/audits/#unpinned-uses"
+        },
+        {
+          "confidence": "High",
+          "description": "unpinned action reference",
+          "file": ".github/workflows/release.yaml",
+          "line": 177,
+          "note": "this job",
+          "rule": "unpinned-uses",
+          "severity": "High",
+          "url": "https://docs.zizmor.sh/audits/#unpinned-uses"
+        },
+        {
+          "confidence": "High",
+          "description": "unpinned action reference",
+          "file": ".github/workflows/release.yaml",
+          "line": 192,
+          "note": "this job",
+          "rule": "unpinned-uses",
+          "severity": "High",
+          "url": "https://docs.zizmor.sh/audits/#unpinned-uses"
+        },
+        {
+          "confidence": "High",
+          "description": "unpinned action reference",
+          "file": ".github/workflows/release.yaml",
+          "line": 207,
+          "note": "this job",
+          "rule": "unpinned-uses",
+          "severity": "High",
+          "url": "https://docs.zizmor.sh/audits/#unpinned-uses"
+        },
+        {
+          "confidence": "High",
+          "description": "unpinned action reference",
+          "file": ".github/workflows/release.yaml",
+          "line": 222,
+          "note": "this job",
+          "rule": "unpinned-uses",
+          "severity": "High",
+          "url": "https://docs.zizmor.sh/audits/#unpinned-uses"
+        },
+        {
+          "confidence": "High",
+          "description": "unpinned action reference",
+          "file": ".github/workflows/release.yaml",
+          "line": 237,
+          "note": "this job",
+          "rule": "unpinned-uses",
+          "severity": "High",
+          "url": "https://docs.zizmor.sh/audits/#unpinned-uses"
+        },
+        {
+          "confidence": "High",
+          "description": "unpinned action reference",
+          "file": ".github/workflows/release.yaml",
+          "line": 252,
+          "note": "this job",
+          "rule": "unpinned-uses",
+          "severity": "High",
+          "url": "https://docs.zizmor.sh/audits/#unpinned-uses"
+        },
+        {
+          "confidence": "High",
+          "description": "code injection via template expansion",
+          "file": ".github/workflows/release.yaml",
+          "line": 339,
+          "note": "this step",
+          "rule": "template-injection",
+          "severity": "High",
+          "url": "https://docs.zizmor.sh/audits/#template-injection"
+        },
+        {
+          "confidence": "High",
+          "description": "code injection via template expansion",
+          "file": ".github/workflows/release.yaml",
+          "line": 361,
+          "note": "this step",
+          "rule": "template-injection",
+          "severity": "High",
+          "url": "https://docs.zizmor.sh/audits/#template-injection"
+        },
+        {
+          "confidence": "High",
+          "description": "code injection via template expansion",
+          "file": ".github/workflows/release.yaml",
+          "line": 361,
+          "note": "this step",
+          "rule": "template-injection",
+          "severity": "High",
+          "url": "https://docs.zizmor.sh/audits/#template-injection"
+        },
+        {
+          "confidence": "High",
+          "description": "code injection via template expansion",
+          "file": ".github/workflows/release.yaml",
+          "line": 373,
+          "note": "this step",
+          "rule": "template-injection",
+          "severity": "High",
+          "url": "https://docs.zizmor.sh/audits/#template-injection"
+        },
+        {
+          "confidence": "High",
+          "description": "code injection via template expansion",
+          "file": ".github/workflows/release.yaml",
+          "line": 373,
+          "note": "this step",
+          "rule": "template-injection",
+          "severity": "High",
+          "url": "https://docs.zizmor.sh/audits/#template-injection"
+        },
+        {
+          "confidence": "High",
+          "description": "code injection via template expansion",
+          "file": ".github/workflows/release.yaml",
+          "line": 403,
+          "note": "this step",
+          "rule": "template-injection",
+          "severity": "High",
+          "url": "https://docs.zizmor.sh/audits/#template-injection"
+        },
+        {
+          "confidence": "Medium",
+          "description": "use of fundamentally insecure workflow trigger",
+          "file": ".github/workflows/sync-trivy-issues.yaml",
+          "line": 7,
+          "note": "this workflow",
+          "rule": "dangerous-triggers",
+          "severity": "High",
+          "url": "https://docs.zizmor.sh/audits/#dangerous-triggers"
+        },
+        {
+          "confidence": "Medium",
+          "description": "overly broad permissions",
+          "file": ".github/workflows/check-framework.yaml",
+          "line": 27,
+          "note": "this job",
+          "rule": "excessive-permissions",
+          "severity": "Medium",
+          "url": "https://docs.zizmor.sh/audits/#excessive-permissions"
+        },
+        {
+          "confidence": "High",
+          "description": "action or reusable workflow from archived repository",
+          "file": ".github/workflows/scan-sonarcloud.yaml",
+          "line": 27,
+          "note": "this step",
+          "rule": "archived-uses",
+          "severity": "Medium",
+          "url": "https://docs.zizmor.sh/audits/#archived-uses"
+        },
+        {
+          "confidence": "High",
+          "description": "use GitHub's dedicated self-repository syntax",
+          "file": ".github/actions/go/setup/action.yaml",
+          "line": 28,
+          "note": "this step",
+          "rule": "self-repository",
+          "severity": "Low",
+          "url": "https://docs.zizmor.sh/audits/#self-repository"
+        },
+        {
+          "confidence": "High",
+          "description": "use GitHub's dedicated self-repository syntax",
+          "file": ".github/actions/go/setup/action.yaml",
+          "line": 32,
+          "note": "this step",
+          "rule": "self-repository",
+          "severity": "Low",
+          "url": "https://docs.zizmor.sh/audits/#self-repository"
+        },
+        {
+          "confidence": "High",
+          "description": "use GitHub's dedicated self-repository syntax",
+          "file": ".github/actions/go/setup/action.yaml",
+          "line": 37,
+          "note": "this step",
+          "rule": "self-repository",
+          "severity": "Low",
+          "url": "https://docs.zizmor.sh/audits/#self-repository"
+        },
+        {
+          "confidence": "High",
+          "description": "use GitHub's dedicated self-repository syntax",
+          "file": ".github/actions/tests/conformance/run/action.yaml",
+          "line": 47,
+          "note": "this step",
+          "rule": "self-repository",
+          "severity": "Low",
+          "url": "https://docs.zizmor.sh/audits/#self-repository"
+        },
+        {
+          "confidence": "High",
+          "description": "use GitHub's dedicated self-repository syntax",
+          "file": ".github/actions/tests/conformance/run/action.yaml",
+          "line": 53,
+          "note": "this step",
+          "rule": "self-repository",
+          "severity": "Low",
+          "url": "https://docs.zizmor.sh/audits/#self-repository"
+        },
+        {
+          "confidence": "High",
+          "description": "use GitHub's dedicated self-repository syntax",
+          "file": ".github/actions/tests/conformance/run/action.yaml",
+          "line": 132,
+          "note": "this step",
+          "rule": "self-repository",
+          "severity": "Low",
+          "url": "https://docs.zizmor.sh/audits/#self-repository"
+        },
+        {
+          "confidence": "High",
+          "description": "use GitHub's dedicated self-repository syntax",
+          "file": ".github/actions/tests/conformance/run/action.yaml",
+          "line": 180,
+          "note": "this step",
+          "rule": "self-repository",
+          "severity": "Low",
+          "url": "https://docs.zizmor.sh/audits/#self-repository"
+        },
+        {
+          "confidence": "High",
+          "description": "use GitHub's dedicated self-repository syntax",
+          "file": ".github/actions/tools/install/action.yaml",
+          "line": 38,
+          "note": "this step",
+          "rule": "self-repository",
+          "severity": "Low",
+          "url": "https://docs.zizmor.sh/audits/#self-repository"
+        },
+        {
+          "confidence": "High",
+          "description": "use GitHub's dedicated self-repository syntax",
+          "file": ".github/actions/tools/install/action.yaml",
+          "line": 40,
+          "note": "this step",
+          "rule": "self-repository",
+          "severity": "Low",
+          "url": "https://docs.zizmor.sh/audits/#self-repository"
+        },
+        {
+          "confidence": "High",
+          "description": "use GitHub's dedicated self-repository syntax",
+          "file": ".github/actions/tools/install/action.yaml",
+          "line": 42,
+          "note": "this step",
+          "rule": "self-repository",
+          "severity": "Low",
+          "url": "https://docs.zizmor.sh/audits/#self-repository"
+        },
+        {
+          "confidence": "High",
+          "description": "use GitHub's dedicated self-repository syntax",
+          "file": ".github/actions/tools/install/action.yaml",
+          "line": 44,
+          "note": "this step",
+          "rule": "self-repository",
+          "severity": "Low",
+          "url": "https://docs.zizmor.sh/audits/#self-repository"
+        },
+        {
+          "confidence": "High",
+          "description": "use GitHub's dedicated self-repository syntax",
+          "file": ".github/actions/tools/install/action.yaml",
+          "line": 46,
+          "note": "this step",
+          "rule": "self-repository",
+          "severity": "Low",
+          "url": "https://docs.zizmor.sh/audits/#self-repository"
+        },
+        {
+          "confidence": "High",
+          "description": "use GitHub's dedicated self-repository syntax",
+          "file": ".github/actions/tools/install/action.yaml",
+          "line": 48,
+          "note": "this step",
+          "rule": "self-repository",
+          "severity": "Low",
+          "url": "https://docs.zizmor.sh/audits/#self-repository"
+        },
+        {
+          "confidence": "High",
+          "description": "use GitHub's dedicated self-repository syntax",
+          "file": ".github/actions/tools/install/action.yaml",
+          "line": 50,
+          "note": "this step",
+          "rule": "self-repository",
+          "severity": "Low",
+          "url": "https://docs.zizmor.sh/audits/#self-repository"
+        },
+        {
+          "confidence": "High",
+          "description": "use GitHub's dedicated self-repository syntax",
+          "file": ".github/actions/tools/install/action.yaml",
+          "line": 52,
+          "note": "this step",
+          "rule": "self-repository",
+          "severity": "Low",
+          "url": "https://docs.zizmor.sh/audits/#self-repository"
+        },
+        {
+          "confidence": "High",
+          "description": "use GitHub's dedicated self-repository syntax",
+          "file": ".github/actions/tools/install/action.yaml",
+          "line": 54,
+          "note": "this step",
+          "rule": "self-repository",
+          "severity": "Low",
+          "url": "https://docs.zizmor.sh/audits/#self-repository"
+        },
+        {
+          "confidence": "High",
+          "description": "use GitHub's dedicated self-repository syntax",
+          "file": ".github/workflows/cache.yaml",
+          "line": 22,
+          "note": "this step",
+          "rule": "self-repository",
+          "severity": "Low",
+          "url": "https://docs.zizmor.sh/audits/#self-repository"
+        },
+        {
+          "confidence": "High",
+          "description": "use GitHub's dedicated self-repository syntax",
+          "file": ".github/workflows/cache.yaml",
+          "line": 28,
+          "note": "this step",
+          "rule": "self-repository",
+          "severity": "Low",
+          "url": "https://docs.zizmor.sh/audits/#self-repository"
+        },
+        {
+          "confidence": "High",
+          "description": "use GitHub's dedicated self-repository syntax",
+          "file": ".github/workflows/cache.yaml",
+          "line": 43,
+          "note": "this step",
+          "rule": "self-repository",
+          "severity": "Low",
+          "url": "https://docs.zizmor.sh/audits/#self-repository"
+        },
+        {
+          "confidence": "High",
+          "description": "use GitHub's dedicated self-repository syntax",
+          "file": ".github/workflows/cache.yaml",
+          "line": 49,
+          "note": "this step",
+          "rule": "self-repository",
+          "severity": "Low",
+          "url": "https://docs.zizmor.sh/audits/#self-repository"
+        },
+        {
+          "confidence": "High",
+          "description": "use GitHub's dedicated self-repository syntax",
+          "file": ".github/workflows/cache.yaml",
+          "line": 55,
+          "note": "this step",
+          "rule": "self-repository",
+          "severity": "Low",
+          "url": "https://docs.zizmor.sh/audits/#self-repository"
+        },
+        {
+          "confidence": "High",
+          "description": "use GitHub's dedicated self-repository syntax",
+          "file": ".github/workflows/cache.yaml",
+          "line": 64,
+          "note": "this step",
+          "rule": "self-repository",
+          "severity": "Low",
+          "url": "https://docs.zizmor.sh/audits/#self-repository"
+        },
+        {
+          "confidence": "High",
+          "description": "use GitHub's dedicated self-repository syntax",
+          "file": ".github/workflows/cache.yaml",
+          "line": 81,
+          "note": "this step",
+          "rule": "self-repository",
+          "severity": "Low",
+          "url": "https://docs.zizmor.sh/audits/#self-repository"
+        },
+        {
+          "confidence": "High",
+          "description": "use GitHub's dedicated self-repository syntax",
+          "file": ".github/workflows/check-ah-lint.yaml",
+          "line": 45,
+          "note": "this step",
+          "rule": "self-repository",
+          "severity": "Low",
+          "url": "https://docs.zizmor.sh/audits/#self-repository"
+        },
+        {
+          "confidence": "High",
+          "description": "use GitHub's dedicated self-repository syntax",
+          "file": ".github/workflows/check-cli-tests.yaml",
+          "line": 28,
+          "note": "this step",
+          "rule": "self-repository",
+          "severity": "Low",
+          "url": "https://docs.zizmor.sh/audits/#self-repository"
+        },
+        {
+          "confidence": "High",
+          "description": "use GitHub's dedicated self-repository syntax",
+          "file": ".github/workflows/check-cli-tests.yaml",
+          "line": 62,
+          "note": "this step",
+          "rule": "self-repository",
+          "severity": "Low",
+          "url": "https://docs.zizmor.sh/audits/#self-repository"
+        },
+        {
+          "confidence": "High",
+          "description": "use GitHub's dedicated self-repository syntax",
+          "file": ".github/workflows/check-codegen.yaml",
+          "line": 28,
+          "note": "this step",
+          "rule": "self-repository",
+          "severity": "Low",
+          "url": "https://docs.zizmor.sh/audits/#self-repository"
+        },
+        {
+          "confidence": "High",
+          "description": "use GitHub's dedicated self-repository syntax",
+          "file": ".github/workflows/check-codegen.yaml",
+          "line": 52,
+          "note": "this step",
+          "rule": "self-repository",
+          "severity": "Low",
+          "url": "https://docs.zizmor.sh/audits/#self-repository"
+        },
+        {
+          "confidence": "High",
+          "description": "use GitHub's dedicated self-repository syntax",
+          "file": ".github/workflows/check-codegen.yaml",
+          "line": 81,
+          "note": "this step",
+          "rule": "self-repository",
+          "severity": "Low",
+          "url": "https://docs.zizmor.sh/audits/#self-repository"
+        },
+        {
+          "confidence": "High",
+          "description": "use GitHub's dedicated self-repository syntax",
+          "file": ".github/workflows/check-ct-lint.yaml",
+          "line": 62,
+          "note": "this step",
+          "rule": "self-repository",
+          "severity": "Low",
+          "url": "https://docs.zizmor.sh/audits/#self-repository"
+        },
+        {
+          "confidence": "High",
+          "description": "use GitHub's dedicated self-repository syntax",
+          "file": ".github/workflows/check-devcontainer.yaml",
+          "line": 62,
+          "note": "this step",
+          "rule": "self-repository",
+          "severity": "Low",
+          "url": "https://docs.zizmor.sh/audits/#self-repository"
+        },
+        {
+          "confidence": "High",
+          "description": "use GitHub's dedicated self-repository syntax",
+          "file": ".github/workflows/check-fmt.yaml",
+          "line": 28,
+          "note": "this step",
+          "rule": "self-repository",
+          "severity": "Low",
+          "url": "https://docs.zizmor.sh/audits/#self-repository"
+        },
+        {
+          "confidence": "High",
+          "description": "use GitHub's dedicated self-repository syntax",
+          "file": ".github/workflows/check-fmt.yaml",
+          "line": 43,
+          "note": "this step",
+          "rule": "self-repository",
+          "severity": "Low",
+          "url": "https://docs.zizmor.sh/audits/#self-repository"
+        },
+        {
+          "confidence": "High",
+          "description": "use GitHub's dedicated self-repository syntax",
+          "file": ".github/workflows/check-framework.yaml",
+          "line": 46,
+          "note": "this step",
+          "rule": "self-repository",
+          "severity": "Low",
+          "url": "https://docs.zizmor.sh/audits/#self-repository"
+        },
+        {
+          "confidence": "High",
+          "description": "use GitHub's dedicated self-repository syntax",
+          "file": ".github/workflows/check-golangci-lint.yaml",
+          "line": 28,
+          "note": "this step",
+          "rule": "self-repository",
+          "severity": "Low",
+          "url": "https://docs.zizmor.sh/audits/#self-repository"
+        },
+        {
+          "confidence": "High",
+          "description": "use GitHub's dedicated self-repository syntax",
+          "file": ".github/workflows/check-golangci-lint.yaml",
+          "line": 47,
+          "note": "this step",
+          "rule": "self-repository",
+          "severity": "Low",
+          "url": "https://docs.zizmor.sh/audits/#self-repository"
+        },
+        {
+          "confidence": "High",
+          "description": "use GitHub's dedicated self-repository syntax",
+          "file": ".github/workflows/check-imports.yaml",
+          "line": 28,
+          "note": "this step",
+          "rule": "self-repository",
+          "severity": "Low",
+          "url": "https://docs.zizmor.sh/audits/#self-repository"
+        },
+        {
+          "confidence": "High",
+          "description": "use GitHub's dedicated self-repository syntax",
+          "file": ".github/workflows/check-imports.yaml",
+          "line": 43,
+          "note": "this step",
+          "rule": "self-repository",
+          "severity": "Low",
+          "url": "https://docs.zizmor.sh/audits/#self-repository"
+        },
+        {
+          "confidence": "High",
+          "description": "use GitHub's dedicated self-repository syntax",
+          "file": ".github/workflows/check-sha-pinned-actions.yaml",
+          "line": 46,
+          "note": "this step",
+          "rule": "self-repository",
+          "severity": "Low",
+          "url": "https://docs.zizmor.sh/audits/#self-repository"
+        },
+        {
+          "confidence": "High",
+          "description": "use GitHub's dedicated self-repository syntax",
+          "file": ".github/workflows/check-tests.yaml",
+          "line": 24,
+          "note": "this step",
+          "rule": "self-repository",
+          "severity": "Low",
+          "url": "https://docs.zizmor.sh/audits/#self-repository"
+        },
+        {
+          "confidence": "High",
+          "description": "use GitHub's dedicated self-repository syntax",
+          "file": ".github/workflows/check-tests.yaml",
+          "line": 26,
+          "note": "this step",
+          "rule": "self-repository",
+          "severity": "Low",
+          "url": "https://docs.zizmor.sh/audits/#self-repository"
+        },
+        {
+          "confidence": "High",
+          "description": "use GitHub's dedicated self-repository syntax",
+          "file": ".github/workflows/check-tests.yaml",
+          "line": 46,
+          "note": "this step",
+          "rule": "self-repository",
+          "severity": "Low",
+          "url": "https://docs.zizmor.sh/audits/#self-repository"
+        },
+        {
+          "confidence": "High",
+          "description": "use GitHub's dedicated self-repository syntax",
+          "file": ".github/workflows/check-tests.yaml",
+          "line": 61,
+          "note": "this job",
+          "rule": "self-repository",
+          "severity": "Low",
+          "url": "https://docs.zizmor.sh/audits/#self-repository"
+        },
+        {
+          "confidence": "High",
+          "description": "use GitHub's dedicated self-repository syntax",
+          "file": ".github/workflows/check-tests.yaml",
+          "line": 70,
+          "note": "this job",
+          "rule": "self-repository",
+          "severity": "Low",
+          "url": "https://docs.zizmor.sh/audits/#self-repository"
+        },
+        {
+          "confidence": "High",
+          "description": "use GitHub's dedicated self-repository syntax",
+          "file": ".github/workflows/check-tests.yaml",
+          "line": 77,
+          "note": "this job",
+          "rule": "self-repository",
+          "severity": "Low",
+          "url": "https://docs.zizmor.sh/audits/#self-repository"
+        },
+        {
+          "confidence": "High",
+          "description": "use GitHub's dedicated self-repository syntax",
+          "file": ".github/workflows/check-tests.yaml",
+          "line": 89,
+          "note": "this step",
+          "rule": "self-repository",
+          "severity": "Low",
+          "url": "https://docs.zizmor.sh/audits/#self-repository"
+        },
+        {
+          "confidence": "High",
+          "description": "use GitHub's dedicated self-repository syntax",
+          "file": ".github/workflows/check-tests.yaml",
+          "line": 111,
+          "note": "this step",
+          "rule": "self-repository",
+          "severity": "Low",
+          "url": "https://docs.zizmor.sh/audits/#self-repository"
+        },
+        {
+          "confidence": "High",
+          "description": "use GitHub's dedicated self-repository syntax",
+          "file": ".github/workflows/check-unit-tests.yaml",
+          "line": 37,
+          "note": "this step",
+          "rule": "self-repository",
+          "severity": "Low",
+          "url": "https://docs.zizmor.sh/audits/#self-repository"
+        },
+        {
+          "confidence": "High",
+          "description": "use GitHub's dedicated self-repository syntax",
+          "file": ".github/workflows/check-unit-tests.yaml",
+          "line": 44,
+          "note": "this step",
+          "rule": "self-repository",
+          "severity": "Low",
+          "url": "https://docs.zizmor.sh/audits/#self-repository"
+        },
+        {
+          "confidence": "High",
+          "description": "use GitHub's dedicated self-repository syntax",
+          "file": ".github/workflows/check-unit-tests.yaml",
+          "line": 93,
+          "note": "this step",
+          "rule": "self-repository",
+          "severity": "Low",
+          "url": "https://docs.zizmor.sh/audits/#self-repository"
+        },
+        {
+          "confidence": "High",
+          "description": "use GitHub's dedicated self-repository syntax",
+          "file": ".github/workflows/check-unused-package.yaml",
+          "line": 28,
+          "note": "this step",
+          "rule": "self-repository",
+          "severity": "Low",
+          "url": "https://docs.zizmor.sh/audits/#self-repository"
+        },
+        {
+          "confidence": "High",
+          "description": "use GitHub's dedicated self-repository syntax",
+          "file": ".github/workflows/check-unused-package.yaml",
+          "line": 43,
+          "note": "this step",
+          "rule": "self-repository",
+          "severity": "Low",
+          "url": "https://docs.zizmor.sh/audits/#self-repository"
+        },
+        {
+          "confidence": "High",
+          "description": "use GitHub's dedicated self-repository syntax",
+          "file": ".github/workflows/check-vet.yaml",
+          "line": 28,
+          "note": "this step",
+          "rule": "self-repository",
+          "severity": "Low",
+          "url": "https://docs.zizmor.sh/audits/#self-repository"
+        },
+        {
+          "confidence": "High",
+          "description": "use GitHub's dedicated self-repository syntax",
+          "file": ".github/workflows/check-vet.yaml",
+          "line": 43,
+          "note": "this step",
+          "rule": "self-repository",
+          "severity": "Low",
+          "url": "https://docs.zizmor.sh/audits/#self-repository"
+        },
+        {
+          "confidence": "High",
+          "description": "use GitHub's dedicated self-repository syntax",
+          "file": ".github/workflows/cherry-pick-on-merge.yaml",
+          "line": 78,
+          "note": "this step",
+          "rule": "self-repository",
+          "severity": "Low",
+          "url": "https://docs.zizmor.sh/audits/#self-repository"
+        },
+        {
+          "confidence": "High",
+          "description": "use GitHub's dedicated self-repository syntax",
+          "file": ".github/workflows/comment-cherry-pick.yaml",
+          "line": 88,
+          "note": "this step",
+          "rule": "self-repository",
+          "severity": "Low",
+          "url": "https://docs.zizmor.sh/audits/#self-repository"
+        },
+        {
+          "confidence": "High",
+          "description": "use GitHub's dedicated self-repository syntax",
+          "file": ".github/workflows/comment-conformance.yaml",
+          "line": 28,
+          "note": "this step",
+          "rule": "self-repository",
+          "severity": "Low",
+          "url": "https://docs.zizmor.sh/audits/#self-repository"
+        },
+        {
+          "confidence": "High",
+          "description": "use GitHub's dedicated self-repository syntax",
+          "file": ".github/workflows/comment-conformance.yaml",
+          "line": 30,
+          "note": "this step",
+          "rule": "self-repository",
+          "severity": "Low",
+          "url": "https://docs.zizmor.sh/audits/#self-repository"
+        },
+        {
+          "confidence": "High",
+          "description": "use GitHub's dedicated self-repository syntax",
+          "file": ".github/workflows/comment-conformance.yaml",
+          "line": 58,
+          "note": "this step",
+          "rule": "self-repository",
+          "severity": "Low",
+          "url": "https://docs.zizmor.sh/audits/#self-repository"
+        },
+        {
+          "confidence": "High",
+          "description": "use GitHub's dedicated self-repository syntax",
+          "file": ".github/workflows/comment-conformance.yaml",
+          "line": 73,
+          "note": "this job",
+          "rule": "self-repository",
+          "severity": "Low",
+          "url": "https://docs.zizmor.sh/audits/#self-repository"
+        },
+        {
+          "confidence": "High",
+          "description": "use GitHub's dedicated self-repository syntax",
+          "file": ".github/workflows/helm-release.yaml",
+          "line": 88,
+          "note": "this step",
+          "rule": "self-repository",
+          "severity": "Low",
+          "url": "https://docs.zizmor.sh/audits/#self-repository"
+        },
+        {
+          "confidence": "High",
+          "description": "use GitHub's dedicated self-repository syntax",
+          "file": ".github/workflows/images-publish.yaml",
+          "line": 46,
+          "note": "this step",
+          "rule": "self-repository",
+          "severity": "Low",
+          "url": "https://docs.zizmor.sh/audits/#self-repository"
+        },
+        {
+          "confidence": "High",
+          "description": "use GitHub's dedicated self-repository syntax",
+          "file": ".github/workflows/images-publish.yaml",
+          "line": 60,
+          "note": "this step",
+          "rule": "self-repository",
+          "severity": "Low",
+          "url": "https://docs.zizmor.sh/audits/#self-repository"
+        },
+        {
+          "confidence": "High",
+          "description": "use GitHub's dedicated self-repository syntax",
+          "file": ".github/workflows/images-publish.yaml",
+          "line": 62,
+          "note": "this step",
+          "rule": "self-repository",
+          "severity": "Low",
+          "url": "https://docs.zizmor.sh/audits/#self-repository"
+        },
+        {
+          "confidence": "High",
+          "description": "use GitHub's dedicated self-repository syntax",
+          "file": ".github/workflows/images-publish.yaml",
+          "line": 77,
+          "note": "this step",
+          "rule": "self-repository",
+          "severity": "Low",
+          "url": "https://docs.zizmor.sh/audits/#self-repository"
+        },
+        {
+          "confidence": "High",
+          "description": "use GitHub's dedicated self-repository syntax",
+          "file": ".github/workflows/images-publish.yaml",
+          "line": 92,
+          "note": "this step",
+          "rule": "self-repository",
+          "severity": "Low",
+          "url": "https://docs.zizmor.sh/audits/#self-repository"
+        },
+        {
+          "confidence": "High",
+          "description": "use GitHub's dedicated self-repository syntax",
+          "file": ".github/workflows/images-publish.yaml",
+          "line": 107,
+          "note": "this step",
+          "rule": "self-repository",
+          "severity": "Low",
+          "url": "https://docs.zizmor.sh/audits/#self-repository"
+        },
+        {
+          "confidence": "High",
+          "description": "use GitHub's dedicated self-repository syntax",
+          "file": ".github/workflows/images-publish.yaml",
+          "line": 122,
+          "note": "this step",
+          "rule": "self-repository",
+          "severity": "Low",
+          "url": "https://docs.zizmor.sh/audits/#self-repository"
+        },
+        {
+          "confidence": "High",
+          "description": "use GitHub's dedicated self-repository syntax",
+          "file": ".github/workflows/images-publish.yaml",
+          "line": 137,
+          "note": "this step",
+          "rule": "self-repository",
+          "severity": "Low",
+          "url": "https://docs.zizmor.sh/audits/#self-repository"
+        },
+        {
+          "confidence": "High",
+          "description": "use GitHub's dedicated self-repository syntax",
+          "file": ".github/workflows/images-publish.yaml",
+          "line": 152,
+          "note": "this step",
+          "rule": "self-repository",
+          "severity": "Low",
+          "url": "https://docs.zizmor.sh/audits/#self-repository"
+        },
+        {
+          "confidence": "High",
+          "description": "use GitHub's dedicated self-repository syntax",
+          "file": ".github/workflows/periodic-cleanup.yaml",
+          "line": 37,
+          "note": "this step",
+          "rule": "self-repository",
+          "severity": "Low",
+          "url": "https://docs.zizmor.sh/audits/#self-repository"
+        },
+        {
+          "confidence": "High",
+          "description": "use GitHub's dedicated self-repository syntax",
+          "file": ".github/workflows/periodic-trivy.yaml",
+          "line": 68,
+          "note": "this step",
+          "rule": "self-repository",
+          "severity": "Low",
+          "url": "https://docs.zizmor.sh/audits/#self-repository"
+        },
+        {
+          "confidence": "High",
+          "description": "use GitHub's dedicated self-repository syntax",
+          "file": ".github/workflows/pr-labelling.yaml",
+          "line": 26,
+          "note": "this step",
+          "rule": "self-repository",
+          "severity": "Low",
+          "url": "https://docs.zizmor.sh/audits/#self-repository"
+        },
+        {
+          "confidence": "High",
+          "description": "use GitHub's dedicated self-repository syntax",
+          "file": ".github/workflows/release.yaml",
+          "line": 40,
+          "note": "this step",
+          "rule": "self-repository",
+          "severity": "Low",
+          "url": "https://docs.zizmor.sh/audits/#self-repository"
+        },
+        {
+          "confidence": "High",
+          "description": "use GitHub's dedicated self-repository syntax",
+          "file": ".github/workflows/release.yaml",
+          "line": 54,
+          "note": "this step",
+          "rule": "self-repository",
+          "severity": "Low",
+          "url": "https://docs.zizmor.sh/audits/#self-repository"
+        },
+        {
+          "confidence": "High",
+          "description": "use GitHub's dedicated self-repository syntax",
+          "file": ".github/workflows/release.yaml",
+          "line": 56,
+          "note": "this step",
+          "rule": "self-repository",
+          "severity": "Low",
+          "url": "https://docs.zizmor.sh/audits/#self-repository"
+        },
+        {
+          "confidence": "High",
+          "description": "use GitHub's dedicated self-repository syntax",
+          "file": ".github/workflows/release.yaml",
+          "line": 71,
+          "note": "this step",
+          "rule": "self-repository",
+          "severity": "Low",
+          "url": "https://docs.zizmor.sh/audits/#self-repository"
+        },
+        {
+          "confidence": "High",
+          "description": "use GitHub's dedicated self-repository syntax",
+          "file": ".github/workflows/release.yaml",
+          "line": 86,
+          "note": "this step",
+          "rule": "self-repository",
+          "severity": "Low",
+          "url": "https://docs.zizmor.sh/audits/#self-repository"
+        },
+        {
+          "confidence": "High",
+          "description": "use GitHub's dedicated self-repository syntax",
+          "file": ".github/workflows/release.yaml",
+          "line": 101,
+          "note": "this step",
+          "rule": "self-repository",
+          "severity": "Low",
+          "url": "https://docs.zizmor.sh/audits/#self-repository"
+        },
+        {
+          "confidence": "High",
+          "description": "use GitHub's dedicated self-repository syntax",
+          "file": ".github/workflows/release.yaml",
+          "line": 116,
+          "note": "this step",
+          "rule": "self-repository",
+          "severity": "Low",
+          "url": "https://docs.zizmor.sh/audits/#self-repository"
+        },
+        {
+          "confidence": "High",
+          "description": "use GitHub's dedicated self-repository syntax",
+          "file": ".github/workflows/release.yaml",
+          "line": 131,
+          "note": "this step",
+          "rule": "self-repository",
+          "severity": "Low",
+          "url": "https://docs.zizmor.sh/audits/#self-repository"
+        },
+        {
+          "confidence": "High",
+          "description": "use GitHub's dedicated self-repository syntax",
+          "file": ".github/workflows/release.yaml",
+          "line": 146,
+          "note": "this step",
+          "rule": "self-repository",
+          "severity": "Low",
+          "url": "https://docs.zizmor.sh/audits/#self-repository"
+        },
+        {
+          "confidence": "High",
+          "description": "use GitHub's dedicated self-repository syntax",
+          "file": ".github/workflows/release.yaml",
+          "line": 287,
+          "note": "this step",
+          "rule": "self-repository",
+          "severity": "Low",
+          "url": "https://docs.zizmor.sh/audits/#self-repository"
+        },
+        {
+          "confidence": "High",
+          "description": "use GitHub's dedicated self-repository syntax",
+          "file": ".github/workflows/release.yaml",
+          "line": 290,
+          "note": "this step",
+          "rule": "self-repository",
+          "severity": "Low",
+          "url": "https://docs.zizmor.sh/audits/#self-repository"
+        },
+        {
+          "confidence": "High",
+          "description": "use GitHub's dedicated self-repository syntax",
+          "file": ".github/workflows/release.yaml",
+          "line": 331,
+          "note": "this step",
+          "rule": "self-repository",
+          "severity": "Low",
+          "url": "https://docs.zizmor.sh/audits/#self-repository"
+        },
+        {
+          "confidence": "High",
+          "description": "use GitHub's dedicated self-repository syntax",
+          "file": ".github/workflows/release.yaml",
+          "line": 337,
+          "note": "this step",
+          "rule": "self-repository",
+          "severity": "Low",
+          "url": "https://docs.zizmor.sh/audits/#self-repository"
+        },
+        {
+          "confidence": "High",
+          "description": "use GitHub's dedicated self-repository syntax",
+          "file": ".github/workflows/release.yaml",
+          "line": 401,
+          "note": "this step",
+          "rule": "self-repository",
+          "severity": "Low",
+          "url": "https://docs.zizmor.sh/audits/#self-repository"
+        },
+        {
+          "confidence": "High",
+          "description": "use GitHub's dedicated self-repository syntax",
+          "file": ".github/workflows/scan-fossa.yml",
+          "line": 41,
+          "note": "this step",
+          "rule": "self-repository",
+          "severity": "Low",
+          "url": "https://docs.zizmor.sh/audits/#self-repository"
+        },
+        {
+          "confidence": "High",
+          "description": "use GitHub's dedicated self-repository syntax",
+          "file": ".github/workflows/scan-scorecard.yaml",
+          "line": 58,
+          "note": "this step",
+          "rule": "self-repository",
+          "severity": "Low",
+          "url": "https://docs.zizmor.sh/audits/#self-repository"
+        },
+        {
+          "confidence": "High",
+          "description": "use GitHub's dedicated self-repository syntax",
+          "file": ".github/workflows/scan-semgrep.yaml",
+          "line": 57,
+          "note": "this step",
+          "rule": "self-repository",
+          "severity": "Low",
+          "url": "https://docs.zizmor.sh/audits/#self-repository"
+        },
+        {
+          "confidence": "High",
+          "description": "use GitHub's dedicated self-repository syntax",
+          "file": ".github/workflows/scan-sonarcloud.yaml",
+          "line": 41,
+          "note": "this step",
+          "rule": "self-repository",
+          "severity": "Low",
+          "url": "https://docs.zizmor.sh/audits/#self-repository"
+        },
+        {
+          "confidence": "High",
+          "description": "use GitHub's dedicated self-repository syntax",
+          "file": ".github/workflows/scan-trivy.yaml",
+          "line": 30,
+          "note": "this step",
+          "rule": "self-repository",
+          "severity": "Low",
+          "url": "https://docs.zizmor.sh/audits/#self-repository"
+        },
+        {
+          "confidence": "High",
+          "description": "use GitHub's dedicated self-repository syntax",
+          "file": ".github/workflows/scan-trivy.yaml",
+          "line": 63,
+          "note": "this step",
+          "rule": "self-repository",
+          "severity": "Low",
+          "url": "https://docs.zizmor.sh/audits/#self-repository"
+        },
+        {
+          "confidence": "High",
+          "description": "ad-hoc installation of packages",
+          "file": ".github/workflows/sync-label-colors.yaml",
+          "line": 27,
+          "note": "this step",
+          "rule": "adhoc-packages",
+          "severity": "Low",
+          "url": "https://docs.zizmor.sh/audits/#adhoc-packages"
+        },
+        {
+          "confidence": "High",
+          "description": "use GitHub's dedicated self-repository syntax",
+          "file": ".github/workflows/tests-conformance-policy-library.yaml",
+          "line": 27,
+          "note": "this step",
+          "rule": "self-repository",
+          "severity": "Low",
+          "url": "https://docs.zizmor.sh/audits/#self-repository"
+        },
+        {
+          "confidence": "High",
+          "description": "use GitHub's dedicated self-repository syntax",
+          "file": ".github/workflows/tests-conformance-policy-library.yaml",
+          "line": 67,
+          "note": "this step",
+          "rule": "self-repository",
+          "severity": "Low",
+          "url": "https://docs.zizmor.sh/audits/#self-repository"
+        },
+        {
+          "confidence": "High",
+          "description": "use GitHub's dedicated self-repository syntax",
+          "file": ".github/workflows/tests-conformance-policy-library.yaml",
+          "line": 85,
+          "note": "this step",
+          "rule": "self-repository",
+          "severity": "Low",
+          "url": "https://docs.zizmor.sh/audits/#self-repository"
+        },
+        {
+          "confidence": "High",
+          "description": "use GitHub's dedicated self-repository syntax",
+          "file": ".github/workflows/tests-conformance.yaml",
+          "line": 19,
+          "note": "this step",
+          "rule": "self-repository",
+          "severity": "Low",
+          "url": "https://docs.zizmor.sh/audits/#self-repository"
+        },
+        {
+          "confidence": "High",
+          "description": "use GitHub's dedicated self-repository syntax",
+          "file": ".github/workflows/tests-conformance.yaml",
+          "line": 34,
+          "note": "this step",
+          "rule": "self-repository",
+          "severity": "Low",
+          "url": "https://docs.zizmor.sh/audits/#self-repository"
+        },
+        {
+          "confidence": "High",
+          "description": "use GitHub's dedicated self-repository syntax",
+          "file": ".github/workflows/tests-conformance.yaml",
+          "line": 49,
+          "note": "this step",
+          "rule": "self-repository",
+          "severity": "Low",
+          "url": "https://docs.zizmor.sh/audits/#self-repository"
+        },
+        {
+          "confidence": "High",
+          "description": "use GitHub's dedicated self-repository syntax",
+          "file": ".github/workflows/tests-conformance.yaml",
+          "line": 64,
+          "note": "this step",
+          "rule": "self-repository",
+          "severity": "Low",
+          "url": "https://docs.zizmor.sh/audits/#self-repository"
+        },
+        {
+          "confidence": "High",
+          "description": "use GitHub's dedicated self-repository syntax",
+          "file": ".github/workflows/tests-conformance.yaml",
+          "line": 79,
+          "note": "this step",
+          "rule": "self-repository",
+          "severity": "Low",
+          "url": "https://docs.zizmor.sh/audits/#self-repository"
+        },
+        {
+          "confidence": "High",
+          "description": "use GitHub's dedicated self-repository syntax",
+          "file": ".github/workflows/tests-conformance.yaml",
+          "line": 98,
+          "note": "this step",
+          "rule": "self-repository",
+          "severity": "Low",
+          "url": "https://docs.zizmor.sh/audits/#self-repository"
+        },
+        {
+          "confidence": "High",
+          "description": "use GitHub's dedicated self-repository syntax",
+          "file": ".github/workflows/tests-conformance.yaml",
+          "line": 100,
+          "note": "this step",
+          "rule": "self-repository",
+          "severity": "Low",
+          "url": "https://docs.zizmor.sh/audits/#self-repository"
+        },
+        {
+          "confidence": "High",
+          "description": "use GitHub's dedicated self-repository syntax",
+          "file": ".github/workflows/tests-conformance.yaml",
+          "line": 106,
+          "note": "this step",
+          "rule": "self-repository",
+          "severity": "Low",
+          "url": "https://docs.zizmor.sh/audits/#self-repository"
+        },
+        {
+          "confidence": "High",
+          "description": "use GitHub's dedicated self-repository syntax",
+          "file": ".github/workflows/tests-conformance.yaml",
+          "line": 137,
+          "note": "this step",
+          "rule": "self-repository",
+          "severity": "Low",
+          "url": "https://docs.zizmor.sh/audits/#self-repository"
+        },
+        {
+          "confidence": "High",
+          "description": "use GitHub's dedicated self-repository syntax",
+          "file": ".github/workflows/tests-conformance.yaml",
+          "line": 161,
+          "note": "this step",
+          "rule": "self-repository",
+          "severity": "Low",
+          "url": "https://docs.zizmor.sh/audits/#self-repository"
+        },
+        {
+          "confidence": "High",
+          "description": "use GitHub's dedicated self-repository syntax",
+          "file": ".github/workflows/tests-conformance.yaml",
+          "line": 173,
+          "note": "this step",
+          "rule": "self-repository",
+          "severity": "Low",
+          "url": "https://docs.zizmor.sh/audits/#self-repository"
+        },
+        {
+          "confidence": "High",
+          "description": "use GitHub's dedicated self-repository syntax",
+          "file": ".github/workflows/tests-conformance.yaml",
+          "line": 189,
+          "note": "this step",
+          "rule": "self-repository",
+          "severity": "Low",
+          "url": "https://docs.zizmor.sh/audits/#self-repository"
+        },
+        {
+          "confidence": "High",
+          "description": "use GitHub's dedicated self-repository syntax",
+          "file": ".github/workflows/tests-conformance.yaml",
+          "line": 206,
+          "note": "this step",
+          "rule": "self-repository",
+          "severity": "Low",
+          "url": "https://docs.zizmor.sh/audits/#self-repository"
+        },
+        {
+          "confidence": "High",
+          "description": "use GitHub's dedicated self-repository syntax",
+          "file": ".github/workflows/tests-conformance.yaml",
+          "line": 222,
+          "note": "this step",
+          "rule": "self-repository",
+          "severity": "Low",
+          "url": "https://docs.zizmor.sh/audits/#self-repository"
+        },
+        {
+          "confidence": "High",
+          "description": "use GitHub's dedicated self-repository syntax",
+          "file": ".github/workflows/tests-conformance.yaml",
+          "line": 239,
+          "note": "this step",
+          "rule": "self-repository",
+          "severity": "Low",
+          "url": "https://docs.zizmor.sh/audits/#self-repository"
+        },
+        {
+          "confidence": "High",
+          "description": "use GitHub's dedicated self-repository syntax",
+          "file": ".github/workflows/tests-conformance.yaml",
+          "line": 254,
+          "note": "this step",
+          "rule": "self-repository",
+          "severity": "Low",
+          "url": "https://docs.zizmor.sh/audits/#self-repository"
+        },
+        {
+          "confidence": "High",
+          "description": "use GitHub's dedicated self-repository syntax",
+          "file": ".github/workflows/tests-conformance.yaml",
+          "line": 270,
+          "note": "this step",
+          "rule": "self-repository",
+          "severity": "Low",
+          "url": "https://docs.zizmor.sh/audits/#self-repository"
+        },
+        {
+          "confidence": "High",
+          "description": "use GitHub's dedicated self-repository syntax",
+          "file": ".github/workflows/tests-conformance.yaml",
+          "line": 288,
+          "note": "this step",
+          "rule": "self-repository",
+          "severity": "Low",
+          "url": "https://docs.zizmor.sh/audits/#self-repository"
+        },
+        {
+          "confidence": "High",
+          "description": "use GitHub's dedicated self-repository syntax",
+          "file": ".github/workflows/tests-conformance.yaml",
+          "line": 305,
+          "note": "this step",
+          "rule": "self-repository",
+          "severity": "Low",
+          "url": "https://docs.zizmor.sh/audits/#self-repository"
+        },
+        {
+          "confidence": "High",
+          "description": "use GitHub's dedicated self-repository syntax",
+          "file": ".github/workflows/tests-conformance.yaml",
+          "line": 322,
+          "note": "this step",
+          "rule": "self-repository",
+          "severity": "Low",
+          "url": "https://docs.zizmor.sh/audits/#self-repository"
+        },
+        {
+          "confidence": "High",
+          "description": "use GitHub's dedicated self-repository syntax",
+          "file": ".github/workflows/tests-conformance.yaml",
+          "line": 338,
+          "note": "this step",
+          "rule": "self-repository",
+          "severity": "Low",
+          "url": "https://docs.zizmor.sh/audits/#self-repository"
+        },
+        {
+          "confidence": "High",
+          "description": "use GitHub's dedicated self-repository syntax",
+          "file": ".github/workflows/tests-conformance.yaml",
+          "line": 354,
+          "note": "this step",
+          "rule": "self-repository",
+          "severity": "Low",
+          "url": "https://docs.zizmor.sh/audits/#self-repository"
+        },
+        {
+          "confidence": "High",
+          "description": "use GitHub's dedicated self-repository syntax",
+          "file": ".github/workflows/tests-conformance.yaml",
+          "line": 373,
+          "note": "this step",
+          "rule": "self-repository",
+          "severity": "Low",
+          "url": "https://docs.zizmor.sh/audits/#self-repository"
+        },
+        {
+          "confidence": "High",
+          "description": "use GitHub's dedicated self-repository syntax",
+          "file": ".github/workflows/tests-conformance.yaml",
+          "line": 389,
+          "note": "this step",
+          "rule": "self-repository",
+          "severity": "Low",
+          "url": "https://docs.zizmor.sh/audits/#self-repository"
+        },
+        {
+          "confidence": "High",
+          "description": "use GitHub's dedicated self-repository syntax",
+          "file": ".github/workflows/tests-conformance.yaml",
+          "line": 406,
+          "note": "this step",
+          "rule": "self-repository",
+          "severity": "Low",
+          "url": "https://docs.zizmor.sh/audits/#self-repository"
+        },
+        {
+          "confidence": "High",
+          "description": "use GitHub's dedicated self-repository syntax",
+          "file": ".github/workflows/tests-conformance.yaml",
+          "line": 422,
+          "note": "this step",
+          "rule": "self-repository",
+          "severity": "Low",
+          "url": "https://docs.zizmor.sh/audits/#self-repository"
+        },
+        {
+          "confidence": "High",
+          "description": "use GitHub's dedicated self-repository syntax",
+          "file": ".github/workflows/tests-conformance.yaml",
+          "line": 439,
+          "note": "this step",
+          "rule": "self-repository",
+          "severity": "Low",
+          "url": "https://docs.zizmor.sh/audits/#self-repository"
+        },
+        {
+          "confidence": "High",
+          "description": "use GitHub's dedicated self-repository syntax",
+          "file": ".github/workflows/tests-conformance.yaml",
+          "line": 455,
+          "note": "this step",
+          "rule": "self-repository",
+          "severity": "Low",
+          "url": "https://docs.zizmor.sh/audits/#self-repository"
+        },
+        {
+          "confidence": "High",
+          "description": "use GitHub's dedicated self-repository syntax",
+          "file": ".github/workflows/tests-conformance.yaml",
+          "line": 471,
+          "note": "this step",
+          "rule": "self-repository",
+          "severity": "Low",
+          "url": "https://docs.zizmor.sh/audits/#self-repository"
+        },
+        {
+          "confidence": "High",
+          "description": "use GitHub's dedicated self-repository syntax",
+          "file": ".github/workflows/tests-conformance.yaml",
+          "line": 486,
+          "note": "this step",
+          "rule": "self-repository",
+          "severity": "Low",
+          "url": "https://docs.zizmor.sh/audits/#self-repository"
+        },
+        {
+          "confidence": "High",
+          "description": "use GitHub's dedicated self-repository syntax",
+          "file": ".github/workflows/tests-conformance.yaml",
+          "line": 502,
+          "note": "this step",
+          "rule": "self-repository",
+          "severity": "Low",
+          "url": "https://docs.zizmor.sh/audits/#self-repository"
+        },
+        {
+          "confidence": "High",
+          "description": "use GitHub's dedicated self-repository syntax",
+          "file": ".github/workflows/tests-conformance.yaml",
+          "line": 519,
+          "note": "this step",
+          "rule": "self-repository",
+          "severity": "Low",
+          "url": "https://docs.zizmor.sh/audits/#self-repository"
+        },
+        {
+          "confidence": "High",
+          "description": "use GitHub's dedicated self-repository syntax",
+          "file": ".github/workflows/tests-conformance.yaml",
+          "line": 535,
+          "note": "this step",
+          "rule": "self-repository",
+          "severity": "Low",
+          "url": "https://docs.zizmor.sh/audits/#self-repository"
+        },
+        {
+          "confidence": "High",
+          "description": "use GitHub's dedicated self-repository syntax",
+          "file": ".github/workflows/tests-conformance.yaml",
+          "line": 553,
+          "note": "this step",
+          "rule": "self-repository",
+          "severity": "Low",
+          "url": "https://docs.zizmor.sh/audits/#self-repository"
+        },
+        {
+          "confidence": "High",
+          "description": "use GitHub's dedicated self-repository syntax",
+          "file": ".github/workflows/tests-conformance.yaml",
+          "line": 568,
+          "note": "this step",
+          "rule": "self-repository",
+          "severity": "Low",
+          "url": "https://docs.zizmor.sh/audits/#self-repository"
+        },
+        {
+          "confidence": "High",
+          "description": "use GitHub's dedicated self-repository syntax",
+          "file": ".github/workflows/tests-conformance.yaml",
+          "line": 584,
+          "note": "this step",
+          "rule": "self-repository",
+          "severity": "Low",
+          "url": "https://docs.zizmor.sh/audits/#self-repository"
+        },
+        {
+          "confidence": "High",
+          "description": "use GitHub's dedicated self-repository syntax",
+          "file": ".github/workflows/tests-conformance.yaml",
+          "line": 601,
+          "note": "this step",
+          "rule": "self-repository",
+          "severity": "Low",
+          "url": "https://docs.zizmor.sh/audits/#self-repository"
+        },
+        {
+          "confidence": "High",
+          "description": "use GitHub's dedicated self-repository syntax",
+          "file": ".github/workflows/tests-conformance.yaml",
+          "line": 617,
+          "note": "this step",
+          "rule": "self-repository",
+          "severity": "Low",
+          "url": "https://docs.zizmor.sh/audits/#self-repository"
+        },
+        {
+          "confidence": "High",
+          "description": "use GitHub's dedicated self-repository syntax",
+          "file": ".github/workflows/tests-conformance.yaml",
+          "line": 632,
+          "note": "this step",
+          "rule": "self-repository",
+          "severity": "Low",
+          "url": "https://docs.zizmor.sh/audits/#self-repository"
+        },
+        {
+          "confidence": "High",
+          "description": "use GitHub's dedicated self-repository syntax",
+          "file": ".github/workflows/tests-conformance.yaml",
+          "line": 647,
+          "note": "this step",
+          "rule": "self-repository",
+          "severity": "Low",
+          "url": "https://docs.zizmor.sh/audits/#self-repository"
+        },
+        {
+          "confidence": "High",
+          "description": "use GitHub's dedicated self-repository syntax",
+          "file": ".github/workflows/tests-conformance.yaml",
+          "line": 663,
+          "note": "this step",
+          "rule": "self-repository",
+          "severity": "Low",
+          "url": "https://docs.zizmor.sh/audits/#self-repository"
+        },
+        {
+          "confidence": "High",
+          "description": "use GitHub's dedicated self-repository syntax",
+          "file": ".github/workflows/tests-conformance.yaml",
+          "line": 679,
+          "note": "this step",
+          "rule": "self-repository",
+          "severity": "Low",
+          "url": "https://docs.zizmor.sh/audits/#self-repository"
+        },
+        {
+          "confidence": "High",
+          "description": "use GitHub's dedicated self-repository syntax",
+          "file": ".github/workflows/tests-conformance.yaml",
+          "line": 696,
+          "note": "this step",
+          "rule": "self-repository",
+          "severity": "Low",
+          "url": "https://docs.zizmor.sh/audits/#self-repository"
+        },
+        {
+          "confidence": "High",
+          "description": "use GitHub's dedicated self-repository syntax",
+          "file": ".github/workflows/tests-conformance.yaml",
+          "line": 712,
+          "note": "this step",
+          "rule": "self-repository",
+          "severity": "Low",
+          "url": "https://docs.zizmor.sh/audits/#self-repository"
+        },
+        {
+          "confidence": "High",
+          "description": "use GitHub's dedicated self-repository syntax",
+          "file": ".github/workflows/tests-conformance.yaml",
+          "line": 728,
+          "note": "this step",
+          "rule": "self-repository",
+          "severity": "Low",
+          "url": "https://docs.zizmor.sh/audits/#self-repository"
+        },
+        {
+          "confidence": "High",
+          "description": "use GitHub's dedicated self-repository syntax",
+          "file": ".github/workflows/tests-conformance.yaml",
+          "line": 745,
+          "note": "this step",
+          "rule": "self-repository",
+          "severity": "Low",
+          "url": "https://docs.zizmor.sh/audits/#self-repository"
+        },
+        {
+          "confidence": "High",
+          "description": "use GitHub's dedicated self-repository syntax",
+          "file": ".github/workflows/tests-conformance.yaml",
+          "line": 761,
+          "note": "this step",
+          "rule": "self-repository",
+          "severity": "Low",
+          "url": "https://docs.zizmor.sh/audits/#self-repository"
+        },
+        {
+          "confidence": "High",
+          "description": "use GitHub's dedicated self-repository syntax",
+          "file": ".github/workflows/tests-conformance.yaml",
+          "line": 781,
+          "note": "this step",
+          "rule": "self-repository",
+          "severity": "Low",
+          "url": "https://docs.zizmor.sh/audits/#self-repository"
+        },
+        {
+          "confidence": "High",
+          "description": "use GitHub's dedicated self-repository syntax",
+          "file": ".github/workflows/tests-conformance.yaml",
+          "line": 798,
+          "note": "this step",
+          "rule": "self-repository",
+          "severity": "Low",
+          "url": "https://docs.zizmor.sh/audits/#self-repository"
+        },
+        {
+          "confidence": "High",
+          "description": "use GitHub's dedicated self-repository syntax",
+          "file": ".github/workflows/tests-conformance.yaml",
+          "line": 813,
+          "note": "this step",
+          "rule": "self-repository",
+          "severity": "Low",
+          "url": "https://docs.zizmor.sh/audits/#self-repository"
+        },
+        {
+          "confidence": "High",
+          "description": "use GitHub's dedicated self-repository syntax",
+          "file": ".github/workflows/tests-conformance.yaml",
+          "line": 828,
+          "note": "this step",
+          "rule": "self-repository",
+          "severity": "Low",
+          "url": "https://docs.zizmor.sh/audits/#self-repository"
+        },
+        {
+          "confidence": "High",
+          "description": "use GitHub's dedicated self-repository syntax",
+          "file": ".github/workflows/tests-conformance.yaml",
+          "line": 844,
+          "note": "this step",
+          "rule": "self-repository",
+          "severity": "Low",
+          "url": "https://docs.zizmor.sh/audits/#self-repository"
+        },
+        {
+          "confidence": "High",
+          "description": "use GitHub's dedicated self-repository syntax",
+          "file": ".github/workflows/tests-conformance.yaml",
+          "line": 866,
+          "note": "this step",
+          "rule": "self-repository",
+          "severity": "Low",
+          "url": "https://docs.zizmor.sh/audits/#self-repository"
+        },
+        {
+          "confidence": "High",
+          "description": "use GitHub's dedicated self-repository syntax",
+          "file": ".github/workflows/tests-conformance.yaml",
+          "line": 892,
+          "note": "this step",
+          "rule": "self-repository",
+          "severity": "Low",
+          "url": "https://docs.zizmor.sh/audits/#self-repository"
+        },
+        {
+          "confidence": "High",
+          "description": "use GitHub's dedicated self-repository syntax",
+          "file": ".github/workflows/tests-conformance.yaml",
+          "line": 894,
+          "note": "this step",
+          "rule": "self-repository",
+          "severity": "Low",
+          "url": "https://docs.zizmor.sh/audits/#self-repository"
+        },
+        {
+          "confidence": "High",
+          "description": "use GitHub's dedicated self-repository syntax",
+          "file": ".github/workflows/tests-conformance.yaml",
+          "line": 927,
+          "note": "this step",
+          "rule": "self-repository",
+          "severity": "Low",
+          "url": "https://docs.zizmor.sh/audits/#self-repository"
+        },
+        {
+          "confidence": "High",
+          "description": "use GitHub's dedicated self-repository syntax",
+          "file": ".github/workflows/tests-conformance.yaml",
+          "line": 949,
+          "note": "this step",
+          "rule": "self-repository",
+          "severity": "Low",
+          "url": "https://docs.zizmor.sh/audits/#self-repository"
+        },
+        {
+          "confidence": "High",
+          "description": "use GitHub's dedicated self-repository syntax",
+          "file": ".github/workflows/tests-conformance.yaml",
+          "line": 955,
+          "note": "this step",
+          "rule": "self-repository",
+          "severity": "Low",
+          "url": "https://docs.zizmor.sh/audits/#self-repository"
+        },
+        {
+          "confidence": "High",
+          "description": "use GitHub's dedicated self-repository syntax",
+          "file": ".github/workflows/tests-conformance.yaml",
+          "line": 972,
+          "note": "this step",
+          "rule": "self-repository",
+          "severity": "Low",
+          "url": "https://docs.zizmor.sh/audits/#self-repository"
+        },
+        {
+          "confidence": "High",
+          "description": "use GitHub's dedicated self-repository syntax",
+          "file": ".github/workflows/tests-conformance.yaml",
+          "line": 995,
+          "note": "this step",
+          "rule": "self-repository",
+          "severity": "Low",
+          "url": "https://docs.zizmor.sh/audits/#self-repository"
+        },
+        {
+          "confidence": "High",
+          "description": "use GitHub's dedicated self-repository syntax",
+          "file": ".github/workflows/tests-conformance.yaml",
+          "line": 1002,
+          "note": "this step",
+          "rule": "self-repository",
+          "severity": "Low",
+          "url": "https://docs.zizmor.sh/audits/#self-repository"
+        },
+        {
+          "confidence": "High",
+          "description": "use GitHub's dedicated self-repository syntax",
+          "file": ".github/workflows/tests-conformance.yaml",
+          "line": 1015,
+          "note": "this step",
+          "rule": "self-repository",
+          "severity": "Low",
+          "url": "https://docs.zizmor.sh/audits/#self-repository"
+        },
+        {
+          "confidence": "High",
+          "description": "use GitHub's dedicated self-repository syntax",
+          "file": ".github/workflows/tests-conformance.yaml",
+          "line": 1041,
+          "note": "this step",
+          "rule": "self-repository",
+          "severity": "Low",
+          "url": "https://docs.zizmor.sh/audits/#self-repository"
+        },
+        {
+          "confidence": "High",
+          "description": "use GitHub's dedicated self-repository syntax",
+          "file": ".github/workflows/tests-conformance.yaml",
+          "line": 1048,
+          "note": "this step",
+          "rule": "self-repository",
+          "severity": "Low",
+          "url": "https://docs.zizmor.sh/audits/#self-repository"
+        },
+        {
+          "confidence": "High",
+          "description": "use GitHub's dedicated self-repository syntax",
+          "file": ".github/workflows/tests-conformance.yaml",
+          "line": 1051,
+          "note": "this step",
+          "rule": "self-repository",
+          "severity": "Low",
+          "url": "https://docs.zizmor.sh/audits/#self-repository"
+        },
+        {
+          "confidence": "High",
+          "description": "use GitHub's dedicated self-repository syntax",
+          "file": ".github/workflows/tests-conformance.yaml",
+          "line": 1073,
+          "note": "this step",
+          "rule": "self-repository",
+          "severity": "Low",
+          "url": "https://docs.zizmor.sh/audits/#self-repository"
+        },
+        {
+          "confidence": "High",
+          "description": "use GitHub's dedicated self-repository syntax",
+          "file": ".github/workflows/tests-conformance.yaml",
+          "line": 1100,
+          "note": "this step",
+          "rule": "self-repository",
+          "severity": "Low",
+          "url": "https://docs.zizmor.sh/audits/#self-repository"
+        },
+        {
+          "confidence": "High",
+          "description": "use GitHub's dedicated self-repository syntax",
+          "file": ".github/workflows/tests-k6.yaml",
+          "line": 18,
+          "note": "this step",
+          "rule": "self-repository",
+          "severity": "Low",
+          "url": "https://docs.zizmor.sh/audits/#self-repository"
+        },
+        {
+          "confidence": "High",
+          "description": "use GitHub's dedicated self-repository syntax",
+          "file": ".github/workflows/tests-k6.yaml",
+          "line": 20,
+          "note": "this step",
+          "rule": "self-repository",
+          "severity": "Low",
+          "url": "https://docs.zizmor.sh/audits/#self-repository"
+        },
+        {
+          "confidence": "High",
+          "description": "use GitHub's dedicated self-repository syntax",
+          "file": ".github/workflows/tests-k6.yaml",
+          "line": 22,
+          "note": "this step",
+          "rule": "self-repository",
+          "severity": "Low",
+          "url": "https://docs.zizmor.sh/audits/#self-repository"
+        },
+        {
+          "confidence": "High",
+          "description": "use GitHub's dedicated self-repository syntax",
+          "file": ".github/workflows/tests-k6.yaml",
+          "line": 24,
+          "note": "this step",
+          "rule": "self-repository",
+          "severity": "Low",
+          "url": "https://docs.zizmor.sh/audits/#self-repository"
+        },
+        {
+          "confidence": "High",
+          "description": "use GitHub's dedicated self-repository syntax",
+          "file": ".github/workflows/tests-k6.yaml",
+          "line": 26,
+          "note": "this step",
+          "rule": "self-repository",
+          "severity": "Low",
+          "url": "https://docs.zizmor.sh/audits/#self-repository"
+        },
+        {
+          "confidence": "High",
+          "description": "action functionality is already included by the runner",
+          "file": ".github/workflows/release.yaml",
+          "line": 341,
+          "note": "this step",
+          "rule": "superfluous-actions",
+          "severity": "Informational",
+          "url": "https://docs.zizmor.sh/audits/#superfluous-actions"
+        },
+        {
+          "confidence": "High",
+          "description": "action functionality is already included by the runner",
+          "file": ".github/workflows/release.yaml",
+          "line": 348,
+          "note": "this step",
+          "rule": "superfluous-actions",
+          "severity": "Informational",
+          "url": "https://docs.zizmor.sh/audits/#superfluous-actions"
+        }
+      ]
+    }
   },
   "updated": "2026-11-01"
 }

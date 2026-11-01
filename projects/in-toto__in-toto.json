@@ -7,11 +7,17 @@
       "dependencies": 22,
       "errors": [],
       "fixable": 5,
+      "go_version": null,
+      "in_binary": null,
       "new_vulnerabilities": 0,
+      "osv_confirmed": 4,
+      "osv_only": 0,
       "ref": "v3.1.0",
       "release_changed": false,
+      "release_integrity": "no-linux-binary",
       "removed": 0,
       "resolved_vulnerabilities": 0,
+      "scorecard": 6.5,
       "upgraded": 0,
       "vulnerabilities": {
         "Critical": 1,
@@ -20,6 +26,12 @@
         "Medium": 1,
         "Negligible": 0,
         "Unknown": 0
+      },
+      "workflow": {
+        "High": 4,
+        "Low": 2,
+        "Medium": 0,
+        "files": 3
       }
     }
   ],
@@ -273,8 +285,24 @@
       "requirements.txt"
     ],
     "name": "in-toto",
+    "osv": {
+      "advisories": 16,
+      "available": true,
+      "confirmed": 4,
+      "osv_only": [],
+      "warning": null
+    },
     "ref": "v3.1.0",
     "ref_kind": "release",
+    "release_integrity": {
+      "assets": 2,
+      "checksums_published": false,
+      "methods": [],
+      "provenance_published": false,
+      "sbom_published": false,
+      "signatures_published": false,
+      "verdict": "no-linux-binary"
+    },
     "released_at": "2026-05-04T16:20:30Z",
     "repository": "in-toto/in-toto",
     "sbomlyze_diff": {
@@ -287,7 +315,85 @@
       ],
       "removed": 0
     },
-    "scanned_at": "2026-11-01T16:37:29+00:00",
+    "scanned_at": "2026-11-01T17:43:13+00:00",
+    "scorecard": {
+      "checks": [
+        {
+          "name": "Fuzzing",
+          "reason": "project is not fuzzed",
+          "score": 0
+        },
+        {
+          "name": "SAST",
+          "reason": "SAST tool is not run on all commits -- score normalized to 0",
+          "score": 0
+        },
+        {
+          "name": "Maintained",
+          "reason": "2 commit(s) and 0 issue activity found in the last 90 days -- score normalized to 1",
+          "score": 1
+        },
+        {
+          "name": "Signed-Releases",
+          "reason": "1 out of the last 5 releases have a total of 1 signed artifacts.",
+          "score": 1
+        },
+        {
+          "name": "Pinned-Dependencies",
+          "reason": "dependency not pinned by hash detected -- score normalized to 4",
+          "score": 4
+        },
+        {
+          "name": "Branch-Protection",
+          "reason": "branch protection is not maximal on development and all release branches",
+          "score": 8
+        },
+        {
+          "name": "License",
+          "reason": "license file detected",
+          "score": 9
+        },
+        {
+          "name": "Binary-Artifacts",
+          "reason": "no binaries found in the repo",
+          "score": 10
+        },
+        {
+          "name": "CII-Best-Practices",
+          "reason": "badge detected: Gold",
+          "score": 10
+        },
+        {
+          "name": "Code-Review",
+          "reason": "all changesets reviewed",
+          "score": 10
+        },
+        {
+          "name": "Dangerous-Workflow",
+          "reason": "no dangerous workflow patterns detected",
+          "score": 10
+        },
+        {
+          "name": "Security-Policy",
+          "reason": "security policy file detected",
+          "score": 10
+        },
+        {
+          "name": "Token-Permissions",
+          "reason": "GitHub workflow tokens follow principle of least privilege",
+          "score": 10
+        },
+        {
+          "name": "Packaging",
+          "reason": "packaging workflow not detected",
+          "score": -1
+        }
+      ],
+      "date": "2026-10-19",
+      "score": 6.5,
+      "source": "openssf-api",
+      "version": "v5.6.0"
+    },
     "vulnerabilities": [
       {
         "aliases": [],
@@ -298,6 +404,7 @@
         ],
         "id": "GHSA-5xjx-3w67-w9x9",
         "location": ".github/workflows/cd.yml",
+        "osv_confirmed": false,
         "package": "pypa/gh-action-pypi-publish",
         "severity": "Critical",
         "url": "https://github.com/advisories/GHSA-5xjx-3w67-w9x9",
@@ -312,6 +419,7 @@
         ],
         "id": "GHSA-537c-gmf6-5ccf",
         "location": "requirements-pinned.txt",
+        "osv_confirmed": true,
         "package": "cryptography",
         "severity": "High",
         "url": "https://github.com/advisories/GHSA-537c-gmf6-5ccf",
@@ -328,6 +436,7 @@
         ],
         "id": "GHSA-g6cj-pr64-35w5",
         "location": "requirements-pinned.txt",
+        "osv_confirmed": true,
         "package": "cryptography",
         "severity": "High",
         "url": "https://github.com/advisories/GHSA-g6cj-pr64-35w5",
@@ -344,6 +453,7 @@
         ],
         "id": "GHSA-jwv3-5hgf-82ww",
         "location": "requirements-pinned.txt",
+        "osv_confirmed": true,
         "package": "cryptography",
         "severity": "High",
         "url": "https://github.com/advisories/GHSA-jwv3-5hgf-82ww",
@@ -360,12 +470,78 @@
         ],
         "id": "GHSA-m2h6-j472-rp4c",
         "location": "requirements-pinned.txt",
+        "osv_confirmed": true,
         "package": "cryptography",
         "severity": "Medium",
         "url": "https://github.com/advisories/GHSA-m2h6-j472-rp4c",
         "version": "46.0.7"
       }
-    ]
+    ],
+    "workflow_audit": {
+      "files": 3,
+      "findings": [
+        {
+          "confidence": "High",
+          "description": "code injection via template expansion",
+          "file": ".github/workflows/cd.yml",
+          "line": 61,
+          "note": "this step",
+          "rule": "template-injection",
+          "severity": "High",
+          "url": "https://docs.zizmor.sh/audits/#template-injection"
+        },
+        {
+          "confidence": "High",
+          "description": "code injection via template expansion",
+          "file": ".github/workflows/cd.yml",
+          "line": 61,
+          "note": "this step",
+          "rule": "template-injection",
+          "severity": "High",
+          "url": "https://docs.zizmor.sh/audits/#template-injection"
+        },
+        {
+          "confidence": "High",
+          "description": "code injection via template expansion",
+          "file": ".github/workflows/cd.yml",
+          "line": 106,
+          "note": "this step",
+          "rule": "template-injection",
+          "severity": "High",
+          "url": "https://docs.zizmor.sh/audits/#template-injection"
+        },
+        {
+          "confidence": "High",
+          "description": "code injection via template expansion",
+          "file": ".github/workflows/cd.yml",
+          "line": 106,
+          "note": "this step",
+          "rule": "template-injection",
+          "severity": "High",
+          "url": "https://docs.zizmor.sh/audits/#template-injection"
+        },
+        {
+          "confidence": "High",
+          "description": "use GitHub's dedicated self-repository syntax",
+          "file": ".github/workflows/cd.yml",
+          "line": 13,
+          "note": "this job",
+          "rule": "self-repository",
+          "severity": "Low",
+          "url": "https://docs.zizmor.sh/audits/#self-repository"
+        },
+        {
+          "confidence": "High",
+          "description": "use GitHub's dedicated self-repository syntax",
+          "file": ".github/workflows/ci.yml",
+          "line": 13,
+          "note": "this job",
+          "rule": "self-repository",
+          "severity": "Low",
+          "url": "https://docs.zizmor.sh/audits/#self-repository"
+        }
+      ]
+    }
   },
   "updated": "2026-11-01"
 }

@@ -7,11 +7,17 @@
       "dependencies": 18,
       "errors": [],
       "fixable": 0,
+      "go_version": null,
+      "in_binary": null,
       "new_vulnerabilities": 0,
+      "osv_confirmed": 0,
+      "osv_only": 0,
       "ref": "v2.17.0",
       "release_changed": false,
+      "release_integrity": "none",
       "removed": 0,
       "resolved_vulnerabilities": 0,
+      "scorecard": 6.8,
       "upgraded": 0,
       "vulnerabilities": {
         "Critical": 0,
@@ -20,6 +26,12 @@
         "Medium": 0,
         "Negligible": 0,
         "Unknown": 0
+      },
+      "workflow": {
+        "High": 36,
+        "Low": 0,
+        "Medium": 18,
+        "files": 19
       }
     }
   ],
@@ -252,8 +264,26 @@
       "docker/requirements.txt"
     ],
     "name": "zap",
+    "osv": {
+      "advisories": 0,
+      "available": true,
+      "confirmed": 0,
+      "osv_only": [],
+      "warning": null
+    },
     "ref": "v2.17.0",
     "ref_kind": "release",
+    "release_integrity": {
+      "asset": "ZAP_2.17.0_Linux.tar.gz",
+      "assets": 9,
+      "checksums_published": false,
+      "digest_matches_github": true,
+      "methods": [],
+      "provenance_published": false,
+      "sbom_published": false,
+      "signatures_published": false,
+      "verdict": "none"
+    },
     "released_at": "2025-12-15T14:41:51Z",
     "repository": "zaproxy/zaproxy",
     "sbomlyze_diff": {
@@ -266,8 +296,631 @@
       ],
       "removed": 0
     },
-    "scanned_at": "2026-11-01T16:37:23+00:00",
-    "vulnerabilities": []
+    "scanned_at": "2026-11-01T17:45:37+00:00",
+    "scorecard": {
+      "checks": [
+        {
+          "name": "Fuzzing",
+          "reason": "project is not fuzzed",
+          "score": 0
+        },
+        {
+          "name": "Signed-Releases",
+          "reason": "Project has not signed or included provenance with any releases.",
+          "score": 0
+        },
+        {
+          "name": "Token-Permissions",
+          "reason": "detected GitHub workflow tokens with excessive permissions",
+          "score": 0
+        },
+        {
+          "name": "Pinned-Dependencies",
+          "reason": "dependency not pinned by hash detected -- score normalized to 4",
+          "score": 4
+        },
+        {
+          "name": "CII-Best-Practices",
+          "reason": "badge detected: Passing",
+          "score": 5
+        },
+        {
+          "name": "Binary-Artifacts",
+          "reason": "binaries present in source code",
+          "score": 9
+        },
+        {
+          "name": "Code-Review",
+          "reason": "all changesets reviewed",
+          "score": 10
+        },
+        {
+          "name": "Dangerous-Workflow",
+          "reason": "no dangerous workflow patterns detected",
+          "score": 10
+        },
+        {
+          "name": "License",
+          "reason": "license file detected",
+          "score": 10
+        },
+        {
+          "name": "Maintained",
+          "reason": "30 commit(s) and 9 issue activity found in the last 90 days -- score normalized to 10",
+          "score": 10
+        },
+        {
+          "name": "Packaging",
+          "reason": "packaging workflow detected",
+          "score": 10
+        },
+        {
+          "name": "SAST",
+          "reason": "SAST tool is run on all commits",
+          "score": 10
+        },
+        {
+          "name": "Security-Policy",
+          "reason": "security policy file detected",
+          "score": 10
+        },
+        {
+          "name": "Branch-Protection",
+          "reason": "internal error: error during branchesHandler.setup: internal error: some github tokens can't read classic branch protection rules: https://github.com/ossf/scorecard-action/blob/main/docs/authentication/fine-grained-auth-token.md",
+          "score": -1
+        }
+      ],
+      "date": "2026-10-19",
+      "score": 6.8,
+      "source": "openssf-api",
+      "version": "v5.6.0"
+    },
+    "vulnerabilities": [],
+    "workflow_audit": {
+      "files": 19,
+      "findings": [
+        {
+          "confidence": "High",
+          "description": "unpinned action reference",
+          "file": ".github/workflows/check-zap-errors.yml",
+          "line": 12,
+          "note": "this step",
+          "rule": "unpinned-uses",
+          "severity": "High",
+          "url": "https://docs.zizmor.sh/audits/#unpinned-uses"
+        },
+        {
+          "confidence": "High",
+          "description": "unpinned action reference",
+          "file": ".github/workflows/ci.yml",
+          "line": 22,
+          "note": "this step",
+          "rule": "unpinned-uses",
+          "severity": "High",
+          "url": "https://docs.zizmor.sh/audits/#unpinned-uses"
+        },
+        {
+          "confidence": "High",
+          "description": "unpinned action reference",
+          "file": ".github/workflows/ci.yml",
+          "line": 23,
+          "note": "this step",
+          "rule": "unpinned-uses",
+          "severity": "High",
+          "url": "https://docs.zizmor.sh/audits/#unpinned-uses"
+        },
+        {
+          "confidence": "Medium",
+          "description": "use of fundamentally insecure workflow trigger",
+          "file": ".github/workflows/cla.yml",
+          "line": 2,
+          "note": "this workflow",
+          "rule": "dangerous-triggers",
+          "severity": "High",
+          "url": "https://docs.zizmor.sh/audits/#dangerous-triggers"
+        },
+        {
+          "confidence": "High",
+          "description": "unpinned action reference",
+          "file": ".github/workflows/codeql.yml",
+          "line": 26,
+          "note": "this step",
+          "rule": "unpinned-uses",
+          "severity": "High",
+          "url": "https://docs.zizmor.sh/audits/#unpinned-uses"
+        },
+        {
+          "confidence": "High",
+          "description": "unpinned action reference",
+          "file": ".github/workflows/codeql.yml",
+          "line": 27,
+          "note": "this step",
+          "rule": "unpinned-uses",
+          "severity": "High",
+          "url": "https://docs.zizmor.sh/audits/#unpinned-uses"
+        },
+        {
+          "confidence": "High",
+          "description": "unpinned action reference",
+          "file": ".github/workflows/codeql.yml",
+          "line": 31,
+          "note": "this step",
+          "rule": "unpinned-uses",
+          "severity": "High",
+          "url": "https://docs.zizmor.sh/audits/#unpinned-uses"
+        },
+        {
+          "confidence": "High",
+          "description": "unpinned action reference",
+          "file": ".github/workflows/codeql.yml",
+          "line": 34,
+          "note": "this step",
+          "rule": "unpinned-uses",
+          "severity": "High",
+          "url": "https://docs.zizmor.sh/audits/#unpinned-uses"
+        },
+        {
+          "confidence": "High",
+          "description": "unpinned action reference",
+          "file": ".github/workflows/codeql.yml",
+          "line": 35,
+          "note": "this step",
+          "rule": "unpinned-uses",
+          "severity": "High",
+          "url": "https://docs.zizmor.sh/audits/#unpinned-uses"
+        },
+        {
+          "confidence": "High",
+          "description": "unpinned action reference",
+          "file": ".github/workflows/crowdin-upload-files.yml",
+          "line": 11,
+          "note": "this step",
+          "rule": "unpinned-uses",
+          "severity": "High",
+          "url": "https://docs.zizmor.sh/audits/#unpinned-uses"
+        },
+        {
+          "confidence": "High",
+          "description": "unpinned action reference",
+          "file": ".github/workflows/crowdin-upload-files.yml",
+          "line": 12,
+          "note": "this step",
+          "rule": "unpinned-uses",
+          "severity": "High",
+          "url": "https://docs.zizmor.sh/audits/#unpinned-uses"
+        },
+        {
+          "confidence": "High",
+          "description": "unpinned action reference",
+          "file": ".github/workflows/handle-release.yml",
+          "line": 11,
+          "note": "this step",
+          "rule": "unpinned-uses",
+          "severity": "High",
+          "url": "https://docs.zizmor.sh/audits/#unpinned-uses"
+        },
+        {
+          "confidence": "High",
+          "description": "unpinned action reference",
+          "file": ".github/workflows/handle-release.yml",
+          "line": 16,
+          "note": "this step",
+          "rule": "unpinned-uses",
+          "severity": "High",
+          "url": "https://docs.zizmor.sh/audits/#unpinned-uses"
+        },
+        {
+          "confidence": "High",
+          "description": "unpinned action reference",
+          "file": ".github/workflows/pr-labeler.yml",
+          "line": 14,
+          "note": "this step",
+          "rule": "unpinned-uses",
+          "severity": "High",
+          "url": "https://docs.zizmor.sh/audits/#unpinned-uses"
+        },
+        {
+          "confidence": "High",
+          "description": "unpinned action reference",
+          "file": ".github/workflows/prepare-release-main-version.yml",
+          "line": 11,
+          "note": "this step",
+          "rule": "unpinned-uses",
+          "severity": "High",
+          "url": "https://docs.zizmor.sh/audits/#unpinned-uses"
+        },
+        {
+          "confidence": "High",
+          "description": "unpinned action reference",
+          "file": ".github/workflows/prepare-release-main-version.yml",
+          "line": 15,
+          "note": "this step",
+          "rule": "unpinned-uses",
+          "severity": "High",
+          "url": "https://docs.zizmor.sh/audits/#unpinned-uses"
+        },
+        {
+          "confidence": "High",
+          "description": "unpinned action reference",
+          "file": ".github/workflows/release-live-docker.yml",
+          "line": 13,
+          "note": "this step",
+          "rule": "unpinned-uses",
+          "severity": "High",
+          "url": "https://docs.zizmor.sh/audits/#unpinned-uses"
+        },
+        {
+          "confidence": "High",
+          "description": "unpinned action reference",
+          "file": ".github/workflows/release-live-docker.yml",
+          "line": 14,
+          "note": "this step",
+          "rule": "unpinned-uses",
+          "severity": "High",
+          "url": "https://docs.zizmor.sh/audits/#unpinned-uses"
+        },
+        {
+          "confidence": "High",
+          "description": "unpinned action reference",
+          "file": ".github/workflows/release-main-docker.yml",
+          "line": 13,
+          "note": "this step",
+          "rule": "unpinned-uses",
+          "severity": "High",
+          "url": "https://docs.zizmor.sh/audits/#unpinned-uses"
+        },
+        {
+          "confidence": "High",
+          "description": "unpinned action reference",
+          "file": ".github/workflows/release-main-docker.yml",
+          "line": 19,
+          "note": "this step",
+          "rule": "unpinned-uses",
+          "severity": "High",
+          "url": "https://docs.zizmor.sh/audits/#unpinned-uses"
+        },
+        {
+          "confidence": "High",
+          "description": "unpinned action reference",
+          "file": ".github/workflows/release-main-version.yml",
+          "line": 16,
+          "note": "this step",
+          "rule": "unpinned-uses",
+          "severity": "High",
+          "url": "https://docs.zizmor.sh/audits/#unpinned-uses"
+        },
+        {
+          "confidence": "High",
+          "description": "unpinned action reference",
+          "file": ".github/workflows/release-main-version.yml",
+          "line": 20,
+          "note": "this step",
+          "rule": "unpinned-uses",
+          "severity": "High",
+          "url": "https://docs.zizmor.sh/audits/#unpinned-uses"
+        },
+        {
+          "confidence": "High",
+          "description": "unpinned action reference",
+          "file": ".github/workflows/release-main-version.yml",
+          "line": 38,
+          "note": "this step",
+          "rule": "unpinned-uses",
+          "severity": "High",
+          "url": "https://docs.zizmor.sh/audits/#unpinned-uses"
+        },
+        {
+          "confidence": "High",
+          "description": "unpinned action reference",
+          "file": ".github/workflows/release-main-version.yml",
+          "line": 42,
+          "note": "this step",
+          "rule": "unpinned-uses",
+          "severity": "High",
+          "url": "https://docs.zizmor.sh/audits/#unpinned-uses"
+        },
+        {
+          "confidence": "High",
+          "description": "unpinned action reference",
+          "file": ".github/workflows/release-snap.yml",
+          "line": 13,
+          "note": "this step",
+          "rule": "unpinned-uses",
+          "severity": "High",
+          "url": "https://docs.zizmor.sh/audits/#unpinned-uses"
+        },
+        {
+          "confidence": "High",
+          "description": "unpinned action reference",
+          "file": ".github/workflows/release-weekly-docker.yml",
+          "line": 12,
+          "note": "this step",
+          "rule": "unpinned-uses",
+          "severity": "High",
+          "url": "https://docs.zizmor.sh/audits/#unpinned-uses"
+        },
+        {
+          "confidence": "High",
+          "description": "unpinned action reference",
+          "file": ".github/workflows/release-weekly-docker.yml",
+          "line": 16,
+          "note": "this step",
+          "rule": "unpinned-uses",
+          "severity": "High",
+          "url": "https://docs.zizmor.sh/audits/#unpinned-uses"
+        },
+        {
+          "confidence": "High",
+          "description": "unpinned action reference",
+          "file": ".github/workflows/release-weekly.yml",
+          "line": 11,
+          "note": "this step",
+          "rule": "unpinned-uses",
+          "severity": "High",
+          "url": "https://docs.zizmor.sh/audits/#unpinned-uses"
+        },
+        {
+          "confidence": "High",
+          "description": "unpinned action reference",
+          "file": ".github/workflows/release-weekly.yml",
+          "line": 15,
+          "note": "this step",
+          "rule": "unpinned-uses",
+          "severity": "High",
+          "url": "https://docs.zizmor.sh/audits/#unpinned-uses"
+        },
+        {
+          "confidence": "High",
+          "description": "unpinned action reference",
+          "file": ".github/workflows/release-weekly.yml",
+          "line": 20,
+          "note": "this step",
+          "rule": "unpinned-uses",
+          "severity": "High",
+          "url": "https://docs.zizmor.sh/audits/#unpinned-uses"
+        },
+        {
+          "confidence": "High",
+          "description": "unpinned action reference",
+          "file": ".github/workflows/run-integration-tests.yml",
+          "line": 13,
+          "note": "this step",
+          "rule": "unpinned-uses",
+          "severity": "High",
+          "url": "https://docs.zizmor.sh/audits/#unpinned-uses"
+        },
+        {
+          "confidence": "High",
+          "description": "unpinned action reference",
+          "file": ".github/workflows/sonar.yml",
+          "line": 12,
+          "note": "this step",
+          "rule": "unpinned-uses",
+          "severity": "High",
+          "url": "https://docs.zizmor.sh/audits/#unpinned-uses"
+        },
+        {
+          "confidence": "High",
+          "description": "unpinned action reference",
+          "file": ".github/workflows/sonar.yml",
+          "line": 15,
+          "note": "this step",
+          "rule": "unpinned-uses",
+          "severity": "High",
+          "url": "https://docs.zizmor.sh/audits/#unpinned-uses"
+        },
+        {
+          "confidence": "High",
+          "description": "unpinned action reference",
+          "file": ".github/workflows/test-chrome-docker.yml",
+          "line": 13,
+          "note": "this step",
+          "rule": "unpinned-uses",
+          "severity": "High",
+          "url": "https://docs.zizmor.sh/audits/#unpinned-uses"
+        },
+        {
+          "confidence": "High",
+          "description": "unpinned action reference",
+          "file": ".github/workflows/test-packaged-scans.yml",
+          "line": 15,
+          "note": "this step",
+          "rule": "unpinned-uses",
+          "severity": "High",
+          "url": "https://docs.zizmor.sh/audits/#unpinned-uses"
+        },
+        {
+          "confidence": "High",
+          "description": "unpinned action reference",
+          "file": ".github/workflows/test-packaged-scans.yml",
+          "line": 16,
+          "note": "this step",
+          "rule": "unpinned-uses",
+          "severity": "High",
+          "url": "https://docs.zizmor.sh/audits/#unpinned-uses"
+        },
+        {
+          "confidence": "Medium",
+          "description": "overly broad permissions",
+          "file": ".github/workflows/check-zap-errors.yml",
+          "line": 9,
+          "note": "this job",
+          "rule": "excessive-permissions",
+          "severity": "Medium",
+          "url": "https://docs.zizmor.sh/audits/#excessive-permissions"
+        },
+        {
+          "confidence": "Medium",
+          "description": "overly broad permissions",
+          "file": ".github/workflows/ci.yml",
+          "line": 14,
+          "note": "this job",
+          "rule": "excessive-permissions",
+          "severity": "Medium",
+          "url": "https://docs.zizmor.sh/audits/#excessive-permissions"
+        },
+        {
+          "confidence": "High",
+          "description": "action or reusable workflow from archived repository",
+          "file": ".github/workflows/cla.yml",
+          "line": 21,
+          "note": "this step",
+          "rule": "archived-uses",
+          "severity": "Medium",
+          "url": "https://docs.zizmor.sh/audits/#archived-uses"
+        },
+        {
+          "confidence": "Medium",
+          "description": "overly broad permissions",
+          "file": ".github/workflows/crowdin-upload-files.yml",
+          "line": 7,
+          "note": "this job",
+          "rule": "excessive-permissions",
+          "severity": "Medium",
+          "url": "https://docs.zizmor.sh/audits/#excessive-permissions"
+        },
+        {
+          "confidence": "Medium",
+          "description": "overly broad permissions",
+          "file": ".github/workflows/handle-release.yml",
+          "line": 8,
+          "note": "this job",
+          "rule": "excessive-permissions",
+          "severity": "Medium",
+          "url": "https://docs.zizmor.sh/audits/#excessive-permissions"
+        },
+        {
+          "confidence": "Medium",
+          "description": "overly broad permissions",
+          "file": ".github/workflows/prepare-release-main-version.yml",
+          "line": 7,
+          "note": "this job",
+          "rule": "excessive-permissions",
+          "severity": "Medium",
+          "url": "https://docs.zizmor.sh/audits/#excessive-permissions"
+        },
+        {
+          "confidence": "Medium",
+          "description": "overly broad permissions",
+          "file": ".github/workflows/release-live-docker.yml",
+          "line": 9,
+          "note": "this job",
+          "rule": "excessive-permissions",
+          "severity": "Medium",
+          "url": "https://docs.zizmor.sh/audits/#excessive-permissions"
+        },
+        {
+          "confidence": "Medium",
+          "description": "overly broad permissions",
+          "file": ".github/workflows/release-main-docker.yml",
+          "line": 9,
+          "note": "this job",
+          "rule": "excessive-permissions",
+          "severity": "Medium",
+          "url": "https://docs.zizmor.sh/audits/#excessive-permissions"
+        },
+        {
+          "confidence": "Medium",
+          "description": "overly broad permissions",
+          "file": ".github/workflows/release-main-version.yml",
+          "line": 1,
+          "note": "default permissions used due to no permissions: block",
+          "rule": "excessive-permissions",
+          "severity": "Medium",
+          "url": "https://docs.zizmor.sh/audits/#excessive-permissions"
+        },
+        {
+          "confidence": "Medium",
+          "description": "overly broad permissions",
+          "file": ".github/workflows/release-main-version.yml",
+          "line": 12,
+          "note": "this job",
+          "rule": "excessive-permissions",
+          "severity": "Medium",
+          "url": "https://docs.zizmor.sh/audits/#excessive-permissions"
+        },
+        {
+          "confidence": "Medium",
+          "description": "overly broad permissions",
+          "file": ".github/workflows/release-main-version.yml",
+          "line": 33,
+          "note": "this job",
+          "rule": "excessive-permissions",
+          "severity": "Medium",
+          "url": "https://docs.zizmor.sh/audits/#excessive-permissions"
+        },
+        {
+          "confidence": "Medium",
+          "description": "overly broad permissions",
+          "file": ".github/workflows/release-snap.yml",
+          "line": 9,
+          "note": "this job",
+          "rule": "excessive-permissions",
+          "severity": "Medium",
+          "url": "https://docs.zizmor.sh/audits/#excessive-permissions"
+        },
+        {
+          "confidence": "Medium",
+          "description": "overly broad permissions",
+          "file": ".github/workflows/release-weekly-docker.yml",
+          "line": 8,
+          "note": "this job",
+          "rule": "excessive-permissions",
+          "severity": "Medium",
+          "url": "https://docs.zizmor.sh/audits/#excessive-permissions"
+        },
+        {
+          "confidence": "Medium",
+          "description": "overly broad permissions",
+          "file": ".github/workflows/release-weekly.yml",
+          "line": 7,
+          "note": "this job",
+          "rule": "excessive-permissions",
+          "severity": "Medium",
+          "url": "https://docs.zizmor.sh/audits/#excessive-permissions"
+        },
+        {
+          "confidence": "Medium",
+          "description": "overly broad permissions",
+          "file": ".github/workflows/run-integration-tests.yml",
+          "line": 9,
+          "note": "this job",
+          "rule": "excessive-permissions",
+          "severity": "Medium",
+          "url": "https://docs.zizmor.sh/audits/#excessive-permissions"
+        },
+        {
+          "confidence": "Medium",
+          "description": "overly broad permissions",
+          "file": ".github/workflows/sonar.yml",
+          "line": 9,
+          "note": "this job",
+          "rule": "excessive-permissions",
+          "severity": "Medium",
+          "url": "https://docs.zizmor.sh/audits/#excessive-permissions"
+        },
+        {
+          "confidence": "Medium",
+          "description": "overly broad permissions",
+          "file": ".github/workflows/test-chrome-docker.yml",
+          "line": 9,
+          "note": "this job",
+          "rule": "excessive-permissions",
+          "severity": "Medium",
+          "url": "https://docs.zizmor.sh/audits/#excessive-permissions"
+        },
+        {
+          "confidence": "Medium",
+          "description": "overly broad permissions",
+          "file": ".github/workflows/test-packaged-scans.yml",
+          "line": 9,
+          "note": "this job",
+          "rule": "excessive-permissions",
+          "severity": "Medium",
+          "url": "https://docs.zizmor.sh/audits/#excessive-permissions"
+        }
+      ]
+    }
   },
   "updated": "2026-11-01"
 }

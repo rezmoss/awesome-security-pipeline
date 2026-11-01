@@ -7,11 +7,17 @@
       "dependencies": 335,
       "errors": [],
       "fixable": 0,
+      "go_version": null,
+      "in_binary": null,
       "new_vulnerabilities": 0,
+      "osv_confirmed": 0,
+      "osv_only": 7,
       "ref": "2.3.4",
       "release_changed": false,
+      "release_integrity": "no-linux-binary",
       "removed": 0,
       "resolved_vulnerabilities": 0,
+      "scorecard": 4.8,
       "upgraded": 0,
       "vulnerabilities": {
         "Critical": 0,
@@ -20,6 +26,12 @@
         "Medium": 0,
         "Negligible": 0,
         "Unknown": 0
+      },
+      "workflow": {
+        "High": 4,
+        "Low": 3,
+        "Medium": 19,
+        "files": 29
       }
     }
   ],
@@ -3428,8 +3440,102 @@
       "website/scripts/stubs/composer.lock"
     ],
     "name": "phpstan",
+    "osv": {
+      "advisories": 7,
+      "available": true,
+      "confirmed": 0,
+      "osv_only": [
+        {
+          "ecosystem": "npm",
+          "ids": [
+            "CVE-2026-118764",
+            "GHSA-g3hv-75wg-m249"
+          ],
+          "package": "minimatch",
+          "score": "6.9",
+          "severity": "Medium",
+          "version": "10.2.6"
+        },
+        {
+          "ecosystem": "npm",
+          "ids": [
+            "CVE-2026-118764",
+            "GHSA-g3hv-75wg-m249"
+          ],
+          "package": "minimatch",
+          "score": "6.9",
+          "severity": "Medium",
+          "version": "3.1.5"
+        },
+        {
+          "ecosystem": "npm",
+          "ids": [
+            "CVE-2026-87776",
+            "GHSA-vc2v-76pw-4v95"
+          ],
+          "package": "compression",
+          "score": "7.5",
+          "severity": "High",
+          "version": "1.8.1"
+        },
+        {
+          "ecosystem": "npm",
+          "ids": [
+            "CVE-2026-118773",
+            "GHSA-3g3m-2fjr-6pw4"
+          ],
+          "package": "glob",
+          "score": "6.3",
+          "severity": "Medium",
+          "version": "13.0.6"
+        },
+        {
+          "ecosystem": "npm",
+          "ids": [
+            "CVE-2026-118764",
+            "GHSA-g3hv-75wg-m249"
+          ],
+          "package": "minimatch",
+          "score": "6.9",
+          "severity": "Medium",
+          "version": "10.2.6"
+        },
+        {
+          "ecosystem": "npm",
+          "ids": [
+            "CVE-2026-118764",
+            "GHSA-g3hv-75wg-m249"
+          ],
+          "package": "minimatch",
+          "score": "6.9",
+          "severity": "Medium",
+          "version": "3.1.5"
+        },
+        {
+          "ecosystem": "npm",
+          "ids": [
+            "CVE-2026-104844",
+            "GHSA-rj75-hqrm-r3gf"
+          ],
+          "package": "postcss-selector-parser",
+          "score": "5.9",
+          "severity": "Medium",
+          "version": "6.0.10"
+        }
+      ],
+      "warning": null
+    },
     "ref": "2.3.4",
     "ref_kind": "release",
+    "release_integrity": {
+      "assets": 2,
+      "checksums_published": false,
+      "methods": [],
+      "provenance_published": false,
+      "sbom_published": false,
+      "signatures_published": true,
+      "verdict": "no-linux-binary"
+    },
     "released_at": "2026-10-28T22:40:18Z",
     "repository": "phpstan/phpstan",
     "sbomlyze_diff": {
@@ -3442,8 +3548,361 @@
       ],
       "removed": 0
     },
-    "scanned_at": "2026-11-01T16:37:40+00:00",
-    "vulnerabilities": []
+    "scanned_at": "2026-11-01T17:43:48+00:00",
+    "scorecard": {
+      "checks": [
+        {
+          "name": "Binary-Artifacts",
+          "reason": "binaries present in source code",
+          "score": 0
+        },
+        {
+          "name": "CII-Best-Practices",
+          "reason": "no effort to earn an OpenSSF best practices badge detected",
+          "score": 0
+        },
+        {
+          "name": "Code-Review",
+          "reason": "Found 0/30 approved changesets -- score normalized to 0",
+          "score": 0
+        },
+        {
+          "name": "Fuzzing",
+          "reason": "project is not fuzzed",
+          "score": 0
+        },
+        {
+          "name": "Branch-Protection",
+          "reason": "branch protection is not maximal on development and all release branches",
+          "score": 3
+        },
+        {
+          "name": "Signed-Releases",
+          "reason": "5 out of the last 5 releases have a total of 5 signed artifacts.",
+          "score": 8
+        },
+        {
+          "name": "SAST",
+          "reason": "SAST tool is not run on all commits -- score normalized to 9",
+          "score": 9
+        },
+        {
+          "name": "License",
+          "reason": "license file detected",
+          "score": 10
+        },
+        {
+          "name": "Maintained",
+          "reason": "30 commit(s) and 6 issue activity found in the last 90 days -- score normalized to 10",
+          "score": 10
+        },
+        {
+          "name": "Security-Policy",
+          "reason": "security policy file detected",
+          "score": 10
+        },
+        {
+          "name": "Dangerous-Workflow",
+          "reason": "no workflows found",
+          "score": -1
+        },
+        {
+          "name": "Packaging",
+          "reason": "packaging workflow not detected",
+          "score": -1
+        },
+        {
+          "name": "Pinned-Dependencies",
+          "reason": "no dependencies found",
+          "score": -1
+        },
+        {
+          "name": "Token-Permissions",
+          "reason": "No tokens found",
+          "score": -1
+        }
+      ],
+      "date": "2026-10-26",
+      "score": 4.8,
+      "source": "openssf-api",
+      "version": "v5.6.0"
+    },
+    "vulnerabilities": [],
+    "workflow_audit": {
+      "files": 29,
+      "findings": [
+        {
+          "confidence": "Medium",
+          "description": "use of fundamentally insecure workflow trigger",
+          "file": ".github/workflows/claude-react-on-review-dispatch.yml",
+          "line": 3,
+          "note": "this workflow",
+          "rule": "dangerous-triggers",
+          "severity": "High",
+          "url": "https://docs.zizmor.sh/audits/#dangerous-triggers"
+        },
+        {
+          "confidence": "High",
+          "description": "code injection via template expansion",
+          "file": ".github/workflows/extension-tests.yml",
+          "line": 34,
+          "note": "this step",
+          "rule": "template-injection",
+          "severity": "High",
+          "url": "https://docs.zizmor.sh/audits/#template-injection"
+        },
+        {
+          "confidence": "High",
+          "description": "code injection via template expansion",
+          "file": ".github/workflows/integration-tests.yml",
+          "line": 37,
+          "note": "this step",
+          "rule": "template-injection",
+          "severity": "High",
+          "url": "https://docs.zizmor.sh/audits/#template-injection"
+        },
+        {
+          "confidence": "High",
+          "description": "code injection via template expansion",
+          "file": ".github/workflows/other-tests.yml",
+          "line": 34,
+          "note": "this step",
+          "rule": "template-injection",
+          "severity": "High",
+          "url": "https://docs.zizmor.sh/audits/#template-injection"
+        },
+        {
+          "confidence": "Medium",
+          "description": "overly broad permissions",
+          "file": ".github/workflows/claude-react-on-review.yml",
+          "line": 8,
+          "note": "this job",
+          "rule": "excessive-permissions",
+          "severity": "Medium",
+          "url": "https://docs.zizmor.sh/audits/#excessive-permissions"
+        },
+        {
+          "confidence": "Medium",
+          "description": "overly broad permissions",
+          "file": ".github/workflows/extension-tests-run.yml",
+          "line": 3,
+          "note": "default permissions used due to no permissions: block",
+          "rule": "excessive-permissions",
+          "severity": "Medium",
+          "url": "https://docs.zizmor.sh/audits/#excessive-permissions"
+        },
+        {
+          "confidence": "Medium",
+          "description": "overly broad permissions",
+          "file": ".github/workflows/extension-tests-run.yml",
+          "line": 24,
+          "note": "this job",
+          "rule": "excessive-permissions",
+          "severity": "Medium",
+          "url": "https://docs.zizmor.sh/audits/#excessive-permissions"
+        },
+        {
+          "confidence": "Medium",
+          "description": "overly broad permissions",
+          "file": ".github/workflows/extension-tests-run.yml",
+          "line": 50,
+          "note": "this job",
+          "rule": "excessive-permissions",
+          "severity": "Medium",
+          "url": "https://docs.zizmor.sh/audits/#excessive-permissions"
+        },
+        {
+          "confidence": "Medium",
+          "description": "overly broad permissions",
+          "file": ".github/workflows/integration-tests-run.yml",
+          "line": 3,
+          "note": "default permissions used due to no permissions: block",
+          "rule": "excessive-permissions",
+          "severity": "Medium",
+          "url": "https://docs.zizmor.sh/audits/#excessive-permissions"
+        },
+        {
+          "confidence": "Medium",
+          "description": "overly broad permissions",
+          "file": ".github/workflows/integration-tests-run.yml",
+          "line": 26,
+          "note": "this job",
+          "rule": "excessive-permissions",
+          "severity": "Medium",
+          "url": "https://docs.zizmor.sh/audits/#excessive-permissions"
+        },
+        {
+          "confidence": "Medium",
+          "description": "overly broad permissions",
+          "file": ".github/workflows/integration-tests-run.yml",
+          "line": 52,
+          "note": "this job",
+          "rule": "excessive-permissions",
+          "severity": "Medium",
+          "url": "https://docs.zizmor.sh/audits/#excessive-permissions"
+        },
+        {
+          "confidence": "Medium",
+          "description": "overly broad permissions",
+          "file": ".github/workflows/other-tests-run.yml",
+          "line": 3,
+          "note": "default permissions used due to no permissions: block",
+          "rule": "excessive-permissions",
+          "severity": "Medium",
+          "url": "https://docs.zizmor.sh/audits/#excessive-permissions"
+        },
+        {
+          "confidence": "Medium",
+          "description": "overly broad permissions",
+          "file": ".github/workflows/other-tests-run.yml",
+          "line": 26,
+          "note": "this job",
+          "rule": "excessive-permissions",
+          "severity": "Medium",
+          "url": "https://docs.zizmor.sh/audits/#excessive-permissions"
+        },
+        {
+          "confidence": "Medium",
+          "description": "overly broad permissions",
+          "file": ".github/workflows/other-tests-run.yml",
+          "line": 52,
+          "note": "this job",
+          "rule": "excessive-permissions",
+          "severity": "Medium",
+          "url": "https://docs.zizmor.sh/audits/#excessive-permissions"
+        },
+        {
+          "confidence": "Medium",
+          "description": "overly broad permissions",
+          "file": ".github/workflows/release-toot.yml",
+          "line": 10,
+          "note": "this job",
+          "rule": "excessive-permissions",
+          "severity": "Medium",
+          "url": "https://docs.zizmor.sh/audits/#excessive-permissions"
+        },
+        {
+          "confidence": "Medium",
+          "description": "overly broad permissions",
+          "file": ".github/workflows/release-tweet.yml",
+          "line": 10,
+          "note": "this job",
+          "rule": "excessive-permissions",
+          "severity": "Medium",
+          "url": "https://docs.zizmor.sh/audits/#excessive-permissions"
+        },
+        {
+          "confidence": "Medium",
+          "description": "overly broad permissions",
+          "file": ".github/workflows/sponsors.yml",
+          "line": 17,
+          "note": "this job",
+          "rule": "excessive-permissions",
+          "severity": "Medium",
+          "url": "https://docs.zizmor.sh/audits/#excessive-permissions"
+        },
+        {
+          "confidence": "Medium",
+          "description": "overly broad permissions",
+          "file": ".github/workflows/website-links.yml",
+          "line": 16,
+          "note": "this job",
+          "rule": "excessive-permissions",
+          "severity": "Medium",
+          "url": "https://docs.zizmor.sh/audits/#excessive-permissions"
+        },
+        {
+          "confidence": "Medium",
+          "description": "overly broad permissions",
+          "file": ".github/workflows/website.yml",
+          "line": 3,
+          "note": "default permissions used due to no permissions: block",
+          "rule": "excessive-permissions",
+          "severity": "Medium",
+          "url": "https://docs.zizmor.sh/audits/#excessive-permissions"
+        },
+        {
+          "confidence": "Medium",
+          "description": "overly broad permissions",
+          "file": ".github/workflows/website.yml",
+          "line": 21,
+          "note": "this job",
+          "rule": "excessive-permissions",
+          "severity": "Medium",
+          "url": "https://docs.zizmor.sh/audits/#excessive-permissions"
+        },
+        {
+          "confidence": "Medium",
+          "description": "overly broad permissions",
+          "file": ".github/workflows/website.yml",
+          "line": 58,
+          "note": "this job",
+          "rule": "excessive-permissions",
+          "severity": "Medium",
+          "url": "https://docs.zizmor.sh/audits/#excessive-permissions"
+        },
+        {
+          "confidence": "Medium",
+          "description": "overly broad permissions",
+          "file": ".github/workflows/website.yml",
+          "line": 162,
+          "note": "this job",
+          "rule": "excessive-permissions",
+          "severity": "Medium",
+          "url": "https://docs.zizmor.sh/audits/#excessive-permissions"
+        },
+        {
+          "confidence": "Medium",
+          "description": "overly broad permissions",
+          "file": ".github/workflows/website.yml",
+          "line": 257,
+          "note": "this job",
+          "rule": "excessive-permissions",
+          "severity": "Medium",
+          "url": "https://docs.zizmor.sh/audits/#excessive-permissions"
+        },
+        {
+          "confidence": "High",
+          "description": "use GitHub's dedicated self-repository syntax",
+          "file": ".github/workflows/extension-tests-run.yml",
+          "line": 50,
+          "note": "this job",
+          "rule": "self-repository",
+          "severity": "Low",
+          "url": "https://docs.zizmor.sh/audits/#self-repository"
+        },
+        {
+          "confidence": "High",
+          "description": "use GitHub's dedicated self-repository syntax",
+          "file": ".github/workflows/integration-tests-run.yml",
+          "line": 52,
+          "note": "this job",
+          "rule": "self-repository",
+          "severity": "Low",
+          "url": "https://docs.zizmor.sh/audits/#self-repository"
+        },
+        {
+          "confidence": "High",
+          "description": "use GitHub's dedicated self-repository syntax",
+          "file": ".github/workflows/other-tests-run.yml",
+          "line": 52,
+          "note": "this job",
+          "rule": "self-repository",
+          "severity": "Low",
+          "url": "https://docs.zizmor.sh/audits/#self-repository"
+        },
+        {
+          "confidence": "High",
+          "description": "action functionality is already included by the runner",
+          "file": ".github/workflows/release.yml",
+          "line": 31,
+          "note": "this step",
+          "rule": "superfluous-actions",
+          "severity": "Informational",
+          "url": "https://docs.zizmor.sh/audits/#superfluous-actions"
+        }
+      ]
+    }
   },
   "updated": "2026-11-01"
 }

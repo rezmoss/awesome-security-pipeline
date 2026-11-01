@@ -7,11 +7,17 @@
       "dependencies": 262,
       "errors": [],
       "fixable": 22,
+      "go_version": null,
+      "in_binary": null,
       "new_vulnerabilities": 0,
+      "osv_confirmed": 22,
+      "osv_only": 0,
       "ref": "0.144.0",
       "release_changed": false,
+      "release_integrity": "no-assets",
       "removed": 0,
       "resolved_vulnerabilities": 0,
+      "scorecard": 8.1,
       "upgraded": 0,
       "vulnerabilities": {
         "Critical": 0,
@@ -20,6 +26,12 @@
         "Medium": 11,
         "Negligible": 0,
         "Unknown": 0
+      },
+      "workflow": {
+        "High": 0,
+        "Low": 0,
+        "Medium": 0,
+        "files": 6
       }
     }
   ],
@@ -2192,8 +2204,24 @@
       "uv.lock"
     ],
     "name": "cartography",
+    "osv": {
+      "advisories": 22,
+      "available": true,
+      "confirmed": 22,
+      "osv_only": [],
+      "warning": null
+    },
     "ref": "0.144.0",
     "ref_kind": "release",
+    "release_integrity": {
+      "assets": 0,
+      "checksums_published": false,
+      "methods": [],
+      "provenance_published": false,
+      "sbom_published": false,
+      "signatures_published": false,
+      "verdict": "no-assets"
+    },
     "released_at": "2026-10-29T20:05:46Z",
     "repository": "lyft/cartography",
     "sbomlyze_diff": {
@@ -2206,7 +2234,85 @@
       ],
       "removed": 0
     },
-    "scanned_at": "2026-11-01T16:37:29+00:00",
+    "scanned_at": "2026-11-01T17:43:28+00:00",
+    "scorecard": {
+      "checks": [
+        {
+          "name": "CII-Best-Practices",
+          "reason": "no effort to earn an OpenSSF best practices badge detected",
+          "score": 0
+        },
+        {
+          "name": "Fuzzing",
+          "reason": "project is not fuzzed",
+          "score": 0
+        },
+        {
+          "name": "SAST",
+          "reason": "SAST tool is not run on all commits -- score normalized to 0",
+          "score": 0
+        },
+        {
+          "name": "Code-Review",
+          "reason": "Found 21/22 approved changesets -- score normalized to 9",
+          "score": 9
+        },
+        {
+          "name": "Binary-Artifacts",
+          "reason": "no binaries found in the repo",
+          "score": 10
+        },
+        {
+          "name": "Dangerous-Workflow",
+          "reason": "no dangerous workflow patterns detected",
+          "score": 10
+        },
+        {
+          "name": "License",
+          "reason": "license file detected",
+          "score": 10
+        },
+        {
+          "name": "Maintained",
+          "reason": "30 commit(s) and 4 issue activity found in the last 90 days -- score normalized to 10",
+          "score": 10
+        },
+        {
+          "name": "Packaging",
+          "reason": "packaging workflow detected",
+          "score": 10
+        },
+        {
+          "name": "Pinned-Dependencies",
+          "reason": "all dependencies are pinned",
+          "score": 10
+        },
+        {
+          "name": "Security-Policy",
+          "reason": "security policy file detected",
+          "score": 10
+        },
+        {
+          "name": "Token-Permissions",
+          "reason": "GitHub workflow tokens follow principle of least privilege",
+          "score": 10
+        },
+        {
+          "name": "Branch-Protection",
+          "reason": "internal error: error during branchesHandler.setup: internal error: some github tokens can't read classic branch protection rules: https://github.com/ossf/scorecard-action/blob/main/docs/authentication/fine-grained-auth-token.md",
+          "score": -1
+        },
+        {
+          "name": "Signed-Releases",
+          "reason": "no releases found",
+          "score": -1
+        }
+      ],
+      "date": "2026-10-26",
+      "score": 8.1,
+      "source": "openssf-api",
+      "version": "v5.6.0"
+    },
     "vulnerabilities": [
       {
         "aliases": [
@@ -2219,6 +2325,7 @@
         ],
         "id": "GHSA-v4x8-3wr5-3wq8",
         "location": "uv.lock",
+        "osv_confirmed": true,
         "package": "filelock",
         "severity": "High",
         "url": "https://github.com/advisories/GHSA-v4x8-3wr5-3wq8",
@@ -2235,6 +2342,7 @@
         ],
         "id": "GHSA-2qm8-x737-gmw5",
         "location": "uv.lock",
+        "osv_confirmed": true,
         "package": "pyasn1",
         "severity": "High",
         "url": "https://github.com/advisories/GHSA-2qm8-x737-gmw5",
@@ -2251,6 +2359,7 @@
         ],
         "id": "GHSA-9m75-vc3g-4x39",
         "location": "uv.lock",
+        "osv_confirmed": true,
         "package": "pyasn1",
         "severity": "High",
         "url": "https://github.com/advisories/GHSA-9m75-vc3g-4x39",
@@ -2267,6 +2376,7 @@
         ],
         "id": "GHSA-fm9c-5rcf-2q5p",
         "location": "uv.lock",
+        "osv_confirmed": true,
         "package": "pyasn1",
         "severity": "High",
         "url": "https://github.com/advisories/GHSA-fm9c-5rcf-2q5p",
@@ -2283,6 +2393,7 @@
         ],
         "id": "GHSA-mm57-4v3p-rchx",
         "location": "uv.lock",
+        "osv_confirmed": true,
         "package": "pyasn1",
         "severity": "High",
         "url": "https://github.com/advisories/GHSA-mm57-4v3p-rchx",
@@ -2299,6 +2410,7 @@
         ],
         "id": "GHSA-cx6f-vjhg-g3cc",
         "location": "uv.lock",
+        "osv_confirmed": true,
         "package": "virtualenv",
         "severity": "High",
         "url": "https://github.com/advisories/GHSA-cx6f-vjhg-g3cc",
@@ -2315,6 +2427,7 @@
         ],
         "id": "GHSA-6627-m3xw-93mp",
         "location": "uv.lock",
+        "osv_confirmed": true,
         "package": "filelock",
         "severity": "Medium",
         "url": "https://github.com/advisories/GHSA-6627-m3xw-93mp",
@@ -2331,6 +2444,7 @@
         ],
         "id": "GHSA-69hj-f68j-2879",
         "location": "uv.lock",
+        "osv_confirmed": true,
         "package": "filelock",
         "severity": "Medium",
         "url": "https://github.com/advisories/GHSA-69hj-f68j-2879",
@@ -2347,6 +2461,7 @@
         ],
         "id": "GHSA-8mx5-7m5m-r77g",
         "location": "uv.lock",
+        "osv_confirmed": true,
         "package": "filelock",
         "severity": "Medium",
         "url": "https://github.com/advisories/GHSA-8mx5-7m5m-r77g",
@@ -2363,6 +2478,7 @@
         ],
         "id": "GHSA-9c4x-gm8v-wgc4",
         "location": "uv.lock",
+        "osv_confirmed": true,
         "package": "filelock",
         "severity": "Medium",
         "url": "https://github.com/advisories/GHSA-9c4x-gm8v-wgc4",
@@ -2379,6 +2495,7 @@
         ],
         "id": "GHSA-cwqr-hh33-gh44",
         "location": "uv.lock",
+        "osv_confirmed": true,
         "package": "filelock",
         "severity": "Medium",
         "url": "https://github.com/advisories/GHSA-cwqr-hh33-gh44",
@@ -2395,6 +2512,7 @@
         ],
         "id": "GHSA-fq56-3cx3-fjxp",
         "location": "uv.lock",
+        "osv_confirmed": true,
         "package": "filelock",
         "severity": "Medium",
         "url": "https://github.com/advisories/GHSA-fq56-3cx3-fjxp",
@@ -2411,6 +2529,7 @@
         ],
         "id": "GHSA-j8f7-rjxc-mr56",
         "location": "uv.lock",
+        "osv_confirmed": true,
         "package": "filelock",
         "severity": "Medium",
         "url": "https://github.com/advisories/GHSA-j8f7-rjxc-mr56",
@@ -2427,6 +2546,7 @@
         ],
         "id": "GHSA-m462-7rxw-wvpg",
         "location": "uv.lock",
+        "osv_confirmed": true,
         "package": "filelock",
         "severity": "Medium",
         "url": "https://github.com/advisories/GHSA-m462-7rxw-wvpg",
@@ -2443,6 +2563,7 @@
         ],
         "id": "GHSA-rfpc-qcw5-3pc4",
         "location": "uv.lock",
+        "osv_confirmed": true,
         "package": "filelock",
         "severity": "Medium",
         "url": "https://github.com/advisories/GHSA-rfpc-qcw5-3pc4",
@@ -2459,6 +2580,7 @@
         ],
         "id": "GHSA-h35f-9h28-mq5c",
         "location": "uv.lock",
+        "osv_confirmed": true,
         "package": "setuptools",
         "severity": "Medium",
         "url": "https://github.com/advisories/GHSA-h35f-9h28-mq5c",
@@ -2475,6 +2597,7 @@
         ],
         "id": "GHSA-4f8h-vr72-p32c",
         "location": "uv.lock",
+        "osv_confirmed": true,
         "package": "virtualenv",
         "severity": "Medium",
         "url": "https://github.com/advisories/GHSA-4f8h-vr72-p32c",
@@ -2491,6 +2614,7 @@
         ],
         "id": "GHSA-567q-5qvw-pf92",
         "location": "uv.lock",
+        "osv_confirmed": true,
         "package": "filelock",
         "severity": "Low",
         "url": "https://github.com/advisories/GHSA-567q-5qvw-pf92",
@@ -2507,6 +2631,7 @@
         ],
         "id": "GHSA-9j6q-wvj5-jgjg",
         "location": "uv.lock",
+        "osv_confirmed": true,
         "package": "filelock",
         "severity": "Low",
         "url": "https://github.com/advisories/GHSA-9j6q-wvj5-jgjg",
@@ -2523,6 +2648,7 @@
         ],
         "id": "GHSA-9vhv-jxww-xfm5",
         "location": "uv.lock",
+        "osv_confirmed": true,
         "package": "filelock",
         "severity": "Low",
         "url": "https://github.com/advisories/GHSA-9vhv-jxww-xfm5",
@@ -2539,6 +2665,7 @@
         ],
         "id": "GHSA-5239-wwwm-4pmq",
         "location": "uv.lock",
+        "osv_confirmed": true,
         "package": "pygments",
         "severity": "Low",
         "url": "https://github.com/advisories/GHSA-5239-wwwm-4pmq",
@@ -2553,12 +2680,28 @@
         ],
         "id": "GHSA-xmj3-9gf7-h52w",
         "location": "uv.lock",
+        "osv_confirmed": true,
         "package": "setuptools",
         "severity": "Low",
         "url": "https://github.com/advisories/GHSA-xmj3-9gf7-h52w",
         "version": "80.10.2"
       }
-    ]
+    ],
+    "workflow_audit": {
+      "files": 6,
+      "findings": [
+        {
+          "confidence": "High",
+          "description": "prefer trusted publishing for authentication",
+          "file": ".github/workflows/publish-to-ghcr-and-pypi.yml",
+          "line": 59,
+          "note": "this step",
+          "rule": "use-trusted-publishing",
+          "severity": "Informational",
+          "url": "https://docs.zizmor.sh/audits/#use-trusted-publishing"
+        }
+      ]
+    }
   },
   "updated": "2026-11-01"
 }

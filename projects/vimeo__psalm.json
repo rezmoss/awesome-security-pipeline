@@ -7,11 +7,17 @@
       "dependencies": 68,
       "errors": [],
       "fixable": 1,
+      "go_version": null,
+      "in_binary": null,
       "new_vulnerabilities": 0,
+      "osv_confirmed": 0,
+      "osv_only": 0,
       "ref": "6.20.5",
       "release_changed": false,
+      "release_integrity": "no-linux-binary",
       "removed": 0,
       "resolved_vulnerabilities": 0,
+      "scorecard": 4.7,
       "upgraded": 0,
       "vulnerabilities": {
         "Critical": 0,
@@ -20,6 +26,12 @@
         "Medium": 1,
         "Negligible": 0,
         "Unknown": 0
+      },
+      "workflow": {
+        "High": 1,
+        "Low": 0,
+        "Medium": 3,
+        "files": 13
       }
     }
   ],
@@ -762,8 +774,24 @@
       "vendor-bin/box/composer.lock"
     ],
     "name": "psalm",
+    "osv": {
+      "advisories": 0,
+      "available": true,
+      "confirmed": 0,
+      "osv_only": [],
+      "warning": null
+    },
     "ref": "6.20.5",
     "ref_kind": "release",
+    "release_integrity": {
+      "assets": 2,
+      "checksums_published": false,
+      "methods": [],
+      "provenance_published": false,
+      "sbom_published": false,
+      "signatures_published": true,
+      "verdict": "no-linux-binary"
+    },
     "released_at": "2026-10-31T16:27:00Z",
     "repository": "vimeo/psalm",
     "sbomlyze_diff": {
@@ -776,7 +804,85 @@
       ],
       "removed": 0
     },
-    "scanned_at": "2026-11-01T16:37:13+00:00",
+    "scanned_at": "2026-11-01T17:44:39+00:00",
+    "scorecard": {
+      "checks": [
+        {
+          "name": "CII-Best-Practices",
+          "reason": "no effort to earn an OpenSSF best practices badge detected",
+          "score": 0
+        },
+        {
+          "name": "Code-Review",
+          "reason": "Found 0/5 approved changesets -- score normalized to 0",
+          "score": 0
+        },
+        {
+          "name": "Fuzzing",
+          "reason": "project is not fuzzed",
+          "score": 0
+        },
+        {
+          "name": "SAST",
+          "reason": "SAST tool is not run on all commits -- score normalized to 0",
+          "score": 0
+        },
+        {
+          "name": "Security-Policy",
+          "reason": "security policy file not detected",
+          "score": 0
+        },
+        {
+          "name": "Signed-Releases",
+          "reason": "5 out of the last 5 releases have a total of 5 signed artifacts.",
+          "score": 8
+        },
+        {
+          "name": "Binary-Artifacts",
+          "reason": "no binaries found in the repo",
+          "score": 10
+        },
+        {
+          "name": "License",
+          "reason": "license file detected",
+          "score": 10
+        },
+        {
+          "name": "Maintained",
+          "reason": "30 commit(s) and 3 issue activity found in the last 90 days -- score normalized to 10",
+          "score": 10
+        },
+        {
+          "name": "Branch-Protection",
+          "reason": "internal error: error during branchesHandler.setup: internal error: some github tokens can't read classic branch protection rules: https://github.com/ossf/scorecard-action/blob/main/docs/authentication/fine-grained-auth-token.md",
+          "score": -1
+        },
+        {
+          "name": "Dangerous-Workflow",
+          "reason": "no workflows found",
+          "score": -1
+        },
+        {
+          "name": "Packaging",
+          "reason": "packaging workflow not detected",
+          "score": -1
+        },
+        {
+          "name": "Pinned-Dependencies",
+          "reason": "no dependencies found",
+          "score": -1
+        },
+        {
+          "name": "Token-Permissions",
+          "reason": "No tokens found",
+          "score": -1
+        }
+      ],
+      "date": "2026-10-19",
+      "score": 4.7,
+      "source": "openssf-api",
+      "version": "v5.6.0"
+    },
     "vulnerabilities": [
       {
         "aliases": [],
@@ -787,12 +893,68 @@
         ],
         "id": "GHSA-5wxr-w449-57cm",
         "location": ".github/workflows/windows-ci.yml",
+        "osv_confirmed": false,
         "package": "shivammathur/setup-php",
         "severity": "Medium",
         "url": "https://github.com/advisories/GHSA-5wxr-w449-57cm",
         "version": "v2"
       }
-    ]
+    ],
+    "workflow_audit": {
+      "files": 13,
+      "findings": [
+        {
+          "confidence": "Medium",
+          "description": "use of fundamentally insecure workflow trigger",
+          "file": ".github/workflows/perf-comment.yml",
+          "line": 6,
+          "note": "this workflow",
+          "rule": "dangerous-triggers",
+          "severity": "High",
+          "url": "https://docs.zizmor.sh/audits/#dangerous-triggers"
+        },
+        {
+          "confidence": "Medium",
+          "description": "overly broad permissions",
+          "file": ".github/workflows/bcc.yml",
+          "line": 5,
+          "note": "this job",
+          "rule": "excessive-permissions",
+          "severity": "Medium",
+          "url": "https://docs.zizmor.sh/audits/#excessive-permissions"
+        },
+        {
+          "confidence": "Medium",
+          "description": "code injection via template expansion",
+          "file": ".github/workflows/build-stubs.yml",
+          "line": 97,
+          "note": "this step",
+          "rule": "template-injection",
+          "severity": "Medium",
+          "url": "https://docs.zizmor.sh/audits/#template-injection"
+        },
+        {
+          "confidence": "Medium",
+          "description": "overly broad permissions",
+          "file": ".github/workflows/pr-labels.yml",
+          "line": 6,
+          "note": "this job",
+          "rule": "excessive-permissions",
+          "severity": "Medium",
+          "url": "https://docs.zizmor.sh/audits/#excessive-permissions"
+        },
+        {
+          "confidence": "High",
+          "description": "action functionality is already included by the runner",
+          "file": ".github/workflows/build-phar.yml",
+          "line": 86,
+          "note": "this step",
+          "rule": "superfluous-actions",
+          "severity": "Informational",
+          "url": "https://docs.zizmor.sh/audits/#superfluous-actions"
+        }
+      ]
+    }
   },
   "updated": "2026-11-01"
 }

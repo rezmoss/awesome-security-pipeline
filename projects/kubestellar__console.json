@@ -7,11 +7,21 @@
       "dependencies": 606,
       "errors": [],
       "fixable": 71,
+      "go_version": "go1.26.6",
+      "in_binary": {
+        "dependencies": 3,
+        "stdlib": 13,
+        "total": 16
+      },
       "new_vulnerabilities": 0,
+      "osv_confirmed": 72,
+      "osv_only": 28,
       "ref": "v0.3.42",
       "release_changed": false,
+      "release_integrity": "verified",
       "removed": 0,
       "resolved_vulnerabilities": 0,
+      "scorecard": null,
       "upgraded": 0,
       "vulnerabilities": {
         "Critical": 4,
@@ -20,6 +30,12 @@
         "Medium": 28,
         "Negligible": 0,
         "Unknown": 2
+      },
+      "workflow": {
+        "High": 19,
+        "Low": 11,
+        "Medium": 7,
+        "files": 97
       }
     }
   ],
@@ -5748,6 +5764,203 @@
     ],
     "description": "View security signals across multiple Kubernetes clusters.",
     "errors": [],
+    "go_binary": {
+      "asset": "console_0.3.42_linux_amd64.tar.gz",
+      "binary": "console",
+      "findings": [
+        {
+          "aliases": [
+            "CVE-2026-94448"
+          ],
+          "fixed_version": "v1.26.9",
+          "id": "GO-2026-6599",
+          "level": "symbol",
+          "module": "stdlib",
+          "summary": "Reset context tracking on consecutive template expressions in html/template",
+          "version": "v1.26.6"
+        },
+        {
+          "aliases": [
+            "CVE-2026-97030"
+          ],
+          "fixed_version": "v1.26.9",
+          "id": "GO-2026-6600",
+          "level": "symbol",
+          "module": "stdlib",
+          "summary": "Recognize yield as regexp preceder keyword in html/template",
+          "version": "v1.26.6"
+        },
+        {
+          "aliases": [
+            "CVE-2026-78659"
+          ],
+          "fixed_version": "v1.26.9",
+          "id": "GO-2026-6603",
+          "level": "symbol",
+          "module": "stdlib",
+          "summary": "HTTP/2 server memory exhaustion due to Trailer headers in net/http",
+          "version": "v1.26.6"
+        },
+        {
+          "aliases": [
+            "CVE-2026-56866"
+          ],
+          "fixed_version": "v1.26.9",
+          "id": "GO-2026-6605",
+          "level": "symbol",
+          "module": "stdlib",
+          "summary": "HTTP/1 client connection desynchronization after CONNECT rejection in net/http",
+          "version": "v1.26.6"
+        },
+        {
+          "aliases": [
+            "CVE-2026-97031"
+          ],
+          "fixed_version": "v1.26.9",
+          "id": "GO-2026-6607",
+          "level": "symbol",
+          "module": "stdlib",
+          "summary": "Reject malformed ECH outer extension references in crypto/tls",
+          "version": "v1.26.6"
+        },
+        {
+          "aliases": [
+            "CVE-2026-94440"
+          ],
+          "fixed_version": "v1.26.9",
+          "id": "GO-2026-6608",
+          "level": "symbol",
+          "module": "stdlib",
+          "summary": "Memory limit bypass when parsing MIME headers in net/textproto, mime/multipart",
+          "version": "v1.26.6"
+        },
+        {
+          "aliases": [
+            "CVE-2026-78667"
+          ],
+          "fixed_version": "v1.26.9",
+          "id": "GO-2026-6609",
+          "level": "symbol",
+          "module": "stdlib",
+          "summary": "Lack of limit on size of parsed Range headers in net/http",
+          "version": "v1.26.6"
+        },
+        {
+          "aliases": [
+            "CVE-2026-78660"
+          ],
+          "fixed_version": "v1.26.9",
+          "id": "GO-2026-6610",
+          "level": "symbol",
+          "module": "stdlib",
+          "summary": "HTTP/2 transport accepts malformed framing-related headers in net/http",
+          "version": "v1.26.6"
+        },
+        {
+          "aliases": [
+            "CVE-2026-78669"
+          ],
+          "fixed_version": "v1.26.9",
+          "id": "GO-2026-6611",
+          "level": "symbol",
+          "module": "stdlib",
+          "summary": "Excessive CPU consumption from repeated initial window changes in net/http",
+          "version": "v1.26.6"
+        },
+        {
+          "aliases": [
+            "CVE-2026-78663"
+          ],
+          "fixed_version": "v1.26.9",
+          "id": "GO-2026-6612",
+          "level": "symbol",
+          "module": "stdlib",
+          "summary": "Double flow control refund on HTTP/2 server streams in net/http",
+          "version": "v1.26.6"
+        },
+        {
+          "aliases": [
+            "CVE-2026-94439"
+          ],
+          "fixed_version": "v1.26.9",
+          "id": "GO-2026-6613",
+          "level": "symbol",
+          "module": "stdlib",
+          "summary": "HTTP/1 server connection desynchronization after 2xx CONNECT response in net/http",
+          "version": "v1.26.6"
+        },
+        {
+          "aliases": [
+            "CVE-2026-97032"
+          ],
+          "fixed_version": "v1.26.9",
+          "id": "GO-2026-6617",
+          "level": "symbol",
+          "module": "stdlib",
+          "summary": "HTTP/2 server crash due to HPACK encoder race in net/http",
+          "version": "v1.26.6"
+        },
+        {
+          "aliases": [
+            "CVE-2026-111943"
+          ],
+          "fixed_version": "v1.26.10",
+          "id": "GO-2026-6809",
+          "level": "symbol",
+          "module": "stdlib",
+          "summary": "Distrust compromised intermediate certificates in crypto/x509",
+          "version": "v1.26.6"
+        },
+        {
+          "aliases": [
+            "CVE-2026-78661"
+          ],
+          "fixed_version": "v0.62.0",
+          "id": "GO-2026-6860",
+          "level": "symbol",
+          "module": "golang.org/x/net",
+          "summary": "Avoid quadratic complexity when coalescing text nodes in html in golang.org/x/net",
+          "version": "v0.58.0"
+        },
+        {
+          "aliases": [
+            "CVE-2026-97045"
+          ],
+          "fixed_version": "v0.62.0",
+          "id": "GO-2026-6866",
+          "level": "symbol",
+          "module": "golang.org/x/net",
+          "summary": "Check all ancestor namespace transitions when rendering raw text in html in golang.org/x/net",
+          "version": "v0.58.0"
+        },
+        {
+          "aliases": [
+            "CVE-2026-84445",
+            "GHSA-2v4p-qf9q-27wj"
+          ],
+          "fixed_version": "v1.83.2",
+          "id": "GO-2026-6443",
+          "level": "symbol",
+          "module": "google.golang.org/grpc",
+          "summary": "Server panic via missing authority or Host headers in google.golang.org/grpc",
+          "version": "v1.83.1"
+        },
+        {
+          "aliases": [
+            "CVE-2026-81870",
+            "GHSA-8wmf-6v46-5gfg"
+          ],
+          "fixed_version": "v1.45.0",
+          "id": "GO-2026-6505",
+          "level": "module",
+          "module": "go.opentelemetry.io/otel/exporters/otlp/otlptrace",
+          "summary": "OpenTelemetry-Go: Exporter config logging may leak endpoint URLs in info logs in go.opentelemetry.io/otel/exporters/otlp/otlptrace",
+          "version": "v1.44.0"
+        }
+      ],
+      "go_version": "go1.26.6",
+      "main_module": "github.com/kubestellar/console"
+    },
     "id": "kubestellar__console",
     "manifests": [
       ".github/ga4-scripts/package-lock.json",
@@ -5866,8 +6079,349 @@
       "web/package.json"
     ],
     "name": "KubeStellar Console",
+    "osv": {
+      "advisories": 105,
+      "available": true,
+      "confirmed": 72,
+      "osv_only": [
+        {
+          "ecosystem": "npm",
+          "ids": [
+            "CVE-2026-112949",
+            "GHSA-qxg6-89mg-rqv8"
+          ],
+          "package": "@vitest/mocker",
+          "score": "4.7",
+          "severity": "Medium",
+          "version": "5.0.1"
+        },
+        {
+          "ecosystem": "npm",
+          "ids": [
+            "CVE-2026-112950",
+            "GHSA-xp26-3454-mjgp"
+          ],
+          "package": "@vitest/mocker",
+          "score": "5.9",
+          "severity": "Medium",
+          "version": "5.0.1"
+        },
+        {
+          "ecosystem": "npm",
+          "ids": [
+            "CVE-2026-112948",
+            "GHSA-p458-7748-mcp3"
+          ],
+          "package": "@vitest/ui",
+          "score": "6.5",
+          "severity": "Medium",
+          "version": "5.0.0"
+        },
+        {
+          "ecosystem": "npm",
+          "ids": [
+            "CVE-2026-101898",
+            "GHSA-3pq3-5fj3-cg6v"
+          ],
+          "package": "axios",
+          "score": "7.0",
+          "severity": "High",
+          "version": "1.18.1"
+        },
+        {
+          "ecosystem": "npm",
+          "ids": [
+            "CVE-2026-101899",
+            "GHSA-44g4-m2mj-wpvx"
+          ],
+          "package": "axios",
+          "score": "6.9",
+          "severity": "Medium",
+          "version": "1.18.1"
+        },
+        {
+          "ecosystem": "npm",
+          "ids": [
+            "CVE-2026-101900",
+            "GHSA-4hqw-qxg8-jxx2"
+          ],
+          "package": "axios",
+          "score": "6.9",
+          "severity": "Medium",
+          "version": "1.18.1"
+        },
+        {
+          "ecosystem": "npm",
+          "ids": [
+            "CVE-2026-101901",
+            "GHSA-542g-h47m-68v8"
+          ],
+          "package": "axios",
+          "score": "8.2",
+          "severity": "High",
+          "version": "1.18.1"
+        },
+        {
+          "ecosystem": "npm",
+          "ids": [
+            "CVE-2026-101902",
+            "GHSA-9fr6-4gfg-395g"
+          ],
+          "package": "axios",
+          "score": "6.9",
+          "severity": "Medium",
+          "version": "1.18.1"
+        },
+        {
+          "ecosystem": "npm",
+          "ids": [
+            "CVE-2026-101903",
+            "GHSA-c29m-xwm3-cm6r"
+          ],
+          "package": "axios",
+          "score": "8.2",
+          "severity": "High",
+          "version": "1.18.1"
+        },
+        {
+          "ecosystem": "npm",
+          "ids": [
+            "CVE-2026-101904",
+            "GHSA-j8rh-479h-cp32"
+          ],
+          "package": "axios",
+          "score": "6.9",
+          "severity": "Medium",
+          "version": "1.18.1"
+        },
+        {
+          "ecosystem": "npm",
+          "ids": [
+            "CVE-2026-101905",
+            "GHSA-m8m8-qj5v-23w3"
+          ],
+          "package": "axios",
+          "score": "7.6",
+          "severity": "High",
+          "version": "1.18.1"
+        },
+        {
+          "ecosystem": "npm",
+          "ids": [
+            "CVE-2026-101906",
+            "GHSA-mghh-pgcx-3jjj"
+          ],
+          "package": "axios",
+          "score": "8.2",
+          "severity": "High",
+          "version": "1.18.1"
+        },
+        {
+          "ecosystem": "npm",
+          "ids": [
+            "CVE-2026-101907",
+            "GHSA-r4gj-5m52-g5wh"
+          ],
+          "package": "axios",
+          "score": "7.0",
+          "severity": "High",
+          "version": "1.18.1"
+        },
+        {
+          "ecosystem": "npm",
+          "ids": [
+            "CVE-2026-101908",
+            "GHSA-vh66-26gq-q6x8"
+          ],
+          "package": "axios",
+          "score": "6.9",
+          "severity": "Medium",
+          "version": "1.18.1"
+        },
+        {
+          "ecosystem": "npm",
+          "ids": [
+            "CVE-2026-101909",
+            "GHSA-x97p-jq2g-jp4f"
+          ],
+          "package": "axios",
+          "score": "8.3",
+          "severity": "High",
+          "version": "1.18.1"
+        },
+        {
+          "ecosystem": "npm",
+          "ids": [
+            "CVE-2026-111755",
+            "GHSA-8r9p-f939-6h3c"
+          ],
+          "package": "follow-redirects",
+          "score": "8.2",
+          "severity": "High",
+          "version": "1.16.0"
+        },
+        {
+          "ecosystem": "npm",
+          "ids": [
+            "CVE-2026-116689",
+            "GHSA-mrwp-f3q8-3g9p"
+          ],
+          "package": "follow-redirects",
+          "score": "8.2",
+          "severity": "High",
+          "version": "1.16.0"
+        },
+        {
+          "ecosystem": "npm",
+          "ids": [
+            "CVE-2026-111756",
+            "GHSA-q3jh-wrc6-jgq8"
+          ],
+          "package": "follow-redirects",
+          "score": "8.2",
+          "severity": "High",
+          "version": "1.16.0"
+        },
+        {
+          "ecosystem": "npm",
+          "ids": [
+            "CVE-2026-118772",
+            "GHSA-4528-x5fx-h6hg"
+          ],
+          "package": "joi",
+          "score": "7.5",
+          "severity": "High",
+          "version": "18.2.8"
+        },
+        {
+          "ecosystem": "npm",
+          "ids": [
+            "CVE-2026-90771",
+            "GHSA-wr44-6hxh-3jwq"
+          ],
+          "package": "joi",
+          "score": "6.3",
+          "severity": "Medium",
+          "version": "18.2.8"
+        },
+        {
+          "ecosystem": "npm",
+          "ids": [
+            "CVE-2026-114125",
+            "GHSA-f2ph-cmg5-wxc8"
+          ],
+          "package": "storybook",
+          "score": "9.4",
+          "severity": "Critical",
+          "version": "10.6.0"
+        },
+        {
+          "ecosystem": "npm",
+          "ids": [
+            "CVE-2026-114126",
+            "GHSA-px85-f4q5-jh77"
+          ],
+          "package": "storybook",
+          "score": "8.7",
+          "severity": "High",
+          "version": "10.6.0"
+        },
+        {
+          "ecosystem": "npm",
+          "ids": [
+            "CVE-2026-112942",
+            "GHSA-587h-7wmj-h5pm"
+          ],
+          "package": "vite",
+          "score": "7.5",
+          "severity": "High",
+          "version": "8.3.0"
+        },
+        {
+          "ecosystem": "npm",
+          "ids": [
+            "CVE-2026-112943",
+            "GHSA-698v-4r3x-3vcv"
+          ],
+          "package": "vite",
+          "score": "6.3",
+          "severity": "Medium",
+          "version": "8.3.0"
+        },
+        {
+          "ecosystem": "npm",
+          "ids": [
+            "CVE-2026-112945",
+            "GHSA-9jrq-w75r-8gcw"
+          ],
+          "package": "vite",
+          "score": "2.1",
+          "severity": "Low",
+          "version": "8.3.0"
+        },
+        {
+          "ecosystem": "npm",
+          "ids": [
+            "CVE-2026-112944",
+            "GHSA-r825-w8mm-5pxw"
+          ],
+          "package": "vite",
+          "score": "6.3",
+          "severity": "Medium",
+          "version": "8.3.0"
+        },
+        {
+          "ecosystem": "npm",
+          "ids": [
+            "CVE-2026-112946",
+            "GHSA-rq7h-c2jc-7f22"
+          ],
+          "package": "vite",
+          "score": "6.3",
+          "severity": "Medium",
+          "version": "8.3.0"
+        },
+        {
+          "ecosystem": "npm",
+          "ids": [
+            "CVE-2026-112947",
+            "GHSA-vfpm-58rq-9qcg"
+          ],
+          "package": "vite",
+          "score": "6.3",
+          "severity": "Medium",
+          "version": "8.3.0"
+        }
+      ],
+      "warning": null
+    },
     "ref": "v0.3.42",
     "ref_kind": "release",
+    "release_integrity": {
+      "asset": "console_0.3.42_linux_amd64.tar.gz",
+      "assets": 10,
+      "checksums_published": true,
+      "digest_matches_github": true,
+      "methods": [
+        {
+          "covers": "checksums file checksums.txt",
+          "identity": "GitHub Actions workflow in kubestellar/console",
+          "method": "cosign",
+          "status": "verified"
+        },
+        {
+          "method": "github-attestation",
+          "predicates": [
+            "https://slsa.dev/provenance/v1"
+          ],
+          "status": "verified"
+        }
+      ],
+      "provenance_published": false,
+      "sbom_published": false,
+      "signatures_published": true,
+      "verdict": "verified"
+    },
     "released_at": "2026-09-20T08:15:03Z",
     "repository": "kubestellar/console",
     "sbomlyze_diff": {
@@ -5880,7 +6434,9 @@
       ],
       "removed": 0
     },
-    "scanned_at": "2026-11-01T16:37:22+00:00",
+    "scanned_at": "2026-11-01T17:44:21+00:00",
+    "scorecard": null,
+    "scorecard_note": "not in the OpenSSF dataset this week; run budget exhausted",
     "vulnerabilities": [
       {
         "aliases": [],
@@ -5891,6 +6447,7 @@
         ],
         "id": "GHSA-6q48-6c7w-9gw2",
         "location": ".github/requirements-nightly.txt",
+        "osv_confirmed": true,
         "package": "certifi",
         "severity": "Critical",
         "url": "https://github.com/advisories/GHSA-6q48-6c7w-9gw2",
@@ -5905,6 +6462,7 @@
         ],
         "id": "GHSA-cg2g-xh64-v4q7",
         "location": "web/package-lock.json",
+        "osv_confirmed": true,
         "package": "dompurify",
         "severity": "Critical",
         "url": "https://github.com/advisories/GHSA-cg2g-xh64-v4q7",
@@ -5920,7 +6478,9 @@
           "0.60.0"
         ],
         "id": "GO-2026-6612",
+        "in_binary": "vulnerable code in binary",
         "location": "go.mod",
+        "osv_confirmed": true,
         "package": "golang.org/x/net",
         "severity": "Critical",
         "url": "https://go.dev/cl/847187",
@@ -5937,6 +6497,7 @@
         ],
         "id": "GHSA-ffc3-869f-jxw9",
         "location": ".github/requirements-smoke.txt",
+        "osv_confirmed": true,
         "package": "pyjwt",
         "severity": "Critical",
         "url": "https://github.com/advisories/GHSA-ffc3-869f-jxw9",
@@ -5953,6 +6514,7 @@
         ],
         "id": "GHSA-x8mw-p69m-v3mx",
         "location": "web/package-lock.json",
+        "osv_confirmed": true,
         "package": "@fastify/busboy",
         "severity": "High",
         "url": "https://github.com/advisories/GHSA-x8mw-p69m-v3mx",
@@ -5969,6 +6531,7 @@
         ],
         "id": "GHSA-xjh9-v7x6-24jw",
         "location": "web/package-lock.json",
+        "osv_confirmed": true,
         "package": "@fastify/busboy",
         "severity": "High",
         "url": "https://github.com/advisories/GHSA-xjh9-v7x6-24jw",
@@ -5985,6 +6548,7 @@
         ],
         "id": "GHSA-6j4f-fj2g-mc7p",
         "location": ".github/ga4-scripts/package-lock.json",
+        "osv_confirmed": true,
         "package": "brace-expansion",
         "severity": "High",
         "url": "https://github.com/advisories/GHSA-6j4f-fj2g-mc7p",
@@ -6001,6 +6565,7 @@
         ],
         "id": "GHSA-qhr7-859c-m2p7",
         "location": ".github/ga4-scripts/package-lock.json",
+        "osv_confirmed": true,
         "package": "brace-expansion",
         "severity": "High",
         "url": "https://github.com/advisories/GHSA-qhr7-859c-m2p7",
@@ -6015,6 +6580,7 @@
         ],
         "id": "GHSA-mrv2-3pqr-j5jr",
         "location": "web/package-lock.json",
+        "osv_confirmed": true,
         "package": "dompurify",
         "severity": "High",
         "url": "https://github.com/advisories/GHSA-mrv2-3pqr-j5jr",
@@ -6030,7 +6596,9 @@
           "0.60.0"
         ],
         "id": "GO-2026-6603",
+        "in_binary": "vulnerable code in binary",
         "location": "go.mod",
+        "osv_confirmed": true,
         "package": "golang.org/x/net",
         "severity": "High",
         "url": "https://go.dev/cl/847185",
@@ -6046,7 +6614,9 @@
           "0.60.0"
         ],
         "id": "GO-2026-6610",
+        "in_binary": "vulnerable code in binary",
         "location": "go.mod",
+        "osv_confirmed": true,
         "package": "golang.org/x/net",
         "severity": "High",
         "url": "https://go.dev/cl/835145",
@@ -6062,7 +6632,9 @@
           "0.60.0"
         ],
         "id": "GO-2026-6611",
+        "in_binary": "vulnerable code in binary",
         "location": "go.mod",
+        "osv_confirmed": true,
         "package": "golang.org/x/net",
         "severity": "High",
         "url": "https://go.dev/cl/847186",
@@ -6078,7 +6650,9 @@
           "0.60.0"
         ],
         "id": "GO-2026-6617",
+        "in_binary": "vulnerable code in binary",
         "location": "go.mod",
+        "osv_confirmed": true,
         "package": "golang.org/x/net",
         "severity": "High",
         "url": "https://go.dev/cl/847188",
@@ -6094,7 +6668,9 @@
           "1.83.2"
         ],
         "id": "GHSA-2v4p-qf9q-27wj",
+        "in_binary": "vulnerable code in binary",
         "location": "go.mod",
+        "osv_confirmed": true,
         "package": "google.golang.org/grpc",
         "severity": "High",
         "url": "https://github.com/advisories/GHSA-2v4p-qf9q-27wj",
@@ -6111,6 +6687,7 @@
         ],
         "id": "GHSA-9j54-fg26-wv3r",
         "location": ".github/requirements-smoke.txt",
+        "osv_confirmed": true,
         "package": "pyjwt",
         "severity": "High",
         "url": "https://github.com/advisories/GHSA-9j54-fg26-wv3r",
@@ -6127,6 +6704,7 @@
         ],
         "id": "GHSA-9v7f-9g4p-ffgj",
         "location": ".github/requirements-smoke.txt",
+        "osv_confirmed": true,
         "package": "pyjwt",
         "severity": "High",
         "url": "https://github.com/advisories/GHSA-9v7f-9g4p-ffgj",
@@ -6143,6 +6721,7 @@
         ],
         "id": "GHSA-p4g4-x82p-q773",
         "location": ".github/requirements-smoke.txt",
+        "osv_confirmed": true,
         "package": "pyjwt",
         "severity": "High",
         "url": "https://github.com/advisories/GHSA-p4g4-x82p-q773",
@@ -6157,6 +6736,7 @@
         ],
         "id": "GHSA-pxh4-856f-4h89",
         "location": ".github/requirements-smoke.txt",
+        "osv_confirmed": true,
         "package": "pyjwt",
         "severity": "High",
         "url": "https://github.com/advisories/GHSA-pxh4-856f-4h89",
@@ -6173,6 +6753,7 @@
         ],
         "id": "GHSA-r6x4-923q-g947",
         "location": ".github/requirements-smoke.txt",
+        "osv_confirmed": true,
         "package": "pyjwt",
         "severity": "High",
         "url": "https://github.com/advisories/GHSA-r6x4-923q-g947",
@@ -6189,6 +6770,7 @@
         ],
         "id": "GHSA-w2cx-738m-mc7w",
         "location": ".github/requirements-smoke.txt",
+        "osv_confirmed": true,
         "package": "pyjwt",
         "severity": "High",
         "url": "https://github.com/advisories/GHSA-w2cx-738m-mc7w",
@@ -6205,6 +6787,7 @@
         ],
         "id": "GHSA-68fv-2mgg-jv7q",
         "location": "web/package-lock.json",
+        "osv_confirmed": true,
         "package": "source-map-js",
         "severity": "High",
         "url": "https://github.com/advisories/GHSA-68fv-2mgg-jv7q",
@@ -6221,6 +6804,7 @@
         ],
         "id": "GHSA-2m5v-pch6-74hx",
         "location": "web/package-lock.json",
+        "osv_confirmed": true,
         "package": "undici",
         "severity": "High",
         "url": "https://github.com/advisories/GHSA-2m5v-pch6-74hx",
@@ -6237,6 +6821,7 @@
         ],
         "id": "GHSA-4w7w-5xrc-9h26",
         "location": "web/package-lock.json",
+        "osv_confirmed": true,
         "package": "undici",
         "severity": "High",
         "url": "https://github.com/advisories/GHSA-4w7w-5xrc-9h26",
@@ -6253,6 +6838,7 @@
         ],
         "id": "GHSA-qrxm-fqhp-jwvm",
         "location": "web/package-lock.json",
+        "osv_confirmed": true,
         "package": "undici",
         "severity": "High",
         "url": "https://github.com/advisories/GHSA-qrxm-fqhp-jwvm",
@@ -6269,6 +6855,7 @@
         ],
         "id": "GHSA-rfgv-xxqx-mfg5",
         "location": "web/package-lock.json",
+        "osv_confirmed": true,
         "package": "undici",
         "severity": "High",
         "url": "https://github.com/advisories/GHSA-rfgv-xxqx-mfg5",
@@ -6285,6 +6872,7 @@
         ],
         "id": "GHSA-w293-vg96-wgc3",
         "location": "web/package-lock.json",
+        "osv_confirmed": true,
         "package": "undici",
         "severity": "High",
         "url": "https://github.com/advisories/GHSA-w293-vg96-wgc3",
@@ -6301,6 +6889,7 @@
         ],
         "id": "GHSA-xjj6-f33q-929c",
         "location": "web/package-lock.json",
+        "osv_confirmed": true,
         "package": "undici",
         "severity": "High",
         "url": "https://github.com/advisories/GHSA-xjj6-f33q-929c",
@@ -6317,6 +6906,7 @@
         ],
         "id": "GHSA-8988-9cw3-xx77",
         "location": ".github/requirements-nightly.txt",
+        "osv_confirmed": true,
         "package": "urllib3",
         "severity": "High",
         "url": "https://github.com/advisories/GHSA-8988-9cw3-xx77",
@@ -6333,6 +6923,7 @@
         ],
         "id": "GHSA-vxq7-64xx-v4gw",
         "location": ".github/requirements-nightly.txt",
+        "osv_confirmed": true,
         "package": "urllib3",
         "severity": "High",
         "url": "https://github.com/advisories/GHSA-vxq7-64xx-v4gw",
@@ -6349,6 +6940,7 @@
         ],
         "id": "GHSA-mrhx-c7xc-m3w5",
         "location": "web/package-lock.json",
+        "osv_confirmed": true,
         "package": "zod",
         "severity": "High",
         "url": "https://github.com/advisories/GHSA-mrhx-c7xc-m3w5",
@@ -6365,6 +6957,7 @@
         ],
         "id": "GHSA-gxm5-99cw-xjw9",
         "location": "web/package-lock.json",
+        "osv_confirmed": true,
         "package": "@fastify/busboy",
         "severity": "Medium",
         "url": "https://github.com/advisories/GHSA-gxm5-99cw-xjw9",
@@ -6381,6 +6974,7 @@
         ],
         "id": "GHSA-q2hr-2g5m-vwhr",
         "location": ".github/ga4-scripts/package-lock.json",
+        "osv_confirmed": true,
         "package": "brace-expansion",
         "severity": "Medium",
         "url": "https://github.com/advisories/GHSA-q2hr-2g5m-vwhr",
@@ -6397,6 +6991,7 @@
         ],
         "id": "GHSA-hrr3-gc8f-f4qj",
         "location": ".github/kb-scripts/package-lock.json",
+        "osv_confirmed": true,
         "package": "fast-uri",
         "severity": "Medium",
         "url": "https://github.com/advisories/GHSA-hrr3-gc8f-f4qj",
@@ -6413,6 +7008,7 @@
         ],
         "id": "GHSA-jvvf-x445-j334",
         "location": ".github/kb-scripts/package-lock.json",
+        "osv_confirmed": true,
         "package": "fast-uri",
         "severity": "Medium",
         "url": "https://github.com/advisories/GHSA-jvvf-x445-j334",
@@ -6429,6 +7025,7 @@
         ],
         "id": "GHSA-w74x-v6f9-j3xg",
         "location": ".github/kb-scripts/package-lock.json",
+        "osv_confirmed": true,
         "package": "fast-uri",
         "severity": "Medium",
         "url": "https://github.com/advisories/GHSA-w74x-v6f9-j3xg",
@@ -6445,6 +7042,7 @@
         ],
         "id": "GHSA-wjr9-j795-jxcr",
         "location": ".github/kb-scripts/package-lock.json",
+        "osv_confirmed": true,
         "package": "fast-uri",
         "severity": "Medium",
         "url": "https://github.com/advisories/GHSA-wjr9-j795-jxcr",
@@ -6461,6 +7059,7 @@
         ],
         "id": "GHSA-3g3m-2fjr-6pw4",
         "location": ".github/ga4-scripts/package-lock.json",
+        "osv_confirmed": true,
         "package": "glob",
         "severity": "Medium",
         "url": "https://github.com/advisories/GHSA-3g3m-2fjr-6pw4",
@@ -6477,6 +7076,7 @@
         ],
         "id": "GHSA-g3hv-75wg-m249",
         "location": ".github/ga4-scripts/package-lock.json",
+        "osv_confirmed": true,
         "package": "minimatch",
         "severity": "Medium",
         "url": "https://github.com/advisories/GHSA-g3hv-75wg-m249",
@@ -6493,6 +7093,7 @@
         ],
         "id": "GHSA-xcq7-p3pf-p88h",
         "location": ".github/requirements-nightly.txt",
+        "osv_confirmed": true,
         "package": "opentelemetry-api",
         "severity": "Medium",
         "url": "https://github.com/advisories/GHSA-xcq7-p3pf-p88h",
@@ -6509,6 +7110,7 @@
         ],
         "id": "GHSA-2gx3-rcp4-g85q",
         "location": ".github/requirements-smoke.txt",
+        "osv_confirmed": true,
         "package": "pyjwt",
         "severity": "Medium",
         "url": "https://github.com/advisories/GHSA-2gx3-rcp4-g85q",
@@ -6525,6 +7127,7 @@
         ],
         "id": "GHSA-42vr-xj54-vc7v",
         "location": ".github/requirements-smoke.txt",
+        "osv_confirmed": true,
         "package": "pyjwt",
         "severity": "Medium",
         "url": "https://github.com/advisories/GHSA-42vr-xj54-vc7v",
@@ -6541,6 +7144,7 @@
         ],
         "id": "GHSA-8wjv-2p76-3863",
         "location": ".github/requirements-smoke.txt",
+        "osv_confirmed": true,
         "package": "pyjwt",
         "severity": "Medium",
         "url": "https://github.com/advisories/GHSA-8wjv-2p76-3863",
@@ -6555,6 +7159,7 @@
         "fixed_in": [],
         "id": "GHSA-gvp8-978c-rx2q",
         "location": ".github/requirements-smoke.txt",
+        "osv_confirmed": true,
         "package": "pyjwt",
         "severity": "Medium",
         "url": "https://github.com/advisories/GHSA-gvp8-978c-rx2q",
@@ -6571,6 +7176,7 @@
         ],
         "id": "GHSA-hxm8-2xgr-2p9m",
         "location": ".github/requirements-smoke.txt",
+        "osv_confirmed": true,
         "package": "pyjwt",
         "severity": "Medium",
         "url": "https://github.com/advisories/GHSA-hxm8-2xgr-2p9m",
@@ -6587,6 +7193,7 @@
         ],
         "id": "GHSA-jwrc-g2q2-pq5p",
         "location": ".github/requirements-smoke.txt",
+        "osv_confirmed": true,
         "package": "pyjwt",
         "severity": "Medium",
         "url": "https://github.com/advisories/GHSA-jwrc-g2q2-pq5p",
@@ -6603,6 +7210,7 @@
         ],
         "id": "GHSA-w6j9-cwv2-h6wq",
         "location": ".github/requirements-smoke.txt",
+        "osv_confirmed": true,
         "package": "pyjwt",
         "severity": "Medium",
         "url": "https://github.com/advisories/GHSA-w6j9-cwv2-h6wq",
@@ -6619,6 +7227,7 @@
         ],
         "id": "GHSA-x33g-cr3x-6449",
         "location": ".github/requirements-smoke.txt",
+        "osv_confirmed": true,
         "package": "pyjwt",
         "severity": "Medium",
         "url": "https://github.com/advisories/GHSA-x33g-cr3x-6449",
@@ -6635,6 +7244,7 @@
         ],
         "id": "GHSA-6pq8-jhm2-2vcw",
         "location": ".github/ga4-scripts/package-lock.json",
+        "osv_confirmed": true,
         "package": "qs",
         "severity": "Medium",
         "url": "https://github.com/advisories/GHSA-6pq8-jhm2-2vcw",
@@ -6651,6 +7261,7 @@
         ],
         "id": "GHSA-2jfj-6hjv-fm6j",
         "location": "web/package-lock.json",
+        "osv_confirmed": true,
         "package": "undici",
         "severity": "Medium",
         "url": "https://github.com/advisories/GHSA-2jfj-6hjv-fm6j",
@@ -6667,6 +7278,7 @@
         ],
         "id": "GHSA-3wwx-pv8p-q78v",
         "location": "web/package-lock.json",
+        "osv_confirmed": true,
         "package": "undici",
         "severity": "Medium",
         "url": "https://github.com/advisories/GHSA-3wwx-pv8p-q78v",
@@ -6683,6 +7295,7 @@
         ],
         "id": "GHSA-3xpg-4rpp-hhhm",
         "location": "web/package-lock.json",
+        "osv_confirmed": true,
         "package": "undici",
         "severity": "Medium",
         "url": "https://github.com/advisories/GHSA-3xpg-4rpp-hhhm",
@@ -6699,6 +7312,7 @@
         ],
         "id": "GHSA-4qv8-2p9j-2685",
         "location": "web/package-lock.json",
+        "osv_confirmed": true,
         "package": "undici",
         "severity": "Medium",
         "url": "https://github.com/advisories/GHSA-4qv8-2p9j-2685",
@@ -6715,6 +7329,7 @@
         ],
         "id": "GHSA-55wc-3pg8-jfw6",
         "location": "web/package-lock.json",
+        "osv_confirmed": true,
         "package": "undici",
         "severity": "Medium",
         "url": "https://github.com/advisories/GHSA-55wc-3pg8-jfw6",
@@ -6731,6 +7346,7 @@
         ],
         "id": "GHSA-9fm3-97px-rjf6",
         "location": "web/package-lock.json",
+        "osv_confirmed": true,
         "package": "undici",
         "severity": "Medium",
         "url": "https://github.com/advisories/GHSA-9fm3-97px-rjf6",
@@ -6747,6 +7363,7 @@
         ],
         "id": "GHSA-f72v-6w45-q472",
         "location": "web/package-lock.json",
+        "osv_confirmed": true,
         "package": "undici",
         "severity": "Medium",
         "url": "https://github.com/advisories/GHSA-f72v-6w45-q472",
@@ -6763,6 +7380,7 @@
         ],
         "id": "GHSA-pmjh-fq2x-6v4x",
         "location": "web/package-lock.json",
+        "osv_confirmed": true,
         "package": "undici",
         "severity": "Medium",
         "url": "https://github.com/advisories/GHSA-pmjh-fq2x-6v4x",
@@ -6779,6 +7397,7 @@
         ],
         "id": "GHSA-rx4f-c7p8-82vq",
         "location": "web/package-lock.json",
+        "osv_confirmed": true,
         "package": "undici",
         "severity": "Medium",
         "url": "https://github.com/advisories/GHSA-rx4f-c7p8-82vq",
@@ -6795,6 +7414,7 @@
         ],
         "id": "GHSA-gh4c-6fx4-qh6g",
         "location": ".github/requirements-nightly.txt",
+        "osv_confirmed": true,
         "package": "urllib3",
         "severity": "Medium",
         "url": "https://github.com/advisories/GHSA-gh4c-6fx4-qh6g",
@@ -6809,6 +7429,7 @@
         ],
         "id": "GHSA-6688-9rhm-gjv2",
         "location": "web/package-lock.json",
+        "osv_confirmed": true,
         "package": "dompurify",
         "severity": "Low",
         "url": "https://github.com/advisories/GHSA-6688-9rhm-gjv2",
@@ -6823,6 +7444,7 @@
         ],
         "id": "GHSA-c6gr-qvv4-5v3f",
         "location": "web/package-lock.json",
+        "osv_confirmed": true,
         "package": "dompurify",
         "severity": "Low",
         "url": "https://github.com/advisories/GHSA-c6gr-qvv4-5v3f",
@@ -6837,6 +7459,7 @@
         ],
         "id": "GHSA-p98j-92pf-mc4p",
         "location": "web/package-lock.json",
+        "osv_confirmed": true,
         "package": "dompurify",
         "severity": "Low",
         "url": "https://github.com/advisories/GHSA-p98j-92pf-mc4p",
@@ -6853,6 +7476,7 @@
         ],
         "id": "GHSA-333x-w4r6-6crp",
         "location": ".github/kb-scripts/package-lock.json",
+        "osv_confirmed": true,
         "package": "fast-uri",
         "severity": "Low",
         "url": "https://github.com/advisories/GHSA-333x-w4r6-6crp",
@@ -6869,6 +7493,7 @@
         ],
         "id": "GHSA-xhq7-xmqj-769h",
         "location": ".github/kb-scripts/package-lock.json",
+        "osv_confirmed": true,
         "package": "fast-uri",
         "severity": "Low",
         "url": "https://github.com/advisories/GHSA-xhq7-xmqj-769h",
@@ -6884,7 +7509,9 @@
           "1.45.0"
         ],
         "id": "GHSA-8wmf-6v46-5gfg",
+        "in_binary": "module in binary",
         "location": "go.mod",
+        "osv_confirmed": true,
         "package": "go.opentelemetry.io/otel/exporters/otlp/otlptrace",
         "severity": "Low",
         "url": "https://github.com/advisories/GHSA-8wmf-6v46-5gfg",
@@ -6900,7 +7527,9 @@
           "1.45.0"
         ],
         "id": "GHSA-8wmf-6v46-5gfg",
+        "in_binary": "module in binary",
         "location": "go.mod",
+        "osv_confirmed": true,
         "package": "go.opentelemetry.io/otel/exporters/otlp/otlptrace/otlptracehttp",
         "severity": "Low",
         "url": "https://github.com/advisories/GHSA-8wmf-6v46-5gfg",
@@ -6916,7 +7545,9 @@
           "1.45.0"
         ],
         "id": "GHSA-8wmf-6v46-5gfg",
+        "in_binary": "module in binary",
         "location": "go.mod",
+        "osv_confirmed": true,
         "package": "go.opentelemetry.io/otel/sdk",
         "severity": "Low",
         "url": "https://github.com/advisories/GHSA-8wmf-6v46-5gfg",
@@ -6931,6 +7562,7 @@
         ],
         "id": "GHSA-xmj3-9gf7-h52w",
         "location": ".github/requirements-nightly.txt",
+        "osv_confirmed": true,
         "package": "setuptools",
         "severity": "Low",
         "url": "https://github.com/advisories/GHSA-xmj3-9gf7-h52w",
@@ -6947,6 +7579,7 @@
         ],
         "id": "GHSA-2gqq-gqf2-x968",
         "location": "web/package-lock.json",
+        "osv_confirmed": true,
         "package": "undici",
         "severity": "Low",
         "url": "https://github.com/advisories/GHSA-2gqq-gqf2-x968",
@@ -6963,6 +7596,7 @@
         ],
         "id": "GHSA-8436-99hf-9mmv",
         "location": "web/package-lock.json",
+        "osv_confirmed": true,
         "package": "undici",
         "severity": "Low",
         "url": "https://github.com/advisories/GHSA-8436-99hf-9mmv",
@@ -6979,6 +7613,7 @@
         ],
         "id": "GHSA-r53p-7pc4-xj5r",
         "location": "web/package-lock.json",
+        "osv_confirmed": true,
         "package": "undici",
         "severity": "Low",
         "url": "https://github.com/advisories/GHSA-r53p-7pc4-xj5r",
@@ -6994,7 +7629,9 @@
           "0.62.0"
         ],
         "id": "GO-2026-6860",
+        "in_binary": "vulnerable code in binary",
         "location": "go.mod",
+        "osv_confirmed": true,
         "package": "golang.org/x/net",
         "severity": "Unknown",
         "url": "https://go.dev/cl/849365",
@@ -7010,13 +7647,390 @@
           "0.62.0"
         ],
         "id": "GO-2026-6866",
+        "in_binary": "vulnerable code in binary",
         "location": "go.mod",
+        "osv_confirmed": true,
         "package": "golang.org/x/net",
         "severity": "Unknown",
         "url": "https://go.dev/cl/855121",
         "version": "v0.58.0"
       }
-    ]
+    ],
+    "workflow_audit": {
+      "files": 97,
+      "findings": [
+        {
+          "confidence": "Medium",
+          "description": "use of fundamentally insecure workflow trigger",
+          "file": ".github/workflows/ai-fix.yml",
+          "line": 3,
+          "note": "this workflow",
+          "rule": "dangerous-triggers",
+          "severity": "High",
+          "url": "https://docs.zizmor.sh/audits/#dangerous-triggers"
+        },
+        {
+          "confidence": "Medium",
+          "description": "use of fundamentally insecure workflow trigger",
+          "file": ".github/workflows/assignment-helper.yml",
+          "line": 3,
+          "note": "this workflow",
+          "rule": "dangerous-triggers",
+          "severity": "High",
+          "url": "https://docs.zizmor.sh/audits/#dangerous-triggers"
+        },
+        {
+          "confidence": "Medium",
+          "description": "use of fundamentally insecure workflow trigger",
+          "file": ".github/workflows/claude.yml",
+          "line": 3,
+          "note": "this workflow",
+          "rule": "dangerous-triggers",
+          "severity": "High",
+          "url": "https://docs.zizmor.sh/audits/#dangerous-triggers"
+        },
+        {
+          "confidence": "Medium",
+          "description": "use of fundamentally insecure workflow trigger",
+          "file": ".github/workflows/console-live-promote-failure-issue.yml",
+          "line": 3,
+          "note": "this workflow",
+          "rule": "dangerous-triggers",
+          "severity": "High",
+          "url": "https://docs.zizmor.sh/audits/#dangerous-triggers"
+        },
+        {
+          "confidence": "Medium",
+          "description": "use of fundamentally insecure workflow trigger",
+          "file": ".github/workflows/copilot-automation.yml",
+          "line": 3,
+          "note": "this workflow",
+          "rule": "dangerous-triggers",
+          "severity": "High",
+          "url": "https://docs.zizmor.sh/audits/#dangerous-triggers"
+        },
+        {
+          "confidence": "Medium",
+          "description": "use of fundamentally insecure workflow trigger",
+          "file": ".github/workflows/forensics-on-fix.yml",
+          "line": 3,
+          "note": "this workflow",
+          "rule": "dangerous-triggers",
+          "severity": "High",
+          "url": "https://docs.zizmor.sh/audits/#dangerous-triggers"
+        },
+        {
+          "confidence": "Medium",
+          "description": "use of fundamentally insecure workflow trigger",
+          "file": ".github/workflows/greetings.yml",
+          "line": 3,
+          "note": "this workflow",
+          "rule": "dangerous-triggers",
+          "severity": "High",
+          "url": "https://docs.zizmor.sh/audits/#dangerous-triggers"
+        },
+        {
+          "confidence": "Medium",
+          "description": "use of fundamentally insecure workflow trigger",
+          "file": ".github/workflows/hive-interactive.yml",
+          "line": 3,
+          "note": "this workflow",
+          "rule": "dangerous-triggers",
+          "severity": "High",
+          "url": "https://docs.zizmor.sh/audits/#dangerous-triggers"
+        },
+        {
+          "confidence": "Medium",
+          "description": "use of fundamentally insecure workflow trigger",
+          "file": ".github/workflows/hive-interactive.yml",
+          "line": 3,
+          "note": "this workflow",
+          "rule": "dangerous-triggers",
+          "severity": "High",
+          "url": "https://docs.zizmor.sh/audits/#dangerous-triggers"
+        },
+        {
+          "confidence": "Medium",
+          "description": "use of fundamentally insecure workflow trigger",
+          "file": ".github/workflows/hold-issue-guard.yml",
+          "line": 3,
+          "note": "this workflow",
+          "rule": "dangerous-triggers",
+          "severity": "High",
+          "url": "https://docs.zizmor.sh/audits/#dangerous-triggers"
+        },
+        {
+          "confidence": "Medium",
+          "description": "use of fundamentally insecure workflow trigger",
+          "file": ".github/workflows/label-helper.yml",
+          "line": 3,
+          "note": "this workflow",
+          "rule": "dangerous-triggers",
+          "severity": "High",
+          "url": "https://docs.zizmor.sh/audits/#dangerous-triggers"
+        },
+        {
+          "confidence": "High",
+          "description": "code injection via template expansion",
+          "file": ".github/workflows/netlify-error-reporter.yml",
+          "line": 20,
+          "note": "this step",
+          "rule": "template-injection",
+          "severity": "High",
+          "url": "https://docs.zizmor.sh/audits/#template-injection"
+        },
+        {
+          "confidence": "Medium",
+          "description": "use of fundamentally insecure workflow trigger",
+          "file": ".github/workflows/new-contributor-pr-gate.yml",
+          "line": 3,
+          "note": "this workflow",
+          "rule": "dangerous-triggers",
+          "severity": "High",
+          "url": "https://docs.zizmor.sh/audits/#dangerous-triggers"
+        },
+        {
+          "confidence": "High",
+          "description": "code injection via template expansion",
+          "file": ".github/workflows/nil-safety.yml",
+          "line": 42,
+          "note": "this step",
+          "rule": "template-injection",
+          "severity": "High",
+          "url": "https://docs.zizmor.sh/audits/#template-injection"
+        },
+        {
+          "confidence": "Medium",
+          "description": "use of fundamentally insecure workflow trigger",
+          "file": ".github/workflows/pr-claude-notice.yml",
+          "line": 3,
+          "note": "this workflow",
+          "rule": "dangerous-triggers",
+          "severity": "High",
+          "url": "https://docs.zizmor.sh/audits/#dangerous-triggers"
+        },
+        {
+          "confidence": "Medium",
+          "description": "use of fundamentally insecure workflow trigger",
+          "file": ".github/workflows/process-screenshots.yml",
+          "line": 13,
+          "note": "this workflow",
+          "rule": "dangerous-triggers",
+          "severity": "High",
+          "url": "https://docs.zizmor.sh/audits/#dangerous-triggers"
+        },
+        {
+          "confidence": "Medium",
+          "description": "use of fundamentally insecure workflow trigger",
+          "file": ".github/workflows/tier-classifier.yml",
+          "line": 16,
+          "note": "this workflow",
+          "rule": "dangerous-triggers",
+          "severity": "High",
+          "url": "https://docs.zizmor.sh/audits/#dangerous-triggers"
+        },
+        {
+          "confidence": "Medium",
+          "description": "use of fundamentally insecure workflow trigger",
+          "file": ".github/workflows/triage-command.yml",
+          "line": 7,
+          "note": "this workflow",
+          "rule": "dangerous-triggers",
+          "severity": "High",
+          "url": "https://docs.zizmor.sh/audits/#dangerous-triggers"
+        },
+        {
+          "confidence": "Medium",
+          "description": "use of fundamentally insecure workflow trigger",
+          "file": ".github/workflows/workflow-failure-issue.yml",
+          "line": 3,
+          "note": "this workflow",
+          "rule": "dangerous-triggers",
+          "severity": "High",
+          "url": "https://docs.zizmor.sh/audits/#dangerous-triggers"
+        },
+        {
+          "confidence": "High",
+          "description": "overly broad permissions",
+          "file": ".github/workflows/build-deploy.yml",
+          "line": 39,
+          "note": "uses read-all permissions",
+          "rule": "excessive-permissions",
+          "severity": "Medium",
+          "url": "https://docs.zizmor.sh/audits/#excessive-permissions"
+        },
+        {
+          "confidence": "High",
+          "description": "overly broad permissions",
+          "file": ".github/workflows/implement-fix.lock.yml",
+          "line": 66,
+          "note": "uses read-all permissions",
+          "rule": "excessive-permissions",
+          "severity": "Medium",
+          "url": "https://docs.zizmor.sh/audits/#excessive-permissions"
+        },
+        {
+          "confidence": "High",
+          "description": "overly broad permissions",
+          "file": ".github/workflows/playwright-nightly.yml",
+          "line": 9,
+          "note": "uses read-all permissions",
+          "rule": "excessive-permissions",
+          "severity": "Medium",
+          "url": "https://docs.zizmor.sh/audits/#excessive-permissions"
+        },
+        {
+          "confidence": "High",
+          "description": "overly broad permissions",
+          "file": ".github/workflows/playwright.yml",
+          "line": 22,
+          "note": "uses read-all permissions",
+          "rule": "excessive-permissions",
+          "severity": "Medium",
+          "url": "https://docs.zizmor.sh/audits/#excessive-permissions"
+        },
+        {
+          "confidence": "High",
+          "description": "overly broad permissions",
+          "file": ".github/workflows/release.yml",
+          "line": 30,
+          "note": "uses read-all permissions",
+          "rule": "excessive-permissions",
+          "severity": "Medium",
+          "url": "https://docs.zizmor.sh/audits/#excessive-permissions"
+        },
+        {
+          "confidence": "High",
+          "description": "overly broad permissions",
+          "file": ".github/workflows/startup-smoke.yml",
+          "line": 31,
+          "note": "uses read-all permissions",
+          "rule": "excessive-permissions",
+          "severity": "Medium",
+          "url": "https://docs.zizmor.sh/audits/#excessive-permissions"
+        },
+        {
+          "confidence": "High",
+          "description": "overly broad permissions",
+          "file": ".github/workflows/test-installer.yml",
+          "line": 18,
+          "note": "uses read-all permissions",
+          "rule": "excessive-permissions",
+          "severity": "Medium",
+          "url": "https://docs.zizmor.sh/audits/#excessive-permissions"
+        },
+        {
+          "confidence": "High",
+          "description": "code injection via template expansion",
+          "file": ".github/workflows/build-deploy.yml",
+          "line": 194,
+          "note": "this step",
+          "rule": "template-injection",
+          "severity": "Low",
+          "url": "https://docs.zizmor.sh/audits/#template-injection"
+        },
+        {
+          "confidence": "High",
+          "description": "code injection via template expansion",
+          "file": ".github/workflows/build-deploy.yml",
+          "line": 200,
+          "note": "this step",
+          "rule": "template-injection",
+          "severity": "Low",
+          "url": "https://docs.zizmor.sh/audits/#template-injection"
+        },
+        {
+          "confidence": "High",
+          "description": "code injection via template expansion",
+          "file": ".github/workflows/build-deploy.yml",
+          "line": 559,
+          "note": "this step",
+          "rule": "template-injection",
+          "severity": "Low",
+          "url": "https://docs.zizmor.sh/audits/#template-injection"
+        },
+        {
+          "confidence": "High",
+          "description": "use GitHub's dedicated self-repository syntax",
+          "file": ".github/workflows/hive-interactive.yml",
+          "line": 52,
+          "note": "this job",
+          "rule": "self-repository",
+          "severity": "Low",
+          "url": "https://docs.zizmor.sh/audits/#self-repository"
+        },
+        {
+          "confidence": "High",
+          "description": "use GitHub's dedicated self-repository syntax",
+          "file": ".github/workflows/perf-bundle-size.yml",
+          "line": 117,
+          "note": "this job",
+          "rule": "self-repository",
+          "severity": "Low",
+          "url": "https://docs.zizmor.sh/audits/#self-repository"
+        },
+        {
+          "confidence": "High",
+          "description": "use GitHub's dedicated self-repository syntax",
+          "file": ".github/workflows/perf-react-commits-idle.yml",
+          "line": 101,
+          "note": "this job",
+          "rule": "self-repository",
+          "severity": "Low",
+          "url": "https://docs.zizmor.sh/audits/#self-repository"
+        },
+        {
+          "confidence": "High",
+          "description": "use GitHub's dedicated self-repository syntax",
+          "file": ".github/workflows/perf-react-commits.yml",
+          "line": 94,
+          "note": "this job",
+          "rule": "self-repository",
+          "severity": "Low",
+          "url": "https://docs.zizmor.sh/audits/#self-repository"
+        },
+        {
+          "confidence": "High",
+          "description": "use GitHub's dedicated self-repository syntax",
+          "file": ".github/workflows/perf-ttfi.yml",
+          "line": 155,
+          "note": "this job",
+          "rule": "self-repository",
+          "severity": "Low",
+          "url": "https://docs.zizmor.sh/audits/#self-repository"
+        },
+        {
+          "confidence": "High",
+          "description": "use GitHub's dedicated self-repository syntax",
+          "file": ".github/workflows/release.yml",
+          "line": 42,
+          "note": "this job",
+          "rule": "self-repository",
+          "severity": "Low",
+          "url": "https://docs.zizmor.sh/audits/#self-repository"
+        },
+        {
+          "confidence": "High",
+          "description": "code injection via template expansion",
+          "file": ".github/workflows/release.yml",
+          "line": 516,
+          "note": "this step",
+          "rule": "template-injection",
+          "severity": "Low",
+          "url": "https://docs.zizmor.sh/audits/#template-injection"
+        },
+        {
+          "confidence": "High",
+          "description": "code injection via template expansion",
+          "file": ".github/workflows/release.yml",
+          "line": 633,
+          "note": "this step",
+          "rule": "template-injection",
+          "severity": "Low",
+          "url": "https://docs.zizmor.sh/audits/#template-injection"
+        }
+      ]
+    }
   },
   "updated": "2026-11-01"
 }

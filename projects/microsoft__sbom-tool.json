@@ -7,11 +7,17 @@
       "dependencies": 9,
       "errors": [],
       "fixable": 0,
+      "go_version": null,
+      "in_binary": null,
       "new_vulnerabilities": 0,
+      "osv_confirmed": 0,
+      "osv_only": 0,
       "ref": "v4.1.5",
       "release_changed": false,
+      "release_integrity": "none",
       "removed": 0,
       "resolved_vulnerabilities": 0,
+      "scorecard": null,
       "upgraded": 0,
       "vulnerabilities": {
         "Critical": 0,
@@ -20,6 +26,12 @@
         "Medium": 0,
         "Negligible": 0,
         "Unknown": 0
+      },
+      "workflow": {
+        "High": 2,
+        "Low": 0,
+        "Medium": 0,
+        "files": 5
       }
     }
   ],
@@ -174,8 +186,26 @@
       "src/Microsoft.Sbom.Tool/Microsoft.Sbom.Tool.csproj"
     ],
     "name": "sbom-tool",
+    "osv": {
+      "advisories": 0,
+      "available": true,
+      "confirmed": 0,
+      "osv_only": [],
+      "warning": null
+    },
     "ref": "v4.1.5",
     "ref_kind": "release",
+    "release_integrity": {
+      "asset": "sbom-tool-linux-x64",
+      "assets": 8,
+      "checksums_published": false,
+      "digest_matches_github": true,
+      "methods": [],
+      "provenance_published": false,
+      "sbom_published": true,
+      "signatures_published": false,
+      "verdict": "none"
+    },
     "released_at": "2025-12-15T21:40:14Z",
     "repository": "microsoft/sbom-tool",
     "sbomlyze_diff": {
@@ -187,8 +217,35 @@
       ],
       "removed": 0
     },
-    "scanned_at": "2026-11-01T16:36:55+00:00",
-    "vulnerabilities": []
+    "scanned_at": "2026-11-01T17:44:10+00:00",
+    "scorecard": null,
+    "scorecard_note": "not in the OpenSSF dataset this week; run budget exhausted",
+    "vulnerabilities": [],
+    "workflow_audit": {
+      "files": 5,
+      "findings": [
+        {
+          "confidence": "High",
+          "description": "code injection via template expansion",
+          "file": ".github/workflows/create_release_tag.yml",
+          "line": 17,
+          "note": "this step",
+          "rule": "template-injection",
+          "severity": "High",
+          "url": "https://docs.zizmor.sh/audits/#template-injection"
+        },
+        {
+          "confidence": "High",
+          "description": "unpinned action reference",
+          "file": ".github/workflows/pr-comment-api-change.yml",
+          "line": 15,
+          "note": "this step",
+          "rule": "unpinned-uses",
+          "severity": "High",
+          "url": "https://docs.zizmor.sh/audits/#unpinned-uses"
+        }
+      ]
+    }
   },
   "updated": "2026-11-01"
 }

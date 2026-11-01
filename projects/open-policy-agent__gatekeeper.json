@@ -7,11 +7,21 @@
       "dependencies": 1296,
       "errors": [],
       "fixable": 155,
+      "go_version": "go1.26.0",
+      "in_binary": {
+        "dependencies": 3,
+        "stdlib": 41,
+        "total": 44
+      },
       "new_vulnerabilities": 0,
+      "osv_confirmed": 158,
+      "osv_only": 2,
       "ref": "v3.23.1",
       "release_changed": false,
+      "release_integrity": "verified",
       "removed": 0,
       "resolved_vulnerabilities": 0,
+      "scorecard": null,
       "upgraded": 0,
       "vulnerabilities": {
         "Critical": 4,
@@ -20,6 +30,12 @@
         "Medium": 50,
         "Negligible": 0,
         "Unknown": 3
+      },
+      "workflow": {
+        "High": 4,
+        "Low": 0,
+        "Medium": 6,
+        "files": 25
       }
     }
   ],
@@ -10450,6 +10466,643 @@
     ],
     "description": "Enforce OPA policies through Kubernetes admission control.",
     "errors": [],
+    "go_binary": {
+      "asset": "gator-v3.23.1-linux-amd64.tar.gz",
+      "binary": "gator",
+      "findings": [
+        {
+          "aliases": [
+            "CVE-2026-27137"
+          ],
+          "fixed_version": "v1.26.1",
+          "id": "GO-2026-4599",
+          "level": "symbol",
+          "module": "stdlib",
+          "summary": "Incorrect enforcement of email constraints in crypto/x509",
+          "version": "v1.26.0"
+        },
+        {
+          "aliases": [
+            "CVE-2026-27138"
+          ],
+          "fixed_version": "v1.26.1",
+          "id": "GO-2026-4600",
+          "level": "symbol",
+          "module": "stdlib",
+          "summary": "Panic in name constraint checking for malformed certificates in crypto/x509",
+          "version": "v1.26.0"
+        },
+        {
+          "aliases": [
+            "CVE-2026-25679"
+          ],
+          "fixed_version": "v1.26.1",
+          "id": "GO-2026-4601",
+          "level": "symbol",
+          "module": "stdlib",
+          "summary": "Incorrect parsing of IPv6 host literals in net/url",
+          "version": "v1.26.0"
+        },
+        {
+          "aliases": [
+            "CVE-2026-27139"
+          ],
+          "fixed_version": "v1.26.1",
+          "id": "GO-2026-4602",
+          "level": "symbol",
+          "module": "stdlib",
+          "summary": "FileInfo can escape from a Root in os",
+          "version": "v1.26.0"
+        },
+        {
+          "aliases": [
+            "CVE-2026-27142"
+          ],
+          "fixed_version": "v1.26.1",
+          "id": "GO-2026-4603",
+          "level": "symbol",
+          "module": "stdlib",
+          "summary": "URLs in meta content attribute actions are not escaped in html/template",
+          "version": "v1.26.0"
+        },
+        {
+          "aliases": [
+            "CVE-2026-32289"
+          ],
+          "fixed_version": "v1.26.2",
+          "id": "GO-2026-4865",
+          "level": "symbol",
+          "module": "stdlib",
+          "summary": "JsBraceDepth Context Tracking Bugs (XSS) in html/template",
+          "version": "v1.26.0"
+        },
+        {
+          "aliases": [
+            "CVE-2026-33810"
+          ],
+          "fixed_version": "v1.26.2",
+          "id": "GO-2026-4866",
+          "level": "symbol",
+          "module": "stdlib",
+          "summary": "Case-sensitive excludedSubtrees name constraints cause Auth Bypass in crypto/x509",
+          "version": "v1.26.0"
+        },
+        {
+          "aliases": [
+            "CVE-2026-32288"
+          ],
+          "fixed_version": "v1.26.2",
+          "id": "GO-2026-4869",
+          "level": "symbol",
+          "module": "stdlib",
+          "summary": "Unbounded allocation for old GNU sparse in archive/tar",
+          "version": "v1.26.0"
+        },
+        {
+          "aliases": [
+            "CVE-2026-32283"
+          ],
+          "fixed_version": "v1.26.2",
+          "id": "GO-2026-4870",
+          "level": "symbol",
+          "module": "stdlib",
+          "summary": "Unauthenticated TLS 1.3 KeyUpdate record can cause persistent connection retention and DoS in crypto/tls",
+          "version": "v1.26.0"
+        },
+        {
+          "aliases": [
+            "CVE-2026-33814"
+          ],
+          "fixed_version": "v1.26.3",
+          "id": "GO-2026-4918",
+          "level": "symbol",
+          "module": "stdlib",
+          "summary": "Infinite loop in HTTP/2 transport when given bad SETTINGS_MAX_FRAME_SIZE in net/http/internal/http2 in golang.org/x/net",
+          "version": "v1.26.0"
+        },
+        {
+          "aliases": [
+            "CVE-2026-32281"
+          ],
+          "fixed_version": "v1.26.2",
+          "id": "GO-2026-4946",
+          "level": "symbol",
+          "module": "stdlib",
+          "summary": "Inefficient policy validation in crypto/x509",
+          "version": "v1.26.0"
+        },
+        {
+          "aliases": [
+            "CVE-2026-32280"
+          ],
+          "fixed_version": "v1.26.2",
+          "id": "GO-2026-4947",
+          "level": "symbol",
+          "module": "stdlib",
+          "summary": "Unexpected work during chain building in crypto/x509",
+          "version": "v1.26.0"
+        },
+        {
+          "aliases": [
+            "CVE-2026-39836"
+          ],
+          "fixed_version": "v1.26.3",
+          "id": "GO-2026-4971",
+          "level": "symbol",
+          "module": "stdlib",
+          "summary": "Panic in Dial and LookupPort when handling NUL byte on Windows in net",
+          "version": "v1.26.0"
+        },
+        {
+          "aliases": [
+            "CVE-2026-42499"
+          ],
+          "fixed_version": "v1.26.3",
+          "id": "GO-2026-4977",
+          "level": "symbol",
+          "module": "stdlib",
+          "summary": "Quadratic string concatenation in consumePhrase in net/mail",
+          "version": "v1.26.0"
+        },
+        {
+          "aliases": [
+            "CVE-2026-39826"
+          ],
+          "fixed_version": "v1.26.3",
+          "id": "GO-2026-4980",
+          "level": "symbol",
+          "module": "stdlib",
+          "summary": "Escaper bypass leads to XSS in html/template",
+          "version": "v1.26.0"
+        },
+        {
+          "aliases": [
+            "CVE-2026-33811"
+          ],
+          "fixed_version": "v1.26.3",
+          "id": "GO-2026-4981",
+          "level": "symbol",
+          "module": "stdlib",
+          "summary": "Crash when handling long CNAME response in net",
+          "version": "v1.26.0"
+        },
+        {
+          "aliases": [
+            "CVE-2026-39823"
+          ],
+          "fixed_version": "v1.26.3",
+          "id": "GO-2026-4982",
+          "level": "symbol",
+          "module": "stdlib",
+          "summary": "Bypass of meta content URL escaping causes XSS in html/template",
+          "version": "v1.26.0"
+        },
+        {
+          "aliases": [
+            "CVE-2026-39820"
+          ],
+          "fixed_version": "v1.26.3",
+          "id": "GO-2026-4986",
+          "level": "symbol",
+          "module": "stdlib",
+          "summary": "Quadratic string concatentation in consumeComment in net/mail",
+          "version": "v1.26.0"
+        },
+        {
+          "aliases": [
+            "CVE-2026-39821"
+          ],
+          "fixed_version": "v1.26.6",
+          "id": "GO-2026-5026",
+          "level": "symbol",
+          "module": "stdlib",
+          "summary": "Invoking failure to reject ASCII-only Punycode-encoded labels in golang.org/x/net/idna",
+          "version": "v1.26.0"
+        },
+        {
+          "aliases": [
+            "CVE-2026-27145"
+          ],
+          "fixed_version": "v1.26.4",
+          "id": "GO-2026-5037",
+          "level": "symbol",
+          "module": "stdlib",
+          "summary": "Inefficient candidate hostname parsing in crypto/x509",
+          "version": "v1.26.0"
+        },
+        {
+          "aliases": [
+            "CVE-2026-42504"
+          ],
+          "fixed_version": "v1.26.4",
+          "id": "GO-2026-5038",
+          "level": "symbol",
+          "module": "stdlib",
+          "summary": "Quadratic complexity in WordDecoder.DecodeHeader in mime",
+          "version": "v1.26.0"
+        },
+        {
+          "aliases": [
+            "CVE-2026-42507"
+          ],
+          "fixed_version": "v1.26.4",
+          "id": "GO-2026-5039",
+          "level": "symbol",
+          "module": "stdlib",
+          "summary": "Arbitrary inputs are included in errors without any escaping in net/textproto",
+          "version": "v1.26.0"
+        },
+        {
+          "aliases": [
+            "CVE-2026-42505"
+          ],
+          "fixed_version": "v1.26.5",
+          "id": "GO-2026-5856",
+          "level": "symbol",
+          "module": "stdlib",
+          "summary": "Invoking Encrypted Client Hello privacy leak in crypto/tls",
+          "version": "v1.26.0"
+        },
+        {
+          "aliases": [
+            "CVE-2026-46600"
+          ],
+          "fixed_version": "v1.26.6",
+          "id": "GO-2026-5942",
+          "level": "symbol",
+          "module": "stdlib",
+          "summary": "Parsing an invalid SVCB or HTTPS RR can panic in golang.org/x/net/dns/dnsmessage",
+          "version": "v1.26.0"
+        },
+        {
+          "aliases": [
+            "CVE-2026-33818"
+          ],
+          "fixed_version": "v1.26.6",
+          "id": "GO-2026-5972",
+          "level": "symbol",
+          "module": "stdlib",
+          "summary": "Enforce maximum recursion depth in encoding/asn1",
+          "version": "v1.26.0"
+        },
+        {
+          "aliases": [
+            "CVE-2026-56859"
+          ],
+          "fixed_version": "v1.26.6",
+          "id": "GO-2026-6088",
+          "level": "symbol",
+          "module": "stdlib",
+          "summary": "Add recursion depth guard during decode in encoding/xml",
+          "version": "v1.26.0"
+        },
+        {
+          "aliases": [
+            "CVE-2026-56862"
+          ],
+          "fixed_version": "v1.26.6",
+          "id": "GO-2026-6090",
+          "level": "symbol",
+          "module": "stdlib",
+          "summary": "Limit handshake messages we are willing to accept post-handshake in crypto/tls",
+          "version": "v1.26.0"
+        },
+        {
+          "aliases": [
+            "CVE-2026-56858"
+          ],
+          "fixed_version": "v1.26.6",
+          "id": "GO-2026-6091",
+          "level": "symbol",
+          "module": "stdlib",
+          "summary": "Fix Javascript regexp context tracking in html/template",
+          "version": "v1.26.0"
+        },
+        {
+          "aliases": [
+            "CVE-2026-56860"
+          ],
+          "fixed_version": "v1.26.6",
+          "id": "GO-2026-6218",
+          "level": "symbol",
+          "module": "stdlib",
+          "summary": "Avoid quadratic complexity in resolvePath in net/url",
+          "version": "v1.26.0"
+        },
+        {
+          "aliases": [
+            "CVE-2026-94448"
+          ],
+          "fixed_version": "v1.26.9",
+          "id": "GO-2026-6599",
+          "level": "symbol",
+          "module": "stdlib",
+          "summary": "Reset context tracking on consecutive template expressions in html/template",
+          "version": "v1.26.0"
+        },
+        {
+          "aliases": [
+            "CVE-2026-97030"
+          ],
+          "fixed_version": "v1.26.9",
+          "id": "GO-2026-6600",
+          "level": "symbol",
+          "module": "stdlib",
+          "summary": "Recognize yield as regexp preceder keyword in html/template",
+          "version": "v1.26.0"
+        },
+        {
+          "aliases": [
+            "CVE-2026-78659"
+          ],
+          "fixed_version": "v1.26.9",
+          "id": "GO-2026-6603",
+          "level": "symbol",
+          "module": "stdlib",
+          "summary": "HTTP/2 server memory exhaustion due to Trailer headers in net/http",
+          "version": "v1.26.0"
+        },
+        {
+          "aliases": [
+            "CVE-2026-56866"
+          ],
+          "fixed_version": "v1.26.9",
+          "id": "GO-2026-6605",
+          "level": "symbol",
+          "module": "stdlib",
+          "summary": "HTTP/1 client connection desynchronization after CONNECT rejection in net/http",
+          "version": "v1.26.0"
+        },
+        {
+          "aliases": [
+            "CVE-2026-97031"
+          ],
+          "fixed_version": "v1.26.9",
+          "id": "GO-2026-6607",
+          "level": "symbol",
+          "module": "stdlib",
+          "summary": "Reject malformed ECH outer extension references in crypto/tls",
+          "version": "v1.26.0"
+        },
+        {
+          "aliases": [
+            "CVE-2026-94440"
+          ],
+          "fixed_version": "v1.26.9",
+          "id": "GO-2026-6608",
+          "level": "symbol",
+          "module": "stdlib",
+          "summary": "Memory limit bypass when parsing MIME headers in net/textproto, mime/multipart",
+          "version": "v1.26.0"
+        },
+        {
+          "aliases": [
+            "CVE-2026-78660"
+          ],
+          "fixed_version": "v1.26.9",
+          "id": "GO-2026-6610",
+          "level": "symbol",
+          "module": "stdlib",
+          "summary": "HTTP/2 transport accepts malformed framing-related headers in net/http",
+          "version": "v1.26.0"
+        },
+        {
+          "aliases": [
+            "CVE-2026-78669"
+          ],
+          "fixed_version": "v1.26.9",
+          "id": "GO-2026-6611",
+          "level": "symbol",
+          "module": "stdlib",
+          "summary": "Excessive CPU consumption from repeated initial window changes in net/http",
+          "version": "v1.26.0"
+        },
+        {
+          "aliases": [
+            "CVE-2026-78663"
+          ],
+          "fixed_version": "v1.26.9",
+          "id": "GO-2026-6612",
+          "level": "symbol",
+          "module": "stdlib",
+          "summary": "Double flow control refund on HTTP/2 server streams in net/http",
+          "version": "v1.26.0"
+        },
+        {
+          "aliases": [
+            "CVE-2026-94439"
+          ],
+          "fixed_version": "v1.26.9",
+          "id": "GO-2026-6613",
+          "level": "symbol",
+          "module": "stdlib",
+          "summary": "HTTP/1 server connection desynchronization after 2xx CONNECT response in net/http",
+          "version": "v1.26.0"
+        },
+        {
+          "aliases": [
+            "CVE-2026-97032"
+          ],
+          "fixed_version": "v1.26.9",
+          "id": "GO-2026-6617",
+          "level": "symbol",
+          "module": "stdlib",
+          "summary": "HTTP/2 server crash due to HPACK encoder race in net/http",
+          "version": "v1.26.0"
+        },
+        {
+          "aliases": [
+            "CVE-2026-111943"
+          ],
+          "fixed_version": "v1.26.10",
+          "id": "GO-2026-6809",
+          "level": "symbol",
+          "module": "stdlib",
+          "summary": "Distrust compromised intermediate certificates in crypto/x509",
+          "version": "v1.26.0"
+        },
+        {
+          "aliases": [
+            "CVE-2026-81870",
+            "GHSA-8wmf-6v46-5gfg"
+          ],
+          "fixed_version": "v1.45.0",
+          "id": "GO-2026-6505",
+          "level": "symbol",
+          "module": "go.opentelemetry.io/otel/sdk",
+          "summary": "OpenTelemetry-Go: Exporter config logging may leak endpoint URLs in info logs in go.opentelemetry.io/otel/exporters/otlp/otlptrace",
+          "version": "v1.44.0"
+        },
+        {
+          "aliases": [
+            "CVE-2026-84304",
+            "GHSA-vp52-pcj8-j9qc"
+          ],
+          "fixed_version": "v1.83.1",
+          "id": "GO-2026-6348",
+          "level": "symbol",
+          "module": "google.golang.org/grpc",
+          "summary": "Heap Memory Exhaustion (OOM) via HTTP/2 DATA Frame Fragmentation in google.golang.org/grpc",
+          "version": "v1.82.1"
+        },
+        {
+          "aliases": [
+            "CVE-2026-84445",
+            "GHSA-2v4p-qf9q-27wj"
+          ],
+          "fixed_version": "v1.82.2",
+          "id": "GO-2026-6443",
+          "level": "symbol",
+          "module": "google.golang.org/grpc",
+          "summary": "Server panic via missing authority or Host headers in google.golang.org/grpc",
+          "version": "v1.82.1"
+        },
+        {
+          "aliases": [
+            "CVE-2026-32282"
+          ],
+          "fixed_version": "v1.26.2",
+          "id": "GO-2026-4864",
+          "level": "package",
+          "module": "stdlib",
+          "summary": "TOCTOU permits root escape on Linux via Root.Chmod in os in internal/syscall/unix",
+          "version": "v1.26.0"
+        },
+        {
+          "aliases": [
+            "CVE-2026-39822"
+          ],
+          "fixed_version": "v1.26.5",
+          "id": "GO-2026-4970",
+          "level": "package",
+          "module": "stdlib",
+          "summary": "Root escape via symlink plus trailing slash in os",
+          "version": "v1.26.0"
+        },
+        {
+          "aliases": [
+            "CVE-2026-39825"
+          ],
+          "fixed_version": "v1.26.3",
+          "id": "GO-2026-4976",
+          "level": "package",
+          "module": "stdlib",
+          "summary": "ReverseProxy forwards queries with more than urlmaxqueryparams parameters in net/http/httputil",
+          "version": "v1.26.0"
+        },
+        {
+          "aliases": [
+            "CVE-2026-56853"
+          ],
+          "fixed_version": "v1.26.6",
+          "id": "GO-2026-6089",
+          "level": "package",
+          "module": "stdlib",
+          "summary": "Apply ReadHeaderTimeout when doing unencrypted HTTP/2 check in net/http",
+          "version": "v1.26.0"
+        },
+        {
+          "aliases": [
+            "CVE-2026-78667"
+          ],
+          "fixed_version": "v1.26.9",
+          "id": "GO-2026-6609",
+          "level": "package",
+          "module": "stdlib",
+          "summary": "Lack of limit on size of parsed Range headers in net/http",
+          "version": "v1.26.0"
+        },
+        {
+          "aliases": [],
+          "fixed_version": "",
+          "id": "GO-2026-5932",
+          "level": "module",
+          "module": "golang.org/x/crypto",
+          "summary": "The golang.org/x/crypto/openpgp package is unmaintained, unsafe by design, and has known security issues",
+          "version": "v0.53.0"
+        },
+        {
+          "aliases": [
+            "CVE-2026-56854"
+          ],
+          "fixed_version": "v0.55.0",
+          "id": "GO-2026-6303",
+          "level": "module",
+          "module": "golang.org/x/crypto",
+          "summary": "Source-address critical option not enforced for non-public-key auth callbacks in golang.org/x/crypto/ssh",
+          "version": "v0.53.0"
+        },
+        {
+          "aliases": [
+            "CVE-2026-78662"
+          ],
+          "fixed_version": "v0.56.0",
+          "id": "GO-2026-6354",
+          "level": "module",
+          "module": "golang.org/x/crypto",
+          "summary": "Prevent DoS on deadlocked undecided channel in golang.org/x/crypto/ssh",
+          "version": "v0.53.0"
+        },
+        {
+          "aliases": [
+            "CVE-2026-56855"
+          ],
+          "fixed_version": "v0.56.0",
+          "id": "GO-2026-6355",
+          "level": "module",
+          "module": "golang.org/x/crypto",
+          "summary": "Prevent DoS on deadlocked established channel in golang.org/x/crypto/ssh",
+          "version": "v0.53.0"
+        },
+        {
+          "aliases": [
+            "CVE-2026-78661"
+          ],
+          "fixed_version": "v0.62.0",
+          "id": "GO-2026-6860",
+          "level": "module",
+          "module": "golang.org/x/net",
+          "summary": "Avoid quadratic complexity when coalescing text nodes in html in golang.org/x/net",
+          "version": "v0.56.0"
+        },
+        {
+          "aliases": [
+            "CVE-2026-97045"
+          ],
+          "fixed_version": "v0.62.0",
+          "id": "GO-2026-6866",
+          "level": "module",
+          "module": "golang.org/x/net",
+          "summary": "Check all ancestor namespace transitions when rendering raw text in html in golang.org/x/net",
+          "version": "v0.56.0"
+        },
+        {
+          "aliases": [
+            "CVE-2026-56851"
+          ],
+          "fixed_version": "v0.41.0",
+          "id": "GO-2026-6629",
+          "level": "module",
+          "module": "golang.org/x/text",
+          "summary": "Panic parsing crafted input in x/text/secure/precis in golang.org/x/text",
+          "version": "v0.39.0"
+        },
+        {
+          "aliases": [
+            "CVE-2026-84303",
+            "GHSA-qc2q-p7wx-3px3"
+          ],
+          "fixed_version": "v1.83.1",
+          "id": "GO-2026-6441",
+          "level": "module",
+          "module": "google.golang.org/grpc",
+          "summary": "Bypass of xDS RBAC HTTP filter header matching in google.golang.org/grpc",
+          "version": "v1.82.1"
+        }
+      ],
+      "go_version": "go1.26.0",
+      "main_module": "github.com/open-policy-agent/gatekeeper/v3"
+    },
     "id": "open-policy-agent__gatekeeper",
     "manifests": [
       ".github/workflows/benchmark.yaml",
@@ -10483,8 +11136,57 @@
       "website/yarn.lock"
     ],
     "name": "gatekeeper",
+    "osv": {
+      "advisories": 160,
+      "available": true,
+      "confirmed": 158,
+      "osv_only": [
+        {
+          "ecosystem": "Go",
+          "ids": [
+            "CVE-2020-8912",
+            "GHSA-7f33-f4f5-xwgw",
+            "GO-2022-0635"
+          ],
+          "package": "github.com/aws/aws-sdk-go",
+          "score": "",
+          "severity": "Unknown",
+          "version": "1.47.9"
+        },
+        {
+          "ecosystem": "Go",
+          "ids": [
+            "CVE-2020-8911",
+            "GHSA-f5pg-7wfw-84q9",
+            "GO-2022-0646"
+          ],
+          "package": "github.com/aws/aws-sdk-go",
+          "score": "",
+          "severity": "Unknown",
+          "version": "1.47.9"
+        }
+      ],
+      "warning": null
+    },
     "ref": "v3.23.1",
     "ref_kind": "release",
+    "release_integrity": {
+      "asset": "gator-v3.23.1-linux-amd64.tar.gz",
+      "assets": 5,
+      "checksums_published": true,
+      "digest_matches_github": true,
+      "methods": [
+        {
+          "detail": "GitHub attests the file is unchanged since the release was published",
+          "method": "github-immutable-release",
+          "status": "verified"
+        }
+      ],
+      "provenance_published": false,
+      "sbom_published": false,
+      "signatures_published": false,
+      "verdict": "verified"
+    },
     "released_at": "2026-08-27T22:03:10Z",
     "repository": "open-policy-agent/gatekeeper",
     "sbomlyze_diff": {
@@ -10497,7 +11199,9 @@
       ],
       "removed": 0
     },
-    "scanned_at": "2026-11-01T16:37:10+00:00",
+    "scanned_at": "2026-11-01T17:45:06+00:00",
+    "scorecard": null,
+    "scorecard_note": "not in the OpenSSF dataset this week; run budget exhausted",
     "vulnerabilities": [
       {
         "aliases": [
@@ -10509,7 +11213,9 @@
           "0.60.0"
         ],
         "id": "GO-2026-6612",
+        "in_binary": "vulnerable code in binary",
         "location": "go.mod",
+        "osv_confirmed": true,
         "package": "golang.org/x/net",
         "severity": "Critical",
         "url": "https://go.dev/cl/847187",
@@ -10526,6 +11232,7 @@
         ],
         "id": "GHSA-jqcg-44mw-7w3h",
         "location": "website/yarn.lock",
+        "osv_confirmed": true,
         "package": "proxy-addr",
         "severity": "Critical",
         "url": "https://github.com/advisories/GHSA-jqcg-44mw-7w3h",
@@ -10542,6 +11249,7 @@
         ],
         "id": "GHSA-pqg4-j6r4-53mv",
         "location": "website/yarn.lock",
+        "osv_confirmed": true,
         "package": "shell-quote",
         "severity": "Critical",
         "url": "https://github.com/advisories/GHSA-pqg4-j6r4-53mv",
@@ -10558,6 +11266,7 @@
         ],
         "id": "GHSA-xv26-6w52-cph6",
         "location": "website/yarn.lock",
+        "osv_confirmed": true,
         "package": "websocket-driver",
         "severity": "Critical",
         "url": "https://github.com/advisories/GHSA-xv26-6w52-cph6",
@@ -10574,6 +11283,7 @@
         ],
         "id": "GHSA-3g43-6gmg-66jw",
         "location": "website/yarn.lock",
+        "osv_confirmed": true,
         "package": "axios",
         "severity": "High",
         "url": "https://github.com/advisories/GHSA-3g43-6gmg-66jw",
@@ -10590,6 +11300,7 @@
         ],
         "id": "GHSA-43fc-jf86-j433",
         "location": "website/yarn.lock",
+        "osv_confirmed": true,
         "package": "axios",
         "severity": "High",
         "url": "https://github.com/advisories/GHSA-43fc-jf86-j433",
@@ -10606,6 +11317,7 @@
         ],
         "id": "GHSA-6chq-wfr3-2hj9",
         "location": "website/yarn.lock",
+        "osv_confirmed": true,
         "package": "axios",
         "severity": "High",
         "url": "https://github.com/advisories/GHSA-6chq-wfr3-2hj9",
@@ -10622,6 +11334,7 @@
         ],
         "id": "GHSA-hfxv-24rg-xrqf",
         "location": "website/yarn.lock",
+        "osv_confirmed": true,
         "package": "axios",
         "severity": "High",
         "url": "https://github.com/advisories/GHSA-hfxv-24rg-xrqf",
@@ -10638,6 +11351,7 @@
         ],
         "id": "GHSA-j5f8-grm9-p9fc",
         "location": "website/yarn.lock",
+        "osv_confirmed": true,
         "package": "axios",
         "severity": "High",
         "url": "https://github.com/advisories/GHSA-j5f8-grm9-p9fc",
@@ -10654,6 +11368,7 @@
         ],
         "id": "GHSA-jr5f-v2jv-69x6",
         "location": "website/yarn.lock",
+        "osv_confirmed": true,
         "package": "axios",
         "severity": "High",
         "url": "https://github.com/advisories/GHSA-jr5f-v2jv-69x6",
@@ -10670,6 +11385,7 @@
         ],
         "id": "GHSA-p92q-9vqr-4j8v",
         "location": "website/yarn.lock",
+        "osv_confirmed": true,
         "package": "axios",
         "severity": "High",
         "url": "https://github.com/advisories/GHSA-p92q-9vqr-4j8v",
@@ -10686,6 +11402,7 @@
         ],
         "id": "GHSA-pf86-5x62-jrwf",
         "location": "website/yarn.lock",
+        "osv_confirmed": true,
         "package": "axios",
         "severity": "High",
         "url": "https://github.com/advisories/GHSA-pf86-5x62-jrwf",
@@ -10702,6 +11419,7 @@
         ],
         "id": "GHSA-pjwm-pj3p-43mv",
         "location": "website/yarn.lock",
+        "osv_confirmed": true,
         "package": "axios",
         "severity": "High",
         "url": "https://github.com/advisories/GHSA-pjwm-pj3p-43mv",
@@ -10718,6 +11436,7 @@
         ],
         "id": "GHSA-pmwg-cvhr-8vh7",
         "location": "website/yarn.lock",
+        "osv_confirmed": true,
         "package": "axios",
         "severity": "High",
         "url": "https://github.com/advisories/GHSA-pmwg-cvhr-8vh7",
@@ -10734,6 +11453,7 @@
         ],
         "id": "GHSA-27r3-jxmh-p828",
         "location": "website/yarn.lock",
+        "osv_confirmed": true,
         "package": "body-parser",
         "severity": "High",
         "url": "https://github.com/advisories/GHSA-27r3-jxmh-p828",
@@ -10750,6 +11470,7 @@
         ],
         "id": "GHSA-3jxr-9vmj-r5cp",
         "location": "website/yarn.lock",
+        "osv_confirmed": true,
         "package": "brace-expansion",
         "severity": "High",
         "url": "https://github.com/advisories/GHSA-3jxr-9vmj-r5cp",
@@ -10766,6 +11487,7 @@
         ],
         "id": "GHSA-6j4f-fj2g-mc7p",
         "location": "website/yarn.lock",
+        "osv_confirmed": true,
         "package": "brace-expansion",
         "severity": "High",
         "url": "https://github.com/advisories/GHSA-6j4f-fj2g-mc7p",
@@ -10782,6 +11504,7 @@
         ],
         "id": "GHSA-mh99-v99m-4gvg",
         "location": "website/yarn.lock",
+        "osv_confirmed": true,
         "package": "brace-expansion",
         "severity": "High",
         "url": "https://github.com/advisories/GHSA-mh99-v99m-4gvg",
@@ -10798,6 +11521,7 @@
         ],
         "id": "GHSA-qhr7-859c-m2p7",
         "location": "website/yarn.lock",
+        "osv_confirmed": true,
         "package": "brace-expansion",
         "severity": "High",
         "url": "https://github.com/advisories/GHSA-qhr7-859c-m2p7",
@@ -10814,6 +11538,7 @@
         ],
         "id": "GHSA-rgw5-rvv9-x895",
         "location": "website/yarn.lock",
+        "osv_confirmed": true,
         "package": "brace-expansion",
         "severity": "High",
         "url": "https://github.com/advisories/GHSA-rgw5-rvv9-x895",
@@ -10830,6 +11555,7 @@
         ],
         "id": "GHSA-73wf-gq98-2v4g",
         "location": "website/yarn.lock",
+        "osv_confirmed": true,
         "package": "browserslist",
         "severity": "High",
         "url": "https://github.com/advisories/GHSA-73wf-gq98-2v4g",
@@ -10846,6 +11572,7 @@
         ],
         "id": "GHSA-73wf-gq98-2v4g",
         "location": "website/yarn.lock",
+        "osv_confirmed": true,
         "package": "browserslist",
         "severity": "High",
         "url": "https://github.com/advisories/GHSA-73wf-gq98-2v4g",
@@ -10862,6 +11589,7 @@
         ],
         "id": "GHSA-73wf-gq98-2v4g",
         "location": "website/yarn.lock",
+        "osv_confirmed": true,
         "package": "browserslist",
         "severity": "High",
         "url": "https://github.com/advisories/GHSA-73wf-gq98-2v4g",
@@ -10878,6 +11606,7 @@
         ],
         "id": "GHSA-c83g-rgw3-j3cx",
         "location": "website/yarn.lock",
+        "osv_confirmed": true,
         "package": "browserslist",
         "severity": "High",
         "url": "https://github.com/advisories/GHSA-c83g-rgw3-j3cx",
@@ -10894,6 +11623,7 @@
         ],
         "id": "GHSA-c83g-rgw3-j3cx",
         "location": "website/yarn.lock",
+        "osv_confirmed": true,
         "package": "browserslist",
         "severity": "High",
         "url": "https://github.com/advisories/GHSA-c83g-rgw3-j3cx",
@@ -10910,6 +11640,7 @@
         ],
         "id": "GHSA-c83g-rgw3-j3cx",
         "location": "website/yarn.lock",
+        "osv_confirmed": true,
         "package": "browserslist",
         "severity": "High",
         "url": "https://github.com/advisories/GHSA-c83g-rgw3-j3cx",
@@ -10926,6 +11657,7 @@
         ],
         "id": "GHSA-vc2v-76pw-4v95",
         "location": "website/yarn.lock",
+        "osv_confirmed": true,
         "package": "compression",
         "severity": "High",
         "url": "https://github.com/advisories/GHSA-vc2v-76pw-4v95",
@@ -10942,6 +11674,7 @@
         ],
         "id": "GHSA-4c8g-83qw-93j6",
         "location": "website/yarn.lock",
+        "osv_confirmed": true,
         "package": "fast-uri",
         "severity": "High",
         "url": "https://github.com/advisories/GHSA-4c8g-83qw-93j6",
@@ -10958,6 +11691,7 @@
         ],
         "id": "GHSA-7p8r-x3mc-p8w7",
         "location": "website/yarn.lock",
+        "osv_confirmed": true,
         "package": "fast-uri",
         "severity": "High",
         "url": "https://github.com/advisories/GHSA-7p8r-x3mc-p8w7",
@@ -10974,6 +11708,7 @@
         ],
         "id": "GHSA-f65p-4m7j-42xc",
         "location": "website/yarn.lock",
+        "osv_confirmed": true,
         "package": "fast-uri",
         "severity": "High",
         "url": "https://github.com/advisories/GHSA-f65p-4m7j-42xc",
@@ -10990,6 +11725,7 @@
         ],
         "id": "GHSA-fph4-wmhf-6fwf",
         "location": "website/yarn.lock",
+        "osv_confirmed": true,
         "package": "fast-uri",
         "severity": "High",
         "url": "https://github.com/advisories/GHSA-fph4-wmhf-6fwf",
@@ -11006,6 +11742,7 @@
         ],
         "id": "GHSA-jqff-g426-hqxp",
         "location": "website/yarn.lock",
+        "osv_confirmed": true,
         "package": "fast-uri",
         "severity": "High",
         "url": "https://github.com/advisories/GHSA-jqff-g426-hqxp",
@@ -11022,6 +11759,7 @@
         ],
         "id": "GHSA-qw65-cvwx-89v3",
         "location": "website/yarn.lock",
+        "osv_confirmed": true,
         "package": "fast-uri",
         "severity": "High",
         "url": "https://github.com/advisories/GHSA-qw65-cvwx-89v3",
@@ -11038,6 +11776,7 @@
         ],
         "id": "GHSA-v2hh-gcrm-f6hx",
         "location": "website/yarn.lock",
+        "osv_confirmed": true,
         "package": "fast-uri",
         "severity": "High",
         "url": "https://github.com/advisories/GHSA-v2hh-gcrm-f6hx",
@@ -11054,6 +11793,7 @@
         ],
         "id": "GHSA-8r9p-f939-6h3c",
         "location": "website/yarn.lock",
+        "osv_confirmed": true,
         "package": "follow-redirects",
         "severity": "High",
         "url": "https://github.com/advisories/GHSA-8r9p-f939-6h3c",
@@ -11070,6 +11810,7 @@
         ],
         "id": "GHSA-mrwp-f3q8-3g9p",
         "location": "website/yarn.lock",
+        "osv_confirmed": true,
         "package": "follow-redirects",
         "severity": "High",
         "url": "https://github.com/advisories/GHSA-mrwp-f3q8-3g9p",
@@ -11086,6 +11827,7 @@
         ],
         "id": "GHSA-q3jh-wrc6-jgq8",
         "location": "website/yarn.lock",
+        "osv_confirmed": true,
         "package": "follow-redirects",
         "severity": "High",
         "url": "https://github.com/advisories/GHSA-q3jh-wrc6-jgq8",
@@ -11101,7 +11843,9 @@
           "0.55.0"
         ],
         "id": "GO-2026-6303",
+        "in_binary": "module in binary",
         "location": "go.mod",
+        "osv_confirmed": true,
         "package": "golang.org/x/crypto",
         "severity": "High",
         "url": "https://go.dev/issue/80213",
@@ -11117,7 +11861,9 @@
           "0.56.0"
         ],
         "id": "GO-2026-6354",
+        "in_binary": "module in binary",
         "location": "go.mod",
+        "osv_confirmed": true,
         "package": "golang.org/x/crypto",
         "severity": "High",
         "url": "https://go.dev/issue/81316",
@@ -11133,7 +11879,9 @@
           "0.56.0"
         ],
         "id": "GO-2026-6355",
+        "in_binary": "module in binary",
         "location": "go.mod",
+        "osv_confirmed": true,
         "package": "golang.org/x/crypto",
         "severity": "High",
         "url": "https://go.dev/issue/81317",
@@ -11149,7 +11897,9 @@
           "0.60.0"
         ],
         "id": "GO-2026-6603",
+        "in_binary": "vulnerable code in binary",
         "location": "go.mod",
+        "osv_confirmed": true,
         "package": "golang.org/x/net",
         "severity": "High",
         "url": "https://go.dev/cl/847185",
@@ -11165,7 +11915,9 @@
           "0.60.0"
         ],
         "id": "GO-2026-6610",
+        "in_binary": "vulnerable code in binary",
         "location": "go.mod",
+        "osv_confirmed": true,
         "package": "golang.org/x/net",
         "severity": "High",
         "url": "https://go.dev/cl/835145",
@@ -11181,7 +11933,9 @@
           "0.60.0"
         ],
         "id": "GO-2026-6611",
+        "in_binary": "vulnerable code in binary",
         "location": "go.mod",
+        "osv_confirmed": true,
         "package": "golang.org/x/net",
         "severity": "High",
         "url": "https://go.dev/cl/847186",
@@ -11197,7 +11951,9 @@
           "0.60.0"
         ],
         "id": "GO-2026-6617",
+        "in_binary": "vulnerable code in binary",
         "location": "go.mod",
+        "osv_confirmed": true,
         "package": "golang.org/x/net",
         "severity": "High",
         "url": "https://go.dev/cl/847188",
@@ -11213,7 +11969,9 @@
           "0.41.0"
         ],
         "id": "GO-2026-6629",
+        "in_binary": "module in binary",
         "location": "go.mod",
+        "osv_confirmed": true,
         "package": "golang.org/x/text",
         "severity": "High",
         "url": "https://go.dev/cl/793360",
@@ -11229,7 +11987,9 @@
           "1.82.2"
         ],
         "id": "GHSA-2v4p-qf9q-27wj",
+        "in_binary": "vulnerable code in binary",
         "location": "go.mod",
+        "osv_confirmed": true,
         "package": "google.golang.org/grpc",
         "severity": "High",
         "url": "https://github.com/advisories/GHSA-2v4p-qf9q-27wj",
@@ -11245,7 +12005,9 @@
           "1.83.1"
         ],
         "id": "GHSA-vp52-pcj8-j9qc",
+        "in_binary": "vulnerable code in binary",
         "location": "go.mod",
+        "osv_confirmed": true,
         "package": "google.golang.org/grpc",
         "severity": "High",
         "url": "https://github.com/advisories/GHSA-vp52-pcj8-j9qc",
@@ -11262,6 +12024,7 @@
         ],
         "id": "GHSA-w3rx-r6r6-pgpr",
         "location": "website/yarn.lock",
+        "osv_confirmed": true,
         "package": "image-size",
         "severity": "High",
         "url": "https://github.com/advisories/GHSA-w3rx-r6r6-pgpr",
@@ -11278,6 +12041,7 @@
         ],
         "id": "GHSA-4528-x5fx-h6hg",
         "location": "website/yarn.lock",
+        "osv_confirmed": true,
         "package": "joi",
         "severity": "High",
         "url": "https://github.com/advisories/GHSA-4528-x5fx-h6hg",
@@ -11294,6 +12058,7 @@
         ],
         "id": "GHSA-6h2x-m376-mqjq",
         "location": "website/yarn.lock",
+        "osv_confirmed": true,
         "package": "joi",
         "severity": "High",
         "url": "https://github.com/advisories/GHSA-6h2x-m376-mqjq",
@@ -11310,6 +12075,7 @@
         ],
         "id": "GHSA-2883-xcg3-v3hh",
         "location": "website/yarn.lock",
+        "osv_confirmed": true,
         "package": "js-yaml",
         "severity": "High",
         "url": "https://github.com/advisories/GHSA-2883-xcg3-v3hh",
@@ -11326,6 +12092,7 @@
         ],
         "id": "GHSA-2883-xcg3-v3hh",
         "location": "website/yarn.lock",
+        "osv_confirmed": true,
         "package": "js-yaml",
         "severity": "High",
         "url": "https://github.com/advisories/GHSA-2883-xcg3-v3hh",
@@ -11342,6 +12109,7 @@
         ],
         "id": "GHSA-52cp-r559-cp3m",
         "location": "website/yarn.lock",
+        "osv_confirmed": true,
         "package": "js-yaml",
         "severity": "High",
         "url": "https://github.com/advisories/GHSA-52cp-r559-cp3m",
@@ -11358,6 +12126,7 @@
         ],
         "id": "GHSA-52cp-r559-cp3m",
         "location": "website/yarn.lock",
+        "osv_confirmed": true,
         "package": "js-yaml",
         "severity": "High",
         "url": "https://github.com/advisories/GHSA-52cp-r559-cp3m",
@@ -11372,6 +12141,7 @@
         ],
         "id": "GHSA-5p4m-2wfm-xmqj",
         "location": "website/yarn.lock",
+        "osv_confirmed": true,
         "package": "js-yaml",
         "severity": "High",
         "url": "https://github.com/advisories/GHSA-5p4m-2wfm-xmqj",
@@ -11386,6 +12156,7 @@
         ],
         "id": "GHSA-5p4m-2wfm-xmqj",
         "location": "website/yarn.lock",
+        "osv_confirmed": true,
         "package": "js-yaml",
         "severity": "High",
         "url": "https://github.com/advisories/GHSA-5p4m-2wfm-xmqj",
@@ -11402,6 +12173,7 @@
         ],
         "id": "GHSA-3rfm-jhwj-7488",
         "location": "website/yarn.lock",
+        "osv_confirmed": true,
         "package": "loader-utils",
         "severity": "High",
         "url": "https://github.com/advisories/GHSA-3rfm-jhwj-7488",
@@ -11418,6 +12190,7 @@
         ],
         "id": "GHSA-hhq3-ff78-jv3g",
         "location": "website/yarn.lock",
+        "osv_confirmed": true,
         "package": "loader-utils",
         "severity": "High",
         "url": "https://github.com/advisories/GHSA-hhq3-ff78-jv3g",
@@ -11434,6 +12207,7 @@
         ],
         "id": "GHSA-23c5-xmqv-rm74",
         "location": "website/yarn.lock",
+        "osv_confirmed": true,
         "package": "minimatch",
         "severity": "High",
         "url": "https://github.com/advisories/GHSA-23c5-xmqv-rm74",
@@ -11450,6 +12224,7 @@
         ],
         "id": "GHSA-23c5-xmqv-rm74",
         "location": "website/yarn.lock",
+        "osv_confirmed": true,
         "package": "minimatch",
         "severity": "High",
         "url": "https://github.com/advisories/GHSA-23c5-xmqv-rm74",
@@ -11466,6 +12241,7 @@
         ],
         "id": "GHSA-3ppc-4f35-3m26",
         "location": "website/yarn.lock",
+        "osv_confirmed": true,
         "package": "minimatch",
         "severity": "High",
         "url": "https://github.com/advisories/GHSA-3ppc-4f35-3m26",
@@ -11482,6 +12258,7 @@
         ],
         "id": "GHSA-3ppc-4f35-3m26",
         "location": "website/yarn.lock",
+        "osv_confirmed": true,
         "package": "minimatch",
         "severity": "High",
         "url": "https://github.com/advisories/GHSA-3ppc-4f35-3m26",
@@ -11498,6 +12275,7 @@
         ],
         "id": "GHSA-7r86-cg39-jmmj",
         "location": "website/yarn.lock",
+        "osv_confirmed": true,
         "package": "minimatch",
         "severity": "High",
         "url": "https://github.com/advisories/GHSA-7r86-cg39-jmmj",
@@ -11514,6 +12292,7 @@
         ],
         "id": "GHSA-7r86-cg39-jmmj",
         "location": "website/yarn.lock",
+        "osv_confirmed": true,
         "package": "minimatch",
         "severity": "High",
         "url": "https://github.com/advisories/GHSA-7r86-cg39-jmmj",
@@ -11530,6 +12309,7 @@
         ],
         "id": "GHSA-f8q6-p94x-37v3",
         "location": "website/yarn.lock",
+        "osv_confirmed": true,
         "package": "minimatch",
         "severity": "High",
         "url": "https://github.com/advisories/GHSA-f8q6-p94x-37v3",
@@ -11546,6 +12326,7 @@
         ],
         "id": "GHSA-28wg-ghj8-5hjv",
         "location": "website/yarn.lock",
+        "osv_confirmed": true,
         "package": "nanoid",
         "severity": "High",
         "url": "https://github.com/advisories/GHSA-28wg-ghj8-5hjv",
@@ -11562,6 +12343,7 @@
         ],
         "id": "GHSA-2v37-7h3g-55p8",
         "location": "website/yarn.lock",
+        "osv_confirmed": true,
         "package": "nanoid",
         "severity": "High",
         "url": "https://github.com/advisories/GHSA-2v37-7h3g-55p8",
@@ -11578,6 +12360,7 @@
         ],
         "id": "GHSA-xwg4-73v4-xw9w",
         "location": "website/yarn.lock",
+        "osv_confirmed": true,
         "package": "nanoid",
         "severity": "High",
         "url": "https://github.com/advisories/GHSA-xwg4-73v4-xw9w",
@@ -11594,6 +12377,7 @@
         ],
         "id": "GHSA-5x38-2vff-x55p",
         "location": "website/yarn.lock",
+        "osv_confirmed": true,
         "package": "node-forge",
         "severity": "High",
         "url": "https://github.com/advisories/GHSA-5x38-2vff-x55p",
@@ -11610,6 +12394,7 @@
         ],
         "id": "GHSA-7wch-p9px-956x",
         "location": "website/yarn.lock",
+        "osv_confirmed": true,
         "package": "node-forge",
         "severity": "High",
         "url": "https://github.com/advisories/GHSA-7wch-p9px-956x",
@@ -11624,6 +12409,7 @@
         "fixed_in": [],
         "id": "GHSA-86w9-cpqp-85rv",
         "location": "website/yarn.lock",
+        "osv_confirmed": true,
         "package": "node-forge",
         "severity": "High",
         "url": "https://github.com/advisories/GHSA-86w9-cpqp-85rv",
@@ -11640,6 +12426,7 @@
         ],
         "id": "GHSA-8hrf-8g6f-7xwp",
         "location": "website/yarn.lock",
+        "osv_confirmed": true,
         "package": "node-forge",
         "severity": "High",
         "url": "https://github.com/advisories/GHSA-8hrf-8g6f-7xwp",
@@ -11656,6 +12443,7 @@
         ],
         "id": "GHSA-hqq3-7jhf-c5jx",
         "location": "website/yarn.lock",
+        "osv_confirmed": true,
         "package": "node-forge",
         "severity": "High",
         "url": "https://github.com/advisories/GHSA-hqq3-7jhf-c5jx",
@@ -11672,6 +12460,7 @@
         ],
         "id": "GHSA-jc66-7q78-782g",
         "location": "website/yarn.lock",
+        "osv_confirmed": true,
         "package": "node-forge",
         "severity": "High",
         "url": "https://github.com/advisories/GHSA-jc66-7q78-782g",
@@ -11688,6 +12477,7 @@
         ],
         "id": "GHSA-37ch-88jc-xwx2",
         "location": "website/yarn.lock",
+        "osv_confirmed": true,
         "package": "path-to-regexp",
         "severity": "High",
         "url": "https://github.com/advisories/GHSA-37ch-88jc-xwx2",
@@ -11704,6 +12494,7 @@
         ],
         "id": "GHSA-9wv6-86v2-598j",
         "location": "website/yarn.lock",
+        "osv_confirmed": true,
         "package": "path-to-regexp",
         "severity": "High",
         "url": "https://github.com/advisories/GHSA-9wv6-86v2-598j",
@@ -11720,6 +12511,7 @@
         ],
         "id": "GHSA-9wv6-86v2-598j",
         "location": "website/yarn.lock",
+        "osv_confirmed": true,
         "package": "path-to-regexp",
         "severity": "High",
         "url": "https://github.com/advisories/GHSA-9wv6-86v2-598j",
@@ -11736,6 +12528,7 @@
         ],
         "id": "GHSA-r28c-9q8g-f849",
         "location": "website/yarn.lock",
+        "osv_confirmed": true,
         "package": "postcss",
         "severity": "High",
         "url": "https://github.com/advisories/GHSA-r28c-9q8g-f849",
@@ -11752,6 +12545,7 @@
         ],
         "id": "GHSA-c2qf-rxjj-qqgw",
         "location": "website/yarn.lock",
+        "osv_confirmed": true,
         "package": "semver",
         "severity": "High",
         "url": "https://github.com/advisories/GHSA-c2qf-rxjj-qqgw",
@@ -11766,6 +12560,7 @@
         ],
         "id": "GHSA-5c6j-r48x-rmvq",
         "location": "website/yarn.lock",
+        "osv_confirmed": true,
         "package": "serialize-javascript",
         "severity": "High",
         "url": "https://github.com/advisories/GHSA-5c6j-r48x-rmvq",
@@ -11782,6 +12577,7 @@
         ],
         "id": "GHSA-395f-4hp3-45gv",
         "location": "website/yarn.lock",
+        "osv_confirmed": true,
         "package": "shell-quote",
         "severity": "High",
         "url": "https://github.com/advisories/GHSA-395f-4hp3-45gv",
@@ -11798,6 +12594,7 @@
         ],
         "id": "GHSA-68fv-2mgg-jv7q",
         "location": "website/yarn.lock",
+        "osv_confirmed": true,
         "package": "source-map-js",
         "severity": "High",
         "url": "https://github.com/advisories/GHSA-68fv-2mgg-jv7q",
@@ -11814,6 +12611,7 @@
         ],
         "id": "GHSA-2p49-hgcm-8545",
         "location": "website/yarn.lock",
+        "osv_confirmed": true,
         "package": "svgo",
         "severity": "High",
         "url": "https://github.com/advisories/GHSA-2p49-hgcm-8545",
@@ -11830,6 +12628,7 @@
         ],
         "id": "GHSA-w27v-7q3p-w38r",
         "location": "website/yarn.lock",
+        "osv_confirmed": true,
         "package": "svgo",
         "severity": "High",
         "url": "https://github.com/advisories/GHSA-w27v-7q3p-w38r",
@@ -11846,6 +12645,7 @@
         ],
         "id": "GHSA-w5p7-h5w8-2hfq",
         "location": "website/yarn.lock",
+        "osv_confirmed": true,
         "package": "trim",
         "severity": "High",
         "url": "https://github.com/advisories/GHSA-w5p7-h5w8-2hfq",
@@ -11862,6 +12662,7 @@
         ],
         "id": "GHSA-g84c-rxfj-3j2c",
         "location": "website/yarn.lock",
+        "osv_confirmed": true,
         "package": "webpack-dev-middleware",
         "severity": "High",
         "url": "https://github.com/advisories/GHSA-g84c-rxfj-3j2c",
@@ -11878,6 +12679,7 @@
         ],
         "id": "GHSA-96hv-2xvq-fx4p",
         "location": "website/yarn.lock",
+        "osv_confirmed": true,
         "package": "ws",
         "severity": "High",
         "url": "https://github.com/advisories/GHSA-96hv-2xvq-fx4p",
@@ -11894,6 +12696,7 @@
         ],
         "id": "GHSA-96hv-2xvq-fx4p",
         "location": "website/yarn.lock",
+        "osv_confirmed": true,
         "package": "ws",
         "severity": "High",
         "url": "https://github.com/advisories/GHSA-96hv-2xvq-fx4p",
@@ -11910,6 +12713,7 @@
         ],
         "id": "GHSA-2g4f-4pwh-qvx6",
         "location": "website/yarn.lock",
+        "osv_confirmed": true,
         "package": "ajv",
         "severity": "Medium",
         "url": "https://github.com/advisories/GHSA-2g4f-4pwh-qvx6",
@@ -11926,6 +12730,7 @@
         ],
         "id": "GHSA-2g4f-4pwh-qvx6",
         "location": "website/yarn.lock",
+        "osv_confirmed": true,
         "package": "ajv",
         "severity": "Medium",
         "url": "https://github.com/advisories/GHSA-2g4f-4pwh-qvx6",
@@ -11942,6 +12747,7 @@
         ],
         "id": "GHSA-2g4f-4pwh-qvx6",
         "location": "website/yarn.lock",
+        "osv_confirmed": true,
         "package": "ajv",
         "severity": "Medium",
         "url": "https://github.com/advisories/GHSA-2g4f-4pwh-qvx6",
@@ -11958,6 +12764,7 @@
         ],
         "id": "GHSA-3p68-rc4w-qgx5",
         "location": "website/yarn.lock",
+        "osv_confirmed": true,
         "package": "axios",
         "severity": "Medium",
         "url": "https://github.com/advisories/GHSA-3p68-rc4w-qgx5",
@@ -11974,6 +12781,7 @@
         ],
         "id": "GHSA-5c9x-8gcm-mpgx",
         "location": "website/yarn.lock",
+        "osv_confirmed": true,
         "package": "axios",
         "severity": "Medium",
         "url": "https://github.com/advisories/GHSA-5c9x-8gcm-mpgx",
@@ -11990,6 +12798,7 @@
         ],
         "id": "GHSA-62hf-57xw-28j9",
         "location": "website/yarn.lock",
+        "osv_confirmed": true,
         "package": "axios",
         "severity": "Medium",
         "url": "https://github.com/advisories/GHSA-62hf-57xw-28j9",
@@ -12006,6 +12815,7 @@
         ],
         "id": "GHSA-7q8q-rj6j-mhjq",
         "location": "website/yarn.lock",
+        "osv_confirmed": true,
         "package": "axios",
         "severity": "Medium",
         "url": "https://github.com/advisories/GHSA-7q8q-rj6j-mhjq",
@@ -12022,6 +12832,7 @@
         ],
         "id": "GHSA-898c-q2cr-xwhg",
         "location": "website/yarn.lock",
+        "osv_confirmed": true,
         "package": "axios",
         "severity": "Medium",
         "url": "https://github.com/advisories/GHSA-898c-q2cr-xwhg",
@@ -12038,6 +12849,7 @@
         ],
         "id": "GHSA-fvcv-3m26-pcqx",
         "location": "website/yarn.lock",
+        "osv_confirmed": true,
         "package": "axios",
         "severity": "Medium",
         "url": "https://github.com/advisories/GHSA-fvcv-3m26-pcqx",
@@ -12054,6 +12866,7 @@
         ],
         "id": "GHSA-m7pr-hjqh-92cm",
         "location": "website/yarn.lock",
+        "osv_confirmed": true,
         "package": "axios",
         "severity": "Medium",
         "url": "https://github.com/advisories/GHSA-m7pr-hjqh-92cm",
@@ -12070,6 +12883,7 @@
         ],
         "id": "GHSA-mmx7-hfxf-jppx",
         "location": "website/yarn.lock",
+        "osv_confirmed": true,
         "package": "axios",
         "severity": "Medium",
         "url": "https://github.com/advisories/GHSA-mmx7-hfxf-jppx",
@@ -12086,6 +12900,7 @@
         ],
         "id": "GHSA-vf2m-468p-8v99",
         "location": "website/yarn.lock",
+        "osv_confirmed": true,
         "package": "axios",
         "severity": "Medium",
         "url": "https://github.com/advisories/GHSA-vf2m-468p-8v99",
@@ -12102,6 +12917,7 @@
         ],
         "id": "GHSA-w9j2-pvgh-6h63",
         "location": "website/yarn.lock",
+        "osv_confirmed": true,
         "package": "axios",
         "severity": "Medium",
         "url": "https://github.com/advisories/GHSA-w9j2-pvgh-6h63",
@@ -12118,6 +12934,7 @@
         ],
         "id": "GHSA-wf5p-g6vw-rhxx",
         "location": "website/yarn.lock",
+        "osv_confirmed": true,
         "package": "axios",
         "severity": "Medium",
         "url": "https://github.com/advisories/GHSA-wf5p-g6vw-rhxx",
@@ -12134,6 +12951,7 @@
         ],
         "id": "GHSA-xx6v-rp6x-q39c",
         "location": "website/yarn.lock",
+        "osv_confirmed": true,
         "package": "axios",
         "severity": "Medium",
         "url": "https://github.com/advisories/GHSA-xx6v-rp6x-q39c",
@@ -12150,6 +12968,7 @@
         ],
         "id": "GHSA-w5vr-8v7q-w6rv",
         "location": "website/yarn.lock",
+        "osv_confirmed": true,
         "package": "baseline-browser-mapping",
         "severity": "Medium",
         "url": "https://github.com/advisories/GHSA-w5vr-8v7q-w6rv",
@@ -12166,6 +12985,7 @@
         ],
         "id": "GHSA-q2hr-2g5m-vwhr",
         "location": "website/yarn.lock",
+        "osv_confirmed": true,
         "package": "brace-expansion",
         "severity": "Medium",
         "url": "https://github.com/advisories/GHSA-q2hr-2g5m-vwhr",
@@ -12182,6 +13002,7 @@
         ],
         "id": "GHSA-2wm5-q62r-hmrv",
         "location": "website/yarn.lock",
+        "osv_confirmed": true,
         "package": "colord",
         "severity": "Medium",
         "url": "https://github.com/advisories/GHSA-2wm5-q62r-hmrv",
@@ -12198,6 +13019,7 @@
         ],
         "id": "GHSA-hrr3-gc8f-f4qj",
         "location": "website/yarn.lock",
+        "osv_confirmed": true,
         "package": "fast-uri",
         "severity": "Medium",
         "url": "https://github.com/advisories/GHSA-hrr3-gc8f-f4qj",
@@ -12214,6 +13036,7 @@
         ],
         "id": "GHSA-w74x-v6f9-j3xg",
         "location": "website/yarn.lock",
+        "osv_confirmed": true,
         "package": "fast-uri",
         "severity": "Medium",
         "url": "https://github.com/advisories/GHSA-w74x-v6f9-j3xg",
@@ -12229,7 +13052,9 @@
           "5.4.0"
         ],
         "id": "GHSA-j6qf-3m9c-vwj3",
+        "in_binary": "not in released binary",
         "location": "go.mod",
+        "osv_confirmed": true,
         "package": "github.com/go-chi/chi/v5",
         "severity": "Medium",
         "url": "https://github.com/advisories/GHSA-j6qf-3m9c-vwj3",
@@ -12245,7 +13070,9 @@
           "1.83.1"
         ],
         "id": "GHSA-qc2q-p7wx-3px3",
+        "in_binary": "module in binary",
         "location": "go.mod",
+        "osv_confirmed": true,
         "package": "google.golang.org/grpc",
         "severity": "Medium",
         "url": "https://github.com/advisories/GHSA-qc2q-p7wx-3px3",
@@ -12262,6 +13089,7 @@
         ],
         "id": "GHSA-pfrx-2q88-qq97",
         "location": "website/yarn.lock",
+        "osv_confirmed": true,
         "package": "got",
         "severity": "Medium",
         "url": "https://github.com/advisories/GHSA-pfrx-2q88-qq97",
@@ -12278,6 +13106,7 @@
         ],
         "id": "GHSA-wr44-6hxh-3jwq",
         "location": "website/yarn.lock",
+        "osv_confirmed": true,
         "package": "joi",
         "severity": "Medium",
         "url": "https://github.com/advisories/GHSA-wr44-6hxh-3jwq",
@@ -12294,6 +13123,7 @@
         ],
         "id": "GHSA-h67p-54hq-rp68",
         "location": "website/yarn.lock",
+        "osv_confirmed": true,
         "package": "js-yaml",
         "severity": "Medium",
         "url": "https://github.com/advisories/GHSA-h67p-54hq-rp68",
@@ -12310,6 +13140,7 @@
         ],
         "id": "GHSA-h67p-54hq-rp68",
         "location": "website/yarn.lock",
+        "osv_confirmed": true,
         "package": "js-yaml",
         "severity": "Medium",
         "url": "https://github.com/advisories/GHSA-h67p-54hq-rp68",
@@ -12326,6 +13157,7 @@
         ],
         "id": "GHSA-mh29-5h37-fv8m",
         "location": "website/yarn.lock",
+        "osv_confirmed": true,
         "package": "js-yaml",
         "severity": "Medium",
         "url": "https://github.com/advisories/GHSA-mh29-5h37-fv8m",
@@ -12342,6 +13174,7 @@
         ],
         "id": "GHSA-mh29-5h37-fv8m",
         "location": "website/yarn.lock",
+        "osv_confirmed": true,
         "package": "js-yaml",
         "severity": "Medium",
         "url": "https://github.com/advisories/GHSA-mh29-5h37-fv8m",
@@ -12358,6 +13191,7 @@
         ],
         "id": "GHSA-g3hv-75wg-m249",
         "location": "website/yarn.lock",
+        "osv_confirmed": true,
         "package": "minimatch",
         "severity": "Medium",
         "url": "https://github.com/advisories/GHSA-g3hv-75wg-m249",
@@ -12374,6 +13208,7 @@
         ],
         "id": "GHSA-g3hv-75wg-m249",
         "location": "website/yarn.lock",
+        "osv_confirmed": true,
         "package": "minimatch",
         "severity": "Medium",
         "url": "https://github.com/advisories/GHSA-g3hv-75wg-m249",
@@ -12390,6 +13225,7 @@
         ],
         "id": "GHSA-525v-9gp9-w22h",
         "location": "website/yarn.lock",
+        "osv_confirmed": true,
         "package": "node-forge",
         "severity": "Medium",
         "url": "https://github.com/advisories/GHSA-525v-9gp9-w22h",
@@ -12406,6 +13242,7 @@
         ],
         "id": "GHSA-5cwg-6vw7-rj6p",
         "location": "website/yarn.lock",
+        "osv_confirmed": true,
         "package": "node-forge",
         "severity": "Medium",
         "url": "https://github.com/advisories/GHSA-5cwg-6vw7-rj6p",
@@ -12422,6 +13259,7 @@
         ],
         "id": "GHSA-6wvx-3r32-xmcg",
         "location": "website/yarn.lock",
+        "osv_confirmed": true,
         "package": "node-forge",
         "severity": "Medium",
         "url": "https://github.com/advisories/GHSA-6wvx-3r32-xmcg",
@@ -12438,6 +13276,7 @@
         ],
         "id": "GHSA-fxqj-rqcc-2cmp",
         "location": "website/yarn.lock",
+        "osv_confirmed": true,
         "package": "postcss",
         "severity": "Medium",
         "url": "https://github.com/advisories/GHSA-fxqj-rqcc-2cmp",
@@ -12454,6 +13293,7 @@
         ],
         "id": "GHSA-rj75-hqrm-r3gf",
         "location": "website/yarn.lock",
+        "osv_confirmed": true,
         "package": "postcss-selector-parser",
         "severity": "Medium",
         "url": "https://github.com/advisories/GHSA-rj75-hqrm-r3gf",
@@ -12470,6 +13310,7 @@
         ],
         "id": "GHSA-4mjr-xmp4-gh2g",
         "location": "website/yarn.lock",
+        "osv_confirmed": true,
         "package": "qs",
         "severity": "Medium",
         "url": "https://github.com/advisories/GHSA-4mjr-xmp4-gh2g",
@@ -12486,6 +13327,7 @@
         ],
         "id": "GHSA-6pq8-jhm2-2vcw",
         "location": "website/yarn.lock",
+        "osv_confirmed": true,
         "package": "qs",
         "severity": "Medium",
         "url": "https://github.com/advisories/GHSA-6pq8-jhm2-2vcw",
@@ -12502,6 +13344,7 @@
         ],
         "id": "GHSA-q8mj-m7cp-5q26",
         "location": "website/yarn.lock",
+        "osv_confirmed": true,
         "package": "qs",
         "severity": "Medium",
         "url": "https://github.com/advisories/GHSA-q8mj-m7cp-5q26",
@@ -12518,6 +13361,7 @@
         ],
         "id": "GHSA-x5fp-wj9c-mxmx",
         "location": "website/yarn.lock",
+        "osv_confirmed": true,
         "package": "qs",
         "severity": "Medium",
         "url": "https://github.com/advisories/GHSA-x5fp-wj9c-mxmx",
@@ -12534,6 +13378,7 @@
         ],
         "id": "GHSA-qj8w-gfj5-8c6v",
         "location": "website/yarn.lock",
+        "osv_confirmed": true,
         "package": "serialize-javascript",
         "severity": "Medium",
         "url": "https://github.com/advisories/GHSA-qj8w-gfj5-8c6v",
@@ -12550,6 +13395,7 @@
         ],
         "id": "GHSA-4vpr-x523-8j87",
         "location": "website/yarn.lock",
+        "osv_confirmed": true,
         "package": "svgo",
         "severity": "Medium",
         "url": "https://github.com/advisories/GHSA-4vpr-x523-8j87",
@@ -12566,6 +13412,7 @@
         ],
         "id": "GHSA-w5hq-g745-h8pq",
         "location": "website/yarn.lock",
+        "osv_confirmed": true,
         "package": "uuid",
         "severity": "Medium",
         "url": "https://github.com/advisories/GHSA-w5hq-g745-h8pq",
@@ -12582,6 +13429,7 @@
         ],
         "id": "GHSA-4v9v-hfq4-rm2v",
         "location": "website/yarn.lock",
+        "osv_confirmed": true,
         "package": "webpack-dev-server",
         "severity": "Medium",
         "url": "https://github.com/advisories/GHSA-4v9v-hfq4-rm2v",
@@ -12598,6 +13446,7 @@
         ],
         "id": "GHSA-79cf-xcqc-c78w",
         "location": "website/yarn.lock",
+        "osv_confirmed": true,
         "package": "webpack-dev-server",
         "severity": "Medium",
         "url": "https://github.com/advisories/GHSA-79cf-xcqc-c78w",
@@ -12614,6 +13463,7 @@
         ],
         "id": "GHSA-9jgg-88mc-972h",
         "location": "website/yarn.lock",
+        "osv_confirmed": true,
         "package": "webpack-dev-server",
         "severity": "Medium",
         "url": "https://github.com/advisories/GHSA-9jgg-88mc-972h",
@@ -12630,6 +13480,7 @@
         ],
         "id": "GHSA-f5vj-f2hx-8m93",
         "location": "website/yarn.lock",
+        "osv_confirmed": true,
         "package": "webpack-dev-server",
         "severity": "Medium",
         "url": "https://github.com/advisories/GHSA-f5vj-f2hx-8m93",
@@ -12646,6 +13497,7 @@
         ],
         "id": "GHSA-m28w-2pqf-7qgj",
         "location": "website/yarn.lock",
+        "osv_confirmed": true,
         "package": "webpack-dev-server",
         "severity": "Medium",
         "url": "https://github.com/advisories/GHSA-m28w-2pqf-7qgj",
@@ -12662,6 +13514,7 @@
         ],
         "id": "GHSA-mx8g-39q3-5c79",
         "location": "website/yarn.lock",
+        "osv_confirmed": true,
         "package": "webpack-dev-server",
         "severity": "Medium",
         "url": "https://github.com/advisories/GHSA-mx8g-39q3-5c79",
@@ -12678,6 +13531,7 @@
         ],
         "id": "GHSA-mp7j-qc5w-4988",
         "location": "website/yarn.lock",
+        "osv_confirmed": true,
         "package": "websocket-driver",
         "severity": "Medium",
         "url": "https://github.com/advisories/GHSA-mp7j-qc5w-4988",
@@ -12694,6 +13548,7 @@
         ],
         "id": "GHSA-58qx-3vcg-4xpx",
         "location": "website/yarn.lock",
+        "osv_confirmed": true,
         "package": "ws",
         "severity": "Medium",
         "url": "https://github.com/advisories/GHSA-58qx-3vcg-4xpx",
@@ -12710,6 +13565,7 @@
         ],
         "id": "GHSA-4x5r-pxfx-6jf8",
         "location": "website/yarn.lock",
+        "osv_confirmed": true,
         "package": "@babel/core",
         "severity": "Low",
         "url": "https://github.com/advisories/GHSA-4x5r-pxfx-6jf8",
@@ -12726,6 +13582,7 @@
         ],
         "id": "GHSA-4x5r-pxfx-6jf8",
         "location": "website/yarn.lock",
+        "osv_confirmed": true,
         "package": "@babel/core",
         "severity": "Low",
         "url": "https://github.com/advisories/GHSA-4x5r-pxfx-6jf8",
@@ -12742,6 +13599,7 @@
         ],
         "id": "GHSA-xhjh-pmcv-23jw",
         "location": "website/yarn.lock",
+        "osv_confirmed": true,
         "package": "axios",
         "severity": "Low",
         "url": "https://github.com/advisories/GHSA-xhjh-pmcv-23jw",
@@ -12758,6 +13616,7 @@
         ],
         "id": "GHSA-v422-hmwv-36x6",
         "location": "website/yarn.lock",
+        "osv_confirmed": true,
         "package": "body-parser",
         "severity": "Low",
         "url": "https://github.com/advisories/GHSA-v422-hmwv-36x6",
@@ -12772,6 +13631,7 @@
         "fixed_in": [],
         "id": "GHSA-gcqx-w48m-w2h4",
         "location": "website/yarn.lock",
+        "osv_confirmed": true,
         "package": "deepmerge",
         "severity": "Low",
         "url": "https://github.com/advisories/GHSA-gcqx-w48m-w2h4",
@@ -12788,6 +13648,7 @@
         ],
         "id": "GHSA-333x-w4r6-6crp",
         "location": "website/yarn.lock",
+        "osv_confirmed": true,
         "package": "fast-uri",
         "severity": "Low",
         "url": "https://github.com/advisories/GHSA-333x-w4r6-6crp",
@@ -12804,6 +13665,7 @@
         ],
         "id": "GHSA-xhq7-xmqj-769h",
         "location": "website/yarn.lock",
+        "osv_confirmed": true,
         "package": "fast-uri",
         "severity": "Low",
         "url": "https://github.com/advisories/GHSA-xhq7-xmqj-769h",
@@ -12819,7 +13681,9 @@
           "1.45.0"
         ],
         "id": "GHSA-8wmf-6v46-5gfg",
+        "in_binary": "vulnerable code in binary",
         "location": "go.mod",
+        "osv_confirmed": true,
         "package": "go.opentelemetry.io/otel/exporters/otlp/otlptrace",
         "severity": "Low",
         "url": "https://github.com/advisories/GHSA-8wmf-6v46-5gfg",
@@ -12835,7 +13699,9 @@
           "1.45.0"
         ],
         "id": "GHSA-8wmf-6v46-5gfg",
+        "in_binary": "vulnerable code in binary",
         "location": "go.mod",
+        "osv_confirmed": true,
         "package": "go.opentelemetry.io/otel/exporters/otlp/otlptrace/otlptracegrpc",
         "severity": "Low",
         "url": "https://github.com/advisories/GHSA-8wmf-6v46-5gfg",
@@ -12851,7 +13717,9 @@
           "1.45.0"
         ],
         "id": "GHSA-8wmf-6v46-5gfg",
+        "in_binary": "vulnerable code in binary",
         "location": "go.mod",
+        "osv_confirmed": true,
         "package": "go.opentelemetry.io/otel/sdk",
         "severity": "Low",
         "url": "https://github.com/advisories/GHSA-8wmf-6v46-5gfg",
@@ -12868,6 +13736,7 @@
         ],
         "id": "GHSA-6w3j-5fw6-r9vr",
         "location": "website/yarn.lock",
+        "osv_confirmed": true,
         "package": "joi",
         "severity": "Low",
         "url": "https://github.com/advisories/GHSA-6w3j-5fw6-r9vr",
@@ -12884,6 +13753,7 @@
         ],
         "id": "GHSA-gg4h-3hg2-grpc",
         "location": "website/yarn.lock",
+        "osv_confirmed": true,
         "package": "joi",
         "severity": "Low",
         "url": "https://github.com/advisories/GHSA-gg4h-3hg2-grpc",
@@ -12900,6 +13770,7 @@
         ],
         "id": "GHSA-4487-j8r4-4g2f",
         "location": "website/yarn.lock",
+        "osv_confirmed": true,
         "package": "node-forge",
         "severity": "Low",
         "url": "https://github.com/advisories/GHSA-4487-j8r4-4g2f",
@@ -12916,6 +13787,7 @@
         ],
         "id": "GHSA-4642-5mcj-2rqw",
         "location": "website/yarn.lock",
+        "osv_confirmed": true,
         "package": "node-forge",
         "severity": "Low",
         "url": "https://github.com/advisories/GHSA-4642-5mcj-2rqw",
@@ -12932,6 +13804,7 @@
         ],
         "id": "GHSA-h6cr-wjv9-3cpp",
         "location": "website/yarn.lock",
+        "osv_confirmed": true,
         "package": "node-forge",
         "severity": "Low",
         "url": "https://github.com/advisories/GHSA-h6cr-wjv9-3cpp",
@@ -12948,6 +13821,7 @@
         ],
         "id": "GHSA-76c9-3jph-rj3q",
         "location": "website/yarn.lock",
+        "osv_confirmed": true,
         "package": "on-headers",
         "severity": "Low",
         "url": "https://github.com/advisories/GHSA-76c9-3jph-rj3q",
@@ -12964,6 +13838,7 @@
         ],
         "id": "GHSA-m5mm-p8h7-m29v",
         "location": "website/yarn.lock",
+        "osv_confirmed": true,
         "package": "serialize-javascript",
         "severity": "Low",
         "url": "https://github.com/advisories/GHSA-m5mm-p8h7-m29v",
@@ -12975,7 +13850,9 @@
         "fix_state": "unknown",
         "fixed_in": [],
         "id": "GO-2026-5932",
+        "in_binary": "module in binary",
         "location": "go.mod",
+        "osv_confirmed": true,
         "package": "golang.org/x/crypto",
         "severity": "Unknown",
         "url": "https://go.dev/issue/44226",
@@ -12991,7 +13868,9 @@
           "0.62.0"
         ],
         "id": "GO-2026-6860",
+        "in_binary": "module in binary",
         "location": "go.mod",
+        "osv_confirmed": true,
         "package": "golang.org/x/net",
         "severity": "Unknown",
         "url": "https://go.dev/cl/849365",
@@ -13007,13 +13886,120 @@
           "0.62.0"
         ],
         "id": "GO-2026-6866",
+        "in_binary": "module in binary",
         "location": "go.mod",
+        "osv_confirmed": true,
         "package": "golang.org/x/net",
         "severity": "Unknown",
         "url": "https://go.dev/cl/855121",
         "version": "v0.56.0"
       }
-    ]
+    ],
+    "workflow_audit": {
+      "files": 25,
+      "findings": [
+        {
+          "confidence": "Medium",
+          "description": "use of fundamentally insecure workflow trigger",
+          "file": ".github/workflows/benchmark.yaml",
+          "line": 2,
+          "note": "this workflow",
+          "rule": "dangerous-triggers",
+          "severity": "High",
+          "url": "https://docs.zizmor.sh/audits/#dangerous-triggers"
+        },
+        {
+          "confidence": "High",
+          "description": "code injection via template expansion",
+          "file": ".github/workflows/patch-docs.yaml",
+          "line": 20,
+          "note": "this step",
+          "rule": "template-injection",
+          "severity": "High",
+          "url": "https://docs.zizmor.sh/audits/#template-injection"
+        },
+        {
+          "confidence": "High",
+          "description": "code injection via template expansion",
+          "file": ".github/workflows/release-pr.yaml",
+          "line": 35,
+          "note": "this step",
+          "rule": "template-injection",
+          "severity": "High",
+          "url": "https://docs.zizmor.sh/audits/#template-injection"
+        },
+        {
+          "confidence": "High",
+          "description": "code injection via template expansion",
+          "file": ".github/workflows/release-pr.yaml",
+          "line": 50,
+          "note": "this step",
+          "rule": "template-injection",
+          "severity": "High",
+          "url": "https://docs.zizmor.sh/audits/#template-injection"
+        },
+        {
+          "confidence": "High",
+          "description": "overly broad permissions",
+          "file": ".github/workflows/scan-vulns.yaml",
+          "line": 26,
+          "note": "uses read-all permissions",
+          "rule": "excessive-permissions",
+          "severity": "Medium",
+          "url": "https://docs.zizmor.sh/audits/#excessive-permissions"
+        },
+        {
+          "confidence": "High",
+          "description": "overly broad permissions",
+          "file": ".github/workflows/test-gator-policy.yaml",
+          "line": 16,
+          "note": "uses read-all permissions",
+          "rule": "excessive-permissions",
+          "severity": "Medium",
+          "url": "https://docs.zizmor.sh/audits/#excessive-permissions"
+        },
+        {
+          "confidence": "High",
+          "description": "overly broad permissions",
+          "file": ".github/workflows/test-gator.yaml",
+          "line": 26,
+          "note": "uses read-all permissions",
+          "rule": "excessive-permissions",
+          "severity": "Medium",
+          "url": "https://docs.zizmor.sh/audits/#excessive-permissions"
+        },
+        {
+          "confidence": "High",
+          "description": "overly broad permissions",
+          "file": ".github/workflows/unit-test.yaml",
+          "line": 26,
+          "note": "uses read-all permissions",
+          "rule": "excessive-permissions",
+          "severity": "Medium",
+          "url": "https://docs.zizmor.sh/audits/#excessive-permissions"
+        },
+        {
+          "confidence": "High",
+          "description": "overly broad permissions",
+          "file": ".github/workflows/website.yaml",
+          "line": 17,
+          "note": "uses read-all permissions",
+          "rule": "excessive-permissions",
+          "severity": "Medium",
+          "url": "https://docs.zizmor.sh/audits/#excessive-permissions"
+        },
+        {
+          "confidence": "High",
+          "description": "overly broad permissions",
+          "file": ".github/workflows/workflow.yaml",
+          "line": 26,
+          "note": "uses read-all permissions",
+          "rule": "excessive-permissions",
+          "severity": "Medium",
+          "url": "https://docs.zizmor.sh/audits/#excessive-permissions"
+        }
+      ]
+    }
   },
   "updated": "2026-11-01"
 }

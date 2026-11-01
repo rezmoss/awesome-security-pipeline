@@ -7,11 +7,17 @@
       "dependencies": 5,
       "errors": [],
       "fixable": 0,
+      "go_version": null,
+      "in_binary": null,
       "new_vulnerabilities": 0,
+      "osv_confirmed": 0,
+      "osv_only": 0,
       "ref": "3.3.2",
       "release_changed": false,
+      "release_integrity": "no-linux-binary",
       "removed": 0,
       "resolved_vulnerabilities": 0,
+      "scorecard": null,
       "upgraded": 0,
       "vulnerabilities": {
         "Critical": 0,
@@ -20,6 +26,12 @@
         "Medium": 0,
         "Negligible": 0,
         "Unknown": 0
+      },
+      "workflow": {
+        "High": 10,
+        "Low": 0,
+        "Medium": 5,
+        "files": 1
       }
     }
   ],
@@ -128,8 +140,24 @@
       "pyproject.toml"
     ],
     "name": "wapiti",
+    "osv": {
+      "advisories": 0,
+      "available": true,
+      "confirmed": 0,
+      "osv_only": [],
+      "warning": null
+    },
     "ref": "3.3.2",
     "ref_kind": "release",
+    "release_integrity": {
+      "assets": 2,
+      "checksums_published": false,
+      "methods": [],
+      "provenance_published": false,
+      "sbom_published": false,
+      "signatures_published": false,
+      "verdict": "no-linux-binary"
+    },
     "released_at": "2026-08-19T08:28:10Z",
     "repository": "wapiti-scanner/wapiti",
     "sbomlyze_diff": {
@@ -141,8 +169,165 @@
       ],
       "removed": 0
     },
-    "scanned_at": "2026-11-01T16:37:48+00:00",
-    "vulnerabilities": []
+    "scanned_at": "2026-11-01T17:43:30+00:00",
+    "scorecard": null,
+    "scorecard_note": "not in the OpenSSF dataset this week; run budget exhausted",
+    "vulnerabilities": [],
+    "workflow_audit": {
+      "files": 1,
+      "findings": [
+        {
+          "confidence": "High",
+          "description": "unpinned action reference",
+          "file": ".github/workflows/main.yml",
+          "line": 12,
+          "note": "this step",
+          "rule": "unpinned-uses",
+          "severity": "High",
+          "url": "https://docs.zizmor.sh/audits/#unpinned-uses"
+        },
+        {
+          "confidence": "High",
+          "description": "unpinned action reference",
+          "file": ".github/workflows/main.yml",
+          "line": 13,
+          "note": "this step",
+          "rule": "unpinned-uses",
+          "severity": "High",
+          "url": "https://docs.zizmor.sh/audits/#unpinned-uses"
+        },
+        {
+          "confidence": "High",
+          "description": "unpinned action reference",
+          "file": ".github/workflows/main.yml",
+          "line": 29,
+          "note": "this step",
+          "rule": "unpinned-uses",
+          "severity": "High",
+          "url": "https://docs.zizmor.sh/audits/#unpinned-uses"
+        },
+        {
+          "confidence": "High",
+          "description": "unpinned action reference",
+          "file": ".github/workflows/main.yml",
+          "line": 30,
+          "note": "this step",
+          "rule": "unpinned-uses",
+          "severity": "High",
+          "url": "https://docs.zizmor.sh/audits/#unpinned-uses"
+        },
+        {
+          "confidence": "High",
+          "description": "unpinned action reference",
+          "file": ".github/workflows/main.yml",
+          "line": 45,
+          "note": "this step",
+          "rule": "unpinned-uses",
+          "severity": "High",
+          "url": "https://docs.zizmor.sh/audits/#unpinned-uses"
+        },
+        {
+          "confidence": "High",
+          "description": "unpinned action reference",
+          "file": ".github/workflows/main.yml",
+          "line": 46,
+          "note": "this step",
+          "rule": "unpinned-uses",
+          "severity": "High",
+          "url": "https://docs.zizmor.sh/audits/#unpinned-uses"
+        },
+        {
+          "confidence": "High",
+          "description": "unpinned action reference",
+          "file": ".github/workflows/main.yml",
+          "line": 65,
+          "note": "this step",
+          "rule": "unpinned-uses",
+          "severity": "High",
+          "url": "https://docs.zizmor.sh/audits/#unpinned-uses"
+        },
+        {
+          "confidence": "High",
+          "description": "unpinned action reference",
+          "file": ".github/workflows/main.yml",
+          "line": 73,
+          "note": "this step",
+          "rule": "unpinned-uses",
+          "severity": "High",
+          "url": "https://docs.zizmor.sh/audits/#unpinned-uses"
+        },
+        {
+          "confidence": "High",
+          "description": "unpinned action reference",
+          "file": ".github/workflows/main.yml",
+          "line": 79,
+          "note": "this step",
+          "rule": "unpinned-uses",
+          "severity": "High",
+          "url": "https://docs.zizmor.sh/audits/#unpinned-uses"
+        },
+        {
+          "confidence": "High",
+          "description": "unpinned action reference",
+          "file": ".github/workflows/main.yml",
+          "line": 86,
+          "note": "this step",
+          "rule": "unpinned-uses",
+          "severity": "High",
+          "url": "https://docs.zizmor.sh/audits/#unpinned-uses"
+        },
+        {
+          "confidence": "Medium",
+          "description": "overly broad permissions",
+          "file": ".github/workflows/main.yml",
+          "line": 4,
+          "note": "default permissions used due to no permissions: block",
+          "rule": "excessive-permissions",
+          "severity": "Medium",
+          "url": "https://docs.zizmor.sh/audits/#excessive-permissions"
+        },
+        {
+          "confidence": "Medium",
+          "description": "overly broad permissions",
+          "file": ".github/workflows/main.yml",
+          "line": 8,
+          "note": "this job",
+          "rule": "excessive-permissions",
+          "severity": "Medium",
+          "url": "https://docs.zizmor.sh/audits/#excessive-permissions"
+        },
+        {
+          "confidence": "Medium",
+          "description": "overly broad permissions",
+          "file": ".github/workflows/main.yml",
+          "line": 26,
+          "note": "this job",
+          "rule": "excessive-permissions",
+          "severity": "Medium",
+          "url": "https://docs.zizmor.sh/audits/#excessive-permissions"
+        },
+        {
+          "confidence": "Medium",
+          "description": "overly broad permissions",
+          "file": ".github/workflows/main.yml",
+          "line": 39,
+          "note": "this job",
+          "rule": "excessive-permissions",
+          "severity": "Medium",
+          "url": "https://docs.zizmor.sh/audits/#excessive-permissions"
+        },
+        {
+          "confidence": "Medium",
+          "description": "overly broad permissions",
+          "file": ".github/workflows/main.yml",
+          "line": 70,
+          "note": "this job",
+          "rule": "excessive-permissions",
+          "severity": "Medium",
+          "url": "https://docs.zizmor.sh/audits/#excessive-permissions"
+        }
+      ]
+    }
   },
   "updated": "2026-11-01"
 }

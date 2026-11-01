@@ -7,11 +7,21 @@
       "dependencies": 220,
       "errors": [],
       "fixable": 0,
+      "go_version": "go1.27.3",
+      "in_binary": {
+        "dependencies": 0,
+        "stdlib": 0,
+        "total": 0
+      },
       "new_vulnerabilities": 0,
+      "osv_confirmed": 5,
+      "osv_only": 0,
       "ref": "v1.8.0",
       "release_changed": false,
+      "release_integrity": "none",
       "removed": 0,
       "resolved_vulnerabilities": 0,
+      "scorecard": null,
       "upgraded": 0,
       "vulnerabilities": {
         "Critical": 0,
@@ -20,6 +30,12 @@
         "Medium": 2,
         "Negligible": 0,
         "Unknown": 0
+      },
+      "workflow": {
+        "High": 33,
+        "Low": 15,
+        "Medium": 40,
+        "files": 37
       }
     }
   ],
@@ -28,10 +44,25 @@
     "category": "Container Security \u203a Runtime Security",
     "changes": {
       "added": [],
-      "any": false,
+      "any": true,
       "baseline": false,
       "integrity_drift": 0,
-      "license_changes": [],
+      "license_changes": [
+        {
+          "from": [],
+          "package": "github.com/google/go-cmp",
+          "to": [
+            "BSD-3-Clause"
+          ]
+        },
+        {
+          "from": [],
+          "package": "golang.org/x/sync",
+          "to": [
+            "BSD-3-Clause"
+          ]
+        }
+      ],
       "new_vulnerabilities": [],
       "previous_ref": "v1.8.0",
       "release_changed": false,
@@ -889,7 +920,9 @@
       },
       {
         "ecosystem": "golang",
-        "licenses": [],
+        "licenses": [
+          "BSD-3-Clause"
+        ],
         "location": "go.mod",
         "name": "github.com/google/go-cmp",
         "purl": "pkg:golang/github.com/google/go-cmp@v0.7.0",
@@ -1475,7 +1508,9 @@
       },
       {
         "ecosystem": "golang",
-        "licenses": [],
+        "licenses": [
+          "BSD-3-Clause"
+        ],
         "location": "go.mod",
         "name": "golang.org/x/sync",
         "purl": "pkg:golang/golang.org/x/sync@v0.24.0",
@@ -1848,6 +1883,13 @@
     ],
     "description": "Observe and enforce runtime security with eBPF.",
     "errors": [],
+    "go_binary": {
+      "asset": "tetra-linux-amd64.tar.gz",
+      "binary": "tetra",
+      "findings": [],
+      "go_version": "go1.27.3",
+      "main_module": "github.com/cilium/tetragon"
+    },
     "id": "cilium__tetragon",
     "manifests": [
       ".github/actions/build-tarball/action.yml",
@@ -1899,8 +1941,26 @@
       "tools/go.sum"
     ],
     "name": "tetragon",
+    "osv": {
+      "advisories": 5,
+      "available": true,
+      "confirmed": 5,
+      "osv_only": [],
+      "warning": null
+    },
     "ref": "v1.8.0",
     "ref_kind": "release",
+    "release_integrity": {
+      "asset": "tetra-linux-amd64.tar.gz",
+      "assets": 16,
+      "checksums_published": false,
+      "digest_matches_github": true,
+      "methods": [],
+      "provenance_published": false,
+      "sbom_published": false,
+      "signatures_published": false,
+      "verdict": "none"
+    },
     "released_at": "2026-10-30T17:18:17Z",
     "repository": "cilium/tetragon",
     "sbomlyze_diff": {
@@ -1913,7 +1973,9 @@
       ],
       "removed": 0
     },
-    "scanned_at": "2026-11-01T16:37:01+00:00",
+    "scanned_at": "2026-11-01T17:42:50+00:00",
+    "scorecard": null,
+    "scorecard_note": "not in the OpenSSF dataset this week; run budget exhausted",
     "vulnerabilities": [
       {
         "aliases": [
@@ -1923,7 +1985,9 @@
         "fix_state": "not-fixed",
         "fixed_in": [],
         "id": "GHSA-rg2x-37c3-w2rh",
+        "in_binary": "not in released binary",
         "location": "go.mod",
+        "osv_confirmed": true,
         "package": "github.com/docker/docker",
         "severity": "High",
         "url": "https://github.com/advisories/GHSA-rg2x-37c3-w2rh",
@@ -1937,7 +2001,9 @@
         "fix_state": "not-fixed",
         "fixed_in": [],
         "id": "GHSA-x86f-5xw2-fm2r",
+        "in_binary": "not in released binary",
         "location": "go.mod",
+        "osv_confirmed": true,
         "package": "github.com/docker/docker",
         "severity": "High",
         "url": "https://github.com/advisories/GHSA-x86f-5xw2-fm2r",
@@ -1952,7 +2018,9 @@
         "fix_state": "unknown",
         "fixed_in": [],
         "id": "GO-2026-4887",
+        "in_binary": "not in released binary",
         "location": "go.mod",
+        "osv_confirmed": true,
         "package": "github.com/docker/docker",
         "severity": "High",
         "url": "https://github.com/moby/moby/security/advisories/GHSA-x744-4wpc-v9h2",
@@ -1966,7 +2034,9 @@
         "fix_state": "not-fixed",
         "fixed_in": [],
         "id": "GHSA-pxq6-2prw-chj9",
+        "in_binary": "not in released binary",
         "location": "go.mod",
+        "osv_confirmed": true,
         "package": "github.com/docker/docker",
         "severity": "Medium",
         "url": "https://github.com/advisories/GHSA-pxq6-2prw-chj9",
@@ -1980,13 +2050,910 @@
         "fix_state": "not-fixed",
         "fixed_in": [],
         "id": "GHSA-vp62-88p7-qqf5",
+        "in_binary": "not in released binary",
         "location": "go.mod",
+        "osv_confirmed": true,
         "package": "github.com/docker/docker",
         "severity": "Medium",
         "url": "https://github.com/advisories/GHSA-vp62-88p7-qqf5",
         "version": "v28.5.2+incompatible"
       }
-    ]
+    ],
+    "workflow_audit": {
+      "files": 37,
+      "findings": [
+        {
+          "confidence": "High",
+          "description": "code injection via template expansion",
+          "file": ".github/actions/download-artifact/action.yml",
+          "line": 35,
+          "note": "this step",
+          "rule": "template-injection",
+          "severity": "High",
+          "url": "https://docs.zizmor.sh/audits/#template-injection"
+        },
+        {
+          "confidence": "High",
+          "description": "code injection via template expansion",
+          "file": ".github/actions/download-artifact/action.yml",
+          "line": 35,
+          "note": "this step",
+          "rule": "template-injection",
+          "severity": "High",
+          "url": "https://docs.zizmor.sh/audits/#template-injection"
+        },
+        {
+          "confidence": "High",
+          "description": "code injection via template expansion",
+          "file": ".github/actions/download-artifact/action.yml",
+          "line": 35,
+          "note": "this step",
+          "rule": "template-injection",
+          "severity": "High",
+          "url": "https://docs.zizmor.sh/audits/#template-injection"
+        },
+        {
+          "confidence": "High",
+          "description": "code injection via template expansion",
+          "file": ".github/actions/download-artifact/action.yml",
+          "line": 35,
+          "note": "this step",
+          "rule": "template-injection",
+          "severity": "High",
+          "url": "https://docs.zizmor.sh/audits/#template-injection"
+        },
+        {
+          "confidence": "High",
+          "description": "code injection via template expansion",
+          "file": ".github/actions/download-artifact/action.yml",
+          "line": 35,
+          "note": "this step",
+          "rule": "template-injection",
+          "severity": "High",
+          "url": "https://docs.zizmor.sh/audits/#template-injection"
+        },
+        {
+          "confidence": "High",
+          "description": "code injection via template expansion",
+          "file": ".github/actions/download-artifact/action.yml",
+          "line": 35,
+          "note": "this step",
+          "rule": "template-injection",
+          "severity": "High",
+          "url": "https://docs.zizmor.sh/audits/#template-injection"
+        },
+        {
+          "confidence": "High",
+          "description": "code injection via template expansion",
+          "file": ".github/actions/download-file/action.yml",
+          "line": 25,
+          "note": "this step",
+          "rule": "template-injection",
+          "severity": "High",
+          "url": "https://docs.zizmor.sh/audits/#template-injection"
+        },
+        {
+          "confidence": "High",
+          "description": "code injection via template expansion",
+          "file": ".github/actions/download-file/action.yml",
+          "line": 25,
+          "note": "this step",
+          "rule": "template-injection",
+          "severity": "High",
+          "url": "https://docs.zizmor.sh/audits/#template-injection"
+        },
+        {
+          "confidence": "High",
+          "description": "code injection via template expansion",
+          "file": ".github/actions/download-file/action.yml",
+          "line": 57,
+          "note": "this step",
+          "rule": "template-injection",
+          "severity": "High",
+          "url": "https://docs.zizmor.sh/audits/#template-injection"
+        },
+        {
+          "confidence": "High",
+          "description": "code injection via template expansion",
+          "file": ".github/actions/extract-msi/action.yml",
+          "line": 30,
+          "note": "this step",
+          "rule": "template-injection",
+          "severity": "High",
+          "url": "https://docs.zizmor.sh/audits/#template-injection"
+        },
+        {
+          "confidence": "High",
+          "description": "code injection via template expansion",
+          "file": ".github/actions/extract-msi/action.yml",
+          "line": 49,
+          "note": "this step",
+          "rule": "template-injection",
+          "severity": "High",
+          "url": "https://docs.zizmor.sh/audits/#template-injection"
+        },
+        {
+          "confidence": "High",
+          "description": "code injection via template expansion",
+          "file": ".github/actions/extract-msi/action.yml",
+          "line": 49,
+          "note": "this step",
+          "rule": "template-injection",
+          "severity": "High",
+          "url": "https://docs.zizmor.sh/audits/#template-injection"
+        },
+        {
+          "confidence": "High",
+          "description": "code injection via template expansion",
+          "file": ".github/actions/extract-msi/action.yml",
+          "line": 49,
+          "note": "this step",
+          "rule": "template-injection",
+          "severity": "High",
+          "url": "https://docs.zizmor.sh/audits/#template-injection"
+        },
+        {
+          "confidence": "High",
+          "description": "code injection via template expansion",
+          "file": ".github/actions/extract-msi/action.yml",
+          "line": 49,
+          "note": "this step",
+          "rule": "template-injection",
+          "severity": "High",
+          "url": "https://docs.zizmor.sh/audits/#template-injection"
+        },
+        {
+          "confidence": "High",
+          "description": "code injection via template expansion",
+          "file": ".github/actions/extract-zip/action.yml",
+          "line": 16,
+          "note": "this step",
+          "rule": "template-injection",
+          "severity": "High",
+          "url": "https://docs.zizmor.sh/audits/#template-injection"
+        },
+        {
+          "confidence": "High",
+          "description": "code injection via template expansion",
+          "file": ".github/actions/extract-zip/action.yml",
+          "line": 35,
+          "note": "this step",
+          "rule": "template-injection",
+          "severity": "High",
+          "url": "https://docs.zizmor.sh/audits/#template-injection"
+        },
+        {
+          "confidence": "High",
+          "description": "code injection via template expansion",
+          "file": ".github/actions/extract-zip/action.yml",
+          "line": 35,
+          "note": "this step",
+          "rule": "template-injection",
+          "severity": "High",
+          "url": "https://docs.zizmor.sh/audits/#template-injection"
+        },
+        {
+          "confidence": "High",
+          "description": "code injection via template expansion",
+          "file": ".github/actions/install-msi/action.yml",
+          "line": 26,
+          "note": "this step",
+          "rule": "template-injection",
+          "severity": "High",
+          "url": "https://docs.zizmor.sh/audits/#template-injection"
+        },
+        {
+          "confidence": "High",
+          "description": "code injection via template expansion",
+          "file": ".github/actions/install-msi/action.yml",
+          "line": 45,
+          "note": "this step",
+          "rule": "template-injection",
+          "severity": "High",
+          "url": "https://docs.zizmor.sh/audits/#template-injection"
+        },
+        {
+          "confidence": "High",
+          "description": "code injection via template expansion",
+          "file": ".github/actions/install-msi/action.yml",
+          "line": 45,
+          "note": "this step",
+          "rule": "template-injection",
+          "severity": "High",
+          "url": "https://docs.zizmor.sh/audits/#template-injection"
+        },
+        {
+          "confidence": "High",
+          "description": "code injection via template expansion",
+          "file": ".github/actions/install-msi/action.yml",
+          "line": 45,
+          "note": "this step",
+          "rule": "template-injection",
+          "severity": "High",
+          "url": "https://docs.zizmor.sh/audits/#template-injection"
+        },
+        {
+          "confidence": "High",
+          "description": "overly broad permissions",
+          "file": ".github/workflows/build-images-releases.yml",
+          "line": 13,
+          "note": "contents: write is overly broad at the workflow level",
+          "rule": "excessive-permissions",
+          "severity": "High",
+          "url": "https://docs.zizmor.sh/audits/#excessive-permissions"
+        },
+        {
+          "confidence": "High",
+          "description": "overly broad permissions",
+          "file": ".github/workflows/build-rthooks-images-releases.yml",
+          "line": 12,
+          "note": "contents: write is overly broad at the workflow level",
+          "rule": "excessive-permissions",
+          "severity": "High",
+          "url": "https://docs.zizmor.sh/audits/#excessive-permissions"
+        },
+        {
+          "confidence": "High",
+          "description": "code injection via template expansion",
+          "file": ".github/workflows/check-links-pr.yaml",
+          "line": 31,
+          "note": "this step",
+          "rule": "template-injection",
+          "severity": "High",
+          "url": "https://docs.zizmor.sh/audits/#template-injection"
+        },
+        {
+          "confidence": "High",
+          "description": "code injection via template expansion",
+          "file": ".github/workflows/integration-test.yaml",
+          "line": 58,
+          "note": "this step",
+          "rule": "template-injection",
+          "severity": "High",
+          "url": "https://docs.zizmor.sh/audits/#template-injection"
+        },
+        {
+          "confidence": "High",
+          "description": "code injection via template expansion",
+          "file": ".github/workflows/lint-proto.yaml",
+          "line": 26,
+          "note": "this step",
+          "rule": "template-injection",
+          "severity": "High",
+          "url": "https://docs.zizmor.sh/audits/#template-injection"
+        },
+        {
+          "confidence": "High",
+          "description": "code injection via template expansion",
+          "file": ".github/workflows/lint-proto.yaml",
+          "line": 26,
+          "note": "this step",
+          "rule": "template-injection",
+          "severity": "High",
+          "url": "https://docs.zizmor.sh/audits/#template-injection"
+        },
+        {
+          "confidence": "High",
+          "description": "code injection via template expansion",
+          "file": ".github/workflows/run-e2e-tests.yaml",
+          "line": 75,
+          "note": "this step",
+          "rule": "template-injection",
+          "severity": "High",
+          "url": "https://docs.zizmor.sh/audits/#template-injection"
+        },
+        {
+          "confidence": "High",
+          "description": "code injection via template expansion",
+          "file": ".github/workflows/static-checks.yaml",
+          "line": 38,
+          "note": "this step",
+          "rule": "template-injection",
+          "severity": "High",
+          "url": "https://docs.zizmor.sh/audits/#template-injection"
+        },
+        {
+          "confidence": "High",
+          "description": "code injection via template expansion",
+          "file": ".github/workflows/tetragon-rthook-pr.yaml",
+          "line": 70,
+          "note": "this step",
+          "rule": "template-injection",
+          "severity": "High",
+          "url": "https://docs.zizmor.sh/audits/#template-injection"
+        },
+        {
+          "confidence": "High",
+          "description": "code injection via template expansion",
+          "file": ".github/workflows/vmpolicytests.yaml",
+          "line": 113,
+          "note": "this step",
+          "rule": "template-injection",
+          "severity": "High",
+          "url": "https://docs.zizmor.sh/audits/#template-injection"
+        },
+        {
+          "confidence": "High",
+          "description": "code injection via template expansion",
+          "file": ".github/workflows/vmpolicytests.yaml",
+          "line": 125,
+          "note": "this step",
+          "rule": "template-injection",
+          "severity": "High",
+          "url": "https://docs.zizmor.sh/audits/#template-injection"
+        },
+        {
+          "confidence": "High",
+          "description": "code injection via template expansion",
+          "file": ".github/workflows/vmpolicytests.yaml",
+          "line": 142,
+          "note": "this step",
+          "rule": "template-injection",
+          "severity": "High",
+          "url": "https://docs.zizmor.sh/audits/#template-injection"
+        },
+        {
+          "confidence": "Medium",
+          "description": "overly broad permissions",
+          "file": ".github/workflows/ariane-ci.yaml",
+          "line": 1,
+          "note": "default permissions used due to no permissions: block",
+          "rule": "excessive-permissions",
+          "severity": "Medium",
+          "url": "https://docs.zizmor.sh/audits/#excessive-permissions"
+        },
+        {
+          "confidence": "Medium",
+          "description": "overly broad permissions",
+          "file": ".github/workflows/ariane-ci.yaml",
+          "line": 40,
+          "note": "this job",
+          "rule": "excessive-permissions",
+          "severity": "Medium",
+          "url": "https://docs.zizmor.sh/audits/#excessive-permissions"
+        },
+        {
+          "confidence": "Medium",
+          "description": "overly broad permissions",
+          "file": ".github/workflows/bpf-unit-tests.yml",
+          "line": 14,
+          "note": "this job",
+          "rule": "excessive-permissions",
+          "severity": "Medium",
+          "url": "https://docs.zizmor.sh/audits/#excessive-permissions"
+        },
+        {
+          "confidence": "Medium",
+          "description": "overly broad permissions",
+          "file": ".github/workflows/build-clang-image.yaml",
+          "line": 1,
+          "note": "default permissions used due to no permissions: block",
+          "rule": "excessive-permissions",
+          "severity": "Medium",
+          "url": "https://docs.zizmor.sh/audits/#excessive-permissions"
+        },
+        {
+          "confidence": "Medium",
+          "description": "overly broad permissions",
+          "file": ".github/workflows/build-clang-image.yaml",
+          "line": 16,
+          "note": "this job",
+          "rule": "excessive-permissions",
+          "severity": "Medium",
+          "url": "https://docs.zizmor.sh/audits/#excessive-permissions"
+        },
+        {
+          "confidence": "Medium",
+          "description": "overly broad permissions",
+          "file": ".github/workflows/build-clang-image.yaml",
+          "line": 212,
+          "note": "this job",
+          "rule": "excessive-permissions",
+          "severity": "Medium",
+          "url": "https://docs.zizmor.sh/audits/#excessive-permissions"
+        },
+        {
+          "confidence": "Medium",
+          "description": "overly broad permissions",
+          "file": ".github/workflows/build-deploy-docs.yaml",
+          "line": 1,
+          "note": "default permissions used due to no permissions: block",
+          "rule": "excessive-permissions",
+          "severity": "Medium",
+          "url": "https://docs.zizmor.sh/audits/#excessive-permissions"
+        },
+        {
+          "confidence": "Medium",
+          "description": "overly broad permissions",
+          "file": ".github/workflows/build-deploy-docs.yaml",
+          "line": 21,
+          "note": "this job",
+          "rule": "excessive-permissions",
+          "severity": "Medium",
+          "url": "https://docs.zizmor.sh/audits/#excessive-permissions"
+        },
+        {
+          "confidence": "Medium",
+          "description": "overly broad permissions",
+          "file": ".github/workflows/checkpatch.yaml",
+          "line": 6,
+          "note": "this job",
+          "rule": "excessive-permissions",
+          "severity": "Medium",
+          "url": "https://docs.zizmor.sh/audits/#excessive-permissions"
+        },
+        {
+          "confidence": "Medium",
+          "description": "overly broad permissions",
+          "file": ".github/workflows/digestcheck.yaml",
+          "line": 12,
+          "note": "this job",
+          "rule": "excessive-permissions",
+          "severity": "Medium",
+          "url": "https://docs.zizmor.sh/audits/#excessive-permissions"
+        },
+        {
+          "confidence": "Medium",
+          "description": "overly broad permissions",
+          "file": ".github/workflows/generated-docs.yaml",
+          "line": 34,
+          "note": "this job",
+          "rule": "excessive-permissions",
+          "severity": "Medium",
+          "url": "https://docs.zizmor.sh/audits/#excessive-permissions"
+        },
+        {
+          "confidence": "Medium",
+          "description": "overly broad permissions",
+          "file": ".github/workflows/gotests.yml",
+          "line": 1,
+          "note": "default permissions used due to no permissions: block",
+          "rule": "excessive-permissions",
+          "severity": "Medium",
+          "url": "https://docs.zizmor.sh/audits/#excessive-permissions"
+        },
+        {
+          "confidence": "Medium",
+          "description": "overly broad permissions",
+          "file": ".github/workflows/gotests.yml",
+          "line": 12,
+          "note": "this job",
+          "rule": "excessive-permissions",
+          "severity": "Medium",
+          "url": "https://docs.zizmor.sh/audits/#excessive-permissions"
+        },
+        {
+          "confidence": "Medium",
+          "description": "overly broad permissions",
+          "file": ".github/workflows/gotests.yml",
+          "line": 120,
+          "note": "this job",
+          "rule": "excessive-permissions",
+          "severity": "Medium",
+          "url": "https://docs.zizmor.sh/audits/#excessive-permissions"
+        },
+        {
+          "confidence": "Medium",
+          "description": "overly broad permissions",
+          "file": ".github/workflows/gotests.yml",
+          "line": 172,
+          "note": "this job",
+          "rule": "excessive-permissions",
+          "severity": "Medium",
+          "url": "https://docs.zizmor.sh/audits/#excessive-permissions"
+        },
+        {
+          "confidence": "Medium",
+          "description": "overly broad permissions",
+          "file": ".github/workflows/gotests.yml",
+          "line": 192,
+          "note": "this job",
+          "rule": "excessive-permissions",
+          "severity": "Medium",
+          "url": "https://docs.zizmor.sh/audits/#excessive-permissions"
+        },
+        {
+          "confidence": "Medium",
+          "description": "overly broad permissions",
+          "file": ".github/workflows/gotests.yml",
+          "line": 215,
+          "note": "this job",
+          "rule": "excessive-permissions",
+          "severity": "Medium",
+          "url": "https://docs.zizmor.sh/audits/#excessive-permissions"
+        },
+        {
+          "confidence": "High",
+          "description": "overly broad permissions",
+          "file": ".github/workflows/lint-codeql.yml",
+          "line": 17,
+          "note": "uses read-all permissions",
+          "rule": "excessive-permissions",
+          "severity": "Medium",
+          "url": "https://docs.zizmor.sh/audits/#excessive-permissions"
+        },
+        {
+          "confidence": "Medium",
+          "description": "overly broad permissions",
+          "file": ".github/workflows/lint-k8s.yaml",
+          "line": 1,
+          "note": "default permissions used due to no permissions: block",
+          "rule": "excessive-permissions",
+          "severity": "Medium",
+          "url": "https://docs.zizmor.sh/audits/#excessive-permissions"
+        },
+        {
+          "confidence": "Medium",
+          "description": "overly broad permissions",
+          "file": ".github/workflows/lint-k8s.yaml",
+          "line": 16,
+          "note": "this job",
+          "rule": "excessive-permissions",
+          "severity": "Medium",
+          "url": "https://docs.zizmor.sh/audits/#excessive-permissions"
+        },
+        {
+          "confidence": "Medium",
+          "description": "overly broad permissions",
+          "file": ".github/workflows/lint-k8s.yaml",
+          "line": 41,
+          "note": "this job",
+          "rule": "excessive-permissions",
+          "severity": "Medium",
+          "url": "https://docs.zizmor.sh/audits/#excessive-permissions"
+        },
+        {
+          "confidence": "Medium",
+          "description": "overly broad permissions",
+          "file": ".github/workflows/lint-proto.yaml",
+          "line": 1,
+          "note": "default permissions used due to no permissions: block",
+          "rule": "excessive-permissions",
+          "severity": "Medium",
+          "url": "https://docs.zizmor.sh/audits/#excessive-permissions"
+        },
+        {
+          "confidence": "Medium",
+          "description": "overly broad permissions",
+          "file": ".github/workflows/lint-proto.yaml",
+          "line": 20,
+          "note": "this job",
+          "rule": "excessive-permissions",
+          "severity": "Medium",
+          "url": "https://docs.zizmor.sh/audits/#excessive-permissions"
+        },
+        {
+          "confidence": "Medium",
+          "description": "overly broad permissions",
+          "file": ".github/workflows/lint-proto.yaml",
+          "line": 37,
+          "note": "this job",
+          "rule": "excessive-permissions",
+          "severity": "Medium",
+          "url": "https://docs.zizmor.sh/audits/#excessive-permissions"
+        },
+        {
+          "confidence": "Medium",
+          "description": "overly broad permissions",
+          "file": ".github/workflows/pr-validation.yaml",
+          "line": 22,
+          "note": "this job",
+          "rule": "excessive-permissions",
+          "severity": "Medium",
+          "url": "https://docs.zizmor.sh/audits/#excessive-permissions"
+        },
+        {
+          "confidence": "Medium",
+          "description": "overly broad permissions",
+          "file": ".github/workflows/renovate-config-validator.yaml",
+          "line": 9,
+          "note": "this job",
+          "rule": "excessive-permissions",
+          "severity": "Medium",
+          "url": "https://docs.zizmor.sh/audits/#excessive-permissions"
+        },
+        {
+          "confidence": "Medium",
+          "description": "overly broad permissions",
+          "file": ".github/workflows/renovate.yaml",
+          "line": 19,
+          "note": "this job",
+          "rule": "excessive-permissions",
+          "severity": "Medium",
+          "url": "https://docs.zizmor.sh/audits/#excessive-permissions"
+        },
+        {
+          "confidence": "Medium",
+          "description": "overly broad permissions",
+          "file": ".github/workflows/tarball-tests.yaml",
+          "line": 1,
+          "note": "default permissions used due to no permissions: block",
+          "rule": "excessive-permissions",
+          "severity": "Medium",
+          "url": "https://docs.zizmor.sh/audits/#excessive-permissions"
+        },
+        {
+          "confidence": "Medium",
+          "description": "overly broad permissions",
+          "file": ".github/workflows/tarball-tests.yaml",
+          "line": 15,
+          "note": "this job",
+          "rule": "excessive-permissions",
+          "severity": "Medium",
+          "url": "https://docs.zizmor.sh/audits/#excessive-permissions"
+        },
+        {
+          "confidence": "Medium",
+          "description": "overly broad permissions",
+          "file": ".github/workflows/tarball-tests.yaml",
+          "line": 51,
+          "note": "this job",
+          "rule": "excessive-permissions",
+          "severity": "Medium",
+          "url": "https://docs.zizmor.sh/audits/#excessive-permissions"
+        },
+        {
+          "confidence": "Medium",
+          "description": "overly broad permissions",
+          "file": ".github/workflows/tarball-tests.yaml",
+          "line": 209,
+          "note": "this job",
+          "rule": "excessive-permissions",
+          "severity": "Medium",
+          "url": "https://docs.zizmor.sh/audits/#excessive-permissions"
+        },
+        {
+          "confidence": "Medium",
+          "description": "overly broad permissions",
+          "file": ".github/workflows/veristat-compare.yaml",
+          "line": 8,
+          "note": "this job",
+          "rule": "excessive-permissions",
+          "severity": "Medium",
+          "url": "https://docs.zizmor.sh/audits/#excessive-permissions"
+        },
+        {
+          "confidence": "Medium",
+          "description": "overly broad permissions",
+          "file": ".github/workflows/veristat.yaml",
+          "line": 14,
+          "note": "this job",
+          "rule": "excessive-permissions",
+          "severity": "Medium",
+          "url": "https://docs.zizmor.sh/audits/#excessive-permissions"
+        },
+        {
+          "confidence": "Medium",
+          "description": "overly broad permissions",
+          "file": ".github/workflows/vmtests.yml",
+          "line": 1,
+          "note": "default permissions used due to no permissions: block",
+          "rule": "excessive-permissions",
+          "severity": "Medium",
+          "url": "https://docs.zizmor.sh/audits/#excessive-permissions"
+        },
+        {
+          "confidence": "Medium",
+          "description": "overly broad permissions",
+          "file": ".github/workflows/vmtests.yml",
+          "line": 13,
+          "note": "this job",
+          "rule": "excessive-permissions",
+          "severity": "Medium",
+          "url": "https://docs.zizmor.sh/audits/#excessive-permissions"
+        },
+        {
+          "confidence": "Medium",
+          "description": "overly broad permissions",
+          "file": ".github/workflows/vmtests.yml",
+          "line": 64,
+          "note": "this job",
+          "rule": "excessive-permissions",
+          "severity": "Medium",
+          "url": "https://docs.zizmor.sh/audits/#excessive-permissions"
+        },
+        {
+          "confidence": "Medium",
+          "description": "overly broad permissions",
+          "file": ".github/workflows/vmtests.yml",
+          "line": 291,
+          "note": "this job",
+          "rule": "excessive-permissions",
+          "severity": "Medium",
+          "url": "https://docs.zizmor.sh/audits/#excessive-permissions"
+        },
+        {
+          "confidence": "Medium",
+          "description": "overly broad permissions",
+          "file": ".github/workflows/windows-build-smoke-test.yml",
+          "line": 1,
+          "note": "default permissions used due to no permissions: block",
+          "rule": "excessive-permissions",
+          "severity": "Medium",
+          "url": "https://docs.zizmor.sh/audits/#excessive-permissions"
+        },
+        {
+          "confidence": "Medium",
+          "description": "overly broad permissions",
+          "file": ".github/workflows/windows-build-smoke-test.yml",
+          "line": 149,
+          "note": "this job",
+          "rule": "excessive-permissions",
+          "severity": "Medium",
+          "url": "https://docs.zizmor.sh/audits/#excessive-permissions"
+        },
+        {
+          "confidence": "Medium",
+          "description": "overly broad permissions",
+          "file": ".github/workflows/windows-build-smoke-test.yml",
+          "line": 192,
+          "note": "this job",
+          "rule": "excessive-permissions",
+          "severity": "Medium",
+          "url": "https://docs.zizmor.sh/audits/#excessive-permissions"
+        },
+        {
+          "confidence": "High",
+          "description": "use GitHub's dedicated self-repository syntax",
+          "file": ".github/workflows/ariane-ci.yaml",
+          "line": 49,
+          "note": "this job",
+          "rule": "self-repository",
+          "severity": "Low",
+          "url": "https://docs.zizmor.sh/audits/#self-repository"
+        },
+        {
+          "confidence": "High",
+          "description": "use GitHub's dedicated self-repository syntax",
+          "file": ".github/workflows/build-images-ci.yml",
+          "line": 311,
+          "note": "this job",
+          "rule": "self-repository",
+          "severity": "Low",
+          "url": "https://docs.zizmor.sh/audits/#self-repository"
+        },
+        {
+          "confidence": "High",
+          "description": "use GitHub's dedicated self-repository syntax",
+          "file": ".github/workflows/integration-test.yaml",
+          "line": 95,
+          "note": "this job",
+          "rule": "self-repository",
+          "severity": "Low",
+          "url": "https://docs.zizmor.sh/audits/#self-repository"
+        },
+        {
+          "confidence": "High",
+          "description": "use GitHub's dedicated self-repository syntax",
+          "file": ".github/workflows/run-e2e-tests.yaml",
+          "line": 170,
+          "note": "this job",
+          "rule": "self-repository",
+          "severity": "Low",
+          "url": "https://docs.zizmor.sh/audits/#self-repository"
+        },
+        {
+          "confidence": "High",
+          "description": "use GitHub's dedicated self-repository syntax",
+          "file": ".github/workflows/tarball-tests.yaml",
+          "line": 28,
+          "note": "this step",
+          "rule": "self-repository",
+          "severity": "Low",
+          "url": "https://docs.zizmor.sh/audits/#self-repository"
+        },
+        {
+          "confidence": "High",
+          "description": "use GitHub's dedicated self-repository syntax",
+          "file": ".github/workflows/tarball-tests.yaml",
+          "line": 209,
+          "note": "this job",
+          "rule": "self-repository",
+          "severity": "Low",
+          "url": "https://docs.zizmor.sh/audits/#self-repository"
+        },
+        {
+          "confidence": "High",
+          "description": "use GitHub's dedicated self-repository syntax",
+          "file": ".github/workflows/tetragon-rthook-pr.yaml",
+          "line": 167,
+          "note": "this job",
+          "rule": "self-repository",
+          "severity": "Low",
+          "url": "https://docs.zizmor.sh/audits/#self-repository"
+        },
+        {
+          "confidence": "High",
+          "description": "use GitHub's dedicated self-repository syntax",
+          "file": ".github/workflows/windows-build-smoke-test.yml",
+          "line": 43,
+          "note": "this step",
+          "rule": "self-repository",
+          "severity": "Low",
+          "url": "https://docs.zizmor.sh/audits/#self-repository"
+        },
+        {
+          "confidence": "High",
+          "description": "usage of GitHub Actions misfeatures",
+          "file": ".github/workflows/windows-build-smoke-test.yml",
+          "line": 73,
+          "note": "Windows CMD shell limits analysis",
+          "rule": "misfeature",
+          "severity": "Low",
+          "url": "https://docs.zizmor.sh/audits/#misfeature"
+        },
+        {
+          "confidence": "High",
+          "description": "code injection via template expansion",
+          "file": ".github/workflows/windows-build-smoke-test.yml",
+          "line": 122,
+          "note": "this step",
+          "rule": "template-injection",
+          "severity": "Low",
+          "url": "https://docs.zizmor.sh/audits/#template-injection"
+        },
+        {
+          "confidence": "High",
+          "description": "code injection via template expansion",
+          "file": ".github/workflows/windows-build-smoke-test.yml",
+          "line": 122,
+          "note": "this step",
+          "rule": "template-injection",
+          "severity": "Low",
+          "url": "https://docs.zizmor.sh/audits/#template-injection"
+        },
+        {
+          "confidence": "High",
+          "description": "use GitHub's dedicated self-repository syntax",
+          "file": ".github/workflows/windows-build-smoke-test.yml",
+          "line": 211,
+          "note": "this step",
+          "rule": "self-repository",
+          "severity": "Low",
+          "url": "https://docs.zizmor.sh/audits/#self-repository"
+        },
+        {
+          "confidence": "High",
+          "description": "use GitHub's dedicated self-repository syntax",
+          "file": ".github/workflows/windows-build-smoke-test.yml",
+          "line": 218,
+          "note": "this step",
+          "rule": "self-repository",
+          "severity": "Low",
+          "url": "https://docs.zizmor.sh/audits/#self-repository"
+        },
+        {
+          "confidence": "High",
+          "description": "use GitHub's dedicated self-repository syntax",
+          "file": ".github/workflows/windows-build-smoke-test.yml",
+          "line": 228,
+          "note": "this step",
+          "rule": "self-repository",
+          "severity": "Low",
+          "url": "https://docs.zizmor.sh/audits/#self-repository"
+        },
+        {
+          "confidence": "High",
+          "description": "use GitHub's dedicated self-repository syntax",
+          "file": ".github/workflows/windows-build-smoke-test.yml",
+          "line": 235,
+          "note": "this step",
+          "rule": "self-repository",
+          "severity": "Low",
+          "url": "https://docs.zizmor.sh/audits/#self-repository"
+        },
+        {
+          "confidence": "High",
+          "description": "action functionality is already included by the runner",
+          "file": ".github/workflows/build-images-releases.yml",
+          "line": 288,
+          "note": "this step",
+          "rule": "superfluous-actions",
+          "severity": "Informational",
+          "url": "https://docs.zizmor.sh/audits/#superfluous-actions"
+        }
+      ]
+    }
   },
   "updated": "2026-11-01"
 }

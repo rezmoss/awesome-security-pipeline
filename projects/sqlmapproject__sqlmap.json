@@ -7,11 +7,17 @@
       "dependencies": 2,
       "errors": [],
       "fixable": 0,
+      "go_version": null,
+      "in_binary": null,
       "new_vulnerabilities": 0,
+      "osv_confirmed": 0,
+      "osv_only": 0,
       "ref": "1.10",
       "release_changed": false,
+      "release_integrity": "no-assets",
       "removed": 0,
       "resolved_vulnerabilities": 0,
+      "scorecard": 4.9,
       "upgraded": 0,
       "vulnerabilities": {
         "Critical": 0,
@@ -20,6 +26,12 @@
         "Medium": 0,
         "Negligible": 0,
         "Unknown": 0
+      },
+      "workflow": {
+        "High": 2,
+        "Low": 0,
+        "Medium": 1,
+        "files": 1
       }
     }
   ],
@@ -103,8 +115,24 @@
       ".github/workflows/tests.yml"
     ],
     "name": "sqlmap",
+    "osv": {
+      "advisories": 0,
+      "available": true,
+      "confirmed": 0,
+      "osv_only": [],
+      "warning": null
+    },
     "ref": "1.10",
     "ref_kind": "release",
+    "release_integrity": {
+      "assets": 0,
+      "checksums_published": false,
+      "methods": [],
+      "provenance_published": false,
+      "sbom_published": false,
+      "signatures_published": false,
+      "verdict": "no-assets"
+    },
     "released_at": "2026-01-01T18:27:27Z",
     "repository": "sqlmapproject/sqlmap",
     "sbomlyze_diff": {
@@ -116,8 +144,121 @@
       ],
       "removed": 0
     },
-    "scanned_at": "2026-11-01T16:37:52+00:00",
-    "vulnerabilities": []
+    "scanned_at": "2026-11-01T17:44:03+00:00",
+    "scorecard": {
+      "checks": [
+        {
+          "name": "Branch-Protection",
+          "reason": "branch protection not enabled on development/release branches",
+          "score": 0
+        },
+        {
+          "name": "CII-Best-Practices",
+          "reason": "no effort to earn an OpenSSF best practices badge detected",
+          "score": 0
+        },
+        {
+          "name": "Fuzzing",
+          "reason": "project is not fuzzed",
+          "score": 0
+        },
+        {
+          "name": "Pinned-Dependencies",
+          "reason": "dependency not pinned by hash detected -- score normalized to 0",
+          "score": 0
+        },
+        {
+          "name": "SAST",
+          "reason": "SAST tool is not run on all commits -- score normalized to 0",
+          "score": 0
+        },
+        {
+          "name": "Security-Policy",
+          "reason": "security policy file not detected",
+          "score": 0
+        },
+        {
+          "name": "Code-Review",
+          "reason": "Found 3/30 approved changesets -- score normalized to 1",
+          "score": 1
+        },
+        {
+          "name": "License",
+          "reason": "license file detected",
+          "score": 9
+        },
+        {
+          "name": "Binary-Artifacts",
+          "reason": "no binaries found in the repo",
+          "score": 10
+        },
+        {
+          "name": "Dangerous-Workflow",
+          "reason": "no dangerous workflow patterns detected",
+          "score": 10
+        },
+        {
+          "name": "Maintained",
+          "reason": "30 commit(s) and 16 issue activity found in the last 90 days -- score normalized to 10",
+          "score": 10
+        },
+        {
+          "name": "Token-Permissions",
+          "reason": "GitHub workflow tokens follow principle of least privilege",
+          "score": 10
+        },
+        {
+          "name": "Packaging",
+          "reason": "packaging workflow not detected",
+          "score": -1
+        },
+        {
+          "name": "Signed-Releases",
+          "reason": "no releases found",
+          "score": -1
+        }
+      ],
+      "date": "2026-10-26",
+      "score": 4.9,
+      "source": "openssf-api",
+      "version": "v5.6.0"
+    },
+    "vulnerabilities": [],
+    "workflow_audit": {
+      "files": 1,
+      "findings": [
+        {
+          "confidence": "High",
+          "description": "unpinned action reference",
+          "file": ".github/workflows/tests.yml",
+          "line": 18,
+          "note": "this step",
+          "rule": "unpinned-uses",
+          "severity": "High",
+          "url": "https://docs.zizmor.sh/audits/#unpinned-uses"
+        },
+        {
+          "confidence": "High",
+          "description": "unpinned action reference",
+          "file": ".github/workflows/tests.yml",
+          "line": 19,
+          "note": "this step",
+          "rule": "unpinned-uses",
+          "severity": "High",
+          "url": "https://docs.zizmor.sh/audits/#unpinned-uses"
+        },
+        {
+          "confidence": "Medium",
+          "description": "overly broad permissions",
+          "file": ".github/workflows/tests.yml",
+          "line": 8,
+          "note": "this job",
+          "rule": "excessive-permissions",
+          "severity": "Medium",
+          "url": "https://docs.zizmor.sh/audits/#excessive-permissions"
+        }
+      ]
+    }
   },
   "updated": "2026-11-01"
 }

@@ -7,11 +7,21 @@
       "dependencies": 441,
       "errors": [],
       "fixable": 29,
+      "go_version": "go1.26.5",
+      "in_binary": {
+        "dependencies": 14,
+        "stdlib": 21,
+        "total": 35
+      },
       "new_vulnerabilities": 0,
+      "osv_confirmed": 30,
+      "osv_only": 0,
       "ref": "v3.11.1",
       "release_changed": false,
+      "release_integrity": "checksums-only",
       "removed": 0,
       "resolved_vulnerabilities": 0,
+      "scorecard": 6.8,
       "upgraded": 0,
       "vulnerabilities": {
         "Critical": 1,
@@ -20,6 +30,12 @@
         "Medium": 7,
         "Negligible": 0,
         "Unknown": 3
+      },
+      "workflow": {
+        "High": 76,
+        "Low": 2,
+        "Medium": 19,
+        "files": 13
       }
     }
   ],
@@ -3610,6 +3626,402 @@
     ],
     "description": "Scan applications and infrastructure with customizable templates.",
     "errors": [],
+    "go_binary": {
+      "asset": "nuclei_3.11.1_linux_amd64.zip",
+      "binary": "nuclei",
+      "findings": [
+        {
+          "aliases": [
+            "CVE-2026-39821"
+          ],
+          "fixed_version": "v1.26.6",
+          "id": "GO-2026-5026",
+          "level": "symbol",
+          "module": "stdlib",
+          "summary": "Invoking failure to reject ASCII-only Punycode-encoded labels in golang.org/x/net/idna",
+          "version": "v1.26.5"
+        },
+        {
+          "aliases": [
+            "CVE-2026-46600"
+          ],
+          "fixed_version": "v1.26.6",
+          "id": "GO-2026-5942",
+          "level": "symbol",
+          "module": "stdlib",
+          "summary": "Parsing an invalid SVCB or HTTPS RR can panic in golang.org/x/net/dns/dnsmessage",
+          "version": "v1.26.5"
+        },
+        {
+          "aliases": [
+            "CVE-2026-33818"
+          ],
+          "fixed_version": "v1.26.6",
+          "id": "GO-2026-5972",
+          "level": "symbol",
+          "module": "stdlib",
+          "summary": "Enforce maximum recursion depth in encoding/asn1",
+          "version": "v1.26.5"
+        },
+        {
+          "aliases": [
+            "CVE-2026-56859"
+          ],
+          "fixed_version": "v1.26.6",
+          "id": "GO-2026-6088",
+          "level": "symbol",
+          "module": "stdlib",
+          "summary": "Add recursion depth guard during decode in encoding/xml",
+          "version": "v1.26.5"
+        },
+        {
+          "aliases": [
+            "CVE-2026-56853"
+          ],
+          "fixed_version": "v1.26.6",
+          "id": "GO-2026-6089",
+          "level": "symbol",
+          "module": "stdlib",
+          "summary": "Apply ReadHeaderTimeout when doing unencrypted HTTP/2 check in net/http",
+          "version": "v1.26.5"
+        },
+        {
+          "aliases": [
+            "CVE-2026-56862"
+          ],
+          "fixed_version": "v1.26.6",
+          "id": "GO-2026-6090",
+          "level": "symbol",
+          "module": "stdlib",
+          "summary": "Limit handshake messages we are willing to accept post-handshake in crypto/tls",
+          "version": "v1.26.5"
+        },
+        {
+          "aliases": [
+            "CVE-2026-56858"
+          ],
+          "fixed_version": "v1.26.6",
+          "id": "GO-2026-6091",
+          "level": "symbol",
+          "module": "stdlib",
+          "summary": "Fix Javascript regexp context tracking in html/template",
+          "version": "v1.26.5"
+        },
+        {
+          "aliases": [
+            "CVE-2026-56860"
+          ],
+          "fixed_version": "v1.26.6",
+          "id": "GO-2026-6218",
+          "level": "symbol",
+          "module": "stdlib",
+          "summary": "Avoid quadratic complexity in resolvePath in net/url",
+          "version": "v1.26.5"
+        },
+        {
+          "aliases": [
+            "CVE-2026-94448"
+          ],
+          "fixed_version": "v1.26.9",
+          "id": "GO-2026-6599",
+          "level": "symbol",
+          "module": "stdlib",
+          "summary": "Reset context tracking on consecutive template expressions in html/template",
+          "version": "v1.26.5"
+        },
+        {
+          "aliases": [
+            "CVE-2026-97030"
+          ],
+          "fixed_version": "v1.26.9",
+          "id": "GO-2026-6600",
+          "level": "symbol",
+          "module": "stdlib",
+          "summary": "Recognize yield as regexp preceder keyword in html/template",
+          "version": "v1.26.5"
+        },
+        {
+          "aliases": [
+            "CVE-2026-78659"
+          ],
+          "fixed_version": "v1.26.9",
+          "id": "GO-2026-6603",
+          "level": "symbol",
+          "module": "stdlib",
+          "summary": "HTTP/2 server memory exhaustion due to Trailer headers in net/http",
+          "version": "v1.26.5"
+        },
+        {
+          "aliases": [
+            "CVE-2026-56866"
+          ],
+          "fixed_version": "v1.26.9",
+          "id": "GO-2026-6605",
+          "level": "symbol",
+          "module": "stdlib",
+          "summary": "HTTP/1 client connection desynchronization after CONNECT rejection in net/http",
+          "version": "v1.26.5"
+        },
+        {
+          "aliases": [
+            "CVE-2026-97031"
+          ],
+          "fixed_version": "v1.26.9",
+          "id": "GO-2026-6607",
+          "level": "symbol",
+          "module": "stdlib",
+          "summary": "Reject malformed ECH outer extension references in crypto/tls",
+          "version": "v1.26.5"
+        },
+        {
+          "aliases": [
+            "CVE-2026-94440"
+          ],
+          "fixed_version": "v1.26.9",
+          "id": "GO-2026-6608",
+          "level": "symbol",
+          "module": "stdlib",
+          "summary": "Memory limit bypass when parsing MIME headers in net/textproto, mime/multipart",
+          "version": "v1.26.5"
+        },
+        {
+          "aliases": [
+            "CVE-2026-78667"
+          ],
+          "fixed_version": "v1.26.9",
+          "id": "GO-2026-6609",
+          "level": "symbol",
+          "module": "stdlib",
+          "summary": "Lack of limit on size of parsed Range headers in net/http",
+          "version": "v1.26.5"
+        },
+        {
+          "aliases": [
+            "CVE-2026-78660"
+          ],
+          "fixed_version": "v1.26.9",
+          "id": "GO-2026-6610",
+          "level": "symbol",
+          "module": "stdlib",
+          "summary": "HTTP/2 transport accepts malformed framing-related headers in net/http",
+          "version": "v1.26.5"
+        },
+        {
+          "aliases": [
+            "CVE-2026-78669"
+          ],
+          "fixed_version": "v1.26.9",
+          "id": "GO-2026-6611",
+          "level": "symbol",
+          "module": "stdlib",
+          "summary": "Excessive CPU consumption from repeated initial window changes in net/http",
+          "version": "v1.26.5"
+        },
+        {
+          "aliases": [
+            "CVE-2026-78663"
+          ],
+          "fixed_version": "v1.26.9",
+          "id": "GO-2026-6612",
+          "level": "symbol",
+          "module": "stdlib",
+          "summary": "Double flow control refund on HTTP/2 server streams in net/http",
+          "version": "v1.26.5"
+        },
+        {
+          "aliases": [
+            "CVE-2026-94439"
+          ],
+          "fixed_version": "v1.26.9",
+          "id": "GO-2026-6613",
+          "level": "symbol",
+          "module": "stdlib",
+          "summary": "HTTP/1 server connection desynchronization after 2xx CONNECT response in net/http",
+          "version": "v1.26.5"
+        },
+        {
+          "aliases": [
+            "CVE-2026-97032"
+          ],
+          "fixed_version": "v1.26.9",
+          "id": "GO-2026-6617",
+          "level": "symbol",
+          "module": "stdlib",
+          "summary": "HTTP/2 server crash due to HPACK encoder race in net/http",
+          "version": "v1.26.5"
+        },
+        {
+          "aliases": [
+            "CVE-2026-111943"
+          ],
+          "fixed_version": "v1.26.10",
+          "id": "GO-2026-6809",
+          "level": "symbol",
+          "module": "stdlib",
+          "summary": "Distrust compromised intermediate certificates in crypto/x509",
+          "version": "v1.26.5"
+        },
+        {
+          "aliases": [
+            "CVE-2026-71556",
+            "GHSA-hc8v-wwc9-vgxm"
+          ],
+          "fixed_version": "v5.19.2",
+          "id": "GO-2026-6213",
+          "level": "symbol",
+          "module": "github.com/go-git/go-git/v5",
+          "summary": "Worktree operations may follow symlinks in github.com/go-git/go-git",
+          "version": "v5.19.1"
+        },
+        {
+          "aliases": [
+            "CVE-2026-71557",
+            "GHSA-qgq7-7hm3-q39j"
+          ],
+          "fixed_version": "v5.19.2",
+          "id": "GO-2026-6214",
+          "level": "symbol",
+          "module": "github.com/go-git/go-git/v5",
+          "summary": "Path traversal via crafted reference names in github.com/go-git/go-git",
+          "version": "v5.19.1"
+        },
+        {
+          "aliases": [],
+          "fixed_version": "",
+          "id": "GO-2026-5932",
+          "level": "symbol",
+          "module": "golang.org/x/crypto",
+          "summary": "The golang.org/x/crypto/openpgp package is unmaintained, unsafe by design, and has known security issues",
+          "version": "v0.53.0"
+        },
+        {
+          "aliases": [
+            "CVE-2026-56854"
+          ],
+          "fixed_version": "v0.55.0",
+          "id": "GO-2026-6303",
+          "level": "symbol",
+          "module": "golang.org/x/crypto",
+          "summary": "Source-address critical option not enforced for non-public-key auth callbacks in golang.org/x/crypto/ssh",
+          "version": "v0.53.0"
+        },
+        {
+          "aliases": [
+            "CVE-2026-78662"
+          ],
+          "fixed_version": "v0.56.0",
+          "id": "GO-2026-6354",
+          "level": "symbol",
+          "module": "golang.org/x/crypto",
+          "summary": "Prevent DoS on deadlocked undecided channel in golang.org/x/crypto/ssh",
+          "version": "v0.53.0"
+        },
+        {
+          "aliases": [
+            "CVE-2026-56855"
+          ],
+          "fixed_version": "v0.56.0",
+          "id": "GO-2026-6355",
+          "level": "symbol",
+          "module": "golang.org/x/crypto",
+          "summary": "Prevent DoS on deadlocked established channel in golang.org/x/crypto/ssh",
+          "version": "v0.53.0"
+        },
+        {
+          "aliases": [
+            "CVE-2026-56865"
+          ],
+          "fixed_version": "v0.40.0",
+          "id": "GO-2026-6179",
+          "level": "symbol",
+          "module": "golang.org/x/mod",
+          "summary": "Fix transparency log tile verification bypass in golang.org/x/mod/sumdb/tlog",
+          "version": "v0.37.0"
+        },
+        {
+          "aliases": [
+            "CVE-2026-56864"
+          ],
+          "fixed_version": "v0.40.0",
+          "id": "GO-2026-6180",
+          "level": "symbol",
+          "module": "golang.org/x/mod",
+          "summary": "Ignore unrelated, unauthenticated hashes in Lookup in golang.org/x/mod/sumdb",
+          "version": "v0.37.0"
+        },
+        {
+          "aliases": [
+            "CVE-2026-78661"
+          ],
+          "fixed_version": "v0.62.0",
+          "id": "GO-2026-6860",
+          "level": "symbol",
+          "module": "golang.org/x/net",
+          "summary": "Avoid quadratic complexity when coalescing text nodes in html in golang.org/x/net",
+          "version": "v0.56.0"
+        },
+        {
+          "aliases": [
+            "CVE-2026-97045"
+          ],
+          "fixed_version": "v0.62.0",
+          "id": "GO-2026-6866",
+          "level": "symbol",
+          "module": "golang.org/x/net",
+          "summary": "Check all ancestor namespace transitions when rendering raw text in html in golang.org/x/net",
+          "version": "v0.56.0"
+        },
+        {
+          "aliases": [
+            "CVE-2026-56851"
+          ],
+          "fixed_version": "v0.41.0",
+          "id": "GO-2026-6629",
+          "level": "symbol",
+          "module": "golang.org/x/text",
+          "summary": "Panic parsing crafted input in x/text/secure/precis in golang.org/x/text",
+          "version": "v0.39.0"
+        },
+        {
+          "aliases": [
+            "CVE-2026-84304",
+            "GHSA-vp52-pcj8-j9qc"
+          ],
+          "fixed_version": "v1.83.1",
+          "id": "GO-2026-6348",
+          "level": "symbol",
+          "module": "google.golang.org/grpc",
+          "summary": "Heap Memory Exhaustion (OOM) via HTTP/2 DATA Frame Fragmentation in google.golang.org/grpc",
+          "version": "v1.82.1"
+        },
+        {
+          "aliases": [
+            "CVE-2026-84303",
+            "GHSA-qc2q-p7wx-3px3"
+          ],
+          "fixed_version": "v1.83.1",
+          "id": "GO-2026-6441",
+          "level": "symbol",
+          "module": "google.golang.org/grpc",
+          "summary": "Bypass of xDS RBAC HTTP filter header matching in google.golang.org/grpc",
+          "version": "v1.82.1"
+        },
+        {
+          "aliases": [
+            "CVE-2026-84445",
+            "GHSA-2v4p-qf9q-27wj"
+          ],
+          "fixed_version": "v1.82.2",
+          "id": "GO-2026-6443",
+          "level": "symbol",
+          "module": "google.golang.org/grpc",
+          "summary": "Server panic via missing authority or Host headers in google.golang.org/grpc",
+          "version": "v1.82.1"
+        }
+      ],
+      "go_version": "go1.26.5",
+      "main_module": ""
+    },
     "id": "projectdiscovery__nuclei",
     "manifests": [
       ".github/workflows/auto-merge.yaml",
@@ -3629,8 +4041,26 @@
       "go.sum"
     ],
     "name": "nuclei",
+    "osv": {
+      "advisories": 30,
+      "available": true,
+      "confirmed": 30,
+      "osv_only": [],
+      "warning": null
+    },
     "ref": "v3.11.1",
     "ref_kind": "release",
+    "release_integrity": {
+      "asset": "nuclei_3.11.1_linux_amd64.zip",
+      "assets": 9,
+      "checksums_published": true,
+      "digest_matches_github": true,
+      "methods": [],
+      "provenance_published": false,
+      "sbom_published": false,
+      "signatures_published": false,
+      "verdict": "checksums-only"
+    },
     "released_at": "2026-08-08T12:21:32Z",
     "repository": "projectdiscovery/nuclei",
     "sbomlyze_diff": {
@@ -3643,7 +4073,85 @@
       ],
       "removed": 0
     },
-    "scanned_at": "2026-11-01T16:37:37+00:00",
+    "scanned_at": "2026-11-01T17:43:13+00:00",
+    "scorecard": {
+      "checks": [
+        {
+          "name": "CII-Best-Practices",
+          "reason": "no effort to earn an OpenSSF best practices badge detected",
+          "score": 0
+        },
+        {
+          "name": "Pinned-Dependencies",
+          "reason": "dependency not pinned by hash detected -- score normalized to 0",
+          "score": 0
+        },
+        {
+          "name": "Signed-Releases",
+          "reason": "Project has not signed or included provenance with any releases.",
+          "score": 0
+        },
+        {
+          "name": "Token-Permissions",
+          "reason": "detected GitHub workflow tokens with excessive permissions",
+          "score": 0
+        },
+        {
+          "name": "SAST",
+          "reason": "SAST tool detected but not run on all commits",
+          "score": 9
+        },
+        {
+          "name": "Binary-Artifacts",
+          "reason": "no binaries found in the repo",
+          "score": 10
+        },
+        {
+          "name": "Code-Review",
+          "reason": "all changesets reviewed",
+          "score": 10
+        },
+        {
+          "name": "Dangerous-Workflow",
+          "reason": "no dangerous workflow patterns detected",
+          "score": 10
+        },
+        {
+          "name": "Fuzzing",
+          "reason": "project is fuzzed",
+          "score": 10
+        },
+        {
+          "name": "License",
+          "reason": "license file detected",
+          "score": 10
+        },
+        {
+          "name": "Maintained",
+          "reason": "30 commit(s) and 16 issue activity found in the last 90 days -- score normalized to 10",
+          "score": 10
+        },
+        {
+          "name": "Security-Policy",
+          "reason": "security policy file detected",
+          "score": 10
+        },
+        {
+          "name": "Branch-Protection",
+          "reason": "internal error: error during branchesHandler.setup: internal error: some github tokens can't read classic branch protection rules: https://github.com/ossf/scorecard-action/blob/main/docs/authentication/fine-grained-auth-token.md",
+          "score": -1
+        },
+        {
+          "name": "Packaging",
+          "reason": "packaging workflow not detected",
+          "score": -1
+        }
+      ],
+      "date": "2026-10-19",
+      "score": 6.8,
+      "source": "openssf-api",
+      "version": "v5.6.0"
+    },
     "vulnerabilities": [
       {
         "aliases": [
@@ -3655,7 +4163,9 @@
           "0.60.0"
         ],
         "id": "GO-2026-6612",
+        "in_binary": "vulnerable code in binary",
         "location": "go.mod",
+        "osv_confirmed": true,
         "package": "golang.org/x/net",
         "severity": "Critical",
         "url": "https://go.dev/cl/847187",
@@ -3671,7 +4181,9 @@
           "0.147.0"
         ],
         "id": "GHSA-23vg-4cjm-66q5",
+        "in_binary": "vulnerable code not in binary",
         "location": "go.mod",
+        "osv_confirmed": true,
         "package": "github.com/getkin/kin-openapi",
         "severity": "High",
         "url": "https://github.com/advisories/GHSA-23vg-4cjm-66q5",
@@ -3687,7 +4199,9 @@
           "0.146.0"
         ],
         "id": "GHSA-74vm-87hj-r66f",
+        "in_binary": "vulnerable code not in binary",
         "location": "go.mod",
+        "osv_confirmed": true,
         "package": "github.com/getkin/kin-openapi",
         "severity": "High",
         "url": "https://github.com/advisories/GHSA-74vm-87hj-r66f",
@@ -3703,7 +4217,9 @@
           "0.149.0"
         ],
         "id": "GHSA-g8cf-rcjf-c8cf",
+        "in_binary": "vulnerable code not in binary",
         "location": "go.mod",
+        "osv_confirmed": true,
         "package": "github.com/getkin/kin-openapi",
         "severity": "High",
         "url": "https://github.com/advisories/GHSA-g8cf-rcjf-c8cf",
@@ -3719,7 +4235,9 @@
           "0.148.0"
         ],
         "id": "GHSA-rj39-cv6w-8wv7",
+        "in_binary": "vulnerable code not in binary",
         "location": "go.mod",
+        "osv_confirmed": true,
         "package": "github.com/getkin/kin-openapi",
         "severity": "High",
         "url": "https://github.com/advisories/GHSA-rj39-cv6w-8wv7",
@@ -3735,7 +4253,9 @@
           "0.149.0"
         ],
         "id": "GHSA-vrcc-3ch7-hppw",
+        "in_binary": "vulnerable code not in binary",
         "location": "go.mod",
+        "osv_confirmed": true,
         "package": "github.com/getkin/kin-openapi",
         "severity": "High",
         "url": "https://github.com/advisories/GHSA-vrcc-3ch7-hppw",
@@ -3751,7 +4271,9 @@
           "5.19.2"
         ],
         "id": "GHSA-hc8v-wwc9-vgxm",
+        "in_binary": "vulnerable code in binary",
         "location": "go.mod",
+        "osv_confirmed": true,
         "package": "github.com/go-git/go-git/v5",
         "severity": "High",
         "url": "https://github.com/advisories/GHSA-hc8v-wwc9-vgxm",
@@ -3767,7 +4289,9 @@
           "4.1.6"
         ],
         "id": "GHSA-mgcc-cww5-fp2q",
+        "in_binary": "vulnerable code not in binary",
         "location": "go.mod",
+        "osv_confirmed": true,
         "package": "github.com/go-jose/go-jose/v4",
         "severity": "High",
         "url": "https://github.com/advisories/GHSA-mgcc-cww5-fp2q",
@@ -3783,7 +4307,9 @@
           "0.55.0"
         ],
         "id": "GO-2026-6303",
+        "in_binary": "vulnerable code in binary",
         "location": "go.mod",
+        "osv_confirmed": true,
         "package": "golang.org/x/crypto",
         "severity": "High",
         "url": "https://go.dev/issue/80213",
@@ -3799,7 +4325,9 @@
           "0.56.0"
         ],
         "id": "GO-2026-6354",
+        "in_binary": "vulnerable code in binary",
         "location": "go.mod",
+        "osv_confirmed": true,
         "package": "golang.org/x/crypto",
         "severity": "High",
         "url": "https://go.dev/issue/81316",
@@ -3815,7 +4343,9 @@
           "0.56.0"
         ],
         "id": "GO-2026-6355",
+        "in_binary": "vulnerable code in binary",
         "location": "go.mod",
+        "osv_confirmed": true,
         "package": "golang.org/x/crypto",
         "severity": "High",
         "url": "https://go.dev/issue/81317",
@@ -3831,7 +4361,9 @@
           "0.40.0"
         ],
         "id": "GO-2026-6179",
+        "in_binary": "vulnerable code in binary",
         "location": "go.mod",
+        "osv_confirmed": true,
         "package": "golang.org/x/mod",
         "severity": "High",
         "url": "https://go.dev/issue/80744",
@@ -3847,7 +4379,9 @@
           "0.40.0"
         ],
         "id": "GO-2026-6180",
+        "in_binary": "vulnerable code in binary",
         "location": "go.mod",
+        "osv_confirmed": true,
         "package": "golang.org/x/mod",
         "severity": "High",
         "url": "https://go.dev/issue/80745",
@@ -3863,7 +4397,9 @@
           "0.60.0"
         ],
         "id": "GO-2026-6603",
+        "in_binary": "vulnerable code in binary",
         "location": "go.mod",
+        "osv_confirmed": true,
         "package": "golang.org/x/net",
         "severity": "High",
         "url": "https://go.dev/cl/847185",
@@ -3879,7 +4415,9 @@
           "0.60.0"
         ],
         "id": "GO-2026-6610",
+        "in_binary": "vulnerable code in binary",
         "location": "go.mod",
+        "osv_confirmed": true,
         "package": "golang.org/x/net",
         "severity": "High",
         "url": "https://go.dev/cl/835145",
@@ -3895,7 +4433,9 @@
           "0.60.0"
         ],
         "id": "GO-2026-6611",
+        "in_binary": "vulnerable code in binary",
         "location": "go.mod",
+        "osv_confirmed": true,
         "package": "golang.org/x/net",
         "severity": "High",
         "url": "https://go.dev/cl/847186",
@@ -3911,7 +4451,9 @@
           "0.60.0"
         ],
         "id": "GO-2026-6617",
+        "in_binary": "vulnerable code in binary",
         "location": "go.mod",
+        "osv_confirmed": true,
         "package": "golang.org/x/net",
         "severity": "High",
         "url": "https://go.dev/cl/847188",
@@ -3927,7 +4469,9 @@
           "0.41.0"
         ],
         "id": "GO-2026-6629",
+        "in_binary": "vulnerable code in binary",
         "location": "go.mod",
+        "osv_confirmed": true,
         "package": "golang.org/x/text",
         "severity": "High",
         "url": "https://go.dev/cl/793360",
@@ -3943,7 +4487,9 @@
           "1.82.2"
         ],
         "id": "GHSA-2v4p-qf9q-27wj",
+        "in_binary": "vulnerable code in binary",
         "location": "go.mod",
+        "osv_confirmed": true,
         "package": "google.golang.org/grpc",
         "severity": "High",
         "url": "https://github.com/advisories/GHSA-2v4p-qf9q-27wj",
@@ -3959,7 +4505,9 @@
           "1.83.1"
         ],
         "id": "GHSA-vp52-pcj8-j9qc",
+        "in_binary": "vulnerable code in binary",
         "location": "go.mod",
+        "osv_confirmed": true,
         "package": "google.golang.org/grpc",
         "severity": "High",
         "url": "https://github.com/advisories/GHSA-vp52-pcj8-j9qc",
@@ -3975,7 +4523,9 @@
           "0.145.0"
         ],
         "id": "GHSA-fh4f-47mf-f2gj",
+        "in_binary": "vulnerable code not in binary",
         "location": "go.mod",
+        "osv_confirmed": true,
         "package": "github.com/getkin/kin-openapi",
         "severity": "Medium",
         "url": "https://github.com/advisories/GHSA-fh4f-47mf-f2gj",
@@ -3991,7 +4541,9 @@
           "0.145.0"
         ],
         "id": "GHSA-mh7x-f8wq-4jhx",
+        "in_binary": "vulnerable code not in binary",
         "location": "go.mod",
+        "osv_confirmed": true,
         "package": "github.com/getkin/kin-openapi",
         "severity": "Medium",
         "url": "https://github.com/advisories/GHSA-mh7x-f8wq-4jhx",
@@ -4007,7 +4559,9 @@
           "5.19.2"
         ],
         "id": "GHSA-qgq7-7hm3-q39j",
+        "in_binary": "vulnerable code in binary",
         "location": "go.mod",
+        "osv_confirmed": true,
         "package": "github.com/go-git/go-git/v5",
         "severity": "Medium",
         "url": "https://github.com/advisories/GHSA-qgq7-7hm3-q39j",
@@ -4023,7 +4577,9 @@
           "4.1.5"
         ],
         "id": "GHSA-4w3g-jfj2-cw2q",
+        "in_binary": "vulnerable code not in binary",
         "location": "go.mod",
+        "osv_confirmed": true,
         "package": "github.com/go-jose/go-jose/v4",
         "severity": "Medium",
         "url": "https://github.com/advisories/GHSA-4w3g-jfj2-cw2q",
@@ -4039,7 +4595,9 @@
           "4.1.5"
         ],
         "id": "GHSA-vvm8-gf78-28g4",
+        "in_binary": "vulnerable code not in binary",
         "location": "go.mod",
+        "osv_confirmed": true,
         "package": "github.com/go-jose/go-jose/v4",
         "severity": "Medium",
         "url": "https://github.com/advisories/GHSA-vvm8-gf78-28g4",
@@ -4055,7 +4613,9 @@
           "0.4.1"
         ],
         "id": "GHSA-mjcv-p78q-w5fw",
+        "in_binary": "not in released binary",
         "location": "go.mod",
+        "osv_confirmed": true,
         "package": "github.com/moby/sys/user",
         "severity": "Medium",
         "url": "https://github.com/advisories/GHSA-mjcv-p78q-w5fw",
@@ -4071,7 +4631,9 @@
           "1.83.1"
         ],
         "id": "GHSA-qc2q-p7wx-3px3",
+        "in_binary": "vulnerable code in binary",
         "location": "go.mod",
+        "osv_confirmed": true,
         "package": "google.golang.org/grpc",
         "severity": "Medium",
         "url": "https://github.com/advisories/GHSA-qc2q-p7wx-3px3",
@@ -4083,7 +4645,9 @@
         "fix_state": "unknown",
         "fixed_in": [],
         "id": "GO-2026-5932",
+        "in_binary": "vulnerable code in binary",
         "location": "go.mod",
+        "osv_confirmed": true,
         "package": "golang.org/x/crypto",
         "severity": "Unknown",
         "url": "https://go.dev/issue/44226",
@@ -4099,7 +4663,9 @@
           "0.62.0"
         ],
         "id": "GO-2026-6860",
+        "in_binary": "vulnerable code in binary",
         "location": "go.mod",
+        "osv_confirmed": true,
         "package": "golang.org/x/net",
         "severity": "Unknown",
         "url": "https://go.dev/cl/849365",
@@ -4115,13 +4681,990 @@
           "0.62.0"
         ],
         "id": "GO-2026-6866",
+        "in_binary": "vulnerable code in binary",
         "location": "go.mod",
+        "osv_confirmed": true,
         "package": "golang.org/x/net",
         "severity": "Unknown",
         "url": "https://go.dev/cl/855121",
         "version": "v0.56.0"
       }
-    ]
+    ],
+    "workflow_audit": {
+      "files": 13,
+      "findings": [
+        {
+          "confidence": "Medium",
+          "description": "use of fundamentally insecure workflow trigger",
+          "file": ".github/workflows/auto-merge.yaml",
+          "line": 3,
+          "note": "this workflow",
+          "rule": "dangerous-triggers",
+          "severity": "High",
+          "url": "https://docs.zizmor.sh/audits/#dangerous-triggers"
+        },
+        {
+          "confidence": "High",
+          "description": "unpinned action reference",
+          "file": ".github/workflows/auto-merge.yaml",
+          "line": 21,
+          "note": "this step",
+          "rule": "unpinned-uses",
+          "severity": "High",
+          "url": "https://docs.zizmor.sh/audits/#unpinned-uses"
+        },
+        {
+          "confidence": "High",
+          "description": "unpinned action reference",
+          "file": ".github/workflows/auto-merge.yaml",
+          "line": 22,
+          "note": "this step",
+          "rule": "unpinned-uses",
+          "severity": "High",
+          "url": "https://docs.zizmor.sh/audits/#unpinned-uses"
+        },
+        {
+          "confidence": "High",
+          "description": "spoofable bot actor check",
+          "file": ".github/workflows/compat-checks.yaml",
+          "line": 10,
+          "note": "this job",
+          "rule": "bot-conditions",
+          "severity": "High",
+          "url": "https://docs.zizmor.sh/audits/#bot-conditions"
+        },
+        {
+          "confidence": "High",
+          "description": "unpinned action reference",
+          "file": ".github/workflows/compat-checks.yaml",
+          "line": 16,
+          "note": "this step",
+          "rule": "unpinned-uses",
+          "severity": "High",
+          "url": "https://docs.zizmor.sh/audits/#unpinned-uses"
+        },
+        {
+          "confidence": "High",
+          "description": "unpinned action reference",
+          "file": ".github/workflows/compat-checks.yaml",
+          "line": 17,
+          "note": "this step",
+          "rule": "unpinned-uses",
+          "severity": "High",
+          "url": "https://docs.zizmor.sh/audits/#unpinned-uses"
+        },
+        {
+          "confidence": "High",
+          "description": "unpinned action reference",
+          "file": ".github/workflows/flamegraph.yaml",
+          "line": 15,
+          "note": "this step",
+          "rule": "unpinned-uses",
+          "severity": "High",
+          "url": "https://docs.zizmor.sh/audits/#unpinned-uses"
+        },
+        {
+          "confidence": "High",
+          "description": "unpinned action reference",
+          "file": ".github/workflows/flamegraph.yaml",
+          "line": 16,
+          "note": "this step",
+          "rule": "unpinned-uses",
+          "severity": "High",
+          "url": "https://docs.zizmor.sh/audits/#unpinned-uses"
+        },
+        {
+          "confidence": "High",
+          "description": "unpinned action reference",
+          "file": ".github/workflows/flamegraph.yaml",
+          "line": 17,
+          "note": "this step",
+          "rule": "unpinned-uses",
+          "severity": "High",
+          "url": "https://docs.zizmor.sh/audits/#unpinned-uses"
+        },
+        {
+          "confidence": "High",
+          "description": "unpinned action reference",
+          "file": ".github/workflows/flamegraph.yaml",
+          "line": 46,
+          "note": "this step",
+          "rule": "unpinned-uses",
+          "severity": "High",
+          "url": "https://docs.zizmor.sh/audits/#unpinned-uses"
+        },
+        {
+          "confidence": "High",
+          "description": "unpinned action reference",
+          "file": ".github/workflows/flamegraph.yaml",
+          "line": 52,
+          "note": "this step",
+          "rule": "unpinned-uses",
+          "severity": "High",
+          "url": "https://docs.zizmor.sh/audits/#unpinned-uses"
+        },
+        {
+          "confidence": "High",
+          "description": "unpinned action reference",
+          "file": ".github/workflows/fuzz.yaml",
+          "line": 20,
+          "note": "this step",
+          "rule": "unpinned-uses",
+          "severity": "High",
+          "url": "https://docs.zizmor.sh/audits/#unpinned-uses"
+        },
+        {
+          "confidence": "High",
+          "description": "unpinned action reference",
+          "file": ".github/workflows/fuzz.yaml",
+          "line": 21,
+          "note": "this step",
+          "rule": "unpinned-uses",
+          "severity": "High",
+          "url": "https://docs.zizmor.sh/audits/#unpinned-uses"
+        },
+        {
+          "confidence": "High",
+          "description": "unpinned action reference",
+          "file": ".github/workflows/fuzz.yaml",
+          "line": 40,
+          "note": "this step",
+          "rule": "unpinned-uses",
+          "severity": "High",
+          "url": "https://docs.zizmor.sh/audits/#unpinned-uses"
+        },
+        {
+          "confidence": "High",
+          "description": "unpinned action reference",
+          "file": ".github/workflows/fuzz.yaml",
+          "line": 41,
+          "note": "this step",
+          "rule": "unpinned-uses",
+          "severity": "High",
+          "url": "https://docs.zizmor.sh/audits/#unpinned-uses"
+        },
+        {
+          "confidence": "High",
+          "description": "unpinned action reference",
+          "file": ".github/workflows/fuzz.yaml",
+          "line": 47,
+          "note": "this step",
+          "rule": "unpinned-uses",
+          "severity": "High",
+          "url": "https://docs.zizmor.sh/audits/#unpinned-uses"
+        },
+        {
+          "confidence": "High",
+          "description": "unpinned action reference",
+          "file": ".github/workflows/generate-docs.yaml",
+          "line": 14,
+          "note": "this step",
+          "rule": "unpinned-uses",
+          "severity": "High",
+          "url": "https://docs.zizmor.sh/audits/#unpinned-uses"
+        },
+        {
+          "confidence": "High",
+          "description": "unpinned action reference",
+          "file": ".github/workflows/generate-docs.yaml",
+          "line": 15,
+          "note": "this step",
+          "rule": "unpinned-uses",
+          "severity": "High",
+          "url": "https://docs.zizmor.sh/audits/#unpinned-uses"
+        },
+        {
+          "confidence": "High",
+          "description": "unpinned action reference",
+          "file": ".github/workflows/generate-docs.yaml",
+          "line": 16,
+          "note": "this step",
+          "rule": "unpinned-uses",
+          "severity": "High",
+          "url": "https://docs.zizmor.sh/audits/#unpinned-uses"
+        },
+        {
+          "confidence": "High",
+          "description": "unpinned action reference",
+          "file": ".github/workflows/generate-docs.yaml",
+          "line": 20,
+          "note": "this step",
+          "rule": "unpinned-uses",
+          "severity": "High",
+          "url": "https://docs.zizmor.sh/audits/#unpinned-uses"
+        },
+        {
+          "confidence": "High",
+          "description": "unpinned action reference",
+          "file": ".github/workflows/generate-pgo.yaml",
+          "line": 21,
+          "note": "this step",
+          "rule": "unpinned-uses",
+          "severity": "High",
+          "url": "https://docs.zizmor.sh/audits/#unpinned-uses"
+        },
+        {
+          "confidence": "High",
+          "description": "unpinned action reference",
+          "file": ".github/workflows/generate-pgo.yaml",
+          "line": 22,
+          "note": "this step",
+          "rule": "unpinned-uses",
+          "severity": "High",
+          "url": "https://docs.zizmor.sh/audits/#unpinned-uses"
+        },
+        {
+          "confidence": "High",
+          "description": "unpinned action reference",
+          "file": ".github/workflows/generate-pgo.yaml",
+          "line": 23,
+          "note": "this step",
+          "rule": "unpinned-uses",
+          "severity": "High",
+          "url": "https://docs.zizmor.sh/audits/#unpinned-uses"
+        },
+        {
+          "confidence": "High",
+          "description": "unpinned action reference",
+          "file": ".github/workflows/generate-pgo.yaml",
+          "line": 46,
+          "note": "this step",
+          "rule": "unpinned-uses",
+          "severity": "High",
+          "url": "https://docs.zizmor.sh/audits/#unpinned-uses"
+        },
+        {
+          "confidence": "High",
+          "description": "unpinned action reference",
+          "file": ".github/workflows/govulncheck.yaml",
+          "line": 19,
+          "note": "this step",
+          "rule": "unpinned-uses",
+          "severity": "High",
+          "url": "https://docs.zizmor.sh/audits/#unpinned-uses"
+        },
+        {
+          "confidence": "High",
+          "description": "unpinned action reference",
+          "file": ".github/workflows/govulncheck.yaml",
+          "line": 20,
+          "note": "this step",
+          "rule": "unpinned-uses",
+          "severity": "High",
+          "url": "https://docs.zizmor.sh/audits/#unpinned-uses"
+        },
+        {
+          "confidence": "High",
+          "description": "unpinned action reference",
+          "file": ".github/workflows/govulncheck.yaml",
+          "line": 27,
+          "note": "this step",
+          "rule": "unpinned-uses",
+          "severity": "High",
+          "url": "https://docs.zizmor.sh/audits/#unpinned-uses"
+        },
+        {
+          "confidence": "High",
+          "description": "unpinned action reference",
+          "file": ".github/workflows/memogen.yaml",
+          "line": 17,
+          "note": "this step",
+          "rule": "unpinned-uses",
+          "severity": "High",
+          "url": "https://docs.zizmor.sh/audits/#unpinned-uses"
+        },
+        {
+          "confidence": "High",
+          "description": "unpinned action reference",
+          "file": ".github/workflows/memogen.yaml",
+          "line": 18,
+          "note": "this step",
+          "rule": "unpinned-uses",
+          "severity": "High",
+          "url": "https://docs.zizmor.sh/audits/#unpinned-uses"
+        },
+        {
+          "confidence": "High",
+          "description": "unpinned action reference",
+          "file": ".github/workflows/memogen.yaml",
+          "line": 19,
+          "note": "this step",
+          "rule": "unpinned-uses",
+          "severity": "High",
+          "url": "https://docs.zizmor.sh/audits/#unpinned-uses"
+        },
+        {
+          "confidence": "High",
+          "description": "unpinned action reference",
+          "file": ".github/workflows/memogen.yaml",
+          "line": 23,
+          "note": "this step",
+          "rule": "unpinned-uses",
+          "severity": "High",
+          "url": "https://docs.zizmor.sh/audits/#unpinned-uses"
+        },
+        {
+          "confidence": "High",
+          "description": "unpinned action reference",
+          "file": ".github/workflows/perf-regression.yaml",
+          "line": 14,
+          "note": "this step",
+          "rule": "unpinned-uses",
+          "severity": "High",
+          "url": "https://docs.zizmor.sh/audits/#unpinned-uses"
+        },
+        {
+          "confidence": "High",
+          "description": "unpinned action reference",
+          "file": ".github/workflows/perf-regression.yaml",
+          "line": 15,
+          "note": "this step",
+          "rule": "unpinned-uses",
+          "severity": "High",
+          "url": "https://docs.zizmor.sh/audits/#unpinned-uses"
+        },
+        {
+          "confidence": "High",
+          "description": "unpinned action reference",
+          "file": ".github/workflows/perf-regression.yaml",
+          "line": 16,
+          "note": "this step",
+          "rule": "unpinned-uses",
+          "severity": "High",
+          "url": "https://docs.zizmor.sh/audits/#unpinned-uses"
+        },
+        {
+          "confidence": "High",
+          "description": "unpinned action reference",
+          "file": ".github/workflows/perf-regression.yaml",
+          "line": 21,
+          "note": "this step",
+          "rule": "unpinned-uses",
+          "severity": "High",
+          "url": "https://docs.zizmor.sh/audits/#unpinned-uses"
+        },
+        {
+          "confidence": "High",
+          "description": "unpinned action reference",
+          "file": ".github/workflows/perf-regression.yaml",
+          "line": 25,
+          "note": "this step",
+          "rule": "unpinned-uses",
+          "severity": "High",
+          "url": "https://docs.zizmor.sh/audits/#unpinned-uses"
+        },
+        {
+          "confidence": "High",
+          "description": "unpinned action reference",
+          "file": ".github/workflows/perf-regression.yaml",
+          "line": 35,
+          "note": "this step",
+          "rule": "unpinned-uses",
+          "severity": "High",
+          "url": "https://docs.zizmor.sh/audits/#unpinned-uses"
+        },
+        {
+          "confidence": "High",
+          "description": "unpinned action reference",
+          "file": ".github/workflows/release.yaml",
+          "line": 19,
+          "note": "this step",
+          "rule": "unpinned-uses",
+          "severity": "High",
+          "url": "https://docs.zizmor.sh/audits/#unpinned-uses"
+        },
+        {
+          "confidence": "High",
+          "description": "unpinned action reference",
+          "file": ".github/workflows/release.yaml",
+          "line": 22,
+          "note": "this step",
+          "rule": "unpinned-uses",
+          "severity": "High",
+          "url": "https://docs.zizmor.sh/audits/#unpinned-uses"
+        },
+        {
+          "confidence": "High",
+          "description": "unpinned action reference",
+          "file": ".github/workflows/release.yaml",
+          "line": 26,
+          "note": "this step",
+          "rule": "unpinned-uses",
+          "severity": "High",
+          "url": "https://docs.zizmor.sh/audits/#unpinned-uses"
+        },
+        {
+          "confidence": "High",
+          "description": "unpinned action reference",
+          "file": ".github/workflows/release.yaml",
+          "line": 29,
+          "note": "this step",
+          "rule": "unpinned-uses",
+          "severity": "High",
+          "url": "https://docs.zizmor.sh/audits/#unpinned-uses"
+        },
+        {
+          "confidence": "High",
+          "description": "unpinned action reference",
+          "file": ".github/workflows/release.yaml",
+          "line": 33,
+          "note": "this step",
+          "rule": "unpinned-uses",
+          "severity": "High",
+          "url": "https://docs.zizmor.sh/audits/#unpinned-uses"
+        },
+        {
+          "confidence": "High",
+          "description": "unpinned action reference",
+          "file": ".github/workflows/stale.yaml",
+          "line": 16,
+          "note": "this step",
+          "rule": "unpinned-uses",
+          "severity": "High",
+          "url": "https://docs.zizmor.sh/audits/#unpinned-uses"
+        },
+        {
+          "confidence": "High",
+          "description": "unpinned action reference",
+          "file": ".github/workflows/tests.yaml",
+          "line": 25,
+          "note": "this step",
+          "rule": "unpinned-uses",
+          "severity": "High",
+          "url": "https://docs.zizmor.sh/audits/#unpinned-uses"
+        },
+        {
+          "confidence": "High",
+          "description": "unpinned action reference",
+          "file": ".github/workflows/tests.yaml",
+          "line": 26,
+          "note": "this step",
+          "rule": "unpinned-uses",
+          "severity": "High",
+          "url": "https://docs.zizmor.sh/audits/#unpinned-uses"
+        },
+        {
+          "confidence": "High",
+          "description": "unpinned action reference",
+          "file": ".github/workflows/tests.yaml",
+          "line": 27,
+          "note": "this step",
+          "rule": "unpinned-uses",
+          "severity": "High",
+          "url": "https://docs.zizmor.sh/audits/#unpinned-uses"
+        },
+        {
+          "confidence": "High",
+          "description": "unpinned action reference",
+          "file": ".github/workflows/tests.yaml",
+          "line": 28,
+          "note": "this step",
+          "rule": "unpinned-uses",
+          "severity": "High",
+          "url": "https://docs.zizmor.sh/audits/#unpinned-uses"
+        },
+        {
+          "confidence": "High",
+          "description": "unpinned action reference",
+          "file": ".github/workflows/tests.yaml",
+          "line": 45,
+          "note": "this step",
+          "rule": "unpinned-uses",
+          "severity": "High",
+          "url": "https://docs.zizmor.sh/audits/#unpinned-uses"
+        },
+        {
+          "confidence": "High",
+          "description": "unpinned action reference",
+          "file": ".github/workflows/tests.yaml",
+          "line": 46,
+          "note": "this step",
+          "rule": "unpinned-uses",
+          "severity": "High",
+          "url": "https://docs.zizmor.sh/audits/#unpinned-uses"
+        },
+        {
+          "confidence": "High",
+          "description": "unpinned action reference",
+          "file": ".github/workflows/tests.yaml",
+          "line": 47,
+          "note": "this step",
+          "rule": "unpinned-uses",
+          "severity": "High",
+          "url": "https://docs.zizmor.sh/audits/#unpinned-uses"
+        },
+        {
+          "confidence": "High",
+          "description": "unpinned action reference",
+          "file": ".github/workflows/tests.yaml",
+          "line": 48,
+          "note": "this step",
+          "rule": "unpinned-uses",
+          "severity": "High",
+          "url": "https://docs.zizmor.sh/audits/#unpinned-uses"
+        },
+        {
+          "confidence": "High",
+          "description": "unpinned action reference",
+          "file": ".github/workflows/tests.yaml",
+          "line": 93,
+          "note": "this step",
+          "rule": "unpinned-uses",
+          "severity": "High",
+          "url": "https://docs.zizmor.sh/audits/#unpinned-uses"
+        },
+        {
+          "confidence": "High",
+          "description": "unpinned action reference",
+          "file": ".github/workflows/tests.yaml",
+          "line": 94,
+          "note": "this step",
+          "rule": "unpinned-uses",
+          "severity": "High",
+          "url": "https://docs.zizmor.sh/audits/#unpinned-uses"
+        },
+        {
+          "confidence": "High",
+          "description": "unpinned action reference",
+          "file": ".github/workflows/tests.yaml",
+          "line": 95,
+          "note": "this step",
+          "rule": "unpinned-uses",
+          "severity": "High",
+          "url": "https://docs.zizmor.sh/audits/#unpinned-uses"
+        },
+        {
+          "confidence": "High",
+          "description": "unpinned action reference",
+          "file": ".github/workflows/tests.yaml",
+          "line": 118,
+          "note": "this step",
+          "rule": "unpinned-uses",
+          "severity": "High",
+          "url": "https://docs.zizmor.sh/audits/#unpinned-uses"
+        },
+        {
+          "confidence": "High",
+          "description": "unpinned action reference",
+          "file": ".github/workflows/tests.yaml",
+          "line": 119,
+          "note": "this step",
+          "rule": "unpinned-uses",
+          "severity": "High",
+          "url": "https://docs.zizmor.sh/audits/#unpinned-uses"
+        },
+        {
+          "confidence": "High",
+          "description": "unpinned action reference",
+          "file": ".github/workflows/tests.yaml",
+          "line": 120,
+          "note": "this step",
+          "rule": "unpinned-uses",
+          "severity": "High",
+          "url": "https://docs.zizmor.sh/audits/#unpinned-uses"
+        },
+        {
+          "confidence": "High",
+          "description": "unpinned action reference",
+          "file": ".github/workflows/tests.yaml",
+          "line": 121,
+          "note": "this step",
+          "rule": "unpinned-uses",
+          "severity": "High",
+          "url": "https://docs.zizmor.sh/audits/#unpinned-uses"
+        },
+        {
+          "confidence": "High",
+          "description": "unpinned action reference",
+          "file": ".github/workflows/tests.yaml",
+          "line": 138,
+          "note": "this step",
+          "rule": "unpinned-uses",
+          "severity": "High",
+          "url": "https://docs.zizmor.sh/audits/#unpinned-uses"
+        },
+        {
+          "confidence": "High",
+          "description": "unpinned action reference",
+          "file": ".github/workflows/tests.yaml",
+          "line": 139,
+          "note": "this step",
+          "rule": "unpinned-uses",
+          "severity": "High",
+          "url": "https://docs.zizmor.sh/audits/#unpinned-uses"
+        },
+        {
+          "confidence": "High",
+          "description": "unpinned action reference",
+          "file": ".github/workflows/tests.yaml",
+          "line": 140,
+          "note": "this step",
+          "rule": "unpinned-uses",
+          "severity": "High",
+          "url": "https://docs.zizmor.sh/audits/#unpinned-uses"
+        },
+        {
+          "confidence": "High",
+          "description": "unpinned action reference",
+          "file": ".github/workflows/tests.yaml",
+          "line": 141,
+          "note": "this step",
+          "rule": "unpinned-uses",
+          "severity": "High",
+          "url": "https://docs.zizmor.sh/audits/#unpinned-uses"
+        },
+        {
+          "confidence": "High",
+          "description": "unpinned action reference",
+          "file": ".github/workflows/tests.yaml",
+          "line": 142,
+          "note": "this step",
+          "rule": "unpinned-uses",
+          "severity": "High",
+          "url": "https://docs.zizmor.sh/audits/#unpinned-uses"
+        },
+        {
+          "confidence": "High",
+          "description": "unpinned action reference",
+          "file": ".github/workflows/tests.yaml",
+          "line": 155,
+          "note": "this step",
+          "rule": "unpinned-uses",
+          "severity": "High",
+          "url": "https://docs.zizmor.sh/audits/#unpinned-uses"
+        },
+        {
+          "confidence": "High",
+          "description": "unpinned action reference",
+          "file": ".github/workflows/tests.yaml",
+          "line": 156,
+          "note": "this step",
+          "rule": "unpinned-uses",
+          "severity": "High",
+          "url": "https://docs.zizmor.sh/audits/#unpinned-uses"
+        },
+        {
+          "confidence": "High",
+          "description": "unpinned action reference",
+          "file": ".github/workflows/tests.yaml",
+          "line": 157,
+          "note": "this step",
+          "rule": "unpinned-uses",
+          "severity": "High",
+          "url": "https://docs.zizmor.sh/audits/#unpinned-uses"
+        },
+        {
+          "confidence": "High",
+          "description": "unpinned action reference",
+          "file": ".github/workflows/tests.yaml",
+          "line": 169,
+          "note": "this step",
+          "rule": "unpinned-uses",
+          "severity": "High",
+          "url": "https://docs.zizmor.sh/audits/#unpinned-uses"
+        },
+        {
+          "confidence": "High",
+          "description": "unpinned action reference",
+          "file": ".github/workflows/tests.yaml",
+          "line": 170,
+          "note": "this step",
+          "rule": "unpinned-uses",
+          "severity": "High",
+          "url": "https://docs.zizmor.sh/audits/#unpinned-uses"
+        },
+        {
+          "confidence": "High",
+          "description": "unpinned action reference",
+          "file": ".github/workflows/tests.yaml",
+          "line": 173,
+          "note": "this step",
+          "rule": "unpinned-uses",
+          "severity": "High",
+          "url": "https://docs.zizmor.sh/audits/#unpinned-uses"
+        },
+        {
+          "confidence": "High",
+          "description": "unpinned action reference",
+          "file": ".github/workflows/tests.yaml",
+          "line": 174,
+          "note": "this step",
+          "rule": "unpinned-uses",
+          "severity": "High",
+          "url": "https://docs.zizmor.sh/audits/#unpinned-uses"
+        },
+        {
+          "confidence": "High",
+          "description": "unpinned action reference",
+          "file": ".github/workflows/tests.yaml",
+          "line": 197,
+          "note": "this step",
+          "rule": "unpinned-uses",
+          "severity": "High",
+          "url": "https://docs.zizmor.sh/audits/#unpinned-uses"
+        },
+        {
+          "confidence": "High",
+          "description": "unpinned action reference",
+          "file": ".github/workflows/tests.yaml",
+          "line": 207,
+          "note": "this step",
+          "rule": "unpinned-uses",
+          "severity": "High",
+          "url": "https://docs.zizmor.sh/audits/#unpinned-uses"
+        },
+        {
+          "confidence": "High",
+          "description": "unpinned action reference",
+          "file": ".github/workflows/tests.yaml",
+          "line": 208,
+          "note": "this step",
+          "rule": "unpinned-uses",
+          "severity": "High",
+          "url": "https://docs.zizmor.sh/audits/#unpinned-uses"
+        },
+        {
+          "confidence": "High",
+          "description": "unpinned action reference",
+          "file": ".github/workflows/tests.yaml",
+          "line": 211,
+          "note": "this step",
+          "rule": "unpinned-uses",
+          "severity": "High",
+          "url": "https://docs.zizmor.sh/audits/#unpinned-uses"
+        },
+        {
+          "confidence": "High",
+          "description": "unpinned action reference",
+          "file": ".github/workflows/typos.yaml",
+          "line": 19,
+          "note": "this step",
+          "rule": "unpinned-uses",
+          "severity": "High",
+          "url": "https://docs.zizmor.sh/audits/#unpinned-uses"
+        },
+        {
+          "confidence": "High",
+          "description": "unpinned action reference",
+          "file": ".github/workflows/typos.yaml",
+          "line": 20,
+          "note": "this step",
+          "rule": "unpinned-uses",
+          "severity": "High",
+          "url": "https://docs.zizmor.sh/audits/#unpinned-uses"
+        },
+        {
+          "confidence": "Medium",
+          "description": "overly broad permissions",
+          "file": ".github/workflows/fuzz.yaml",
+          "line": 1,
+          "note": "default permissions used due to no permissions: block",
+          "rule": "excessive-permissions",
+          "severity": "Medium",
+          "url": "https://docs.zizmor.sh/audits/#excessive-permissions"
+        },
+        {
+          "confidence": "Medium",
+          "description": "overly broad permissions",
+          "file": ".github/workflows/fuzz.yaml",
+          "line": 13,
+          "note": "this job",
+          "rule": "excessive-permissions",
+          "severity": "Medium",
+          "url": "https://docs.zizmor.sh/audits/#excessive-permissions"
+        },
+        {
+          "confidence": "Medium",
+          "description": "overly broad permissions",
+          "file": ".github/workflows/fuzz.yaml",
+          "line": 28,
+          "note": "this job",
+          "rule": "excessive-permissions",
+          "severity": "Medium",
+          "url": "https://docs.zizmor.sh/audits/#excessive-permissions"
+        },
+        {
+          "confidence": "Medium",
+          "description": "overly broad permissions",
+          "file": ".github/workflows/generate-docs.yaml",
+          "line": 10,
+          "note": "this job",
+          "rule": "excessive-permissions",
+          "severity": "Medium",
+          "url": "https://docs.zizmor.sh/audits/#excessive-permissions"
+        },
+        {
+          "confidence": "Medium",
+          "description": "overly broad permissions",
+          "file": ".github/workflows/memogen.yaml",
+          "line": 13,
+          "note": "this job",
+          "rule": "excessive-permissions",
+          "severity": "Medium",
+          "url": "https://docs.zizmor.sh/audits/#excessive-permissions"
+        },
+        {
+          "confidence": "Medium",
+          "description": "overly broad permissions",
+          "file": ".github/workflows/perf-regression.yaml",
+          "line": 8,
+          "note": "this job",
+          "rule": "excessive-permissions",
+          "severity": "Medium",
+          "url": "https://docs.zizmor.sh/audits/#excessive-permissions"
+        },
+        {
+          "confidence": "Medium",
+          "description": "overly broad permissions",
+          "file": ".github/workflows/release.yaml",
+          "line": 1,
+          "note": "default permissions used due to no permissions: block",
+          "rule": "excessive-permissions",
+          "severity": "Medium",
+          "url": "https://docs.zizmor.sh/audits/#excessive-permissions"
+        },
+        {
+          "confidence": "Medium",
+          "description": "overly broad permissions",
+          "file": ".github/workflows/release.yaml",
+          "line": 10,
+          "note": "this job",
+          "rule": "excessive-permissions",
+          "severity": "Medium",
+          "url": "https://docs.zizmor.sh/audits/#excessive-permissions"
+        },
+        {
+          "confidence": "Medium",
+          "description": "overly broad permissions",
+          "file": ".github/workflows/release.yaml",
+          "line": 14,
+          "note": "this job",
+          "rule": "excessive-permissions",
+          "severity": "Medium",
+          "url": "https://docs.zizmor.sh/audits/#excessive-permissions"
+        },
+        {
+          "confidence": "Medium",
+          "description": "overly broad permissions",
+          "file": ".github/workflows/tests.yaml",
+          "line": 1,
+          "note": "default permissions used due to no permissions: block",
+          "rule": "excessive-permissions",
+          "severity": "Medium",
+          "url": "https://docs.zizmor.sh/audits/#excessive-permissions"
+        },
+        {
+          "confidence": "Medium",
+          "description": "overly broad permissions",
+          "file": ".github/workflows/tests.yaml",
+          "line": 20,
+          "note": "this job",
+          "rule": "excessive-permissions",
+          "severity": "Medium",
+          "url": "https://docs.zizmor.sh/audits/#excessive-permissions"
+        },
+        {
+          "confidence": "Medium",
+          "description": "overly broad permissions",
+          "file": ".github/workflows/tests.yaml",
+          "line": 34,
+          "note": "this job",
+          "rule": "excessive-permissions",
+          "severity": "Medium",
+          "url": "https://docs.zizmor.sh/audits/#excessive-permissions"
+        },
+        {
+          "confidence": "Medium",
+          "description": "overly broad permissions",
+          "file": ".github/workflows/tests.yaml",
+          "line": 86,
+          "note": "this job",
+          "rule": "excessive-permissions",
+          "severity": "Medium",
+          "url": "https://docs.zizmor.sh/audits/#excessive-permissions"
+        },
+        {
+          "confidence": "Medium",
+          "description": "overly broad permissions",
+          "file": ".github/workflows/tests.yaml",
+          "line": 107,
+          "note": "this job",
+          "rule": "excessive-permissions",
+          "severity": "Medium",
+          "url": "https://docs.zizmor.sh/audits/#excessive-permissions"
+        },
+        {
+          "confidence": "Medium",
+          "description": "overly broad permissions",
+          "file": ".github/workflows/tests.yaml",
+          "line": 127,
+          "note": "this job",
+          "rule": "excessive-permissions",
+          "severity": "Medium",
+          "url": "https://docs.zizmor.sh/audits/#excessive-permissions"
+        },
+        {
+          "confidence": "Medium",
+          "description": "overly broad permissions",
+          "file": ".github/workflows/tests.yaml",
+          "line": 148,
+          "note": "this job",
+          "rule": "excessive-permissions",
+          "severity": "Medium",
+          "url": "https://docs.zizmor.sh/audits/#excessive-permissions"
+        },
+        {
+          "confidence": "Medium",
+          "description": "overly broad permissions",
+          "file": ".github/workflows/tests.yaml",
+          "line": 202,
+          "note": "this job",
+          "rule": "excessive-permissions",
+          "severity": "Medium",
+          "url": "https://docs.zizmor.sh/audits/#excessive-permissions"
+        },
+        {
+          "confidence": "Medium",
+          "description": "overly broad permissions",
+          "file": ".github/workflows/tests.yaml",
+          "line": 213,
+          "note": "this job",
+          "rule": "excessive-permissions",
+          "severity": "Medium",
+          "url": "https://docs.zizmor.sh/audits/#excessive-permissions"
+        },
+        {
+          "confidence": "Medium",
+          "description": "overly broad permissions",
+          "file": ".github/workflows/typos.yaml",
+          "line": 14,
+          "note": "this job",
+          "rule": "excessive-permissions",
+          "severity": "Medium",
+          "url": "https://docs.zizmor.sh/audits/#excessive-permissions"
+        },
+        {
+          "confidence": "High",
+          "description": "use GitHub's dedicated self-repository syntax",
+          "file": ".github/workflows/release.yaml",
+          "line": 11,
+          "note": "this job",
+          "rule": "self-repository",
+          "severity": "Low",
+          "url": "https://docs.zizmor.sh/audits/#self-repository"
+        },
+        {
+          "confidence": "High",
+          "description": "use GitHub's dedicated self-repository syntax",
+          "file": ".github/workflows/tests.yaml",
+          "line": 214,
+          "note": "this job",
+          "rule": "self-repository",
+          "severity": "Low",
+          "url": "https://docs.zizmor.sh/audits/#self-repository"
+        }
+      ]
+    }
   },
   "updated": "2026-11-01"
 }

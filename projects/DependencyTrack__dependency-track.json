@@ -7,11 +7,17 @@
       "dependencies": 212,
       "errors": [],
       "fixable": 0,
+      "go_version": null,
+      "in_binary": null,
       "new_vulnerabilities": 0,
+      "osv_confirmed": 0,
+      "osv_only": 0,
       "ref": "5.2.1",
       "release_changed": false,
+      "release_integrity": "no-linux-binary",
       "removed": 0,
       "resolved_vulnerabilities": 0,
+      "scorecard": 7.5,
       "upgraded": 0,
       "vulnerabilities": {
         "Critical": 0,
@@ -20,6 +26,12 @@
         "Medium": 0,
         "Negligible": 0,
         "Unknown": 0
+      },
+      "workflow": {
+        "High": 0,
+        "Low": 0,
+        "Medium": 0,
+        "files": 15
       }
     }
   ],
@@ -2013,8 +2025,24 @@
       "vuln-data-source/pom.xml"
     ],
     "name": "dependency-track",
+    "osv": {
+      "advisories": 0,
+      "available": true,
+      "confirmed": 0,
+      "osv_only": [],
+      "warning": "osv-scanner could not resolve every manifest: failed resolution for vuln-data-source/osv/pom.xml: failed resolving {Maven:org.dependencytrack:vuln-data-source-osv[Concrete:5.2.1] {}}: version Maven:org.dependencytrack:os-distro-metadata[Concrete:"
+    },
     "ref": "5.2.1",
     "ref_kind": "release",
+    "release_integrity": {
+      "assets": 4,
+      "checksums_published": true,
+      "methods": [],
+      "provenance_published": true,
+      "sbom_published": false,
+      "signatures_published": false,
+      "verdict": "no-linux-binary"
+    },
     "released_at": "2026-10-25T11:13:32Z",
     "repository": "DependencyTrack/dependency-track",
     "sbomlyze_diff": {
@@ -2027,8 +2055,90 @@
       ],
       "removed": 0
     },
-    "scanned_at": "2026-11-01T16:36:47+00:00",
-    "vulnerabilities": []
+    "scanned_at": "2026-11-01T17:42:34+00:00",
+    "scorecard": {
+      "checks": [
+        {
+          "name": "Fuzzing",
+          "reason": "project is not fuzzed",
+          "score": 0
+        },
+        {
+          "name": "Code-Review",
+          "reason": "Found 2/13 approved changesets -- score normalized to 1",
+          "score": 1
+        },
+        {
+          "name": "CII-Best-Practices",
+          "reason": "badge detected: InProgress",
+          "score": 2
+        },
+        {
+          "name": "Branch-Protection",
+          "reason": "branch protection is not maximal on development and all release branches",
+          "score": 3
+        },
+        {
+          "name": "Pinned-Dependencies",
+          "reason": "dependency not pinned by hash detected -- score normalized to 9",
+          "score": 9
+        },
+        {
+          "name": "Security-Policy",
+          "reason": "security policy file detected",
+          "score": 9
+        },
+        {
+          "name": "Binary-Artifacts",
+          "reason": "no binaries found in the repo",
+          "score": 10
+        },
+        {
+          "name": "Dangerous-Workflow",
+          "reason": "no dangerous workflow patterns detected",
+          "score": 10
+        },
+        {
+          "name": "License",
+          "reason": "license file detected",
+          "score": 10
+        },
+        {
+          "name": "Maintained",
+          "reason": "30 commit(s) and 10 issue activity found in the last 90 days -- score normalized to 10",
+          "score": 10
+        },
+        {
+          "name": "SAST",
+          "reason": "SAST tool is run on all commits",
+          "score": 10
+        },
+        {
+          "name": "Signed-Releases",
+          "reason": "5 out of the last 5 releases have a total of 5 signed artifacts.",
+          "score": 10
+        },
+        {
+          "name": "Token-Permissions",
+          "reason": "GitHub workflow tokens follow principle of least privilege",
+          "score": 10
+        },
+        {
+          "name": "Packaging",
+          "reason": "packaging workflow not detected",
+          "score": -1
+        }
+      ],
+      "date": "2026-10-26",
+      "score": 7.5,
+      "source": "openssf-api",
+      "version": "v5.6.0"
+    },
+    "vulnerabilities": [],
+    "workflow_audit": {
+      "files": 15,
+      "findings": []
+    }
   },
   "updated": "2026-11-01"
 }

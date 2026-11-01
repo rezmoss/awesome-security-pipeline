@@ -7,11 +7,21 @@
       "dependencies": 229,
       "errors": [],
       "fixable": 15,
+      "go_version": "go1.26.10",
+      "in_binary": {
+        "dependencies": 12,
+        "stdlib": 0,
+        "total": 12
+      },
       "new_vulnerabilities": 0,
+      "osv_confirmed": 20,
+      "osv_only": 2,
       "ref": "v2.4.9",
       "release_changed": false,
+      "release_integrity": "verified",
       "removed": 0,
       "resolved_vulnerabilities": 0,
+      "scorecard": 6.8,
       "upgraded": 0,
       "vulnerabilities": {
         "Critical": 3,
@@ -20,6 +30,12 @@
         "Medium": 2,
         "Negligible": 0,
         "Unknown": 3
+      },
+      "workflow": {
+        "High": 14,
+        "Low": 9,
+        "Medium": 1,
+        "files": 7
       }
     }
   ],
@@ -1914,6 +1930,218 @@
     ],
     "description": "Query cloud resources using SQL.",
     "errors": [],
+    "go_binary": {
+      "asset": "steampipe_linux_amd64.tar.gz",
+      "binary": "steampipe",
+      "findings": [
+        {
+          "aliases": [
+            "CVE-2020-8912",
+            "GHSA-7f33-f4f5-xwgw"
+          ],
+          "fixed_version": "",
+          "id": "GO-2022-0635",
+          "level": "symbol",
+          "module": "github.com/aws/aws-sdk-go",
+          "summary": "In-band key negotiation issue in AWS S3 Crypto SDK for golang in github.com/aws/aws-sdk-go",
+          "version": "v1.55.6"
+        },
+        {
+          "aliases": [
+            "CVE-2020-8911",
+            "GHSA-f5pg-7wfw-84q9"
+          ],
+          "fixed_version": "",
+          "id": "GO-2022-0646",
+          "level": "symbol",
+          "module": "github.com/aws/aws-sdk-go",
+          "summary": "CBC padding oracle issue in AWS S3 Crypto SDK for golang in github.com/aws/aws-sdk-go",
+          "version": "v1.55.6"
+        },
+        {
+          "aliases": [],
+          "fixed_version": "",
+          "id": "GO-2026-5932",
+          "level": "symbol",
+          "module": "golang.org/x/crypto",
+          "summary": "The golang.org/x/crypto/openpgp package is unmaintained, unsafe by design, and has known security issues",
+          "version": "v0.55.0"
+        },
+        {
+          "aliases": [
+            "CVE-2026-78662"
+          ],
+          "fixed_version": "v0.56.0",
+          "id": "GO-2026-6354",
+          "level": "symbol",
+          "module": "golang.org/x/crypto",
+          "summary": "Prevent DoS on deadlocked undecided channel in golang.org/x/crypto/ssh",
+          "version": "v0.55.0"
+        },
+        {
+          "aliases": [
+            "CVE-2026-56855"
+          ],
+          "fixed_version": "v0.56.0",
+          "id": "GO-2026-6355",
+          "level": "symbol",
+          "module": "golang.org/x/crypto",
+          "summary": "Prevent DoS on deadlocked established channel in golang.org/x/crypto/ssh",
+          "version": "v0.55.0"
+        },
+        {
+          "aliases": [
+            "CVE-2026-78659"
+          ],
+          "fixed_version": "v0.60.0",
+          "id": "GO-2026-6603",
+          "level": "symbol",
+          "module": "golang.org/x/net",
+          "summary": "HTTP/2 server memory exhaustion due to Trailer headers in net/http",
+          "version": "v0.58.0"
+        },
+        {
+          "aliases": [
+            "CVE-2026-78660"
+          ],
+          "fixed_version": "v0.60.0",
+          "id": "GO-2026-6610",
+          "level": "symbol",
+          "module": "golang.org/x/net",
+          "summary": "HTTP/2 transport accepts malformed framing-related headers in net/http",
+          "version": "v0.58.0"
+        },
+        {
+          "aliases": [
+            "CVE-2026-78669"
+          ],
+          "fixed_version": "v0.60.0",
+          "id": "GO-2026-6611",
+          "level": "symbol",
+          "module": "golang.org/x/net",
+          "summary": "Excessive CPU consumption from repeated initial window changes in net/http",
+          "version": "v0.58.0"
+        },
+        {
+          "aliases": [
+            "CVE-2026-78663"
+          ],
+          "fixed_version": "v0.60.0",
+          "id": "GO-2026-6612",
+          "level": "symbol",
+          "module": "golang.org/x/net",
+          "summary": "Double flow control refund on HTTP/2 server streams in net/http",
+          "version": "v0.58.0"
+        },
+        {
+          "aliases": [
+            "CVE-2026-97032"
+          ],
+          "fixed_version": "v0.60.0",
+          "id": "GO-2026-6617",
+          "level": "symbol",
+          "module": "golang.org/x/net",
+          "summary": "HTTP/2 server crash due to HPACK encoder race in net/http",
+          "version": "v0.58.0"
+        },
+        {
+          "aliases": [
+            "CVE-2026-78661"
+          ],
+          "fixed_version": "v0.62.0",
+          "id": "GO-2026-6860",
+          "level": "symbol",
+          "module": "golang.org/x/net",
+          "summary": "Avoid quadratic complexity when coalescing text nodes in html in golang.org/x/net",
+          "version": "v0.58.0"
+        },
+        {
+          "aliases": [
+            "CVE-2026-97045"
+          ],
+          "fixed_version": "v0.62.0",
+          "id": "GO-2026-6866",
+          "level": "symbol",
+          "module": "golang.org/x/net",
+          "summary": "Check all ancestor namespace transitions when rendering raw text in html in golang.org/x/net",
+          "version": "v0.58.0"
+        },
+        {
+          "aliases": [
+            "CVE-2026-53492",
+            "GHSA-33vj-92qq-66hc"
+          ],
+          "fixed_version": "",
+          "id": "GO-2026-5064",
+          "level": "module",
+          "module": "github.com/containerd/containerd",
+          "summary": "containerd CRI checkpoint restore CDI annotation smuggling in github.com/containerd/containerd",
+          "version": "v1.7.35"
+        },
+        {
+          "aliases": [
+            "CVE-2026-50195",
+            "GHSA-cvxm-645q-p574"
+          ],
+          "fixed_version": "",
+          "id": "GO-2026-5338",
+          "level": "module",
+          "module": "github.com/containerd/containerd",
+          "summary": "containerd: CRI checkpoint import allows local image tag poisoning in github.com/containerd/containerd",
+          "version": "v1.7.35"
+        },
+        {
+          "aliases": [
+            "CVE-2026-53489",
+            "GHSA-rgh6-rfwx-v388"
+          ],
+          "fixed_version": "",
+          "id": "GO-2026-5622",
+          "level": "module",
+          "module": "github.com/containerd/containerd",
+          "summary": "Arbitrary host CRI log file read via symlink following in CRI checkpoint restore in github.com/containerd/containerd",
+          "version": "v1.7.35"
+        },
+        {
+          "aliases": [
+            "CVE-2026-53493",
+            "GHSA-pg57-6jwg-q645"
+          ],
+          "fixed_version": "v1.7.36",
+          "id": "GO-2026-6597",
+          "level": "module",
+          "module": "github.com/containerd/containerd",
+          "summary": "Containerd has image-pull DoS via crafted OCI index graph amplification in github.com/containerd/containerd",
+          "version": "v1.7.35"
+        },
+        {
+          "aliases": [
+            "CVE-2026-95837",
+            "GHSA-p7v4-vr35-mj6f"
+          ],
+          "fixed_version": "",
+          "id": "GO-2026-6791",
+          "level": "module",
+          "module": "github.com/containerd/containerd",
+          "summary": "containerd CRI plugin: Checkpoint restore bypasses destination security context in github.com/containerd/containerd",
+          "version": "v1.7.35"
+        },
+        {
+          "aliases": [
+            "CVE-2026-81870",
+            "GHSA-8wmf-6v46-5gfg"
+          ],
+          "fixed_version": "v1.45.0",
+          "id": "GO-2026-6505",
+          "level": "module",
+          "module": "go.opentelemetry.io/otel/exporters/otlp/otlptrace",
+          "summary": "OpenTelemetry-Go: Exporter config logging may leak endpoint URLs in info logs in go.opentelemetry.io/otel/exporters/otlp/otlptrace",
+          "version": "v1.35.0"
+        }
+      ],
+      "go_version": "go1.26.10",
+      "main_module": "github.com/turbot/steampipe/v2"
+    },
     "id": "turbot__steampipe",
     "manifests": [
       ".github/workflows/01-steampipe-release.yaml",
@@ -1927,8 +2155,57 @@
       "go.sum"
     ],
     "name": "steampipe",
+    "osv": {
+      "advisories": 22,
+      "available": true,
+      "confirmed": 20,
+      "osv_only": [
+        {
+          "ecosystem": "Go",
+          "ids": [
+            "CVE-2020-8912",
+            "GHSA-7f33-f4f5-xwgw",
+            "GO-2022-0635"
+          ],
+          "package": "github.com/aws/aws-sdk-go",
+          "score": "",
+          "severity": "Unknown",
+          "version": "1.55.6"
+        },
+        {
+          "ecosystem": "Go",
+          "ids": [
+            "CVE-2020-8911",
+            "GHSA-f5pg-7wfw-84q9",
+            "GO-2022-0646"
+          ],
+          "package": "github.com/aws/aws-sdk-go",
+          "score": "",
+          "severity": "Unknown",
+          "version": "1.55.6"
+        }
+      ],
+      "warning": null
+    },
     "ref": "v2.4.9",
     "ref_kind": "release",
+    "release_integrity": {
+      "asset": "steampipe_linux_amd64.tar.gz",
+      "assets": 9,
+      "checksums_published": true,
+      "digest_matches_github": true,
+      "methods": [
+        {
+          "detail": "GitHub attests the file is unchanged since the release was published",
+          "method": "github-immutable-release",
+          "status": "verified"
+        }
+      ],
+      "provenance_published": false,
+      "sbom_published": false,
+      "signatures_published": false,
+      "verdict": "verified"
+    },
     "released_at": "2026-11-01T12:48:24Z",
     "repository": "turbot/steampipe",
     "sbomlyze_diff": {
@@ -1941,7 +2218,85 @@
       ],
       "removed": 0
     },
-    "scanned_at": "2026-11-01T16:37:45+00:00",
+    "scanned_at": "2026-11-01T17:43:55+00:00",
+    "scorecard": {
+      "checks": [
+        {
+          "name": "CII-Best-Practices",
+          "reason": "no effort to earn an OpenSSF best practices badge detected",
+          "score": 0
+        },
+        {
+          "name": "Fuzzing",
+          "reason": "project is not fuzzed",
+          "score": 0
+        },
+        {
+          "name": "Signed-Releases",
+          "reason": "Project has not signed or included provenance with any releases.",
+          "score": 0
+        },
+        {
+          "name": "Token-Permissions",
+          "reason": "detected GitHub workflow tokens with excessive permissions",
+          "score": 0
+        },
+        {
+          "name": "Pinned-Dependencies",
+          "reason": "dependency not pinned by hash detected -- score normalized to 8",
+          "score": 8
+        },
+        {
+          "name": "Code-Review",
+          "reason": "Found 22/23 approved changesets -- score normalized to 9",
+          "score": 9
+        },
+        {
+          "name": "SAST",
+          "reason": "SAST tool is not run on all commits -- score normalized to 9",
+          "score": 9
+        },
+        {
+          "name": "Binary-Artifacts",
+          "reason": "no binaries found in the repo",
+          "score": 10
+        },
+        {
+          "name": "Dangerous-Workflow",
+          "reason": "no dangerous workflow patterns detected",
+          "score": 10
+        },
+        {
+          "name": "License",
+          "reason": "license file detected",
+          "score": 10
+        },
+        {
+          "name": "Maintained",
+          "reason": "27 commit(s) and 0 issue activity found in the last 90 days -- score normalized to 10",
+          "score": 10
+        },
+        {
+          "name": "Packaging",
+          "reason": "packaging workflow detected",
+          "score": 10
+        },
+        {
+          "name": "Security-Policy",
+          "reason": "security policy file detected",
+          "score": 10
+        },
+        {
+          "name": "Branch-Protection",
+          "reason": "internal error: error during branchesHandler.setup: internal error: some github tokens can't read classic branch protection rules: https://github.com/ossf/scorecard-action/blob/main/docs/authentication/fine-grained-auth-token.md",
+          "score": -1
+        }
+      ],
+      "date": "2026-10-19",
+      "score": 6.8,
+      "source": "openssf-api",
+      "version": "v5.6.0"
+    },
     "vulnerabilities": [
       {
         "aliases": [
@@ -1952,7 +2307,9 @@
         "fix_state": "unknown",
         "fixed_in": [],
         "id": "GO-2026-5064",
+        "in_binary": "module in binary",
         "location": "go.mod",
+        "osv_confirmed": true,
         "package": "github.com/containerd/containerd",
         "severity": "Critical",
         "url": "https://github.com/containerd/containerd/security/advisories/GHSA-33vj-92qq-66hc",
@@ -1967,7 +2324,9 @@
         "fix_state": "unknown",
         "fixed_in": [],
         "id": "GO-2026-5338",
+        "in_binary": "module in binary",
         "location": "go.mod",
+        "osv_confirmed": true,
         "package": "github.com/containerd/containerd",
         "severity": "Critical",
         "url": "https://github.com/containerd/containerd/security/advisories/GHSA-cvxm-645q-p574",
@@ -1983,7 +2342,9 @@
           "0.60.0"
         ],
         "id": "GO-2026-6612",
+        "in_binary": "vulnerable code in binary",
         "location": "go.mod",
+        "osv_confirmed": true,
         "package": "golang.org/x/net",
         "severity": "Critical",
         "url": "https://go.dev/cl/847187",
@@ -1998,7 +2359,9 @@
         "fix_state": "unknown",
         "fixed_in": [],
         "id": "GO-2026-6791",
+        "in_binary": "module in binary",
         "location": "go.mod",
+        "osv_confirmed": true,
         "package": "github.com/containerd/containerd",
         "severity": "High",
         "url": "https://github.com/containerd/containerd/security/advisories/GHSA-p7v4-vr35-mj6f",
@@ -2014,7 +2377,9 @@
           "0.56.0"
         ],
         "id": "GO-2026-6354",
+        "in_binary": "vulnerable code in binary",
         "location": "go.mod",
+        "osv_confirmed": true,
         "package": "golang.org/x/crypto",
         "severity": "High",
         "url": "https://go.dev/issue/81316",
@@ -2030,7 +2395,9 @@
           "0.56.0"
         ],
         "id": "GO-2026-6355",
+        "in_binary": "vulnerable code in binary",
         "location": "go.mod",
+        "osv_confirmed": true,
         "package": "golang.org/x/crypto",
         "severity": "High",
         "url": "https://go.dev/issue/81317",
@@ -2046,7 +2413,9 @@
           "0.40.0"
         ],
         "id": "GO-2026-6179",
+        "in_binary": "not in released binary",
         "location": "go.mod",
+        "osv_confirmed": true,
         "package": "golang.org/x/mod",
         "severity": "High",
         "url": "https://go.dev/issue/80744",
@@ -2062,7 +2431,9 @@
           "0.40.0"
         ],
         "id": "GO-2026-6180",
+        "in_binary": "not in released binary",
         "location": "go.mod",
+        "osv_confirmed": true,
         "package": "golang.org/x/mod",
         "severity": "High",
         "url": "https://go.dev/issue/80745",
@@ -2078,7 +2449,9 @@
           "0.60.0"
         ],
         "id": "GO-2026-6603",
+        "in_binary": "vulnerable code in binary",
         "location": "go.mod",
+        "osv_confirmed": true,
         "package": "golang.org/x/net",
         "severity": "High",
         "url": "https://go.dev/cl/847185",
@@ -2094,7 +2467,9 @@
           "0.60.0"
         ],
         "id": "GO-2026-6610",
+        "in_binary": "vulnerable code in binary",
         "location": "go.mod",
+        "osv_confirmed": true,
         "package": "golang.org/x/net",
         "severity": "High",
         "url": "https://go.dev/cl/835145",
@@ -2110,7 +2485,9 @@
           "0.60.0"
         ],
         "id": "GO-2026-6611",
+        "in_binary": "vulnerable code in binary",
         "location": "go.mod",
+        "osv_confirmed": true,
         "package": "golang.org/x/net",
         "severity": "High",
         "url": "https://go.dev/cl/847186",
@@ -2126,7 +2503,9 @@
           "0.60.0"
         ],
         "id": "GO-2026-6617",
+        "in_binary": "vulnerable code in binary",
         "location": "go.mod",
+        "osv_confirmed": true,
         "package": "golang.org/x/net",
         "severity": "High",
         "url": "https://go.dev/cl/847188",
@@ -2142,7 +2521,9 @@
           "1.7.36"
         ],
         "id": "GHSA-pg57-6jwg-q645",
+        "in_binary": "module in binary",
         "location": "go.mod",
+        "osv_confirmed": true,
         "package": "github.com/containerd/containerd",
         "severity": "Medium",
         "url": "https://github.com/advisories/GHSA-pg57-6jwg-q645",
@@ -2157,7 +2538,9 @@
         "fix_state": "unknown",
         "fixed_in": [],
         "id": "GO-2026-5622",
+        "in_binary": "module in binary",
         "location": "go.mod",
+        "osv_confirmed": true,
         "package": "github.com/containerd/containerd",
         "severity": "Medium",
         "url": "https://github.com/containerd/containerd/security/advisories/GHSA-rgh6-rfwx-v388",
@@ -2173,7 +2556,9 @@
           "1.45.0"
         ],
         "id": "GHSA-8wmf-6v46-5gfg",
+        "in_binary": "module in binary",
         "location": "go.mod",
+        "osv_confirmed": true,
         "package": "go.opentelemetry.io/otel/exporters/otlp/otlptrace",
         "severity": "Low",
         "url": "https://github.com/advisories/GHSA-8wmf-6v46-5gfg",
@@ -2189,7 +2574,9 @@
           "1.45.0"
         ],
         "id": "GHSA-8wmf-6v46-5gfg",
+        "in_binary": "module in binary",
         "location": "go.mod",
+        "osv_confirmed": true,
         "package": "go.opentelemetry.io/otel/exporters/otlp/otlptrace/otlptracegrpc",
         "severity": "Low",
         "url": "https://github.com/advisories/GHSA-8wmf-6v46-5gfg",
@@ -2205,7 +2592,9 @@
           "1.45.0"
         ],
         "id": "GHSA-8wmf-6v46-5gfg",
+        "in_binary": "module in binary",
         "location": "go.mod",
+        "osv_confirmed": true,
         "package": "go.opentelemetry.io/otel/sdk",
         "severity": "Low",
         "url": "https://github.com/advisories/GHSA-8wmf-6v46-5gfg",
@@ -2217,7 +2606,9 @@
         "fix_state": "unknown",
         "fixed_in": [],
         "id": "GO-2026-5932",
+        "in_binary": "vulnerable code in binary",
         "location": "go.mod",
+        "osv_confirmed": true,
         "package": "golang.org/x/crypto",
         "severity": "Unknown",
         "url": "https://go.dev/issue/44226",
@@ -2233,7 +2624,9 @@
           "0.62.0"
         ],
         "id": "GO-2026-6860",
+        "in_binary": "vulnerable code in binary",
         "location": "go.mod",
+        "osv_confirmed": true,
         "package": "golang.org/x/net",
         "severity": "Unknown",
         "url": "https://go.dev/cl/849365",
@@ -2249,13 +2642,260 @@
           "0.62.0"
         ],
         "id": "GO-2026-6866",
+        "in_binary": "vulnerable code in binary",
         "location": "go.mod",
+        "osv_confirmed": true,
         "package": "golang.org/x/net",
         "severity": "Unknown",
         "url": "https://go.dev/cl/855121",
         "version": "v0.58.0"
       }
-    ]
+    ],
+    "workflow_audit": {
+      "files": 7,
+      "findings": [
+        {
+          "confidence": "High",
+          "description": "overly broad permissions",
+          "file": ".github/workflows/01-steampipe-release.yaml",
+          "line": 25,
+          "note": "contents: write is overly broad at the workflow level",
+          "rule": "excessive-permissions",
+          "severity": "High",
+          "url": "https://docs.zizmor.sh/audits/#excessive-permissions"
+        },
+        {
+          "confidence": "High",
+          "description": "code injection via template expansion",
+          "file": ".github/workflows/01-steampipe-release.yaml",
+          "line": 44,
+          "note": "this step",
+          "rule": "template-injection",
+          "severity": "High",
+          "url": "https://docs.zizmor.sh/audits/#template-injection"
+        },
+        {
+          "confidence": "High",
+          "description": "code injection via template expansion",
+          "file": ".github/workflows/01-steampipe-release.yaml",
+          "line": 95,
+          "note": "this step",
+          "rule": "template-injection",
+          "severity": "High",
+          "url": "https://docs.zizmor.sh/audits/#template-injection"
+        },
+        {
+          "confidence": "High",
+          "description": "code injection via template expansion",
+          "file": ".github/workflows/01-steampipe-release.yaml",
+          "line": 95,
+          "note": "this step",
+          "rule": "template-injection",
+          "severity": "High",
+          "url": "https://docs.zizmor.sh/audits/#template-injection"
+        },
+        {
+          "confidence": "High",
+          "description": "code injection via template expansion",
+          "file": ".github/workflows/01-steampipe-release.yaml",
+          "line": 95,
+          "note": "this step",
+          "rule": "template-injection",
+          "severity": "High",
+          "url": "https://docs.zizmor.sh/audits/#template-injection"
+        },
+        {
+          "confidence": "High",
+          "description": "code injection via template expansion",
+          "file": ".github/workflows/01-steampipe-release.yaml",
+          "line": 95,
+          "note": "this step",
+          "rule": "template-injection",
+          "severity": "High",
+          "url": "https://docs.zizmor.sh/audits/#template-injection"
+        },
+        {
+          "confidence": "High",
+          "description": "code injection via template expansion",
+          "file": ".github/workflows/01-steampipe-release.yaml",
+          "line": 95,
+          "note": "this step",
+          "rule": "template-injection",
+          "severity": "High",
+          "url": "https://docs.zizmor.sh/audits/#template-injection"
+        },
+        {
+          "confidence": "High",
+          "description": "code injection via template expansion",
+          "file": ".github/workflows/01-steampipe-release.yaml",
+          "line": 139,
+          "note": "this step",
+          "rule": "template-injection",
+          "severity": "High",
+          "url": "https://docs.zizmor.sh/audits/#template-injection"
+        },
+        {
+          "confidence": "High",
+          "description": "code injection via template expansion",
+          "file": ".github/workflows/01-steampipe-release.yaml",
+          "line": 185,
+          "note": "this step",
+          "rule": "template-injection",
+          "severity": "High",
+          "url": "https://docs.zizmor.sh/audits/#template-injection"
+        },
+        {
+          "confidence": "High",
+          "description": "code injection via template expansion",
+          "file": ".github/workflows/01-steampipe-release.yaml",
+          "line": 220,
+          "note": "this step",
+          "rule": "template-injection",
+          "severity": "High",
+          "url": "https://docs.zizmor.sh/audits/#template-injection"
+        },
+        {
+          "confidence": "High",
+          "description": "code injection via template expansion",
+          "file": ".github/workflows/01-steampipe-release.yaml",
+          "line": 253,
+          "note": "this step",
+          "rule": "template-injection",
+          "severity": "High",
+          "url": "https://docs.zizmor.sh/audits/#template-injection"
+        },
+        {
+          "confidence": "High",
+          "description": "code injection via template expansion",
+          "file": ".github/workflows/01-steampipe-release.yaml",
+          "line": 276,
+          "note": "this step",
+          "rule": "template-injection",
+          "severity": "High",
+          "url": "https://docs.zizmor.sh/audits/#template-injection"
+        },
+        {
+          "confidence": "High",
+          "description": "code injection via template expansion",
+          "file": ".github/workflows/01-steampipe-release.yaml",
+          "line": 287,
+          "note": "this step",
+          "rule": "template-injection",
+          "severity": "High",
+          "url": "https://docs.zizmor.sh/audits/#template-injection"
+        },
+        {
+          "confidence": "High",
+          "description": "unpinned action reference",
+          "file": ".github/workflows/31-add-issues-to-pipeling-issue-tracker.yaml",
+          "line": 11,
+          "note": "this job",
+          "rule": "unpinned-uses",
+          "severity": "High",
+          "url": "https://docs.zizmor.sh/audits/#unpinned-uses"
+        },
+        {
+          "confidence": "High",
+          "description": "secrets unconditionally inherited by called workflow",
+          "file": ".github/workflows/31-add-issues-to-pipeling-issue-tracker.yaml",
+          "line": 12,
+          "note": "this reusable workflow",
+          "rule": "secrets-inherit",
+          "severity": "Medium",
+          "url": "https://docs.zizmor.sh/audits/#secrets-inherit"
+        },
+        {
+          "confidence": "High",
+          "description": "code injection via template expansion",
+          "file": ".github/workflows/01-steampipe-release.yaml",
+          "line": 247,
+          "note": "this step",
+          "rule": "template-injection",
+          "severity": "Low",
+          "url": "https://docs.zizmor.sh/audits/#template-injection"
+        },
+        {
+          "confidence": "High",
+          "description": "code injection via template expansion",
+          "file": ".github/workflows/12-test-post-release-linux-distros.yaml",
+          "line": 30,
+          "note": "this step",
+          "rule": "template-injection",
+          "severity": "Low",
+          "url": "https://docs.zizmor.sh/audits/#template-injection"
+        },
+        {
+          "confidence": "High",
+          "description": "code injection via template expansion",
+          "file": ".github/workflows/12-test-post-release-linux-distros.yaml",
+          "line": 76,
+          "note": "this step",
+          "rule": "template-injection",
+          "severity": "Low",
+          "url": "https://docs.zizmor.sh/audits/#template-injection"
+        },
+        {
+          "confidence": "High",
+          "description": "code injection via template expansion",
+          "file": ".github/workflows/12-test-post-release-linux-distros.yaml",
+          "line": 122,
+          "note": "this step",
+          "rule": "template-injection",
+          "severity": "Low",
+          "url": "https://docs.zizmor.sh/audits/#template-injection"
+        },
+        {
+          "confidence": "High",
+          "description": "code injection via template expansion",
+          "file": ".github/workflows/12-test-post-release-linux-distros.yaml",
+          "line": 168,
+          "note": "this step",
+          "rule": "template-injection",
+          "severity": "Low",
+          "url": "https://docs.zizmor.sh/audits/#template-injection"
+        },
+        {
+          "confidence": "High",
+          "description": "code injection via template expansion",
+          "file": ".github/workflows/12-test-post-release-linux-distros.yaml",
+          "line": 214,
+          "note": "this step",
+          "rule": "template-injection",
+          "severity": "Low",
+          "url": "https://docs.zizmor.sh/audits/#template-injection"
+        },
+        {
+          "confidence": "High",
+          "description": "code injection via template expansion",
+          "file": ".github/workflows/12-test-post-release-linux-distros.yaml",
+          "line": 266,
+          "note": "this step",
+          "rule": "template-injection",
+          "severity": "Low",
+          "url": "https://docs.zizmor.sh/audits/#template-injection"
+        },
+        {
+          "confidence": "High",
+          "description": "code injection via template expansion",
+          "file": ".github/workflows/12-test-post-release-linux-distros.yaml",
+          "line": 266,
+          "note": "this step",
+          "rule": "template-injection",
+          "severity": "Low",
+          "url": "https://docs.zizmor.sh/audits/#template-injection"
+        },
+        {
+          "confidence": "High",
+          "description": "code injection via template expansion",
+          "file": ".github/workflows/12-test-post-release-linux-distros.yaml",
+          "line": 266,
+          "note": "this step",
+          "rule": "template-injection",
+          "severity": "Low",
+          "url": "https://docs.zizmor.sh/audits/#template-injection"
+        }
+      ]
+    }
   },
   "updated": "2026-11-01"
 }

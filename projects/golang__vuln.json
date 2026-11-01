@@ -7,11 +7,17 @@
       "dependencies": 8,
       "errors": [],
       "fixable": 3,
+      "go_version": null,
+      "in_binary": null,
       "new_vulnerabilities": 0,
+      "osv_confirmed": 3,
+      "osv_only": 0,
       "ref": "v1.1.4",
       "release_changed": false,
+      "release_integrity": "no-assets",
       "removed": 0,
       "resolved_vulnerabilities": 0,
+      "scorecard": 3.7,
       "upgraded": 0,
       "vulnerabilities": {
         "Critical": 0,
@@ -20,6 +26,12 @@
         "Medium": 0,
         "Negligible": 0,
         "Unknown": 0
+      },
+      "workflow": {
+        "High": 0,
+        "Low": 0,
+        "Medium": 0,
+        "files": 0
       }
     }
   ],
@@ -152,8 +164,24 @@
       "go.sum"
     ],
     "name": "govulncheck",
+    "osv": {
+      "advisories": 3,
+      "available": true,
+      "confirmed": 3,
+      "osv_only": [],
+      "warning": null
+    },
     "ref": "v1.1.4",
     "ref_kind": "release",
+    "release_integrity": {
+      "assets": 0,
+      "checksums_published": false,
+      "methods": [],
+      "provenance_published": false,
+      "sbom_published": false,
+      "signatures_published": false,
+      "verdict": "no-assets"
+    },
     "released_at": "2025-01-13T17:14:20Z",
     "repository": "golang/vuln",
     "sbomlyze_diff": {
@@ -165,7 +193,85 @@
       ],
       "removed": 0
     },
-    "scanned_at": "2026-11-01T16:37:18+00:00",
+    "scanned_at": "2026-11-01T17:44:13+00:00",
+    "scorecard": {
+      "checks": [
+        {
+          "name": "Branch-Protection",
+          "reason": "branch protection not enabled on development/release branches",
+          "score": 0
+        },
+        {
+          "name": "CII-Best-Practices",
+          "reason": "no effort to earn an OpenSSF best practices badge detected",
+          "score": 0
+        },
+        {
+          "name": "Fuzzing",
+          "reason": "project is not fuzzed",
+          "score": 0
+        },
+        {
+          "name": "Pinned-Dependencies",
+          "reason": "dependency not pinned by hash detected -- score normalized to 0",
+          "score": 0
+        },
+        {
+          "name": "SAST",
+          "reason": "no SAST tool detected",
+          "score": 0
+        },
+        {
+          "name": "Security-Policy",
+          "reason": "security policy file not detected",
+          "score": 0
+        },
+        {
+          "name": "Maintained",
+          "reason": "5 commit(s) and 0 issue activity found in the last 90 days -- score normalized to 4",
+          "score": 4
+        },
+        {
+          "name": "Binary-Artifacts",
+          "reason": "no binaries found in the repo",
+          "score": 10
+        },
+        {
+          "name": "Code-Review",
+          "reason": "all changesets reviewed",
+          "score": 10
+        },
+        {
+          "name": "License",
+          "reason": "license file detected",
+          "score": 10
+        },
+        {
+          "name": "Dangerous-Workflow",
+          "reason": "no workflows found",
+          "score": -1
+        },
+        {
+          "name": "Packaging",
+          "reason": "packaging workflow not detected",
+          "score": -1
+        },
+        {
+          "name": "Signed-Releases",
+          "reason": "no releases found",
+          "score": -1
+        },
+        {
+          "name": "Token-Permissions",
+          "reason": "No tokens found",
+          "score": -1
+        }
+      ],
+      "date": "2026-10-19",
+      "score": 3.7,
+      "source": "openssf-api",
+      "version": "v5.6.0"
+    },
     "vulnerabilities": [
       {
         "aliases": [
@@ -178,6 +284,7 @@
         ],
         "id": "GO-2026-6179",
         "location": "go.mod",
+        "osv_confirmed": true,
         "package": "golang.org/x/mod",
         "severity": "High",
         "url": "https://go.dev/issue/80744",
@@ -194,6 +301,7 @@
         ],
         "id": "GO-2026-6180",
         "location": "go.mod",
+        "osv_confirmed": true,
         "package": "golang.org/x/mod",
         "severity": "High",
         "url": "https://go.dev/issue/80745",
@@ -210,12 +318,17 @@
         ],
         "id": "GO-2026-5024",
         "location": "go.mod",
+        "osv_confirmed": true,
         "package": "golang.org/x/sys",
         "severity": "Low",
         "url": "https://go.dev/issue/78916",
         "version": "v0.29.0"
       }
-    ]
+    ],
+    "workflow_audit": {
+      "files": 0,
+      "findings": []
+    }
   },
   "updated": "2026-11-01"
 }

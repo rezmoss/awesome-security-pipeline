@@ -7,11 +7,21 @@
       "dependencies": 81,
       "errors": [],
       "fixable": 8,
+      "go_version": "go1.27.1",
+      "in_binary": {
+        "dependencies": 5,
+        "stdlib": 11,
+        "total": 16
+      },
       "new_vulnerabilities": 0,
+      "osv_confirmed": 8,
+      "osv_only": 0,
       "ref": "v10.2.5",
       "release_changed": false,
+      "release_integrity": "signed",
       "removed": 0,
       "resolved_vulnerabilities": 0,
+      "scorecard": 5.1,
       "upgraded": 0,
       "vulnerabilities": {
         "Critical": 1,
@@ -20,6 +30,12 @@
         "Medium": 0,
         "Negligible": 0,
         "Unknown": 2
+      },
+      "workflow": {
+        "High": 5,
+        "Low": 1,
+        "Medium": 3,
+        "files": 3
       }
     }
   ],
@@ -730,6 +746,190 @@
     ],
     "description": "Validate Kubernetes best practices and policies.",
     "errors": [],
+    "go_binary": {
+      "asset": "polaris_10.2.5_linux_amd64.tar.gz",
+      "binary": "polaris",
+      "findings": [
+        {
+          "aliases": [
+            "CVE-2026-94448"
+          ],
+          "fixed_version": "v1.27.2",
+          "id": "GO-2026-6599",
+          "level": "symbol",
+          "module": "stdlib",
+          "summary": "Reset context tracking on consecutive template expressions in html/template",
+          "version": "v1.27.1"
+        },
+        {
+          "aliases": [
+            "CVE-2026-97030"
+          ],
+          "fixed_version": "v1.27.2",
+          "id": "GO-2026-6600",
+          "level": "symbol",
+          "module": "stdlib",
+          "summary": "Recognize yield as regexp preceder keyword in html/template",
+          "version": "v1.27.1"
+        },
+        {
+          "aliases": [
+            "CVE-2026-56866"
+          ],
+          "fixed_version": "v1.27.2",
+          "id": "GO-2026-6605",
+          "level": "symbol",
+          "module": "stdlib",
+          "summary": "HTTP/1 client connection desynchronization after CONNECT rejection in net/http",
+          "version": "v1.27.1"
+        },
+        {
+          "aliases": [
+            "CVE-2026-97031"
+          ],
+          "fixed_version": "v1.27.2",
+          "id": "GO-2026-6607",
+          "level": "symbol",
+          "module": "stdlib",
+          "summary": "Reject malformed ECH outer extension references in crypto/tls",
+          "version": "v1.27.1"
+        },
+        {
+          "aliases": [
+            "CVE-2026-94440"
+          ],
+          "fixed_version": "v1.27.2",
+          "id": "GO-2026-6608",
+          "level": "symbol",
+          "module": "stdlib",
+          "summary": "Memory limit bypass when parsing MIME headers in net/textproto, mime/multipart",
+          "version": "v1.27.1"
+        },
+        {
+          "aliases": [
+            "CVE-2026-78667"
+          ],
+          "fixed_version": "v1.27.2",
+          "id": "GO-2026-6609",
+          "level": "symbol",
+          "module": "stdlib",
+          "summary": "Lack of limit on size of parsed Range headers in net/http",
+          "version": "v1.27.1"
+        },
+        {
+          "aliases": [
+            "CVE-2026-78660"
+          ],
+          "fixed_version": "v1.27.2",
+          "id": "GO-2026-6610",
+          "level": "symbol",
+          "module": "stdlib",
+          "summary": "HTTP/2 transport accepts malformed framing-related headers in net/http",
+          "version": "v1.27.1"
+        },
+        {
+          "aliases": [
+            "CVE-2026-78669"
+          ],
+          "fixed_version": "v1.27.2",
+          "id": "GO-2026-6611",
+          "level": "symbol",
+          "module": "stdlib",
+          "summary": "Excessive CPU consumption from repeated initial window changes in net/http",
+          "version": "v1.27.1"
+        },
+        {
+          "aliases": [
+            "CVE-2026-94439"
+          ],
+          "fixed_version": "v1.27.2",
+          "id": "GO-2026-6613",
+          "level": "symbol",
+          "module": "stdlib",
+          "summary": "HTTP/1 server connection desynchronization after 2xx CONNECT response in net/http",
+          "version": "v1.27.1"
+        },
+        {
+          "aliases": [
+            "CVE-2026-97032"
+          ],
+          "fixed_version": "v1.27.2",
+          "id": "GO-2026-6617",
+          "level": "symbol",
+          "module": "stdlib",
+          "summary": "HTTP/2 server crash due to HPACK encoder race in net/http",
+          "version": "v1.27.1"
+        },
+        {
+          "aliases": [
+            "CVE-2026-111943"
+          ],
+          "fixed_version": "v1.27.3",
+          "id": "GO-2026-6809",
+          "level": "symbol",
+          "module": "stdlib",
+          "summary": "Distrust compromised intermediate certificates in crypto/x509",
+          "version": "v1.27.1"
+        },
+        {
+          "aliases": [
+            "CVE-2026-78659"
+          ],
+          "fixed_version": "v0.60.0",
+          "id": "GO-2026-6603",
+          "level": "symbol",
+          "module": "golang.org/x/net",
+          "summary": "HTTP/2 server memory exhaustion due to Trailer headers in net/http",
+          "version": "v0.57.0"
+        },
+        {
+          "aliases": [
+            "CVE-2026-78663"
+          ],
+          "fixed_version": "v0.60.0",
+          "id": "GO-2026-6612",
+          "level": "symbol",
+          "module": "golang.org/x/net",
+          "summary": "Double flow control refund on HTTP/2 server streams in net/http",
+          "version": "v0.57.0"
+        },
+        {
+          "aliases": [
+            "CVE-2026-78661"
+          ],
+          "fixed_version": "v0.62.0",
+          "id": "GO-2026-6860",
+          "level": "symbol",
+          "module": "golang.org/x/net",
+          "summary": "Avoid quadratic complexity when coalescing text nodes in html in golang.org/x/net",
+          "version": "v0.57.0"
+        },
+        {
+          "aliases": [
+            "CVE-2026-97045"
+          ],
+          "fixed_version": "v0.62.0",
+          "id": "GO-2026-6866",
+          "level": "symbol",
+          "module": "golang.org/x/net",
+          "summary": "Check all ancestor namespace transitions when rendering raw text in html in golang.org/x/net",
+          "version": "v0.57.0"
+        },
+        {
+          "aliases": [
+            "CVE-2026-56851"
+          ],
+          "fixed_version": "v0.41.0",
+          "id": "GO-2026-6629",
+          "level": "symbol",
+          "module": "golang.org/x/text",
+          "summary": "Panic parsing crafted input in x/text/secure/precis in golang.org/x/text",
+          "version": "v0.40.0"
+        }
+      ],
+      "go_version": "go1.27.1",
+      "main_module": "github.com/fairwindsops/polaris"
+    },
     "id": "FairwindsOps__polaris",
     "manifests": [
       ".github/actions/setup-polaris/action.yaml",
@@ -739,8 +939,33 @@
       "go.sum"
     ],
     "name": "polaris",
+    "osv": {
+      "advisories": 8,
+      "available": true,
+      "confirmed": 8,
+      "osv_only": [],
+      "warning": null
+    },
     "ref": "v10.2.5",
     "ref_kind": "release",
+    "release_integrity": {
+      "asset": "polaris_10.2.5_linux_amd64.tar.gz",
+      "assets": 16,
+      "checksums_published": true,
+      "digest_matches_github": true,
+      "methods": [
+        {
+          "covers": "asset",
+          "detail": "signed with the project's own key; the public key is not checked",
+          "method": "cosign",
+          "status": "key-signature"
+        }
+      ],
+      "provenance_published": false,
+      "sbom_published": false,
+      "signatures_published": true,
+      "verdict": "signed"
+    },
     "released_at": "2026-09-18T14:39:52Z",
     "repository": "FairwindsOps/polaris",
     "sbomlyze_diff": {
@@ -753,7 +978,85 @@
       ],
       "removed": 0
     },
-    "scanned_at": "2026-11-01T16:36:47+00:00",
+    "scanned_at": "2026-11-01T17:43:55+00:00",
+    "scorecard": {
+      "checks": [
+        {
+          "name": "CII-Best-Practices",
+          "reason": "no effort to earn an OpenSSF best practices badge detected",
+          "score": 0
+        },
+        {
+          "name": "Fuzzing",
+          "reason": "project is not fuzzed",
+          "score": 0
+        },
+        {
+          "name": "Pinned-Dependencies",
+          "reason": "dependency not pinned by hash detected -- score normalized to 0",
+          "score": 0
+        },
+        {
+          "name": "SAST",
+          "reason": "SAST tool is not run on all commits -- score normalized to 0",
+          "score": 0
+        },
+        {
+          "name": "Security-Policy",
+          "reason": "security policy file not detected",
+          "score": 0
+        },
+        {
+          "name": "Token-Permissions",
+          "reason": "detected GitHub workflow tokens with excessive permissions",
+          "score": 0
+        },
+        {
+          "name": "Code-Review",
+          "reason": "Found 5/10 approved changesets -- score normalized to 5",
+          "score": 5
+        },
+        {
+          "name": "Signed-Releases",
+          "reason": "5 out of the last 5 releases have a total of 5 signed artifacts.",
+          "score": 8
+        },
+        {
+          "name": "Binary-Artifacts",
+          "reason": "no binaries found in the repo",
+          "score": 10
+        },
+        {
+          "name": "Dangerous-Workflow",
+          "reason": "no dangerous workflow patterns detected",
+          "score": 10
+        },
+        {
+          "name": "License",
+          "reason": "license file detected",
+          "score": 10
+        },
+        {
+          "name": "Maintained",
+          "reason": "30 commit(s) and 0 issue activity found in the last 90 days -- score normalized to 10",
+          "score": 10
+        },
+        {
+          "name": "Branch-Protection",
+          "reason": "internal error: error during branchesHandler.setup: internal error: some github tokens can't read classic branch protection rules: https://github.com/ossf/scorecard-action/blob/main/docs/authentication/fine-grained-auth-token.md",
+          "score": -1
+        },
+        {
+          "name": "Packaging",
+          "reason": "packaging workflow not detected",
+          "score": -1
+        }
+      ],
+      "date": "2026-10-26",
+      "score": 5.1,
+      "source": "openssf-api",
+      "version": "v5.6.0"
+    },
     "vulnerabilities": [
       {
         "aliases": [
@@ -765,7 +1068,9 @@
           "0.60.0"
         ],
         "id": "GO-2026-6612",
+        "in_binary": "vulnerable code in binary",
         "location": "go.mod",
+        "osv_confirmed": true,
         "package": "golang.org/x/net",
         "severity": "Critical",
         "url": "https://go.dev/cl/847187",
@@ -781,7 +1086,9 @@
           "0.60.0"
         ],
         "id": "GO-2026-6603",
+        "in_binary": "vulnerable code in binary",
         "location": "go.mod",
+        "osv_confirmed": true,
         "package": "golang.org/x/net",
         "severity": "High",
         "url": "https://go.dev/cl/847185",
@@ -797,7 +1104,9 @@
           "0.60.0"
         ],
         "id": "GO-2026-6610",
+        "in_binary": "vulnerable code in binary",
         "location": "go.mod",
+        "osv_confirmed": true,
         "package": "golang.org/x/net",
         "severity": "High",
         "url": "https://go.dev/cl/835145",
@@ -813,7 +1122,9 @@
           "0.60.0"
         ],
         "id": "GO-2026-6611",
+        "in_binary": "vulnerable code in binary",
         "location": "go.mod",
+        "osv_confirmed": true,
         "package": "golang.org/x/net",
         "severity": "High",
         "url": "https://go.dev/cl/847186",
@@ -829,7 +1140,9 @@
           "0.60.0"
         ],
         "id": "GO-2026-6617",
+        "in_binary": "vulnerable code in binary",
         "location": "go.mod",
+        "osv_confirmed": true,
         "package": "golang.org/x/net",
         "severity": "High",
         "url": "https://go.dev/cl/847188",
@@ -845,7 +1158,9 @@
           "0.41.0"
         ],
         "id": "GO-2026-6629",
+        "in_binary": "vulnerable code in binary",
         "location": "go.mod",
+        "osv_confirmed": true,
         "package": "golang.org/x/text",
         "severity": "High",
         "url": "https://go.dev/cl/793360",
@@ -861,7 +1176,9 @@
           "0.62.0"
         ],
         "id": "GO-2026-6860",
+        "in_binary": "vulnerable code in binary",
         "location": "go.mod",
+        "osv_confirmed": true,
         "package": "golang.org/x/net",
         "severity": "Unknown",
         "url": "https://go.dev/cl/849365",
@@ -877,13 +1194,110 @@
           "0.62.0"
         ],
         "id": "GO-2026-6866",
+        "in_binary": "vulnerable code in binary",
         "location": "go.mod",
+        "osv_confirmed": true,
         "package": "golang.org/x/net",
         "severity": "Unknown",
         "url": "https://go.dev/cl/855121",
         "version": "v0.57.0"
       }
-    ]
+    ],
+    "workflow_audit": {
+      "files": 3,
+      "findings": [
+        {
+          "confidence": "High",
+          "description": "unpinned image references",
+          "file": ".github/actions/setup-polaris/action.yaml",
+          "line": 12,
+          "note": "container image is unpinned",
+          "rule": "unpinned-images",
+          "severity": "High",
+          "url": "https://docs.zizmor.sh/audits/#unpinned-images"
+        },
+        {
+          "confidence": "High",
+          "description": "unpinned action reference",
+          "file": ".github/workflows/stale.yml",
+          "line": 14,
+          "note": "this step",
+          "rule": "unpinned-uses",
+          "severity": "High",
+          "url": "https://docs.zizmor.sh/audits/#unpinned-uses"
+        },
+        {
+          "confidence": "High",
+          "description": "unpinned action reference",
+          "file": ".github/workflows/test_setup.yml",
+          "line": 10,
+          "note": "this step",
+          "rule": "unpinned-uses",
+          "severity": "High",
+          "url": "https://docs.zizmor.sh/audits/#unpinned-uses"
+        },
+        {
+          "confidence": "High",
+          "description": "unpinned action reference",
+          "file": ".github/workflows/test_setup.yml",
+          "line": 21,
+          "note": "this step",
+          "rule": "unpinned-uses",
+          "severity": "High",
+          "url": "https://docs.zizmor.sh/audits/#unpinned-uses"
+        },
+        {
+          "confidence": "High",
+          "description": "unpinned action reference",
+          "file": ".github/workflows/test_setup.yml",
+          "line": 22,
+          "note": "this step",
+          "rule": "unpinned-uses",
+          "severity": "High",
+          "url": "https://docs.zizmor.sh/audits/#unpinned-uses"
+        },
+        {
+          "confidence": "Medium",
+          "description": "overly broad permissions",
+          "file": ".github/workflows/test_setup.yml",
+          "line": 1,
+          "note": "default permissions used due to no permissions: block",
+          "rule": "excessive-permissions",
+          "severity": "Medium",
+          "url": "https://docs.zizmor.sh/audits/#excessive-permissions"
+        },
+        {
+          "confidence": "Medium",
+          "description": "overly broad permissions",
+          "file": ".github/workflows/test_setup.yml",
+          "line": 7,
+          "note": "this job",
+          "rule": "excessive-permissions",
+          "severity": "Medium",
+          "url": "https://docs.zizmor.sh/audits/#excessive-permissions"
+        },
+        {
+          "confidence": "Medium",
+          "description": "overly broad permissions",
+          "file": ".github/workflows/test_setup.yml",
+          "line": 18,
+          "note": "this job",
+          "rule": "excessive-permissions",
+          "severity": "Medium",
+          "url": "https://docs.zizmor.sh/audits/#excessive-permissions"
+        },
+        {
+          "confidence": "High",
+          "description": "use GitHub's dedicated self-repository syntax",
+          "file": ".github/workflows/test_setup.yml",
+          "line": 11,
+          "note": "this step",
+          "rule": "self-repository",
+          "severity": "Low",
+          "url": "https://docs.zizmor.sh/audits/#self-repository"
+        }
+      ]
+    }
   },
   "updated": "2026-11-01"
 }

@@ -7,11 +7,17 @@
       "dependencies": 8,
       "errors": [],
       "fixable": 2,
+      "go_version": null,
+      "in_binary": null,
       "new_vulnerabilities": 0,
+      "osv_confirmed": 0,
+      "osv_only": 1,
       "ref": "1.9.4",
       "release_changed": false,
+      "release_integrity": "no-assets",
       "removed": 0,
       "resolved_vulnerabilities": 0,
+      "scorecard": 5.8,
       "upgraded": 0,
       "vulnerabilities": {
         "Critical": 1,
@@ -20,6 +26,12 @@
         "Medium": 0,
         "Negligible": 0,
         "Unknown": 0
+      },
+      "workflow": {
+        "High": 14,
+        "Low": 0,
+        "Medium": 4,
+        "files": 5
       }
     }
   ],
@@ -158,8 +170,37 @@
       "setup.py"
     ],
     "name": "bandit",
+    "osv": {
+      "advisories": 1,
+      "available": true,
+      "confirmed": 0,
+      "osv_only": [
+        {
+          "ecosystem": "PyPI",
+          "ids": [
+            "CVE-2020-14343",
+            "GHSA-8q59-q68h-6hv4",
+            "PYSEC-2021-142"
+          ],
+          "package": "pyyaml",
+          "score": "9.8",
+          "severity": "Critical",
+          "version": "5.3.1"
+        }
+      ],
+      "warning": null
+    },
     "ref": "1.9.4",
     "ref_kind": "release",
+    "release_integrity": {
+      "assets": 0,
+      "checksums_published": false,
+      "methods": [],
+      "provenance_published": false,
+      "sbom_published": false,
+      "signatures_published": false,
+      "verdict": "no-assets"
+    },
     "released_at": "2026-02-25T06:37:44Z",
     "repository": "PyCQA/bandit",
     "sbomlyze_diff": {
@@ -172,7 +213,85 @@
       ],
       "removed": 0
     },
-    "scanned_at": "2026-11-01T16:37:14+00:00",
+    "scanned_at": "2026-11-01T17:45:18+00:00",
+    "scorecard": {
+      "checks": [
+        {
+          "name": "CII-Best-Practices",
+          "reason": "no effort to earn an OpenSSF best practices badge detected",
+          "score": 0
+        },
+        {
+          "name": "Fuzzing",
+          "reason": "project is not fuzzed",
+          "score": 0
+        },
+        {
+          "name": "SAST",
+          "reason": "SAST tool is not run on all commits -- score normalized to 0",
+          "score": 0
+        },
+        {
+          "name": "Token-Permissions",
+          "reason": "detected GitHub workflow tokens with excessive permissions",
+          "score": 0
+        },
+        {
+          "name": "Pinned-Dependencies",
+          "reason": "dependency not pinned by hash detected -- score normalized to 1",
+          "score": 1
+        },
+        {
+          "name": "Maintained",
+          "reason": "4 commit(s) and 0 issue activity found in the last 90 days -- score normalized to 3",
+          "score": 3
+        },
+        {
+          "name": "Binary-Artifacts",
+          "reason": "no binaries found in the repo",
+          "score": 10
+        },
+        {
+          "name": "Code-Review",
+          "reason": "all changesets reviewed",
+          "score": 10
+        },
+        {
+          "name": "Dangerous-Workflow",
+          "reason": "no dangerous workflow patterns detected",
+          "score": 10
+        },
+        {
+          "name": "License",
+          "reason": "license file detected",
+          "score": 10
+        },
+        {
+          "name": "Packaging",
+          "reason": "packaging workflow detected",
+          "score": 10
+        },
+        {
+          "name": "Security-Policy",
+          "reason": "security policy file detected",
+          "score": 10
+        },
+        {
+          "name": "Branch-Protection",
+          "reason": "internal error: error during branchesHandler.setup: internal error: some github tokens can't read classic branch protection rules: https://github.com/ossf/scorecard-action/blob/main/docs/authentication/fine-grained-auth-token.md",
+          "score": -1
+        },
+        {
+          "name": "Signed-Releases",
+          "reason": "no releases found",
+          "score": -1
+        }
+      ],
+      "date": "2026-10-26",
+      "score": 5.8,
+      "source": "openssf-api",
+      "version": "v5.6.0"
+    },
     "vulnerabilities": [
       {
         "aliases": [],
@@ -183,6 +302,7 @@
         ],
         "id": "GHSA-5xjx-3w67-w9x9",
         "location": ".github/workflows/publish-to-test-pypi.yml",
+        "osv_confirmed": false,
         "package": "pypa/gh-action-pypi-publish",
         "severity": "Critical",
         "url": "https://github.com/advisories/GHSA-5xjx-3w67-w9x9",
@@ -197,12 +317,198 @@
         ],
         "id": "GHSA-vxmw-7h4f-hqxh",
         "location": ".github/workflows/publish-to-test-pypi.yml",
+        "osv_confirmed": false,
         "package": "pypa/gh-action-pypi-publish",
         "severity": "Low",
         "url": "https://github.com/advisories/GHSA-vxmw-7h4f-hqxh",
         "version": "release/v1"
       }
-    ]
+    ],
+    "workflow_audit": {
+      "files": 5,
+      "findings": [
+        {
+          "confidence": "High",
+          "description": "unpinned action reference",
+          "file": ".github/workflows/dependency-review.yml",
+          "line": 11,
+          "note": "this step",
+          "rule": "unpinned-uses",
+          "severity": "High",
+          "url": "https://docs.zizmor.sh/audits/#unpinned-uses"
+        },
+        {
+          "confidence": "High",
+          "description": "unpinned action reference",
+          "file": ".github/workflows/dependency-review.yml",
+          "line": 13,
+          "note": "this step",
+          "rule": "unpinned-uses",
+          "severity": "High",
+          "url": "https://docs.zizmor.sh/audits/#unpinned-uses"
+        },
+        {
+          "confidence": "High",
+          "description": "unpinned action reference",
+          "file": ".github/workflows/publish-to-pypi.yml",
+          "line": 13,
+          "note": "this step",
+          "rule": "unpinned-uses",
+          "severity": "High",
+          "url": "https://docs.zizmor.sh/audits/#unpinned-uses"
+        },
+        {
+          "confidence": "High",
+          "description": "unpinned action reference",
+          "file": ".github/workflows/publish-to-pypi.yml",
+          "line": 16,
+          "note": "this step",
+          "rule": "unpinned-uses",
+          "severity": "High",
+          "url": "https://docs.zizmor.sh/audits/#unpinned-uses"
+        },
+        {
+          "confidence": "High",
+          "description": "unpinned action reference",
+          "file": ".github/workflows/publish-to-pypi.yml",
+          "line": 34,
+          "note": "this step",
+          "rule": "unpinned-uses",
+          "severity": "High",
+          "url": "https://docs.zizmor.sh/audits/#unpinned-uses"
+        },
+        {
+          "confidence": "High",
+          "description": "unpinned action reference",
+          "file": ".github/workflows/publish-to-test-pypi.yml",
+          "line": 13,
+          "note": "this step",
+          "rule": "unpinned-uses",
+          "severity": "High",
+          "url": "https://docs.zizmor.sh/audits/#unpinned-uses"
+        },
+        {
+          "confidence": "High",
+          "description": "unpinned action reference",
+          "file": ".github/workflows/publish-to-test-pypi.yml",
+          "line": 16,
+          "note": "this step",
+          "rule": "unpinned-uses",
+          "severity": "High",
+          "url": "https://docs.zizmor.sh/audits/#unpinned-uses"
+        },
+        {
+          "confidence": "High",
+          "description": "unpinned action reference",
+          "file": ".github/workflows/publish-to-test-pypi.yml",
+          "line": 34,
+          "note": "this step",
+          "rule": "unpinned-uses",
+          "severity": "High",
+          "url": "https://docs.zizmor.sh/audits/#unpinned-uses"
+        },
+        {
+          "confidence": "High",
+          "description": "unpinned action reference",
+          "file": ".github/workflows/pythonpackage.yml",
+          "line": 12,
+          "note": "this step",
+          "rule": "unpinned-uses",
+          "severity": "High",
+          "url": "https://docs.zizmor.sh/audits/#unpinned-uses"
+        },
+        {
+          "confidence": "High",
+          "description": "unpinned action reference",
+          "file": ".github/workflows/pythonpackage.yml",
+          "line": 14,
+          "note": "this step",
+          "rule": "unpinned-uses",
+          "severity": "High",
+          "url": "https://docs.zizmor.sh/audits/#unpinned-uses"
+        },
+        {
+          "confidence": "High",
+          "description": "unpinned action reference",
+          "file": ".github/workflows/pythonpackage.yml",
+          "line": 31,
+          "note": "this step",
+          "rule": "unpinned-uses",
+          "severity": "High",
+          "url": "https://docs.zizmor.sh/audits/#unpinned-uses"
+        },
+        {
+          "confidence": "High",
+          "description": "unpinned action reference",
+          "file": ".github/workflows/pythonpackage.yml",
+          "line": 35,
+          "note": "this step",
+          "rule": "unpinned-uses",
+          "severity": "High",
+          "url": "https://docs.zizmor.sh/audits/#unpinned-uses"
+        },
+        {
+          "confidence": "High",
+          "description": "unpinned action reference",
+          "file": ".github/workflows/pythonpackage.yml",
+          "line": 60,
+          "note": "this step",
+          "rule": "unpinned-uses",
+          "severity": "High",
+          "url": "https://docs.zizmor.sh/audits/#unpinned-uses"
+        },
+        {
+          "confidence": "High",
+          "description": "unpinned action reference",
+          "file": ".github/workflows/pythonpackage.yml",
+          "line": 62,
+          "note": "this step",
+          "rule": "unpinned-uses",
+          "severity": "High",
+          "url": "https://docs.zizmor.sh/audits/#unpinned-uses"
+        },
+        {
+          "confidence": "Medium",
+          "description": "overly broad permissions",
+          "file": ".github/workflows/pythonpackage.yml",
+          "line": 1,
+          "note": "default permissions used due to no permissions: block",
+          "rule": "excessive-permissions",
+          "severity": "Medium",
+          "url": "https://docs.zizmor.sh/audits/#excessive-permissions"
+        },
+        {
+          "confidence": "Medium",
+          "description": "overly broad permissions",
+          "file": ".github/workflows/pythonpackage.yml",
+          "line": 6,
+          "note": "this job",
+          "rule": "excessive-permissions",
+          "severity": "Medium",
+          "url": "https://docs.zizmor.sh/audits/#excessive-permissions"
+        },
+        {
+          "confidence": "Medium",
+          "description": "overly broad permissions",
+          "file": ".github/workflows/pythonpackage.yml",
+          "line": 25,
+          "note": "this job",
+          "rule": "excessive-permissions",
+          "severity": "Medium",
+          "url": "https://docs.zizmor.sh/audits/#excessive-permissions"
+        },
+        {
+          "confidence": "Medium",
+          "description": "overly broad permissions",
+          "file": ".github/workflows/pythonpackage.yml",
+          "line": 46,
+          "note": "this job",
+          "rule": "excessive-permissions",
+          "severity": "Medium",
+          "url": "https://docs.zizmor.sh/audits/#excessive-permissions"
+        }
+      ]
+    }
   },
   "updated": "2026-11-01"
 }

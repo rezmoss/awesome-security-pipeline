@@ -7,11 +7,17 @@
       "dependencies": 3,
       "errors": [],
       "fixable": 0,
+      "go_version": null,
+      "in_binary": null,
       "new_vulnerabilities": 0,
+      "osv_confirmed": 0,
+      "osv_only": 0,
       "ref": "26.10.0.133078",
       "release_changed": false,
+      "release_integrity": "no-assets",
       "removed": 0,
       "resolved_vulnerabilities": 0,
+      "scorecard": 4.9,
       "upgraded": 0,
       "vulnerabilities": {
         "Critical": 0,
@@ -20,6 +26,12 @@
         "Medium": 0,
         "Negligible": 0,
         "Unknown": 0
+      },
+      "workflow": {
+        "High": 1,
+        "Low": 0,
+        "Medium": 0,
+        "files": 1
       }
     }
   ],
@@ -159,8 +171,24 @@
       "sonar-ws/build.gradle"
     ],
     "name": "sonarqube",
+    "osv": {
+      "advisories": 0,
+      "available": true,
+      "confirmed": 0,
+      "osv_only": [],
+      "warning": null
+    },
     "ref": "26.10.0.133078",
     "ref_kind": "release",
+    "release_integrity": {
+      "assets": 0,
+      "checksums_published": false,
+      "methods": [],
+      "provenance_published": false,
+      "sbom_published": false,
+      "signatures_published": false,
+      "verdict": "no-assets"
+    },
     "released_at": "2026-10-12T10:01:25Z",
     "repository": "SonarSource/sonarqube",
     "sbomlyze_diff": {
@@ -172,8 +200,101 @@
       ],
       "removed": 0
     },
-    "scanned_at": "2026-11-01T16:37:10+00:00",
-    "vulnerabilities": []
+    "scanned_at": "2026-11-01T17:44:35+00:00",
+    "scorecard": {
+      "checks": [
+        {
+          "name": "Binary-Artifacts",
+          "reason": "binaries present in source code",
+          "score": 0
+        },
+        {
+          "name": "CII-Best-Practices",
+          "reason": "no effort to earn an OpenSSF best practices badge detected",
+          "score": 0
+        },
+        {
+          "name": "Code-Review",
+          "reason": "Found 0/30 approved changesets -- score normalized to 0",
+          "score": 0
+        },
+        {
+          "name": "Fuzzing",
+          "reason": "project is not fuzzed",
+          "score": 0
+        },
+        {
+          "name": "SAST",
+          "reason": "no SAST tool detected",
+          "score": 0
+        },
+        {
+          "name": "Security-Policy",
+          "reason": "security policy file not detected",
+          "score": 0
+        },
+        {
+          "name": "Branch-Protection",
+          "reason": "branch protection is not maximal on development and all release branches",
+          "score": 5
+        },
+        {
+          "name": "Token-Permissions",
+          "reason": "detected GitHub workflow tokens with excessive permissions",
+          "score": 9
+        },
+        {
+          "name": "Dangerous-Workflow",
+          "reason": "no dangerous workflow patterns detected",
+          "score": 10
+        },
+        {
+          "name": "License",
+          "reason": "license file detected",
+          "score": 10
+        },
+        {
+          "name": "Maintained",
+          "reason": "30 commit(s) and 0 issue activity found in the last 90 days -- score normalized to 10",
+          "score": 10
+        },
+        {
+          "name": "Pinned-Dependencies",
+          "reason": "all dependencies are pinned",
+          "score": 10
+        },
+        {
+          "name": "Packaging",
+          "reason": "packaging workflow not detected",
+          "score": -1
+        },
+        {
+          "name": "Signed-Releases",
+          "reason": "no releases found",
+          "score": -1
+        }
+      ],
+      "date": "2026-10-26",
+      "score": 4.9,
+      "source": "openssf-api",
+      "version": "v5.6.0"
+    },
+    "vulnerabilities": [],
+    "workflow_audit": {
+      "files": 1,
+      "findings": [
+        {
+          "confidence": "High",
+          "description": "unpinned image references",
+          "file": ".github/workflows/build.yml",
+          "line": 25,
+          "note": "container image uses the floating 'latest' tag",
+          "rule": "unpinned-images",
+          "severity": "High",
+          "url": "https://docs.zizmor.sh/audits/#unpinned-images"
+        }
+      ]
+    }
   },
   "updated": "2026-11-01"
 }
