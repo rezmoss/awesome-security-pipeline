@@ -5,6 +5,7 @@ import unittest
 import unittest.mock
 
 from scripts import build_site
+from scripts import supply_chain_checks as checks
 from scripts import supply_chain_scan as scan
 
 
@@ -53,6 +54,18 @@ class SupplyChainScanTest(unittest.TestCase):
         self.assertFalse(scan.wanted_path("examples/app/requirements.txt"))
         self.assertFalse(scan.wanted_path("main.go"))
 
+    def test_duplicate_declarations_merge_independent_of_order(self):
+        def entry(location, licenses):
+            return {"type": "library", "name": "ms", "version": "2.1.3", "purl": "pkg:npm/ms@2.1.3",
+                    "licenses": [{"license": {"id": item}} for item in licenses],
+                    "properties": [{"name": "syft:location:0:path", "value": location}]}
+
+        first = scan.normalize_sbom({"components": [entry("/b/package-lock.json", ["MIT"]), entry("/a/package-lock.json", [])]})
+        second = scan.normalize_sbom({"components": [entry("/a/package-lock.json", []), entry("/b/package-lock.json", ["MIT"])]})
+
+        self.assertEqual(first, second)
+        self.assertEqual((first[0]["licenses"], first[0]["location"]), (["MIT"], "a/package-lock.json"))
+
     def test_grype_matches_are_normalized_and_deduplicated(self):
         match = {
             "vulnerability": {"id": "GHSA-1", "severity": "High", "fix": {"versions": ["1.2"], "state": "fixed"},
@@ -86,6 +99,58 @@ class SupplyChainScanTest(unittest.TestCase):
         self.assertEqual([item["id"] for item in change["resolved_vulnerabilities"]], ["OLD"])
         self.assertTrue(change["any"])
         self.assertTrue(scan.changes(None, current)["baseline"])
+
+    def test_cvss_scores_map_to_severity_buckets(self):
+        self.assertEqual([checks.cvss_bucket(value) for value in ("9.8", "7.5", "5.3", "2.0", "", None)],
+                         ["Critical", "High", "Medium", "Low", "Unknown", "Unknown"])
+
+    def test_osv_cross_reference_uses_aliases_and_package(self):
+        grype = [finding("GHSA-1", "a"), finding("GHSA-2", "b")]
+        grype[0]["aliases"] = ["CVE-1"]
+        osv = {"groups": [
+            {"ids": ["GO-1", "CVE-1"], "package": "a", "version": "1", "ecosystem": "Go", "severity": "High", "score": "7.5"},
+            {"ids": ["GHSA-2"], "package": "other", "version": "1", "ecosystem": "Go", "severity": "Low", "score": "2"},
+        ]}
+
+        result = checks.cross_reference(grype, osv)
+
+        self.assertEqual([item["osv_confirmed"] for item in grype], [True, False])
+        self.assertEqual((result["advisories"], result["confirmed"], len(result["osv_only"])), (2, 1, 1))
+        self.assertFalse(checks.cross_reference(None, osv)["available"])
+
+    def test_linux_amd64_release_asset_selection(self):
+        assets = [{"name": name, "size": 1000} for name in (
+            "tool_1.0_linux_arm64.tar.gz", "tool_1.0_linux_amd64.tar.gz", "tool_1.0_linux_amd64.tar.gz.sig",
+            "tool_1.0_linux_amd64.sbom.json", "tool_1.0_checksums.txt", "tool_1.0_darwin_amd64.tar.gz",
+            "tool-1.0-x86_64.rpm", "helper_1.0_linux_amd64.tar.gz")]
+
+        selected = checks.select_linux_asset(assets, "owner/tool")
+
+        self.assertEqual(selected["name"], "tool_1.0_linux_amd64.tar.gz")
+        self.assertIsNone(checks.select_linux_asset([{"name": "tool.whl", "size": 10}], "owner/tool"))
+        raw = checks.select_linux_asset([{"name": "slsa-verifier-linux-amd64", "size": 10}], "owner/slsa-verifier")
+        self.assertEqual(raw["name"], "slsa-verifier-linux-amd64")
+        for names, expected in (
+            (["sops-v3.13.3.darwin.amd64", "sops-v3.13.3.linux.amd64", "sops-v3.13.3.amd64.exe"], "sops-v3.13.3.linux.amd64"),
+            (["kube-linter-darwin", "kube-linter-linux", "kube-linter-linux_arm64"], "kube-linter-linux"),
+            (["tracee-x86_64.v0.24.1.tar.gz", "checksum-x86_64.v0.24.1.txt"], "tracee-x86_64.v0.24.1.tar.gz"),
+        ):
+            chosen = checks.select_linux_asset([{"name": name, "size": 10} for name in names], "owner/" + names[0].split("-")[0])
+            self.assertEqual(chosen["name"], expected)
+
+    def test_govulncheck_stream_parsing_and_reachability(self):
+        stream = '{"config": {}}\n{"SBOM": {"go_version": "go1.24.1", "modules": [{"path": "x/net"}]}}\n' \
+                 '{"osv": {"id": "GO-1", "aliases": ["CVE-1"], "summary": "bad"}}\n' \
+                 '{"finding": {"osv": "GO-1", "fixed_version": "v2", "trace": [{"module": "x/net", "version": "v1", "package": "x/net/http", "function": "Get"}]}}\n'
+        objects = checks.json_stream(stream)
+        self.assertEqual(len(objects), 4)
+        go = {"modules": ["x/net"], "findings": [{"id": "GO-1", "aliases": ["CVE-1"], "level": "symbol", "module": "x/net"}]}
+        grype = [finding("CVE-1", "x/net"), finding("CVE-9", "x/net"), finding("CVE-8", "x/dev-only")]
+
+        checks.annotate_reachability(grype, go)
+
+        self.assertEqual([item["in_binary"] for item in grype],
+                         ["vulnerable code in binary", "vulnerable code not in binary", "not in released binary"])
 
     def write_shard(self, directory, ref, components, vulnerabilities, errors=None):
         project = {

@@ -109,7 +109,7 @@ Signing does not prove that an artifact is secure. It binds bytes to an identity
 
 ## The SBOM result changed how we interpret tool output
 
-The baseline uses Syft because SBOM generation is kept separate from vulnerability policy. We also run a [weekly SBOM generator benchmark](https://rezmoss.github.io/awesome-security-pipeline/sbom-benchmark/) across Syft, Trivy, cdxgen, and Microsoft SBOM Tool so that the selection does not depend only on feature tables.
+The baseline uses Syft because SBOM generation is kept separate from vulnerability policy. We also ran Syft, Trivy, cdxgen, and Microsoft SBOM Tool against the same inputs so that the selection does not depend only on feature tables; the [SBOM tools comparison](../../comparisons/sbom-tools.md) records the results.
 
 The first normalized snapshot ran all four generators against a lockless Go manifest, an npm lockfile with a known transitive edge, and one pinned Linux/amd64 container image. All 12 generator/fixture combinations passed their configured expectations, but container component counts ranged from 18 for Microsoft SBOM Tool to 375 for cdxgen. Dependency-edge counts ranged from 17 to 368.
 
@@ -122,7 +122,7 @@ The practical checks are narrower and reproducible:
 - Did the document validate against its declared CycloneDX or SPDX structure?
 - Can a version or configuration change be compared with the previous normalized snapshot?
 
-That is why the repository publishes a [benchmark site](https://rezmoss.github.io/awesome-security-pipeline/sbom-benchmark/) with a frozen page per run, exact tool versions and release-asset digests, the generated SBOMs, interpretation limits, and 90-day raw workflow evidence.
+The same reasoning drives the [weekly supply-chain report](https://rezmoss.github.io/awesome-security-pipeline/): every tool in the catalog is scanned at its latest release, and the report publishes exact tool versions, the generated SBOMs, interpretation limits, and week-over-week changes rather than a single score.
 
 ## How to adapt the baseline safely
 
@@ -162,4 +162,4 @@ That is a stronger starting point than an untested tool checklist—and a much e
 - [Inspect the complete workflow contract](../../examples/security-demo/README.md#workflow-contract)
 - [Review the successful 2m21s run](https://github.com/rezmoss/awesome-security-pipeline/actions/runs/29529702096)
 - [Compare the selected GitHub Actions tools](../../comparisons/github-actions-security-tools.md)
-- [Inspect the latest SBOM benchmark results](https://rezmoss.github.io/awesome-security-pipeline/sbom-benchmark/)
+- [See the weekly supply-chain report](https://rezmoss.github.io/awesome-security-pipeline/)

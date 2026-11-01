@@ -4,7 +4,12 @@ Which open-source SBOM tool should you run in CI? The answer depends less on com
 
 This comparison covers four generators—[Syft](https://github.com/anchore/syft), [Trivy](https://github.com/aquasecurity/trivy), [cdxgen](https://github.com/cdxgen/cdxgen), and [Microsoft SBOM Tool](https://github.com/microsoft/sbom-tool)—plus [CycloneDX CLI](https://github.com/CycloneDX/cyclonedx-cli), which operates on existing BOMs rather than discovering dependencies. All four generators were run against the same committed Go fixture on July 16, 2026.
 
-For current evidence rather than this dated snapshot, see the **[SBOM generator benchmark site](https://rezmoss.github.io/awesome-security-pipeline/sbom-benchmark/)**. Every week it runs all four generators against a lockless Go manifest, an npm lockfile with a known transitive edge, and a pinned container image; scores each SBOM against an inventory read directly from the input (for the image, its apk database); checks NTIA, CISA 2025, and BSI TR-03183 minimum elements; and compares each tool with its previous run. Each generator has its own page with its full history. The [benchmark documentation](../benchmarks/sbom/README.md) describes the method.
+From July to November 2026 the four generators were also run weekly against a pinned `golang:1.26.5-alpine` image, whose 17 installed Alpine packages and Go toolchain were read directly from its apk database and `VERSION` file. Two results held in every run and are worth checking in your own pipeline:
+
+- **cdxgen** reported three Alpine packages that are not installed in the image (`alpine-base`, `openssl`, `pax-utils`), apparently the origin packages of installed subpackages.
+- **Microsoft SBOM Tool** listed the correct package names and versions but no package URLs for any Alpine package, and it omitted the Go standard library. Vulnerability scanners that match on package URLs cannot use those entries.
+
+Syft and Trivy matched the installed inventory exactly. For what the SBOM tools themselves depend on, week by week, see the [weekly supply-chain report](https://rezmoss.github.io/awesome-security-pipeline/).
 
 ## Quick selection
 

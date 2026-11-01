@@ -2,23 +2,24 @@ name: Supply-chain Report
 
 on:
   schedule:
-    # Weekly, after the SBOM generator benchmark.
+    # Weekly on Sunday.
     - cron: "47 5 * * 0"
   workflow_dispatch:
   pull_request:
     paths:
       - ".github/workflows/supply-chain-report.yml"
       - "scripts/supply_chain_scan.py"
+      - "scripts/supply_chain_checks.py"
       - "scripts/build_site.py"
-      - "scripts/build_sbom_site.py"
       - "scripts/fetch-site-inputs.sh"
-      - "scripts/install-sbom-benchmark-tools.sh"
+      - "scripts/install-supply-chain-tools.sh"
       - "tests/test_supply_chain_scan.py"
   push:
     branches: [main]
     paths:
       - ".github/workflows/supply-chain-report.yml"
       - "scripts/supply_chain_scan.py"
+      - "scripts/supply_chain_checks.py"
       - "scripts/build_site.py"
 
 permissions: {}
@@ -50,7 +51,7 @@ jobs:
 
       - name: Test scanner and site generation
         shell: bash
-        run: python3 -m unittest tests/test_supply_chain_scan.py tests/test_sbom_benchmark.py
+        run: python3 -m unittest tests/test_supply_chain_scan.py
 
       - name: Resolve the latest release of every active catalog project
         id: targets
@@ -86,10 +87,11 @@ jobs:
     name: Scan shard ${{ matrix.shard }}
     needs: targets
     runs-on: ubuntu-latest
-    timeout-minutes: 60
+    timeout-minutes: 90
     permissions:
       contents: read
       actions: read
+      attestations: read
     strategy:
       fail-fast: false
       matrix:
@@ -105,13 +107,12 @@ jobs:
         with:
           name: supply-chain-targets
 
-      - name: Install checksum-verified Syft, Grype, and sbomlyze
+      - name: Install checksum-verified scanners
         env:
           GH_TOKEN: ${{ github.token }}
         shell: bash
         run: |
-          bash scripts/install-sbom-benchmark-tools.sh \
-            "$RUNNER_TEMP/tools" "$RUNNER_TEMP/tool-metadata.json" syft grype sbomlyze
+          bash scripts/install-supply-chain-tools.sh "$RUNNER_TEMP/tools" "$RUNNER_TEMP/tool-metadata.json"
           echo "$RUNNER_TEMP/tools" >> "$GITHUB_PATH"
 
       - name: Update the vulnerability database
@@ -139,13 +140,24 @@ jobs:
           fi
 
       - name: Scan projects
+        env:
+          # The Scorecard CLI needs ~100 GitHub API calls per repository. The workflow token allows
+          # one fallback per shard each week; an optional SCORECARD_TOKEN secret lifts that limit.
+          GH_TOKEN: ${{ github.token }}
+          GITHUB_TOKEN: ${{ github.token }}
+          SCORECARD_TOKEN: ${{ secrets.SCORECARD_TOKEN }}
         shell: bash
         run: |
+          limit=1
+          if [[ -n "$SCORECARD_TOKEN" ]]; then
+            limit=20
+          fi
           python3 scripts/supply_chain_scan.py scan \
             --targets targets.json \
             --shard "${{ matrix.shard }}" \
             --output-dir scan-output \
-            --previous-dir "$RUNNER_TEMP/previous"
+            --previous-dir "$RUNNER_TEMP/previous" \
+            --scorecard-cli-limit "$limit"
 
       - name: Retain SBOMs, vulnerability reports, and summaries
         if: always()
@@ -236,7 +248,7 @@ jobs:
           pattern: supply-chain-shard-*
           path: site-input/supply-chain-artifacts
 
-      - name: Fetch data branches and the latest benchmark artifacts
+      - name: Fetch the data branch
         env:
           GH_TOKEN: ${{ github.token }}
         shell: bash
@@ -258,9 +270,7 @@ jobs:
             --output site \
             --repository "$GITHUB_REPOSITORY" \
             --supply-chain-data site-input/supply-chain-data \
-            --supply-chain-artifacts site-input/supply-chain-artifacts \
-            --benchmark-data site-input/benchmark-data \
-            --benchmark-artifacts site-input/benchmark-artifacts
+            --supply-chain-artifacts site-input/supply-chain-artifacts
 
       - name: Upload Pages artifact
         if: needs.targets.outputs.publish == 'true'
@@ -282,9 +292,6 @@ jobs:
     if: always() && needs.site.result == 'success' && needs.targets.outputs.publish == 'true'
     runs-on: ubuntu-latest
     timeout-minutes: 10
-    concurrency:
-      group: pages-deploy
-      cancel-in-progress: false
     permissions:
       pages: write
       id-token: write

@@ -14,7 +14,7 @@ Start with a working pipeline, not an empty checklist. The included GitHub Actio
 
 [**Run the tested pipeline →**](#10-minute-quick-start) · [Choose controls for your project](#choose-your-baseline) · [Browse tools by pipeline stage](#tool-catalog) · [Read the verification methodology](docs/methodology.md)
 
-**[Weekly supply-chain report →](https://rezmoss.github.io/awesome-security-pipeline/)** Every tool in this list is scanned each week at its latest release: SBOM, known vulnerabilities in its dependencies, and what changed since last week. [Method](benchmarks/supply-chain/README.md).
+**[Weekly supply-chain report →](https://rezmoss.github.io/awesome-security-pipeline/)** Every tool in this list is scanned each week at its latest release: dependencies and known vulnerabilities, vulnerable code in the shipped binary, release signature verification, OpenSSF Scorecard, a GitHub Actions workflow audit, and what changed since last week. [Method](benchmarks/supply-chain/README.md).
 
 [![Security controls from commit through signed package](assets/security-pipeline-architecture.svg)](assets/security-pipeline-architecture.svg)
 
@@ -30,7 +30,6 @@ Start with a working pipeline, not an empty checklist. The included GitHub Actio
 | Compare GitHub Actions security tools and permissions | [Open-source stack comparison](comparisons/github-actions-security-tools.md) |
 | Choose an SBOM generator and validation workflow | [SBOM tools comparison](comparisons/sbom-tools.md) |
 | See every listed tool's dependencies, known vulnerabilities, and week-over-week changes | [Weekly supply-chain report](https://rezmoss.github.io/awesome-security-pipeline/) |
-| See how SBOM generators score against independent ground truth, updated weekly | [SBOM generator accuracy](https://rezmoss.github.io/awesome-security-pipeline/sbom-benchmark/) |
 | Evaluate why these tools were selected | [Reference stack decision](docs/reference-stack.md) |
 | Check how projects are selected and classified | [Curation and verification methodology](docs/methodology.md) |
 

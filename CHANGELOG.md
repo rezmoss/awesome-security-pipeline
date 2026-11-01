@@ -22,7 +22,7 @@ The first tested release turns the repository from a tool catalog into a runnabl
 - The complete seven-job trusted-push path [passed on GitHub-hosted runners in 2m21s](https://github.com/rezmoss/awesome-security-pipeline/actions/runs/29529702096).
 - The run retained Gitleaks and Semgrep SARIF, OSV-Scanner JSON, Trivy configuration and image SARIF, the exported image and digest, a CycloneDX SBOM, and a Sigstore bundle.
 - Keyless signing was limited to a trusted push and verified against the expected GitHub OIDC issuer, repository, workflow, and Git reference.
-- The [SBOM compatibility benchmark](reports/sbom/latest.md) preserves exact tool versions, tested fixtures, normalized results, and interpretation limits.
+- The [SBOM compatibility benchmark](https://github.com/rezmoss/awesome-security-pipeline/blob/v1.0.0/reports/sbom/latest.md) preserves exact tool versions, tested fixtures, normalized results, and interpretation limits.
 - The catalog's [maintenance status](README.md#maintenance-status-updated-weekly) is generated from the objective rules in the [curation methodology](docs/methodology.md).
 
 ### Important limits
