@@ -105,6 +105,7 @@ Entries below are organized by where they operate in a delivery pipeline. Status
 
 Catch secrets and credentials before they enter your repository.
 
+- [Crenox](https://github.com/crenoxhq/crenox) - Statically compiled Git pre-commit secret scanner and CI validator in Go with SARIF and GitLab SAST reporting. ![Active](https://img.shields.io/badge/status-active-brightgreen) ![Stars](https://img.shields.io/github/stars/crenoxhq/crenox) ![Last Commit](https://img.shields.io/github/last-commit/crenoxhq/crenox)
 - [detect-secrets](https://github.com/Yelp/detect-secrets) - Prevent secrets from entering codebases. ![Stale](https://img.shields.io/badge/status-stale-yellow) ![Stars](https://img.shields.io/github/stars/Yelp/detect-secrets) ![Last Commit](https://img.shields.io/github/last-commit/Yelp/detect-secrets)
 - [git-secrets](https://github.com/awslabs/git-secrets) - Prevent committing AWS credentials and secrets. ![Unmaintained](https://img.shields.io/badge/status-unmaintained-red) ![Stars](https://img.shields.io/github/stars/awslabs/git-secrets) ![Last Commit](https://img.shields.io/github/last-commit/awslabs/git-secrets)
 - [gitleaks](https://github.com/gitleaks/gitleaks) - Detect and prevent secrets in git repos. ![Active](https://img.shields.io/badge/status-active-brightgreen) ![Stars](https://img.shields.io/github/stars/gitleaks/gitleaks) ![Last Commit](https://img.shields.io/github/last-commit/gitleaks/gitleaks)
