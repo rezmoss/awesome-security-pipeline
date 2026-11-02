@@ -238,6 +238,24 @@ class ReportSite:
             path.relative_to(data).as_posix(): load_json(path) for path in sorted((data / "runs" / "superseded").glob("*/*.json"))
         } if data and (data / "runs" / "superseded").is_dir() else {}
 
+    def method_change(self, date: str | None) -> dict[str, Any] | None:
+        """The corrections.json method change that falls between the week `date` and the week before it, if any:
+        that week's differences come mostly from how the scan works, not from the projects."""
+        dates = [run["date"] for run in self.runs]
+        if not date or date not in dates or dates.index(date) == 0:
+            return None
+        previous = dates[dates.index(date) - 1]
+        return next((entry for entry in self.corrections.get("method_changes") or []
+                     if previous < entry.get("date", "") <= date), None)
+
+    def method_change_notice(self, date: str | None, root: str) -> str:
+        entry = self.method_change(date)
+        if not entry:
+            return ""
+        return (f'<p class="banner"><strong>The scan method changed on {esc(entry["date"])}.</strong> {esc(entry["summary"])} '
+                f'Most differences from the previous week below come from that change, not from the projects. '
+                f'<a href="{root}corrections/index.html#method-changes">Details</a>.</p>')
+
     def clear_first_week_changes(self) -> None:
         """The first recorded week has no earlier week to compare with. Data published before 2026-11-08 compared
         same-day re-runs instead, so its change fields are shown as a first scan rather than as weekly changes."""
@@ -484,14 +502,14 @@ class ReportSite:
             ("Workflow findings (+new / −resolved)", workflows),
             ("Hash changed without a version change (sbomlyze integrity drift)", drift), ("Scan problems", failed),
         ]
-        parts = ['<h2 id="this-week">This week</h2>']
+        parts = ['<h2 id="this-week">This week</h2>', self.method_change_notice(self.latest and self.latest["date"], "")]
         for title, items in groups:
             if not items:
                 continue
             shown = items[:40]
             more = f"<li>… and {len(items) - 40} more</li>" if len(items) > 40 else ""
             parts.append(f"<h3>{esc(title)} ({len(items)})</h3><ul>{''.join(f'<li>{item}</li>' for item in shown)}{more}</ul>")
-        if len(parts) == 1:
+        if len(parts) == 2:
             parts.append("<p>No project changed this week.</p>")
         return "\n".join(parts)
 
@@ -598,6 +616,8 @@ class ReportSite:
         cards.append(f'<div class="card"><div class="big">{esc(card.get("score", "—"))}</div><div class="small">OpenSSF Scorecard (of 10); {esc(source)}</div></div>')
         cards.append(f'<div class="card"><div class="big">{sections.verdict_cell((project.get("release_integrity") or {}).get("verdict"))}</div><div class="small">release verification</div></div>')
         parts.append(f'<div class="cards">{"".join(cards)}</div>')
+        if change and not change.get("baseline"):
+            parts.append(self.method_change_notice(self.latest and self.latest["date"], "../../../"))
         parts.append(self.project_changes(change))
         parts.append(self.project_vulnerabilities(project))
         parts.append(sections.osv_section(project.get("osv")))
@@ -1064,7 +1084,9 @@ class ReportSite:
             changed = sum(1 for item in entries if item.get("change_any"))
             release = self.evidence_release(run)
             rows.append(
-                f"<tr id=\"{esc(anchor('week', run['date']))}\"><td><a href=\"{esc(run['date'])}/index.html\">{esc(run['date'])}</a></td><td class=\"num\">{len(entries)}</td>"
+                f"<tr id=\"{esc(anchor('week', run['date']))}\"><td><a href=\"{esc(run['date'])}/index.html\">{esc(run['date'])}</a>"
+                + ('<div class="small">scan method changed; differences are mostly from that</div>' if self.method_change(run["date"]) else "")
+                + f"</td><td class=\"num\">{len(entries)}</td>"
                 f"<td class=\"num\">{changed}</td><td class=\"num\">{releases}</td><td class=\"num\">{new}</td><td class=\"num\">{resolved}</td>"
                 f"<td><a href=\"../data/runs/{esc(run['date'])}.json\">JSON</a>{' · ' + release if release else ''}</td></tr>"
             )
@@ -1225,6 +1247,10 @@ class ReportSite:
             f"<td>{source(entry)}</td></tr>"
             for entry in sorted(documented.get("entries") or [], key=lambda item: item.get("date", ""), reverse=True)
         )
+        method_rows = "".join(
+            f"<tr><td>{esc(entry.get('date', ''))}</td><td>{esc(entry.get('summary', ''))}</td><td>{source(entry)}</td></tr>"
+            for entry in sorted(documented.get("method_changes") or [], key=lambda item: item.get("date", ""), reverse=True)
+        )
 
         dispute_rows = "".join(
             f"<tr><td>{esc(entry.get('date', ''))}</td><td><a href=\"../{project_path(entry['repository'])}index.html\">{esc(entry['repository'])}</a></td>"
@@ -1252,6 +1278,9 @@ class ReportSite:
             + table("Disputed findings", "disputes", "Matches reported as wrong, not applicable, or fixed, and how each report was resolved. "
                     "The match stays in the data and is annotated on the project page.",
                     ["Date", "Project", "Advisory", "Resolution", "Summary", "Source"], dispute_rows)
+            + table("Scan method changes", "method-changes", "Changes to how projects are scanned. The first week scanned after a change "
+                    "differs from the week before mostly because of the change, and is marked on the report.",
+                    ["Week", "Change", "Source"], method_rows)
             + table("Other corrections", "other", "Data or methodology corrections not covered above.",
                     ["Date", "Scope", "Correction", "Source"], other_rows)
         )
