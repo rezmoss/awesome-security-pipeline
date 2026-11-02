@@ -124,17 +124,42 @@ def osv_scan(source: pathlib.Path, raw: pathlib.Path | None = None) -> dict[str,
     return {"groups": groups, "warning": warning} if warning else {"groups": groups}
 
 
+# Grype's package types (from the purl) and the OSV ecosystem names OSV-Scanner reports.
+OSV_ECOSYSTEMS = {
+    "golang": "Go", "pypi": "PyPI", "npm": "npm", "cargo": "crates.io", "maven": "Maven", "github": "GitHub Actions",
+    "gem": "RubyGems", "composer": "Packagist", "nuget": "NuGet", "pub": "Pub", "hex": "Hex", "swift": "SwiftURL",
+}
+
+
+def package_identity(ecosystem: str, name: str, version: str) -> tuple[str, str, str]:
+    """(OSV ecosystem, package name, version) normalized so the two scanners' spellings compare equal."""
+    ecosystem = OSV_ECOSYSTEMS.get(ecosystem, ecosystem)
+    name = name.lower()
+    if ecosystem == "PyPI":
+        name = re.sub(r"[-_.]+", "-", name)
+    elif ecosystem == "Maven":
+        name = name.rsplit(":", 1)[-1]  # Grype reports the artifact id, OSV group:artifact
+    version = version.lower().removeprefix("v")
+    # 3.7 and 3.7.0 are the same release (PEP 440, SemVer tooling); drop trailing zero components.
+    version = re.sub(r"^(\d+(?:\.\d+)*?)(?:\.0+)+(?=$|[-+])", r"\1", version)
+    return ecosystem, name, version
+
+
 def cross_reference(grype: list[dict[str, Any]] | None, osv: dict[str, Any]) -> dict[str, Any]:
-    """Mark Grype findings confirmed by OSV and count OSV-only advisories."""
+    """Mark Grype findings confirmed by OSV and list OSV-only advisories. A confirmation needs the same advisory
+    (id or alias), ecosystem, package, and version: one package at two versions is two separate matches."""
     groups = osv.get("groups")
     if grype is None or groups is None:
         return {"available": False}
     matched_groups = set()
+    identities_by_group = [package_identity(group.get("ecosystem", ""), group["package"], group.get("version", ""))
+                           for group in groups]
     for finding in grype:
         identities = {finding["id"], *finding.get("aliases", [])}
+        package = package_identity(finding.get("ecosystem", ""), finding["package"], finding.get("version", ""))
         finding["osv_confirmed"] = False
         for index, group in enumerate(groups):
-            if identities & set(group["ids"]) and group["package"].lower() == finding["package"].lower():
+            if identities & set(group["ids"]) and identities_by_group[index] == package:
                 finding["osv_confirmed"] = True
                 matched_groups.add(index)
     only = [group for index, group in enumerate(groups) if index not in matched_groups]

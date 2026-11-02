@@ -222,6 +222,11 @@ class ReportSite:
             for path in sorted((data / "projects").glob("*.json")):
                 stored = load_json(path)
                 self.projects[stored["latest"]["repository"]] = stored
+        # Current views come only from the latest run's projects; a project that left the catalog keeps its
+        # page, marked as retired, and is excluded from the overview, advisories, exports, and feeds.
+        current = {entry["repository"] for entry in self.runs[-1].get("projects") or []} if self.runs else set(self.projects)
+        self.retired = {name: stored for name, stored in self.projects.items() if name not in current}
+        self.projects = {name: stored for name, stored in self.projects.items() if name in current}
         self.clear_first_week_changes()
         self.latest = self.runs[-1] if self.runs else None
         self.index = load_json(data / "index.json") if data and (data / "index.json").is_file() else {}
@@ -263,7 +268,7 @@ class ReportSite:
             return
         first = self.runs[0]["date"]
         rows = list(self.runs[0].get("projects") or [])
-        for stored in self.projects.values():
+        for stored in [*self.projects.values(), *self.retired.values()]:
             history = stored.get("history") or []
             rows += [entry for entry in history if entry.get("date") == first]
             if all(entry.get("date") == first for entry in history):
@@ -573,7 +578,7 @@ class ReportSite:
         return f'<a href="https://github.com/{esc(self.repository)}/releases/tag/{esc(tag)}">release <code>{esc(tag)}</code></a>'
 
     # ----- project pages ------------------------------------------------------------------
-    def project_page(self, repository: str, stored: dict[str, Any]) -> None:
+    def project_page(self, repository: str, stored: dict[str, Any], retired: bool = False) -> None:
         project = stored["latest"]
         depth = 3
         root = "../" * depth
@@ -596,6 +601,9 @@ class ReportSite:
             + (f" · commit <code>{esc(str(project.get('commit'))[:12])}</code>" if project.get("commit") else "")
             + f" · last scan {esc(str(project.get('scanned_at') or '')[:10])}</p>",
         ]
+        if retired:
+            parts.append(f'<div class="banner"><strong>No longer scanned.</strong> This project left the active catalog after its scan of '
+                         f'{esc(stored.get("updated") or "")}; the page shows that last scan and is not part of the current report.</div>')
         if project.get("errors"):
             parts.append('<div class="banner"><strong class="bad">The latest scan failed.</strong> '
                          + esc("; ".join(project["errors"]))
@@ -635,14 +643,14 @@ class ReportSite:
                 downloads.append(f'<a href="{name}">{label}</a>')
         manifests = project.get("manifests") or []
         release = self.evidence_release(self.latest)
-        if project.get("stale"):
+        if project.get("stale") or retired:
             permanent = ""
         elif release:
             permanent = (f"<p>Permanent copy of the raw SBOM, Grype, OSV-Scanner, and govulncheck output and release checks: "
                          f"{release}, folder <code>supply-chain-shard-*/{esc(project['id'])}/</code>.</p>")
         else:
             permanent = ('<p class="small">Raw evidence for this week is kept as a workflow artifact for 90 days; '
-                         "permanent evidence releases start with the 2026-11-08 scan.</p>")
+                         "permanent evidence releases start with the first attested week (2026-11-02).</p>")
         parts.append(
             '<h2 id="evidence">Evidence</h2>'
             + (f"<p>Downloads for this week: {' · '.join(downloads)}</p>" if downloads else "")
@@ -652,11 +660,13 @@ class ReportSite:
             + f'<p class="small"><a href="{root}data/projects/{esc(project["id"])}.json">Full JSON for this project</a> · '
             '<a href="feed.xml">Atom feed of weekly changes</a></p>'
         )
-        parts.append(self.project_badges(repository, project))
+        if not retired:
+            parts.append(self.project_badges(repository, project))
         parts.append(sections.pipeline_section((self.latest or {}).get("tools") or {}, len((self.latest or {}).get("projects") or [])))
         self.write(f"{project_path(repository)}index.html", self.page(
             f"{project.get('name') or repository} supply-chain report", depth, "\n".join(parts),
             f"Weekly SBOM, known vulnerabilities, and dependency history for {repository}.", feed="feed.xml",
+            index=not retired,
         ))
         self.project_feed(repository, stored)
 
@@ -1318,6 +1328,8 @@ class ReportSite:
         self.overview()
         for repository, stored in self.projects.items():
             self.project_page(repository, stored)
+        for repository, stored in self.retired.items():
+            self.project_page(repository, stored, retired=True)
         self.advisory_pages()
         self.data_exports()
         self.site_feed()

@@ -173,6 +173,26 @@ class SupplyChainScanTest(unittest.TestCase):
         self.assertEqual((result["advisories"], result["confirmed"], len(result["osv_only"])), (2, 1, 1))
         self.assertFalse(checks.cross_reference(None, osv)["available"])
 
+    def test_osv_confirmation_needs_the_same_ecosystem_package_and_version(self):
+        def group(ids, package, version, ecosystem):
+            return {"ids": ids, "package": package, "version": version, "ecosystem": ecosystem, "severity": "High", "score": "7"}
+
+        grype = [finding("GHSA-1", "a"), {**finding("GHSA-1", "a"), "version": "3"},
+                 {**finding("GHSA-3", "IDNA"), "ecosystem": "pypi", "version": "3.7"},
+                 {**finding("GHSA-4", "jetty-webapp"), "ecosystem": "maven", "version": "9.3.3"},
+                 {**finding("GHSA-5", "x"), "ecosystem": "npm"}]
+        osv = {"groups": [group(["GHSA-1"], "a", "v3", "Go"), group(["GHSA-3"], "idna", "3.7.0", "PyPI"),
+                          group(["GHSA-4"], "org.eclipse.jetty:jetty-webapp", "9.3.3", "Maven"),
+                          group(["GHSA-5"], "x", "1", "PyPI")]
+                + [group([f"GHSA-only-{index}"], "b", "1", "Go") for index in range(150)]}
+
+        result = checks.cross_reference(grype, osv)
+
+        # Version 1 of package a is not confirmed by OSV's finding for version 3; an npm match is not
+        # confirmed by a PyPI package of the same name.
+        self.assertEqual([item["osv_confirmed"] for item in grype], [False, True, True, True, False])
+        self.assertEqual(len(result["osv_only"]), 151)
+
     def test_linux_amd64_release_asset_selection(self):
         assets = [{"name": name, "size": 1000} for name in (
             "tool_1.0_linux_arm64.tar.gz", "tool_1.0_linux_amd64.tar.gz", "tool_1.0_linux_amd64.tar.gz.sig",
@@ -275,6 +295,42 @@ class SupplyChainScanTest(unittest.TestCase):
         clean = {key: value for key, value in os.environ.items() if not key.startswith("GITHUB_")}
         with unittest.mock.patch("sys.argv", argv), unittest.mock.patch.dict(os.environ, {**clean, **environment}, clear=True):
             self.assertEqual(scan.main(), 0)
+
+    def test_an_incomplete_or_out_of_order_week_is_not_published(self):
+        temporary = tempfile.TemporaryDirectory()
+        self.addCleanup(temporary.cleanup)
+        root = pathlib.Path(temporary.name)
+        data = root / "data"
+        target = {"repository": "gitleaks/gitleaks"}
+        self.write_shard(root / "ok", "v1", [component("a", "1")], [])
+        plan = root / "targets.json"
+        plan.write_text(json.dumps({"targets": [target], "shards": [[target]]}))
+
+        def attempt(shards, date, plan_shards):
+            plan.write_text(json.dumps({"targets": [target], "shards": plan_shards}))
+            argv = ["scan", "publish", "--shards-dir", str(shards), "--data-dir", str(data), "--date", date, "--targets", str(plan)]
+            with unittest.mock.patch("sys.argv", argv):
+                return scan.main()
+
+        other = {"repository": "zricethezav/other"}
+        with self.assertRaisesRegex(ValueError, "shard 1 has no results"):
+            attempt(root / "ok", "2026-11-01", [[target], [other]])
+        with self.assertRaisesRegex(ValueError, "zricethezav/other has no result"):
+            attempt(root / "ok", "2026-11-01", [[target, other]])
+        with self.assertRaisesRegex(ValueError, "was not a planned target"):
+            attempt(root / "ok", "2026-11-01", [[other]])
+        duplicate = root / "duplicate"
+        duplicate.mkdir()
+        shard = json.loads((root / "ok" / "shard-0.json").read_text())
+        shard["projects"] *= 2
+        (duplicate / "shard-0.json").write_text(json.dumps(shard))
+        with self.assertRaisesRegex(ValueError, "appears 2 times"):
+            attempt(duplicate, "2026-11-01", [[target]])
+        self.assertFalse(data.exists())
+
+        self.assertEqual(attempt(root / "ok", "2026-11-08", [[target]]), 0)
+        with self.assertRaisesRegex(ValueError, "earlier than the latest recorded week"):
+            attempt(root / "ok", "2026-11-01", [[target]])
 
     def test_scorecard_errors_name_the_actual_cause(self):
         def fail(error):
@@ -481,6 +537,10 @@ class SupplyChainScanTest(unittest.TestCase):
         self.assertEqual(len(list(csv.DictReader(io.StringIO((site / "data" / "advisories.csv").read_text())))), 3)
         self.assertEqual(len(list(csv.DictReader(io.StringIO((site / "data" / "projects.csv").read_text())))), 2)
 
+        for html in site.rglob("*.html"):
+            ids = re.findall(r'\sid="([^"]+)"', html.read_text())
+            self.assertEqual(len(ids), len(set(ids)), html.relative_to(site))
+
         feed = ElementTree.parse(site / "feed.xml").getroot()
         atom = "{http://www.w3.org/2005/Atom}"
         self.assertEqual([entry.find(atom + "id").text for entry in feed.findall(atom + "entry")],
@@ -498,6 +558,32 @@ class SupplyChainScanTest(unittest.TestCase):
                 if not (resolved.is_file() or (resolved / "index.html").is_file()):
                     broken.append(f"{html.relative_to(site)} -> {target}")
         self.assertEqual(broken, [])
+
+    def test_a_project_that_left_the_catalog_is_only_shown_historically(self):
+        temporary = tempfile.TemporaryDirectory()
+        self.addCleanup(temporary.cleanup)
+        root = pathlib.Path(temporary.name)
+        data, site = root / "data", root / "site"
+        self.write_shard(root / "week1", "v1", [component("a", "1")], [])
+        shard = json.loads((root / "week1" / "shard-0.json").read_text())
+        retired = {**shard["projects"][0], "id": "awslabs__git-secrets", "repository": "awslabs/git-secrets", "name": "git-secrets",
+                   "vulnerabilities": [finding("GHSA-gone", "a", "Critical")]}
+        shard["projects"].append(retired)
+        (root / "week1" / "shard-0.json").write_text(json.dumps(shard))
+        self.write_shard(root / "week2", "v1", [component("a", "1")], [])
+        self.publish(root / "week1", data, "2026-11-01")
+        self.publish(root / "week2", data, "2026-11-08")
+        argv = ["build", "--output", str(site), "--supply-chain-data", str(data)]
+        with unittest.mock.patch("sys.argv", argv):
+            self.assertEqual(build_site.main(), 0)
+
+        for path in ("index.html", "data/matches.csv", "data/projects.csv", "data/advisories.csv", "advisories/index.html", "feed.xml"):
+            self.assertNotIn("git-secrets", (site / path).read_text(), path)
+        self.assertFalse((site / "advisories" / "GHSA-gone").exists())
+        self.assertFalse((site / "badges" / "awslabs" / "git-secrets").exists())
+        page = (site / "projects" / "awslabs" / "git-secrets" / "index.html").read_text()
+        self.assertIn("No longer scanned", page)
+        self.assertIn("noindex", page)
 
     def test_csv_cells_are_never_spreadsheet_formulas(self):
         self.assertEqual([site_exports.csv_cell(value) for value in ("=cmd", "+1+1", "@x", "-2", "-x", None, True)],

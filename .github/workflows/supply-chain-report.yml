@@ -108,7 +108,18 @@ jobs:
           fi
           echo "matrix=$matrix" >> "$GITHUB_OUTPUT"
           echo "mode=$mode" >> "$GITHUB_OUTPUT"
-          echo "date=$(date -u +%F)" >> "$GITHUB_OUTPUT"
+          # A week is named by its Sunday (UTC), the scheduled day; a second run in the same week supersedes the
+          # first instead of starting a new week. A week already recorded under another day keeps that date.
+          today=$(date -u +%F)
+          week=$(date -u -d "$today -$(date -u -d "$today" +%w) days" +%F)
+          latest=""
+          if git fetch --quiet --depth 1 origin "$DATA_BRANCH" 2>/dev/null; then
+            latest=$(git show FETCH_HEAD:index.json 2>/dev/null | jq -r '.latest // empty' || true)
+          fi
+          if [[ -n "$latest" && "$latest" > "$week" ]]; then
+            week=$latest
+          fi
+          echo "date=$week" >> "$GITHUB_OUTPUT"
           echo "### Supply-chain targets ($mode)" >> "$GITHUB_STEP_SUMMARY"
           jq -r '.targets[] | "- \(.repository) @ \(.ref // "unresolved") (\(.ref_kind))"' targets.json >> "$GITHUB_STEP_SUMMARY"
 
@@ -242,7 +253,8 @@ jobs:
   publish:
     name: Record, attest, and release the week
     needs: [targets, scan]
-    if: always() && needs.targets.outputs.mode == 'publish' && needs.scan.result != 'cancelled'
+    # Every shard must succeed; a partial week is never recorded (the previous week stays current).
+    if: needs.targets.outputs.mode == 'publish' && needs.scan.result == 'success'
     runs-on: ubuntu-latest
     timeout-minutes: 15
     permissions:
@@ -254,11 +266,17 @@ jobs:
     steps:
       # This job never executes downloaded tool binaries; it only runs repository Python on
       # the normalized JSON produced by the read-only scan jobs.
-      - name: Check out default branch with full history
+      # The commit that triggered the run, not the moving default branch: the code that normalizes and
+      # publishes the scan must be the code the run records as its provenance.
+      - name: Check out the triggering commit with full history
         uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4
         with:
-          ref: main
+          ref: ${{ github.sha }}
           fetch-depth: 0
+
+      - name: Confirm the checked-out commit
+        shell: bash
+        run: test "$(git rev-parse HEAD)" = "$GITHUB_SHA"
 
       - name: Download shard results
         uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093 # v4
@@ -314,7 +332,7 @@ jobs:
           python3 scripts/supply_chain_scan.py publish \
             --shards-dir shards --data-dir data --date "$DATE" \
             --reason "$REASON" --evidence-release "$TAG" \
-            --enrichment-dir shards/supply-chain-enrichment
+            --enrichment-dir shards/supply-chain-enrichment --targets shards/targets.json
 
       - name: Commit the data branch
         id: commit
@@ -399,10 +417,15 @@ jobs:
   site:
     name: Build the report site
     needs: [targets, scan, publish]
+    # A publish run deploys only after its week was recorded; otherwise this run's shard artifacts would be
+    # shown next to the previous week's data.
     if: >-
       always()
       && needs.scan.result != 'cancelled'
-      && (needs.publish.result == 'success' || needs.publish.result == 'skipped')
+      && (needs.targets.outputs.mode == 'publish'
+          && needs.publish.result == 'success'
+          || needs.targets.outputs.mode != 'publish'
+          && (needs.publish.result == 'success' || needs.publish.result == 'skipped'))
     runs-on: ubuntu-latest
     timeout-minutes: 15
     permissions:
@@ -420,6 +443,13 @@ jobs:
         with:
           pattern: supply-chain-shard-*
           path: site-input/supply-chain-artifacts
+
+      - name: Download the target list for previews
+        if: needs.targets.outputs.mode == 'preview'
+        uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093 # v4
+        with:
+          name: supply-chain-targets
+          path: site-input
 
       - name: Download exploitation data for previews
         if: needs.targets.outputs.mode == 'preview'
@@ -444,7 +474,7 @@ jobs:
             --shards-dir site-input/supply-chain-artifacts \
             --data-dir site-input/supply-chain-data \
             --date "$DATE" --reason "preview, not published" \
-            --enrichment-dir site-input/enrichment
+            --enrichment-dir site-input/enrichment --targets site-input/targets.json
 
       - name: Build static site
         shell: bash

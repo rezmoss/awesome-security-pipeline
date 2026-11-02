@@ -495,8 +495,6 @@ def scan_target(target: dict[str, Any], output: pathlib.Path, previous_dir: path
             summary["excluded_matches"] = excluded
 
     summary["osv"] = checks.cross_reference(summary["vulnerabilities"], osv)
-    if summary["osv"].get("available"):
-        summary["osv"]["osv_only"] = summary["osv"]["osv_only"][:100]
     if target.get("ref_kind") == "release":
         with tempfile.TemporaryDirectory() as temporary:
             check(summary, "release checks", release_checks, target, summary, pathlib.Path(temporary), directory)
@@ -802,12 +800,56 @@ def data_files(data_dir: pathlib.Path) -> list[pathlib.Path]:
     )
 
 
+PROJECT_FIELDS = {"id": str, "repository": str, "errors": list}
+
+
+def incomplete_week(shard_paths: list[pathlib.Path], plan: dict[str, Any]) -> list[str]:
+    """Why these shard results are not a complete scan of the planned targets; empty when they are."""
+    problems = []
+    expected_shards = {index for index, shard in enumerate(plan.get("shards") or []) if shard}
+    found_shards = {}
+    for path in shard_paths:
+        match = re.fullmatch(r"shard-(\d+)\.json", path.name)
+        if not match or int(match.group(1)) in found_shards:
+            problems.append(f"unexpected or duplicate shard file {path.name}")
+            continue
+        found_shards[int(match.group(1))] = path
+    problems += [f"shard {index} has no results" for index in sorted(expected_shards - set(found_shards))]
+    problems += [f"shard {index} was not planned" for index in sorted(set(found_shards) - expected_shards)]
+    planned = [target["repository"] for shard in plan.get("shards") or [] for target in shard]
+    seen: dict[str, int] = {}
+    for index, path in sorted(found_shards.items()):
+        try:
+            projects = load_json(path)["projects"]
+        except (OSError, ValueError, KeyError, TypeError) as exc:
+            problems.append(f"shard {index} is unreadable: {exc}")
+            continue
+        for project in projects:
+            missing = [name for name, kind in PROJECT_FIELDS.items() if not isinstance(project.get(name), kind)]
+            if missing or not (project.get("errors") or isinstance(project.get("components"), list)):
+                problems.append(f"shard {index}: malformed result for {project.get('repository')!r} ({', '.join(missing) or 'no components and no error'})")
+            seen[project.get("repository")] = seen.get(project.get("repository"), 0) + 1
+    problems += [f"{name} has no result" for name in planned if name not in seen]
+    problems += [f"{name} appears {count} times" for name, count in seen.items() if count > 1]
+    problems += [f"{name} was not a planned target" for name in seen if name not in planned]
+    return problems
+
+
 def command_publish(args: argparse.Namespace) -> int:
     projects_dir = args.data_dir / "projects"
     runs_dir = args.data_dir / "runs"
     shards = sorted(args.shards_dir.glob("**/shard-*.json"))
     if not shards:
         raise ValueError(f"no shard results in {args.shards_dir}")
+    if args.targets:
+        problems = incomplete_week(shards, load_json(args.targets))
+        if problems:
+            # Nothing has been written yet: the previous week stays current.
+            raise ValueError("incomplete scan, not published:\n  " + "\n  ".join(problems[:50]))
+    index_file = args.data_dir / "index.json"
+    latest = load_json(index_file).get("latest") if index_file.is_file() else None
+    if latest and args.date < latest:
+        raise ValueError(f"{args.date} is earlier than the latest recorded week {latest}; history is append-only")
     provenance = run_provenance(args)
     run_file = runs_dir / f"{args.date}.json"
     superseded = None
@@ -1072,6 +1114,8 @@ def parse_args() -> argparse.Namespace:
     publish.add_argument("--reason", default="", help="why this run was started, recorded with its provenance")
     publish.add_argument("--evidence-release", default=None, help="tag of the release holding this run's raw evidence")
     publish.add_argument("--enrichment-dir", type=pathlib.Path, help="output of `enrich` (CISA KEV and EPSS snapshots)")
+    publish.add_argument("--targets", type=pathlib.Path,
+                         help="output of `targets`; publishing fails unless every planned target has exactly one result")
     enrich = commands.add_parser("enrich")
     enrich.add_argument("--output-dir", type=pathlib.Path, required=True)
     baseline = commands.add_parser("baseline")
