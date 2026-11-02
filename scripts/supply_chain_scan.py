@@ -54,6 +54,15 @@ EXCLUDED_DIRECTORIES = frozenset({
     "e2e", "examples", "example", "docs", "doc", "vendor", "node_modules", "third_party", "benchmark",
     "benchmarks", "samples", "sample", "testing", "mocks",
 })
+# Compound names such as integration-tests, test-fixtures, functional-tests, server-mock, gotestdata.
+EXCLUDED_DIRECTORY_PATTERN = re.compile(
+    r"(^|[-_.])(tests?|testdata|testing|fixtures?|mocks?|e2e|examples?|samples?|benchmarks?)($|[-_.])|testdata$",
+    re.IGNORECASE,
+)
+# A GitHub Action referenced by an exact release; a moving tag or branch (v4, release/v1) has no fixed version.
+EXACT_ACTION_VERSION = re.compile(r"v?\d+\.\d+\.\d+")
+# npm versions that point at the repository itself rather than the registry.
+LOCAL_NPM_VERSION = re.compile(r"^(file|link|workspace|portal|git\+|git|https?):", re.IGNORECASE)
 SEVERITIES = ("Critical", "High", "Medium", "Low", "Negligible", "Unknown")
 FETCH_TIMEOUT = 600
 TOOL_TIMEOUT = 600
@@ -73,8 +82,10 @@ def write_json(path: pathlib.Path, value: Any, indent: int | None = 2) -> None:
         handle.write("\n")
 
 
-def run(command: list[str], cwd: pathlib.Path | None = None, timeout: int = TOOL_TIMEOUT) -> subprocess.CompletedProcess:
-    return subprocess.run(command, cwd=cwd, capture_output=True, text=True, timeout=timeout, check=False)
+def run(command: list[str], cwd: pathlib.Path | None = None, timeout: int = TOOL_TIMEOUT,
+        env: dict[str, str] | None = None) -> subprocess.CompletedProcess:
+    return subprocess.run(command, cwd=cwd, capture_output=True, text=True, timeout=timeout, check=False,
+                          env={**os.environ, **env} if env else None)
 
 
 def gh_api(endpoint: str) -> Any:
@@ -165,13 +176,52 @@ def command_targets(args: argparse.Namespace) -> int:
 
 # ----- scan ------------------------------------------------------------------------------
 
+def excluded_directory(name: str) -> bool:
+    return name.lower() in EXCLUDED_DIRECTORIES or bool(EXCLUDED_DIRECTORY_PATTERN.search(name))
+
+
 def wanted_path(path: str) -> bool:
-    if WORKFLOW_FILE.match(path):
-        return True
     parts = path.split("/")
-    if any(part.lower() in EXCLUDED_DIRECTORIES for part in parts[:-1]):
+    if path.startswith(".github/workflows/") and WORKFLOW_FILE.match(path):
+        return True
+    if any(excluded_directory(part) for part in parts[:-1]):
         return False
-    return any(fnmatch.fnmatch(parts[-1], pattern) for pattern in MANIFESTS)
+    return bool(WORKFLOW_FILE.match(path)) or any(fnmatch.fnmatch(parts[-1], pattern) for pattern in MANIFESTS)
+
+
+def lockfile_aliases(source: pathlib.Path) -> dict[str, str]:
+    """Copy each npm-shrinkwrap.json without a package-lock.json beside it, which Syft does not read, to
+    package-lock.json (the same format); return the copies' paths mapped to the original names."""
+    aliases = {}
+    for shrinkwrap in sorted(source.rglob("npm-shrinkwrap.json")):
+        lock = shrinkwrap.with_name("package-lock.json")
+        if not lock.exists():
+            shutil.copyfile(shrinkwrap, lock)
+            aliases[lock.relative_to(source).as_posix()] = shrinkwrap.relative_to(source).as_posix()
+    return aliases
+
+
+def local_npm_packages(source: pathlib.Path) -> set[str]:
+    """Names of the npm packages the repository itself defines: they are never installed from the registry,
+    so a registry advisory for the same name (for example malware published under it) does not apply."""
+    names = set()
+    for manifest in source.rglob("package.json"):
+        try:
+            name = json.loads(manifest.read_text(encoding="utf-8")).get("name")
+        except (OSError, ValueError, AttributeError):
+            continue
+        if isinstance(name, str) and name:
+            names.add(name)
+    return names
+
+
+def excluded_match(entry: dict[str, Any], local_packages: set[str]) -> str | None:
+    """Why a Grype match does not identify an installed version, or None when it does."""
+    if entry["ecosystem"] == "github" and not EXACT_ACTION_VERSION.fullmatch(entry["version"]):
+        return "action reference to a moving tag or branch"
+    if entry["ecosystem"] == "npm" and (LOCAL_NPM_VERSION.match(entry["version"]) or entry["package"] in local_packages):
+        return "package defined in the repository itself"
+    return None
 
 
 def fetch_manifests(repository: str, ref: str, destination: pathlib.Path) -> tuple[str, list[str]]:
@@ -252,8 +302,9 @@ def normalize_sbom(document: dict[str, Any]) -> list[dict[str, Any]]:
     return sorted(components.values(), key=lambda item: (item["ecosystem"], item["name"].lower(), item["version"]))
 
 
-def normalize_grype(report: dict[str, Any]) -> list[dict[str, Any]]:
-    findings = {}
+def normalize_grype(report: dict[str, Any], local_packages: set[str] | None = None,
+                    excluded: dict[str, int] | None = None) -> list[dict[str, Any]]:
+    findings, skipped = {}, {}
     for match in report.get("matches") or []:
         vulnerability = match.get("vulnerability") or {}
         artifact = match.get("artifact") or {}
@@ -274,7 +325,15 @@ def normalize_grype(report: dict[str, Any]) -> list[dict[str, Any]]:
             "summary": " ".join(str(vulnerability.get("description") or "").split())[:300],
             "location": str(((artifact.get("locations") or [{}])[0]).get("path", "")).lstrip("/"),
         }
-        findings[(entry["id"], entry["package"], entry["version"])] = entry
+        key = (entry["id"], entry["package"], entry["version"])
+        reason = excluded_match(entry, local_packages or set())
+        if reason:
+            skipped[key] = reason
+            continue
+        findings[key] = entry
+    if excluded is not None:
+        for reason in skipped.values():
+            excluded[reason] = excluded.get(reason, 0) + 1
     order = {name: index for index, name in enumerate(SEVERITIES)}
     return sorted(findings.values(), key=lambda item: (order.get(item["severity"], 99), item["package"], item["id"]))
 
@@ -397,15 +456,19 @@ def scan_target(target: dict[str, Any], output: pathlib.Path, previous_dir: path
             return summary
         summary["manifests"] = paths
         source_paths = {str(source.resolve()): "", str(source): ""}
-        sbom = directory / "sbom.cdx.json"
-        syft = run(["syft", "scan", f"dir:{source}", "--source-name", target["repository"],
-                    "--source-version", target["ref"], "-q", "-o", f"cyclonedx-json={sbom}"])
-        if syft.returncode != 0 or not sbom.is_file():
-            summary["errors"].append(f"syft failed: {syft.stderr.strip()[:300]}")
-            return summary
+        local_packages = local_npm_packages(source)
         osv = check(summary, "osv-scanner", checks.osv_scan, source, directory / "osv-scanner.json") or {}
         if osv.get("error"):
             summary["errors"].append(osv["error"])
+        lock_aliases = lockfile_aliases(source)
+        sbom = directory / "sbom.cdx.json"
+        # Syft skips npm devDependencies by default; every other ecosystem includes development dependencies.
+        syft = run(["syft", "scan", f"dir:{source}", "--source-name", target["repository"],
+                    "--source-version", target["ref"], "-q", "-o", f"cyclonedx-json={sbom}"],
+                   env={"SYFT_JAVASCRIPT_INCLUDE_DEV_DEPENDENCIES": "true"})
+        if syft.returncode != 0 or not sbom.is_file():
+            summary["errors"].append(f"syft failed: {syft.stderr.strip()[:300]}")
+            return summary
         workflows = check(summary, "zizmor", checks.zizmor_audit, source)
         if workflows and workflows.get("error"):
             summary["errors"].append(workflows["error"])
@@ -414,6 +477,8 @@ def scan_target(target: dict[str, Any], output: pathlib.Path, previous_dir: path
     redact(sbom, {**source_paths, str(pathlib.Path.home()): "$HOME"})
     document = load_json(sbom)
     summary["components"] = normalize_sbom(document)
+    for item in summary["components"]:
+        item["location"] = lock_aliases.get(item["location"], item["location"])
 
     grype_report = directory / "grype.json"
     grype = run(["grype", f"sbom:{sbom}", "-q", "-o", "json", "--file", str(grype_report)])
@@ -422,7 +487,12 @@ def scan_target(target: dict[str, Any], output: pathlib.Path, previous_dir: path
         summary["vulnerabilities"] = None
     else:
         redact(grype_report, {str(directory.resolve()): ".", str(directory): ".", str(pathlib.Path.home()): "$HOME"})
-        summary["vulnerabilities"] = normalize_grype(load_json(grype_report))
+        excluded: dict[str, int] = {}
+        summary["vulnerabilities"] = normalize_grype(load_json(grype_report), local_packages, excluded)
+        for item in summary["vulnerabilities"]:
+            item["location"] = lock_aliases.get(item["location"], item["location"])
+        if excluded:
+            summary["excluded_matches"] = excluded
 
     summary["osv"] = checks.cross_reference(summary["vulnerabilities"], osv)
     if summary["osv"].get("available"):

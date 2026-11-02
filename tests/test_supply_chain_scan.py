@@ -68,6 +68,11 @@ class SupplyChainScanTest(unittest.TestCase):
         self.assertFalse(scan.wanted_path("integration/fixtures/package-lock.json"))
         self.assertFalse(scan.wanted_path("examples/app/requirements.txt"))
         self.assertFalse(scan.wanted_path("main.go"))
+        for path in ("java/ql/integration-tests/app/pom.xml", "syft/test-fixtures/go.mod", "functional-tests/Cargo.toml",
+                     "pkg/gotestdata/go.mod", "server-mock/package.json", "ql/test/query-tests/.github/actions/a/action.yml"):
+            self.assertFalse(scan.wanted_path(path), path)
+        for path in ("latest/package.json", "attestation/go.mod", ".github/actions/build/action.yml", "contest/pyproject.toml"):
+            self.assertTrue(scan.wanted_path(path), path)
 
     def test_duplicate_declarations_merge_independent_of_order(self):
         def entry(location, licenses):
@@ -95,6 +100,41 @@ class SupplyChainScanTest(unittest.TestCase):
         self.assertEqual(len(findings), 1)
         self.assertEqual(findings[0]["aliases"], ["CVE-1"])
         self.assertEqual((findings[0]["fixed_in"], findings[0]["location"]), (["1.2"], "go.mod"))
+
+    def test_matches_without_an_installed_registry_version_are_excluded_and_counted(self):
+        def match(identifier, name, version, purl_type):
+            return {"vulnerability": {"id": identifier, "severity": "Critical"},
+                    "artifact": {"name": name, "version": version, "purl": f"pkg:{purl_type}/{name}@{version}",
+                                 "locations": [{"path": "/x"}]}}
+
+        excluded = {}
+        findings = scan.normalize_grype({"matches": [
+            match("GHSA-a", "actions/download-artifact", "v4", "github"),
+            match("GHSA-a", "actions/download-artifact", "v4", "github"),
+            match("GHSA-b", "pypa/gh-action-pypi-publish", "release/v1", "github"),
+            match("GHSA-c", "tj-actions/changed-files", "v44.5.2", "github"),
+            match("GHSA-d", "tree-sitter-r", "file:src/tree-sitter-r", "npm"),
+            match("GHSA-e", "cloudsplaining", "0.4.8", "npm"),
+            match("GHSA-f", "lodash", "4.17.20", "npm"),
+        ]}, {"cloudsplaining"}, excluded)
+
+        self.assertEqual(sorted(item["id"] for item in findings), ["GHSA-c", "GHSA-f"])
+        self.assertEqual(excluded, {"action reference to a moving tag or branch": 2, "package defined in the repository itself": 2})
+
+    def test_shrinkwrap_is_read_as_a_lockfile_and_local_package_names_are_collected(self):
+        temporary = tempfile.TemporaryDirectory()
+        self.addCleanup(temporary.cleanup)
+        source = pathlib.Path(temporary.name)
+        (source / "a").mkdir()
+        (source / "npm-shrinkwrap.json").write_text("{}")
+        (source / "a" / "npm-shrinkwrap.json").write_text("{}")
+        (source / "a" / "package-lock.json").write_text("{}")
+        (source / "package.json").write_text(json.dumps({"name": "snyk", "version": "1.0.0-monorepo"}))
+        (source / "a" / "package.json").write_text("not json")
+
+        self.assertEqual(scan.lockfile_aliases(source), {"package-lock.json": "npm-shrinkwrap.json"})
+        self.assertTrue((source / "package-lock.json").is_file())
+        self.assertEqual(scan.local_npm_packages(source), {"snyk"})
 
     def test_changes_classify_upgrades_additions_removals_and_advisories(self):
         previous = {"ref": "v1", "components": [component("a", "1"), component("b", "1"), component("c", "1"),
@@ -385,6 +425,16 @@ class SupplyChainScanTest(unittest.TestCase):
         (root / "shards" / "shard-0.json").write_text(json.dumps({"tools": {}, "projects": projects}))
         self.write_enrichment(root / "e", ["CVE-2026-7"], {"CVE-2026-7": 0.3})
         self.publish(root / "shards", data, "2026-11-01", enrichment=root / "e")
+        # Data published before 2026-11-08 compared same-day re-runs; the first week must still read as a first scan.
+        stored_path = data / "projects" / "gitleaks__gitleaks.json"
+        stored = json.loads(stored_path.read_text())
+        stored["latest"]["changes"] = {"any": True, "baseline": False, "scorecard": {"from": 8, "to": 8.2}}
+        stored_path.write_text(json.dumps(stored))
+        run_path = data / "runs" / "2026-11-01.json"
+        run = json.loads(run_path.read_text())
+        run["projects"][0]["change_any"] = True
+        run_path.write_text(json.dumps(run))
+        (data / scan.CHECKSUMS_FILE).unlink()
         argv = ["build", "--output", str(site), "--supply-chain-data", str(data)]
         with unittest.mock.patch("sys.argv", argv):
             self.assertEqual(build_site.main(), 0)
@@ -394,6 +444,10 @@ class SupplyChainScanTest(unittest.TestCase):
         self.assertIn('title="Unknown or negligible severity">Unknown</th>', overview)
         self.assertIn('table class="sortable" id="projects-table"', overview)
         self.assertTrue((site / "report.js").is_file())
+        self.assertNotIn("8.2", overview)
+        self.assertNotIn('class="changed"', overview)
+        self.assertIn("First scan", (site / "projects" / "gitleaks" / "gitleaks" / "index.html").read_text())
+        self.assertIn("No attested week has been published yet", (site / "verify" / "index.html").read_text())
 
         # GHSA-s and CVE-2026-7 alias each other: one advisory page listing both tools.
         page = (site / "advisories" / "GHSA-s" / "index.html").read_text()
