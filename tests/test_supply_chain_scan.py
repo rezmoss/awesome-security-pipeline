@@ -239,11 +239,18 @@ class SupplyChainScanTest(unittest.TestCase):
         self.assertEqual(stored["latest"]["components"], [component("a", "2")])
 
         site = root / "site"
-        argv = ["build", "--output", str(site), "--supply-chain-data", str(data)]
+        corrections_file = root / "corrections.json"
+        corrections_file.write_text(json.dumps({"method_changes": [
+            {"date": "2026-11-08", "summary": "Development dependencies are now scanned.", "pr": 1}]}))
+        argv = ["build", "--output", str(site), "--supply-chain-data", str(data), "--corrections", str(corrections_file)]
         with unittest.mock.patch("sys.argv", argv):
             self.assertEqual(build_site.main(), 0)
         overview = (site / "index.html").read_text()
         page = (site / "projects" / "gitleaks" / "gitleaks" / "index.html").read_text()
+        # Only the week after the method change is marked; the latest week (2026-11-15) compares like with like.
+        self.assertEqual((site / "history" / "index.html").read_text().count("scan method changed"), 1)
+        self.assertNotIn("The scan method changed", overview)
+        self.assertIn("Development dependencies are now scanned.", (site / "corrections" / "index.html").read_text())
         self.assertIn("Weekly supply-chain report", overview)
         self.assertIn("projects/gitleaks/gitleaks/index.html", overview)
         self.assertIn("The latest scan failed", page)
@@ -502,6 +509,8 @@ class SupplyChainScanTest(unittest.TestCase):
             self.assertTrue(entry.get("reason") and entry.get("added") and entry.get("pr"), name)
         corrections = json.loads((ROOT / "benchmarks/supply-chain/corrections.json").read_text())
         for entry in corrections["entries"]:
+            self.assertTrue(entry.get("date") and entry.get("summary") and (entry.get("pr") or entry.get("link")), entry)
+        for entry in corrections.get("method_changes") or []:
             self.assertTrue(entry.get("date") and entry.get("summary") and (entry.get("pr") or entry.get("link")), entry)
         for entry in corrections.get("disputes") or []:
             self.assertTrue(entry.get("date") and entry.get("repository") and entry.get("advisory") and entry.get("status")

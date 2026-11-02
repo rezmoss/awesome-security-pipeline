@@ -1,6 +1,13 @@
 {
-  "description": "Manual corrections to the weekly supply-chain report that are not recorded elsewhere. Release tag pins live in release-tags.json and re-run weeks in the data branch; catalog exceptions in tools/*.json need an entry under catalog_exceptions; resolved finding disputes go under disputes (date, repository, advisory, optional package@version, status, summary, pr or link). Rendered at https://rezmoss.github.io/awesome-security-pipeline/corrections/.",
+  "description": "Manual corrections to the weekly supply-chain report that are not recorded elsewhere. Release tag pins live in release-tags.json and re-run weeks in the data branch; catalog exceptions in tools/*.json need an entry under catalog_exceptions; scan method changes go under method_changes (date of the first week scanned with the change, summary, pr or link); resolved finding disputes go under disputes (date, repository, advisory, optional package@version, status, summary, pr or link). Rendered at https://rezmoss.github.io/awesome-security-pipeline/corrections/.",
   "catalog_exceptions": {},
+  "method_changes": [
+    {
+      "date": "2026-11-02",
+      "summary": "npm development dependencies and npm-shrinkwrap.json are now scanned; matches on GitHub Actions referenced by a moving tag and on npm packages the repository defines itself are no longer counted; directories such as integration-tests and test-fixtures are excluded as fixtures.",
+      "pr": 54
+    }
+  ],
   "disputes": [],
   "entries": [
     {
@@ -12,8 +19,9 @@
     {
       "date": "2026-11-02",
       "scope": "Week of 2026-11-01",
-      "summary": "A review of the first week found scanner errors, fixed from the next run: two critical \"Malware in ...\" matches were false (salesforce/cloudsplaining's own npm package name and a local file: dependency in semgrep/semgrep matched malware published under the same names), four snyk/cli matches were on its own 1.0.0-monorepo workspace package, and 17 matches were on GitHub Actions referenced by a moving tag (v4, release/v1) that follows the latest, fixed release; npm development dependencies were omitted although the method includes them; npm-shrinkwrap.json was not read (AikidoSec/safe-chain showed 7 dependencies); and directories such as integration-tests, test-fixtures, and functional-tests were not excluded as fixtures. The week's data is unchanged; its \"changes since last week\" compared same-day re-runs and is now shown as a first scan.",
-      "link": "https://github.com/rezmoss/awesome-security-pipeline/blob/main/benchmarks/supply-chain/README.md#how"
+      "summary": "A review of the first week found scanner errors, fixed from the week of 2026-11-02: two critical \"Malware in ...\" matches were false (salesforce/cloudsplaining's own npm package name and a local file: dependency in semgrep/semgrep matched malware published under the same names), four snyk/cli matches were on its own 1.0.0-monorepo workspace package, and 17 matches were on GitHub Actions referenced by a moving tag (v4, release/v1) that follows the latest, fixed release; npm development dependencies were omitted although the method includes them; npm-shrinkwrap.json was not read (AikidoSec/safe-chain showed 7 dependencies); and directories such as integration-tests, test-fixtures, and functional-tests were not excluded as fixtures. The 2026-11-01 data is unchanged; its \"changes since last week\" compared same-day re-runs and is now shown as a first scan.",
+      "link": "https://github.com/rezmoss/awesome-security-pipeline/blob/main/benchmarks/supply-chain/README.md#how",
+      "pr": 54
     }
   ]
 }
