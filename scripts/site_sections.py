@@ -5,6 +5,8 @@ from __future__ import annotations
 import html
 from typing import Any
 
+from scripts import supply_chain_checks as checks
+
 TOOLS = (
     ("Syft", "anchore/syft", "syft", "Generates a CycloneDX SBOM from each release's manifests and lockfiles."),
     ("Grype", "anchore/grype", "grype", "Matches the SBOM against known vulnerabilities."),
@@ -20,7 +22,8 @@ TOOLS = (
 
 VERDICTS = {
     "verified": ("ok", "verified"),
-    "signed": ("warn", "signed, signer not checked"),
+    "signed": ("warn", "signed, not by a project workflow"),
+    "immutable": ("warn", "immutable release only"),
     "unverified": ("bad", "signature did not verify"),
     "checksums-only": ("warn", "checksums only"),
     "none": ("bad", "no checksums or signatures"),
@@ -156,7 +159,9 @@ def verdict_cell(verdict: str | None) -> str:
     return f'<span class="{klass}">{esc(text)}</span>'
 
 
-def reachability_section(go: dict[str, Any] | None, vulns: list[dict[str, Any]] | None, note: str | None = None) -> str:
+def reachability_section(go: dict[str, Any] | None, vulns: list[dict[str, Any]] | None, note: str | None = None,
+                         link: Any = None) -> str:
+    """`link(finding)` returns (row id or None, advisory cell HTML); without it ids are shown as plain text."""
     if not go:
         return (f'<h2 id="in-binary">Vulnerable code in the released binary</h2><p class="small">{esc(note)}</p>' if note else "")
     symbols = [item for item in go["findings"] if item["level"] == "symbol"]
@@ -164,8 +169,12 @@ def reachability_section(go: dict[str, Any] | None, vulns: list[dict[str, Any]] 
     dependencies = [item for item in symbols if item["module"] != "stdlib"]
     go_matches = [item for item in vulns or [] if item.get("ecosystem") == "golang"]
     not_shipped = sum(1 for item in go_matches if item.get("in_binary") in ("not in released binary", "vulnerable code not in binary"))
+    def cell(item: dict[str, Any]) -> tuple[str | None, str]:
+        return link(item) if link else (None, f"<code>{esc(item['id'])}</code>")
+
     rows = "".join(
-        f"<tr><td><code>{esc(item['id'])}</code><div class=\"small\">{esc(', '.join(item['aliases'][:3]))}</div></td>"
+        (f'<tr id="{esc(cell(item)[0])}">' if cell(item)[0] else "<tr>")
+        + f"<td>{cell(item)[1]}<div class=\"small\">{esc(', '.join(item['aliases'][:3]))}</div></td>"
         f"<td><code>{esc(item['module'])}</code></td><td><code>{esc(item['version'])}</code></td>"
         f"<td>{esc(item.get('fixed_version') or '—')}</td><td class=\"small\">{esc(item.get('summary') or '')}</td></tr>"
         for item in symbols
@@ -219,16 +228,34 @@ def release_section(integrity: dict[str, Any] | None, repository: str) -> str:
         f"<td class=\"small\">{esc(method_detail(item))}</td></tr>"
         for item in integrity.get("methods") or []
     )
+    dimensions = {**checks.integrity_dimensions(integrity.get("methods") or []),
+                  **{key: integrity[key] for key in ("build_provenance", "signature", "signer", "immutable_release") if key in integrity}}
+    provenance = {"verified": '<span class="ok">verified</span>', "failed": '<span class="bad">did not verify</span>'}.get(
+        dimensions["build_provenance"] or "", '<span class="zero">none published</span>')
+    signature = {
+        "own-workflow": '<span class="ok">verified, signed by a GitHub Actions workflow in this repository</span>',
+        "other-identity": '<span class="warn">valid, but signed by an identity outside this repository\'s workflows</span>',
+        "key-unchecked": '<span class="warn">signed with a key; the public key is not checked</span>',
+        "failed": '<span class="bad">did not verify</span>',
+    }.get(dimensions["signature"] or "", '<span class="zero">none</span>')
+    if dimensions.get("signer"):
+        signature += f' <span class="small">(signer <code>{esc(dimensions["signer"])}</code>)</span>'
+    immutable = {True: '<span class="ok">yes</span>', False: '<span class="bad">did not verify</span>'}.get(
+        dimensions["immutable_release"], '<span class="zero">no</span>')
+    evidence = (f"<li>Build provenance (how and from which source the file was built): {provenance}</li>"
+                f"<li>Signature: {signature}</li>"
+                f"<li>Immutable release (the file has not changed since it was published; says nothing about how it was built): {immutable}</li>")
     return (
         '<h2 id="release">Release integrity</h2>'
         f"<p>Verdict: <strong>{verdict_cell(integrity.get('verdict'))}</strong>"
         + (f" for <code>{esc(integrity['asset'])}</code>" if integrity.get("asset") else "")
         + (". The download matches GitHub's recorded digest." if integrity.get("digest_matches_github") else ".")
         + "</p>"
-        + f"<ul>{published}</ul>"
+        + f"<ul>{evidence}</ul><p class=\"small\">Published with the release:</p><ul>{published}</ul>"
         + (f"<table><thead><tr><th>Check</th><th>Result</th><th>Detail</th></tr></thead><tbody>{methods}</tbody></table>" if methods else "")
-        + '<p class="small">Verified means a signature, provenance, or attestation was checked against an identity in '
-        f"<code>{esc(repository)}</code>'s own GitHub Actions workflows.</p>"
+        + '<p class="small"><strong>Verified</strong> means build provenance, or a signature from one of '
+        f"<code>{esc(repository)}</code>'s own GitHub Actions workflows, was checked. A release that is only immutable is "
+        "reported as <em>immutable release only</em>, and a valid signature from any other identity as <em>signed</em>.</p>"
     )
 
 

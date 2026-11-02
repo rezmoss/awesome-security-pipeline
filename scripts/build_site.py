@@ -21,6 +21,7 @@ from typing import Any
 sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent.parent))
 
 from scripts import catalog  # noqa: E402
+from scripts import supply_chain_checks as checks  # noqa: E402
 from scripts import site_exports as exports  # noqa: E402
 from scripts import site_sections as sections  # noqa: E402
 from scripts.supply_chain_scan import CHECKSUMS_FILE, SEVERITIES, WORKFLOW_PATH, severity_counts  # noqa: E402
@@ -228,6 +229,7 @@ class ReportSite:
         self.retired = {name: stored for name, stored in self.projects.items() if name not in current}
         self.projects = {name: stored for name, stored in self.projects.items() if name in current}
         self.clear_first_week_changes()
+        self.relabel_release_verdicts()
         self.latest = self.runs[-1] if self.runs else None
         self.index = load_json(data / "index.json") if data and (data / "index.json").is_file() else {}
         owner, _, name = self.repository.partition("/")
@@ -261,8 +263,23 @@ class ReportSite:
                 f'Most differences from the previous week below come from that change, not from the projects. '
                 f'<a href="{root}corrections/index.html#method-changes">Details</a>.</p>')
 
+    def relabel_release_verdicts(self) -> None:
+        """Label current releases from their recorded evidence with the current definition, so data recorded before the
+        verdict was split (when any successful check, including an immutable release alone, counted as verified) reads
+        the same as newer data. Earlier weeks' tables keep the label they were published with."""
+        if not self.runs:
+            return
+        rows = {entry["repository"]: entry for entry in self.runs[-1].get("projects") or []}
+        for name, stored in self.projects.items():
+            integrity = stored["latest"].get("release_integrity")
+            if not integrity or not integrity.get("verdict"):
+                continue
+            integrity["verdict"] = checks.integrity_verdict(integrity)
+            if name in rows and rows[name].get("release_integrity"):
+                rows[name]["release_integrity"] = integrity["verdict"]
+
     def clear_first_week_changes(self) -> None:
-        """The first recorded week has no earlier week to compare with. Data published before 2026-11-08 compared
+        """The first recorded week has no earlier week to compare with. Data published before 2026-11-02 compared
         same-day re-runs instead, so its change fields are shown as a first scan rather than as weekly changes."""
         if not self.runs:
             return
@@ -294,7 +311,7 @@ class ReportSite:
                         f'<a href="{repo}/blob/{esc(commit)}/{WORKFLOW_PATH}">the workflow</a> at commit {commit_link}')
         else:
             produced = (f"Data for {esc(run['date'])} produced at commit {commit_link}; this week predates "
-                        "run-level provenance, which is recorded from 2026-11-08")
+                        "run-level provenance, which is recorded from 2026-11-02")
         return (f'<p>{produced}, generated {esc(str(run.get("generated_at") or "")[:16].replace("T", " "))} UTC. '
                 f'<a href="{root}verify/index.html">Verify the data</a> · <a href="{root}corrections/index.html">Corrections</a></p>')
 
@@ -629,12 +646,19 @@ class ReportSite:
         parts.append(self.project_changes(change))
         parts.append(self.project_vulnerabilities(project))
         parts.append(sections.osv_section(project.get("osv")))
-        parts.append(sections.reachability_section(go, vulns, project.get("go_binary_note")))
+        binary_only = {(item["id"], item["package"]): item for item in exports.binary_matches(project)}
+
+        def binary_link(finding: dict[str, Any]) -> tuple[str | None, str]:
+            match = binary_only.get((finding["id"], finding.get("module")))
+            return (advisory_anchor(match) if match else None), self.advisory_link(finding, depth)
+
+        parts.append(sections.reachability_section(go, vulns, project.get("go_binary_note"), binary_link))
         parts.append(sections.release_section(project.get("release_integrity"), repository))
         parts.append(sections.scorecard_section(project.get("scorecard"), project.get("scorecard_note"), repository))
         parts.append(sections.workflow_section(project.get("workflow_audit"), repository, project.get("ref") or "HEAD"))
         parts.append(self.project_dependencies(components))
-        parts.append(self.project_history(stored.get("history") or [], project["id"]))
+        members = {run["date"]: {entry["id"] for entry in run.get("projects") or []} for run in self.runs}
+        parts.append(self.project_history(stored.get("history") or [], project["id"], members))
         parts.append(self.project_compliance(project.get("compliance") or {}))
         downloads = []
         directory = self.out / project_path(repository)
@@ -701,7 +725,8 @@ class ReportSite:
         return "\n".join(parts)
 
     def advisory_link(self, item: dict[str, Any], depth: int) -> str:
-        key = self.aliases.get(item["id"])
+        key = self.aliases.get(item["id"]) or next(
+            (self.aliases[value] for value in item.get("aliases") or [] if value in self.aliases), None)
         if not key:
             return f"<code>{esc(item['id'])}</code>"
         return f'<a href="{"../" * depth}{exports.advisory_path(key)}index.html"><code>{esc(item["id"])}</code></a>'
@@ -796,7 +821,8 @@ class ReportSite:
         return "\n".join(parts)
 
     @staticmethod
-    def project_history(history: list[dict[str, Any]], pid: str = "") -> str:
+    def project_history(history: list[dict[str, Any]], pid: str = "", members: dict[str, set[str]] | None = None) -> str:
+        """`members`: project ids in each week's run; a week the project is not listed in links without an anchor."""
         rows = []
         for item in reversed(history):
             vulns = item.get("vulnerabilities")
@@ -816,7 +842,7 @@ class ReportSite:
             if item.get("errors"):
                 changes.append("scan error")
             rows.append(
-                f"<tr id=\"{esc(anchor('week', item['date']))}\"><td><a href=\"../../../history/{esc(item['date'])}/index.html#{esc(anchor(pid))}\">{esc(item['date'])}</a></td><td>{esc(item.get('ref') or '—')}</td>"
+                f"<tr id=\"{esc(anchor('week', item['date']))}\"><td><a href=\"../../../history/{esc(item['date'])}/index.html{'#' + esc(anchor(pid)) if members is None or pid in members.get(item['date'], set()) else ''}\">{esc(item['date'])}</a></td><td>{esc(item.get('ref') or '—')}</td>"
                 f"<td class=\"num\">{item['dependencies'] if item.get('dependencies') is not None else '—'}</td>{counts}<td>{esc(' · '.join(changes) or '—')}</td></tr>"
             )
         return (
@@ -943,7 +969,8 @@ class ReportSite:
             else:
                 status = '<span class="zero" title="Only Go release binaries are analyzed for shipped code">not analyzed</span>'
             location = item.get("location") or ""
-            kind = " (workflow)" if item.get("ecosystem") == "github" else ""
+            kind = (" (workflow)" if item.get("ecosystem") == "github"
+                    else " (release binary; govulncheck only)" if item.get("source") == exports.GOVULNCHECK else "")
             rows.append(
                 f"<tr{' data-binary' if shipped == exports.SHIPPED else ''}>"
                 f"<td data-sort=\"{esc((project.get('name') or project['repository']).lower())}\"><a href=\"{root}{project_path(project['repository'])}index.html#{esc(advisory_anchor(item))}\">{esc(project.get('name') or project['repository'])}</a>"
@@ -976,7 +1003,7 @@ class ReportSite:
             + f'<div class="cards">{"".join(cards)}</div>' + workflow
             + f'<h2 id="tools">Catalog tools matching {esc(record["id"])}</h2>'
             + '<div class="scroll"><table class="sortable" id="matches-table"><thead><tr><th>Tool</th><th>Version scanned</th><th>Package</th>'
-            "<th>Fixed in</th><th>Released binary</th><th>Declared in</th><th data-nosort>Dispute</th></tr></thead><tbody>"
+            "<th>Fixed in</th><th>Released binary</th><th>Declared in or found in</th><th data-nosort>Dispute</th></tr></thead><tbody>"
             + "".join(rows) + "</tbody></table></div>"
             + f'<p class="small">{esc(VULNERABILITY_NOTE)} {esc(CONTEXT_NOTE)} <strong>Released binary</strong> is only analyzed '
             "for Go tools with a Linux release binary; other tools show <em>not analyzed</em>.</p>"
@@ -1145,7 +1172,7 @@ class ReportSite:
             + ("" if self.attested() else
                f'<p class="banner">No attested week has been published yet: the current data ({esc(run.get("date", ""))}) predates '
                f"attestation, and the data branch has no <code>{CHECKSUMS_FILE}</code> file, so the attestation commands below "
-               "fail until the first attested run (scheduled for 2026-11-08). The history check already works.</p>")
+               "fail until the first attested run. The history check already works.</p>")
             + '<h2 id="commands">Check it yourself</h2>'
             "<p>Requires <code>git</code>, <code>sha256sum</code>, and the <a href=\"https://cli.github.com/\">GitHub CLI</a>.</p>"
             f"<pre><code>{esc(commands)}</code></pre>"
@@ -1164,7 +1191,7 @@ class ReportSite:
             "<li>That the scanners are right. Results are what Syft, Grype, OSV-Scanner, govulncheck, zizmor, and Scorecard "
             "reported; their databases and the OpenSSF dataset are outside this repository's control.</li>"
             "<li>That the workflow is correct or neutral. It proves which code ran, not that the code is good; review the commit.</li>"
-            "<li>Anything about weeks published before 2026-11-08, which predate attestation. Their content is still covered by "
+            "<li>Anything about weeks published before 2026-11-02, which predate attestation. Their content is still covered by "
             "the history check and by later attestations of the whole data tree.</li>"
             "<li>That the repository owner cannot publish new data. The owner controls the workflow; every change to it is a "
             "public commit, and manual interventions are listed on the corrections page.</li></ul>"

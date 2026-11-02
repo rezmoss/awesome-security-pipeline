@@ -28,6 +28,39 @@ def canonical_id(ids: set[str]) -> str:
     return sorted(ids)[0]
 
 
+GOVULNCHECK = "govulncheck"
+
+
+def binary_matches(project: dict[str, Any]) -> list[dict[str, Any]]:
+    """govulncheck findings with the vulnerable function compiled into the shipped binary that no Grype match
+    covers (mostly the Go standard library, which source manifests do not declare), shaped like Grype matches."""
+    binary = project.get("go_binary") or {}
+    covered = {value for item in project.get("vulnerabilities") or [] for value in (item["id"], *(item.get("aliases") or []))}
+    result, seen = [], set()
+    for finding in binary.get("findings") or []:
+        key = (finding["id"], finding.get("module"))
+        if finding.get("level") != "symbol" or key in seen or {finding["id"], *(finding.get("aliases") or [])} & covered:
+            continue
+        seen.add(key)
+        item = {
+            "id": finding["id"], "aliases": sorted(finding.get("aliases") or []),
+            # The Go vulnerability database does not rate severity.
+            "severity": "Unknown", "package": finding.get("module") or "", "version": finding.get("version") or "",
+            "ecosystem": "golang", "fixed_in": [finding["fixed_version"]] if finding.get("fixed_version") else [],
+            "fix_state": "fixed" if finding.get("fixed_version") else "unknown",
+            "url": f"https://pkg.go.dev/vuln/{finding['id']}", "summary": finding.get("summary") or "",
+            "location": binary.get("binary") or binary.get("asset") or "", "in_binary": SHIPPED, "source": GOVULNCHECK,
+        }
+        item.update({name: finding[name] for name in ("kev", "epss") if name in finding})
+        result.append(item)
+    return result
+
+
+def all_matches(project: dict[str, Any]) -> list[dict[str, Any]]:
+    """Grype matches in the declared dependencies plus govulncheck-only findings in the shipped binary."""
+    return [*(project.get("vulnerabilities") or []), *binary_matches(project)]
+
+
 def group_advisories(projects: list[dict[str, Any]]) -> tuple[dict[str, dict[str, Any]], dict[str, str]]:
     """Merge every match into one record per advisory; ids that alias each other are one advisory.
 
@@ -42,7 +75,7 @@ def group_advisories(projects: list[dict[str, Any]]) -> tuple[dict[str, dict[str
             value = parent[value]
         return value
 
-    matches = [(project, item) for project in projects for item in project.get("vulnerabilities") or []]
+    matches = [(project, item) for project in projects for item in all_matches(project)]
     for _, item in matches:
         ids = [item["id"], *(item.get("aliases") or [])]
         for other in ids[1:]:
@@ -160,14 +193,14 @@ def projects_csv(entries: list[dict[str, Any]]) -> str:
 
 
 def matches_csv(projects: list[dict[str, Any]], aliases: dict[str, str]) -> str:
-    header = ["repository", "ref", "advisory", "canonical_advisory", "aliases", "severity", "ecosystem", "package", "version",
+    header = ["repository", "ref", "source", "advisory", "canonical_advisory", "aliases", "severity", "ecosystem", "package", "version",
               "fixed_in", "location", "osv_confirmed", "in_binary", "kev", "kev_date_added", "epss", "epss_percentile"]
     rows = []
     for project in projects:
-        for item in project.get("vulnerabilities") or []:
+        for item in all_matches(project):
             kev, epss = item.get("kev"), item.get("epss")
             rows.append([
-                project["repository"], project.get("ref"), item["id"], aliases.get(item["id"], item["id"]),
+                project["repository"], project.get("ref"), item.get("source", "grype"), item["id"], aliases.get(item["id"], item["id"]),
                 " ".join(item.get("aliases") or []), item["severity"], item.get("ecosystem"), item["package"], item["version"],
                 " ".join(item.get("fixed_in") or []), item.get("location"), item.get("osv_confirmed"), item.get("in_binary"),
                 (bool(kev) if "kev" in item else None), (kev or {}).get("date_added"),
@@ -224,7 +257,8 @@ def rfc3339(value: str | None, date: str) -> str:
 # ----- badges -------------------------------------------------------------------------------
 
 RELEASE_BADGES = {
-    "verified": ("verified", "brightgreen"), "signed": ("signed, signer not checked", "yellow"),
+    "verified": ("verified", "brightgreen"), "signed": ("signed, not by a project workflow", "yellow"),
+    "immutable": ("immutable release only", "yellow"),
     "unverified": ("signature did not verify", "red"), "checksums-only": ("checksums only", "yellow"),
     "none": ("no checksums or signatures", "red"), "no-linux-binary": ("no Linux binary", "lightgrey"),
     "no-assets": ("no release files", "lightgrey"),

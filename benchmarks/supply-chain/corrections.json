@@ -4,13 +4,9 @@
   "method_changes": [
     {
       "date": "2026-11-02",
-      "summary": "npm development dependencies and npm-shrinkwrap.json are now scanned; matches on GitHub Actions referenced by a moving tag and on npm packages the repository defines itself are no longer counted; directories such as integration-tests and test-fixtures are excluded as fixtures.",
+      "summary": "npm development dependencies and npm-shrinkwrap.json are now scanned; matches on GitHub Actions referenced by a moving tag and on npm packages the repository defines itself are no longer counted; directories such as integration-tests and test-fixtures are excluded as fixtures. An OSV-Scanner confirmation now requires the same ecosystem, package, and version as the Grype match, not only the same advisory and package name (about 30 matches in the first 2026-11-02 run were confirmed by a different version); the list of advisories only OSV-Scanner reports is no longer cut at 100 per project. Advisories govulncheck finds in a release binary without a matching declared dependency (about 700 rows, mostly the Go standard library) now get advisory pages, CSV rows, and KEV and EPSS data, and count toward shipped advisories. Release verification reports build provenance, signature and signer, and release immutability separately; a release that is only immutable is no longer labelled verified (7 projects in the first 2026-11-02 run). Projects that left the catalog are excluded from current totals. The 2026-11-02 week was re-run with all of these changes; the first run is kept under runs/superseded/.",
+      "link": "https://github.com/rezmoss/awesome-security-pipeline/blob/main/benchmarks/supply-chain/README.md#how",
       "pr": 54
-    },
-    {
-      "date": "2026-11-08",
-      "summary": "An OSV-Scanner confirmation now requires the same ecosystem, package, and version as the Grype match, not only the same advisory and package name (about 30 matches on 2026-11-02 were confirmed by a different version); the list of advisories only OSV-Scanner reports is no longer cut at 100 per project. Projects that left the catalog are excluded from current totals.",
-      "link": "https://github.com/rezmoss/awesome-security-pipeline/blob/main/benchmarks/supply-chain/README.md#publishing-rules"
     }
   ],
   "disputes": [],
