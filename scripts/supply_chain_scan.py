@@ -34,9 +34,10 @@ sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent.parent))
 
 from scripts import catalog  # noqa: E402
 from scripts import enrichment  # noqa: E402
+from scripts import site_exports  # noqa: E402
 from scripts import supply_chain_checks as checks  # noqa: E402
 
-SCHEMA_VERSION = 3
+SCHEMA_VERSION = 4
 WORKFLOW_PATH = ".github/workflows/supply-chain-report.yml"
 GO_VULN_INDEX = "https://vuln.go.dev/index/db.json"
 CHECKSUMS_FILE = "SHA256SUMS"
@@ -655,11 +656,12 @@ def changes(previous: dict[str, Any] | None, current: dict[str, Any]) -> dict[st
             return {item["id"] for item in project["go_binary"]["findings"] if item["level"] == "symbol"}
         result["in_binary_new"] = sorted(in_binary(current) - in_binary(previous))
         result["in_binary_resolved"] = sorted(in_binary(previous) - in_binary(current))
-    if current.get("vulnerabilities") and any("kev" in item for item in previous.get("vulnerabilities") or []):
+    if site_exports.all_matches(current) and any("kev" in item for item in site_exports.all_matches(previous)):
         # Only once last week was checked against KEV too; otherwise every listed match would look new.
-        earlier = {finding_key(item): item for item in previous.get("vulnerabilities") or []}
+        # Includes govulncheck-only findings in the shipped binary.
+        earlier = {finding_key(item): item for item in site_exports.all_matches(previous)}
         result["kev_new"] = [
-            item for item in current["vulnerabilities"]
+            item for item in site_exports.all_matches(current)
             if item.get("kev") and not (earlier.get(finding_key(item)) or {}).get("kev")
         ]
     result["any"] = bool(
@@ -885,8 +887,10 @@ def command_publish(args: argparse.Namespace) -> int:
                 project = {**previous, "errors": project.get("errors"), "scanned_at": project.get("scanned_at"), "stale": True}
                 project["changes"] = {"baseline": False, "any": False, "scan_failed": True}
                 enrichment.annotate(project.get("vulnerabilities"), context)
+                enrichment.annotate((project.get("go_binary") or {}).get("findings"), context)
             else:
                 enrichment.annotate(project.get("vulnerabilities"), context)
+                enrichment.annotate((project.get("go_binary") or {}).get("findings"), context)
                 if not project.get("scorecard") and previous and previous.get("scorecard"):
                     # Scorecard CLI runs are rate limited; keep the last result until it is refreshed.
                     project["scorecard"] = {**previous["scorecard"], "carried_forward": True}

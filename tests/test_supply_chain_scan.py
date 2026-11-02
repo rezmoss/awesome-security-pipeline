@@ -1,3 +1,4 @@
+import base64
 import csv
 import gzip
 import io
@@ -192,6 +193,46 @@ class SupplyChainScanTest(unittest.TestCase):
         # confirmed by a PyPI package of the same name.
         self.assertEqual([item["osv_confirmed"] for item in grype], [False, True, True, True, False])
         self.assertEqual(len(result["osv_only"]), 151)
+
+    def test_release_verdict_keeps_provenance_signature_and_immutability_apart(self):
+        def verdict(*methods, checksums=False):
+            return checks.integrity_verdict({"methods": [{"method": m, "status": st} for m, st in methods],
+                                             "checksums_published": checksums})
+
+        immutable = ("github-immutable-release", "verified")
+        self.assertEqual(verdict(immutable), "immutable")
+        self.assertEqual(verdict(("cosign", "signed-other-identity"), immutable), "signed")
+        self.assertEqual(verdict(("cosign", "key-signature")), "signed")
+        self.assertEqual(verdict(("cosign", "verified")), "verified")
+        self.assertEqual(verdict(("slsa-verifier", "verified")), "verified")
+        self.assertEqual(verdict(("github-attestation", "verified"), immutable), "verified")
+        self.assertEqual(verdict(("cosign", "failed")), "unverified")
+        self.assertEqual(verdict(checksums=True), "checksums-only")
+        self.assertEqual(verdict(), "none")
+        self.assertEqual(checks.integrity_dimensions([{"method": "cosign", "status": "signed-other-identity", "signer": "email:a@b"},
+                                                     {"method": "github-immutable-release", "status": "verified"}]),
+                         {"build_provenance": None, "signature": "other-identity", "signer": "email:a@b", "immutable_release": True})
+
+    def test_signer_identity_is_read_from_the_signing_certificate(self):
+        temporary = tempfile.TemporaryDirectory()
+        self.addCleanup(temporary.cleanup)
+        root = pathlib.Path(temporary.name)
+        made = subprocess.run(["openssl", "req", "-x509", "-newkey", "ec", "-pkeyopt", "ec_paramgen_curve:P-256", "-nodes",
+                               "-keyout", str(root / "key.pem"), "-out", str(root / "cert.pem"), "-days", "1", "-subj", "/",
+                               "-addext", "subjectAltName=email:keyless@example.iam.gserviceaccount.com"],
+                              capture_output=True, check=False)
+        if made.returncode != 0:
+            self.skipTest("openssl cannot create a test certificate here")
+        der = subprocess.run(["openssl", "x509", "-in", str(root / "cert.pem"), "-outform", "DER"], capture_output=True, check=True).stdout
+        bundle = root / "a.sigstore.json"
+        bundle.write_text(json.dumps({"verificationMaterial": {"certificate": {"rawBytes": base64.b64encode(der).decode()}}}))
+        wrapped = root / "a.pem"
+        wrapped.write_bytes(base64.b64encode((root / "cert.pem").read_bytes()))
+
+        expected = "email:keyless@example.iam.gserviceaccount.com"
+        self.assertEqual(checks.certificate_identity({"bundle": bundle}), expected)
+        self.assertEqual(checks.certificate_identity({"sig": root / "x", "cert": wrapped}), expected)
+        self.assertIsNone(checks.certificate_identity({"key_signature": root / "x"}))
 
     def test_linux_amd64_release_asset_selection(self):
         assets = [{"name": name, "size": 1000} for name in (
@@ -479,14 +520,18 @@ class SupplyChainScanTest(unittest.TestCase):
              "vulnerabilities": [shared_ghsa, finding("GHSA-u", "x/net", "Unknown"), finding("GHSA-n", "x/net", "Negligible")],
              "go_binary": {"go_version": "go1.24", "binary": "gitleaks", "asset": "a.tar.gz", "main_module": "",
                            "findings": [{"id": "GO-1", "aliases": ["GHSA-s"], "level": "symbol", "module": "x/net",
-                                         "version": "1", "summary": "Bad =parsing"}]},
+                                         "version": "1", "summary": "Bad =parsing"},
+                                        # Standard library: never declared in a manifest, so Grype cannot match it.
+                                        {"id": "GO-STD", "aliases": ["CVE-2026-8"], "level": "symbol", "module": "stdlib",
+                                         "version": "v1.24.0", "fixed_version": "v1.24.1", "summary": "net/http flaw"},
+                                        {"id": "GO-MOD", "aliases": [], "level": "module", "module": "x/other", "version": "1"}]},
              "release_integrity": {"verdict": "verified"}},
             {"id": "aquasecurity__trivy", "repository": "aquasecurity/trivy", "name": "trivy", "ref": "v2", "ref_kind": "release",
              "components": [component("x/net", "1")], "errors": [], "vulnerabilities": [shared_cve]},
         ]
         (root / "shards").mkdir()
         (root / "shards" / "shard-0.json").write_text(json.dumps({"tools": {}, "projects": projects}))
-        self.write_enrichment(root / "e", ["CVE-2026-7"], {"CVE-2026-7": 0.3})
+        self.write_enrichment(root / "e", ["CVE-2026-7", "CVE-2026-8"], {"CVE-2026-7": 0.3})
         self.publish(root / "shards", data, "2026-11-01", enrichment=root / "e")
         # Data published before 2026-11-08 compared same-day re-runs; the first week must still read as a first scan.
         stored_path = data / "projects" / "gitleaks__gitleaks.json"
@@ -528,13 +573,25 @@ class SupplyChainScanTest(unittest.TestCase):
         self.assertIn("template=report-finding-dispute.yml", project)
         self.assertIn("advisory=GHSA-s", project)
         self.assertIn("badges%2Fgitleaks%2Fgitleaks%2Frelease.json", project)
-        self.assertEqual(json.loads((site / "badges/gitleaks/gitleaks/in-binary.json").read_text())["message"], "1")
+        self.assertEqual(json.loads((site / "badges/gitleaks/gitleaks/in-binary.json").read_text())["message"], "2")
         self.assertFalse((site / "badges/aquasecurity/trivy/in-binary.json").exists())
 
         matches = list(csv.DictReader(io.StringIO((site / "data" / "matches.csv").read_text())))
-        self.assertEqual(len(matches), 4)
+        self.assertEqual(len(matches), 5)
+        binary_row = next(row for row in matches if row["source"] == "govulncheck")
+        self.assertEqual((binary_row["advisory"], binary_row["package"], binary_row["kev"], binary_row["in_binary"]),
+                         ("GO-STD", "stdlib", "true", "vulnerable code in binary"))
+        # A govulncheck-only advisory gets its own page, links both ways, and counts as shipped; a module-level
+        # finding (imported, function not compiled in) does not.
+        std_page = (site / "advisories" / "GO-STD" / "index.html").read_text()
+        self.assertIn("govulncheck only", std_page)
+        self.assertIn("net/http flaw", std_page)
+        self.assertFalse((site / "advisories" / "GO-MOD").exists())
+        self.assertIn('href="../../../advisories/GO-STD/index.html"', project)
+        self.assertIn('id="adv-go-std-stdlib-v1-24-0"', project)
+        self.assertIn("2</div><div class=\"small\">advisories with vulnerable code shipped", overview)
         self.assertEqual({row["canonical_advisory"] for row in matches if row["package"] == "x/net" and row["kev"] == "true"}, {"GHSA-s"})
-        self.assertEqual(len(list(csv.DictReader(io.StringIO((site / "data" / "advisories.csv").read_text())))), 3)
+        self.assertEqual(len(list(csv.DictReader(io.StringIO((site / "data" / "advisories.csv").read_text())))), 4)
         self.assertEqual(len(list(csv.DictReader(io.StringIO((site / "data" / "projects.csv").read_text())))), 2)
 
         for html in site.rglob("*.html"):
@@ -548,15 +605,20 @@ class SupplyChainScanTest(unittest.TestCase):
         project_feed = ElementTree.parse(site / "projects" / "gitleaks" / "gitleaks" / "feed.xml").getroot()
         self.assertEqual(len(project_feed.findall(atom + "entry")), 1)
 
-        # Every relative link and asset in the built site must resolve to a file.
+        # Every relative link and asset in the built site must resolve to a file, and every #fragment to an id.
         broken = []
         for html in site.rglob("*.html"):
-            for target in re.findall(r'(?:href|src)="([^"#?]*)', html.read_text()):
+            for target in re.findall(r'(?:href|src)="([^"?]*)', html.read_text()):
                 if not target or re.match(r"[a-z]+:", target):
                     continue
-                resolved = (html.parent / urllib.parse.unquote(target)).resolve()
-                if not (resolved.is_file() or (resolved / "index.html").is_file()):
+                path, _, fragment = target.partition("#")
+                resolved = (html.parent / urllib.parse.unquote(path)).resolve() if path else html
+                if resolved.is_dir():
+                    resolved = resolved / "index.html"
+                if not resolved.is_file():
                     broken.append(f"{html.relative_to(site)} -> {target}")
+                elif fragment and f'id="{fragment}"' not in resolved.read_text():
+                    broken.append(f"{html.relative_to(site)} -> {target} (no such id)")
         self.assertEqual(broken, [])
 
     def test_a_project_that_left_the_catalog_is_only_shown_historically(self):

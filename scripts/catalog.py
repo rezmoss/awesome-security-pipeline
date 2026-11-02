@@ -37,7 +37,7 @@ STATUS = {
     "unmaintained": ("🔴", "Unmaintained"),
     "archived": ("⚪", "Archived"),
 }
-RELEASE = {"verified": "✓&nbsp;Verified", "signed": "Signed", "checksums-only": "Checksums", "unverified": "Not&nbsp;verified"}
+RELEASE = {"verified": "✓&nbsp;Verified", "signed": "Signed", "immutable": "Immutable", "checksums-only": "Checksums", "unverified": "Not&nbsp;verified"}
 STALE_DAYS, UNMAINTAINED_DAYS = 180, 365
 CATALOG_INTRO = (
     "Entries are organized by where they operate in a delivery pipeline. Status reflects repository activity, "

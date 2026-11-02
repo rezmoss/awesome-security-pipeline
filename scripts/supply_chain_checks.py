@@ -388,6 +388,31 @@ def cosign_verify(blob: pathlib.Path, signature: dict[str, pathlib.Path], reposi
     return {"status": "failed", "error": completed.stderr.strip()[-300:]}
 
 
+def certificate_identity(signature: dict[str, pathlib.Path]) -> str | None:
+    """The signer named in a Sigstore certificate (subject alternative name), for example a workflow URL or an
+    email; None for key signatures or when the certificate cannot be read."""
+    try:
+        if "bundle" in signature:
+            material = json.loads(signature["bundle"].read_text(encoding="utf-8")).get("verificationMaterial") or {}
+            raw = (material.get("certificate") or {}).get("rawBytes") \
+                or ((material.get("x509CertificateChain") or {}).get("certificates") or [{}])[0].get("rawBytes")
+            if not raw:
+                return None
+            data, form = base64.b64decode(raw), "DER"
+        elif "cert" in signature:
+            data, form = signature["cert"].read_bytes(), "PEM"
+            if b"BEGIN CERTIFICATE" not in data:
+                data = base64.b64decode(data)  # cosign writes the PEM base64-encoded
+        else:
+            return None
+    except (OSError, ValueError, TypeError, AttributeError, IndexError):
+        return None
+    completed = subprocess.run(["openssl", "x509", "-inform", form, "-noout", "-ext", "subjectAltName"],
+                               input=data, capture_output=True, timeout=30, check=False)
+    lines = [line.strip() for line in completed.stdout.decode("utf-8", "replace").splitlines()[1:] if line.strip()]
+    return ", ".join(lines)[:200] or None
+
+
 def signature_files(assets: list[dict[str, Any]], name: str) -> dict[str, str] | None:
     for suffix in ("-keyless.sigstore.json", ".keyless.sigstore.json", ".sigstore.json", ".bundle", ".sigstore"):
         if asset_by_name(assets, name + suffix):
@@ -447,6 +472,8 @@ def release_integrity(target: dict[str, Any], asset: dict[str, Any] | None, file
             paths = {key: fetch(value) for key, value in signed.items()}
             outcome = cosign_verify(fetch(covered_by) if covered_by != asset["name"] else file, paths, repository)
             outcome["covers"] = "asset" if covered_by == asset["name"] else f"checksums file {covered_by}"
+            if outcome["status"] in ("verified", "signed-other-identity"):
+                outcome["signer"] = certificate_identity(paths)
             result["methods"].append({"method": "cosign", **outcome})
         except (urllib.error.URLError, OSError, subprocess.TimeoutExpired) as exc:
             result["methods"].append({"method": "cosign", "status": "failed", "error": str(exc)})
@@ -487,18 +514,49 @@ def release_integrity(target: dict[str, Any], asset: dict[str, Any] | None, file
         result["methods"].append({"method": "github-immutable-release", "status": "verified" if completed.returncode == 0 else "failed",
                                   "detail": "GitHub attests the file is unchanged since the release was published"})
 
-    statuses = [item["status"] for item in result["methods"]]
-    if "verified" in statuses:
-        result["verdict"] = "verified"
-    elif {"key-signature", "signed-other-identity"} & set(statuses):
-        result["verdict"] = "signed"
-    elif statuses:
-        result["verdict"] = "unverified"
-    elif result["checksums_published"]:
-        result["verdict"] = "checksums-only"
-    else:
-        result["verdict"] = "none"
+    result.update(integrity_dimensions(result["methods"]))
+    result["verdict"] = integrity_verdict(result)
     return result
+
+
+SIGNATURE_STATES = {"verified": "own-workflow", "signed-other-identity": "other-identity", "key-signature": "key-unchecked",
+                    "failed": "failed"}
+
+
+def integrity_dimensions(methods: list[dict[str, Any]]) -> dict[str, Any]:
+    """Each kind of release evidence on its own, because they prove different things: build provenance says how and
+    from what source the file was built; a signature says who signed it; an immutable release only says the file has
+    not changed since it was published."""
+    def state(names: tuple[str, ...]) -> str | None:
+        found = [item["status"] for item in methods if item["method"] in names]
+        return "verified" if "verified" in found else ("failed" if found else None)
+
+    cosign = next((item for item in methods if item["method"] == "cosign"), None)
+    immutable = state(("github-immutable-release",))
+    return {
+        "build_provenance": state(("slsa-verifier", "github-attestation")),
+        "signature": SIGNATURE_STATES.get(cosign["status"], cosign["status"]) if cosign else None,
+        "signer": (cosign or {}).get("signer"),
+        "immutable_release": None if immutable is None else immutable == "verified",
+    }
+
+
+def integrity_verdict(result: dict[str, Any]) -> str:
+    """One label for tables and badges. *verified* needs build provenance or a signature from one of the project's
+    own GitHub Actions workflows; an immutable release alone is reported as *immutable*, not verified."""
+    if result.get("verdict") in ("no-assets", "no-linux-binary"):
+        return result["verdict"]
+    dimensions = {**integrity_dimensions(result.get("methods") or []),
+                  **{key: result[key] for key in ("build_provenance", "signature", "immutable_release") if key in result}}
+    if dimensions["build_provenance"] == "verified" or dimensions["signature"] == "own-workflow":
+        return "verified"
+    if dimensions["signature"] in ("other-identity", "key-unchecked"):
+        return "signed"
+    if dimensions["immutable_release"]:
+        return "immutable"
+    if result.get("methods"):
+        return "unverified"
+    return "checksums-only" if result.get("checksums_published") else "none"
 
 
 # ----- OpenSSF Scorecard --------------------------------------------------------------
