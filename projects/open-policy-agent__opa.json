@@ -37,6 +37,50 @@
         "Medium": 1,
         "files": 15
       }
+    },
+    {
+      "added": 0,
+      "commit": "d4c8d0c8812290c3e3715ca4cf958f75283f6ec4",
+      "date": "2026-11-02",
+      "dependencies": 156,
+      "errors": [],
+      "fixable": 4,
+      "go_version": "go1.27.3",
+      "in_binary": {
+        "dependencies": 0,
+        "stdlib": 0,
+        "total": 0
+      },
+      "kev": 0,
+      "kev_new": 0,
+      "new_vulnerabilities": 0,
+      "osv_confirmed": 5,
+      "osv_only": 0,
+      "ref": "v1.22.0",
+      "release_changed": false,
+      "release_integrity": "verified",
+      "removed": 0,
+      "resolved_vulnerabilities": 0,
+      "scorecard": 8.2,
+      "scorecard_date": "2026-11-01",
+      "scorecard_note": null,
+      "scorecard_source": "openssf-api",
+      "upgraded": 0,
+      "vulnerabilities": {
+        "Critical": 0,
+        "High": 2,
+        "Low": 0,
+        "Medium": 0,
+        "Negligible": 0,
+        "Unknown": 3
+      },
+      "vulnerable_packages": 3,
+      "workflow": {
+        "High": 1,
+        "Low": 6,
+        "Medium": 1,
+        "files": 15
+      }
     }
   ],
   "latest": {
@@ -44,7 +88,7 @@
     "category": "Policy as Code",
     "changes": {
       "added": [],
-      "any": true,
+      "any": false,
       "baseline": false,
       "in_binary_new": [],
       "in_binary_resolved": [],
@@ -55,10 +99,6 @@
       "release_changed": false,
       "removed": [],
       "resolved_vulnerabilities": [],
-      "scorecard": {
-        "from": 8,
-        "to": 8.2
-      },
       "upgraded": [],
       "workflow_new": 0,
       "workflow_resolved": 0
@@ -1414,6 +1454,8 @@
     "go_binary": {
       "asset": "opa_linux_amd64",
       "binary": "opa_linux_amd64",
+      "db": "https://vuln.go.dev",
+      "db_last_modified": "2026-10-27T21:16:18Z",
       "findings": [
         {
           "aliases": [],
@@ -1513,7 +1555,7 @@
       ],
       "removed": 0
     },
-    "scanned_at": "2026-11-01T19:06:38+00:00",
+    "scanned_at": "2026-11-02T01:33:50+00:00",
     "scorecard": {
       "checks": [
         {
@@ -1618,16 +1660,23 @@
           "CVE-2026-56865"
         ],
         "ecosystem": "golang",
+        "epss": {
+          "cve": "CVE-2026-56865",
+          "percentile": 0.02533,
+          "score": 0.00129
+        },
         "fix_state": "fixed",
         "fixed_in": [
           "0.40.0"
         ],
         "id": "GO-2026-6179",
         "in_binary": "not in released binary",
+        "kev": null,
         "location": "build/tools/go.mod",
         "osv_confirmed": true,
         "package": "golang.org/x/mod",
         "severity": "High",
+        "summary": "A malicious GOPROXY was previously capable of forging up to two sumdb tiles that allow for a requested module to bypass the GOSUMDB check and persist attacker-controlled module content to a local Go module cache. This attack allows for a malicious GOPROXY to serve malicious module content that canno",
         "url": "https://go.dev/issue/80744",
         "version": "v0.35.0"
       },
@@ -1636,30 +1685,40 @@
           "CVE-2026-56864"
         ],
         "ecosystem": "golang",
+        "epss": {
+          "cve": "CVE-2026-56864",
+          "percentile": 0.22506,
+          "score": 0.00298
+        },
         "fix_state": "fixed",
         "fixed_in": [
           "0.40.0"
         ],
         "id": "GO-2026-6180",
         "in_binary": "not in released binary",
+        "kev": null,
         "location": "build/tools/go.mod",
         "osv_confirmed": true,
         "package": "golang.org/x/mod",
         "severity": "High",
+        "summary": "A malicious GOSUMDB was capable of serving arbitrary module content not contained within the transparency log. This attack allows for a coordinating GOPROXY and GOSUMDB to serve a client malicious module content that cannot be detected by evaluating the transparency log. In order to determine if you",
         "url": "https://go.dev/issue/80745",
         "version": "v0.35.0"
       },
       {
         "aliases": [],
         "ecosystem": "golang",
+        "epss": null,
         "fix_state": "unknown",
         "fixed_in": [],
         "id": "GO-2026-5932",
         "in_binary": "module in binary",
+        "kev": null,
         "location": "go.mod",
         "osv_confirmed": true,
         "package": "golang.org/x/crypto",
         "severity": "Unknown",
+        "summary": "The golang.org/x/crypto/openpgp package is unsafe by design, has numerous known security issues, is not maintained, and should not be used. If you are required to interoperate with OpenPGP systems and need a maintained package, consider github.com/ProtonMail/go-crypto/openpgp which is a maintained f",
         "url": "https://go.dev/issue/44226",
         "version": "v0.57.0"
       },
@@ -1668,16 +1727,23 @@
           "CVE-2026-78661"
         ],
         "ecosystem": "golang",
+        "epss": {
+          "cve": "CVE-2026-78661",
+          "percentile": 0.08063,
+          "score": 0.00185
+        },
         "fix_state": "fixed",
         "fixed_in": [
           "0.62.0"
         ],
         "id": "GO-2026-6860",
         "in_binary": "module in binary",
+        "kev": null,
         "location": "go.mod",
         "osv_confirmed": true,
         "package": "golang.org/x/net",
         "severity": "Unknown",
+        "summary": "When coalescing adjacent text nodes in addText and fosterParent, appending to an existing TextNode's Data via string concatenation (n.Data += text) reallocated and copied the accumulated string on every token. Inputs containing many short text runs separated by ignored end tags (such as \"a</x>\") cau",
         "url": "https://go.dev/cl/849365",
         "version": "v0.60.0"
       },
@@ -1686,16 +1752,23 @@
           "CVE-2026-97045"
         ],
         "ecosystem": "golang",
+        "epss": {
+          "cve": "CVE-2026-97045",
+          "percentile": 0.10117,
+          "score": 0.00202
+        },
         "fix_state": "fixed",
         "fixed_in": [
           "0.62.0"
         ],
         "id": "GO-2026-6866",
         "in_binary": "module in binary",
+        "kev": null,
         "location": "go.mod",
         "osv_confirmed": true,
         "package": "golang.org/x/net",
         "severity": "Unknown",
+        "summary": "In childTextNodesAreLiteral, walking up the tree previously stopped at the nearest foreign ancestor once an HTML integration point was found. However, that integration point may itself be a descendant of an element that was foster-parented into a foreign namespace (such as <mglyph> or <malignmark> f",
         "url": "https://go.dev/cl/855121",
         "version": "v0.60.0"
       }
@@ -1786,5 +1859,5 @@
       ]
     }
   },
-  "updated": "2026-11-01"
+  "updated": "2026-11-02"
 }

@@ -37,6 +37,50 @@
         "Medium": 19,
         "files": 13
       }
+    },
+    {
+      "added": 0,
+      "commit": "a8c88feb4a1c8e961b7902534ce3af97e9d524a4",
+      "date": "2026-11-02",
+      "dependencies": 441,
+      "errors": [],
+      "fixable": 29,
+      "go_version": "go1.26.5",
+      "in_binary": {
+        "dependencies": 14,
+        "stdlib": 21,
+        "total": 35
+      },
+      "kev": 0,
+      "kev_new": 0,
+      "new_vulnerabilities": 0,
+      "osv_confirmed": 30,
+      "osv_only": 0,
+      "ref": "v3.11.1",
+      "release_changed": false,
+      "release_integrity": "checksums-only",
+      "removed": 0,
+      "resolved_vulnerabilities": 0,
+      "scorecard": 6.8,
+      "scorecard_date": "2026-10-19",
+      "scorecard_note": null,
+      "scorecard_source": "openssf-api",
+      "upgraded": 0,
+      "vulnerabilities": {
+        "Critical": 1,
+        "High": 19,
+        "Low": 0,
+        "Medium": 7,
+        "Negligible": 0,
+        "Unknown": 3
+      },
+      "vulnerable_packages": 9,
+      "workflow": {
+        "High": 76,
+        "Low": 2,
+        "Medium": 19,
+        "files": 13
+      }
     }
   ],
   "latest": {
@@ -3633,6 +3677,8 @@
     "go_binary": {
       "asset": "nuclei_3.11.1_linux_amd64.zip",
       "binary": "nuclei",
+      "db": "https://vuln.go.dev",
+      "db_last_modified": "2026-10-27T21:16:18Z",
       "findings": [
         {
           "aliases": [
@@ -4077,7 +4123,7 @@
       ],
       "removed": 0
     },
-    "scanned_at": "2026-11-01T19:06:21+00:00",
+    "scanned_at": "2026-11-02T01:33:18+00:00",
     "scorecard": {
       "checks": [
         {
@@ -4162,16 +4208,23 @@
           "CVE-2026-78663"
         ],
         "ecosystem": "golang",
+        "epss": {
+          "cve": "CVE-2026-78663",
+          "percentile": 0.49813,
+          "score": 0.00622
+        },
         "fix_state": "fixed",
         "fixed_in": [
           "0.60.0"
         ],
         "id": "GO-2026-6612",
         "in_binary": "vulnerable code in binary",
+        "kev": null,
         "location": "go.mod",
         "osv_confirmed": true,
         "package": "golang.org/x/net",
         "severity": "Critical",
+        "summary": "The HTTP/2 server can refund connection-level flow control twice for the same data: Once when a client resets a stream (refunding data for any sent-but-unread portion of the stream), and again when a request handler reads the buffered data. A malicious client can exploit this to bypass the configure",
         "url": "https://go.dev/cl/847187",
         "version": "v0.56.0"
       },
@@ -4180,16 +4233,23 @@
           "CVE-2026-100351"
         ],
         "ecosystem": "golang",
+        "epss": {
+          "cve": "CVE-2026-100351",
+          "percentile": 0.42051,
+          "score": 0.00488
+        },
         "fix_state": "fixed",
         "fixed_in": [
           "0.147.0"
         ],
         "id": "GHSA-23vg-4cjm-66q5",
         "in_binary": "vulnerable code not in binary",
+        "kev": null,
         "location": "go.mod",
         "osv_confirmed": true,
         "package": "github.com/getkin/kin-openapi",
         "severity": "High",
+        "summary": "kin-openapi: ValidationHandler security-requirement bypass via encoded-path operation confusion",
         "url": "https://github.com/advisories/GHSA-23vg-4cjm-66q5",
         "version": "v0.144.0"
       },
@@ -4198,16 +4258,23 @@
           "CVE-2026-100349"
         ],
         "ecosystem": "golang",
+        "epss": {
+          "cve": "CVE-2026-100349",
+          "percentile": 0.40816,
+          "score": 0.00472
+        },
         "fix_state": "fixed",
         "fixed_in": [
           "0.146.0"
         ],
         "id": "GHSA-74vm-87hj-r66f",
         "in_binary": "vulnerable code not in binary",
+        "kev": null,
         "location": "go.mod",
         "osv_confirmed": true,
         "package": "github.com/getkin/kin-openapi",
         "severity": "High",
+        "summary": "kin-openapi openapi3filter: nil-pointer panic in ValidateResponse on a response header declared with content",
         "url": "https://github.com/advisories/GHSA-74vm-87hj-r66f",
         "version": "v0.144.0"
       },
@@ -4216,16 +4283,23 @@
           "CVE-2026-100354"
         ],
         "ecosystem": "golang",
+        "epss": {
+          "cve": "CVE-2026-100354",
+          "percentile": 0.37803,
+          "score": 0.00435
+        },
         "fix_state": "fixed",
         "fixed_in": [
           "0.149.0"
         ],
         "id": "GHSA-g8cf-rcjf-c8cf",
         "in_binary": "vulnerable code not in binary",
+        "kev": null,
         "location": "go.mod",
         "osv_confirmed": true,
         "package": "github.com/getkin/kin-openapi",
         "severity": "High",
+        "summary": "kin-openapi: Uncontrolled Recursion on Circular allOf/anyOf/oneOf Schemas Causes Fatal Process Crash",
         "url": "https://github.com/advisories/GHSA-g8cf-rcjf-c8cf",
         "version": "v0.144.0"
       },
@@ -4234,16 +4308,23 @@
           "CVE-2026-100352"
         ],
         "ecosystem": "golang",
+        "epss": {
+          "cve": "CVE-2026-100352",
+          "percentile": 0.48445,
+          "score": 0.00595
+        },
         "fix_state": "fixed",
         "fixed_in": [
           "0.148.0"
         ],
         "id": "GHSA-rj39-cv6w-8wv7",
         "in_binary": "vulnerable code not in binary",
+        "kev": null,
         "location": "go.mod",
         "osv_confirmed": true,
         "package": "github.com/getkin/kin-openapi",
         "severity": "High",
+        "summary": "kin-openapi: YAML NaN/Inf Values Bypass Built-in Guards and Panic via OAS 3.1 Validation Path",
         "url": "https://github.com/advisories/GHSA-rj39-cv6w-8wv7",
         "version": "v0.144.0"
       },
@@ -4252,16 +4333,23 @@
           "CVE-2026-100353"
         ],
         "ecosystem": "golang",
+        "epss": {
+          "cve": "CVE-2026-100353",
+          "percentile": 0.26853,
+          "score": 0.00335
+        },
         "fix_state": "fixed",
         "fixed_in": [
           "0.149.0"
         ],
         "id": "GHSA-vrcc-3ch7-hppw",
         "in_binary": "vulnerable code not in binary",
+        "kev": null,
         "location": "go.mod",
         "osv_confirmed": true,
         "package": "github.com/getkin/kin-openapi",
         "severity": "High",
+        "summary": "kin-openapi: Incomplete Fix for GHSA-p6wj-qrr4-pgh5: Three Unpatched nil-Items Panic Paths in openapi3filter",
         "url": "https://github.com/advisories/GHSA-vrcc-3ch7-hppw",
         "version": "v0.144.0"
       },
@@ -4270,16 +4358,23 @@
           "CVE-2026-71556"
         ],
         "ecosystem": "golang",
+        "epss": {
+          "cve": "CVE-2026-71556",
+          "percentile": 0.29467,
+          "score": 0.00357
+        },
         "fix_state": "fixed",
         "fixed_in": [
           "5.19.2"
         ],
         "id": "GHSA-hc8v-wwc9-vgxm",
         "in_binary": "vulnerable code in binary",
+        "kev": null,
         "location": "go.mod",
         "osv_confirmed": true,
         "package": "github.com/go-git/go-git/v5",
         "severity": "High",
+        "summary": "go-git: Worktree operations may follow symlinks",
         "url": "https://github.com/advisories/GHSA-hc8v-wwc9-vgxm",
         "version": "v5.19.1"
       },
@@ -4288,16 +4383,23 @@
           "CVE-2026-116587"
         ],
         "ecosystem": "golang",
+        "epss": {
+          "cve": "CVE-2026-116587",
+          "percentile": 0.3048,
+          "score": 0.00366
+        },
         "fix_state": "fixed",
         "fixed_in": [
           "4.1.6"
         ],
         "id": "GHSA-mgcc-cww5-fp2q",
         "in_binary": "vulnerable code not in binary",
+        "kev": null,
         "location": "go.mod",
         "osv_confirmed": true,
         "package": "github.com/go-jose/go-jose/v4",
         "severity": "High",
+        "summary": "Go JOSE: DoS when parsing JWKs that contain RSA keys",
         "url": "https://github.com/advisories/GHSA-mgcc-cww5-fp2q",
         "version": "v4.1.4"
       },
@@ -4306,16 +4408,23 @@
           "CVE-2026-56854"
         ],
         "ecosystem": "golang",
+        "epss": {
+          "cve": "CVE-2026-56854",
+          "percentile": 0.38024,
+          "score": 0.00437
+        },
         "fix_state": "fixed",
         "fixed_in": [
           "0.55.0"
         ],
         "id": "GO-2026-6303",
         "in_binary": "vulnerable code in binary",
+        "kev": null,
         "location": "go.mod",
         "osv_confirmed": true,
         "package": "golang.org/x/crypto",
         "severity": "High",
+        "summary": "The source-address critical option in the Permissions returned by an authentication callback was only enforced for the PublicKeyCallback and VerifiedPublicKeyCallback paths, extending the fix for CVE-2026-46595. Permissions returned by the PasswordCallback, KeyboardInteractiveCallback, NoClientAuthC",
         "url": "https://go.dev/issue/80213",
         "version": "v0.53.0"
       },
@@ -4324,16 +4433,23 @@
           "CVE-2026-78662"
         ],
         "ecosystem": "golang",
+        "epss": {
+          "cve": "CVE-2026-78662",
+          "percentile": 0.37388,
+          "score": 0.00431
+        },
         "fix_state": "fixed",
         "fixed_in": [
           "0.56.0"
         ],
         "id": "GO-2026-6354",
         "in_binary": "vulnerable code in binary",
+        "kev": null,
         "location": "go.mod",
         "osv_confirmed": true,
         "package": "golang.org/x/crypto",
         "severity": "High",
+        "summary": "Previously, a channel registered in the mux's chanList is not usable until it is established. A malicious peer was able flood the channel's incomingRequests, deadlocking the entire connection. Now, we add an atomic established state, set when a channel becomes usable. Until such a time, handlePacket",
         "url": "https://go.dev/issue/81316",
         "version": "v0.53.0"
       },
@@ -4342,16 +4458,23 @@
           "CVE-2026-56855"
         ],
         "ecosystem": "golang",
+        "epss": {
+          "cve": "CVE-2026-56855",
+          "percentile": 0.42867,
+          "score": 0.005
+        },
         "fix_state": "fixed",
         "fixed_in": [
           "0.56.0"
         ],
         "id": "GO-2026-6355",
         "in_binary": "vulnerable code in binary",
+        "kev": null,
         "location": "go.mod",
         "osv_confirmed": true,
         "package": "golang.org/x/crypto",
         "severity": "High",
+        "summary": "Previously, after a channel has been established, a malicious peer could send crafted messages that would deadlock the entire connection. Now, we handle all RFC 4254 channel messages; global requests are handled explicitly. Then, treat all other messages as a protocol error and tear the connection d",
         "url": "https://go.dev/issue/81317",
         "version": "v0.53.0"
       },
@@ -4360,16 +4483,23 @@
           "CVE-2026-56865"
         ],
         "ecosystem": "golang",
+        "epss": {
+          "cve": "CVE-2026-56865",
+          "percentile": 0.02533,
+          "score": 0.00129
+        },
         "fix_state": "fixed",
         "fixed_in": [
           "0.40.0"
         ],
         "id": "GO-2026-6179",
         "in_binary": "vulnerable code in binary",
+        "kev": null,
         "location": "go.mod",
         "osv_confirmed": true,
         "package": "golang.org/x/mod",
         "severity": "High",
+        "summary": "A malicious GOPROXY was previously capable of forging up to two sumdb tiles that allow for a requested module to bypass the GOSUMDB check and persist attacker-controlled module content to a local Go module cache. This attack allows for a malicious GOPROXY to serve malicious module content that canno",
         "url": "https://go.dev/issue/80744",
         "version": "v0.37.0"
       },
@@ -4378,16 +4508,23 @@
           "CVE-2026-56864"
         ],
         "ecosystem": "golang",
+        "epss": {
+          "cve": "CVE-2026-56864",
+          "percentile": 0.22506,
+          "score": 0.00298
+        },
         "fix_state": "fixed",
         "fixed_in": [
           "0.40.0"
         ],
         "id": "GO-2026-6180",
         "in_binary": "vulnerable code in binary",
+        "kev": null,
         "location": "go.mod",
         "osv_confirmed": true,
         "package": "golang.org/x/mod",
         "severity": "High",
+        "summary": "A malicious GOSUMDB was capable of serving arbitrary module content not contained within the transparency log. This attack allows for a coordinating GOPROXY and GOSUMDB to serve a client malicious module content that cannot be detected by evaluating the transparency log. In order to determine if you",
         "url": "https://go.dev/issue/80745",
         "version": "v0.37.0"
       },
@@ -4396,16 +4533,23 @@
           "CVE-2026-78659"
         ],
         "ecosystem": "golang",
+        "epss": {
+          "cve": "CVE-2026-78659",
+          "percentile": 0.50082,
+          "score": 0.00627
+        },
         "fix_state": "fixed",
         "fixed_in": [
           "0.60.0"
         ],
         "id": "GO-2026-6603",
         "in_binary": "vulnerable code in binary",
+        "kev": null,
         "location": "go.mod",
         "osv_confirmed": true,
         "package": "golang.org/x/net",
         "severity": "High",
+        "summary": "When \"Trailer\" headers are sent by a client, the HTTP server internally uses the header values to populate the Request.Trailer map passed to the server handler. Because Request.Trailer is a map, each entry incurs memory overhead. For HTTP/2 servers, a malicious client can exploit this by sending a \"",
         "url": "https://go.dev/cl/847185",
         "version": "v0.56.0"
       },
@@ -4414,16 +4558,23 @@
           "CVE-2026-78660"
         ],
         "ecosystem": "golang",
+        "epss": {
+          "cve": "CVE-2026-78660",
+          "percentile": 0.36838,
+          "score": 0.00425
+        },
         "fix_state": "fixed",
         "fixed_in": [
           "0.60.0"
         ],
         "id": "GO-2026-6610",
         "in_binary": "vulnerable code in binary",
+        "kev": null,
         "location": "go.mod",
         "osv_confirmed": true,
         "package": "golang.org/x/net",
         "severity": "High",
+        "summary": "Historically, we have been rather lax about malformed framing-related headers in our HTTP/2 implementation, as they cannot interfere with HTTP/2 framing. However, this makes it possible for our HTTP/2 implementation to forward responses containing such headers to an HTTP/1 client when acting as a re",
         "url": "https://go.dev/cl/835145",
         "version": "v0.56.0"
       },
@@ -4432,16 +4583,23 @@
           "CVE-2026-78669"
         ],
         "ecosystem": "golang",
+        "epss": {
+          "cve": "CVE-2026-78669",
+          "percentile": 0.49426,
+          "score": 0.00614
+        },
         "fix_state": "fixed",
         "fixed_in": [
           "0.60.0"
         ],
         "id": "GO-2026-6611",
         "in_binary": "vulnerable code in binary",
+        "kev": null,
         "location": "go.mod",
         "osv_confirmed": true,
         "package": "golang.org/x/net",
         "severity": "High",
+        "summary": "A malicious HTTP/2 peer can cause excessive CPU consumption in the client or server by opening a large number of streams and then sending many small SETTINGS frames containing SETTINGS_INITIAL_WINDOW_SIZE values.",
         "url": "https://go.dev/cl/847186",
         "version": "v0.56.0"
       },
@@ -4450,16 +4608,23 @@
           "CVE-2026-97032"
         ],
         "ecosystem": "golang",
+        "epss": {
+          "cve": "CVE-2026-97032",
+          "percentile": 0.42154,
+          "score": 0.0049
+        },
         "fix_state": "fixed",
         "fixed_in": [
           "0.60.0"
         ],
         "id": "GO-2026-6617",
         "in_binary": "vulnerable code in binary",
+        "kev": null,
         "location": "go.mod",
         "osv_confirmed": true,
         "package": "golang.org/x/net",
         "severity": "High",
+        "summary": "HTTP/2 servers could end up crashing due to inadvertently modifying its HPACK encoder concurrently. This happens because the server modifies the HPACK encoder from two goroutines without synchronization: one uses the encoder to encode a HEADERS frame as part of a response sent to a client and the ot",
         "url": "https://go.dev/cl/847188",
         "version": "v0.56.0"
       },
@@ -4468,16 +4633,23 @@
           "CVE-2026-56851"
         ],
         "ecosystem": "golang",
+        "epss": {
+          "cve": "CVE-2026-56851",
+          "percentile": 0.40313,
+          "score": 0.00466
+        },
         "fix_state": "fixed",
         "fixed_in": [
           "0.41.0"
         ],
         "id": "GO-2026-6629",
         "in_binary": "vulnerable code in binary",
+        "kev": null,
         "location": "go.mod",
         "osv_confirmed": true,
         "package": "golang.org/x/text",
         "severity": "High",
+        "summary": "The Nickname profile can panic with an out-of-bounds slice error when transforming crafted input into a short destination buffer.",
         "url": "https://go.dev/cl/793360",
         "version": "v0.39.0"
       },
@@ -4486,16 +4658,23 @@
           "CVE-2026-84445"
         ],
         "ecosystem": "golang",
+        "epss": {
+          "cve": "CVE-2026-84445",
+          "percentile": 0.5072,
+          "score": 0.00641
+        },
         "fix_state": "fixed",
         "fixed_in": [
           "1.82.2"
         ],
         "id": "GHSA-2v4p-qf9q-27wj",
         "in_binary": "vulnerable code in binary",
+        "kev": null,
         "location": "go.mod",
         "osv_confirmed": true,
         "package": "google.golang.org/grpc",
         "severity": "High",
+        "summary": "gRPC-Go xDS servers: Denial of Service (DoS) via crash due to missing `:authority` and `Host` headers",
         "url": "https://github.com/advisories/GHSA-2v4p-qf9q-27wj",
         "version": "v1.82.1"
       },
@@ -4504,16 +4683,23 @@
           "CVE-2026-84304"
         ],
         "ecosystem": "golang",
+        "epss": {
+          "cve": "CVE-2026-84304",
+          "percentile": 0.49152,
+          "score": 0.00609
+        },
         "fix_state": "fixed",
         "fixed_in": [
           "1.83.1"
         ],
         "id": "GHSA-vp52-pcj8-j9qc",
         "in_binary": "vulnerable code in binary",
+        "kev": null,
         "location": "go.mod",
         "osv_confirmed": true,
         "package": "google.golang.org/grpc",
         "severity": "High",
+        "summary": "gRPC-Go: Heap Memory Exhaustion (OOM) via HTTP/2 DATA Frame Fragmentation",
         "url": "https://github.com/advisories/GHSA-vp52-pcj8-j9qc",
         "version": "v1.82.1"
       },
@@ -4522,16 +4708,23 @@
           "CVE-2026-100347"
         ],
         "ecosystem": "golang",
+        "epss": {
+          "cve": "CVE-2026-100347",
+          "percentile": 0.43881,
+          "score": 0.00515
+        },
         "fix_state": "fixed",
         "fixed_in": [
           "0.145.0"
         ],
         "id": "GHSA-fh4f-47mf-f2gj",
         "in_binary": "vulnerable code not in binary",
+        "kev": null,
         "location": "go.mod",
         "osv_confirmed": true,
         "package": "github.com/getkin/kin-openapi",
         "severity": "Medium",
+        "summary": "kin-openapi: Unauthenticated panic (DoS) in openapi3filter legacy router via non-canonical/unsupported HTTP method on a static path",
         "url": "https://github.com/advisories/GHSA-fh4f-47mf-f2gj",
         "version": "v0.144.0"
       },
@@ -4540,16 +4733,23 @@
           "CVE-2026-100348"
         ],
         "ecosystem": "golang",
+        "epss": {
+          "cve": "CVE-2026-100348",
+          "percentile": 0.31115,
+          "score": 0.00372
+        },
         "fix_state": "fixed",
         "fixed_in": [
           "0.145.0"
         ],
         "id": "GHSA-mh7x-f8wq-4jhx",
         "in_binary": "vulnerable code not in binary",
+        "kev": null,
         "location": "go.mod",
         "osv_confirmed": true,
         "package": "github.com/getkin/kin-openapi",
         "severity": "Medium",
+        "summary": "kin-openapi spec loader panics on a self-referential additionalProperties $ref (nil-pointer DoS)",
         "url": "https://github.com/advisories/GHSA-mh7x-f8wq-4jhx",
         "version": "v0.144.0"
       },
@@ -4558,16 +4758,23 @@
           "CVE-2026-71557"
         ],
         "ecosystem": "golang",
+        "epss": {
+          "cve": "CVE-2026-71557",
+          "percentile": 0.35651,
+          "score": 0.00413
+        },
         "fix_state": "fixed",
         "fixed_in": [
           "5.19.2"
         ],
         "id": "GHSA-qgq7-7hm3-q39j",
         "in_binary": "vulnerable code in binary",
+        "kev": null,
         "location": "go.mod",
         "osv_confirmed": true,
         "package": "github.com/go-git/go-git/v5",
         "severity": "Medium",
+        "summary": "go-git: Malicious reference names may modify files outside the reference storage",
         "url": "https://github.com/advisories/GHSA-qgq7-7hm3-q39j",
         "version": "v5.19.1"
       },
@@ -4576,16 +4783,23 @@
           "CVE-2026-116585"
         ],
         "ecosystem": "golang",
+        "epss": {
+          "cve": "CVE-2026-116585",
+          "percentile": 0.18368,
+          "score": 0.00264
+        },
         "fix_state": "fixed",
         "fixed_in": [
           "4.1.5"
         ],
         "id": "GHSA-4w3g-jfj2-cw2q",
         "in_binary": "vulnerable code not in binary",
+        "kev": null,
         "location": "go.mod",
         "osv_confirmed": true,
         "package": "github.com/go-jose/go-jose/v4",
         "severity": "Medium",
+        "summary": "Go JOSE: Panic during CBC-HMAC processing",
         "url": "https://github.com/advisories/GHSA-4w3g-jfj2-cw2q",
         "version": "v4.1.4"
       },
@@ -4594,16 +4808,23 @@
           "CVE-2026-116586"
         ],
         "ecosystem": "golang",
+        "epss": {
+          "cve": "CVE-2026-116586",
+          "percentile": 0.21769,
+          "score": 0.00292
+        },
         "fix_state": "fixed",
         "fixed_in": [
           "4.1.5"
         ],
         "id": "GHSA-vvm8-gf78-28g4",
         "in_binary": "vulnerable code not in binary",
+        "kev": null,
         "location": "go.mod",
         "osv_confirmed": true,
         "package": "github.com/go-jose/go-jose/v4",
         "severity": "Medium",
+        "summary": "Go JOSE: Panics in JSON parsing",
         "url": "https://github.com/advisories/GHSA-vvm8-gf78-28g4",
         "version": "v4.1.4"
       },
@@ -4612,16 +4833,23 @@
           "CVE-2026-61801"
         ],
         "ecosystem": "golang",
+        "epss": {
+          "cve": "CVE-2026-61801",
+          "percentile": 0.01634,
+          "score": 0.00117
+        },
         "fix_state": "fixed",
         "fixed_in": [
           "0.4.1"
         ],
         "id": "GHSA-mjcv-p78q-w5fw",
         "in_binary": "not in released binary",
+        "kev": null,
         "location": "go.mod",
         "osv_confirmed": true,
         "package": "github.com/moby/sys/user",
         "severity": "Medium",
+        "summary": "github.com/moby/sys/user has a possible DoS via unbounded parsing of user and group database files",
         "url": "https://github.com/advisories/GHSA-mjcv-p78q-w5fw",
         "version": "v0.4.0"
       },
@@ -4630,30 +4858,40 @@
           "CVE-2026-84303"
         ],
         "ecosystem": "golang",
+        "epss": {
+          "cve": "CVE-2026-84303",
+          "percentile": 0.23991,
+          "score": 0.00311
+        },
         "fix_state": "fixed",
         "fixed_in": [
           "1.83.1"
         ],
         "id": "GHSA-qc2q-p7wx-3px3",
         "in_binary": "vulnerable code in binary",
+        "kev": null,
         "location": "go.mod",
         "osv_confirmed": true,
         "package": "google.golang.org/grpc",
         "severity": "Medium",
+        "summary": "gRPC-Go: xDS RBAC HTTP Filter bypass via mixed-case Header Matching and gRFC A41 validation evasion",
         "url": "https://github.com/advisories/GHSA-qc2q-p7wx-3px3",
         "version": "v1.82.1"
       },
       {
         "aliases": [],
         "ecosystem": "golang",
+        "epss": null,
         "fix_state": "unknown",
         "fixed_in": [],
         "id": "GO-2026-5932",
         "in_binary": "vulnerable code in binary",
+        "kev": null,
         "location": "go.mod",
         "osv_confirmed": true,
         "package": "golang.org/x/crypto",
         "severity": "Unknown",
+        "summary": "The golang.org/x/crypto/openpgp package is unsafe by design, has numerous known security issues, is not maintained, and should not be used. If you are required to interoperate with OpenPGP systems and need a maintained package, consider github.com/ProtonMail/go-crypto/openpgp which is a maintained f",
         "url": "https://go.dev/issue/44226",
         "version": "v0.53.0"
       },
@@ -4662,16 +4900,23 @@
           "CVE-2026-78661"
         ],
         "ecosystem": "golang",
+        "epss": {
+          "cve": "CVE-2026-78661",
+          "percentile": 0.08063,
+          "score": 0.00185
+        },
         "fix_state": "fixed",
         "fixed_in": [
           "0.62.0"
         ],
         "id": "GO-2026-6860",
         "in_binary": "vulnerable code in binary",
+        "kev": null,
         "location": "go.mod",
         "osv_confirmed": true,
         "package": "golang.org/x/net",
         "severity": "Unknown",
+        "summary": "When coalescing adjacent text nodes in addText and fosterParent, appending to an existing TextNode's Data via string concatenation (n.Data += text) reallocated and copied the accumulated string on every token. Inputs containing many short text runs separated by ignored end tags (such as \"a</x>\") cau",
         "url": "https://go.dev/cl/849365",
         "version": "v0.56.0"
       },
@@ -4680,16 +4925,23 @@
           "CVE-2026-97045"
         ],
         "ecosystem": "golang",
+        "epss": {
+          "cve": "CVE-2026-97045",
+          "percentile": 0.10117,
+          "score": 0.00202
+        },
         "fix_state": "fixed",
         "fixed_in": [
           "0.62.0"
         ],
         "id": "GO-2026-6866",
         "in_binary": "vulnerable code in binary",
+        "kev": null,
         "location": "go.mod",
         "osv_confirmed": true,
         "package": "golang.org/x/net",
         "severity": "Unknown",
+        "summary": "In childTextNodesAreLiteral, walking up the tree previously stopped at the nearest foreign ancestor once an HTML integration point was found. However, that integration point may itself be a descendant of an element that was foster-parented into a foreign namespace (such as <mglyph> or <malignmark> f",
         "url": "https://go.dev/cl/855121",
         "version": "v0.56.0"
       }
@@ -5670,5 +5922,5 @@
       ]
     }
   },
-  "updated": "2026-11-01"
+  "updated": "2026-11-02"
 }

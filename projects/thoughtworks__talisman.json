@@ -37,6 +37,50 @@
         "Medium": 1,
         "files": 4
       }
+    },
+    {
+      "added": 0,
+      "commit": "12fab7055d7e640d5dae43209bafc48bf5ef1fd7",
+      "date": "2026-11-02",
+      "dependencies": 35,
+      "errors": [],
+      "fixable": 3,
+      "go_version": "go1.24.2",
+      "in_binary": {
+        "dependencies": 2,
+        "stdlib": 63,
+        "total": 65
+      },
+      "kev": 0,
+      "kev_new": 0,
+      "new_vulnerabilities": 0,
+      "osv_confirmed": 3,
+      "osv_only": 0,
+      "ref": "v1.37.0",
+      "release_changed": false,
+      "release_integrity": "checksums-only",
+      "removed": 0,
+      "resolved_vulnerabilities": 0,
+      "scorecard": 3.3,
+      "scorecard_date": "2026-10-19",
+      "scorecard_note": null,
+      "scorecard_source": "openssf-api",
+      "upgraded": 0,
+      "vulnerabilities": {
+        "Critical": 0,
+        "High": 2,
+        "Low": 1,
+        "Medium": 0,
+        "Negligible": 0,
+        "Unknown": 0
+      },
+      "vulnerable_packages": 2,
+      "workflow": {
+        "High": 13,
+        "Low": 0,
+        "Medium": 1,
+        "files": 4
+      }
     }
   ],
   "latest": {
@@ -385,6 +429,8 @@
     "go_binary": {
       "asset": "talisman_linux_amd64",
       "binary": "talisman_linux_amd64",
+      "db": "https://vuln.go.dev",
+      "db_last_modified": "2026-10-27T21:16:18Z",
       "findings": [
         {
           "aliases": [
@@ -1162,7 +1208,7 @@
       ],
       "removed": 0
     },
-    "scanned_at": "2026-11-01T19:07:11+00:00",
+    "scanned_at": "2026-11-02T01:33:13+00:00",
     "scorecard": {
       "checks": [
         {
@@ -1247,16 +1293,23 @@
           "CVE-2026-56852"
         ],
         "ecosystem": "golang",
+        "epss": {
+          "cve": "CVE-2026-56852",
+          "percentile": 0.41057,
+          "score": 0.00475
+        },
         "fix_state": "fixed",
         "fixed_in": [
           "0.39.0"
         ],
         "id": "GO-2026-5970",
         "in_binary": "vulnerable code in binary",
+        "kev": null,
         "location": "go.mod",
         "osv_confirmed": true,
         "package": "golang.org/x/text",
         "severity": "High",
+        "summary": "A norm.Iter can enter an infinite loop when handling input containing invalid UTF-8 bytes.",
         "url": "https://go.dev/issue/80142",
         "version": "v0.23.0"
       },
@@ -1265,16 +1318,23 @@
           "CVE-2026-56851"
         ],
         "ecosystem": "golang",
+        "epss": {
+          "cve": "CVE-2026-56851",
+          "percentile": 0.40313,
+          "score": 0.00466
+        },
         "fix_state": "fixed",
         "fixed_in": [
           "0.41.0"
         ],
         "id": "GO-2026-6629",
         "in_binary": "vulnerable code in binary",
+        "kev": null,
         "location": "go.mod",
         "osv_confirmed": true,
         "package": "golang.org/x/text",
         "severity": "High",
+        "summary": "The Nickname profile can panic with an out-of-bounds slice error when transforming crafted input into a short destination buffer.",
         "url": "https://go.dev/cl/793360",
         "version": "v0.23.0"
       },
@@ -1283,16 +1343,23 @@
           "CVE-2026-39824"
         ],
         "ecosystem": "golang",
+        "epss": {
+          "cve": "CVE-2026-39824",
+          "percentile": 0.01457,
+          "score": 0.00114
+        },
         "fix_state": "fixed",
         "fixed_in": [
           "0.44.0"
         ],
         "id": "GO-2026-5024",
         "in_binary": "vulnerable code not in binary",
+        "kev": null,
         "location": "go.mod",
         "osv_confirmed": true,
         "package": "golang.org/x/sys",
         "severity": "Low",
+        "summary": "NewNTUnicodeString does not check for string length overflow. When provided with a string that overflows the maximum size of a NTUnicodeString (a 16-bit number of bytes), it returns a truncated string rather than an error.",
         "url": "https://go.dev/issue/78916",
         "version": "v0.30.0"
       }
@@ -1443,5 +1510,5 @@
       ]
     }
   },
-  "updated": "2026-11-01"
+  "updated": "2026-11-02"
 }

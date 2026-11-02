@@ -33,6 +33,46 @@
         "Medium": 7,
         "files": 3
       }
+    },
+    {
+      "added": 0,
+      "commit": "65bb884a567e8be6adc51e8bfbcf26f708eb35a2",
+      "date": "2026-11-02",
+      "dependencies": 7,
+      "errors": [],
+      "fixable": 0,
+      "go_version": null,
+      "in_binary": null,
+      "kev": null,
+      "kev_new": 0,
+      "new_vulnerabilities": 0,
+      "osv_confirmed": 0,
+      "osv_only": 0,
+      "ref": "v4.7.0",
+      "release_changed": false,
+      "release_integrity": "no-linux-binary",
+      "removed": 1,
+      "resolved_vulnerabilities": 0,
+      "scorecard": 4.5,
+      "scorecard_date": "2026-10-26",
+      "scorecard_note": null,
+      "scorecard_source": "openssf-api",
+      "upgraded": 0,
+      "vulnerabilities": {
+        "Critical": 0,
+        "High": 0,
+        "Low": 0,
+        "Medium": 0,
+        "Negligible": 0,
+        "Unknown": 0
+      },
+      "vulnerable_packages": 0,
+      "workflow": {
+        "High": 8,
+        "Low": 0,
+        "Medium": 7,
+        "files": 2
+      }
     }
   ],
   "latest": {
@@ -40,18 +80,20 @@
     "category": "Pre-commit & Secrets Detection",
     "changes": {
       "added": [],
-      "any": false,
+      "any": true,
       "baseline": false,
       "integrity_drift": 0,
       "license_changes": [],
       "new_vulnerabilities": [],
       "previous_ref": "v4.7.0",
       "release_changed": false,
-      "removed": [],
+      "removed": [
+        "asottile/workflows/.github/actions/latest-git@v1.4.0"
+      ],
       "resolved_vulnerabilities": [],
       "upgraded": [],
       "workflow_new": 0,
-      "workflow_resolved": 0
+      "workflow_resolved": 1
     },
     "commit": "65bb884a567e8be6adc51e8bfbcf26f708eb35a2",
     "compliance": {
@@ -128,14 +170,6 @@
       {
         "ecosystem": "github",
         "licenses": [],
-        "location": ".github/actions/pre-test/action.yml",
-        "name": "asottile/workflows/.github/actions/latest-git",
-        "purl": "pkg:github/asottile/workflows@v1.4.0#.github/actions/latest-git",
-        "version": "v1.4.0"
-      },
-      {
-        "ecosystem": "github",
-        "licenses": [],
         "location": ".github/workflows/main.yml",
         "name": "asottile/workflows/.github/workflows/tox.yml",
         "purl": "pkg:github/asottile/workflows@v1.11.1#.github/workflows/tox.yml",
@@ -162,7 +196,6 @@
     "errors": [],
     "id": "pre-commit__pre-commit",
     "manifests": [
-      ".github/actions/pre-test/action.yml",
       ".github/workflows/languages.yaml",
       ".github/workflows/main.yml",
       "pre_commit/resources/empty_template_pre_commit_placeholder_package.gemspec",
@@ -196,11 +229,13 @@
       "changed": 0,
       "drift": {},
       "findings": [
-        "0 version changes among 12 shared packages \u2014 no actual upgrades"
+        "Attack surface: -2 packages (-16.7%)",
+        "0 version changes among 11 shared packages \u2014 no actual upgrades"
       ],
-      "removed": 0
+      "html": "sbomlyze-diff.html",
+      "removed": 1
     },
-    "scanned_at": "2026-11-01T19:06:52+00:00",
+    "scanned_at": "2026-11-02T01:34:05+00:00",
     "scorecard": {
       "checks": [
         {
@@ -281,18 +316,8 @@
     },
     "vulnerabilities": [],
     "workflow_audit": {
-      "files": 3,
+      "files": 2,
       "findings": [
-        {
-          "confidence": "High",
-          "description": "unpinned action reference",
-          "file": ".github/actions/pre-test/action.yml",
-          "line": 8,
-          "note": "this step",
-          "rule": "unpinned-uses",
-          "severity": "High",
-          "url": "https://docs.zizmor.sh/audits/#unpinned-uses"
-        },
         {
           "confidence": "High",
           "description": "unpinned action reference",
@@ -446,5 +471,5 @@
       ]
     }
   },
-  "updated": "2026-11-01"
+  "updated": "2026-11-02"
 }

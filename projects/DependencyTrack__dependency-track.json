@@ -33,6 +33,46 @@
         "Medium": 0,
         "files": 15
       }
+    },
+    {
+      "added": 0,
+      "commit": "e6c887c0207baeec1f1346e28bf90000b4b45eda",
+      "date": "2026-11-02",
+      "dependencies": 211,
+      "errors": [],
+      "fixable": 0,
+      "go_version": null,
+      "in_binary": null,
+      "kev": null,
+      "kev_new": 0,
+      "new_vulnerabilities": 0,
+      "osv_confirmed": 0,
+      "osv_only": 0,
+      "ref": "5.2.1",
+      "release_changed": false,
+      "release_integrity": "no-linux-binary",
+      "removed": 1,
+      "resolved_vulnerabilities": 0,
+      "scorecard": 7.5,
+      "scorecard_date": "2026-10-26",
+      "scorecard_note": null,
+      "scorecard_source": "openssf-api",
+      "upgraded": 0,
+      "vulnerabilities": {
+        "Critical": 0,
+        "High": 0,
+        "Low": 0,
+        "Medium": 0,
+        "Negligible": 0,
+        "Unknown": 0
+      },
+      "vulnerable_packages": 0,
+      "workflow": {
+        "High": 0,
+        "Low": 0,
+        "Medium": 0,
+        "files": 15
+      }
     }
   ],
   "latest": {
@@ -40,14 +80,24 @@
     "category": "Software Composition Analysis (SCA)",
     "changes": {
       "added": [],
-      "any": false,
+      "any": true,
       "baseline": false,
       "integrity_drift": 0,
-      "license_changes": [],
+      "license_changes": [
+        {
+          "from": [
+            "Apache-2.0"
+          ],
+          "package": "test-database-support",
+          "to": []
+        }
+      ],
       "new_vulnerabilities": [],
       "previous_ref": "5.2.1",
       "release_changed": false,
-      "removed": [],
+      "removed": [
+        "junit-jupiter-api@UNKNOWN"
+      ],
       "resolved_vulnerabilities": [],
       "upgraded": [],
       "workflow_new": 0,
@@ -1132,14 +1182,6 @@
       {
         "ecosystem": "maven",
         "licenses": [],
-        "location": "support/test-database/pom.xml",
-        "name": "junit-jupiter-api",
-        "purl": "pkg:maven/org.junit.jupiter/junit-jupiter-api",
-        "version": "UNKNOWN"
-      },
-      {
-        "ecosystem": "maven",
-        "licenses": [],
         "location": "dex/engine-api/pom.xml",
         "name": "junit-jupiter-params",
         "purl": "pkg:maven/org.junit.jupiter/junit-jupiter-params",
@@ -1679,10 +1721,8 @@
       },
       {
         "ecosystem": "maven",
-        "licenses": [
-          "Apache-2.0"
-        ],
-        "location": "support/test-database/pom.xml",
+        "licenses": [],
+        "location": "alpine/alpine-infra/pom.xml",
         "name": "test-database-support",
         "purl": "pkg:maven/org.dependencytrack/test-database-support@5.2.1",
         "version": "5.2.1"
@@ -2009,7 +2049,6 @@
       "support/smallrye-config-secret-handler-file/pom.xml",
       "support/smallrye-config-source-memory/pom.xml",
       "support/swagger-model-converters/pom.xml",
-      "support/test-database/pom.xml",
       "support/v4-migrator/pom.xml",
       "vuln-analysis/api/pom.xml",
       "vuln-analysis/checkmarx/pom.xml",
@@ -2049,15 +2088,22 @@
     "repository": "DependencyTrack/dependency-track",
     "sbomlyze_diff": {
       "added": 0,
-      "changed": 0,
-      "drift": {},
+      "changed": 1,
+      "drift": {
+        "integrity_drift": 0,
+        "metadata_drift": 1,
+        "version_drift": 0
+      },
       "findings": [
-        "0 version changes among 317 shared packages \u2014 no actual upgrades",
-        "Core system packages stable: maven (190), file (83), github (44) unchanged"
+        "Attack surface: -2 packages (-0.6%)",
+        "0 version changes among 315 shared packages \u2014 no actual upgrades",
+        "Core system packages stable: github (44) unchanged",
+        "License shift: permissive -1"
       ],
-      "removed": 0
+      "html": "sbomlyze-diff.html",
+      "removed": 2
     },
-    "scanned_at": "2026-11-01T19:05:49+00:00",
+    "scanned_at": "2026-11-02T01:32:44+00:00",
     "scorecard": {
       "checks": [
         {
@@ -2142,5 +2188,5 @@
       "findings": []
     }
   },
-  "updated": "2026-11-01"
+  "updated": "2026-11-02"
 }

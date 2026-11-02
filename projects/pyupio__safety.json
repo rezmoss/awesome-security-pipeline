@@ -33,6 +33,46 @@
         "Medium": 29,
         "files": 9
       }
+    },
+    {
+      "added": 0,
+      "commit": "ec3368a4f8239249088b77794d414526112e6aac",
+      "date": "2026-11-02",
+      "dependencies": 17,
+      "errors": [],
+      "fixable": 0,
+      "go_version": null,
+      "in_binary": null,
+      "kev": null,
+      "kev_new": 0,
+      "new_vulnerabilities": 0,
+      "osv_confirmed": 0,
+      "osv_only": 0,
+      "ref": "3.8.1",
+      "release_changed": false,
+      "release_integrity": "none",
+      "removed": 0,
+      "resolved_vulnerabilities": 3,
+      "scorecard": 4.7,
+      "scorecard_date": "2026-10-26",
+      "scorecard_note": null,
+      "scorecard_source": "openssf-api",
+      "upgraded": 0,
+      "vulnerabilities": {
+        "Critical": 0,
+        "High": 0,
+        "Low": 0,
+        "Medium": 0,
+        "Negligible": 0,
+        "Unknown": 0
+      },
+      "vulnerable_packages": 0,
+      "workflow": {
+        "High": 46,
+        "Low": 13,
+        "Medium": 29,
+        "files": 9
+      }
     }
   ],
   "latest": {
@@ -40,7 +80,7 @@
     "category": "Static Application Security Testing (SAST) \u203a Language-specific \u203a Python",
     "changes": {
       "added": [],
-      "any": false,
+      "any": true,
       "baseline": false,
       "integrity_drift": 0,
       "license_changes": [],
@@ -48,7 +88,53 @@
       "previous_ref": "3.8.1",
       "release_changed": false,
       "removed": [],
-      "resolved_vulnerabilities": [],
+      "resolved_vulnerabilities": [
+        {
+          "aliases": [],
+          "ecosystem": "github",
+          "fix_state": "fixed",
+          "fixed_in": [
+            "1.14.3"
+          ],
+          "id": "GHSA-5xjx-3w67-w9x9",
+          "location": ".github/workflows/cd.yml",
+          "osv_confirmed": false,
+          "package": "pypa/gh-action-pypi-publish",
+          "severity": "Critical",
+          "url": "https://github.com/advisories/GHSA-5xjx-3w67-w9x9",
+          "version": "release/v1"
+        },
+        {
+          "aliases": [],
+          "ecosystem": "github",
+          "fix_state": "fixed",
+          "fixed_in": [
+            "4.1.3"
+          ],
+          "id": "GHSA-cxww-7g56-2vh6",
+          "location": ".github/workflows/reusable-build.yml",
+          "osv_confirmed": false,
+          "package": "actions/download-artifact",
+          "severity": "High",
+          "url": "https://github.com/advisories/GHSA-cxww-7g56-2vh6",
+          "version": "v4"
+        },
+        {
+          "aliases": [],
+          "ecosystem": "github",
+          "fix_state": "fixed",
+          "fixed_in": [
+            "1.13.0"
+          ],
+          "id": "GHSA-vxmw-7h4f-hqxh",
+          "location": ".github/workflows/cd.yml",
+          "osv_confirmed": false,
+          "package": "pypa/gh-action-pypi-publish",
+          "severity": "Low",
+          "url": "https://github.com/advisories/GHSA-vxmw-7h4f-hqxh",
+          "version": "release/v1"
+        }
+      ],
       "upgraded": [],
       "workflow_new": 0,
       "workflow_resolved": 0
@@ -232,6 +318,9 @@
     ],
     "description": "Check Python dependencies for vulnerabilities",
     "errors": [],
+    "excluded_matches": {
+      "action reference to a moving tag or branch": 3
+    },
     "id": "pyupio__safety",
     "manifests": [
       ".github/workflows/build.yml",
@@ -278,7 +367,7 @@
       ],
       "removed": 0
     },
-    "scanned_at": "2026-11-01T19:06:47+00:00",
+    "scanned_at": "2026-11-02T01:34:03+00:00",
     "scorecard": {
       "checks": [
         {
@@ -357,53 +446,7 @@
       "source": "openssf-api",
       "version": "v5.6.0"
     },
-    "vulnerabilities": [
-      {
-        "aliases": [],
-        "ecosystem": "github",
-        "fix_state": "fixed",
-        "fixed_in": [
-          "1.14.3"
-        ],
-        "id": "GHSA-5xjx-3w67-w9x9",
-        "location": ".github/workflows/cd.yml",
-        "osv_confirmed": false,
-        "package": "pypa/gh-action-pypi-publish",
-        "severity": "Critical",
-        "url": "https://github.com/advisories/GHSA-5xjx-3w67-w9x9",
-        "version": "release/v1"
-      },
-      {
-        "aliases": [],
-        "ecosystem": "github",
-        "fix_state": "fixed",
-        "fixed_in": [
-          "4.1.3"
-        ],
-        "id": "GHSA-cxww-7g56-2vh6",
-        "location": ".github/workflows/reusable-build.yml",
-        "osv_confirmed": false,
-        "package": "actions/download-artifact",
-        "severity": "High",
-        "url": "https://github.com/advisories/GHSA-cxww-7g56-2vh6",
-        "version": "v4"
-      },
-      {
-        "aliases": [],
-        "ecosystem": "github",
-        "fix_state": "fixed",
-        "fixed_in": [
-          "1.13.0"
-        ],
-        "id": "GHSA-vxmw-7h4f-hqxh",
-        "location": ".github/workflows/cd.yml",
-        "osv_confirmed": false,
-        "package": "pypa/gh-action-pypi-publish",
-        "severity": "Low",
-        "url": "https://github.com/advisories/GHSA-vxmw-7h4f-hqxh",
-        "version": "release/v1"
-      }
-    ],
+    "vulnerabilities": [],
     "workflow_audit": {
       "files": 9,
       "findings": [
@@ -1300,5 +1343,5 @@
       ]
     }
   },
-  "updated": "2026-11-01"
+  "updated": "2026-11-02"
 }

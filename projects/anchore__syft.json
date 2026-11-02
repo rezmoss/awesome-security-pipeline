@@ -37,6 +37,50 @@
         "Medium": 0,
         "files": 7
       }
+    },
+    {
+      "added": 0,
+      "commit": "f15c3343e29dfb20cf6d82c820e7090b49808c96",
+      "date": "2026-11-02",
+      "dependencies": 355,
+      "errors": [],
+      "fixable": 3,
+      "go_version": "go1.26.8",
+      "in_binary": {
+        "dependencies": 3,
+        "stdlib": 13,
+        "total": 16
+      },
+      "kev": 0,
+      "kev_new": 0,
+      "new_vulnerabilities": 0,
+      "osv_confirmed": 4,
+      "osv_only": 0,
+      "ref": "v1.55.0",
+      "release_changed": false,
+      "release_integrity": "verified",
+      "removed": 27,
+      "resolved_vulnerabilities": 45,
+      "scorecard": 8.7,
+      "scorecard_date": "2026-10-26",
+      "scorecard_note": null,
+      "scorecard_source": "openssf-api",
+      "upgraded": 0,
+      "vulnerabilities": {
+        "Critical": 0,
+        "High": 1,
+        "Low": 0,
+        "Medium": 0,
+        "Negligible": 0,
+        "Unknown": 3
+      },
+      "vulnerable_packages": 3,
+      "workflow": {
+        "High": 0,
+        "Low": 8,
+        "Medium": 0,
+        "files": 5
+      }
     }
   ],
   "latest": {
@@ -44,7 +88,7 @@
     "category": "SBOM Generation",
     "changes": {
       "added": [],
-      "any": false,
+      "any": true,
       "baseline": false,
       "in_binary_new": [],
       "in_binary_resolved": [],
@@ -53,8 +97,797 @@
       "new_vulnerabilities": [],
       "previous_ref": "v1.55.0",
       "release_changed": false,
-      "removed": [],
-      "resolved_vulnerabilities": [],
+      "removed": [
+        "github.com/davecgh/go-spew@v1.1.1",
+        "github.com/fsnotify/fsnotify@v1.8.0",
+        "github.com/go-viper/mapstructure/v2@v2.2.1",
+        "github.com/pelletier/go-toml/v2@v2.2.3",
+        "github.com/pmezard/go-difflib@v1.0.0",
+        "github.com/sagikazarmark/locafero@v0.7.0",
+        "github.com/sirupsen/logrus@v1.9.3",
+        "github.com/sourcegraph/conc@v0.3.0",
+        "github.com/spf13/afero@v1.12.0",
+        "github.com/spf13/cast@v1.7.1",
+        "github.com/spf13/pflag@v1.0.6",
+        "github.com/spf13/viper@v1.20.1",
+        "github.com/stretchr/testify@v1.10.0",
+        "go.uber.org/multierr@v1.10.0",
+        "go.uber.org/zap@v1.27.0",
+        "golang.org/x/sys@v0.33.0",
+        "golang.org/x/text@v0.21.0",
+        "gopkg.in/yaml.v3@v3.0.1",
+        "@img/sharp-darwin-arm64@0.33.5",
+        "@img/sharp-linux-x64@0.33.5",
+        "axios@1.6.0",
+        "color@4.2.3",
+        "follow-redirects@1.15.3",
+        "ghostty-web@github:rcarmo/ghostty-web#6c1c75b",
+        "lodash@4.17.21",
+        "sharp@0.33.5",
+        "tracestrings@github:oven-sh/bun.report#912ca63"
+      ],
+      "resolved_vulnerabilities": [
+        {
+          "aliases": [
+            "CVE-2025-11065"
+          ],
+          "ecosystem": "golang",
+          "fix_state": "fixed",
+          "fixed_in": [
+            "2.4.0"
+          ],
+          "id": "GHSA-2464-8j7c-4cjm",
+          "in_binary": "vulnerable code not in binary",
+          "location": "syft/pkg/cataloger/golang/internal/gotestdata/go-source/go.mod",
+          "osv_confirmed": true,
+          "package": "github.com/go-viper/mapstructure/v2",
+          "severity": "Medium",
+          "url": "https://github.com/advisories/GHSA-2464-8j7c-4cjm",
+          "version": "v2.2.1"
+        },
+        {
+          "aliases": [
+            "CVE-2026-44494"
+          ],
+          "ecosystem": "npm",
+          "fix_state": "fixed",
+          "fixed_in": [
+            "1.16.0"
+          ],
+          "id": "GHSA-35jp-ww65-95wh",
+          "location": "syft/pkg/cataloger/javascript/test-fixtures/bun/bun.lock",
+          "osv_confirmed": true,
+          "package": "axios",
+          "severity": "High",
+          "url": "https://github.com/advisories/GHSA-35jp-ww65-95wh",
+          "version": "1.6.0"
+        },
+        {
+          "aliases": [
+            "CVE-2026-44495"
+          ],
+          "ecosystem": "npm",
+          "fix_state": "fixed",
+          "fixed_in": [
+            "1.15.2"
+          ],
+          "id": "GHSA-3g43-6gmg-66jw",
+          "location": "syft/pkg/cataloger/javascript/test-fixtures/bun-variable-tuples/bun.lock",
+          "osv_confirmed": true,
+          "package": "axios",
+          "severity": "High",
+          "url": "https://github.com/advisories/GHSA-3g43-6gmg-66jw",
+          "version": "1.6.0"
+        },
+        {
+          "aliases": [
+            "CVE-2025-62718"
+          ],
+          "ecosystem": "npm",
+          "fix_state": "fixed",
+          "fixed_in": [
+            "1.15.0"
+          ],
+          "id": "GHSA-3p68-rc4w-qgx5",
+          "location": "syft/pkg/cataloger/javascript/test-fixtures/bun/bun.lock",
+          "osv_confirmed": true,
+          "package": "axios",
+          "severity": "Medium",
+          "url": "https://github.com/advisories/GHSA-3p68-rc4w-qgx5",
+          "version": "1.6.0"
+        },
+        {
+          "aliases": [
+            "CVE-2026-42044"
+          ],
+          "ecosystem": "npm",
+          "fix_state": "fixed",
+          "fixed_in": [
+            "1.15.2"
+          ],
+          "id": "GHSA-3w6x-2g7m-8v23",
+          "location": "syft/pkg/cataloger/javascript/test-fixtures/bun/bun.lock",
+          "osv_confirmed": true,
+          "package": "axios",
+          "severity": "Medium",
+          "url": "https://github.com/advisories/GHSA-3w6x-2g7m-8v23",
+          "version": "1.6.0"
+        },
+        {
+          "aliases": [
+            "CVE-2026-67313"
+          ],
+          "ecosystem": "npm",
+          "fix_state": "fixed",
+          "fixed_in": [
+            "1.18.0"
+          ],
+          "id": "GHSA-42h9-826w-cgv3",
+          "location": "syft/pkg/cataloger/javascript/test-fixtures/bun/bun.lock",
+          "osv_confirmed": true,
+          "package": "axios",
+          "severity": "Medium",
+          "url": "https://github.com/advisories/GHSA-42h9-826w-cgv3",
+          "version": "1.6.0"
+        },
+        {
+          "aliases": [
+            "CVE-2026-25639"
+          ],
+          "ecosystem": "npm",
+          "fix_state": "fixed",
+          "fixed_in": [
+            "1.13.5"
+          ],
+          "id": "GHSA-43fc-jf86-j433",
+          "location": "syft/pkg/cataloger/javascript/test-fixtures/bun-variable-tuples/bun.lock",
+          "osv_confirmed": true,
+          "package": "axios",
+          "severity": "High",
+          "url": "https://github.com/advisories/GHSA-43fc-jf86-j433",
+          "version": "1.6.0"
+        },
+        {
+          "aliases": [
+            "CVE-2026-42037"
+          ],
+          "ecosystem": "npm",
+          "fix_state": "fixed",
+          "fixed_in": [
+            "1.15.1"
+          ],
+          "id": "GHSA-445q-vr5w-6q77",
+          "location": "syft/pkg/cataloger/javascript/test-fixtures/bun-trailing-comma/bun.lock",
+          "osv_confirmed": true,
+          "package": "axios",
+          "severity": "Medium",
+          "url": "https://github.com/advisories/GHSA-445q-vr5w-6q77",
+          "version": "1.6.0"
+        },
+        {
+          "aliases": [
+            "CVE-2025-58754"
+          ],
+          "ecosystem": "npm",
+          "fix_state": "fixed",
+          "fixed_in": [
+            "1.12.0"
+          ],
+          "id": "GHSA-4hjh-wcwx-xvwj",
+          "location": "syft/pkg/cataloger/javascript/test-fixtures/bun/bun.lock",
+          "osv_confirmed": true,
+          "package": "axios",
+          "severity": "High",
+          "url": "https://github.com/advisories/GHSA-4hjh-wcwx-xvwj",
+          "version": "1.6.0"
+        },
+        {
+          "aliases": [
+            "CVE-2026-42034"
+          ],
+          "ecosystem": "npm",
+          "fix_state": "fixed",
+          "fixed_in": [
+            "1.15.1"
+          ],
+          "id": "GHSA-5c9x-8gcm-mpgx",
+          "location": "syft/pkg/cataloger/javascript/test-fixtures/bun-trailing-comma/bun.lock",
+          "osv_confirmed": true,
+          "package": "axios",
+          "severity": "Medium",
+          "url": "https://github.com/advisories/GHSA-5c9x-8gcm-mpgx",
+          "version": "1.6.0"
+        },
+        {
+          "aliases": [
+            "CVE-2026-42039"
+          ],
+          "ecosystem": "npm",
+          "fix_state": "fixed",
+          "fixed_in": [
+            "1.15.1"
+          ],
+          "id": "GHSA-62hf-57xw-28j9",
+          "location": "syft/pkg/cataloger/javascript/test-fixtures/bun-trailing-comma/bun.lock",
+          "osv_confirmed": true,
+          "package": "axios",
+          "severity": "Medium",
+          "url": "https://github.com/advisories/GHSA-62hf-57xw-28j9",
+          "version": "1.6.0"
+        },
+        {
+          "aliases": [
+            "CVE-2026-42035"
+          ],
+          "ecosystem": "npm",
+          "fix_state": "fixed",
+          "fixed_in": [
+            "1.15.1"
+          ],
+          "id": "GHSA-6chq-wfr3-2hj9",
+          "location": "syft/pkg/cataloger/javascript/test-fixtures/bun-variable-tuples/bun.lock",
+          "osv_confirmed": true,
+          "package": "axios",
+          "severity": "High",
+          "url": "https://github.com/advisories/GHSA-6chq-wfr3-2hj9",
+          "version": "1.6.0"
+        },
+        {
+          "aliases": [
+            "CVE-2026-67319"
+          ],
+          "ecosystem": "npm",
+          "fix_state": "fixed",
+          "fixed_in": [
+            "1.18.0"
+          ],
+          "id": "GHSA-7q8q-rj6j-mhjq",
+          "location": "syft/pkg/cataloger/javascript/test-fixtures/bun-variable-tuples/bun.lock",
+          "osv_confirmed": true,
+          "package": "axios",
+          "severity": "Medium",
+          "url": "https://github.com/advisories/GHSA-7q8q-rj6j-mhjq",
+          "version": "1.6.0"
+        },
+        {
+          "aliases": [
+            "CVE-2026-44490"
+          ],
+          "ecosystem": "npm",
+          "fix_state": "fixed",
+          "fixed_in": [
+            "1.16.0"
+          ],
+          "id": "GHSA-898c-q2cr-xwhg",
+          "location": "syft/pkg/cataloger/javascript/test-fixtures/bun-variable-tuples/bun.lock",
+          "osv_confirmed": true,
+          "package": "axios",
+          "severity": "Medium",
+          "url": "https://github.com/advisories/GHSA-898c-q2cr-xwhg",
+          "version": "1.6.0"
+        },
+        {
+          "aliases": [
+            "CVE-2024-39338"
+          ],
+          "ecosystem": "npm",
+          "fix_state": "fixed",
+          "fixed_in": [
+            "1.7.4"
+          ],
+          "id": "GHSA-8hc4-vh64-cxmj",
+          "location": "syft/pkg/cataloger/javascript/test-fixtures/bun/bun.lock",
+          "osv_confirmed": true,
+          "package": "axios",
+          "severity": "High",
+          "url": "https://github.com/advisories/GHSA-8hc4-vh64-cxmj",
+          "version": "1.6.0"
+        },
+        {
+          "aliases": [
+            "CVE-2026-101902"
+          ],
+          "ecosystem": "npm",
+          "fix_state": "fixed",
+          "fixed_in": [
+            "1.20.0"
+          ],
+          "id": "GHSA-9fr6-4gfg-395g",
+          "location": "syft/pkg/cataloger/javascript/test-fixtures/bun-trailing-comma/bun.lock",
+          "osv_confirmed": true,
+          "package": "axios",
+          "severity": "Medium",
+          "url": "https://github.com/advisories/GHSA-9fr6-4gfg-395g",
+          "version": "1.6.0"
+        },
+        {
+          "aliases": [
+            "CVE-2024-28849"
+          ],
+          "ecosystem": "npm",
+          "fix_state": "fixed",
+          "fixed_in": [
+            "1.15.6"
+          ],
+          "id": "GHSA-cxjh-pqwp-8mfp",
+          "location": "syft/pkg/cataloger/javascript/test-fixtures/bun/bun.lock",
+          "osv_confirmed": true,
+          "package": "follow-redirects",
+          "severity": "Medium",
+          "url": "https://github.com/advisories/GHSA-cxjh-pqwp-8mfp",
+          "version": "1.15.3"
+        },
+        {
+          "aliases": [
+            "CVE-2026-2950"
+          ],
+          "ecosystem": "npm",
+          "fix_state": "fixed",
+          "fixed_in": [
+            "4.18.0"
+          ],
+          "id": "GHSA-f23m-r3pf-42rh",
+          "location": "syft/pkg/cataloger/javascript/test-fixtures/bun-trailing-comma/bun.lock",
+          "osv_confirmed": true,
+          "package": "lodash",
+          "severity": "Medium",
+          "url": "https://github.com/advisories/GHSA-f23m-r3pf-42rh",
+          "version": "4.17.21"
+        },
+        {
+          "aliases": [],
+          "ecosystem": "npm",
+          "fix_state": "fixed",
+          "fixed_in": [
+            "0.35.0"
+          ],
+          "id": "GHSA-f88m-g3jw-g9cj",
+          "location": "syft/pkg/cataloger/javascript/test-fixtures/bun/bun.lock",
+          "osv_confirmed": true,
+          "package": "sharp",
+          "severity": "High",
+          "url": "https://github.com/advisories/GHSA-f88m-g3jw-g9cj",
+          "version": "0.33.5"
+        },
+        {
+          "aliases": [],
+          "ecosystem": "golang",
+          "fix_state": "fixed",
+          "fixed_in": [
+            "2.3.0"
+          ],
+          "id": "GHSA-fv92-fjc5-jj9h",
+          "in_binary": "vulnerable code not in binary",
+          "location": "syft/pkg/cataloger/golang/internal/gotestdata/go-source/go.mod",
+          "osv_confirmed": true,
+          "package": "github.com/go-viper/mapstructure/v2",
+          "severity": "Medium",
+          "url": "https://github.com/advisories/GHSA-fv92-fjc5-jj9h",
+          "version": "v2.2.1"
+        },
+        {
+          "aliases": [
+            "CVE-2026-40175"
+          ],
+          "ecosystem": "npm",
+          "fix_state": "fixed",
+          "fixed_in": [
+            "1.15.0"
+          ],
+          "id": "GHSA-fvcv-3m26-pcqx",
+          "location": "syft/pkg/cataloger/javascript/test-fixtures/bun-trailing-comma/bun.lock",
+          "osv_confirmed": true,
+          "package": "axios",
+          "severity": "Medium",
+          "url": "https://github.com/advisories/GHSA-fvcv-3m26-pcqx",
+          "version": "1.6.0"
+        },
+        {
+          "aliases": [
+            "CVE-2026-44496"
+          ],
+          "ecosystem": "npm",
+          "fix_state": "fixed",
+          "fixed_in": [
+            "1.16.0"
+          ],
+          "id": "GHSA-hfxv-24rg-xrqf",
+          "location": "syft/pkg/cataloger/javascript/test-fixtures/bun-variable-tuples/bun.lock",
+          "osv_confirmed": true,
+          "package": "axios",
+          "severity": "High",
+          "url": "https://github.com/advisories/GHSA-hfxv-24rg-xrqf",
+          "version": "1.6.0"
+        },
+        {
+          "aliases": [
+            "CVE-2026-44486"
+          ],
+          "ecosystem": "npm",
+          "fix_state": "fixed",
+          "fixed_in": [
+            "1.16.0"
+          ],
+          "id": "GHSA-j5f8-grm9-p9fc",
+          "location": "syft/pkg/cataloger/javascript/test-fixtures/bun-trailing-comma/bun.lock",
+          "osv_confirmed": true,
+          "package": "axios",
+          "severity": "High",
+          "url": "https://github.com/advisories/GHSA-j5f8-grm9-p9fc",
+          "version": "1.6.0"
+        },
+        {
+          "aliases": [
+            "CVE-2026-101904"
+          ],
+          "ecosystem": "npm",
+          "fix_state": "fixed",
+          "fixed_in": [
+            "1.20.0"
+          ],
+          "id": "GHSA-j8rh-479h-cp32",
+          "location": "syft/pkg/cataloger/javascript/test-fixtures/bun/bun.lock",
+          "osv_confirmed": true,
+          "package": "axios",
+          "severity": "Medium",
+          "url": "https://github.com/advisories/GHSA-j8rh-479h-cp32",
+          "version": "1.6.0"
+        },
+        {
+          "aliases": [
+            "CVE-2023-26159"
+          ],
+          "ecosystem": "npm",
+          "fix_state": "fixed",
+          "fixed_in": [
+            "1.15.4"
+          ],
+          "id": "GHSA-jchw-25xp-jwwc",
+          "location": "syft/pkg/cataloger/javascript/test-fixtures/bun-trailing-comma/bun.lock",
+          "osv_confirmed": true,
+          "package": "follow-redirects",
+          "severity": "Medium",
+          "url": "https://github.com/advisories/GHSA-jchw-25xp-jwwc",
+          "version": "1.15.3"
+        },
+        {
+          "aliases": [
+            "CVE-2025-27152"
+          ],
+          "ecosystem": "npm",
+          "fix_state": "fixed",
+          "fixed_in": [
+            "1.8.2"
+          ],
+          "id": "GHSA-jr5f-v2jv-69x6",
+          "location": "syft/pkg/cataloger/javascript/test-fixtures/bun-variable-tuples/bun.lock",
+          "osv_confirmed": true,
+          "package": "axios",
+          "severity": "High",
+          "url": "https://github.com/advisories/GHSA-jr5f-v2jv-69x6",
+          "version": "1.6.0"
+        },
+        {
+          "aliases": [
+            "CVE-2026-42038"
+          ],
+          "ecosystem": "npm",
+          "fix_state": "fixed",
+          "fixed_in": [
+            "1.15.1"
+          ],
+          "id": "GHSA-m7pr-hjqh-92cm",
+          "location": "syft/pkg/cataloger/javascript/test-fixtures/bun/bun.lock",
+          "osv_confirmed": true,
+          "package": "axios",
+          "severity": "Medium",
+          "url": "https://github.com/advisories/GHSA-m7pr-hjqh-92cm",
+          "version": "1.6.0"
+        },
+        {
+          "aliases": [
+            "CVE-2026-67316"
+          ],
+          "ecosystem": "npm",
+          "fix_state": "fixed",
+          "fixed_in": [
+            "1.18.0"
+          ],
+          "id": "GHSA-mmx7-hfxf-jppx",
+          "location": "syft/pkg/cataloger/javascript/test-fixtures/bun-trailing-comma/bun.lock",
+          "osv_confirmed": true,
+          "package": "axios",
+          "severity": "Medium",
+          "url": "https://github.com/advisories/GHSA-mmx7-hfxf-jppx",
+          "version": "1.6.0"
+        },
+        {
+          "aliases": [
+            "CVE-2026-44487"
+          ],
+          "ecosystem": "npm",
+          "fix_state": "fixed",
+          "fixed_in": [
+            "1.16.0"
+          ],
+          "id": "GHSA-p92q-9vqr-4j8v",
+          "location": "syft/pkg/cataloger/javascript/test-fixtures/bun-variable-tuples/bun.lock",
+          "osv_confirmed": true,
+          "package": "axios",
+          "severity": "High",
+          "url": "https://github.com/advisories/GHSA-p92q-9vqr-4j8v",
+          "version": "1.6.0"
+        },
+        {
+          "aliases": [
+            "CVE-2026-42033"
+          ],
+          "ecosystem": "npm",
+          "fix_state": "fixed",
+          "fixed_in": [
+            "1.15.1"
+          ],
+          "id": "GHSA-pf86-5x62-jrwf",
+          "location": "syft/pkg/cataloger/javascript/test-fixtures/bun-variable-tuples/bun.lock",
+          "osv_confirmed": true,
+          "package": "axios",
+          "severity": "High",
+          "url": "https://github.com/advisories/GHSA-pf86-5x62-jrwf",
+          "version": "1.6.0"
+        },
+        {
+          "aliases": [
+            "CVE-2026-67312"
+          ],
+          "ecosystem": "npm",
+          "fix_state": "fixed",
+          "fixed_in": [
+            "1.18.0"
+          ],
+          "id": "GHSA-pmv8-rq9r-6j72",
+          "location": "syft/pkg/cataloger/javascript/test-fixtures/bun-trailing-comma/bun.lock",
+          "osv_confirmed": true,
+          "package": "axios",
+          "severity": "Medium",
+          "url": "https://github.com/advisories/GHSA-pmv8-rq9r-6j72",
+          "version": "1.6.0"
+        },
+        {
+          "aliases": [
+            "CVE-2026-42043"
+          ],
+          "ecosystem": "npm",
+          "fix_state": "fixed",
+          "fixed_in": [
+            "1.15.1"
+          ],
+          "id": "GHSA-pmwg-cvhr-8vh7",
+          "location": "syft/pkg/cataloger/javascript/test-fixtures/bun-trailing-comma/bun.lock",
+          "osv_confirmed": true,
+          "package": "axios",
+          "severity": "High",
+          "url": "https://github.com/advisories/GHSA-pmwg-cvhr-8vh7",
+          "version": "1.6.0"
+        },
+        {
+          "aliases": [
+            "CVE-2026-42264"
+          ],
+          "ecosystem": "npm",
+          "fix_state": "fixed",
+          "fixed_in": [
+            "1.15.2"
+          ],
+          "id": "GHSA-q8qp-cvcw-x6jj",
+          "location": "syft/pkg/cataloger/javascript/test-fixtures/bun-trailing-comma/bun.lock",
+          "osv_confirmed": true,
+          "package": "axios",
+          "severity": "High",
+          "url": "https://github.com/advisories/GHSA-q8qp-cvcw-x6jj",
+          "version": "1.6.0"
+        },
+        {
+          "aliases": [],
+          "ecosystem": "npm",
+          "fix_state": "fixed",
+          "fixed_in": [
+            "1.16.0"
+          ],
+          "id": "GHSA-r4q5-vmmm-2653",
+          "location": "syft/pkg/cataloger/javascript/test-fixtures/bun/bun.lock",
+          "osv_confirmed": true,
+          "package": "follow-redirects",
+          "severity": "Medium",
+          "url": "https://github.com/advisories/GHSA-r4q5-vmmm-2653",
+          "version": "1.15.3"
+        },
+        {
+          "aliases": [
+            "CVE-2026-4800"
+          ],
+          "ecosystem": "npm",
+          "fix_state": "fixed",
+          "fixed_in": [
+            "4.18.0"
+          ],
+          "id": "GHSA-r5fr-rjxr-66jc",
+          "location": "syft/pkg/cataloger/javascript/test-fixtures/bun-trailing-comma/bun.lock",
+          "osv_confirmed": true,
+          "package": "lodash",
+          "severity": "High",
+          "url": "https://github.com/advisories/GHSA-r5fr-rjxr-66jc",
+          "version": "4.17.21"
+        },
+        {
+          "aliases": [],
+          "ecosystem": "npm",
+          "fix_state": "fixed",
+          "fixed_in": [
+            "0.35.4"
+          ],
+          "id": "GHSA-rgj7-g3m4-5g8c",
+          "location": "syft/pkg/cataloger/javascript/test-fixtures/bun/bun.lock",
+          "osv_confirmed": true,
+          "package": "sharp",
+          "severity": "High",
+          "url": "https://github.com/advisories/GHSA-rgj7-g3m4-5g8c",
+          "version": "0.33.5"
+        },
+        {
+          "aliases": [
+            "CVE-2026-42036"
+          ],
+          "ecosystem": "npm",
+          "fix_state": "fixed",
+          "fixed_in": [
+            "1.15.1"
+          ],
+          "id": "GHSA-vf2m-468p-8v99",
+          "location": "syft/pkg/cataloger/javascript/test-fixtures/bun-variable-tuples/bun.lock",
+          "osv_confirmed": true,
+          "package": "axios",
+          "severity": "Medium",
+          "url": "https://github.com/advisories/GHSA-vf2m-468p-8v99",
+          "version": "1.6.0"
+        },
+        {
+          "aliases": [
+            "CVE-2026-42041"
+          ],
+          "ecosystem": "npm",
+          "fix_state": "fixed",
+          "fixed_in": [
+            "1.15.1"
+          ],
+          "id": "GHSA-w9j2-pvgh-6h63",
+          "location": "syft/pkg/cataloger/javascript/test-fixtures/bun-trailing-comma/bun.lock",
+          "osv_confirmed": true,
+          "package": "axios",
+          "severity": "Medium",
+          "url": "https://github.com/advisories/GHSA-w9j2-pvgh-6h63",
+          "version": "1.6.0"
+        },
+        {
+          "aliases": [],
+          "ecosystem": "npm",
+          "fix_state": "fixed",
+          "fixed_in": [
+            "0.35.5"
+          ],
+          "id": "GHSA-wq5f-xc86-pv6w",
+          "location": "syft/pkg/cataloger/javascript/test-fixtures/bun/bun.lock",
+          "osv_confirmed": true,
+          "package": "sharp",
+          "severity": "High",
+          "url": "https://github.com/advisories/GHSA-wq5f-xc86-pv6w",
+          "version": "0.33.5"
+        },
+        {
+          "aliases": [
+            "CVE-2026-42040"
+          ],
+          "ecosystem": "npm",
+          "fix_state": "fixed",
+          "fixed_in": [
+            "1.15.1"
+          ],
+          "id": "GHSA-xhjh-pmcv-23jw",
+          "location": "syft/pkg/cataloger/javascript/test-fixtures/bun-trailing-comma/bun.lock",
+          "osv_confirmed": true,
+          "package": "axios",
+          "severity": "Low",
+          "url": "https://github.com/advisories/GHSA-xhjh-pmcv-23jw",
+          "version": "1.6.0"
+        },
+        {
+          "aliases": [
+            "CVE-2026-42042"
+          ],
+          "ecosystem": "npm",
+          "fix_state": "fixed",
+          "fixed_in": [
+            "1.15.1"
+          ],
+          "id": "GHSA-xx6v-rp6x-q39c",
+          "location": "syft/pkg/cataloger/javascript/test-fixtures/bun-variable-tuples/bun.lock",
+          "osv_confirmed": true,
+          "package": "axios",
+          "severity": "Medium",
+          "url": "https://github.com/advisories/GHSA-xx6v-rp6x-q39c",
+          "version": "1.6.0"
+        },
+        {
+          "aliases": [
+            "CVE-2025-13465"
+          ],
+          "ecosystem": "npm",
+          "fix_state": "fixed",
+          "fixed_in": [
+            "4.17.23"
+          ],
+          "id": "GHSA-xxjr-mmjv-4gpg",
+          "location": "syft/pkg/cataloger/javascript/test-fixtures/bun-trailing-comma/bun.lock",
+          "osv_confirmed": true,
+          "package": "lodash",
+          "severity": "Medium",
+          "url": "https://github.com/advisories/GHSA-xxjr-mmjv-4gpg",
+          "version": "4.17.21"
+        },
+        {
+          "aliases": [
+            "CVE-2026-39824"
+          ],
+          "ecosystem": "golang",
+          "fix_state": "fixed",
+          "fixed_in": [
+            "0.44.0"
+          ],
+          "id": "GO-2026-5024",
+          "in_binary": "vulnerable code not in binary",
+          "location": "syft/pkg/cataloger/golang/internal/gotestdata/go-source/go.mod",
+          "osv_confirmed": true,
+          "package": "golang.org/x/sys",
+          "severity": "Low",
+          "url": "https://go.dev/issue/78916",
+          "version": "v0.33.0"
+        },
+        {
+          "aliases": [
+            "CVE-2026-56852"
+          ],
+          "ecosystem": "golang",
+          "fix_state": "fixed",
+          "fixed_in": [
+            "0.39.0"
+          ],
+          "id": "GO-2026-5970",
+          "in_binary": "vulnerable code not in binary",
+          "location": "syft/pkg/cataloger/golang/internal/gotestdata/go-source/go.mod",
+          "osv_confirmed": true,
+          "package": "golang.org/x/text",
+          "severity": "High",
+          "url": "https://go.dev/issue/80142",
+          "version": "v0.21.0"
+        },
+        {
+          "aliases": [
+            "CVE-2026-56851"
+          ],
+          "ecosystem": "golang",
+          "fix_state": "fixed",
+          "fixed_in": [
+            "0.41.0"
+          ],
+          "id": "GO-2026-6629",
+          "in_binary": "vulnerable code not in binary",
+          "location": "syft/pkg/cataloger/golang/internal/gotestdata/go-source/go.mod",
+          "osv_confirmed": true,
+          "package": "golang.org/x/text",
+          "severity": "High",
+          "url": "https://go.dev/cl/793360",
+          "version": "v0.21.0"
+        }
+      ],
       "upgraded": [],
       "workflow_new": 0,
       "workflow_resolved": 0
@@ -1022,14 +1855,6 @@
       {
         "ecosystem": "golang",
         "licenses": [],
-        "location": "syft/pkg/cataloger/golang/internal/gotestdata/go-source/go.mod",
-        "name": "github.com/davecgh/go-spew",
-        "purl": "pkg:golang/github.com/davecgh/go-spew@v1.1.1",
-        "version": "v1.1.1"
-      },
-      {
-        "ecosystem": "golang",
-        "licenses": [],
         "location": "go.mod",
         "name": "github.com/deitch/magic",
         "purl": "pkg:golang/github.com/deitch/magic@v0.0.0-20230404182410-1ff89d7342da",
@@ -1182,14 +2007,6 @@
       {
         "ecosystem": "golang",
         "licenses": [],
-        "location": "syft/pkg/cataloger/golang/internal/gotestdata/go-source/go.mod",
-        "name": "github.com/fsnotify/fsnotify",
-        "purl": "pkg:golang/github.com/fsnotify/fsnotify@v1.8.0",
-        "version": "v1.8.0"
-      },
-      {
-        "ecosystem": "golang",
-        "licenses": [],
         "location": "go.mod",
         "name": "github.com/gabriel-vasile/mimetype",
         "purl": "pkg:golang/github.com/gabriel-vasile/mimetype@v1.4.15",
@@ -1282,14 +2099,6 @@
         "name": "github.com/go-test/deep",
         "purl": "pkg:golang/github.com/go-test/deep@v1.1.1",
         "version": "v1.1.1"
-      },
-      {
-        "ecosystem": "golang",
-        "licenses": [],
-        "location": "syft/pkg/cataloger/golang/internal/gotestdata/go-source/go.mod",
-        "name": "github.com/go-viper/mapstructure/v2",
-        "purl": "pkg:golang/github.com/go-viper/mapstructure/v2@v2.2.1",
-        "version": "v2.2.1"
       },
       {
         "ecosystem": "golang",
@@ -2046,14 +2855,6 @@
       {
         "ecosystem": "golang",
         "licenses": [],
-        "location": "syft/pkg/cataloger/golang/internal/gotestdata/go-source/go.mod",
-        "name": "github.com/pelletier/go-toml/v2",
-        "purl": "pkg:golang/github.com/pelletier/go-toml/v2@v2.2.3",
-        "version": "v2.2.3"
-      },
-      {
-        "ecosystem": "golang",
-        "licenses": [],
         "location": "go.mod",
         "name": "github.com/pelletier/go-toml/v2",
         "purl": "pkg:golang/github.com/pelletier/go-toml/v2@v2.4.3",
@@ -2114,14 +2915,6 @@
         "name": "github.com/planetscale/vtprotobuf",
         "purl": "pkg:golang/github.com/planetscale/vtprotobuf@v0.6.1-0.20240319094008-0393e58bdf10",
         "version": "v0.6.1-0.20240319094008-0393e58bdf10"
-      },
-      {
-        "ecosystem": "golang",
-        "licenses": [],
-        "location": "syft/pkg/cataloger/golang/internal/gotestdata/go-source/go.mod",
-        "name": "github.com/pmezard/go-difflib",
-        "purl": "pkg:golang/github.com/pmezard/go-difflib@v1.0.0",
-        "version": "v1.0.0"
       },
       {
         "ecosystem": "golang",
@@ -2194,14 +2987,6 @@
         "name": "github.com/sagikazarmark/locafero",
         "purl": "pkg:golang/github.com/sagikazarmark/locafero@v0.11.0",
         "version": "v0.11.0"
-      },
-      {
-        "ecosystem": "golang",
-        "licenses": [],
-        "location": "syft/pkg/cataloger/golang/internal/gotestdata/go-source/go.mod",
-        "name": "github.com/sagikazarmark/locafero",
-        "purl": "pkg:golang/github.com/sagikazarmark/locafero@v0.7.0",
-        "version": "v0.7.0"
       },
       {
         "ecosystem": "golang",
@@ -2302,14 +3087,6 @@
       {
         "ecosystem": "golang",
         "licenses": [],
-        "location": "syft/pkg/cataloger/golang/internal/gotestdata/go-source/go.mod",
-        "name": "github.com/sirupsen/logrus",
-        "purl": "pkg:golang/github.com/sirupsen/logrus@v1.9.3",
-        "version": "v1.9.3"
-      },
-      {
-        "ecosystem": "golang",
-        "licenses": [],
         "location": "go.mod",
         "name": "github.com/skeema/knownhosts",
         "purl": "pkg:golang/github.com/skeema/knownhosts@v1.3.1",
@@ -2342,14 +3119,6 @@
       {
         "ecosystem": "golang",
         "licenses": [],
-        "location": "syft/pkg/cataloger/golang/internal/gotestdata/go-source/go.mod",
-        "name": "github.com/sourcegraph/conc",
-        "purl": "pkg:golang/github.com/sourcegraph/conc@v0.3.0",
-        "version": "v0.3.0"
-      },
-      {
-        "ecosystem": "golang",
-        "licenses": [],
         "location": "go.mod",
         "name": "github.com/sourcegraph/conc",
         "purl": "pkg:golang/github.com/sourcegraph/conc@v0.3.1-0.20240121214520-5f936abd7ae8",
@@ -2374,14 +3143,6 @@
       {
         "ecosystem": "golang",
         "licenses": [],
-        "location": "syft/pkg/cataloger/golang/internal/gotestdata/go-source/go.mod",
-        "name": "github.com/spf13/afero",
-        "purl": "pkg:golang/github.com/spf13/afero@v1.12.0",
-        "version": "v1.12.0"
-      },
-      {
-        "ecosystem": "golang",
-        "licenses": [],
         "location": "go.mod",
         "name": "github.com/spf13/afero",
         "purl": "pkg:golang/github.com/spf13/afero@v1.15.0",
@@ -2398,14 +3159,6 @@
       {
         "ecosystem": "golang",
         "licenses": [],
-        "location": "syft/pkg/cataloger/golang/internal/gotestdata/go-source/go.mod",
-        "name": "github.com/spf13/cast",
-        "purl": "pkg:golang/github.com/spf13/cast@v1.7.1",
-        "version": "v1.7.1"
-      },
-      {
-        "ecosystem": "golang",
-        "licenses": [],
         "location": "go.mod",
         "name": "github.com/spf13/cobra",
         "purl": "pkg:golang/github.com/spf13/cobra@v1.10.2",
@@ -2418,22 +3171,6 @@
         "name": "github.com/spf13/pflag",
         "purl": "pkg:golang/github.com/spf13/pflag@v1.0.10",
         "version": "v1.0.10"
-      },
-      {
-        "ecosystem": "golang",
-        "licenses": [],
-        "location": "syft/pkg/cataloger/golang/internal/gotestdata/go-source/go.mod",
-        "name": "github.com/spf13/pflag",
-        "purl": "pkg:golang/github.com/spf13/pflag@v1.0.6",
-        "version": "v1.0.6"
-      },
-      {
-        "ecosystem": "golang",
-        "licenses": [],
-        "location": "syft/pkg/cataloger/golang/internal/gotestdata/go-source/go.mod",
-        "name": "github.com/spf13/viper",
-        "purl": "pkg:golang/github.com/spf13/viper@v1.20.1",
-        "version": "v1.20.1"
       },
       {
         "ecosystem": "golang",
@@ -2474,14 +3211,6 @@
         "name": "github.com/stretchr/objx",
         "purl": "pkg:golang/github.com/stretchr/objx@v0.5.3",
         "version": "v0.5.3"
-      },
-      {
-        "ecosystem": "golang",
-        "licenses": [],
-        "location": "syft/pkg/cataloger/golang/internal/gotestdata/go-source/go.mod",
-        "name": "github.com/stretchr/testify",
-        "purl": "pkg:golang/github.com/stretchr/testify@v1.10.0",
-        "version": "v1.10.0"
       },
       {
         "ecosystem": "golang",
@@ -2814,22 +3543,6 @@
       {
         "ecosystem": "golang",
         "licenses": [],
-        "location": "syft/pkg/cataloger/golang/internal/gotestdata/go-source/go.mod",
-        "name": "go.uber.org/multierr",
-        "purl": "pkg:golang/go.uber.org/multierr@v1.10.0",
-        "version": "v1.10.0"
-      },
-      {
-        "ecosystem": "golang",
-        "licenses": [],
-        "location": "syft/pkg/cataloger/golang/internal/gotestdata/go-source/go.mod",
-        "name": "go.uber.org/zap",
-        "purl": "pkg:golang/go.uber.org/zap@v1.27.0",
-        "version": "v1.27.0"
-      },
-      {
-        "ecosystem": "golang",
-        "licenses": [],
         "location": "go.mod",
         "name": "go.yaml.in/yaml/v3",
         "purl": "pkg:golang/go.yaml.in/yaml/v3@v3.0.5",
@@ -2894,14 +3607,6 @@
       {
         "ecosystem": "golang",
         "licenses": [],
-        "location": "syft/pkg/cataloger/golang/internal/gotestdata/go-source/go.mod",
-        "name": "golang.org/x/sys",
-        "purl": "pkg:golang/golang.org/x/sys@v0.33.0",
-        "version": "v0.33.0"
-      },
-      {
-        "ecosystem": "golang",
-        "licenses": [],
         "location": ".make/go.mod",
         "name": "golang.org/x/sys",
         "purl": "pkg:golang/golang.org/x/sys@v0.48.0",
@@ -2922,14 +3627,6 @@
         "name": "golang.org/x/term",
         "purl": "pkg:golang/golang.org/x/term@v0.47.0",
         "version": "v0.47.0"
-      },
-      {
-        "ecosystem": "golang",
-        "licenses": [],
-        "location": "syft/pkg/cataloger/golang/internal/gotestdata/go-source/go.mod",
-        "name": "golang.org/x/text",
-        "purl": "pkg:golang/golang.org/x/text@v0.21.0",
-        "version": "v0.21.0"
       },
       {
         "ecosystem": "golang",
@@ -3030,14 +3727,6 @@
       {
         "ecosystem": "golang",
         "licenses": [],
-        "location": "syft/pkg/cataloger/golang/internal/gotestdata/go-source/go.mod",
-        "name": "gopkg.in/yaml.v3",
-        "purl": "pkg:golang/gopkg.in/yaml.v3@v3.0.1",
-        "version": "v3.0.1"
-      },
-      {
-        "ecosystem": "golang",
-        "licenses": [],
         "location": "go.mod",
         "name": "howett.net/plist",
         "purl": "pkg:golang/howett.net/plist@v1.0.1",
@@ -3076,78 +3765,6 @@
         "version": "v1.60.1"
       },
       {
-        "ecosystem": "npm",
-        "licenses": [],
-        "location": "syft/pkg/cataloger/javascript/test-fixtures/bun/bun.lock",
-        "name": "@img/sharp-darwin-arm64",
-        "purl": "pkg:npm/%40img/sharp-darwin-arm64@0.33.5",
-        "version": "0.33.5"
-      },
-      {
-        "ecosystem": "npm",
-        "licenses": [],
-        "location": "syft/pkg/cataloger/javascript/test-fixtures/bun/bun.lock",
-        "name": "@img/sharp-linux-x64",
-        "purl": "pkg:npm/%40img/sharp-linux-x64@0.33.5",
-        "version": "0.33.5"
-      },
-      {
-        "ecosystem": "npm",
-        "licenses": [],
-        "location": "syft/pkg/cataloger/javascript/test-fixtures/bun-trailing-comma/bun.lock",
-        "name": "axios",
-        "purl": "pkg:npm/axios@1.6.0",
-        "version": "1.6.0"
-      },
-      {
-        "ecosystem": "npm",
-        "licenses": [],
-        "location": "syft/pkg/cataloger/javascript/test-fixtures/bun/bun.lock",
-        "name": "color",
-        "purl": "pkg:npm/color@4.2.3",
-        "version": "4.2.3"
-      },
-      {
-        "ecosystem": "npm",
-        "licenses": [],
-        "location": "syft/pkg/cataloger/javascript/test-fixtures/bun-trailing-comma/bun.lock",
-        "name": "follow-redirects",
-        "purl": "pkg:npm/follow-redirects@1.15.3",
-        "version": "1.15.3"
-      },
-      {
-        "ecosystem": "npm",
-        "licenses": [],
-        "location": "syft/pkg/cataloger/javascript/test-fixtures/bun-variable-tuples/bun.lock",
-        "name": "ghostty-web",
-        "purl": "pkg:npm/ghostty-web@github%3Arcarmo%2Fghostty-web%236c1c75b",
-        "version": "github:rcarmo/ghostty-web#6c1c75b"
-      },
-      {
-        "ecosystem": "npm",
-        "licenses": [],
-        "location": "syft/pkg/cataloger/javascript/test-fixtures/bun-trailing-comma/bun.lock",
-        "name": "lodash",
-        "purl": "pkg:npm/lodash@4.17.21",
-        "version": "4.17.21"
-      },
-      {
-        "ecosystem": "npm",
-        "licenses": [],
-        "location": "syft/pkg/cataloger/javascript/test-fixtures/bun/bun.lock",
-        "name": "sharp",
-        "purl": "pkg:npm/sharp@0.33.5",
-        "version": "0.33.5"
-      },
-      {
-        "ecosystem": "npm",
-        "licenses": [],
-        "location": "syft/pkg/cataloger/javascript/test-fixtures/bun-variable-tuples/bun.lock",
-        "name": "tracestrings",
-        "purl": "pkg:npm/tracestrings@github%3Aoven-sh%2Fbun.report%23912ca63",
-        "version": "github:oven-sh/bun.report#912ca63"
-      },
-      {
         "ecosystem": "unknown",
         "licenses": [],
         "location": ".github/workflows/release.yaml",
@@ -3161,6 +3778,8 @@
     "go_binary": {
       "asset": "syft_1.55.0_linux_amd64.tar.gz",
       "binary": "syft",
+      "db": "https://vuln.go.dev",
+      "db_last_modified": "2026-10-27T21:16:18Z",
       "findings": [
         {
           "aliases": [
@@ -3350,20 +3969,13 @@
       ".make/go.mod",
       ".make/go.sum",
       "go.mod",
-      "go.sum",
-      "syft/pkg/cataloger/githubactions/testdata/glob/.github/actions/bootstrap/action.yaml",
-      "syft/pkg/cataloger/githubactions/testdata/glob/.github/actions/unbootstrap/action.yml",
-      "syft/pkg/cataloger/golang/internal/gotestdata/go-source/go.mod",
-      "syft/pkg/cataloger/golang/internal/gotestdata/go-source/go.sum",
-      "syft/pkg/cataloger/javascript/test-fixtures/bun-trailing-comma/bun.lock",
-      "syft/pkg/cataloger/javascript/test-fixtures/bun-variable-tuples/bun.lock",
-      "syft/pkg/cataloger/javascript/test-fixtures/bun/bun.lock"
+      "go.sum"
     ],
     "name": "syft",
     "osv": {
-      "advisories": 120,
+      "advisories": 4,
       "available": true,
-      "confirmed": 49,
+      "confirmed": 4,
       "osv_only": [],
       "warning": null
     },
@@ -3396,15 +4008,22 @@
     "repository": "anchore/syft",
     "sbomlyze_diff": {
       "added": 0,
-      "changed": 0,
-      "drift": {},
+      "changed": 8,
+      "drift": {
+        "integrity_drift": 0,
+        "metadata_drift": 0,
+        "version_drift": 8
+      },
       "findings": [
-        "0 version changes among 407 shared packages \u2014 no actual upgrades",
-        "Core system packages stable: golang (362), github (18), npm (14), file (11) unchanged"
+        "Attack surface: -38 packages (-9.3%)",
+        "npm ecosystem entirely removed (14 \u2192 0 packages)",
+        "8 version upgrades (7 major, 1 minor) among 389 shared packages",
+        "Core system packages stable: github (18) unchanged"
       ],
-      "removed": 0
+      "html": "sbomlyze-diff.html",
+      "removed": 18
     },
-    "scanned_at": "2026-11-01T19:05:16+00:00",
+    "scanned_at": "2026-11-02T01:31:59+00:00",
     "scorecard": {
       "checks": [
         {
@@ -3486,793 +4105,43 @@
     "vulnerabilities": [
       {
         "aliases": [
-          "CVE-2026-44494"
-        ],
-        "ecosystem": "npm",
-        "fix_state": "fixed",
-        "fixed_in": [
-          "1.16.0"
-        ],
-        "id": "GHSA-35jp-ww65-95wh",
-        "location": "syft/pkg/cataloger/javascript/test-fixtures/bun/bun.lock",
-        "osv_confirmed": true,
-        "package": "axios",
-        "severity": "High",
-        "url": "https://github.com/advisories/GHSA-35jp-ww65-95wh",
-        "version": "1.6.0"
-      },
-      {
-        "aliases": [
-          "CVE-2026-44495"
-        ],
-        "ecosystem": "npm",
-        "fix_state": "fixed",
-        "fixed_in": [
-          "1.15.2"
-        ],
-        "id": "GHSA-3g43-6gmg-66jw",
-        "location": "syft/pkg/cataloger/javascript/test-fixtures/bun-variable-tuples/bun.lock",
-        "osv_confirmed": true,
-        "package": "axios",
-        "severity": "High",
-        "url": "https://github.com/advisories/GHSA-3g43-6gmg-66jw",
-        "version": "1.6.0"
-      },
-      {
-        "aliases": [
-          "CVE-2026-25639"
-        ],
-        "ecosystem": "npm",
-        "fix_state": "fixed",
-        "fixed_in": [
-          "1.13.5"
-        ],
-        "id": "GHSA-43fc-jf86-j433",
-        "location": "syft/pkg/cataloger/javascript/test-fixtures/bun-variable-tuples/bun.lock",
-        "osv_confirmed": true,
-        "package": "axios",
-        "severity": "High",
-        "url": "https://github.com/advisories/GHSA-43fc-jf86-j433",
-        "version": "1.6.0"
-      },
-      {
-        "aliases": [
-          "CVE-2025-58754"
-        ],
-        "ecosystem": "npm",
-        "fix_state": "fixed",
-        "fixed_in": [
-          "1.12.0"
-        ],
-        "id": "GHSA-4hjh-wcwx-xvwj",
-        "location": "syft/pkg/cataloger/javascript/test-fixtures/bun/bun.lock",
-        "osv_confirmed": true,
-        "package": "axios",
-        "severity": "High",
-        "url": "https://github.com/advisories/GHSA-4hjh-wcwx-xvwj",
-        "version": "1.6.0"
-      },
-      {
-        "aliases": [
-          "CVE-2026-42035"
-        ],
-        "ecosystem": "npm",
-        "fix_state": "fixed",
-        "fixed_in": [
-          "1.15.1"
-        ],
-        "id": "GHSA-6chq-wfr3-2hj9",
-        "location": "syft/pkg/cataloger/javascript/test-fixtures/bun-variable-tuples/bun.lock",
-        "osv_confirmed": true,
-        "package": "axios",
-        "severity": "High",
-        "url": "https://github.com/advisories/GHSA-6chq-wfr3-2hj9",
-        "version": "1.6.0"
-      },
-      {
-        "aliases": [
-          "CVE-2024-39338"
-        ],
-        "ecosystem": "npm",
-        "fix_state": "fixed",
-        "fixed_in": [
-          "1.7.4"
-        ],
-        "id": "GHSA-8hc4-vh64-cxmj",
-        "location": "syft/pkg/cataloger/javascript/test-fixtures/bun/bun.lock",
-        "osv_confirmed": true,
-        "package": "axios",
-        "severity": "High",
-        "url": "https://github.com/advisories/GHSA-8hc4-vh64-cxmj",
-        "version": "1.6.0"
-      },
-      {
-        "aliases": [
-          "CVE-2026-44496"
-        ],
-        "ecosystem": "npm",
-        "fix_state": "fixed",
-        "fixed_in": [
-          "1.16.0"
-        ],
-        "id": "GHSA-hfxv-24rg-xrqf",
-        "location": "syft/pkg/cataloger/javascript/test-fixtures/bun-variable-tuples/bun.lock",
-        "osv_confirmed": true,
-        "package": "axios",
-        "severity": "High",
-        "url": "https://github.com/advisories/GHSA-hfxv-24rg-xrqf",
-        "version": "1.6.0"
-      },
-      {
-        "aliases": [
-          "CVE-2026-44486"
-        ],
-        "ecosystem": "npm",
-        "fix_state": "fixed",
-        "fixed_in": [
-          "1.16.0"
-        ],
-        "id": "GHSA-j5f8-grm9-p9fc",
-        "location": "syft/pkg/cataloger/javascript/test-fixtures/bun-trailing-comma/bun.lock",
-        "osv_confirmed": true,
-        "package": "axios",
-        "severity": "High",
-        "url": "https://github.com/advisories/GHSA-j5f8-grm9-p9fc",
-        "version": "1.6.0"
-      },
-      {
-        "aliases": [
-          "CVE-2025-27152"
-        ],
-        "ecosystem": "npm",
-        "fix_state": "fixed",
-        "fixed_in": [
-          "1.8.2"
-        ],
-        "id": "GHSA-jr5f-v2jv-69x6",
-        "location": "syft/pkg/cataloger/javascript/test-fixtures/bun-variable-tuples/bun.lock",
-        "osv_confirmed": true,
-        "package": "axios",
-        "severity": "High",
-        "url": "https://github.com/advisories/GHSA-jr5f-v2jv-69x6",
-        "version": "1.6.0"
-      },
-      {
-        "aliases": [
-          "CVE-2026-44487"
-        ],
-        "ecosystem": "npm",
-        "fix_state": "fixed",
-        "fixed_in": [
-          "1.16.0"
-        ],
-        "id": "GHSA-p92q-9vqr-4j8v",
-        "location": "syft/pkg/cataloger/javascript/test-fixtures/bun-variable-tuples/bun.lock",
-        "osv_confirmed": true,
-        "package": "axios",
-        "severity": "High",
-        "url": "https://github.com/advisories/GHSA-p92q-9vqr-4j8v",
-        "version": "1.6.0"
-      },
-      {
-        "aliases": [
-          "CVE-2026-42033"
-        ],
-        "ecosystem": "npm",
-        "fix_state": "fixed",
-        "fixed_in": [
-          "1.15.1"
-        ],
-        "id": "GHSA-pf86-5x62-jrwf",
-        "location": "syft/pkg/cataloger/javascript/test-fixtures/bun-variable-tuples/bun.lock",
-        "osv_confirmed": true,
-        "package": "axios",
-        "severity": "High",
-        "url": "https://github.com/advisories/GHSA-pf86-5x62-jrwf",
-        "version": "1.6.0"
-      },
-      {
-        "aliases": [
-          "CVE-2026-42043"
-        ],
-        "ecosystem": "npm",
-        "fix_state": "fixed",
-        "fixed_in": [
-          "1.15.1"
-        ],
-        "id": "GHSA-pmwg-cvhr-8vh7",
-        "location": "syft/pkg/cataloger/javascript/test-fixtures/bun-trailing-comma/bun.lock",
-        "osv_confirmed": true,
-        "package": "axios",
-        "severity": "High",
-        "url": "https://github.com/advisories/GHSA-pmwg-cvhr-8vh7",
-        "version": "1.6.0"
-      },
-      {
-        "aliases": [
-          "CVE-2026-42264"
-        ],
-        "ecosystem": "npm",
-        "fix_state": "fixed",
-        "fixed_in": [
-          "1.15.2"
-        ],
-        "id": "GHSA-q8qp-cvcw-x6jj",
-        "location": "syft/pkg/cataloger/javascript/test-fixtures/bun-trailing-comma/bun.lock",
-        "osv_confirmed": true,
-        "package": "axios",
-        "severity": "High",
-        "url": "https://github.com/advisories/GHSA-q8qp-cvcw-x6jj",
-        "version": "1.6.0"
-      },
-      {
-        "aliases": [
           "CVE-2026-116587"
         ],
         "ecosystem": "golang",
+        "epss": {
+          "cve": "CVE-2026-116587",
+          "percentile": 0.3048,
+          "score": 0.00366
+        },
         "fix_state": "fixed",
         "fixed_in": [
           "4.1.6"
         ],
         "id": "GHSA-mgcc-cww5-fp2q",
         "in_binary": "vulnerable code not in binary",
+        "kev": null,
         "location": "go.mod",
         "osv_confirmed": true,
         "package": "github.com/go-jose/go-jose/v4",
         "severity": "High",
+        "summary": "Go JOSE: DoS when parsing JWKs that contain RSA keys",
         "url": "https://github.com/advisories/GHSA-mgcc-cww5-fp2q",
         "version": "v4.1.5"
       },
       {
-        "aliases": [
-          "CVE-2026-56852"
-        ],
-        "ecosystem": "golang",
-        "fix_state": "fixed",
-        "fixed_in": [
-          "0.39.0"
-        ],
-        "id": "GO-2026-5970",
-        "in_binary": "vulnerable code not in binary",
-        "location": "syft/pkg/cataloger/golang/internal/gotestdata/go-source/go.mod",
-        "osv_confirmed": true,
-        "package": "golang.org/x/text",
-        "severity": "High",
-        "url": "https://go.dev/issue/80142",
-        "version": "v0.21.0"
-      },
-      {
-        "aliases": [
-          "CVE-2026-56851"
-        ],
-        "ecosystem": "golang",
-        "fix_state": "fixed",
-        "fixed_in": [
-          "0.41.0"
-        ],
-        "id": "GO-2026-6629",
-        "in_binary": "vulnerable code not in binary",
-        "location": "syft/pkg/cataloger/golang/internal/gotestdata/go-source/go.mod",
-        "osv_confirmed": true,
-        "package": "golang.org/x/text",
-        "severity": "High",
-        "url": "https://go.dev/cl/793360",
-        "version": "v0.21.0"
-      },
-      {
-        "aliases": [
-          "CVE-2026-4800"
-        ],
-        "ecosystem": "npm",
-        "fix_state": "fixed",
-        "fixed_in": [
-          "4.18.0"
-        ],
-        "id": "GHSA-r5fr-rjxr-66jc",
-        "location": "syft/pkg/cataloger/javascript/test-fixtures/bun-trailing-comma/bun.lock",
-        "osv_confirmed": true,
-        "package": "lodash",
-        "severity": "High",
-        "url": "https://github.com/advisories/GHSA-r5fr-rjxr-66jc",
-        "version": "4.17.21"
-      },
-      {
-        "aliases": [],
-        "ecosystem": "npm",
-        "fix_state": "fixed",
-        "fixed_in": [
-          "0.35.0"
-        ],
-        "id": "GHSA-f88m-g3jw-g9cj",
-        "location": "syft/pkg/cataloger/javascript/test-fixtures/bun/bun.lock",
-        "osv_confirmed": true,
-        "package": "sharp",
-        "severity": "High",
-        "url": "https://github.com/advisories/GHSA-f88m-g3jw-g9cj",
-        "version": "0.33.5"
-      },
-      {
-        "aliases": [],
-        "ecosystem": "npm",
-        "fix_state": "fixed",
-        "fixed_in": [
-          "0.35.4"
-        ],
-        "id": "GHSA-rgj7-g3m4-5g8c",
-        "location": "syft/pkg/cataloger/javascript/test-fixtures/bun/bun.lock",
-        "osv_confirmed": true,
-        "package": "sharp",
-        "severity": "High",
-        "url": "https://github.com/advisories/GHSA-rgj7-g3m4-5g8c",
-        "version": "0.33.5"
-      },
-      {
-        "aliases": [],
-        "ecosystem": "npm",
-        "fix_state": "fixed",
-        "fixed_in": [
-          "0.35.5"
-        ],
-        "id": "GHSA-wq5f-xc86-pv6w",
-        "location": "syft/pkg/cataloger/javascript/test-fixtures/bun/bun.lock",
-        "osv_confirmed": true,
-        "package": "sharp",
-        "severity": "High",
-        "url": "https://github.com/advisories/GHSA-wq5f-xc86-pv6w",
-        "version": "0.33.5"
-      },
-      {
-        "aliases": [
-          "CVE-2025-62718"
-        ],
-        "ecosystem": "npm",
-        "fix_state": "fixed",
-        "fixed_in": [
-          "1.15.0"
-        ],
-        "id": "GHSA-3p68-rc4w-qgx5",
-        "location": "syft/pkg/cataloger/javascript/test-fixtures/bun/bun.lock",
-        "osv_confirmed": true,
-        "package": "axios",
-        "severity": "Medium",
-        "url": "https://github.com/advisories/GHSA-3p68-rc4w-qgx5",
-        "version": "1.6.0"
-      },
-      {
-        "aliases": [
-          "CVE-2026-42044"
-        ],
-        "ecosystem": "npm",
-        "fix_state": "fixed",
-        "fixed_in": [
-          "1.15.2"
-        ],
-        "id": "GHSA-3w6x-2g7m-8v23",
-        "location": "syft/pkg/cataloger/javascript/test-fixtures/bun/bun.lock",
-        "osv_confirmed": true,
-        "package": "axios",
-        "severity": "Medium",
-        "url": "https://github.com/advisories/GHSA-3w6x-2g7m-8v23",
-        "version": "1.6.0"
-      },
-      {
-        "aliases": [
-          "CVE-2026-67313"
-        ],
-        "ecosystem": "npm",
-        "fix_state": "fixed",
-        "fixed_in": [
-          "1.18.0"
-        ],
-        "id": "GHSA-42h9-826w-cgv3",
-        "location": "syft/pkg/cataloger/javascript/test-fixtures/bun/bun.lock",
-        "osv_confirmed": true,
-        "package": "axios",
-        "severity": "Medium",
-        "url": "https://github.com/advisories/GHSA-42h9-826w-cgv3",
-        "version": "1.6.0"
-      },
-      {
-        "aliases": [
-          "CVE-2026-42037"
-        ],
-        "ecosystem": "npm",
-        "fix_state": "fixed",
-        "fixed_in": [
-          "1.15.1"
-        ],
-        "id": "GHSA-445q-vr5w-6q77",
-        "location": "syft/pkg/cataloger/javascript/test-fixtures/bun-trailing-comma/bun.lock",
-        "osv_confirmed": true,
-        "package": "axios",
-        "severity": "Medium",
-        "url": "https://github.com/advisories/GHSA-445q-vr5w-6q77",
-        "version": "1.6.0"
-      },
-      {
-        "aliases": [
-          "CVE-2026-42034"
-        ],
-        "ecosystem": "npm",
-        "fix_state": "fixed",
-        "fixed_in": [
-          "1.15.1"
-        ],
-        "id": "GHSA-5c9x-8gcm-mpgx",
-        "location": "syft/pkg/cataloger/javascript/test-fixtures/bun-trailing-comma/bun.lock",
-        "osv_confirmed": true,
-        "package": "axios",
-        "severity": "Medium",
-        "url": "https://github.com/advisories/GHSA-5c9x-8gcm-mpgx",
-        "version": "1.6.0"
-      },
-      {
-        "aliases": [
-          "CVE-2026-42039"
-        ],
-        "ecosystem": "npm",
-        "fix_state": "fixed",
-        "fixed_in": [
-          "1.15.1"
-        ],
-        "id": "GHSA-62hf-57xw-28j9",
-        "location": "syft/pkg/cataloger/javascript/test-fixtures/bun-trailing-comma/bun.lock",
-        "osv_confirmed": true,
-        "package": "axios",
-        "severity": "Medium",
-        "url": "https://github.com/advisories/GHSA-62hf-57xw-28j9",
-        "version": "1.6.0"
-      },
-      {
-        "aliases": [
-          "CVE-2026-67319"
-        ],
-        "ecosystem": "npm",
-        "fix_state": "fixed",
-        "fixed_in": [
-          "1.18.0"
-        ],
-        "id": "GHSA-7q8q-rj6j-mhjq",
-        "location": "syft/pkg/cataloger/javascript/test-fixtures/bun-variable-tuples/bun.lock",
-        "osv_confirmed": true,
-        "package": "axios",
-        "severity": "Medium",
-        "url": "https://github.com/advisories/GHSA-7q8q-rj6j-mhjq",
-        "version": "1.6.0"
-      },
-      {
-        "aliases": [
-          "CVE-2026-44490"
-        ],
-        "ecosystem": "npm",
-        "fix_state": "fixed",
-        "fixed_in": [
-          "1.16.0"
-        ],
-        "id": "GHSA-898c-q2cr-xwhg",
-        "location": "syft/pkg/cataloger/javascript/test-fixtures/bun-variable-tuples/bun.lock",
-        "osv_confirmed": true,
-        "package": "axios",
-        "severity": "Medium",
-        "url": "https://github.com/advisories/GHSA-898c-q2cr-xwhg",
-        "version": "1.6.0"
-      },
-      {
-        "aliases": [
-          "CVE-2026-101902"
-        ],
-        "ecosystem": "npm",
-        "fix_state": "fixed",
-        "fixed_in": [
-          "1.20.0"
-        ],
-        "id": "GHSA-9fr6-4gfg-395g",
-        "location": "syft/pkg/cataloger/javascript/test-fixtures/bun-trailing-comma/bun.lock",
-        "osv_confirmed": true,
-        "package": "axios",
-        "severity": "Medium",
-        "url": "https://github.com/advisories/GHSA-9fr6-4gfg-395g",
-        "version": "1.6.0"
-      },
-      {
-        "aliases": [
-          "CVE-2026-40175"
-        ],
-        "ecosystem": "npm",
-        "fix_state": "fixed",
-        "fixed_in": [
-          "1.15.0"
-        ],
-        "id": "GHSA-fvcv-3m26-pcqx",
-        "location": "syft/pkg/cataloger/javascript/test-fixtures/bun-trailing-comma/bun.lock",
-        "osv_confirmed": true,
-        "package": "axios",
-        "severity": "Medium",
-        "url": "https://github.com/advisories/GHSA-fvcv-3m26-pcqx",
-        "version": "1.6.0"
-      },
-      {
-        "aliases": [
-          "CVE-2026-101904"
-        ],
-        "ecosystem": "npm",
-        "fix_state": "fixed",
-        "fixed_in": [
-          "1.20.0"
-        ],
-        "id": "GHSA-j8rh-479h-cp32",
-        "location": "syft/pkg/cataloger/javascript/test-fixtures/bun/bun.lock",
-        "osv_confirmed": true,
-        "package": "axios",
-        "severity": "Medium",
-        "url": "https://github.com/advisories/GHSA-j8rh-479h-cp32",
-        "version": "1.6.0"
-      },
-      {
-        "aliases": [
-          "CVE-2026-42038"
-        ],
-        "ecosystem": "npm",
-        "fix_state": "fixed",
-        "fixed_in": [
-          "1.15.1"
-        ],
-        "id": "GHSA-m7pr-hjqh-92cm",
-        "location": "syft/pkg/cataloger/javascript/test-fixtures/bun/bun.lock",
-        "osv_confirmed": true,
-        "package": "axios",
-        "severity": "Medium",
-        "url": "https://github.com/advisories/GHSA-m7pr-hjqh-92cm",
-        "version": "1.6.0"
-      },
-      {
-        "aliases": [
-          "CVE-2026-67316"
-        ],
-        "ecosystem": "npm",
-        "fix_state": "fixed",
-        "fixed_in": [
-          "1.18.0"
-        ],
-        "id": "GHSA-mmx7-hfxf-jppx",
-        "location": "syft/pkg/cataloger/javascript/test-fixtures/bun-trailing-comma/bun.lock",
-        "osv_confirmed": true,
-        "package": "axios",
-        "severity": "Medium",
-        "url": "https://github.com/advisories/GHSA-mmx7-hfxf-jppx",
-        "version": "1.6.0"
-      },
-      {
-        "aliases": [
-          "CVE-2026-67312"
-        ],
-        "ecosystem": "npm",
-        "fix_state": "fixed",
-        "fixed_in": [
-          "1.18.0"
-        ],
-        "id": "GHSA-pmv8-rq9r-6j72",
-        "location": "syft/pkg/cataloger/javascript/test-fixtures/bun-trailing-comma/bun.lock",
-        "osv_confirmed": true,
-        "package": "axios",
-        "severity": "Medium",
-        "url": "https://github.com/advisories/GHSA-pmv8-rq9r-6j72",
-        "version": "1.6.0"
-      },
-      {
-        "aliases": [
-          "CVE-2026-42036"
-        ],
-        "ecosystem": "npm",
-        "fix_state": "fixed",
-        "fixed_in": [
-          "1.15.1"
-        ],
-        "id": "GHSA-vf2m-468p-8v99",
-        "location": "syft/pkg/cataloger/javascript/test-fixtures/bun-variable-tuples/bun.lock",
-        "osv_confirmed": true,
-        "package": "axios",
-        "severity": "Medium",
-        "url": "https://github.com/advisories/GHSA-vf2m-468p-8v99",
-        "version": "1.6.0"
-      },
-      {
-        "aliases": [
-          "CVE-2026-42041"
-        ],
-        "ecosystem": "npm",
-        "fix_state": "fixed",
-        "fixed_in": [
-          "1.15.1"
-        ],
-        "id": "GHSA-w9j2-pvgh-6h63",
-        "location": "syft/pkg/cataloger/javascript/test-fixtures/bun-trailing-comma/bun.lock",
-        "osv_confirmed": true,
-        "package": "axios",
-        "severity": "Medium",
-        "url": "https://github.com/advisories/GHSA-w9j2-pvgh-6h63",
-        "version": "1.6.0"
-      },
-      {
-        "aliases": [
-          "CVE-2026-42042"
-        ],
-        "ecosystem": "npm",
-        "fix_state": "fixed",
-        "fixed_in": [
-          "1.15.1"
-        ],
-        "id": "GHSA-xx6v-rp6x-q39c",
-        "location": "syft/pkg/cataloger/javascript/test-fixtures/bun-variable-tuples/bun.lock",
-        "osv_confirmed": true,
-        "package": "axios",
-        "severity": "Medium",
-        "url": "https://github.com/advisories/GHSA-xx6v-rp6x-q39c",
-        "version": "1.6.0"
-      },
-      {
-        "aliases": [
-          "CVE-2024-28849"
-        ],
-        "ecosystem": "npm",
-        "fix_state": "fixed",
-        "fixed_in": [
-          "1.15.6"
-        ],
-        "id": "GHSA-cxjh-pqwp-8mfp",
-        "location": "syft/pkg/cataloger/javascript/test-fixtures/bun/bun.lock",
-        "osv_confirmed": true,
-        "package": "follow-redirects",
-        "severity": "Medium",
-        "url": "https://github.com/advisories/GHSA-cxjh-pqwp-8mfp",
-        "version": "1.15.3"
-      },
-      {
-        "aliases": [
-          "CVE-2023-26159"
-        ],
-        "ecosystem": "npm",
-        "fix_state": "fixed",
-        "fixed_in": [
-          "1.15.4"
-        ],
-        "id": "GHSA-jchw-25xp-jwwc",
-        "location": "syft/pkg/cataloger/javascript/test-fixtures/bun-trailing-comma/bun.lock",
-        "osv_confirmed": true,
-        "package": "follow-redirects",
-        "severity": "Medium",
-        "url": "https://github.com/advisories/GHSA-jchw-25xp-jwwc",
-        "version": "1.15.3"
-      },
-      {
-        "aliases": [],
-        "ecosystem": "npm",
-        "fix_state": "fixed",
-        "fixed_in": [
-          "1.16.0"
-        ],
-        "id": "GHSA-r4q5-vmmm-2653",
-        "location": "syft/pkg/cataloger/javascript/test-fixtures/bun/bun.lock",
-        "osv_confirmed": true,
-        "package": "follow-redirects",
-        "severity": "Medium",
-        "url": "https://github.com/advisories/GHSA-r4q5-vmmm-2653",
-        "version": "1.15.3"
-      },
-      {
-        "aliases": [
-          "CVE-2025-11065"
-        ],
-        "ecosystem": "golang",
-        "fix_state": "fixed",
-        "fixed_in": [
-          "2.4.0"
-        ],
-        "id": "GHSA-2464-8j7c-4cjm",
-        "in_binary": "vulnerable code not in binary",
-        "location": "syft/pkg/cataloger/golang/internal/gotestdata/go-source/go.mod",
-        "osv_confirmed": true,
-        "package": "github.com/go-viper/mapstructure/v2",
-        "severity": "Medium",
-        "url": "https://github.com/advisories/GHSA-2464-8j7c-4cjm",
-        "version": "v2.2.1"
-      },
-      {
         "aliases": [],
         "ecosystem": "golang",
-        "fix_state": "fixed",
-        "fixed_in": [
-          "2.3.0"
-        ],
-        "id": "GHSA-fv92-fjc5-jj9h",
-        "in_binary": "vulnerable code not in binary",
-        "location": "syft/pkg/cataloger/golang/internal/gotestdata/go-source/go.mod",
-        "osv_confirmed": true,
-        "package": "github.com/go-viper/mapstructure/v2",
-        "severity": "Medium",
-        "url": "https://github.com/advisories/GHSA-fv92-fjc5-jj9h",
-        "version": "v2.2.1"
-      },
-      {
-        "aliases": [
-          "CVE-2026-2950"
-        ],
-        "ecosystem": "npm",
-        "fix_state": "fixed",
-        "fixed_in": [
-          "4.18.0"
-        ],
-        "id": "GHSA-f23m-r3pf-42rh",
-        "location": "syft/pkg/cataloger/javascript/test-fixtures/bun-trailing-comma/bun.lock",
-        "osv_confirmed": true,
-        "package": "lodash",
-        "severity": "Medium",
-        "url": "https://github.com/advisories/GHSA-f23m-r3pf-42rh",
-        "version": "4.17.21"
-      },
-      {
-        "aliases": [
-          "CVE-2025-13465"
-        ],
-        "ecosystem": "npm",
-        "fix_state": "fixed",
-        "fixed_in": [
-          "4.17.23"
-        ],
-        "id": "GHSA-xxjr-mmjv-4gpg",
-        "location": "syft/pkg/cataloger/javascript/test-fixtures/bun-trailing-comma/bun.lock",
-        "osv_confirmed": true,
-        "package": "lodash",
-        "severity": "Medium",
-        "url": "https://github.com/advisories/GHSA-xxjr-mmjv-4gpg",
-        "version": "4.17.21"
-      },
-      {
-        "aliases": [
-          "CVE-2026-42040"
-        ],
-        "ecosystem": "npm",
-        "fix_state": "fixed",
-        "fixed_in": [
-          "1.15.1"
-        ],
-        "id": "GHSA-xhjh-pmcv-23jw",
-        "location": "syft/pkg/cataloger/javascript/test-fixtures/bun-trailing-comma/bun.lock",
-        "osv_confirmed": true,
-        "package": "axios",
-        "severity": "Low",
-        "url": "https://github.com/advisories/GHSA-xhjh-pmcv-23jw",
-        "version": "1.6.0"
-      },
-      {
-        "aliases": [
-          "CVE-2026-39824"
-        ],
-        "ecosystem": "golang",
-        "fix_state": "fixed",
-        "fixed_in": [
-          "0.44.0"
-        ],
-        "id": "GO-2026-5024",
-        "in_binary": "vulnerable code not in binary",
-        "location": "syft/pkg/cataloger/golang/internal/gotestdata/go-source/go.mod",
-        "osv_confirmed": true,
-        "package": "golang.org/x/sys",
-        "severity": "Low",
-        "url": "https://go.dev/issue/78916",
-        "version": "v0.33.0"
-      },
-      {
-        "aliases": [],
-        "ecosystem": "golang",
+        "epss": null,
         "fix_state": "unknown",
         "fixed_in": [],
         "id": "GO-2026-5932",
         "in_binary": "vulnerable code in binary",
+        "kev": null,
         "location": "go.mod",
         "osv_confirmed": true,
         "package": "golang.org/x/crypto",
         "severity": "Unknown",
+        "summary": "The golang.org/x/crypto/openpgp package is unsafe by design, has numerous known security issues, is not maintained, and should not be used. If you are required to interoperate with OpenPGP systems and need a maintained package, consider github.com/ProtonMail/go-crypto/openpgp which is a maintained f",
         "url": "https://go.dev/issue/44226",
         "version": "v0.58.0"
       },
@@ -4281,16 +4150,23 @@
           "CVE-2026-78661"
         ],
         "ecosystem": "golang",
+        "epss": {
+          "cve": "CVE-2026-78661",
+          "percentile": 0.08063,
+          "score": 0.00185
+        },
         "fix_state": "fixed",
         "fixed_in": [
           "0.62.0"
         ],
         "id": "GO-2026-6860",
         "in_binary": "vulnerable code in binary",
+        "kev": null,
         "location": "go.mod",
         "osv_confirmed": true,
         "package": "golang.org/x/net",
         "severity": "Unknown",
+        "summary": "When coalescing adjacent text nodes in addText and fosterParent, appending to an existing TextNode's Data via string concatenation (n.Data += text) reallocated and copied the accumulated string on every token. Inputs containing many short text runs separated by ignored end tags (such as \"a</x>\") cau",
         "url": "https://go.dev/cl/849365",
         "version": "v0.61.0"
       },
@@ -4299,22 +4175,29 @@
           "CVE-2026-97045"
         ],
         "ecosystem": "golang",
+        "epss": {
+          "cve": "CVE-2026-97045",
+          "percentile": 0.10117,
+          "score": 0.00202
+        },
         "fix_state": "fixed",
         "fixed_in": [
           "0.62.0"
         ],
         "id": "GO-2026-6866",
         "in_binary": "vulnerable code in binary",
+        "kev": null,
         "location": "go.mod",
         "osv_confirmed": true,
         "package": "golang.org/x/net",
         "severity": "Unknown",
+        "summary": "In childTextNodesAreLiteral, walking up the tree previously stopped at the nearest foreign ancestor once an HTML integration point was found. However, that integration point may itself be a descendant of an element that was foster-parented into a foreign namespace (such as <mglyph> or <malignmark> f",
         "url": "https://go.dev/cl/855121",
         "version": "v0.61.0"
       }
     ],
     "workflow_audit": {
-      "files": 7,
+      "files": 5,
       "findings": [
         {
           "confidence": "High",
@@ -4399,5 +4282,5 @@
       ]
     }
   },
-  "updated": "2026-11-01"
+  "updated": "2026-11-02"
 }

@@ -33,6 +33,46 @@
         "Medium": 13,
         "files": 22
       }
+    },
+    {
+      "added": 0,
+      "commit": "7625e203c17c88c91fa1b1b8e2937907f22a1523",
+      "date": "2026-11-02",
+      "dependencies": 41,
+      "errors": [],
+      "fixable": 0,
+      "go_version": null,
+      "in_binary": null,
+      "kev": null,
+      "kev_new": 0,
+      "new_vulnerabilities": 0,
+      "osv_confirmed": 0,
+      "osv_only": 0,
+      "ref": "0.45.2",
+      "release_changed": false,
+      "release_integrity": "none",
+      "removed": 1,
+      "resolved_vulnerabilities": 0,
+      "scorecard": 7.5,
+      "scorecard_date": "2026-11-02",
+      "scorecard_note": null,
+      "scorecard_source": "openssf-api",
+      "upgraded": 0,
+      "vulnerabilities": {
+        "Critical": 0,
+        "High": 0,
+        "Low": 0,
+        "Medium": 0,
+        "Negligible": 0,
+        "Unknown": 0
+      },
+      "vulnerable_packages": 0,
+      "workflow": {
+        "High": 106,
+        "Low": 34,
+        "Medium": 13,
+        "files": 21
+      }
     }
   ],
   "latest": {
@@ -40,14 +80,16 @@
     "category": "Container Security \u203a Runtime Security",
     "changes": {
       "added": [],
-      "any": false,
+      "any": true,
       "baseline": false,
       "integrity_drift": 0,
       "license_changes": [],
       "new_vulnerabilities": [],
       "previous_ref": "0.45.2",
       "release_changed": false,
-      "removed": [],
+      "removed": [
+        "falcosecurity/event-generator@2bfdbb7f7a98ad3d44b45e2230dc3f850dee65c9"
+      ],
       "resolved_vulnerabilities": [],
       "upgraded": [],
       "workflow_new": 0,
@@ -240,14 +282,6 @@
       {
         "ecosystem": "github",
         "licenses": [],
-        "location": ".github/actions/event-generator-tests/action.yml",
-        "name": "falcosecurity/event-generator",
-        "purl": "pkg:github/falcosecurity/event-generator@2bfdbb7f7a98ad3d44b45e2230dc3f850dee65c9",
-        "version": "2bfdbb7f7a98ad3d44b45e2230dc3f850dee65c9"
-      },
-      {
-        "ecosystem": "github",
-        "licenses": [],
         "location": ".github/workflows/reusable_build_packages.yaml",
         "name": "falcosecurity/libs/.github/actions/install-zig",
         "purl": "pkg:github/falcosecurity/libs@master#.github/actions/install-zig",
@@ -434,7 +468,6 @@
     "errors": [],
     "id": "falcosecurity__falco",
     "manifests": [
-      ".github/actions/event-generator-tests/action.yml",
       ".github/workflows/bump-libs.yaml",
       ".github/workflows/ci.yml",
       ".github/workflows/codeql.yaml",
@@ -485,12 +518,14 @@
       "changed": 0,
       "drift": {},
       "findings": [
-        "0 version changes among 100 shared packages \u2014 no actual upgrades",
-        "Core system packages stable: github (58), file (22), library (20) unchanged"
+        "Attack surface: -2 packages (-2.0%)",
+        "0 version changes among 98 shared packages \u2014 no actual upgrades",
+        "Core system packages stable: library (20) unchanged"
       ],
-      "removed": 0
+      "html": "sbomlyze-diff.html",
+      "removed": 2
     },
-    "scanned_at": "2026-11-01T19:05:58+00:00",
+    "scanned_at": "2026-11-02T01:32:50+00:00",
     "scorecard": {
       "checks": [
         {
@@ -584,14 +619,14 @@
           "score": -1
         }
       ],
-      "date": "2026-10-30",
+      "date": "2026-11-02",
       "score": 7.5,
       "source": "openssf-api",
       "version": "v5.5.0"
     },
     "vulnerabilities": [],
     "workflow_audit": {
-      "files": 22,
+      "files": 21,
       "findings": [
         {
           "confidence": "Medium",
@@ -2136,5 +2171,5 @@
       ]
     }
   },
-  "updated": "2026-11-01"
+  "updated": "2026-11-02"
 }

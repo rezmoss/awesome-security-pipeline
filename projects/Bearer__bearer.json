@@ -37,6 +37,50 @@
         "Medium": 4,
         "files": 10
       }
+    },
+    {
+      "added": 0,
+      "commit": "668f5df05042088125d83d197252b5a8e78422df",
+      "date": "2026-11-02",
+      "dependencies": 146,
+      "errors": [],
+      "fixable": 3,
+      "go_version": "go1.26.9",
+      "in_binary": {
+        "dependencies": 1,
+        "stdlib": 1,
+        "total": 2
+      },
+      "kev": 0,
+      "kev_new": 0,
+      "new_vulnerabilities": 0,
+      "osv_confirmed": 4,
+      "osv_only": 1,
+      "ref": "v2.1.3",
+      "release_changed": false,
+      "release_integrity": "checksums-only",
+      "removed": 0,
+      "resolved_vulnerabilities": 0,
+      "scorecard": 6.3,
+      "scorecard_date": "2026-10-19",
+      "scorecard_note": null,
+      "scorecard_source": "openssf-api",
+      "upgraded": 0,
+      "vulnerabilities": {
+        "Critical": 0,
+        "High": 0,
+        "Low": 0,
+        "Medium": 1,
+        "Negligible": 0,
+        "Unknown": 3
+      },
+      "vulnerable_packages": 3,
+      "workflow": {
+        "High": 6,
+        "Low": 2,
+        "Medium": 4,
+        "files": 10
+      }
     }
   ],
   "latest": {
@@ -1273,6 +1317,8 @@
     "go_binary": {
       "asset": "bearer_2.1.3_linux_amd64.tar.gz",
       "binary": "bearer",
+      "db": "https://vuln.go.dev",
+      "db_last_modified": "2026-10-27T21:16:18Z",
       "findings": [
         {
           "aliases": [
@@ -1406,7 +1452,7 @@
       ],
       "removed": 0
     },
-    "scanned_at": "2026-11-01T19:05:43+00:00",
+    "scanned_at": "2026-11-02T01:32:37+00:00",
     "scorecard": {
       "checks": [
         {
@@ -1491,30 +1537,40 @@
           "CVE-2025-11579"
         ],
         "ecosystem": "golang",
+        "epss": {
+          "cve": "CVE-2025-11579",
+          "percentile": 0.31402,
+          "score": 0.00374
+        },
         "fix_state": "fixed",
         "fixed_in": [
           "2.2.0"
         ],
         "id": "GHSA-rwvp-r38j-9rgg",
         "in_binary": "package in binary",
+        "kev": null,
         "location": "go.mod",
         "osv_confirmed": true,
         "package": "github.com/nwaples/rardecode/v2",
         "severity": "Medium",
+        "summary": "rardecode: DoS risk due to unrestricted RAR dictionary sizes",
         "url": "https://github.com/advisories/GHSA-rwvp-r38j-9rgg",
         "version": "v2.1.0"
       },
       {
         "aliases": [],
         "ecosystem": "golang",
+        "epss": null,
         "fix_state": "unknown",
         "fixed_in": [],
         "id": "GO-2026-5932",
         "in_binary": "module in binary",
+        "kev": null,
         "location": "go.mod",
         "osv_confirmed": true,
         "package": "golang.org/x/crypto",
         "severity": "Unknown",
+        "summary": "The golang.org/x/crypto/openpgp package is unsafe by design, has numerous known security issues, is not maintained, and should not be used. If you are required to interoperate with OpenPGP systems and need a maintained package, consider github.com/ProtonMail/go-crypto/openpgp which is a maintained f",
         "url": "https://go.dev/issue/44226",
         "version": "v0.58.0"
       },
@@ -1523,16 +1579,23 @@
           "CVE-2026-78661"
         ],
         "ecosystem": "golang",
+        "epss": {
+          "cve": "CVE-2026-78661",
+          "percentile": 0.08063,
+          "score": 0.00185
+        },
         "fix_state": "fixed",
         "fixed_in": [
           "0.62.0"
         ],
         "id": "GO-2026-6860",
         "in_binary": "module in binary",
+        "kev": null,
         "location": "go.mod",
         "osv_confirmed": true,
         "package": "golang.org/x/net",
         "severity": "Unknown",
+        "summary": "When coalescing adjacent text nodes in addText and fosterParent, appending to an existing TextNode's Data via string concatenation (n.Data += text) reallocated and copied the accumulated string on every token. Inputs containing many short text runs separated by ignored end tags (such as \"a</x>\") cau",
         "url": "https://go.dev/cl/849365",
         "version": "v0.61.0"
       },
@@ -1541,16 +1604,23 @@
           "CVE-2026-97045"
         ],
         "ecosystem": "golang",
+        "epss": {
+          "cve": "CVE-2026-97045",
+          "percentile": 0.10117,
+          "score": 0.00202
+        },
         "fix_state": "fixed",
         "fixed_in": [
           "0.62.0"
         ],
         "id": "GO-2026-6866",
         "in_binary": "module in binary",
+        "kev": null,
         "location": "go.mod",
         "osv_confirmed": true,
         "package": "golang.org/x/net",
         "severity": "Unknown",
+        "summary": "In childTextNodesAreLiteral, walking up the tree previously stopped at the nearest foreign ancestor once an HTML integration point was found. However, that integration point may itself be a descendant of an element that was foster-parented into a foreign namespace (such as <mglyph> or <malignmark> f",
         "url": "https://go.dev/cl/855121",
         "version": "v0.61.0"
       }
@@ -1681,5 +1751,5 @@
       ]
     }
   },
-  "updated": "2026-11-01"
+  "updated": "2026-11-02"
 }

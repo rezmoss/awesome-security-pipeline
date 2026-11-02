@@ -33,6 +33,46 @@
         "Medium": 4,
         "files": 10
       }
+    },
+    {
+      "added": 0,
+      "commit": "9504d068f8411b04a0ad67099d0d302242ba7d43",
+      "date": "2026-11-02",
+      "dependencies": 133,
+      "errors": [],
+      "fixable": 85,
+      "go_version": null,
+      "in_binary": null,
+      "kev": 0,
+      "kev_new": 0,
+      "new_vulnerabilities": 0,
+      "osv_confirmed": 59,
+      "osv_only": 48,
+      "ref": "3.4.0",
+      "release_changed": false,
+      "release_integrity": "none",
+      "removed": 0,
+      "resolved_vulnerabilities": 4,
+      "scorecard": null,
+      "scorecard_date": null,
+      "scorecard_note": "the OpenSSF public dataset entry is 1435 days old (limit 30); the Scorecard CLI fallback was skipped because this shard's weekly budget was used",
+      "scorecard_source": null,
+      "upgraded": 0,
+      "vulnerabilities": {
+        "Critical": 2,
+        "High": 47,
+        "Low": 5,
+        "Medium": 32,
+        "Negligible": 0,
+        "Unknown": 0
+      },
+      "vulnerable_packages": 11,
+      "workflow": {
+        "High": 10,
+        "Low": 3,
+        "Medium": 4,
+        "files": 10
+      }
     }
   ],
   "latest": {
@@ -40,7 +80,7 @@
     "category": "Infrastructure as Code Security",
     "changes": {
       "added": [],
-      "any": false,
+      "any": true,
       "baseline": false,
       "integrity_drift": 0,
       "license_changes": [],
@@ -48,7 +88,72 @@
       "previous_ref": "3.4.0",
       "release_changed": false,
       "removed": [],
-      "resolved_vulnerabilities": [],
+      "resolved_vulnerabilities": [
+        {
+          "aliases": [],
+          "ecosystem": "github",
+          "fix_state": "fixed",
+          "fixed_in": [
+            "1.14.3"
+          ],
+          "id": "GHSA-5xjx-3w67-w9x9",
+          "location": ".github/workflows/build.yml",
+          "osv_confirmed": false,
+          "package": "pypa/gh-action-pypi-publish",
+          "severity": "Critical",
+          "url": "https://github.com/advisories/GHSA-5xjx-3w67-w9x9",
+          "version": "v1"
+        },
+        {
+          "aliases": [
+            "CVE-2023-52137"
+          ],
+          "ecosystem": "github",
+          "fix_state": "fixed",
+          "fixed_in": [
+            "17"
+          ],
+          "id": "GHSA-ghm2-rq8q-wrhc",
+          "location": ".github/workflows/codeql-analysis.yml",
+          "osv_confirmed": false,
+          "package": "tj-actions/verify-changed-files",
+          "severity": "High",
+          "url": "https://github.com/advisories/GHSA-ghm2-rq8q-wrhc",
+          "version": "v13"
+        },
+        {
+          "aliases": [
+            "CVE-2025-30066"
+          ],
+          "ecosystem": "github",
+          "fix_state": "fixed",
+          "fixed_in": [
+            "46.0.1"
+          ],
+          "id": "GHSA-mrrh-fwg8-r2c3",
+          "location": ".github/workflows/pr-test.yml",
+          "osv_confirmed": false,
+          "package": "tj-actions/changed-files",
+          "severity": "High",
+          "url": "https://github.com/advisories/GHSA-mrrh-fwg8-r2c3",
+          "version": "v44"
+        },
+        {
+          "aliases": [],
+          "ecosystem": "github",
+          "fix_state": "fixed",
+          "fixed_in": [
+            "1.13.0"
+          ],
+          "id": "GHSA-vxmw-7h4f-hqxh",
+          "location": ".github/workflows/build.yml",
+          "osv_confirmed": false,
+          "package": "pypa/gh-action-pypi-publish",
+          "severity": "Low",
+          "url": "https://github.com/advisories/GHSA-vxmw-7h4f-hqxh",
+          "version": "v1"
+        }
+      ],
       "upgraded": [],
       "workflow_new": 0,
       "workflow_resolved": 0
@@ -1160,6 +1265,9 @@
     ],
     "description": "Scan cloud infrastructure configurations",
     "errors": [],
+    "excluded_matches": {
+      "action reference to a moving tag or branch": 4
+    },
     "id": "bridgecrewio__checkov",
     "manifests": [
       ".github/workflows/build.yml",
@@ -1789,22 +1897,25 @@
       ],
       "removed": 0
     },
-    "scanned_at": "2026-11-01T19:05:55+00:00",
+    "scanned_at": "2026-11-02T01:33:06+00:00",
     "scorecard": null,
-    "scorecard_note": "not in the OpenSSF dataset this week; run budget exhausted",
+    "scorecard_note": "the OpenSSF public dataset entry is 1435 days old (limit 30); the Scorecard CLI fallback was skipped because this shard's weekly budget was used",
     "vulnerabilities": [
       {
         "aliases": [],
         "ecosystem": "pypi",
+        "epss": null,
         "fix_state": "fixed",
         "fixed_in": [
           "2026.10.18"
         ],
         "id": "GHSA-6q48-6c7w-9gw2",
+        "kev": null,
         "location": "Pipfile.lock",
         "osv_confirmed": true,
         "package": "certifi",
         "severity": "Critical",
+        "summary": "certifi bundles emSign root CAs with compromised intermediate CA keys",
         "url": "https://github.com/advisories/GHSA-6q48-6c7w-9gw2",
         "version": "2026.7.22"
       },
@@ -1813,45 +1924,40 @@
           "CVE-2026-78676"
         ],
         "ecosystem": "pypi",
+        "epss": {
+          "cve": "CVE-2026-78676",
+          "percentile": 0.46378,
+          "score": 0.00556
+        },
         "fix_state": "fixed",
         "fixed_in": [
           "3.1.59"
         ],
         "id": "GHSA-284h-m62q-gf8w",
+        "kev": null,
         "location": "setup.py",
         "osv_confirmed": false,
         "package": "gitpython",
         "severity": "Critical",
+        "summary": "GitPython: Dormant multi-line git-config values are corrupted into live injected directives (e.g. core.hooksPath) on any unrelated GitConfigParser write, enabling RCE",
         "url": "https://github.com/advisories/GHSA-284h-m62q-gf8w",
         "version": "3.1.41"
       },
       {
         "aliases": [],
-        "ecosystem": "github",
-        "fix_state": "fixed",
-        "fixed_in": [
-          "1.14.3"
-        ],
-        "id": "GHSA-5xjx-3w67-w9x9",
-        "location": ".github/workflows/build.yml",
-        "osv_confirmed": false,
-        "package": "pypa/gh-action-pypi-publish",
-        "severity": "Critical",
-        "url": "https://github.com/advisories/GHSA-5xjx-3w67-w9x9",
-        "version": "v1"
-      },
-      {
-        "aliases": [],
         "ecosystem": "pypi",
+        "epss": null,
         "fix_state": "fixed",
         "fixed_in": [
           "3.14.4"
         ],
         "id": "GHSA-2g87-pp6c-29x5",
+        "kev": null,
         "location": "Pipfile.lock",
         "osv_confirmed": true,
         "package": "aiohttp",
         "severity": "High",
+        "summary": "aiohttp: Multiple instances of excessive or unbounded memory/CPU use",
         "url": "https://github.com/advisories/GHSA-2g87-pp6c-29x5",
         "version": "3.13.5"
       },
@@ -1860,15 +1966,22 @@
           "CVE-2026-111064"
         ],
         "ecosystem": "pypi",
+        "epss": {
+          "cve": "CVE-2026-111064",
+          "percentile": 0.34179,
+          "score": 0.00399
+        },
         "fix_state": "fixed",
         "fixed_in": [
           "3.14.4"
         ],
         "id": "GHSA-5wr8-gcqf-gqf3",
+        "kev": null,
         "location": "Pipfile.lock",
         "osv_confirmed": true,
         "package": "aiohttp",
         "severity": "High",
+        "summary": "aiohttp server lacks an initial request/header timeout",
         "url": "https://github.com/advisories/GHSA-5wr8-gcqf-gqf3",
         "version": "3.13.5"
       },
@@ -1877,15 +1990,22 @@
           "CVE-2026-111066"
         ],
         "ecosystem": "pypi",
+        "epss": {
+          "cve": "CVE-2026-111066",
+          "percentile": 0.3543,
+          "score": 0.00412
+        },
         "fix_state": "fixed",
         "fixed_in": [
           "3.14.4"
         ],
         "id": "GHSA-9xw5-w5jj-pvcg",
+        "kev": null,
         "location": "Pipfile.lock",
         "osv_confirmed": true,
         "package": "aiohttp",
         "severity": "High",
+        "summary": "AIOHTTP: File descriptor exhaustion in multipart requests",
         "url": "https://github.com/advisories/GHSA-9xw5-w5jj-pvcg",
         "version": "3.13.5"
       },
@@ -1894,15 +2014,22 @@
           "CVE-2026-69244"
         ],
         "ecosystem": "pypi",
+        "epss": {
+          "cve": "CVE-2026-69244",
+          "percentile": 0.44706,
+          "score": 0.00528
+        },
         "fix_state": "fixed",
         "fixed_in": [
           "3.14.3"
         ],
         "id": "GHSA-cq5v-8q36-5273",
+        "kev": null,
         "location": "Pipfile.lock",
         "osv_confirmed": true,
         "package": "aiohttp",
         "severity": "High",
+        "summary": "AIOHTTP: Out-of-bounds heap read in C HTTP response parser error path (malformed chunked response)",
         "url": "https://github.com/advisories/GHSA-cq5v-8q36-5273",
         "version": "3.13.5"
       },
@@ -1911,13 +2038,20 @@
           "CVE-2024-23342"
         ],
         "ecosystem": "pypi",
+        "epss": {
+          "cve": "CVE-2024-23342",
+          "percentile": 0.62155,
+          "score": 0.00977
+        },
         "fix_state": "not-fixed",
         "fixed_in": [],
         "id": "GHSA-wj6h-64fc-37mp",
+        "kev": null,
         "location": "Pipfile.lock",
         "osv_confirmed": true,
         "package": "ecdsa",
         "severity": "High",
+        "summary": "Minerva timing attack on P-256 in python-ecdsa",
         "url": "https://github.com/advisories/GHSA-wj6h-64fc-37mp",
         "version": "0.19.2"
       },
@@ -1926,15 +2060,22 @@
           "CVE-2026-87817"
         ],
         "ecosystem": "pypi",
+        "epss": {
+          "cve": "CVE-2026-87817",
+          "percentile": 0.3625,
+          "score": 0.00419
+        },
         "fix_state": "fixed",
         "fixed_in": [
           "3.1.60"
         ],
         "id": "GHSA-239g-whfq-7xj9",
+        "kev": null,
         "location": "setup.py",
         "osv_confirmed": true,
         "package": "gitpython",
         "severity": "High",
+        "summary": "GitPython: Repository content can impersonate the git directory, leading to arbitrary code execution",
         "url": "https://github.com/advisories/GHSA-239g-whfq-7xj9",
         "version": "3.1.41"
       },
@@ -1943,45 +2084,58 @@
           "CVE-2026-87817"
         ],
         "ecosystem": "pypi",
+        "epss": {
+          "cve": "CVE-2026-87817",
+          "percentile": 0.3625,
+          "score": 0.00419
+        },
         "fix_state": "fixed",
         "fixed_in": [
           "3.1.60"
         ],
         "id": "GHSA-239g-whfq-7xj9",
+        "kev": null,
         "location": "Pipfile.lock",
         "osv_confirmed": true,
         "package": "gitpython",
         "severity": "High",
+        "summary": "GitPython: Repository content can impersonate the git directory, leading to arbitrary code execution",
         "url": "https://github.com/advisories/GHSA-239g-whfq-7xj9",
         "version": "3.1.59"
       },
       {
         "aliases": [],
         "ecosystem": "pypi",
+        "epss": null,
         "fix_state": "fixed",
         "fixed_in": [
           "3.2.0"
         ],
         "id": "GHSA-23mf-xhv8-69c2",
+        "kev": null,
         "location": "setup.py",
         "osv_confirmed": true,
         "package": "gitpython",
         "severity": "High",
+        "summary": "GitPython: arbitrary file read via attacker-controlled branch name in `Head.checkout()` (incomplete fix of CVE-2026-78679)",
         "url": "https://github.com/advisories/GHSA-23mf-xhv8-69c2",
         "version": "3.1.41"
       },
       {
         "aliases": [],
         "ecosystem": "pypi",
+        "epss": null,
         "fix_state": "fixed",
         "fixed_in": [
           "3.2.0"
         ],
         "id": "GHSA-23mf-xhv8-69c2",
+        "kev": null,
         "location": "Pipfile.lock",
         "osv_confirmed": true,
         "package": "gitpython",
         "severity": "High",
+        "summary": "GitPython: arbitrary file read via attacker-controlled branch name in `Head.checkout()` (incomplete fix of CVE-2026-78679)",
         "url": "https://github.com/advisories/GHSA-23mf-xhv8-69c2",
         "version": "3.1.59"
       },
@@ -1990,30 +2144,40 @@
           "CVE-2026-67325"
         ],
         "ecosystem": "pypi",
+        "epss": {
+          "cve": "CVE-2026-67325",
+          "percentile": 0.82595,
+          "score": 0.02209
+        },
         "fix_state": "fixed",
         "fixed_in": [
           "3.1.51"
         ],
         "id": "GHSA-2f96-g7mh-g2hx",
+        "kev": null,
         "location": "setup.py",
         "osv_confirmed": false,
         "package": "gitpython",
         "severity": "High",
+        "summary": "GitPython: Command Injection via git long-option prefix abbreviation bypass of CVE-2026-42215 blocklist",
         "url": "https://github.com/advisories/GHSA-2f96-g7mh-g2hx",
         "version": "3.1.41"
       },
       {
         "aliases": [],
         "ecosystem": "pypi",
+        "epss": null,
         "fix_state": "fixed",
         "fixed_in": [
           "3.1.57"
         ],
         "id": "GHSA-3f7w-8rr8-f37f",
+        "kev": null,
         "location": "setup.py",
         "osv_confirmed": false,
         "package": "gitpython",
         "severity": "High",
+        "summary": "GitPython: Unguarded git option forwarding in IndexFile.checkout() and TagReference.create() enables arbitrary file overwrite and arbitrary file read",
         "url": "https://github.com/advisories/GHSA-3f7w-8rr8-f37f",
         "version": "3.1.41"
       },
@@ -2022,15 +2186,22 @@
           "CVE-2026-69097"
         ],
         "ecosystem": "pypi",
+        "epss": {
+          "cve": "CVE-2026-69097",
+          "percentile": 0.18964,
+          "score": 0.00268
+        },
         "fix_state": "fixed",
         "fixed_in": [
           "3.1.53"
         ],
         "id": "GHSA-3rp5-jjmw-4wv2",
+        "kev": null,
         "location": "setup.py",
         "osv_confirmed": false,
         "package": "gitpython",
         "severity": "High",
+        "summary": "GitPython: git-config section-name injection enables arbitrary config directives (core.sshCommand RCE)",
         "url": "https://github.com/advisories/GHSA-3rp5-jjmw-4wv2",
         "version": "3.1.41"
       },
@@ -2039,30 +2210,40 @@
           "CVE-2026-76219"
         ],
         "ecosystem": "pypi",
+        "epss": {
+          "cve": "CVE-2026-76219",
+          "percentile": 0.45636,
+          "score": 0.00543
+        },
         "fix_state": "fixed",
         "fixed_in": [
           "3.1.58"
         ],
         "id": "GHSA-4gmw-gg2m-w46p",
+        "kev": null,
         "location": "setup.py",
         "osv_confirmed": false,
         "package": "gitpython",
         "severity": "High",
+        "summary": "GitPython: Unguarded git read-tree option forwarding in IndexFile.from_tree/reset/merge_tree enables arbitrary file overwrite",
         "url": "https://github.com/advisories/GHSA-4gmw-gg2m-w46p",
         "version": "3.1.41"
       },
       {
         "aliases": [],
         "ecosystem": "pypi",
+        "epss": null,
         "fix_state": "fixed",
         "fixed_in": [
           "3.1.54"
         ],
         "id": "GHSA-6p8h-3wgx-97gf",
+        "kev": null,
         "location": "setup.py",
         "osv_confirmed": false,
         "package": "gitpython",
         "severity": "High",
+        "summary": "GitPython: Incomplete unsafe_git_clone_options denylist omits --template enabling arbitrary command execution via clone hooks",
         "url": "https://github.com/advisories/GHSA-6p8h-3wgx-97gf",
         "version": "3.1.41"
       },
@@ -2071,15 +2252,22 @@
           "CVE-2026-44243"
         ],
         "ecosystem": "pypi",
+        "epss": {
+          "cve": "CVE-2026-44243",
+          "percentile": 0.36263,
+          "score": 0.00419
+        },
         "fix_state": "fixed",
         "fixed_in": [
           "3.1.48"
         ],
         "id": "GHSA-7545-fcxq-7j24",
+        "kev": null,
         "location": "setup.py",
         "osv_confirmed": false,
         "package": "gitpython",
         "severity": "High",
+        "summary": "GitPython reference APIs has a path traversal vulnerability that allows arbitrary file write and delete outside the repository",
         "url": "https://github.com/advisories/GHSA-7545-fcxq-7j24",
         "version": "3.1.41"
       },
@@ -2088,15 +2276,22 @@
           "CVE-2026-78675"
         ],
         "ecosystem": "pypi",
+        "epss": {
+          "cve": "CVE-2026-78675",
+          "percentile": 0.07351,
+          "score": 0.00178
+        },
         "fix_state": "fixed",
         "fixed_in": [
           "3.1.59"
         ],
         "id": "GHSA-7833-fr7j-v32q",
+        "kev": null,
         "location": "setup.py",
         "osv_confirmed": false,
         "package": "gitpython",
         "severity": "High",
+        "summary": "GitPython: Arbitrary local file content disclosure via [include] directive in untrusted .gitmodules (SubmoduleConfigParser never disables merge_includes)",
         "url": "https://github.com/advisories/GHSA-7833-fr7j-v32q",
         "version": "3.1.41"
       },
@@ -2105,15 +2300,22 @@
           "CVE-2026-114145"
         ],
         "ecosystem": "pypi",
+        "epss": {
+          "cve": "CVE-2026-114145",
+          "percentile": 0.3667,
+          "score": 0.00423
+        },
         "fix_state": "fixed",
         "fixed_in": [
           "3.2.1"
         ],
         "id": "GHSA-83vg-56qc-22m7",
+        "kev": null,
         "location": "setup.py",
         "osv_confirmed": true,
         "package": "gitpython",
         "severity": "High",
+        "summary": "GitPython validates a submodule's \".git\" path only after cloning into it (RCE)",
         "url": "https://github.com/advisories/GHSA-83vg-56qc-22m7",
         "version": "3.1.41"
       },
@@ -2122,15 +2324,22 @@
           "CVE-2026-114145"
         ],
         "ecosystem": "pypi",
+        "epss": {
+          "cve": "CVE-2026-114145",
+          "percentile": 0.3667,
+          "score": 0.00423
+        },
         "fix_state": "fixed",
         "fixed_in": [
           "3.2.1"
         ],
         "id": "GHSA-83vg-56qc-22m7",
+        "kev": null,
         "location": "Pipfile.lock",
         "osv_confirmed": true,
         "package": "gitpython",
         "severity": "High",
+        "summary": "GitPython validates a submodule's \".git\" path only after cloning into it (RCE)",
         "url": "https://github.com/advisories/GHSA-83vg-56qc-22m7",
         "version": "3.1.59"
       },
@@ -2139,30 +2348,40 @@
           "CVE-2026-78677"
         ],
         "ecosystem": "pypi",
+        "epss": {
+          "cve": "CVE-2026-78677",
+          "percentile": 0.5122,
+          "score": 0.00651
+        },
         "fix_state": "fixed",
         "fixed_in": [
           "3.1.59"
         ],
         "id": "GHSA-8mcc-hrx5-hvxc",
+        "kev": null,
         "location": "setup.py",
         "osv_confirmed": false,
         "package": "gitpython",
         "severity": "High",
+        "summary": "GitPython: clone_from()/clone() omit --separate-git-dir from unsafe_git_clone_options, enabling arbitrary git-directory creation outside the destination",
         "url": "https://github.com/advisories/GHSA-8mcc-hrx5-hvxc",
         "version": "3.1.41"
       },
       {
         "aliases": [],
         "ecosystem": "pypi",
+        "epss": null,
         "fix_state": "fixed",
         "fixed_in": [
           "3.1.55"
         ],
         "id": "GHSA-94p4-4cq8-9g67",
+        "kev": null,
         "location": "setup.py",
         "osv_confirmed": false,
         "package": "gitpython",
         "severity": "High",
+        "summary": "GitPython: Environment-variable exfiltration via Repo.create_remote() / Remote.add() URL (incomplete fix of GHSA-rwj8-pgh3-r573)",
         "url": "https://github.com/advisories/GHSA-94p4-4cq8-9g67",
         "version": "3.1.41"
       },
@@ -2171,15 +2390,22 @@
           "CVE-2026-67323"
         ],
         "ecosystem": "pypi",
+        "epss": {
+          "cve": "CVE-2026-67323",
+          "percentile": 0.69421,
+          "score": 0.01251
+        },
         "fix_state": "fixed",
         "fixed_in": [
           "3.1.51"
         ],
         "id": "GHSA-956x-8gvw-wg5v",
+        "kev": null,
         "location": "setup.py",
         "osv_confirmed": false,
         "package": "gitpython",
         "severity": "High",
+        "summary": "GitPython: command injection via unguarded Git options in `Repo.archive()`, `git.ls_remote()`, and arbitrary file overwrite via `Repo.iter_commits()` / `Repo.blame()`",
         "url": "https://github.com/advisories/GHSA-956x-8gvw-wg5v",
         "version": "3.1.41"
       },
@@ -2188,60 +2414,76 @@
           "CVE-2026-76218"
         ],
         "ecosystem": "pypi",
+        "epss": {
+          "cve": "CVE-2026-76218",
+          "percentile": 0.53932,
+          "score": 0.0072
+        },
         "fix_state": "fixed",
         "fixed_in": [
           "3.1.58"
         ],
         "id": "GHSA-9rj7-rf2p-w77r",
+        "kev": null,
         "location": "setup.py",
         "osv_confirmed": false,
         "package": "gitpython",
         "severity": "High",
+        "summary": "GitPython: Unguarded git option forwarding in Repo.init enables arbitrary command execution via --template clone hooks",
         "url": "https://github.com/advisories/GHSA-9rj7-rf2p-w77r",
         "version": "3.1.41"
       },
       {
         "aliases": [],
         "ecosystem": "pypi",
+        "epss": null,
         "fix_state": "fixed",
         "fixed_in": [
           "3.2.0"
         ],
         "id": "GHSA-f9j4-qggq-h239",
+        "kev": null,
         "location": "setup.py",
         "osv_confirmed": true,
         "package": "gitpython",
         "severity": "High",
+        "summary": "GitPython Remote.pull() refspec bypasses the --upload-pack unsafe-option guard, enabling arbitrary command execution",
         "url": "https://github.com/advisories/GHSA-f9j4-qggq-h239",
         "version": "3.1.41"
       },
       {
         "aliases": [],
         "ecosystem": "pypi",
+        "epss": null,
         "fix_state": "fixed",
         "fixed_in": [
           "3.2.0"
         ],
         "id": "GHSA-f9j4-qggq-h239",
+        "kev": null,
         "location": "Pipfile.lock",
         "osv_confirmed": true,
         "package": "gitpython",
         "severity": "High",
+        "summary": "GitPython Remote.pull() refspec bypasses the --upload-pack unsafe-option guard, enabling arbitrary command execution",
         "url": "https://github.com/advisories/GHSA-f9j4-qggq-h239",
         "version": "3.1.59"
       },
       {
         "aliases": [],
         "ecosystem": "pypi",
+        "epss": null,
         "fix_state": "fixed",
         "fixed_in": [
           "3.1.54"
         ],
         "id": "GHSA-fjr4-x663-mwxc",
+        "kev": null,
         "location": "setup.py",
         "osv_confirmed": false,
         "package": "gitpython",
         "severity": "High",
+        "summary": "GitPython: Arbitrary file overwrite via git diff --output argument injection in Diffable.diff (key- and value-controlled)",
         "url": "https://github.com/advisories/GHSA-fjr4-x663-mwxc",
         "version": "3.1.41"
       },
@@ -2250,15 +2492,22 @@
           "CVE-2026-87819"
         ],
         "ecosystem": "pypi",
+        "epss": {
+          "cve": "CVE-2026-87819",
+          "percentile": 0.4426,
+          "score": 0.00521
+        },
         "fix_state": "fixed",
         "fixed_in": [
           "3.1.60"
         ],
         "id": "GHSA-g5vv-9gxw-82hx",
+        "kev": null,
         "location": "setup.py",
         "osv_confirmed": true,
         "package": "gitpython",
         "severity": "High",
+        "summary": "GitPython: Denial of Service via catastrophic backtracking (ReDoS) in Actor.name_email_regex \u2014 commit author/committer field parsing",
         "url": "https://github.com/advisories/GHSA-g5vv-9gxw-82hx",
         "version": "3.1.41"
       },
@@ -2267,15 +2516,22 @@
           "CVE-2026-87819"
         ],
         "ecosystem": "pypi",
+        "epss": {
+          "cve": "CVE-2026-87819",
+          "percentile": 0.4426,
+          "score": 0.00521
+        },
         "fix_state": "fixed",
         "fixed_in": [
           "3.1.60"
         ],
         "id": "GHSA-g5vv-9gxw-82hx",
+        "kev": null,
         "location": "Pipfile.lock",
         "osv_confirmed": true,
         "package": "gitpython",
         "severity": "High",
+        "summary": "GitPython: Denial of Service via catastrophic backtracking (ReDoS) in Actor.name_email_regex \u2014 commit author/committer field parsing",
         "url": "https://github.com/advisories/GHSA-g5vv-9gxw-82hx",
         "version": "3.1.59"
       },
@@ -2284,90 +2540,112 @@
           "CVE-2026-76222"
         ],
         "ecosystem": "pypi",
+        "epss": {
+          "cve": "CVE-2026-76222",
+          "percentile": 0.36542,
+          "score": 0.00422
+        },
         "fix_state": "fixed",
         "fixed_in": [
           "3.1.58"
         ],
         "id": "GHSA-hmq2-w58f-27jc",
+        "kev": null,
         "location": "setup.py",
         "osv_confirmed": false,
         "package": "gitpython",
         "severity": "High",
+        "summary": "GitPython: Arbitrary Git Repository Creation Outside the Working Tree via Unvalidated .gitmodules Submodule Name in GitPython",
         "url": "https://github.com/advisories/GHSA-hmq2-w58f-27jc",
         "version": "3.1.41"
       },
       {
         "aliases": [],
         "ecosystem": "pypi",
+        "epss": null,
         "fix_state": "fixed",
         "fixed_in": [
           "3.1.58"
         ],
         "id": "GHSA-jm78-9fvv-mhgr",
+        "kev": null,
         "location": "setup.py",
         "osv_confirmed": false,
         "package": "gitpython",
         "severity": "High",
+        "summary": "GitPython: git-config OPTION-name injection via =/#/whitespace bypasses name validator, enabling forged core.sshCommand/hooksPath (RCE)",
         "url": "https://github.com/advisories/GHSA-jm78-9fvv-mhgr",
         "version": "3.1.41"
       },
       {
         "aliases": [],
         "ecosystem": "pypi",
+        "epss": null,
         "fix_state": "fixed",
         "fixed_in": [
           "3.2.0"
         ],
         "id": "GHSA-m64x-33q8-m5h7",
+        "kev": null,
         "location": "setup.py",
         "osv_confirmed": true,
         "package": "gitpython",
         "severity": "High",
+        "summary": "GitPython parse_actor_and_date() is vulnerable to quadratic backtracking on malformed identity lines",
         "url": "https://github.com/advisories/GHSA-m64x-33q8-m5h7",
         "version": "3.1.41"
       },
       {
         "aliases": [],
         "ecosystem": "pypi",
+        "epss": null,
         "fix_state": "fixed",
         "fixed_in": [
           "3.2.0"
         ],
         "id": "GHSA-m64x-33q8-m5h7",
+        "kev": null,
         "location": "Pipfile.lock",
         "osv_confirmed": true,
         "package": "gitpython",
         "severity": "High",
+        "summary": "GitPython parse_actor_and_date() is vulnerable to quadratic backtracking on malformed identity lines",
         "url": "https://github.com/advisories/GHSA-m64x-33q8-m5h7",
         "version": "3.1.59"
       },
       {
         "aliases": [],
         "ecosystem": "pypi",
+        "epss": null,
         "fix_state": "fixed",
         "fixed_in": [
           "3.1.50"
         ],
         "id": "GHSA-mv93-w799-cj2w",
+        "kev": null,
         "location": "setup.py",
         "osv_confirmed": false,
         "package": "gitpython",
         "severity": "High",
+        "summary": "GitPython: Newline injection in config_writer() section parameter bypasses CVE-2026-42215 patch, enabling RCE via core.hooksPath",
         "url": "https://github.com/advisories/GHSA-mv93-w799-cj2w",
         "version": "3.1.41"
       },
       {
         "aliases": [],
         "ecosystem": "pypi",
+        "epss": null,
         "fix_state": "fixed",
         "fixed_in": [
           "3.1.54"
         ],
         "id": "GHSA-r9mr-m37c-5fr3",
+        "kev": null,
         "location": "setup.py",
         "osv_confirmed": false,
         "package": "gitpython",
         "severity": "High",
+        "summary": "GitPython: Unsafe git option guard bypass via single-character kwarg value token smuggling enables arbitrary command execution",
         "url": "https://github.com/advisories/GHSA-r9mr-m37c-5fr3",
         "version": "3.1.41"
       },
@@ -2376,15 +2654,22 @@
           "CVE-2026-42215"
         ],
         "ecosystem": "pypi",
+        "epss": {
+          "cve": "CVE-2026-42215",
+          "percentile": 0.54924,
+          "score": 0.00749
+        },
         "fix_state": "fixed",
         "fixed_in": [
           "3.1.47"
         ],
         "id": "GHSA-rpm5-65cw-6hj4",
+        "kev": null,
         "location": "setup.py",
         "osv_confirmed": false,
         "package": "gitpython",
         "severity": "High",
+        "summary": "GitPython has Command Injection via Git options bypass",
         "url": "https://github.com/advisories/GHSA-rpm5-65cw-6hj4",
         "version": "3.1.41"
       },
@@ -2393,15 +2678,22 @@
           "CVE-2026-67322"
         ],
         "ecosystem": "pypi",
+        "epss": {
+          "cve": "CVE-2026-67322",
+          "percentile": 0.25919,
+          "score": 0.00328
+        },
         "fix_state": "fixed",
         "fixed_in": [
           "3.1.52"
         ],
         "id": "GHSA-rwj8-pgh3-r573",
+        "kev": null,
         "location": "setup.py",
         "osv_confirmed": false,
         "package": "gitpython",
         "severity": "High",
+        "summary": "GitPython: Environment-variable exfiltration via os.path.expandvars() on Repo.clone_from() URL",
         "url": "https://github.com/advisories/GHSA-rwj8-pgh3-r573",
         "version": "3.1.41"
       },
@@ -2410,45 +2702,58 @@
           "CVE-2026-44244"
         ],
         "ecosystem": "pypi",
+        "epss": {
+          "cve": "CVE-2026-44244",
+          "percentile": 0.14758,
+          "score": 0.00237
+        },
         "fix_state": "fixed",
         "fixed_in": [
           "3.1.49"
         ],
         "id": "GHSA-v87r-6q3f-2j67",
+        "kev": null,
         "location": "setup.py",
         "osv_confirmed": false,
         "package": "gitpython",
         "severity": "High",
+        "summary": "GitPython: Newline injection in config_writer().set_value() enables RCE via core.hooksPath",
         "url": "https://github.com/advisories/GHSA-v87r-6q3f-2j67",
         "version": "3.1.41"
       },
       {
         "aliases": [],
         "ecosystem": "pypi",
+        "epss": null,
         "fix_state": "fixed",
         "fixed_in": [
           "3.2.0"
         ],
         "id": "GHSA-w8jc-g24h-crhw",
+        "kev": null,
         "location": "setup.py",
         "osv_confirmed": true,
         "package": "gitpython",
         "severity": "High",
+        "summary": "GitPython command wrappers omit unsafe protocol and option checks",
         "url": "https://github.com/advisories/GHSA-w8jc-g24h-crhw",
         "version": "3.1.41"
       },
       {
         "aliases": [],
         "ecosystem": "pypi",
+        "epss": null,
         "fix_state": "fixed",
         "fixed_in": [
           "3.2.0"
         ],
         "id": "GHSA-w8jc-g24h-crhw",
+        "kev": null,
         "location": "Pipfile.lock",
         "osv_confirmed": true,
         "package": "gitpython",
         "severity": "High",
+        "summary": "GitPython command wrappers omit unsafe protocol and option checks",
         "url": "https://github.com/advisories/GHSA-w8jc-g24h-crhw",
         "version": "3.1.59"
       },
@@ -2457,15 +2762,22 @@
           "CVE-2026-76220"
         ],
         "ecosystem": "pypi",
+        "epss": {
+          "cve": "CVE-2026-76220",
+          "percentile": 0.48242,
+          "score": 0.0059
+        },
         "fix_state": "fixed",
         "fixed_in": [
           "3.1.58"
         ],
         "id": "GHSA-wvpp-8hx9-p66j",
+        "kev": null,
         "location": "setup.py",
         "osv_confirmed": false,
         "package": "gitpython",
         "severity": "High",
+        "summary": "GitPython: Unsafe git option guard bypass via split_single_char_options=False short-option token smuggling enables command execution",
         "url": "https://github.com/advisories/GHSA-wvpp-8hx9-p66j",
         "version": "3.1.41"
       },
@@ -2474,15 +2786,22 @@
           "CVE-2026-42284"
         ],
         "ecosystem": "pypi",
+        "epss": {
+          "cve": "CVE-2026-42284",
+          "percentile": 0.47265,
+          "score": 0.00571
+        },
         "fix_state": "fixed",
         "fixed_in": [
           "3.1.47"
         ],
         "id": "GHSA-x2qx-6953-8485",
+        "kev": null,
         "location": "setup.py",
         "osv_confirmed": false,
         "package": "gitpython",
         "severity": "High",
+        "summary": "GitPython: Unsafe option check validates multi_options before shlex.split transformation",
         "url": "https://github.com/advisories/GHSA-x2qx-6953-8485",
         "version": "3.1.41"
       },
@@ -2491,66 +2810,46 @@
           "CVE-2025-67221"
         ],
         "ecosystem": "pypi",
+        "epss": {
+          "cve": "CVE-2025-67221",
+          "percentile": 0.50356,
+          "score": 0.00633
+        },
         "fix_state": "fixed",
         "fixed_in": [
           "3.11.6"
         ],
         "id": "GHSA-hx9q-6w63-j58v",
+        "kev": null,
         "location": "Pipfile.lock",
         "osv_confirmed": true,
         "package": "orjson",
         "severity": "High",
+        "summary": "orjson does not limit recursion for deeply nested JSON documents",
         "url": "https://github.com/advisories/GHSA-hx9q-6w63-j58v",
         "version": "3.11.5"
-      },
-      {
-        "aliases": [
-          "CVE-2025-30066"
-        ],
-        "ecosystem": "github",
-        "fix_state": "fixed",
-        "fixed_in": [
-          "46.0.1"
-        ],
-        "id": "GHSA-mrrh-fwg8-r2c3",
-        "location": ".github/workflows/pr-test.yml",
-        "osv_confirmed": false,
-        "package": "tj-actions/changed-files",
-        "severity": "High",
-        "url": "https://github.com/advisories/GHSA-mrrh-fwg8-r2c3",
-        "version": "v44"
-      },
-      {
-        "aliases": [
-          "CVE-2023-52137"
-        ],
-        "ecosystem": "github",
-        "fix_state": "fixed",
-        "fixed_in": [
-          "17"
-        ],
-        "id": "GHSA-ghm2-rq8q-wrhc",
-        "location": ".github/workflows/codeql-analysis.yml",
-        "osv_confirmed": false,
-        "package": "tj-actions/verify-changed-files",
-        "severity": "High",
-        "url": "https://github.com/advisories/GHSA-ghm2-rq8q-wrhc",
-        "version": "v13"
       },
       {
         "aliases": [
           "CVE-2025-66471"
         ],
         "ecosystem": "pypi",
+        "epss": {
+          "cve": "CVE-2025-66471",
+          "percentile": 0.52471,
+          "score": 0.00682
+        },
         "fix_state": "fixed",
         "fixed_in": [
           "2.6.0"
         ],
         "id": "GHSA-2xpw-w6gg-jr37",
+        "kev": null,
         "location": "Pipfile.lock",
         "osv_confirmed": true,
         "package": "urllib3",
         "severity": "High",
+        "summary": "urllib3 streaming API improperly handles highly compressed data",
         "url": "https://github.com/advisories/GHSA-2xpw-w6gg-jr37",
         "version": "1.26.20"
       },
@@ -2559,15 +2858,22 @@
           "CVE-2026-21441"
         ],
         "ecosystem": "pypi",
+        "epss": {
+          "cve": "CVE-2026-21441",
+          "percentile": 0.87044,
+          "score": 0.02922
+        },
         "fix_state": "fixed",
         "fixed_in": [
           "2.6.3"
         ],
         "id": "GHSA-38jv-5279-wg99",
+        "kev": null,
         "location": "Pipfile.lock",
         "osv_confirmed": true,
         "package": "urllib3",
         "severity": "High",
+        "summary": "Decompression-bomb safeguards bypassed when following HTTP redirects (streaming API)",
         "url": "https://github.com/advisories/GHSA-38jv-5279-wg99",
         "version": "1.26.20"
       },
@@ -2576,15 +2882,22 @@
           "CVE-2026-97687"
         ],
         "ecosystem": "pypi",
+        "epss": {
+          "cve": "CVE-2026-97687",
+          "percentile": 0.10658,
+          "score": 0.00206
+        },
         "fix_state": "fixed",
         "fixed_in": [
           "2.8.0"
         ],
         "id": "GHSA-8988-9cw3-xx77",
+        "kev": null,
         "location": "Pipfile.lock",
         "osv_confirmed": true,
         "package": "urllib3",
         "severity": "High",
+        "summary": "urllib3: HTTPS proxy TLS configuration may be ignored or overridden",
         "url": "https://github.com/advisories/GHSA-8988-9cw3-xx77",
         "version": "1.26.20"
       },
@@ -2593,15 +2906,22 @@
           "CVE-2025-66418"
         ],
         "ecosystem": "pypi",
+        "epss": {
+          "cve": "CVE-2025-66418",
+          "percentile": 0.52471,
+          "score": 0.00682
+        },
         "fix_state": "fixed",
         "fixed_in": [
           "2.6.0"
         ],
         "id": "GHSA-gm62-xv2j-4w53",
+        "kev": null,
         "location": "Pipfile.lock",
         "osv_confirmed": true,
         "package": "urllib3",
         "severity": "High",
+        "summary": "urllib3 allows an unbounded number of links in the decompression chain",
         "url": "https://github.com/advisories/GHSA-gm62-xv2j-4w53",
         "version": "1.26.20"
       },
@@ -2610,15 +2930,22 @@
           "CVE-2026-44431"
         ],
         "ecosystem": "pypi",
+        "epss": {
+          "cve": "CVE-2026-44431",
+          "percentile": 0.26325,
+          "score": 0.00331
+        },
         "fix_state": "fixed",
         "fixed_in": [
           "2.7.0"
         ],
         "id": "GHSA-qccp-gfcp-xxvc",
+        "kev": null,
         "location": "Pipfile.lock",
         "osv_confirmed": true,
         "package": "urllib3",
         "severity": "High",
+        "summary": "urllib3: Sensitive headers forwarded across origins in proxied low-level redirects",
         "url": "https://github.com/advisories/GHSA-qccp-gfcp-xxvc",
         "version": "1.26.20"
       },
@@ -2627,15 +2954,22 @@
           "CVE-2026-97689"
         ],
         "ecosystem": "pypi",
+        "epss": {
+          "cve": "CVE-2026-97689",
+          "percentile": 0.26853,
+          "score": 0.00335
+        },
         "fix_state": "fixed",
         "fixed_in": [
           "2.8.0"
         ],
         "id": "GHSA-vxq7-64xx-v4gw",
+        "kev": null,
         "location": "Pipfile.lock",
         "osv_confirmed": true,
         "package": "urllib3",
         "severity": "High",
+        "summary": "urllib3: HTTPResponse.stream()/read_chunked() buffers an unbounded chunk-size line into memory",
         "url": "https://github.com/advisories/GHSA-vxq7-64xx-v4gw",
         "version": "1.26.20"
       },
@@ -2644,15 +2978,22 @@
           "CVE-2026-111063"
         ],
         "ecosystem": "pypi",
+        "epss": {
+          "cve": "CVE-2026-111063",
+          "percentile": 0.14212,
+          "score": 0.00233
+        },
         "fix_state": "fixed",
         "fixed_in": [
           "3.14.4"
         ],
         "id": "GHSA-494j-54xm-rwp3",
+        "kev": null,
         "location": "Pipfile.lock",
         "osv_confirmed": true,
         "package": "aiohttp",
         "severity": "Medium",
+        "summary": "AIOHTTP: Secure attribute not enforced for shared cookie",
         "url": "https://github.com/advisories/GHSA-494j-54xm-rwp3",
         "version": "3.13.5"
       },
@@ -2661,15 +3002,22 @@
           "CVE-2026-54273"
         ],
         "ecosystem": "pypi",
+        "epss": {
+          "cve": "CVE-2026-54273",
+          "percentile": 0.42374,
+          "score": 0.00493
+        },
         "fix_state": "fixed",
         "fixed_in": [
           "3.14.1"
         ],
         "id": "GHSA-4fvr-rgm6-gqmc",
+        "kev": null,
         "location": "Pipfile.lock",
         "osv_confirmed": true,
         "package": "aiohttp",
         "severity": "Medium",
+        "summary": "aiohttp: HTTP/1 Pipelined Requests Queue Without Limit",
         "url": "https://github.com/advisories/GHSA-4fvr-rgm6-gqmc",
         "version": "3.13.5"
       },
@@ -2678,15 +3026,22 @@
           "CVE-2026-54277"
         ],
         "ecosystem": "pypi",
+        "epss": {
+          "cve": "CVE-2026-54277",
+          "percentile": 0.46826,
+          "score": 0.00563
+        },
         "fix_state": "fixed",
         "fixed_in": [
           "3.14.1"
         ],
         "id": "GHSA-63hw-fmq6-xxg2",
+        "kev": null,
         "location": "Pipfile.lock",
         "osv_confirmed": true,
         "package": "aiohttp",
         "severity": "Medium",
+        "summary": "aiohttp: C HTTP Parser Bypasses max_line_size for Fragmented Lines",
         "url": "https://github.com/advisories/GHSA-63hw-fmq6-xxg2",
         "version": "3.13.5"
       },
@@ -2695,15 +3050,22 @@
           "CVE-2026-111065"
         ],
         "ecosystem": "pypi",
+        "epss": {
+          "cve": "CVE-2026-111065",
+          "percentile": 0.33774,
+          "score": 0.00395
+        },
         "fix_state": "fixed",
         "fixed_in": [
           "3.14.4"
         ],
         "id": "GHSA-6cjc-53gc-5rqm",
+        "kev": null,
         "location": "Pipfile.lock",
         "osv_confirmed": true,
         "package": "aiohttp",
         "severity": "Medium",
+        "summary": "AIOHTTP: Connector pool exhaustion via Max-Age overflow",
         "url": "https://github.com/advisories/GHSA-6cjc-53gc-5rqm",
         "version": "3.13.5"
       },
@@ -2712,15 +3074,22 @@
           "CVE-2026-111748"
         ],
         "ecosystem": "pypi",
+        "epss": {
+          "cve": "CVE-2026-111748",
+          "percentile": 0.32732,
+          "score": 0.00386
+        },
         "fix_state": "fixed",
         "fixed_in": [
           "3.14.4"
         ],
         "id": "GHSA-f9xw-jh8m-3mwq",
+        "kev": null,
         "location": "Pipfile.lock",
         "osv_confirmed": true,
         "package": "aiohttp",
         "severity": "Medium",
+        "summary": "AIOHTTP: Absolute-form request targets can spoof Request.scheme",
         "url": "https://github.com/advisories/GHSA-f9xw-jh8m-3mwq",
         "version": "3.13.5"
       },
@@ -2729,15 +3098,22 @@
           "CVE-2026-54278"
         ],
         "ecosystem": "pypi",
+        "epss": {
+          "cve": "CVE-2026-54278",
+          "percentile": 0.42372,
+          "score": 0.00493
+        },
         "fix_state": "fixed",
         "fixed_in": [
           "3.14.1"
         ],
         "id": "GHSA-g3cq-j2xw-wf74",
+        "kev": null,
         "location": "Pipfile.lock",
         "osv_confirmed": true,
         "package": "aiohttp",
         "severity": "Medium",
+        "summary": "aiohttp: Unread Compressed Request Bodies Bypass client_max_size During Cleanup",
         "url": "https://github.com/advisories/GHSA-g3cq-j2xw-wf74",
         "version": "3.13.5"
       },
@@ -2746,15 +3122,22 @@
           "CVE-2026-47265"
         ],
         "ecosystem": "pypi",
+        "epss": {
+          "cve": "CVE-2026-47265",
+          "percentile": 0.04162,
+          "score": 0.0015
+        },
         "fix_state": "fixed",
         "fixed_in": [
           "3.14.0"
         ],
         "id": "GHSA-hg6j-4rv6-33pg",
+        "kev": null,
         "location": "Pipfile.lock",
         "osv_confirmed": true,
         "package": "aiohttp",
         "severity": "Medium",
+        "summary": "AIOHTTP is vulnerable to cross-origin redirect with per-request cookies",
         "url": "https://github.com/advisories/GHSA-hg6j-4rv6-33pg",
         "version": "3.13.5"
       },
@@ -2763,15 +3146,22 @@
           "CVE-2026-54276"
         ],
         "ecosystem": "pypi",
+        "epss": {
+          "cve": "CVE-2026-54276",
+          "percentile": 0.23492,
+          "score": 0.00307
+        },
         "fix_state": "fixed",
         "fixed_in": [
           "3.14.1"
         ],
         "id": "GHSA-hpj7-wq8m-9hgp",
+        "kev": null,
         "location": "Pipfile.lock",
         "osv_confirmed": true,
         "package": "aiohttp",
         "severity": "Medium",
+        "summary": "aiohttp: DigestAuthMiddleware Applies Credentials to Cross-Origin Redirect Challenges",
         "url": "https://github.com/advisories/GHSA-hpj7-wq8m-9hgp",
         "version": "3.13.5"
       },
@@ -2780,15 +3170,22 @@
           "CVE-2026-34993"
         ],
         "ecosystem": "pypi",
+        "epss": {
+          "cve": "CVE-2026-34993",
+          "percentile": 0.07462,
+          "score": 0.00179
+        },
         "fix_state": "fixed",
         "fixed_in": [
           "3.14.0"
         ],
         "id": "GHSA-jg22-mg44-37j8",
+        "kev": null,
         "location": "Pipfile.lock",
         "osv_confirmed": true,
         "package": "aiohttp",
         "severity": "Medium",
+        "summary": "AIOHTTP is Vulnerable to Deserialization of Untrusted Data",
         "url": "https://github.com/advisories/GHSA-jg22-mg44-37j8",
         "version": "3.13.5"
       },
@@ -2797,15 +3194,22 @@
           "CVE-2026-69243"
         ],
         "ecosystem": "pypi",
+        "epss": {
+          "cve": "CVE-2026-69243",
+          "percentile": 0.38526,
+          "score": 0.00443
+        },
         "fix_state": "fixed",
         "fixed_in": [
           "3.14.2"
         ],
         "id": "GHSA-mfx4-hv73-q22v",
+        "kev": null,
         "location": "Pipfile.lock",
         "osv_confirmed": true,
         "package": "aiohttp",
         "severity": "Medium",
+        "summary": "AIOHTTP: HTTP request smuggling via WebSocket upgrade",
         "url": "https://github.com/advisories/GHSA-mfx4-hv73-q22v",
         "version": "3.13.5"
       },
@@ -2814,15 +3218,22 @@
           "CVE-2026-59881"
         ],
         "ecosystem": "pypi",
+        "epss": {
+          "cve": "CVE-2026-59881",
+          "percentile": 0.44435,
+          "score": 0.00524
+        },
         "fix_state": "fixed",
         "fixed_in": [
           "3.14.2"
         ],
         "id": "GHSA-mq44-7p77-q5h7",
+        "kev": null,
         "location": "Pipfile.lock",
         "osv_confirmed": true,
         "package": "aiohttp",
         "severity": "Medium",
+        "summary": "AIOHTTP: WebSocket client accepts compressed frames without negotiated permessage-deflate",
         "url": "https://github.com/advisories/GHSA-mq44-7p77-q5h7",
         "version": "3.13.5"
       },
@@ -2831,15 +3242,22 @@
           "CVE-2026-111750"
         ],
         "ecosystem": "pypi",
+        "epss": {
+          "cve": "CVE-2026-111750",
+          "percentile": 0.32191,
+          "score": 0.00382
+        },
         "fix_state": "fixed",
         "fixed_in": [
           "3.14.4"
         ],
         "id": "GHSA-pqxq-w44r-73xw",
+        "kev": null,
         "location": "Pipfile.lock",
         "osv_confirmed": true,
         "package": "aiohttp",
         "severity": "Medium",
+        "summary": "AIOHTTP: Pure-Python parser request smuggling",
         "url": "https://github.com/advisories/GHSA-pqxq-w44r-73xw",
         "version": "3.13.5"
       },
@@ -2848,15 +3266,22 @@
           "CVE-2026-54274"
         ],
         "ecosystem": "pypi",
+        "epss": {
+          "cve": "CVE-2026-54274",
+          "percentile": 0.45391,
+          "score": 0.00539
+        },
         "fix_state": "fixed",
         "fixed_in": [
           "3.14.1"
         ],
         "id": "GHSA-xcgm-r5h9-7989",
+        "kev": null,
         "location": "Pipfile.lock",
         "osv_confirmed": true,
         "package": "aiohttp",
         "severity": "Medium",
+        "summary": "aiohttp: Incomplete websocket frame payloads bypass memory limits",
         "url": "https://github.com/advisories/GHSA-xcgm-r5h9-7989",
         "version": "3.13.5"
       },
@@ -2865,30 +3290,40 @@
           "CVE-2026-55244"
         ],
         "ecosystem": "pypi",
+        "epss": {
+          "cve": "CVE-2026-55244",
+          "percentile": 0.07293,
+          "score": 0.00177
+        },
         "fix_state": "fixed",
         "fixed_in": [
           "1.0.9"
         ],
         "id": "GHSA-89v8-rhwq-hf77",
+        "kev": null,
         "location": "setup.py",
         "osv_confirmed": true,
         "package": "asteval",
         "severity": "Medium",
+        "summary": "asteval has a Sandbox Escape via BaseException Subclasses",
         "url": "https://github.com/advisories/GHSA-89v8-rhwq-hf77",
         "version": "1.0.6"
       },
       {
         "aliases": [],
         "ecosystem": "pypi",
+        "epss": null,
         "fix_state": "fixed",
         "fixed_in": [
           "1.0.9"
         ],
         "id": "GHSA-9w56-46f6-3qhx",
+        "kev": null,
         "location": "Pipfile.lock",
         "osv_confirmed": true,
         "package": "asteval",
         "severity": "Medium",
+        "summary": "asteval Sandbox Escape: arbitrary native memory read/write via numpy ctypes in default asteval Interpreter",
         "url": "https://github.com/advisories/GHSA-9w56-46f6-3qhx",
         "version": "1.0.6"
       },
@@ -2897,60 +3332,76 @@
           "CVE-2026-78679"
         ],
         "ecosystem": "pypi",
+        "epss": {
+          "cve": "CVE-2026-78679",
+          "percentile": 0.24565,
+          "score": 0.00316
+        },
         "fix_state": "fixed",
         "fixed_in": [
           "3.1.59"
         ],
         "id": "GHSA-3wxw-xv34-2frg",
+        "kev": null,
         "location": "setup.py",
         "osv_confirmed": false,
         "package": "gitpython",
         "severity": "Medium",
+        "summary": "GitPython: TagReference.create positional reference bypasses kwargs-only --file guard, enabling arbitrary file read (incomplete fix of 3af0c251)",
         "url": "https://github.com/advisories/GHSA-3wxw-xv34-2frg",
         "version": "3.1.41"
       },
       {
         "aliases": [],
         "ecosystem": "pypi",
+        "epss": null,
         "fix_state": "fixed",
         "fixed_in": [
           "3.1.57"
         ],
         "id": "GHSA-539m-9xh6-q6rr",
+        "kev": null,
         "location": "setup.py",
         "osv_confirmed": false,
         "package": "gitpython",
         "severity": "Medium",
+        "summary": "GitPython: Incomplete unsafe_git_archive_options denylist omits --add-file / --add-virtual-file, enabling arbitrary file read via Repo.archive()",
         "url": "https://github.com/advisories/GHSA-539m-9xh6-q6rr",
         "version": "3.1.41"
       },
       {
         "aliases": [],
         "ecosystem": "pypi",
+        "epss": null,
         "fix_state": "fixed",
         "fixed_in": [
           "3.1.62"
         ],
         "id": "GHSA-59cr-6r3x-644w",
+        "kev": null,
         "location": "setup.py",
         "osv_confirmed": true,
         "package": "gitpython",
         "severity": "Medium",
+        "summary": "GitPython submodule update path traversal can write outside the repository",
         "url": "https://github.com/advisories/GHSA-59cr-6r3x-644w",
         "version": "3.1.41"
       },
       {
         "aliases": [],
         "ecosystem": "pypi",
+        "epss": null,
         "fix_state": "fixed",
         "fixed_in": [
           "3.1.62"
         ],
         "id": "GHSA-59cr-6r3x-644w",
+        "kev": null,
         "location": "Pipfile.lock",
         "osv_confirmed": true,
         "package": "gitpython",
         "severity": "Medium",
+        "summary": "GitPython submodule update path traversal can write outside the repository",
         "url": "https://github.com/advisories/GHSA-59cr-6r3x-644w",
         "version": "3.1.59"
       },
@@ -2959,75 +3410,94 @@
           "CVE-2026-78678"
         ],
         "ecosystem": "pypi",
+        "epss": {
+          "cve": "CVE-2026-78678",
+          "percentile": 0.35459,
+          "score": 0.00412
+        },
         "fix_state": "fixed",
         "fixed_in": [
           "3.1.59"
         ],
         "id": "GHSA-5xxx-qhh7-9287",
+        "kev": null,
         "location": "setup.py",
         "osv_confirmed": false,
         "package": "gitpython",
         "severity": "Medium",
+        "summary": "GitPython: Incomplete unsafe_git_revision_options denylist omits --contents/-S, enabling arbitrary file read via Repo.blame()",
         "url": "https://github.com/advisories/GHSA-5xxx-qhh7-9287",
         "version": "3.1.41"
       },
       {
         "aliases": [],
         "ecosystem": "pypi",
+        "epss": null,
         "fix_state": "fixed",
         "fixed_in": [
           "3.2.0"
         ],
         "id": "GHSA-fx3j-rwgx-fr94",
+        "kev": null,
         "location": "setup.py",
         "osv_confirmed": true,
         "package": "gitpython",
         "severity": "Medium",
+        "summary": "GitPython: separate_git_dir leaks env vars via crafted .gitmodules submodule name",
         "url": "https://github.com/advisories/GHSA-fx3j-rwgx-fr94",
         "version": "3.1.41"
       },
       {
         "aliases": [],
         "ecosystem": "pypi",
+        "epss": null,
         "fix_state": "fixed",
         "fixed_in": [
           "3.2.0"
         ],
         "id": "GHSA-fx3j-rwgx-fr94",
+        "kev": null,
         "location": "Pipfile.lock",
         "osv_confirmed": true,
         "package": "gitpython",
         "severity": "Medium",
+        "summary": "GitPython: separate_git_dir leaks env vars via crafted .gitmodules submodule name",
         "url": "https://github.com/advisories/GHSA-fx3j-rwgx-fr94",
         "version": "3.1.59"
       },
       {
         "aliases": [],
         "ecosystem": "pypi",
+        "epss": null,
         "fix_state": "fixed",
         "fixed_in": [
           "3.2.0"
         ],
         "id": "GHSA-gq48-pqfc-9p58",
+        "kev": null,
         "location": "setup.py",
         "osv_confirmed": true,
         "package": "gitpython",
         "severity": "Medium",
+        "summary": "GitPython: Submodule.move() follows an attacker-committed intermediate symlink outside the worktree",
         "url": "https://github.com/advisories/GHSA-gq48-pqfc-9p58",
         "version": "3.1.41"
       },
       {
         "aliases": [],
         "ecosystem": "pypi",
+        "epss": null,
         "fix_state": "fixed",
         "fixed_in": [
           "3.2.0"
         ],
         "id": "GHSA-gq48-pqfc-9p58",
+        "kev": null,
         "location": "Pipfile.lock",
         "osv_confirmed": true,
         "package": "gitpython",
         "severity": "Medium",
+        "summary": "GitPython: Submodule.move() follows an attacker-committed intermediate symlink outside the worktree",
         "url": "https://github.com/advisories/GHSA-gq48-pqfc-9p58",
         "version": "3.1.59"
       },
@@ -3036,45 +3506,58 @@
           "CVE-2026-76217"
         ],
         "ecosystem": "pypi",
+        "epss": {
+          "cve": "CVE-2026-76217",
+          "percentile": 0.35458,
+          "score": 0.00412
+        },
         "fix_state": "fixed",
         "fixed_in": [
           "3.1.58"
         ],
         "id": "GHSA-hh9p-6wh2-4mfc",
+        "kev": null,
         "location": "setup.py",
         "osv_confirmed": false,
         "package": "gitpython",
         "severity": "Medium",
+        "summary": "GitPython: Arbitrary file read via --pathspec-from-file in IndexFile.remove() and Head.checkout()",
         "url": "https://github.com/advisories/GHSA-hh9p-6wh2-4mfc",
         "version": "3.1.41"
       },
       {
         "aliases": [],
         "ecosystem": "pypi",
+        "epss": null,
         "fix_state": "fixed",
         "fixed_in": [
           "3.1.56"
         ],
         "id": "GHSA-p538-c434-8v24",
+        "kev": null,
         "location": "setup.py",
         "osv_confirmed": false,
         "package": "gitpython",
         "severity": "Medium",
+        "summary": "GitPython: Arbitrary file truncation via git rev-list --output argument injection in unguarded Commit.count",
         "url": "https://github.com/advisories/GHSA-p538-c434-8v24",
         "version": "3.1.41"
       },
       {
         "aliases": [],
         "ecosystem": "pypi",
+        "epss": null,
         "fix_state": "fixed",
         "fixed_in": [
           "3.1.60"
         ],
         "id": "GHSA-whh4-5q6c-9v3x",
+        "kev": null,
         "location": "Pipfile.lock",
         "osv_confirmed": true,
         "package": "gitpython",
         "severity": "Medium",
+        "summary": "GitPython: --no-index bypasses diff unsafe-option protections and enables a blind local-file content oracle",
         "url": "https://github.com/advisories/GHSA-whh4-5q6c-9v3x",
         "version": "3.1.59"
       },
@@ -3083,15 +3566,22 @@
           "CVE-2026-104874"
         ],
         "ecosystem": "pypi",
+        "epss": {
+          "cve": "CVE-2026-104874",
+          "percentile": 0.38968,
+          "score": 0.00448
+        },
         "fix_state": "fixed",
         "fixed_in": [
           "6.9.1"
         ],
         "id": "GHSA-54p9-h82j-f925",
+        "kev": null,
         "location": "Pipfile.lock",
         "osv_confirmed": true,
         "package": "multidict",
         "severity": "Medium",
+        "summary": "Multidict: Reference leak in CIMultiDict/MultiDict items-view union and subtraction",
         "url": "https://github.com/advisories/GHSA-54p9-h82j-f925",
         "version": "6.7.1"
       },
@@ -3100,15 +3590,22 @@
           "CVE-2026-25645"
         ],
         "ecosystem": "pypi",
+        "epss": {
+          "cve": "CVE-2026-25645",
+          "percentile": 0.08606,
+          "score": 0.00189
+        },
         "fix_state": "fixed",
         "fixed_in": [
           "2.33.0"
         ],
         "id": "GHSA-gc5v-m9x4-r6x2",
+        "kev": null,
         "location": "Pipfile.lock",
         "osv_confirmed": true,
         "package": "requests",
         "severity": "Medium",
+        "summary": "Requests has Insecure Temp File Reuse in its extract_zipped_paths() utility function",
         "url": "https://github.com/advisories/GHSA-gc5v-m9x4-r6x2",
         "version": "2.32.5"
       },
@@ -3117,15 +3614,22 @@
           "CVE-2026-86000"
         ],
         "ecosystem": "pypi",
+        "epss": {
+          "cve": "CVE-2026-86000",
+          "percentile": 0.49167,
+          "score": 0.00609
+        },
         "fix_state": "fixed",
         "fixed_in": [
           "2.9.0"
         ],
         "id": "GHSA-gjv8-xp57-g29c",
+        "kev": null,
         "location": "Pipfile.lock",
         "osv_confirmed": true,
         "package": "soupsieve",
         "severity": "Medium",
+        "summary": "Soup Sieve: Polynomial-time ReDoS (O(n\u00b2)) in the `IDENTIFIER` / `VALUE` selector sub-patterns",
         "url": "https://github.com/advisories/GHSA-gjv8-xp57-g29c",
         "version": "2.8.4"
       },
@@ -3134,15 +3638,22 @@
           "CVE-2026-85999"
         ],
         "ecosystem": "pypi",
+        "epss": {
+          "cve": "CVE-2026-85999",
+          "percentile": 0.49167,
+          "score": 0.00609
+        },
         "fix_state": "fixed",
         "fixed_in": [
           "2.9.0"
         ],
         "id": "GHSA-j934-xhv5-fg8f",
+        "kev": null,
         "location": "Pipfile.lock",
         "osv_confirmed": true,
         "package": "soupsieve",
         "severity": "Medium",
+        "summary": "Soup Sieve: Polynomial-time ReDoS (O(n\u00b2)) in the whitespace/comment trimming regex `RE_WS_END` (triggers on VALID selectors)",
         "url": "https://github.com/advisories/GHSA-j934-xhv5-fg8f",
         "version": "2.8.4"
       },
@@ -3151,15 +3662,22 @@
           "CVE-2025-50181"
         ],
         "ecosystem": "pypi",
+        "epss": {
+          "cve": "CVE-2025-50181",
+          "percentile": 0.40987,
+          "score": 0.00474
+        },
         "fix_state": "fixed",
         "fixed_in": [
           "2.5.0"
         ],
         "id": "GHSA-pq67-6m6q-mj2v",
+        "kev": null,
         "location": "Pipfile.lock",
         "osv_confirmed": true,
         "package": "urllib3",
         "severity": "Medium",
+        "summary": "urllib3 redirects are not disabled when retries are disabled on PoolManager instantiation",
         "url": "https://github.com/advisories/GHSA-pq67-6m6q-mj2v",
         "version": "1.26.20"
       },
@@ -3168,15 +3686,22 @@
           "CVE-2026-54279"
         ],
         "ecosystem": "pypi",
+        "epss": {
+          "cve": "CVE-2026-54279",
+          "percentile": 0.42375,
+          "score": 0.00493
+        },
         "fix_state": "fixed",
         "fixed_in": [
           "3.14.1"
         ],
         "id": "GHSA-2fqr-mr3j-6wp8",
+        "kev": null,
         "location": "Pipfile.lock",
         "osv_confirmed": true,
         "package": "aiohttp",
         "severity": "Low",
+        "summary": "aiohttp: Host-Only Cookies Become Domain Cookies After CookieJar Persistence",
         "url": "https://github.com/advisories/GHSA-2fqr-mr3j-6wp8",
         "version": "3.13.5"
       },
@@ -3185,15 +3710,22 @@
           "CVE-2026-54275"
         ],
         "ecosystem": "pypi",
+        "epss": {
+          "cve": "CVE-2026-54275",
+          "percentile": 0.40701,
+          "score": 0.0047
+        },
         "fix_state": "fixed",
         "fixed_in": [
           "3.14.1"
         ],
         "id": "GHSA-4m7w-qmgq-4wj5",
+        "kev": null,
         "location": "Pipfile.lock",
         "osv_confirmed": true,
         "package": "aiohttp",
         "severity": "Low",
+        "summary": "aiohttp: TLS Server Hostname Override Is Ignored When Reusing HTTPS Connections",
         "url": "https://github.com/advisories/GHSA-4m7w-qmgq-4wj5",
         "version": "3.13.5"
       },
@@ -3202,15 +3734,22 @@
           "CVE-2026-54280"
         ],
         "ecosystem": "pypi",
+        "epss": {
+          "cve": "CVE-2026-54280",
+          "percentile": 0.39926,
+          "score": 0.0046
+        },
         "fix_state": "fixed",
         "fixed_in": [
           "3.14.1"
         ],
         "id": "GHSA-9x8q-7h8h-wcw9",
+        "kev": null,
         "location": "Pipfile.lock",
         "osv_confirmed": true,
         "package": "aiohttp",
         "severity": "Low",
+        "summary": "aiohttp: Payload Response Resources Are Not Closed After Mid-Body Disconnect",
         "url": "https://github.com/advisories/GHSA-9x8q-7h8h-wcw9",
         "version": "3.13.5"
       },
@@ -3219,15 +3758,22 @@
           "CVE-2026-111749"
         ],
         "ecosystem": "pypi",
+        "epss": {
+          "cve": "CVE-2026-111749",
+          "percentile": 0.3246,
+          "score": 0.00384
+        },
         "fix_state": "fixed",
         "fixed_in": [
           "3.14.4"
         ],
         "id": "GHSA-gx76-c99x-2c96",
+        "kev": null,
         "location": "Pipfile.lock",
         "osv_confirmed": true,
         "package": "aiohttp",
         "severity": "Low",
+        "summary": "AIOHTTP: Cookie from subdomain can remove Host-Only Scope from existing cookies",
         "url": "https://github.com/advisories/GHSA-gx76-c99x-2c96",
         "version": "3.13.5"
       },
@@ -3236,32 +3782,24 @@
           "CVE-2026-50269"
         ],
         "ecosystem": "pypi",
+        "epss": {
+          "cve": "CVE-2026-50269",
+          "percentile": 0.45049,
+          "score": 0.00533
+        },
         "fix_state": "fixed",
         "fixed_in": [
           "3.14.0"
         ],
         "id": "GHSA-m6qw-4cw2-hm4m",
+        "kev": null,
         "location": "Pipfile.lock",
         "osv_confirmed": true,
         "package": "aiohttp",
         "severity": "Low",
+        "summary": "aiohttp: CRLF injection in multipart headers",
         "url": "https://github.com/advisories/GHSA-m6qw-4cw2-hm4m",
         "version": "3.13.5"
-      },
-      {
-        "aliases": [],
-        "ecosystem": "github",
-        "fix_state": "fixed",
-        "fixed_in": [
-          "1.13.0"
-        ],
-        "id": "GHSA-vxmw-7h4f-hqxh",
-        "location": ".github/workflows/build.yml",
-        "osv_confirmed": false,
-        "package": "pypa/gh-action-pypi-publish",
-        "severity": "Low",
-        "url": "https://github.com/advisories/GHSA-vxmw-7h4f-hqxh",
-        "version": "v1"
       }
     ],
     "workflow_audit": {
@@ -3450,5 +3988,5 @@
       ]
     }
   },
-  "updated": "2026-11-01"
+  "updated": "2026-11-02"
 }

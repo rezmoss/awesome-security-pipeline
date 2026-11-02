@@ -37,6 +37,50 @@
         "Medium": 6,
         "files": 25
       }
+    },
+    {
+      "added": 0,
+      "commit": "2d0b6ad97cf3a8b8436a00a1f4b07b3a56b92ca0",
+      "date": "2026-11-02",
+      "dependencies": 1296,
+      "errors": [],
+      "fixable": 155,
+      "go_version": "go1.26.0",
+      "in_binary": {
+        "dependencies": 3,
+        "stdlib": 41,
+        "total": 44
+      },
+      "kev": 0,
+      "kev_new": 0,
+      "new_vulnerabilities": 0,
+      "osv_confirmed": 158,
+      "osv_only": 2,
+      "ref": "v3.23.1",
+      "release_changed": false,
+      "release_integrity": "verified",
+      "removed": 0,
+      "resolved_vulnerabilities": 0,
+      "scorecard": null,
+      "scorecard_date": null,
+      "scorecard_note": "the OpenSSF public dataset entry is 257 days old (limit 30); the Scorecard CLI fallback was skipped because this shard's weekly budget was used",
+      "scorecard_source": null,
+      "upgraded": 0,
+      "vulnerabilities": {
+        "Critical": 4,
+        "High": 84,
+        "Low": 17,
+        "Medium": 50,
+        "Negligible": 0,
+        "Unknown": 3
+      },
+      "vulnerable_packages": 55,
+      "workflow": {
+        "High": 4,
+        "Low": 0,
+        "Medium": 6,
+        "files": 25
+      }
     }
   ],
   "latest": {
@@ -10473,6 +10517,8 @@
     "go_binary": {
       "asset": "gator-v3.23.1-linux-amd64.tar.gz",
       "binary": "gator",
+      "db": "https://vuln.go.dev",
+      "db_last_modified": "2026-10-27T21:16:18Z",
       "findings": [
         {
           "aliases": [
@@ -10817,6 +10863,17 @@
         },
         {
           "aliases": [
+            "CVE-2026-78659"
+          ],
+          "fixed_version": "v1.26.9",
+          "id": "GO-2026-6603",
+          "level": "symbol",
+          "module": "stdlib",
+          "summary": "HTTP/2 server memory exhaustion due to Trailer headers in net/http",
+          "version": "v1.26.0"
+        },
+        {
+          "aliases": [
             "CVE-2026-56866"
           ],
           "fixed_version": "v1.26.9",
@@ -10872,6 +10929,17 @@
         },
         {
           "aliases": [
+            "CVE-2026-78663"
+          ],
+          "fixed_version": "v1.26.9",
+          "id": "GO-2026-6612",
+          "level": "symbol",
+          "module": "stdlib",
+          "summary": "Double flow control refund on HTTP/2 server streams in net/http",
+          "version": "v1.26.0"
+        },
+        {
+          "aliases": [
             "CVE-2026-94439"
           ],
           "fixed_version": "v1.26.9",
@@ -10908,34 +10976,12 @@
             "CVE-2026-81870",
             "GHSA-8wmf-6v46-5gfg"
           ],
-          "fixed_version": "v1.45.0",
+          "fixed_version": "",
           "id": "GO-2026-6505",
           "level": "symbol",
-          "module": "go.opentelemetry.io/otel/sdk",
+          "module": "go.opentelemetry.io/otel",
           "summary": "OpenTelemetry-Go: Exporter config logging may leak endpoint URLs in info logs in go.opentelemetry.io/otel/exporters/otlp/otlptrace",
           "version": "v1.44.0"
-        },
-        {
-          "aliases": [
-            "CVE-2026-78659"
-          ],
-          "fixed_version": "v0.60.0",
-          "id": "GO-2026-6603",
-          "level": "symbol",
-          "module": "golang.org/x/net",
-          "summary": "HTTP/2 server memory exhaustion due to Trailer headers in net/http",
-          "version": "v0.56.0"
-        },
-        {
-          "aliases": [
-            "CVE-2026-78663"
-          ],
-          "fixed_version": "v0.60.0",
-          "id": "GO-2026-6612",
-          "level": "symbol",
-          "module": "golang.org/x/net",
-          "summary": "Double flow control refund on HTTP/2 server streams in net/http",
-          "version": "v0.56.0"
         },
         {
           "aliases": [
@@ -11203,25 +11249,32 @@
       ],
       "removed": 0
     },
-    "scanned_at": "2026-11-01T19:07:59+00:00",
+    "scanned_at": "2026-11-02T01:34:48+00:00",
     "scorecard": null,
-    "scorecard_note": "not in the OpenSSF dataset this week; run budget exhausted",
+    "scorecard_note": "the OpenSSF public dataset entry is 257 days old (limit 30); the Scorecard CLI fallback was skipped because this shard's weekly budget was used",
     "vulnerabilities": [
       {
         "aliases": [
           "CVE-2026-78663"
         ],
         "ecosystem": "golang",
+        "epss": {
+          "cve": "CVE-2026-78663",
+          "percentile": 0.49813,
+          "score": 0.00622
+        },
         "fix_state": "fixed",
         "fixed_in": [
           "0.60.0"
         ],
         "id": "GO-2026-6612",
         "in_binary": "vulnerable code in binary",
+        "kev": null,
         "location": "go.mod",
         "osv_confirmed": true,
         "package": "golang.org/x/net",
         "severity": "Critical",
+        "summary": "The HTTP/2 server can refund connection-level flow control twice for the same data: Once when a client resets a stream (refunding data for any sent-but-unread portion of the stream), and again when a request handler reads the buffered data. A malicious client can exploit this to bypass the configure",
         "url": "https://go.dev/cl/847187",
         "version": "v0.56.0"
       },
@@ -11230,15 +11283,22 @@
           "CVE-2026-90711"
         ],
         "ecosystem": "npm",
+        "epss": {
+          "cve": "CVE-2026-90711",
+          "percentile": 0.177,
+          "score": 0.0026
+        },
         "fix_state": "fixed",
         "fixed_in": [
           "2.0.8"
         ],
         "id": "GHSA-jqcg-44mw-7w3h",
+        "kev": null,
         "location": "website/yarn.lock",
         "osv_confirmed": true,
         "package": "proxy-addr",
         "severity": "Critical",
+        "summary": "proxy-addr vulnerable to IP spoofing via IPv4-mapped IPv6 trust subnet",
         "url": "https://github.com/advisories/GHSA-jqcg-44mw-7w3h",
         "version": "2.0.7"
       },
@@ -11247,15 +11307,22 @@
           "CVE-2026-102422"
         ],
         "ecosystem": "npm",
+        "epss": {
+          "cve": "CVE-2026-102422",
+          "percentile": 0.31763,
+          "score": 0.00378
+        },
         "fix_state": "fixed",
         "fixed_in": [
           "1.11.0"
         ],
         "id": "GHSA-pqg4-j6r4-53mv",
+        "kev": null,
         "location": "website/yarn.lock",
         "osv_confirmed": true,
         "package": "shell-quote",
         "severity": "Critical",
+        "summary": "shell-quote: `quote()` command injection via a line terminator in a token after a `{ comment }` token",
         "url": "https://github.com/advisories/GHSA-pqg4-j6r4-53mv",
         "version": "1.8.4"
       },
@@ -11264,15 +11331,22 @@
           "CVE-2026-54466"
         ],
         "ecosystem": "npm",
+        "epss": {
+          "cve": "CVE-2026-54466",
+          "percentile": 0.32004,
+          "score": 0.0038
+        },
         "fix_state": "fixed",
         "fixed_in": [
           "0.7.5"
         ],
         "id": "GHSA-xv26-6w52-cph6",
+        "kev": null,
         "location": "website/yarn.lock",
         "osv_confirmed": true,
         "package": "websocket-driver",
         "severity": "Critical",
+        "summary": "websocket-driver: Message corruption via abuse of protocol length headers",
         "url": "https://github.com/advisories/GHSA-xv26-6w52-cph6",
         "version": "0.7.4"
       },
@@ -11281,15 +11355,22 @@
           "CVE-2026-44495"
         ],
         "ecosystem": "npm",
+        "epss": {
+          "cve": "CVE-2026-44495",
+          "percentile": 0.58327,
+          "score": 0.00854
+        },
         "fix_state": "fixed",
         "fixed_in": [
           "0.31.1"
         ],
         "id": "GHSA-3g43-6gmg-66jw",
+        "kev": null,
         "location": "website/yarn.lock",
         "osv_confirmed": true,
         "package": "axios",
         "severity": "High",
+        "summary": "axios Vulnerable to Credential Theft and Response Hijacking via Prototype Pollution Gadget in Config Merge",
         "url": "https://github.com/advisories/GHSA-3g43-6gmg-66jw",
         "version": "0.25.0"
       },
@@ -11298,15 +11379,22 @@
           "CVE-2026-25639"
         ],
         "ecosystem": "npm",
+        "epss": {
+          "cve": "CVE-2026-25639",
+          "percentile": 0.86463,
+          "score": 0.02799
+        },
         "fix_state": "fixed",
         "fixed_in": [
           "0.30.3"
         ],
         "id": "GHSA-43fc-jf86-j433",
+        "kev": null,
         "location": "website/yarn.lock",
         "osv_confirmed": true,
         "package": "axios",
         "severity": "High",
+        "summary": "Axios is Vulnerable to Denial of Service via __proto__ Key in mergeConfig",
         "url": "https://github.com/advisories/GHSA-43fc-jf86-j433",
         "version": "0.25.0"
       },
@@ -11315,15 +11403,22 @@
           "CVE-2026-42035"
         ],
         "ecosystem": "npm",
+        "epss": {
+          "cve": "CVE-2026-42035",
+          "percentile": 0.3452,
+          "score": 0.00403
+        },
         "fix_state": "fixed",
         "fixed_in": [
           "0.31.1"
         ],
         "id": "GHSA-6chq-wfr3-2hj9",
+        "kev": null,
         "location": "website/yarn.lock",
         "osv_confirmed": true,
         "package": "axios",
         "severity": "High",
+        "summary": "Axios: Header Injection via Prototype Pollution",
         "url": "https://github.com/advisories/GHSA-6chq-wfr3-2hj9",
         "version": "0.25.0"
       },
@@ -11332,15 +11427,22 @@
           "CVE-2026-44496"
         ],
         "ecosystem": "npm",
+        "epss": {
+          "cve": "CVE-2026-44496",
+          "percentile": 0.92685,
+          "score": 0.05405
+        },
         "fix_state": "fixed",
         "fixed_in": [
           "0.32.0"
         ],
         "id": "GHSA-hfxv-24rg-xrqf",
+        "kev": null,
         "location": "website/yarn.lock",
         "osv_confirmed": true,
         "package": "axios",
         "severity": "High",
+        "summary": "Axios: Regular Expression Denial of Service (ReDoS) via Cookie Name Injection",
         "url": "https://github.com/advisories/GHSA-hfxv-24rg-xrqf",
         "version": "0.25.0"
       },
@@ -11349,15 +11451,22 @@
           "CVE-2026-44486"
         ],
         "ecosystem": "npm",
+        "epss": {
+          "cve": "CVE-2026-44486",
+          "percentile": 0.46141,
+          "score": 0.00552
+        },
         "fix_state": "fixed",
         "fixed_in": [
           "0.32.0"
         ],
         "id": "GHSA-j5f8-grm9-p9fc",
+        "kev": null,
         "location": "website/yarn.lock",
         "osv_confirmed": true,
         "package": "axios",
         "severity": "High",
+        "summary": "Axios: Proxy-Authorization header leaks to redirect target when proxy is re-evaluated to direct connection",
         "url": "https://github.com/advisories/GHSA-j5f8-grm9-p9fc",
         "version": "0.25.0"
       },
@@ -11366,15 +11475,22 @@
           "CVE-2025-27152"
         ],
         "ecosystem": "npm",
+        "epss": {
+          "cve": "CVE-2025-27152",
+          "percentile": 0.56327,
+          "score": 0.00792
+        },
         "fix_state": "fixed",
         "fixed_in": [
           "0.30.0"
         ],
         "id": "GHSA-jr5f-v2jv-69x6",
+        "kev": null,
         "location": "website/yarn.lock",
         "osv_confirmed": true,
         "package": "axios",
         "severity": "High",
+        "summary": "axios Requests Vulnerable To Possible SSRF and Credential Leakage via Absolute URL",
         "url": "https://github.com/advisories/GHSA-jr5f-v2jv-69x6",
         "version": "0.25.0"
       },
@@ -11383,15 +11499,22 @@
           "CVE-2026-44487"
         ],
         "ecosystem": "npm",
+        "epss": {
+          "cve": "CVE-2026-44487",
+          "percentile": 0.5275,
+          "score": 0.00689
+        },
         "fix_state": "fixed",
         "fixed_in": [
           "0.32.0"
         ],
         "id": "GHSA-p92q-9vqr-4j8v",
+        "kev": null,
         "location": "website/yarn.lock",
         "osv_confirmed": true,
         "package": "axios",
         "severity": "High",
+        "summary": "Axios: Proxy-Authorization Credential Leak to Origin Server Across HTTP-to-HTTPS Redirect in Axios Node.js HTTP Adapter",
         "url": "https://github.com/advisories/GHSA-p92q-9vqr-4j8v",
         "version": "0.25.0"
       },
@@ -11400,15 +11523,22 @@
           "CVE-2026-42033"
         ],
         "ecosystem": "npm",
+        "epss": {
+          "cve": "CVE-2026-42033",
+          "percentile": 0.58738,
+          "score": 0.00867
+        },
         "fix_state": "fixed",
         "fixed_in": [
           "0.31.1"
         ],
         "id": "GHSA-pf86-5x62-jrwf",
+        "kev": null,
         "location": "website/yarn.lock",
         "osv_confirmed": true,
         "package": "axios",
         "severity": "High",
+        "summary": "Axios: Prototype Pollution Gadgets - Response Tampering, Data Exfiltration, and Request Hijacking",
         "url": "https://github.com/advisories/GHSA-pf86-5x62-jrwf",
         "version": "0.25.0"
       },
@@ -11417,15 +11547,22 @@
           "CVE-2026-44492"
         ],
         "ecosystem": "npm",
+        "epss": {
+          "cve": "CVE-2026-44492",
+          "percentile": 0.96185,
+          "score": 0.1228
+        },
         "fix_state": "fixed",
         "fixed_in": [
           "0.32.0"
         ],
         "id": "GHSA-pjwm-pj3p-43mv",
+        "kev": null,
         "location": "website/yarn.lock",
         "osv_confirmed": true,
         "package": "axios",
         "severity": "High",
+        "summary": "axios's shouldBypassProxy does not recognize IPv4-mapped IPv6 addresses, allowing NO_PROXY bypass (incomplete fix for CVE-2025-62718)",
         "url": "https://github.com/advisories/GHSA-pjwm-pj3p-43mv",
         "version": "0.25.0"
       },
@@ -11434,15 +11571,22 @@
           "CVE-2026-42043"
         ],
         "ecosystem": "npm",
+        "epss": {
+          "cve": "CVE-2026-42043",
+          "percentile": 0.53585,
+          "score": 0.00711
+        },
         "fix_state": "fixed",
         "fixed_in": [
           "0.31.1"
         ],
         "id": "GHSA-pmwg-cvhr-8vh7",
+        "kev": null,
         "location": "website/yarn.lock",
         "osv_confirmed": true,
         "package": "axios",
         "severity": "High",
+        "summary": "Axios: Incomplete Fix for CVE-2025-62718 \u2014 NO_PROXY Protection Bypassed via RFC 1122 Loopback Subnet (127.0.0.0/8) in Axios 1.15.0",
         "url": "https://github.com/advisories/GHSA-pmwg-cvhr-8vh7",
         "version": "0.25.0"
       },
@@ -11451,15 +11595,22 @@
           "CVE-2026-111181"
         ],
         "ecosystem": "npm",
+        "epss": {
+          "cve": "CVE-2026-111181",
+          "percentile": 0.32919,
+          "score": 0.00388
+        },
         "fix_state": "fixed",
         "fixed_in": [
           "1.20.9"
         ],
         "id": "GHSA-27r3-jxmh-p828",
+        "kev": null,
         "location": "website/yarn.lock",
         "osv_confirmed": true,
         "package": "body-parser",
         "severity": "High",
+        "summary": "body-parser vulnerable to Denial of Service via trailing bytes after a compressed request body",
         "url": "https://github.com/advisories/GHSA-27r3-jxmh-p828",
         "version": "1.20.4"
       },
@@ -11468,15 +11619,22 @@
           "CVE-2026-13149"
         ],
         "ecosystem": "npm",
+        "epss": {
+          "cve": "CVE-2026-13149",
+          "percentile": 0.3024,
+          "score": 0.00364
+        },
         "fix_state": "fixed",
         "fixed_in": [
           "1.1.16"
         ],
         "id": "GHSA-3jxr-9vmj-r5cp",
+        "kev": null,
         "location": "website/yarn.lock",
         "osv_confirmed": true,
         "package": "brace-expansion",
         "severity": "High",
+        "summary": "brace-expansion: DoS via exponential-time expansion of consecutive non-expanding {} groups",
         "url": "https://github.com/advisories/GHSA-3jxr-9vmj-r5cp",
         "version": "1.1.13"
       },
@@ -11485,15 +11643,22 @@
           "CVE-2026-102276"
         ],
         "ecosystem": "npm",
+        "epss": {
+          "cve": "CVE-2026-102276",
+          "percentile": 0.39514,
+          "score": 0.00455
+        },
         "fix_state": "fixed",
         "fixed_in": [
           "1.1.19"
         ],
         "id": "GHSA-6j4f-fj2g-mc7p",
+        "kev": null,
         "location": "website/yarn.lock",
         "osv_confirmed": true,
         "package": "brace-expansion",
         "severity": "High",
+        "summary": "brace-expansion: DoS via uncontrolled recursion in parseCommaParts causing stack exhaustion",
         "url": "https://github.com/advisories/GHSA-6j4f-fj2g-mc7p",
         "version": "1.1.13"
       },
@@ -11502,15 +11667,22 @@
           "CVE-2026-14257"
         ],
         "ecosystem": "npm",
+        "epss": {
+          "cve": "CVE-2026-14257",
+          "percentile": 0.50816,
+          "score": 0.00643
+        },
         "fix_state": "fixed",
         "fixed_in": [
           "1.1.17"
         ],
         "id": "GHSA-mh99-v99m-4gvg",
+        "kev": null,
         "location": "website/yarn.lock",
         "osv_confirmed": true,
         "package": "brace-expansion",
         "severity": "High",
+        "summary": "brace-expansion: DoS via unbounded expansion length causing an out-of-memory process crash",
         "url": "https://github.com/advisories/GHSA-mh99-v99m-4gvg",
         "version": "1.1.13"
       },
@@ -11519,15 +11691,22 @@
           "CVE-2026-102278"
         ],
         "ecosystem": "npm",
+        "epss": {
+          "cve": "CVE-2026-102278",
+          "percentile": 0.42209,
+          "score": 0.00491
+        },
         "fix_state": "fixed",
         "fixed_in": [
           "1.1.20"
         ],
         "id": "GHSA-qhr7-859c-m2p7",
+        "kev": null,
         "location": "website/yarn.lock",
         "osv_confirmed": true,
         "package": "brace-expansion",
         "severity": "High",
+        "summary": "brace-expansion: DoS via uncontrolled recursion on nested brace groups causing stack exhaustion",
         "url": "https://github.com/advisories/GHSA-qhr7-859c-m2p7",
         "version": "1.1.13"
       },
@@ -11536,15 +11715,22 @@
           "CVE-2026-69152"
         ],
         "ecosystem": "npm",
+        "epss": {
+          "cve": "CVE-2026-69152",
+          "percentile": 0.51004,
+          "score": 0.00647
+        },
         "fix_state": "fixed",
         "fixed_in": [
           "1.1.18"
         ],
         "id": "GHSA-rgw5-rvv9-x895",
+        "kev": null,
         "location": "website/yarn.lock",
         "osv_confirmed": true,
         "package": "brace-expansion",
         "severity": "High",
+        "summary": "brace-expansion: DoS via unbounded intermediate arrays, bypassing the CVE-2026-14257 mitigation",
         "url": "https://github.com/advisories/GHSA-rgw5-rvv9-x895",
         "version": "1.1.13"
       },
@@ -11553,15 +11739,22 @@
           "CVE-2026-73088"
         ],
         "ecosystem": "npm",
+        "epss": {
+          "cve": "CVE-2026-73088",
+          "percentile": 0.51498,
+          "score": 0.00658
+        },
         "fix_state": "fixed",
         "fixed_in": [
           "4.28.7"
         ],
         "id": "GHSA-73wf-gq98-2v4g",
+        "kev": null,
         "location": "website/yarn.lock",
         "osv_confirmed": true,
         "package": "browserslist",
         "severity": "High",
+        "summary": "Browserslist: Uncaught crash / prototype write via untrusted browserslist-stats.json custom stats (normalizeStats)",
         "url": "https://github.com/advisories/GHSA-73wf-gq98-2v4g",
         "version": "4.20.2"
       },
@@ -11570,15 +11763,22 @@
           "CVE-2026-73088"
         ],
         "ecosystem": "npm",
+        "epss": {
+          "cve": "CVE-2026-73088",
+          "percentile": 0.51498,
+          "score": 0.00658
+        },
         "fix_state": "fixed",
         "fixed_in": [
           "4.28.7"
         ],
         "id": "GHSA-73wf-gq98-2v4g",
+        "kev": null,
         "location": "website/yarn.lock",
         "osv_confirmed": true,
         "package": "browserslist",
         "severity": "High",
+        "summary": "Browserslist: Uncaught crash / prototype write via untrusted browserslist-stats.json custom stats (normalizeStats)",
         "url": "https://github.com/advisories/GHSA-73wf-gq98-2v4g",
         "version": "4.20.3"
       },
@@ -11587,15 +11787,22 @@
           "CVE-2026-73088"
         ],
         "ecosystem": "npm",
+        "epss": {
+          "cve": "CVE-2026-73088",
+          "percentile": 0.51498,
+          "score": 0.00658
+        },
         "fix_state": "fixed",
         "fixed_in": [
           "4.28.7"
         ],
         "id": "GHSA-73wf-gq98-2v4g",
+        "kev": null,
         "location": "website/yarn.lock",
         "osv_confirmed": true,
         "package": "browserslist",
         "severity": "High",
+        "summary": "Browserslist: Uncaught crash / prototype write via untrusted browserslist-stats.json custom stats (normalizeStats)",
         "url": "https://github.com/advisories/GHSA-73wf-gq98-2v4g",
         "version": "4.28.1"
       },
@@ -11604,15 +11811,22 @@
           "CVE-2026-73089"
         ],
         "ecosystem": "npm",
+        "epss": {
+          "cve": "CVE-2026-73089",
+          "percentile": 0.51386,
+          "score": 0.00655
+        },
         "fix_state": "fixed",
         "fixed_in": [
           "4.28.7"
         ],
         "id": "GHSA-c83g-rgw3-j3cx",
+        "kev": null,
         "location": "website/yarn.lock",
         "osv_confirmed": true,
         "package": "browserslist",
         "severity": "High",
+        "summary": "Browserslist: Unbounded memory growth (no cache eviction) via distinct query results, leading to eventual OOM",
         "url": "https://github.com/advisories/GHSA-c83g-rgw3-j3cx",
         "version": "4.20.2"
       },
@@ -11621,15 +11835,22 @@
           "CVE-2026-73089"
         ],
         "ecosystem": "npm",
+        "epss": {
+          "cve": "CVE-2026-73089",
+          "percentile": 0.51386,
+          "score": 0.00655
+        },
         "fix_state": "fixed",
         "fixed_in": [
           "4.28.7"
         ],
         "id": "GHSA-c83g-rgw3-j3cx",
+        "kev": null,
         "location": "website/yarn.lock",
         "osv_confirmed": true,
         "package": "browserslist",
         "severity": "High",
+        "summary": "Browserslist: Unbounded memory growth (no cache eviction) via distinct query results, leading to eventual OOM",
         "url": "https://github.com/advisories/GHSA-c83g-rgw3-j3cx",
         "version": "4.20.3"
       },
@@ -11638,15 +11859,22 @@
           "CVE-2026-73089"
         ],
         "ecosystem": "npm",
+        "epss": {
+          "cve": "CVE-2026-73089",
+          "percentile": 0.51386,
+          "score": 0.00655
+        },
         "fix_state": "fixed",
         "fixed_in": [
           "4.28.7"
         ],
         "id": "GHSA-c83g-rgw3-j3cx",
+        "kev": null,
         "location": "website/yarn.lock",
         "osv_confirmed": true,
         "package": "browserslist",
         "severity": "High",
+        "summary": "Browserslist: Unbounded memory growth (no cache eviction) via distinct query results, leading to eventual OOM",
         "url": "https://github.com/advisories/GHSA-c83g-rgw3-j3cx",
         "version": "4.28.1"
       },
@@ -11655,15 +11883,22 @@
           "CVE-2026-87776"
         ],
         "ecosystem": "npm",
+        "epss": {
+          "cve": "CVE-2026-87776",
+          "percentile": 0.41235,
+          "score": 0.00477
+        },
         "fix_state": "fixed",
         "fixed_in": [
           "1.8.2"
         ],
         "id": "GHSA-vc2v-76pw-4v95",
+        "kev": null,
         "location": "website/yarn.lock",
         "osv_confirmed": true,
         "package": "compression",
         "severity": "High",
+        "summary": "compression vulnerable to Denial of Service via memory leak on premature response close",
         "url": "https://github.com/advisories/GHSA-vc2v-76pw-4v95",
         "version": "1.7.4"
       },
@@ -11672,15 +11907,22 @@
           "CVE-2026-13676"
         ],
         "ecosystem": "npm",
+        "epss": {
+          "cve": "CVE-2026-13676",
+          "percentile": 0.52904,
+          "score": 0.00692
+        },
         "fix_state": "fixed",
         "fixed_in": [
           "3.1.3"
         ],
         "id": "GHSA-4c8g-83qw-93j6",
+        "kev": null,
         "location": "website/yarn.lock",
         "osv_confirmed": true,
         "package": "fast-uri",
         "severity": "High",
+        "summary": "fast-uri vulnerable to host confusion via failed IDN canonicalization",
         "url": "https://github.com/advisories/GHSA-4c8g-83qw-93j6",
         "version": "3.1.2"
       },
@@ -11689,15 +11931,22 @@
           "CVE-2026-18446"
         ],
         "ecosystem": "npm",
+        "epss": {
+          "cve": "CVE-2026-18446",
+          "percentile": 0.32004,
+          "score": 0.0038
+        },
         "fix_state": "fixed",
         "fixed_in": [
           "3.1.5"
         ],
         "id": "GHSA-7p8r-x3mc-p8w7",
+        "kev": null,
         "location": "website/yarn.lock",
         "osv_confirmed": true,
         "package": "fast-uri",
         "severity": "High",
+        "summary": "fast-uri vulnerable to host confusion via backslash authority introducer",
         "url": "https://github.com/advisories/GHSA-7p8r-x3mc-p8w7",
         "version": "3.1.2"
       },
@@ -11706,15 +11955,22 @@
           "CVE-2026-75975"
         ],
         "ecosystem": "npm",
+        "epss": {
+          "cve": "CVE-2026-75975",
+          "percentile": 0.12576,
+          "score": 0.0022
+        },
         "fix_state": "fixed",
         "fixed_in": [
           "3.1.6"
         ],
         "id": "GHSA-f65p-4m7j-42xc",
+        "kev": null,
         "location": "website/yarn.lock",
         "osv_confirmed": true,
         "package": "fast-uri",
         "severity": "High",
+        "summary": "fast-uri vulnerable to server-side request forgery via malformed IPv6 normalization",
         "url": "https://github.com/advisories/GHSA-f65p-4m7j-42xc",
         "version": "3.1.2"
       },
@@ -11723,15 +11979,22 @@
           "CVE-2026-75899"
         ],
         "ecosystem": "npm",
+        "epss": {
+          "cve": "CVE-2026-75899",
+          "percentile": 0.12575,
+          "score": 0.0022
+        },
         "fix_state": "fixed",
         "fixed_in": [
           "3.1.6"
         ],
         "id": "GHSA-fph4-wmhf-6fwf",
+        "kev": null,
         "location": "website/yarn.lock",
         "osv_confirmed": true,
         "package": "fast-uri",
         "severity": "High",
+        "summary": "fast-uri vulnerable to server-side request forgery via repeated hostname percent-decoding",
         "url": "https://github.com/advisories/GHSA-fph4-wmhf-6fwf",
         "version": "3.1.2"
       },
@@ -11740,15 +12003,22 @@
           "CVE-2026-76172"
         ],
         "ecosystem": "npm",
+        "epss": {
+          "cve": "CVE-2026-76172",
+          "percentile": 0.14134,
+          "score": 0.00232
+        },
         "fix_state": "fixed",
         "fixed_in": [
           "3.1.6"
         ],
         "id": "GHSA-jqff-g426-hqxp",
+        "kev": null,
         "location": "website/yarn.lock",
         "osv_confirmed": true,
         "package": "fast-uri",
         "severity": "High",
+        "summary": "fast-uri vulnerable to host confusion via percent-encoded scheme normalization",
         "url": "https://github.com/advisories/GHSA-jqff-g426-hqxp",
         "version": "3.1.2"
       },
@@ -11757,15 +12027,22 @@
           "CVE-2026-84292"
         ],
         "ecosystem": "npm",
+        "epss": {
+          "cve": "CVE-2026-84292",
+          "percentile": 0.15041,
+          "score": 0.00239
+        },
         "fix_state": "fixed",
         "fixed_in": [
           "3.1.7"
         ],
         "id": "GHSA-qw65-cvwx-89v3",
+        "kev": null,
         "location": "website/yarn.lock",
         "osv_confirmed": true,
         "package": "fast-uri",
         "severity": "High",
+        "summary": "fast-uri vulnerable to authority injection via an unvalidated port in serialize",
         "url": "https://github.com/advisories/GHSA-qw65-cvwx-89v3",
         "version": "3.1.2"
       },
@@ -11774,15 +12051,22 @@
           "CVE-2026-16221"
         ],
         "ecosystem": "npm",
+        "epss": {
+          "cve": "CVE-2026-16221",
+          "percentile": 0.37862,
+          "score": 0.00436
+        },
         "fix_state": "fixed",
         "fixed_in": [
           "3.1.4"
         ],
         "id": "GHSA-v2hh-gcrm-f6hx",
+        "kev": null,
         "location": "website/yarn.lock",
         "osv_confirmed": true,
         "package": "fast-uri",
         "severity": "High",
+        "summary": "fast-uri vulnerable to host confusion via literal backslash authority delimiter",
         "url": "https://github.com/advisories/GHSA-v2hh-gcrm-f6hx",
         "version": "3.1.2"
       },
@@ -11791,15 +12075,22 @@
           "CVE-2026-111755"
         ],
         "ecosystem": "npm",
+        "epss": {
+          "cve": "CVE-2026-111755",
+          "percentile": 0.40761,
+          "score": 0.00471
+        },
         "fix_state": "fixed",
         "fixed_in": [
           "1.16.1"
         ],
         "id": "GHSA-8r9p-f939-6h3c",
+        "kev": null,
         "location": "website/yarn.lock",
         "osv_confirmed": true,
         "package": "follow-redirects",
         "severity": "High",
+        "summary": "follow-redirects sensitiveHeaders regex escaping can expose credential headers",
         "url": "https://github.com/advisories/GHSA-8r9p-f939-6h3c",
         "version": "1.16.0"
       },
@@ -11808,15 +12099,22 @@
           "CVE-2026-116689"
         ],
         "ecosystem": "npm",
+        "epss": {
+          "cve": "CVE-2026-116689",
+          "percentile": 0.18802,
+          "score": 0.00266
+        },
         "fix_state": "fixed",
         "fixed_in": [
           "1.16.2"
         ],
         "id": "GHSA-mrwp-f3q8-3g9p",
+        "kev": null,
         "location": "website/yarn.lock",
         "osv_confirmed": true,
         "package": "follow-redirects",
         "severity": "High",
+        "summary": "follow-redirects: Cross-realm sensitiveHeaders arrays are discarded and custom credentials can follow redirects",
         "url": "https://github.com/advisories/GHSA-mrwp-f3q8-3g9p",
         "version": "1.16.0"
       },
@@ -11825,15 +12123,22 @@
           "CVE-2026-111756"
         ],
         "ecosystem": "npm",
+        "epss": {
+          "cve": "CVE-2026-111756",
+          "percentile": 0.40762,
+          "score": 0.00471
+        },
         "fix_state": "fixed",
         "fixed_in": [
           "1.16.1"
         ],
         "id": "GHSA-q3jh-wrc6-jgq8",
+        "kev": null,
         "location": "website/yarn.lock",
         "osv_confirmed": true,
         "package": "follow-redirects",
         "severity": "High",
+        "summary": "follow-redirects array-form headers bypass cross-origin credential stripping",
         "url": "https://github.com/advisories/GHSA-q3jh-wrc6-jgq8",
         "version": "1.16.0"
       },
@@ -11842,16 +12147,23 @@
           "CVE-2026-56854"
         ],
         "ecosystem": "golang",
+        "epss": {
+          "cve": "CVE-2026-56854",
+          "percentile": 0.38024,
+          "score": 0.00437
+        },
         "fix_state": "fixed",
         "fixed_in": [
           "0.55.0"
         ],
         "id": "GO-2026-6303",
         "in_binary": "module in binary",
+        "kev": null,
         "location": "go.mod",
         "osv_confirmed": true,
         "package": "golang.org/x/crypto",
         "severity": "High",
+        "summary": "The source-address critical option in the Permissions returned by an authentication callback was only enforced for the PublicKeyCallback and VerifiedPublicKeyCallback paths, extending the fix for CVE-2026-46595. Permissions returned by the PasswordCallback, KeyboardInteractiveCallback, NoClientAuthC",
         "url": "https://go.dev/issue/80213",
         "version": "v0.53.0"
       },
@@ -11860,16 +12172,23 @@
           "CVE-2026-78662"
         ],
         "ecosystem": "golang",
+        "epss": {
+          "cve": "CVE-2026-78662",
+          "percentile": 0.37388,
+          "score": 0.00431
+        },
         "fix_state": "fixed",
         "fixed_in": [
           "0.56.0"
         ],
         "id": "GO-2026-6354",
         "in_binary": "module in binary",
+        "kev": null,
         "location": "go.mod",
         "osv_confirmed": true,
         "package": "golang.org/x/crypto",
         "severity": "High",
+        "summary": "Previously, a channel registered in the mux's chanList is not usable until it is established. A malicious peer was able flood the channel's incomingRequests, deadlocking the entire connection. Now, we add an atomic established state, set when a channel becomes usable. Until such a time, handlePacket",
         "url": "https://go.dev/issue/81316",
         "version": "v0.53.0"
       },
@@ -11878,16 +12197,23 @@
           "CVE-2026-56855"
         ],
         "ecosystem": "golang",
+        "epss": {
+          "cve": "CVE-2026-56855",
+          "percentile": 0.42867,
+          "score": 0.005
+        },
         "fix_state": "fixed",
         "fixed_in": [
           "0.56.0"
         ],
         "id": "GO-2026-6355",
         "in_binary": "module in binary",
+        "kev": null,
         "location": "go.mod",
         "osv_confirmed": true,
         "package": "golang.org/x/crypto",
         "severity": "High",
+        "summary": "Previously, after a channel has been established, a malicious peer could send crafted messages that would deadlock the entire connection. Now, we handle all RFC 4254 channel messages; global requests are handled explicitly. Then, treat all other messages as a protocol error and tear the connection d",
         "url": "https://go.dev/issue/81317",
         "version": "v0.53.0"
       },
@@ -11896,16 +12222,23 @@
           "CVE-2026-78659"
         ],
         "ecosystem": "golang",
+        "epss": {
+          "cve": "CVE-2026-78659",
+          "percentile": 0.50082,
+          "score": 0.00627
+        },
         "fix_state": "fixed",
         "fixed_in": [
           "0.60.0"
         ],
         "id": "GO-2026-6603",
         "in_binary": "vulnerable code in binary",
+        "kev": null,
         "location": "go.mod",
         "osv_confirmed": true,
         "package": "golang.org/x/net",
         "severity": "High",
+        "summary": "When \"Trailer\" headers are sent by a client, the HTTP server internally uses the header values to populate the Request.Trailer map passed to the server handler. Because Request.Trailer is a map, each entry incurs memory overhead. For HTTP/2 servers, a malicious client can exploit this by sending a \"",
         "url": "https://go.dev/cl/847185",
         "version": "v0.56.0"
       },
@@ -11914,16 +12247,23 @@
           "CVE-2026-78660"
         ],
         "ecosystem": "golang",
+        "epss": {
+          "cve": "CVE-2026-78660",
+          "percentile": 0.36838,
+          "score": 0.00425
+        },
         "fix_state": "fixed",
         "fixed_in": [
           "0.60.0"
         ],
         "id": "GO-2026-6610",
         "in_binary": "vulnerable code in binary",
+        "kev": null,
         "location": "go.mod",
         "osv_confirmed": true,
         "package": "golang.org/x/net",
         "severity": "High",
+        "summary": "Historically, we have been rather lax about malformed framing-related headers in our HTTP/2 implementation, as they cannot interfere with HTTP/2 framing. However, this makes it possible for our HTTP/2 implementation to forward responses containing such headers to an HTTP/1 client when acting as a re",
         "url": "https://go.dev/cl/835145",
         "version": "v0.56.0"
       },
@@ -11932,16 +12272,23 @@
           "CVE-2026-78669"
         ],
         "ecosystem": "golang",
+        "epss": {
+          "cve": "CVE-2026-78669",
+          "percentile": 0.49426,
+          "score": 0.00614
+        },
         "fix_state": "fixed",
         "fixed_in": [
           "0.60.0"
         ],
         "id": "GO-2026-6611",
         "in_binary": "vulnerable code in binary",
+        "kev": null,
         "location": "go.mod",
         "osv_confirmed": true,
         "package": "golang.org/x/net",
         "severity": "High",
+        "summary": "A malicious HTTP/2 peer can cause excessive CPU consumption in the client or server by opening a large number of streams and then sending many small SETTINGS frames containing SETTINGS_INITIAL_WINDOW_SIZE values.",
         "url": "https://go.dev/cl/847186",
         "version": "v0.56.0"
       },
@@ -11950,16 +12297,23 @@
           "CVE-2026-97032"
         ],
         "ecosystem": "golang",
+        "epss": {
+          "cve": "CVE-2026-97032",
+          "percentile": 0.42154,
+          "score": 0.0049
+        },
         "fix_state": "fixed",
         "fixed_in": [
           "0.60.0"
         ],
         "id": "GO-2026-6617",
         "in_binary": "vulnerable code in binary",
+        "kev": null,
         "location": "go.mod",
         "osv_confirmed": true,
         "package": "golang.org/x/net",
         "severity": "High",
+        "summary": "HTTP/2 servers could end up crashing due to inadvertently modifying its HPACK encoder concurrently. This happens because the server modifies the HPACK encoder from two goroutines without synchronization: one uses the encoder to encode a HEADERS frame as part of a response sent to a client and the ot",
         "url": "https://go.dev/cl/847188",
         "version": "v0.56.0"
       },
@@ -11968,16 +12322,23 @@
           "CVE-2026-56851"
         ],
         "ecosystem": "golang",
+        "epss": {
+          "cve": "CVE-2026-56851",
+          "percentile": 0.40313,
+          "score": 0.00466
+        },
         "fix_state": "fixed",
         "fixed_in": [
           "0.41.0"
         ],
         "id": "GO-2026-6629",
         "in_binary": "module in binary",
+        "kev": null,
         "location": "go.mod",
         "osv_confirmed": true,
         "package": "golang.org/x/text",
         "severity": "High",
+        "summary": "The Nickname profile can panic with an out-of-bounds slice error when transforming crafted input into a short destination buffer.",
         "url": "https://go.dev/cl/793360",
         "version": "v0.39.0"
       },
@@ -11986,16 +12347,23 @@
           "CVE-2026-84445"
         ],
         "ecosystem": "golang",
+        "epss": {
+          "cve": "CVE-2026-84445",
+          "percentile": 0.5072,
+          "score": 0.00641
+        },
         "fix_state": "fixed",
         "fixed_in": [
           "1.82.2"
         ],
         "id": "GHSA-2v4p-qf9q-27wj",
         "in_binary": "vulnerable code in binary",
+        "kev": null,
         "location": "go.mod",
         "osv_confirmed": true,
         "package": "google.golang.org/grpc",
         "severity": "High",
+        "summary": "gRPC-Go xDS servers: Denial of Service (DoS) via crash due to missing `:authority` and `Host` headers",
         "url": "https://github.com/advisories/GHSA-2v4p-qf9q-27wj",
         "version": "v1.82.1"
       },
@@ -12004,16 +12372,23 @@
           "CVE-2026-84304"
         ],
         "ecosystem": "golang",
+        "epss": {
+          "cve": "CVE-2026-84304",
+          "percentile": 0.49152,
+          "score": 0.00609
+        },
         "fix_state": "fixed",
         "fixed_in": [
           "1.83.1"
         ],
         "id": "GHSA-vp52-pcj8-j9qc",
         "in_binary": "vulnerable code in binary",
+        "kev": null,
         "location": "go.mod",
         "osv_confirmed": true,
         "package": "google.golang.org/grpc",
         "severity": "High",
+        "summary": "gRPC-Go: Heap Memory Exhaustion (OOM) via HTTP/2 DATA Frame Fragmentation",
         "url": "https://github.com/advisories/GHSA-vp52-pcj8-j9qc",
         "version": "v1.82.1"
       },
@@ -12022,15 +12397,22 @@
           "CVE-2025-71330"
         ],
         "ecosystem": "npm",
+        "epss": {
+          "cve": "CVE-2025-71330",
+          "percentile": 0.37283,
+          "score": 0.0043
+        },
         "fix_state": "fixed",
         "fixed_in": [
           "2.0.3"
         ],
         "id": "GHSA-w3rx-r6r6-pgpr",
+        "kev": null,
         "location": "website/yarn.lock",
         "osv_confirmed": true,
         "package": "image-size",
         "severity": "High",
+        "summary": "image-size: ICNS parser allows denial of service through an infinite loop",
         "url": "https://github.com/advisories/GHSA-w3rx-r6r6-pgpr",
         "version": "1.0.1"
       },
@@ -12039,15 +12421,22 @@
           "CVE-2026-118772"
         ],
         "ecosystem": "npm",
+        "epss": {
+          "cve": "CVE-2026-118772",
+          "percentile": 0.40455,
+          "score": 0.00467
+        },
         "fix_state": "fixed",
         "fixed_in": [
           "17.13.9"
         ],
         "id": "GHSA-4528-x5fx-h6hg",
+        "kev": null,
         "location": "website/yarn.lock",
         "osv_confirmed": true,
         "package": "joi",
         "severity": "High",
+        "summary": "joi: quadratic-time split in `string().email({ multiple: true })` allows denial of service",
         "url": "https://github.com/advisories/GHSA-4528-x5fx-h6hg",
         "version": "17.13.4"
       },
@@ -12056,15 +12445,22 @@
           "CVE-2026-92599"
         ],
         "ecosystem": "npm",
+        "epss": {
+          "cve": "CVE-2026-92599",
+          "percentile": 0.47795,
+          "score": 0.00582
+        },
         "fix_state": "fixed",
         "fixed_in": [
           "17.13.7"
         ],
         "id": "GHSA-6h2x-m376-mqjq",
+        "kev": null,
         "location": "website/yarn.lock",
         "osv_confirmed": true,
         "package": "joi",
         "severity": "High",
+        "summary": "joi: Quadratic regular-expression backtracking in `Joi.string().isoDate()`",
         "url": "https://github.com/advisories/GHSA-6h2x-m376-mqjq",
         "version": "17.13.4"
       },
@@ -12073,15 +12469,22 @@
           "CVE-2026-84375"
         ],
         "ecosystem": "npm",
+        "epss": {
+          "cve": "CVE-2026-84375",
+          "percentile": 0.45503,
+          "score": 0.00541
+        },
         "fix_state": "fixed",
         "fixed_in": [
           "3.15.2"
         ],
         "id": "GHSA-2883-xcg3-v3hh",
+        "kev": null,
         "location": "website/yarn.lock",
         "osv_confirmed": true,
         "package": "js-yaml",
         "severity": "High",
+        "summary": "js-yaml: maxTotalMergeKeys does not limit CPU use for empty merge sources",
         "url": "https://github.com/advisories/GHSA-2883-xcg3-v3hh",
         "version": "3.14.1"
       },
@@ -12090,15 +12493,22 @@
           "CVE-2026-84375"
         ],
         "ecosystem": "npm",
+        "epss": {
+          "cve": "CVE-2026-84375",
+          "percentile": 0.45503,
+          "score": 0.00541
+        },
         "fix_state": "fixed",
         "fixed_in": [
           "4.3.2"
         ],
         "id": "GHSA-2883-xcg3-v3hh",
+        "kev": null,
         "location": "website/yarn.lock",
         "osv_confirmed": true,
         "package": "js-yaml",
         "severity": "High",
+        "summary": "js-yaml: maxTotalMergeKeys does not limit CPU use for empty merge sources",
         "url": "https://github.com/advisories/GHSA-2883-xcg3-v3hh",
         "version": "4.1.0"
       },
@@ -12107,15 +12517,22 @@
           "CVE-2026-59869"
         ],
         "ecosystem": "npm",
+        "epss": {
+          "cve": "CVE-2026-59869",
+          "percentile": 0.47992,
+          "score": 0.00585
+        },
         "fix_state": "fixed",
         "fixed_in": [
           "3.15.0"
         ],
         "id": "GHSA-52cp-r559-cp3m",
+        "kev": null,
         "location": "website/yarn.lock",
         "osv_confirmed": true,
         "package": "js-yaml",
         "severity": "High",
+        "summary": "js-yaml: YAML merge-key chains can force quadratic CPU consumption",
         "url": "https://github.com/advisories/GHSA-52cp-r559-cp3m",
         "version": "3.14.1"
       },
@@ -12124,45 +12541,58 @@
           "CVE-2026-59869"
         ],
         "ecosystem": "npm",
+        "epss": {
+          "cve": "CVE-2026-59869",
+          "percentile": 0.47992,
+          "score": 0.00585
+        },
         "fix_state": "fixed",
         "fixed_in": [
           "4.3.0"
         ],
         "id": "GHSA-52cp-r559-cp3m",
+        "kev": null,
         "location": "website/yarn.lock",
         "osv_confirmed": true,
         "package": "js-yaml",
         "severity": "High",
+        "summary": "js-yaml: YAML merge-key chains can force quadratic CPU consumption",
         "url": "https://github.com/advisories/GHSA-52cp-r559-cp3m",
         "version": "4.1.0"
       },
       {
         "aliases": [],
         "ecosystem": "npm",
+        "epss": null,
         "fix_state": "fixed",
         "fixed_in": [
           "3.15.1"
         ],
         "id": "GHSA-5p4m-2wfm-xmqj",
+        "kev": null,
         "location": "website/yarn.lock",
         "osv_confirmed": true,
         "package": "js-yaml",
         "severity": "High",
+        "summary": "JS-YAML: Quadratic CPU consumption in !!omap resolution (3.x and 4.x) \u2014 CVE-2026-59870 fix not backported",
         "url": "https://github.com/advisories/GHSA-5p4m-2wfm-xmqj",
         "version": "3.14.1"
       },
       {
         "aliases": [],
         "ecosystem": "npm",
+        "epss": null,
         "fix_state": "fixed",
         "fixed_in": [
           "4.3.1"
         ],
         "id": "GHSA-5p4m-2wfm-xmqj",
+        "kev": null,
         "location": "website/yarn.lock",
         "osv_confirmed": true,
         "package": "js-yaml",
         "severity": "High",
+        "summary": "JS-YAML: Quadratic CPU consumption in !!omap resolution (3.x and 4.x) \u2014 CVE-2026-59870 fix not backported",
         "url": "https://github.com/advisories/GHSA-5p4m-2wfm-xmqj",
         "version": "4.1.0"
       },
@@ -12171,15 +12601,22 @@
           "CVE-2022-37603"
         ],
         "ecosystem": "npm",
+        "epss": {
+          "cve": "CVE-2022-37603",
+          "percentile": 0.85942,
+          "score": 0.02702
+        },
         "fix_state": "fixed",
         "fixed_in": [
           "3.2.1"
         ],
         "id": "GHSA-3rfm-jhwj-7488",
+        "kev": null,
         "location": "website/yarn.lock",
         "osv_confirmed": true,
         "package": "loader-utils",
         "severity": "High",
+        "summary": "loader-utils is vulnerable to Regular Expression Denial of Service (ReDoS) via url variable",
         "url": "https://github.com/advisories/GHSA-3rfm-jhwj-7488",
         "version": "3.2.0"
       },
@@ -12188,15 +12625,22 @@
           "CVE-2022-37599"
         ],
         "ecosystem": "npm",
+        "epss": {
+          "cve": "CVE-2022-37599",
+          "percentile": 0.86275,
+          "score": 0.02761
+        },
         "fix_state": "fixed",
         "fixed_in": [
           "3.2.1"
         ],
         "id": "GHSA-hhq3-ff78-jv3g",
+        "kev": null,
         "location": "website/yarn.lock",
         "osv_confirmed": true,
         "package": "loader-utils",
         "severity": "High",
+        "summary": "loader-utils is vulnerable to Regular Expression Denial of Service (ReDoS)",
         "url": "https://github.com/advisories/GHSA-hhq3-ff78-jv3g",
         "version": "3.2.0"
       },
@@ -12205,15 +12649,22 @@
           "CVE-2026-27904"
         ],
         "ecosystem": "npm",
+        "epss": {
+          "cve": "CVE-2026-27904",
+          "percentile": 0.44525,
+          "score": 0.00525
+        },
         "fix_state": "fixed",
         "fixed_in": [
           "3.1.4"
         ],
         "id": "GHSA-23c5-xmqv-rm74",
+        "kev": null,
         "location": "website/yarn.lock",
         "osv_confirmed": true,
         "package": "minimatch",
         "severity": "High",
+        "summary": "minimatch ReDoS: nested *() extglobs generate catastrophically backtracking regular expressions",
         "url": "https://github.com/advisories/GHSA-23c5-xmqv-rm74",
         "version": "3.0.4"
       },
@@ -12222,15 +12673,22 @@
           "CVE-2026-27904"
         ],
         "ecosystem": "npm",
+        "epss": {
+          "cve": "CVE-2026-27904",
+          "percentile": 0.44525,
+          "score": 0.00525
+        },
         "fix_state": "fixed",
         "fixed_in": [
           "3.1.4"
         ],
         "id": "GHSA-23c5-xmqv-rm74",
+        "kev": null,
         "location": "website/yarn.lock",
         "osv_confirmed": true,
         "package": "minimatch",
         "severity": "High",
+        "summary": "minimatch ReDoS: nested *() extglobs generate catastrophically backtracking regular expressions",
         "url": "https://github.com/advisories/GHSA-23c5-xmqv-rm74",
         "version": "3.1.2"
       },
@@ -12239,15 +12697,22 @@
           "CVE-2026-26996"
         ],
         "ecosystem": "npm",
+        "epss": {
+          "cve": "CVE-2026-26996",
+          "percentile": 0.47571,
+          "score": 0.00577
+        },
         "fix_state": "fixed",
         "fixed_in": [
           "3.1.3"
         ],
         "id": "GHSA-3ppc-4f35-3m26",
+        "kev": null,
         "location": "website/yarn.lock",
         "osv_confirmed": true,
         "package": "minimatch",
         "severity": "High",
+        "summary": "minimatch has a ReDoS via repeated wildcards with non-matching literal in pattern",
         "url": "https://github.com/advisories/GHSA-3ppc-4f35-3m26",
         "version": "3.0.4"
       },
@@ -12256,15 +12721,22 @@
           "CVE-2026-26996"
         ],
         "ecosystem": "npm",
+        "epss": {
+          "cve": "CVE-2026-26996",
+          "percentile": 0.47571,
+          "score": 0.00577
+        },
         "fix_state": "fixed",
         "fixed_in": [
           "3.1.3"
         ],
         "id": "GHSA-3ppc-4f35-3m26",
+        "kev": null,
         "location": "website/yarn.lock",
         "osv_confirmed": true,
         "package": "minimatch",
         "severity": "High",
+        "summary": "minimatch has a ReDoS via repeated wildcards with non-matching literal in pattern",
         "url": "https://github.com/advisories/GHSA-3ppc-4f35-3m26",
         "version": "3.1.2"
       },
@@ -12273,15 +12745,22 @@
           "CVE-2026-27903"
         ],
         "ecosystem": "npm",
+        "epss": {
+          "cve": "CVE-2026-27903",
+          "percentile": 0.4749,
+          "score": 0.00576
+        },
         "fix_state": "fixed",
         "fixed_in": [
           "3.1.3"
         ],
         "id": "GHSA-7r86-cg39-jmmj",
+        "kev": null,
         "location": "website/yarn.lock",
         "osv_confirmed": true,
         "package": "minimatch",
         "severity": "High",
+        "summary": "minimatch has ReDoS: matchOne() combinatorial backtracking via multiple non-adjacent GLOBSTAR segments",
         "url": "https://github.com/advisories/GHSA-7r86-cg39-jmmj",
         "version": "3.0.4"
       },
@@ -12290,15 +12769,22 @@
           "CVE-2026-27903"
         ],
         "ecosystem": "npm",
+        "epss": {
+          "cve": "CVE-2026-27903",
+          "percentile": 0.4749,
+          "score": 0.00576
+        },
         "fix_state": "fixed",
         "fixed_in": [
           "3.1.3"
         ],
         "id": "GHSA-7r86-cg39-jmmj",
+        "kev": null,
         "location": "website/yarn.lock",
         "osv_confirmed": true,
         "package": "minimatch",
         "severity": "High",
+        "summary": "minimatch has ReDoS: matchOne() combinatorial backtracking via multiple non-adjacent GLOBSTAR segments",
         "url": "https://github.com/advisories/GHSA-7r86-cg39-jmmj",
         "version": "3.1.2"
       },
@@ -12307,15 +12793,22 @@
           "CVE-2022-3517"
         ],
         "ecosystem": "npm",
+        "epss": {
+          "cve": "CVE-2022-3517",
+          "percentile": 0.83128,
+          "score": 0.02279
+        },
         "fix_state": "fixed",
         "fixed_in": [
           "3.0.5"
         ],
         "id": "GHSA-f8q6-p94x-37v3",
+        "kev": null,
         "location": "website/yarn.lock",
         "osv_confirmed": true,
         "package": "minimatch",
         "severity": "High",
+        "summary": "minimatch ReDoS vulnerability",
         "url": "https://github.com/advisories/GHSA-f8q6-p94x-37v3",
         "version": "3.0.4"
       },
@@ -12324,15 +12817,22 @@
           "CVE-2026-67214"
         ],
         "ecosystem": "npm",
+        "epss": {
+          "cve": "CVE-2026-67214",
+          "percentile": 0.26147,
+          "score": 0.0033
+        },
         "fix_state": "fixed",
         "fixed_in": [
           "3.3.16"
         ],
         "id": "GHSA-28wg-ghj8-5hjv",
+        "kev": null,
         "location": "website/yarn.lock",
         "osv_confirmed": true,
         "package": "nanoid",
         "severity": "High",
+        "summary": "nanoid: non-secure generators can loop indefinitely with negative size",
         "url": "https://github.com/advisories/GHSA-28wg-ghj8-5hjv",
         "version": "3.3.11"
       },
@@ -12341,15 +12841,22 @@
           "CVE-2026-67213"
         ],
         "ecosystem": "npm",
+        "epss": {
+          "cve": "CVE-2026-67213",
+          "percentile": 0.26279,
+          "score": 0.00331
+        },
         "fix_state": "fixed",
         "fixed_in": [
           "3.3.18"
         ],
         "id": "GHSA-2v37-7h3g-55p8",
+        "kev": null,
         "location": "website/yarn.lock",
         "osv_confirmed": true,
         "package": "nanoid",
         "severity": "High",
+        "summary": "nanoid: custom generators can loop indefinitely when size is zero",
         "url": "https://github.com/advisories/GHSA-2v37-7h3g-55p8",
         "version": "3.3.11"
       },
@@ -12358,15 +12865,22 @@
           "CVE-2026-73086"
         ],
         "ecosystem": "npm",
+        "epss": {
+          "cve": "CVE-2026-73086",
+          "percentile": 0.2234,
+          "score": 0.00296
+        },
         "fix_state": "fixed",
         "fixed_in": [
           "3.3.12"
         ],
         "id": "GHSA-xwg4-73v4-xw9w",
+        "kev": null,
         "location": "website/yarn.lock",
         "osv_confirmed": true,
         "package": "nanoid",
         "severity": "High",
+        "summary": "nanoid: Integer Overflow or Wraparound",
         "url": "https://github.com/advisories/GHSA-xwg4-73v4-xw9w",
         "version": "3.3.11"
       },
@@ -12375,15 +12889,22 @@
           "CVE-2026-119190"
         ],
         "ecosystem": "npm",
+        "epss": {
+          "cve": "CVE-2026-119190",
+          "percentile": 0.15892,
+          "score": 0.00246
+        },
         "fix_state": "fixed",
         "fixed_in": [
           "1.4.1"
         ],
         "id": "GHSA-5x38-2vff-x55p",
+        "kev": null,
         "location": "website/yarn.lock",
         "osv_confirmed": true,
         "package": "node-forge",
         "severity": "High",
+        "summary": "Forge: X.509 basicConstraints bypass in verifyCertificateChain() via deprecated extension OIDs 2.5.29.10 and 2.5.29.13",
         "url": "https://github.com/advisories/GHSA-5x38-2vff-x55p",
         "version": "1.4.0"
       },
@@ -12392,15 +12913,22 @@
           "CVE-2026-118779"
         ],
         "ecosystem": "npm",
+        "epss": {
+          "cve": "CVE-2026-118779",
+          "percentile": 0.46398,
+          "score": 0.00556
+        },
         "fix_state": "fixed",
         "fixed_in": [
           "1.4.1"
         ],
         "id": "GHSA-7wch-p9px-956x",
+        "kev": null,
         "location": "website/yarn.lock",
         "osv_confirmed": true,
         "package": "node-forge",
         "severity": "High",
+        "summary": "Forge: Regular expression denial of service in PEM decoding (pem.decode)",
         "url": "https://github.com/advisories/GHSA-7wch-p9px-956x",
         "version": "1.4.0"
       },
@@ -12409,13 +12937,20 @@
           "CVE-2026-85393"
         ],
         "ecosystem": "npm",
+        "epss": {
+          "cve": "CVE-2026-85393",
+          "percentile": 0.16151,
+          "score": 0.00248
+        },
         "fix_state": "not-fixed",
         "fixed_in": [],
         "id": "GHSA-86w9-cpqp-85rv",
+        "kev": null,
         "location": "website/yarn.lock",
         "osv_confirmed": true,
         "package": "node-forge",
         "severity": "High",
+        "summary": "node-forge RSA PKCS#1 v1.5 signature verification accepts extra nested DigestAlgorithm elements",
         "url": "https://github.com/advisories/GHSA-86w9-cpqp-85rv",
         "version": "1.4.0"
       },
@@ -12424,15 +12959,22 @@
           "CVE-2026-119188"
         ],
         "ecosystem": "npm",
+        "epss": {
+          "cve": "CVE-2026-119188",
+          "percentile": 0.35414,
+          "score": 0.00411
+        },
         "fix_state": "fixed",
         "fixed_in": [
           "1.4.1"
         ],
         "id": "GHSA-8hrf-8g6f-7xwp",
+        "kev": null,
         "location": "website/yarn.lock",
         "osv_confirmed": true,
         "package": "node-forge",
         "severity": "High",
+        "summary": "Forge: Denial of service in TLS record processing via a record interleaved with a fragmented handshake message",
         "url": "https://github.com/advisories/GHSA-8hrf-8g6f-7xwp",
         "version": "1.4.0"
       },
@@ -12441,15 +12983,22 @@
           "CVE-2026-119187"
         ],
         "ecosystem": "npm",
+        "epss": {
+          "cve": "CVE-2026-119187",
+          "percentile": 0.35799,
+          "score": 0.00415
+        },
         "fix_state": "fixed",
         "fixed_in": [
           "1.4.1"
         ],
         "id": "GHSA-hqq3-7jhf-c5jx",
+        "kev": null,
         "location": "website/yarn.lock",
         "osv_confirmed": true,
         "package": "node-forge",
         "severity": "High",
+        "summary": "Forge: Denial of service in TLS record processing via call stack exhaustion",
         "url": "https://github.com/advisories/GHSA-hqq3-7jhf-c5jx",
         "version": "1.4.0"
       },
@@ -12458,15 +13007,22 @@
           "CVE-2026-118782"
         ],
         "ecosystem": "npm",
+        "epss": {
+          "cve": "CVE-2026-118782",
+          "percentile": 0.02195,
+          "score": 0.00125
+        },
         "fix_state": "fixed",
         "fixed_in": [
           "1.4.1"
         ],
         "id": "GHSA-jc66-7q78-782g",
+        "kev": null,
         "location": "website/yarn.lock",
         "osv_confirmed": true,
         "package": "node-forge",
         "severity": "High",
+        "summary": "Forge: PKCS#12 MAC forgery and constant-key PBE via zero iteration count",
         "url": "https://github.com/advisories/GHSA-jc66-7q78-782g",
         "version": "1.4.0"
       },
@@ -12475,15 +13031,22 @@
           "CVE-2026-4867"
         ],
         "ecosystem": "npm",
+        "epss": {
+          "cve": "CVE-2026-4867",
+          "percentile": 0.43909,
+          "score": 0.00515
+        },
         "fix_state": "fixed",
         "fixed_in": [
           "0.1.13"
         ],
         "id": "GHSA-37ch-88jc-xwx2",
+        "kev": null,
         "location": "website/yarn.lock",
         "osv_confirmed": true,
         "package": "path-to-regexp",
         "severity": "High",
+        "summary": "path-to-regexp vulnerable to Regular Expression Denial of Service via multiple route parameters",
         "url": "https://github.com/advisories/GHSA-37ch-88jc-xwx2",
         "version": "0.1.12"
       },
@@ -12492,15 +13055,22 @@
           "CVE-2024-45296"
         ],
         "ecosystem": "npm",
+        "epss": {
+          "cve": "CVE-2024-45296",
+          "percentile": 0.60707,
+          "score": 0.00932
+        },
         "fix_state": "fixed",
         "fixed_in": [
           "1.9.0"
         ],
         "id": "GHSA-9wv6-86v2-598j",
+        "kev": null,
         "location": "website/yarn.lock",
         "osv_confirmed": true,
         "package": "path-to-regexp",
         "severity": "High",
+        "summary": "path-to-regexp outputs backtracking regular expressions",
         "url": "https://github.com/advisories/GHSA-9wv6-86v2-598j",
         "version": "1.8.0"
       },
@@ -12509,15 +13079,22 @@
           "CVE-2024-45296"
         ],
         "ecosystem": "npm",
+        "epss": {
+          "cve": "CVE-2024-45296",
+          "percentile": 0.60707,
+          "score": 0.00932
+        },
         "fix_state": "fixed",
         "fixed_in": [
           "3.3.0"
         ],
         "id": "GHSA-9wv6-86v2-598j",
+        "kev": null,
         "location": "website/yarn.lock",
         "osv_confirmed": true,
         "package": "path-to-regexp",
         "severity": "High",
+        "summary": "path-to-regexp outputs backtracking regular expressions",
         "url": "https://github.com/advisories/GHSA-9wv6-86v2-598j",
         "version": "2.2.1"
       },
@@ -12526,15 +13103,22 @@
           "CVE-2026-73646"
         ],
         "ecosystem": "npm",
+        "epss": {
+          "cve": "CVE-2026-73646",
+          "percentile": 0.44814,
+          "score": 0.0053
+        },
         "fix_state": "fixed",
         "fixed_in": [
           "8.5.18"
         ],
         "id": "GHSA-r28c-9q8g-f849",
+        "kev": null,
         "location": "website/yarn.lock",
         "osv_confirmed": true,
         "package": "postcss",
         "severity": "High",
+        "summary": "PostCSS: Path Traversal in Previous Source Map Auto-Loading (sourceMappingURL) leads to Arbitrary .map File Disclosure",
         "url": "https://github.com/advisories/GHSA-r28c-9q8g-f849",
         "version": "8.5.12"
       },
@@ -12543,30 +13127,40 @@
           "CVE-2022-25883"
         ],
         "ecosystem": "npm",
+        "epss": {
+          "cve": "CVE-2022-25883",
+          "percentile": 0.86273,
+          "score": 0.02761
+        },
         "fix_state": "fixed",
         "fixed_in": [
           "7.5.2"
         ],
         "id": "GHSA-c2qf-rxjj-qqgw",
+        "kev": null,
         "location": "website/yarn.lock",
         "osv_confirmed": true,
         "package": "semver",
         "severity": "High",
+        "summary": "semver vulnerable to Regular Expression Denial of Service",
         "url": "https://github.com/advisories/GHSA-c2qf-rxjj-qqgw",
         "version": "7.0.0"
       },
       {
         "aliases": [],
         "ecosystem": "npm",
+        "epss": null,
         "fix_state": "fixed",
         "fixed_in": [
           "7.0.3"
         ],
         "id": "GHSA-5c6j-r48x-rmvq",
+        "kev": null,
         "location": "website/yarn.lock",
         "osv_confirmed": true,
         "package": "serialize-javascript",
         "severity": "High",
+        "summary": "Serialize JavaScript is Vulnerable to RCE via RegExp.flags and Date.prototype.toISOString()",
         "url": "https://github.com/advisories/GHSA-5c6j-r48x-rmvq",
         "version": "6.0.2"
       },
@@ -12575,15 +13169,22 @@
           "CVE-2026-13311"
         ],
         "ecosystem": "npm",
+        "epss": {
+          "cve": "CVE-2026-13311",
+          "percentile": 0.29829,
+          "score": 0.0036
+        },
         "fix_state": "fixed",
         "fixed_in": [
           "1.9.0"
         ],
         "id": "GHSA-395f-4hp3-45gv",
+        "kev": null,
         "location": "website/yarn.lock",
         "osv_confirmed": true,
         "package": "shell-quote",
         "severity": "High",
+        "summary": "shell-quote: Quadratic-complexity Denial of Service in `parse()` (CWE-407)",
         "url": "https://github.com/advisories/GHSA-395f-4hp3-45gv",
         "version": "1.8.4"
       },
@@ -12592,15 +13193,22 @@
           "CVE-2026-93749"
         ],
         "ecosystem": "npm",
+        "epss": {
+          "cve": "CVE-2026-93749",
+          "percentile": 0.39513,
+          "score": 0.00455
+        },
         "fix_state": "fixed",
         "fixed_in": [
           "1.2.2"
         ],
         "id": "GHSA-68fv-2mgg-jv7q",
+        "kev": null,
         "location": "website/yarn.lock",
         "osv_confirmed": true,
         "package": "source-map-js",
         "severity": "High",
+        "summary": "source-map-js allows event-loop denial of service through indexed source-map section offsets",
         "url": "https://github.com/advisories/GHSA-68fv-2mgg-jv7q",
         "version": "1.2.1"
       },
@@ -12609,15 +13217,22 @@
           "CVE-2026-73650"
         ],
         "ecosystem": "npm",
+        "epss": {
+          "cve": "CVE-2026-73650",
+          "percentile": 0.37761,
+          "score": 0.00435
+        },
         "fix_state": "fixed",
         "fixed_in": [
           "2.8.3"
         ],
         "id": "GHSA-2p49-hgcm-8545",
+        "kev": null,
         "location": "website/yarn.lock",
         "osv_confirmed": true,
         "package": "svgo",
         "severity": "High",
+        "summary": "SVGO removeScripts plugin leaves some executable scripts intact",
         "url": "https://github.com/advisories/GHSA-2p49-hgcm-8545",
         "version": "2.8.2"
       },
@@ -12626,15 +13241,22 @@
           "CVE-2026-84370"
         ],
         "ecosystem": "npm",
+        "epss": {
+          "cve": "CVE-2026-84370",
+          "percentile": 0.44515,
+          "score": 0.00525
+        },
         "fix_state": "fixed",
         "fixed_in": [
           "2.8.4"
         ],
         "id": "GHSA-w27v-7q3p-w38r",
+        "kev": null,
         "location": "website/yarn.lock",
         "osv_confirmed": true,
         "package": "svgo",
         "severity": "High",
+        "summary": "SVGO: removeScripts allows executable links through namespace and control-character bypasses",
         "url": "https://github.com/advisories/GHSA-w27v-7q3p-w38r",
         "version": "2.8.2"
       },
@@ -12643,15 +13265,22 @@
           "CVE-2020-7753"
         ],
         "ecosystem": "npm",
+        "epss": {
+          "cve": "CVE-2020-7753",
+          "percentile": 0.89946,
+          "score": 0.03777
+        },
         "fix_state": "fixed",
         "fixed_in": [
           "0.0.3"
         ],
         "id": "GHSA-w5p7-h5w8-2hfq",
+        "kev": null,
         "location": "website/yarn.lock",
         "osv_confirmed": true,
         "package": "trim",
         "severity": "High",
+        "summary": "Regular Expression Denial of Service in trim",
         "url": "https://github.com/advisories/GHSA-w5p7-h5w8-2hfq",
         "version": "0.0.1"
       },
@@ -12660,15 +13289,22 @@
           "CVE-2026-76844"
         ],
         "ecosystem": "npm",
+        "epss": {
+          "cve": "CVE-2026-76844",
+          "percentile": 0.48311,
+          "score": 0.00592
+        },
         "fix_state": "fixed",
         "fixed_in": [
           "7.4.6"
         ],
         "id": "GHSA-g84c-rxfj-3j2c",
+        "kev": null,
         "location": "website/yarn.lock",
         "osv_confirmed": true,
         "package": "webpack-dev-middleware",
         "severity": "High",
+        "summary": "webpack-dev-middleware vulnerable to Path Traversal via non-slash-terminated publicPath",
         "url": "https://github.com/advisories/GHSA-g84c-rxfj-3j2c",
         "version": "5.3.4"
       },
@@ -12677,15 +13313,22 @@
           "CVE-2026-48779"
         ],
         "ecosystem": "npm",
+        "epss": {
+          "cve": "CVE-2026-48779",
+          "percentile": 0.72944,
+          "score": 0.01426
+        },
         "fix_state": "fixed",
         "fixed_in": [
           "7.5.11"
         ],
         "id": "GHSA-96hv-2xvq-fx4p",
+        "kev": null,
         "location": "website/yarn.lock",
         "osv_confirmed": true,
         "package": "ws",
         "severity": "High",
+        "summary": "ws: Memory exhaustion DoS from tiny fragments and data chunks",
         "url": "https://github.com/advisories/GHSA-96hv-2xvq-fx4p",
         "version": "7.5.10"
       },
@@ -12694,15 +13337,22 @@
           "CVE-2026-48779"
         ],
         "ecosystem": "npm",
+        "epss": {
+          "cve": "CVE-2026-48779",
+          "percentile": 0.72944,
+          "score": 0.01426
+        },
         "fix_state": "fixed",
         "fixed_in": [
           "8.21.0"
         ],
         "id": "GHSA-96hv-2xvq-fx4p",
+        "kev": null,
         "location": "website/yarn.lock",
         "osv_confirmed": true,
         "package": "ws",
         "severity": "High",
+        "summary": "ws: Memory exhaustion DoS from tiny fragments and data chunks",
         "url": "https://github.com/advisories/GHSA-96hv-2xvq-fx4p",
         "version": "8.17.1"
       },
@@ -12711,15 +13361,22 @@
           "CVE-2025-69873"
         ],
         "ecosystem": "npm",
+        "epss": {
+          "cve": "CVE-2025-69873",
+          "percentile": 0.45842,
+          "score": 0.00547
+        },
         "fix_state": "fixed",
         "fixed_in": [
           "6.14.0"
         ],
         "id": "GHSA-2g4f-4pwh-qvx6",
+        "kev": null,
         "location": "website/yarn.lock",
         "osv_confirmed": true,
         "package": "ajv",
         "severity": "Medium",
+        "summary": "ajv has ReDoS when using `$data` option",
         "url": "https://github.com/advisories/GHSA-2g4f-4pwh-qvx6",
         "version": "6.12.6"
       },
@@ -12728,15 +13385,22 @@
           "CVE-2025-69873"
         ],
         "ecosystem": "npm",
+        "epss": {
+          "cve": "CVE-2025-69873",
+          "percentile": 0.45842,
+          "score": 0.00547
+        },
         "fix_state": "fixed",
         "fixed_in": [
           "8.18.0"
         ],
         "id": "GHSA-2g4f-4pwh-qvx6",
+        "kev": null,
         "location": "website/yarn.lock",
         "osv_confirmed": true,
         "package": "ajv",
         "severity": "Medium",
+        "summary": "ajv has ReDoS when using `$data` option",
         "url": "https://github.com/advisories/GHSA-2g4f-4pwh-qvx6",
         "version": "8.11.0"
       },
@@ -12745,15 +13409,22 @@
           "CVE-2025-69873"
         ],
         "ecosystem": "npm",
+        "epss": {
+          "cve": "CVE-2025-69873",
+          "percentile": 0.45842,
+          "score": 0.00547
+        },
         "fix_state": "fixed",
         "fixed_in": [
           "8.18.0"
         ],
         "id": "GHSA-2g4f-4pwh-qvx6",
+        "kev": null,
         "location": "website/yarn.lock",
         "osv_confirmed": true,
         "package": "ajv",
         "severity": "Medium",
+        "summary": "ajv has ReDoS when using `$data` option",
         "url": "https://github.com/advisories/GHSA-2g4f-4pwh-qvx6",
         "version": "8.17.1"
       },
@@ -12762,15 +13433,22 @@
           "CVE-2025-62718"
         ],
         "ecosystem": "npm",
+        "epss": {
+          "cve": "CVE-2025-62718",
+          "percentile": 0.67865,
+          "score": 0.01186
+        },
         "fix_state": "fixed",
         "fixed_in": [
           "0.31.0"
         ],
         "id": "GHSA-3p68-rc4w-qgx5",
+        "kev": null,
         "location": "website/yarn.lock",
         "osv_confirmed": true,
         "package": "axios",
         "severity": "Medium",
+        "summary": "Axios has a NO_PROXY Hostname Normalization Bypass that Leads to SSRF",
         "url": "https://github.com/advisories/GHSA-3p68-rc4w-qgx5",
         "version": "0.25.0"
       },
@@ -12779,15 +13457,22 @@
           "CVE-2026-42034"
         ],
         "ecosystem": "npm",
+        "epss": {
+          "cve": "CVE-2026-42034",
+          "percentile": 0.25848,
+          "score": 0.00327
+        },
         "fix_state": "fixed",
         "fixed_in": [
           "0.31.1"
         ],
         "id": "GHSA-5c9x-8gcm-mpgx",
+        "kev": null,
         "location": "website/yarn.lock",
         "osv_confirmed": true,
         "package": "axios",
         "severity": "Medium",
+        "summary": "Axios' HTTP adapter-streamed uploads bypass maxBodyLength when maxRedirects: 0",
         "url": "https://github.com/advisories/GHSA-5c9x-8gcm-mpgx",
         "version": "0.25.0"
       },
@@ -12796,15 +13481,22 @@
           "CVE-2026-42039"
         ],
         "ecosystem": "npm",
+        "epss": {
+          "cve": "CVE-2026-42039",
+          "percentile": 0.55694,
+          "score": 0.00772
+        },
         "fix_state": "fixed",
         "fixed_in": [
           "0.31.1"
         ],
         "id": "GHSA-62hf-57xw-28j9",
+        "kev": null,
         "location": "website/yarn.lock",
         "osv_confirmed": true,
         "package": "axios",
         "severity": "Medium",
+        "summary": "Axios: unbounded recursion in toFormData causes DoS via deeply nested request data",
         "url": "https://github.com/advisories/GHSA-62hf-57xw-28j9",
         "version": "0.25.0"
       },
@@ -12813,15 +13505,22 @@
           "CVE-2026-67319"
         ],
         "ecosystem": "npm",
+        "epss": {
+          "cve": "CVE-2026-67319",
+          "percentile": 0.24739,
+          "score": 0.00318
+        },
         "fix_state": "fixed",
         "fixed_in": [
           "0.33.0"
         ],
         "id": "GHSA-7q8q-rj6j-mhjq",
+        "kev": null,
         "location": "website/yarn.lock",
         "osv_confirmed": true,
         "package": "axios",
         "severity": "Medium",
+        "summary": "Axios: Nested axios option objects can consume polluted prototype values",
         "url": "https://github.com/advisories/GHSA-7q8q-rj6j-mhjq",
         "version": "0.25.0"
       },
@@ -12830,15 +13529,22 @@
           "CVE-2026-44490"
         ],
         "ecosystem": "npm",
+        "epss": {
+          "cve": "CVE-2026-44490",
+          "percentile": 0.2647,
+          "score": 0.00332
+        },
         "fix_state": "fixed",
         "fixed_in": [
           "0.32.0"
         ],
         "id": "GHSA-898c-q2cr-xwhg",
+        "kev": null,
         "location": "website/yarn.lock",
         "osv_confirmed": true,
         "package": "axios",
         "severity": "Medium",
+        "summary": "axios has DoS & Header Injection via Prototype Pollution Read-Side Gadgets in axios merge functions",
         "url": "https://github.com/advisories/GHSA-898c-q2cr-xwhg",
         "version": "0.25.0"
       },
@@ -12847,15 +13553,22 @@
           "CVE-2026-40175"
         ],
         "ecosystem": "npm",
+        "epss": {
+          "cve": "CVE-2026-40175",
+          "percentile": 0.80221,
+          "score": 0.01949
+        },
         "fix_state": "fixed",
         "fixed_in": [
           "0.31.0"
         ],
         "id": "GHSA-fvcv-3m26-pcqx",
+        "kev": null,
         "location": "website/yarn.lock",
         "osv_confirmed": true,
         "package": "axios",
         "severity": "Medium",
+        "summary": "Axios has Unrestricted Cloud Metadata Exfiltration via Header Injection Chain",
         "url": "https://github.com/advisories/GHSA-fvcv-3m26-pcqx",
         "version": "0.25.0"
       },
@@ -12864,15 +13577,22 @@
           "CVE-2026-42038"
         ],
         "ecosystem": "npm",
+        "epss": {
+          "cve": "CVE-2026-42038",
+          "percentile": 0.25438,
+          "score": 0.00324
+        },
         "fix_state": "fixed",
         "fixed_in": [
           "0.31.1"
         ],
         "id": "GHSA-m7pr-hjqh-92cm",
+        "kev": null,
         "location": "website/yarn.lock",
         "osv_confirmed": true,
         "package": "axios",
         "severity": "Medium",
+        "summary": "Axios: no_proxy bypass via IP alias allows SSRF",
         "url": "https://github.com/advisories/GHSA-m7pr-hjqh-92cm",
         "version": "0.25.0"
       },
@@ -12881,15 +13601,22 @@
           "CVE-2026-67316"
         ],
         "ecosystem": "npm",
+        "epss": {
+          "cve": "CVE-2026-67316",
+          "percentile": 0.36729,
+          "score": 0.00424
+        },
         "fix_state": "fixed",
         "fixed_in": [
           "0.33.0"
         ],
         "id": "GHSA-mmx7-hfxf-jppx",
+        "kev": null,
         "location": "website/yarn.lock",
         "osv_confirmed": true,
         "package": "axios",
         "severity": "Medium",
+        "summary": "Axios: Prototype pollution gadgets can alter axios request construction",
         "url": "https://github.com/advisories/GHSA-mmx7-hfxf-jppx",
         "version": "0.25.0"
       },
@@ -12898,15 +13625,22 @@
           "CVE-2026-42036"
         ],
         "ecosystem": "npm",
+        "epss": {
+          "cve": "CVE-2026-42036",
+          "percentile": 0.25849,
+          "score": 0.00327
+        },
         "fix_state": "fixed",
         "fixed_in": [
           "0.31.1"
         ],
         "id": "GHSA-vf2m-468p-8v99",
+        "kev": null,
         "location": "website/yarn.lock",
         "osv_confirmed": true,
         "package": "axios",
         "severity": "Medium",
+        "summary": "Axios: HTTP adapter streamed responses bypass maxContentLength",
         "url": "https://github.com/advisories/GHSA-vf2m-468p-8v99",
         "version": "0.25.0"
       },
@@ -12915,15 +13649,22 @@
           "CVE-2026-42041"
         ],
         "ecosystem": "npm",
+        "epss": {
+          "cve": "CVE-2026-42041",
+          "percentile": 0.51425,
+          "score": 0.00656
+        },
         "fix_state": "fixed",
         "fixed_in": [
           "0.31.1"
         ],
         "id": "GHSA-w9j2-pvgh-6h63",
+        "kev": null,
         "location": "website/yarn.lock",
         "osv_confirmed": true,
         "package": "axios",
         "severity": "Medium",
+        "summary": "Axios: Authentication Bypass via Prototype Pollution Gadget in `validateStatus` Merge Strategy",
         "url": "https://github.com/advisories/GHSA-w9j2-pvgh-6h63",
         "version": "0.25.0"
       },
@@ -12932,15 +13673,22 @@
           "CVE-2023-45857"
         ],
         "ecosystem": "npm",
+        "epss": {
+          "cve": "CVE-2023-45857",
+          "percentile": 0.54249,
+          "score": 0.00729
+        },
         "fix_state": "fixed",
         "fixed_in": [
           "0.28.0"
         ],
         "id": "GHSA-wf5p-g6vw-rhxx",
+        "kev": null,
         "location": "website/yarn.lock",
         "osv_confirmed": true,
         "package": "axios",
         "severity": "Medium",
+        "summary": "Axios Cross-Site Request Forgery Vulnerability",
         "url": "https://github.com/advisories/GHSA-wf5p-g6vw-rhxx",
         "version": "0.25.0"
       },
@@ -12949,15 +13697,22 @@
           "CVE-2026-42042"
         ],
         "ecosystem": "npm",
+        "epss": {
+          "cve": "CVE-2026-42042",
+          "percentile": 0.1118,
+          "score": 0.0021
+        },
         "fix_state": "fixed",
         "fixed_in": [
           "0.31.1"
         ],
         "id": "GHSA-xx6v-rp6x-q39c",
+        "kev": null,
         "location": "website/yarn.lock",
         "osv_confirmed": true,
         "package": "axios",
         "severity": "Medium",
+        "summary": "Axios: XSRF Token Cross-Origin Leakage via Prototype Pollution Gadget in `withXSRFToken` Boolean Coercion",
         "url": "https://github.com/advisories/GHSA-xx6v-rp6x-q39c",
         "version": "0.25.0"
       },
@@ -12966,15 +13721,22 @@
           "CVE-2026-45819"
         ],
         "ecosystem": "npm",
+        "epss": {
+          "cve": "CVE-2026-45819",
+          "percentile": 0.43259,
+          "score": 0.00507
+        },
         "fix_state": "fixed",
         "fixed_in": [
           "2.11.0"
         ],
         "id": "GHSA-w5vr-8v7q-w6rv",
+        "kev": null,
         "location": "website/yarn.lock",
         "osv_confirmed": true,
         "package": "baseline-browser-mapping",
         "severity": "Medium",
+        "summary": "baseline-browser-mapping process termination on invalid input causes denial of service",
         "url": "https://github.com/advisories/GHSA-w5vr-8v7q-w6rv",
         "version": "2.9.19"
       },
@@ -12983,15 +13745,22 @@
           "CVE-2026-102277"
         ],
         "ecosystem": "npm",
+        "epss": {
+          "cve": "CVE-2026-102277",
+          "percentile": 0.37116,
+          "score": 0.00428
+        },
         "fix_state": "fixed",
         "fixed_in": [
           "1.1.21"
         ],
         "id": "GHSA-q2hr-2g5m-vwhr",
+        "kev": null,
         "location": "website/yarn.lock",
         "osv_confirmed": true,
         "package": "brace-expansion",
         "severity": "Medium",
+        "summary": "brace-expansion: Quadratic-time expansion of the `{a},b}` rewrite causes CPU denial of service",
         "url": "https://github.com/advisories/GHSA-q2hr-2g5m-vwhr",
         "version": "1.1.13"
       },
@@ -13000,15 +13769,22 @@
           "CVE-2026-85062"
         ],
         "ecosystem": "npm",
+        "epss": {
+          "cve": "CVE-2026-85062",
+          "percentile": 0.43256,
+          "score": 0.00507
+        },
         "fix_state": "fixed",
         "fixed_in": [
           "2.9.4"
         ],
         "id": "GHSA-2wm5-q62r-hmrv",
+        "kev": null,
         "location": "website/yarn.lock",
         "osv_confirmed": true,
         "package": "colord",
         "severity": "Medium",
+        "summary": "Colord: Slow rejection of oversized malformed color strings",
         "url": "https://github.com/advisories/GHSA-2wm5-q62r-hmrv",
         "version": "2.9.2"
       },
@@ -13017,15 +13793,22 @@
           "CVE-2026-86472"
         ],
         "ecosystem": "npm",
+        "epss": {
+          "cve": "CVE-2026-86472",
+          "percentile": 0.16796,
+          "score": 0.00253
+        },
         "fix_state": "fixed",
         "fixed_in": [
           "3.1.8"
         ],
         "id": "GHSA-hrr3-gc8f-f4qj",
+        "kev": null,
         "location": "website/yarn.lock",
         "osv_confirmed": true,
         "package": "fast-uri",
         "severity": "Medium",
+        "summary": "fast-uri vulnerable to inconsistent host case normalization via percent-encoded octets",
         "url": "https://github.com/advisories/GHSA-hrr3-gc8f-f4qj",
         "version": "3.1.2"
       },
@@ -13034,15 +13817,22 @@
           "CVE-2026-110306"
         ],
         "ecosystem": "npm",
+        "epss": {
+          "cve": "CVE-2026-110306",
+          "percentile": 0.1635,
+          "score": 0.0025
+        },
         "fix_state": "fixed",
         "fixed_in": [
           "3.1.9"
         ],
         "id": "GHSA-w74x-v6f9-j3xg",
+        "kev": null,
         "location": "website/yarn.lock",
         "osv_confirmed": true,
         "package": "fast-uri",
         "severity": "Medium",
+        "summary": "fast-uri vulnerable to URI scheme spoofing via percent-encoded scheme decoding",
         "url": "https://github.com/advisories/GHSA-w74x-v6f9-j3xg",
         "version": "3.1.2"
       },
@@ -13051,16 +13841,23 @@
           "CVE-2026-114437"
         ],
         "ecosystem": "golang",
+        "epss": {
+          "cve": "CVE-2026-114437",
+          "percentile": 0.02563,
+          "score": 0.00129
+        },
         "fix_state": "fixed",
         "fixed_in": [
           "5.4.0"
         ],
         "id": "GHSA-j6qf-3m9c-vwj3",
         "in_binary": "not in released binary",
+        "kev": null,
         "location": "go.mod",
         "osv_confirmed": true,
         "package": "github.com/go-chi/chi/v5",
         "severity": "Medium",
+        "summary": "chi: Client IP spoofing in ClientIPFromXFF via X-Forwarded-For",
         "url": "https://github.com/advisories/GHSA-j6qf-3m9c-vwj3",
         "version": "v5.3.0"
       },
@@ -13069,16 +13866,23 @@
           "CVE-2026-84303"
         ],
         "ecosystem": "golang",
+        "epss": {
+          "cve": "CVE-2026-84303",
+          "percentile": 0.23991,
+          "score": 0.00311
+        },
         "fix_state": "fixed",
         "fixed_in": [
           "1.83.1"
         ],
         "id": "GHSA-qc2q-p7wx-3px3",
         "in_binary": "module in binary",
+        "kev": null,
         "location": "go.mod",
         "osv_confirmed": true,
         "package": "google.golang.org/grpc",
         "severity": "Medium",
+        "summary": "gRPC-Go: xDS RBAC HTTP Filter bypass via mixed-case Header Matching and gRFC A41 validation evasion",
         "url": "https://github.com/advisories/GHSA-qc2q-p7wx-3px3",
         "version": "v1.82.1"
       },
@@ -13087,15 +13891,22 @@
           "CVE-2022-33987"
         ],
         "ecosystem": "npm",
+        "epss": {
+          "cve": "CVE-2022-33987",
+          "percentile": 0.84147,
+          "score": 0.02416
+        },
         "fix_state": "fixed",
         "fixed_in": [
           "11.8.5"
         ],
         "id": "GHSA-pfrx-2q88-qq97",
+        "kev": null,
         "location": "website/yarn.lock",
         "osv_confirmed": true,
         "package": "got",
         "severity": "Medium",
+        "summary": "Got allows a redirect to a UNIX socket",
         "url": "https://github.com/advisories/GHSA-pfrx-2q88-qq97",
         "version": "9.6.0"
       },
@@ -13104,15 +13915,22 @@
           "CVE-2026-90771"
         ],
         "ecosystem": "npm",
+        "epss": {
+          "cve": "CVE-2026-90771",
+          "percentile": 0.33029,
+          "score": 0.00389
+        },
         "fix_state": "fixed",
         "fixed_in": [
           "17.13.8"
         ],
         "id": "GHSA-wr44-6hxh-3jwq",
+        "kev": null,
         "location": "website/yarn.lock",
         "osv_confirmed": true,
         "package": "joi",
         "severity": "Medium",
+        "summary": "joi messages compilation allows prototype replacement through __proto__ error codes",
         "url": "https://github.com/advisories/GHSA-wr44-6hxh-3jwq",
         "version": "17.13.4"
       },
@@ -13121,15 +13939,22 @@
           "CVE-2026-53550"
         ],
         "ecosystem": "npm",
+        "epss": {
+          "cve": "CVE-2026-53550",
+          "percentile": 0.35866,
+          "score": 0.00415
+        },
         "fix_state": "fixed",
         "fixed_in": [
           "3.15.0"
         ],
         "id": "GHSA-h67p-54hq-rp68",
+        "kev": null,
         "location": "website/yarn.lock",
         "osv_confirmed": true,
         "package": "js-yaml",
         "severity": "Medium",
+        "summary": "JS-YAML: Quadratic-complexity DoS in merge key handling via repeated aliases",
         "url": "https://github.com/advisories/GHSA-h67p-54hq-rp68",
         "version": "3.14.1"
       },
@@ -13138,15 +13963,22 @@
           "CVE-2026-53550"
         ],
         "ecosystem": "npm",
+        "epss": {
+          "cve": "CVE-2026-53550",
+          "percentile": 0.35866,
+          "score": 0.00415
+        },
         "fix_state": "fixed",
         "fixed_in": [
           "4.2.0"
         ],
         "id": "GHSA-h67p-54hq-rp68",
+        "kev": null,
         "location": "website/yarn.lock",
         "osv_confirmed": true,
         "package": "js-yaml",
         "severity": "Medium",
+        "summary": "JS-YAML: Quadratic-complexity DoS in merge key handling via repeated aliases",
         "url": "https://github.com/advisories/GHSA-h67p-54hq-rp68",
         "version": "4.1.0"
       },
@@ -13155,15 +13987,22 @@
           "CVE-2025-64718"
         ],
         "ecosystem": "npm",
+        "epss": {
+          "cve": "CVE-2025-64718",
+          "percentile": 0.36631,
+          "score": 0.00423
+        },
         "fix_state": "fixed",
         "fixed_in": [
           "3.14.2"
         ],
         "id": "GHSA-mh29-5h37-fv8m",
+        "kev": null,
         "location": "website/yarn.lock",
         "osv_confirmed": true,
         "package": "js-yaml",
         "severity": "Medium",
+        "summary": "js-yaml has prototype pollution in merge (<<)",
         "url": "https://github.com/advisories/GHSA-mh29-5h37-fv8m",
         "version": "3.14.1"
       },
@@ -13172,15 +14011,22 @@
           "CVE-2025-64718"
         ],
         "ecosystem": "npm",
+        "epss": {
+          "cve": "CVE-2025-64718",
+          "percentile": 0.36631,
+          "score": 0.00423
+        },
         "fix_state": "fixed",
         "fixed_in": [
           "4.1.1"
         ],
         "id": "GHSA-mh29-5h37-fv8m",
+        "kev": null,
         "location": "website/yarn.lock",
         "osv_confirmed": true,
         "package": "js-yaml",
         "severity": "Medium",
+        "summary": "js-yaml has prototype pollution in merge (<<)",
         "url": "https://github.com/advisories/GHSA-mh29-5h37-fv8m",
         "version": "4.1.0"
       },
@@ -13189,15 +14035,22 @@
           "CVE-2026-118764"
         ],
         "ecosystem": "npm",
+        "epss": {
+          "cve": "CVE-2026-118764",
+          "percentile": 0.21751,
+          "score": 0.00291
+        },
         "fix_state": "fixed",
         "fixed_in": [
           "11.0.1"
         ],
         "id": "GHSA-g3hv-75wg-m249",
+        "kev": null,
         "location": "website/yarn.lock",
         "osv_confirmed": true,
         "package": "minimatch",
         "severity": "Medium",
+        "summary": "minimatch has potential denial of service via globparts amplification",
         "url": "https://github.com/advisories/GHSA-g3hv-75wg-m249",
         "version": "3.0.4"
       },
@@ -13206,15 +14059,22 @@
           "CVE-2026-118764"
         ],
         "ecosystem": "npm",
+        "epss": {
+          "cve": "CVE-2026-118764",
+          "percentile": 0.21751,
+          "score": 0.00291
+        },
         "fix_state": "fixed",
         "fixed_in": [
           "11.0.1"
         ],
         "id": "GHSA-g3hv-75wg-m249",
+        "kev": null,
         "location": "website/yarn.lock",
         "osv_confirmed": true,
         "package": "minimatch",
         "severity": "Medium",
+        "summary": "minimatch has potential denial of service via globparts amplification",
         "url": "https://github.com/advisories/GHSA-g3hv-75wg-m249",
         "version": "3.1.2"
       },
@@ -13223,15 +14083,22 @@
           "CVE-2026-118778"
         ],
         "ecosystem": "npm",
+        "epss": {
+          "cve": "CVE-2026-118778",
+          "percentile": 0.10363,
+          "score": 0.00204
+        },
         "fix_state": "fixed",
         "fixed_in": [
           "1.4.1"
         ],
         "id": "GHSA-525v-9gp9-w22h",
+        "kev": null,
         "location": "website/yarn.lock",
         "osv_confirmed": true,
         "package": "node-forge",
         "severity": "Medium",
+        "summary": "Forge: TLS client crash when the server sends no certificate",
         "url": "https://github.com/advisories/GHSA-525v-9gp9-w22h",
         "version": "1.4.0"
       },
@@ -13240,15 +14107,22 @@
           "CVE-2026-119186"
         ],
         "ecosystem": "npm",
+        "epss": {
+          "cve": "CVE-2026-119186",
+          "percentile": 0.1069,
+          "score": 0.00206
+        },
         "fix_state": "fixed",
         "fixed_in": [
           "1.4.1"
         ],
         "id": "GHSA-5cwg-6vw7-rj6p",
+        "kev": null,
         "location": "website/yarn.lock",
         "osv_confirmed": true,
         "package": "node-forge",
         "severity": "Medium",
+        "summary": "Forge: AES-GCM authentication bypass via unvalidated tagLength option",
         "url": "https://github.com/advisories/GHSA-5cwg-6vw7-rj6p",
         "version": "1.4.0"
       },
@@ -13257,15 +14131,22 @@
           "CVE-2026-118777"
         ],
         "ecosystem": "npm",
+        "epss": {
+          "cve": "CVE-2026-118777",
+          "percentile": 0.17154,
+          "score": 0.00255
+        },
         "fix_state": "fixed",
         "fixed_in": [
           "1.4.1"
         ],
         "id": "GHSA-6wvx-3r32-xmcg",
+        "kev": null,
         "location": "website/yarn.lock",
         "osv_confirmed": true,
         "package": "node-forge",
         "severity": "Medium",
+        "summary": "Forge: Prototype Pollution in forge.http cookie handling via a malicious Set-Cookie",
         "url": "https://github.com/advisories/GHSA-6wvx-3r32-xmcg",
         "version": "1.4.0"
       },
@@ -13274,15 +14155,22 @@
           "CVE-2026-69153"
         ],
         "ecosystem": "npm",
+        "epss": {
+          "cve": "CVE-2026-69153",
+          "percentile": 0.39208,
+          "score": 0.00451
+        },
         "fix_state": "fixed",
         "fixed_in": [
           "8.5.23"
         ],
         "id": "GHSA-fxqj-rqcc-2cmp",
+        "kev": null,
         "location": "website/yarn.lock",
         "osv_confirmed": true,
         "package": "postcss",
         "severity": "Medium",
+        "summary": "PostCSS: incomplete fix of GHSA-6g55-p6wh-862q \u2014 attacker-controlled sourceMappingURL reads arbitrary .map files when `from` is unset",
         "url": "https://github.com/advisories/GHSA-fxqj-rqcc-2cmp",
         "version": "8.5.12"
       },
@@ -13291,15 +14179,22 @@
           "CVE-2026-104844"
         ],
         "ecosystem": "npm",
+        "epss": {
+          "cve": "CVE-2026-104844",
+          "percentile": 0.32994,
+          "score": 0.00389
+        },
         "fix_state": "fixed",
         "fixed_in": [
           "6.1.5"
         ],
         "id": "GHSA-rj75-hqrm-r3gf",
+        "kev": null,
         "location": "website/yarn.lock",
         "osv_confirmed": true,
         "package": "postcss-selector-parser",
         "severity": "Medium",
+        "summary": "PostCSS: Quadratic complexity in flat selector parsing allows CPU exhaustion",
         "url": "https://github.com/advisories/GHSA-rj75-hqrm-r3gf",
         "version": "6.0.10"
       },
@@ -13308,15 +14203,22 @@
           "CVE-2026-82417"
         ],
         "ecosystem": "npm",
+        "epss": {
+          "cve": "CVE-2026-82417",
+          "percentile": 0.33809,
+          "score": 0.00396
+        },
         "fix_state": "fixed",
         "fixed_in": [
           "6.16.0"
         ],
         "id": "GHSA-4mjr-xmp4-gh2g",
+        "kev": null,
         "location": "website/yarn.lock",
         "osv_confirmed": true,
         "package": "qs",
         "severity": "Medium",
+        "summary": "qs: Denial of Service via Attacker Controlled isBuffer",
         "url": "https://github.com/advisories/GHSA-4mjr-xmp4-gh2g",
         "version": "6.14.2"
       },
@@ -13325,15 +14227,22 @@
           "CVE-2026-110816"
         ],
         "ecosystem": "npm",
+        "epss": {
+          "cve": "CVE-2026-110816",
+          "percentile": 0.30708,
+          "score": 0.00368
+        },
         "fix_state": "fixed",
         "fixed_in": [
           "6.16.1"
         ],
         "id": "GHSA-6pq8-jhm2-2vcw",
+        "kev": null,
         "location": "website/yarn.lock",
         "osv_confirmed": true,
         "package": "qs",
         "severity": "Medium",
+        "summary": "qs : qs.stringify with arrayFormat 'comma' throws an uncaught TypeError on array elements carrying a non-callable own toString (DoS)",
         "url": "https://github.com/advisories/GHSA-6pq8-jhm2-2vcw",
         "version": "6.14.2"
       },
@@ -13342,15 +14251,22 @@
           "CVE-2026-8723"
         ],
         "ecosystem": "npm",
+        "epss": {
+          "cve": "CVE-2026-8723",
+          "percentile": 0.34217,
+          "score": 0.00399
+        },
         "fix_state": "fixed",
         "fixed_in": [
           "6.15.2"
         ],
         "id": "GHSA-q8mj-m7cp-5q26",
+        "kev": null,
         "location": "website/yarn.lock",
         "osv_confirmed": true,
         "package": "qs",
         "severity": "Medium",
+        "summary": "qs has a remotely triggerable DoS: qs.stringify crashes with TypeError on null/undefined entries in comma-format arrays when encodeValuesOnly is set",
         "url": "https://github.com/advisories/GHSA-q8mj-m7cp-5q26",
         "version": "6.14.2"
       },
@@ -13359,15 +14275,22 @@
           "CVE-2026-82562"
         ],
         "ecosystem": "npm",
+        "epss": {
+          "cve": "CVE-2026-82562",
+          "percentile": 0.45453,
+          "score": 0.0054
+        },
         "fix_state": "fixed",
         "fixed_in": [
           "6.16.0"
         ],
         "id": "GHSA-x5fp-wj9c-mxmx",
+        "kev": null,
         "location": "website/yarn.lock",
         "osv_confirmed": true,
         "package": "qs",
         "severity": "Medium",
+        "summary": "qs array-limit bypass via bracket-key comma parsing",
         "url": "https://github.com/advisories/GHSA-x5fp-wj9c-mxmx",
         "version": "6.14.2"
       },
@@ -13376,15 +14299,22 @@
           "CVE-2026-34043"
         ],
         "ecosystem": "npm",
+        "epss": {
+          "cve": "CVE-2026-34043",
+          "percentile": 0.42201,
+          "score": 0.00491
+        },
         "fix_state": "fixed",
         "fixed_in": [
           "7.0.5"
         ],
         "id": "GHSA-qj8w-gfj5-8c6v",
+        "kev": null,
         "location": "website/yarn.lock",
         "osv_confirmed": true,
         "package": "serialize-javascript",
         "severity": "Medium",
+        "summary": "Serialize JavaScript has CPU Exhaustion Denial of Service via crafted array-like objects",
         "url": "https://github.com/advisories/GHSA-qj8w-gfj5-8c6v",
         "version": "6.0.2"
       },
@@ -13393,15 +14323,22 @@
           "CVE-2026-84369"
         ],
         "ecosystem": "npm",
+        "epss": {
+          "cve": "CVE-2026-84369",
+          "percentile": 0.37221,
+          "score": 0.0043
+        },
         "fix_state": "fixed",
         "fixed_in": [
           "2.8.4"
         ],
         "id": "GHSA-4vpr-x523-8j87",
+        "kev": null,
         "location": "website/yarn.lock",
         "osv_confirmed": true,
         "package": "svgo",
         "severity": "Medium",
+        "summary": "SVGO: removeScripts incompletely sanitizes executable HTML in SVG foreignObject elements",
         "url": "https://github.com/advisories/GHSA-4vpr-x523-8j87",
         "version": "2.8.2"
       },
@@ -13410,15 +14347,22 @@
           "CVE-2026-41907"
         ],
         "ecosystem": "npm",
+        "epss": {
+          "cve": "CVE-2026-41907",
+          "percentile": 0.28633,
+          "score": 0.0035
+        },
         "fix_state": "fixed",
         "fixed_in": [
           "11.1.1"
         ],
         "id": "GHSA-w5hq-g745-h8pq",
+        "kev": null,
         "location": "website/yarn.lock",
         "osv_confirmed": true,
         "package": "uuid",
         "severity": "Medium",
+        "summary": "uuid: Missing buffer bounds check in v3/v5/v6 when buf is provided",
         "url": "https://github.com/advisories/GHSA-w5hq-g745-h8pq",
         "version": "8.3.2"
       },
@@ -13427,15 +14371,22 @@
           "CVE-2025-30359"
         ],
         "ecosystem": "npm",
+        "epss": {
+          "cve": "CVE-2025-30359",
+          "percentile": 0.48631,
+          "score": 0.00598
+        },
         "fix_state": "fixed",
         "fixed_in": [
           "5.2.1"
         ],
         "id": "GHSA-4v9v-hfq4-rm2v",
+        "kev": null,
         "location": "website/yarn.lock",
         "osv_confirmed": true,
         "package": "webpack-dev-server",
         "severity": "Medium",
+        "summary": "webpack-dev-server users' source code may be stolen when they access a malicious web site",
         "url": "https://github.com/advisories/GHSA-4v9v-hfq4-rm2v",
         "version": "4.9.3"
       },
@@ -13444,15 +14395,22 @@
           "CVE-2026-6402"
         ],
         "ecosystem": "npm",
+        "epss": {
+          "cve": "CVE-2026-6402",
+          "percentile": 0.21731,
+          "score": 0.00291
+        },
         "fix_state": "fixed",
         "fixed_in": [
           "5.2.4"
         ],
         "id": "GHSA-79cf-xcqc-c78w",
+        "kev": null,
         "location": "website/yarn.lock",
         "osv_confirmed": true,
         "package": "webpack-dev-server",
         "severity": "Medium",
+        "summary": "webpack-dev-server vulnerable to cross-origin source code exposure on non-HTTPS origins",
         "url": "https://github.com/advisories/GHSA-79cf-xcqc-c78w",
         "version": "4.9.3"
       },
@@ -13461,15 +14419,22 @@
           "CVE-2025-30360"
         ],
         "ecosystem": "npm",
+        "epss": {
+          "cve": "CVE-2025-30360",
+          "percentile": 0.29476,
+          "score": 0.00357
+        },
         "fix_state": "fixed",
         "fixed_in": [
           "5.2.1"
         ],
         "id": "GHSA-9jgg-88mc-972h",
+        "kev": null,
         "location": "website/yarn.lock",
         "osv_confirmed": true,
         "package": "webpack-dev-server",
         "severity": "Medium",
+        "summary": "webpack-dev-server users' source code may be stolen when they access a malicious web site with non-Chromium based browser",
         "url": "https://github.com/advisories/GHSA-9jgg-88mc-972h",
         "version": "4.9.3"
       },
@@ -13478,15 +14443,22 @@
           "CVE-2026-14620"
         ],
         "ecosystem": "npm",
+        "epss": {
+          "cve": "CVE-2026-14620",
+          "percentile": 0.44254,
+          "score": 0.00521
+        },
         "fix_state": "fixed",
         "fixed_in": [
           "5.2.6"
         ],
         "id": "GHSA-f5vj-f2hx-8m93",
+        "kev": null,
         "location": "website/yarn.lock",
         "osv_confirmed": true,
         "package": "webpack-dev-server",
         "severity": "Medium",
+        "summary": "webpack-dev-server vulnerable to cross-site request forgery via internal developer endpoints",
         "url": "https://github.com/advisories/GHSA-f5vj-f2hx-8m93",
         "version": "4.9.3"
       },
@@ -13495,15 +14467,22 @@
           "CVE-2026-14631"
         ],
         "ecosystem": "npm",
+        "epss": {
+          "cve": "CVE-2026-14631",
+          "percentile": 0.4399,
+          "score": 0.00517
+        },
         "fix_state": "fixed",
         "fixed_in": [
           "5.2.6"
         ],
         "id": "GHSA-m28w-2pqf-7qgj",
+        "kev": null,
         "location": "website/yarn.lock",
         "osv_confirmed": true,
         "package": "webpack-dev-server",
         "severity": "Medium",
+        "summary": "webpack-dev-server vulnerable to denial of service via a malformed Host or Origin header",
         "url": "https://github.com/advisories/GHSA-m28w-2pqf-7qgj",
         "version": "4.9.3"
       },
@@ -13512,15 +14491,22 @@
           "CVE-2026-9595"
         ],
         "ecosystem": "npm",
+        "epss": {
+          "cve": "CVE-2026-9595",
+          "percentile": 0.05474,
+          "score": 0.00163
+        },
         "fix_state": "fixed",
         "fixed_in": [
           "5.2.5"
         ],
         "id": "GHSA-mx8g-39q3-5c79",
+        "kev": null,
         "location": "website/yarn.lock",
         "osv_confirmed": true,
         "package": "webpack-dev-server",
         "severity": "Medium",
+        "summary": "webpack-dev-server vulnerable to HMR WebSocket interception via permissive user proxies",
         "url": "https://github.com/advisories/GHSA-mx8g-39q3-5c79",
         "version": "4.9.3"
       },
@@ -13529,15 +14515,22 @@
           "CVE-2026-54490"
         ],
         "ecosystem": "npm",
+        "epss": {
+          "cve": "CVE-2026-54490",
+          "percentile": 0.3869,
+          "score": 0.00445
+        },
         "fix_state": "fixed",
         "fixed_in": [
           "0.7.5"
         ],
         "id": "GHSA-mp7j-qc5w-4988",
+        "kev": null,
         "location": "website/yarn.lock",
         "osv_confirmed": true,
         "package": "websocket-driver",
         "severity": "Medium",
+        "summary": "websocket-driver: Resource limit bypass via message compression",
         "url": "https://github.com/advisories/GHSA-mp7j-qc5w-4988",
         "version": "0.7.4"
       },
@@ -13546,15 +14539,22 @@
           "CVE-2026-45736"
         ],
         "ecosystem": "npm",
+        "epss": {
+          "cve": "CVE-2026-45736",
+          "percentile": 0.54801,
+          "score": 0.00745
+        },
         "fix_state": "fixed",
         "fixed_in": [
           "8.20.1"
         ],
         "id": "GHSA-58qx-3vcg-4xpx",
+        "kev": null,
         "location": "website/yarn.lock",
         "osv_confirmed": true,
         "package": "ws",
         "severity": "Medium",
+        "summary": "ws: Uninitialized memory disclosure",
         "url": "https://github.com/advisories/GHSA-58qx-3vcg-4xpx",
         "version": "8.17.1"
       },
@@ -13563,15 +14563,22 @@
           "CVE-2026-49356"
         ],
         "ecosystem": "npm",
+        "epss": {
+          "cve": "CVE-2026-49356",
+          "percentile": 0.04312,
+          "score": 0.00152
+        },
         "fix_state": "fixed",
         "fixed_in": [
           "7.29.6"
         ],
         "id": "GHSA-4x5r-pxfx-6jf8",
+        "kev": null,
         "location": "website/yarn.lock",
         "osv_confirmed": true,
         "package": "@babel/core",
         "severity": "Low",
+        "summary": "@babel/core: Arbitrary File Read via sourceMappingURL Comment",
         "url": "https://github.com/advisories/GHSA-4x5r-pxfx-6jf8",
         "version": "7.12.9"
       },
@@ -13580,15 +14587,22 @@
           "CVE-2026-49356"
         ],
         "ecosystem": "npm",
+        "epss": {
+          "cve": "CVE-2026-49356",
+          "percentile": 0.04312,
+          "score": 0.00152
+        },
         "fix_state": "fixed",
         "fixed_in": [
           "7.29.6"
         ],
         "id": "GHSA-4x5r-pxfx-6jf8",
+        "kev": null,
         "location": "website/yarn.lock",
         "osv_confirmed": true,
         "package": "@babel/core",
         "severity": "Low",
+        "summary": "@babel/core: Arbitrary File Read via sourceMappingURL Comment",
         "url": "https://github.com/advisories/GHSA-4x5r-pxfx-6jf8",
         "version": "7.18.6"
       },
@@ -13597,15 +14611,22 @@
           "CVE-2026-42040"
         ],
         "ecosystem": "npm",
+        "epss": {
+          "cve": "CVE-2026-42040",
+          "percentile": 0.12184,
+          "score": 0.00217
+        },
         "fix_state": "fixed",
         "fixed_in": [
           "0.31.1"
         ],
         "id": "GHSA-xhjh-pmcv-23jw",
+        "kev": null,
         "location": "website/yarn.lock",
         "osv_confirmed": true,
         "package": "axios",
         "severity": "Low",
+        "summary": "Axios: Null Byte Injection via Reverse-Encoding in AxiosURLSearchParams",
         "url": "https://github.com/advisories/GHSA-xhjh-pmcv-23jw",
         "version": "0.25.0"
       },
@@ -13614,15 +14635,22 @@
           "CVE-2026-12590"
         ],
         "ecosystem": "npm",
+        "epss": {
+          "cve": "CVE-2026-12590",
+          "percentile": 0.3549,
+          "score": 0.00412
+        },
         "fix_state": "fixed",
         "fixed_in": [
           "1.20.6"
         ],
         "id": "GHSA-v422-hmwv-36x6",
+        "kev": null,
         "location": "website/yarn.lock",
         "osv_confirmed": true,
         "package": "body-parser",
         "severity": "Low",
+        "summary": "body-parser vulnerable to denial of service when invalid limit value silently disables size enforcement",
         "url": "https://github.com/advisories/GHSA-v422-hmwv-36x6",
         "version": "1.20.4"
       },
@@ -13631,13 +14659,20 @@
           "CVE-2026-93753"
         ],
         "ecosystem": "npm",
+        "epss": {
+          "cve": "CVE-2026-93753",
+          "percentile": 0.43819,
+          "score": 0.00514
+        },
         "fix_state": "not-fixed",
         "fixed_in": [],
         "id": "GHSA-gcqx-w48m-w2h4",
+        "kev": null,
         "location": "website/yarn.lock",
         "osv_confirmed": true,
         "package": "deepmerge",
         "severity": "Low",
+        "summary": "deepmerge mergeObject() allows prototype poisoning of returned objects",
         "url": "https://github.com/advisories/GHSA-gcqx-w48m-w2h4",
         "version": "4.2.2"
       },
@@ -13646,15 +14681,22 @@
           "CVE-2026-110725"
         ],
         "ecosystem": "npm",
+        "epss": {
+          "cve": "CVE-2026-110725",
+          "percentile": 0.22997,
+          "score": 0.00302
+        },
         "fix_state": "fixed",
         "fixed_in": [
           "3.1.9"
         ],
         "id": "GHSA-333x-w4r6-6crp",
+        "kev": null,
         "location": "website/yarn.lock",
         "osv_confirmed": true,
         "package": "fast-uri",
         "severity": "Low",
+        "summary": "fast-uri vulnerable to scheme injection via an unescaped first-segment colon in suffix references",
         "url": "https://github.com/advisories/GHSA-333x-w4r6-6crp",
         "version": "3.1.2"
       },
@@ -13663,15 +14705,22 @@
           "CVE-2026-110095"
         ],
         "ecosystem": "npm",
+        "epss": {
+          "cve": "CVE-2026-110095",
+          "percentile": 0.21547,
+          "score": 0.00289
+        },
         "fix_state": "fixed",
         "fixed_in": [
           "3.1.9"
         ],
         "id": "GHSA-xhq7-xmqj-769h",
+        "kev": null,
         "location": "website/yarn.lock",
         "osv_confirmed": true,
         "package": "fast-uri",
         "severity": "Low",
+        "summary": "fast-uri vulnerable to improper path equivalence in relative reference normalization",
         "url": "https://github.com/advisories/GHSA-xhq7-xmqj-769h",
         "version": "3.1.2"
       },
@@ -13680,16 +14729,23 @@
           "CVE-2026-81870"
         ],
         "ecosystem": "golang",
+        "epss": {
+          "cve": "CVE-2026-81870",
+          "percentile": 0.18557,
+          "score": 0.00266
+        },
         "fix_state": "fixed",
         "fixed_in": [
           "1.45.0"
         ],
         "id": "GHSA-8wmf-6v46-5gfg",
         "in_binary": "vulnerable code in binary",
+        "kev": null,
         "location": "go.mod",
         "osv_confirmed": true,
         "package": "go.opentelemetry.io/otel/exporters/otlp/otlptrace",
         "severity": "Low",
+        "summary": "OpenTelemetry-Go: Exporter config logging may leak endpoint URLs in info logs",
         "url": "https://github.com/advisories/GHSA-8wmf-6v46-5gfg",
         "version": "v1.44.0"
       },
@@ -13698,16 +14754,23 @@
           "CVE-2026-81870"
         ],
         "ecosystem": "golang",
+        "epss": {
+          "cve": "CVE-2026-81870",
+          "percentile": 0.18557,
+          "score": 0.00266
+        },
         "fix_state": "fixed",
         "fixed_in": [
           "1.45.0"
         ],
         "id": "GHSA-8wmf-6v46-5gfg",
         "in_binary": "vulnerable code in binary",
+        "kev": null,
         "location": "go.mod",
         "osv_confirmed": true,
         "package": "go.opentelemetry.io/otel/exporters/otlp/otlptrace/otlptracegrpc",
         "severity": "Low",
+        "summary": "OpenTelemetry-Go: Exporter config logging may leak endpoint URLs in info logs",
         "url": "https://github.com/advisories/GHSA-8wmf-6v46-5gfg",
         "version": "v1.44.0"
       },
@@ -13716,16 +14779,23 @@
           "CVE-2026-81870"
         ],
         "ecosystem": "golang",
+        "epss": {
+          "cve": "CVE-2026-81870",
+          "percentile": 0.18557,
+          "score": 0.00266
+        },
         "fix_state": "fixed",
         "fixed_in": [
           "1.45.0"
         ],
         "id": "GHSA-8wmf-6v46-5gfg",
         "in_binary": "vulnerable code in binary",
+        "kev": null,
         "location": "go.mod",
         "osv_confirmed": true,
         "package": "go.opentelemetry.io/otel/sdk",
         "severity": "Low",
+        "summary": "OpenTelemetry-Go: Exporter config logging may leak endpoint URLs in info logs",
         "url": "https://github.com/advisories/GHSA-8wmf-6v46-5gfg",
         "version": "v1.44.0"
       },
@@ -13734,15 +14804,22 @@
           "CVE-2026-84368"
         ],
         "ecosystem": "npm",
+        "epss": {
+          "cve": "CVE-2026-84368",
+          "percentile": 0.33029,
+          "score": 0.00389
+        },
         "fix_state": "fixed",
         "fixed_in": [
           "17.13.6"
         ],
         "id": "GHSA-6w3j-5fw6-r9vr",
+        "kev": null,
         "location": "website/yarn.lock",
         "osv_confirmed": true,
         "package": "joi",
         "severity": "Low",
+        "summary": "joi: Prototype pollution via a `__proto__` language key in custom messages",
         "url": "https://github.com/advisories/GHSA-6w3j-5fw6-r9vr",
         "version": "17.13.4"
       },
@@ -13751,15 +14828,22 @@
           "CVE-2026-84367"
         ],
         "ecosystem": "npm",
+        "epss": {
+          "cve": "CVE-2026-84367",
+          "percentile": 0.33029,
+          "score": 0.00389
+        },
         "fix_state": "fixed",
         "fixed_in": [
           "17.13.5"
         ],
         "id": "GHSA-gg4h-3hg2-grpc",
+        "kev": null,
         "location": "website/yarn.lock",
         "osv_confirmed": true,
         "package": "joi",
         "severity": "Low",
+        "summary": "joi: object().rename() with a template target can set the validated object's prototype",
         "url": "https://github.com/advisories/GHSA-gg4h-3hg2-grpc",
         "version": "17.13.4"
       },
@@ -13768,15 +14852,22 @@
           "CVE-2026-118780"
         ],
         "ecosystem": "npm",
+        "epss": {
+          "cve": "CVE-2026-118780",
+          "percentile": 0.06585,
+          "score": 0.00172
+        },
         "fix_state": "fixed",
         "fixed_in": [
           "1.4.1"
         ],
         "id": "GHSA-4487-j8r4-4g2f",
+        "kev": null,
         "location": "website/yarn.lock",
         "osv_confirmed": true,
         "package": "node-forge",
         "severity": "Low",
+        "summary": "Forge: verifyCertificateChain() removes trusted CA certificates with the same subject from the CA store",
         "url": "https://github.com/advisories/GHSA-4487-j8r4-4g2f",
         "version": "1.4.0"
       },
@@ -13785,15 +14876,22 @@
           "CVE-2026-118775"
         ],
         "ecosystem": "npm",
+        "epss": {
+          "cve": "CVE-2026-118775",
+          "percentile": 0.24273,
+          "score": 0.00313
+        },
         "fix_state": "fixed",
         "fixed_in": [
           "1.4.1"
         ],
         "id": "GHSA-4642-5mcj-2rqw",
+        "kev": null,
         "location": "website/yarn.lock",
         "osv_confirmed": true,
         "package": "node-forge",
         "severity": "Low",
+        "summary": "Forge: ASN.1 OID first arc truncation in asn1.oidToDer",
         "url": "https://github.com/advisories/GHSA-4642-5mcj-2rqw",
         "version": "1.4.0"
       },
@@ -13802,15 +14900,22 @@
           "CVE-2026-118781"
         ],
         "ecosystem": "npm",
+        "epss": {
+          "cve": "CVE-2026-118781",
+          "percentile": 0.01734,
+          "score": 0.00119
+        },
         "fix_state": "fixed",
         "fixed_in": [
           "1.4.1"
         ],
         "id": "GHSA-h6cr-wjv9-3cpp",
+        "kev": null,
         "location": "website/yarn.lock",
         "osv_confirmed": true,
         "package": "node-forge",
         "severity": "Low",
+        "summary": "Forge: Denial of Service via infinite loop in BigInteger.modInverse() with negative input (incomplete fix of CVE-2026-33891)",
         "url": "https://github.com/advisories/GHSA-h6cr-wjv9-3cpp",
         "version": "1.4.0"
       },
@@ -13819,15 +14924,22 @@
           "CVE-2025-7339"
         ],
         "ecosystem": "npm",
+        "epss": {
+          "cve": "CVE-2025-7339",
+          "percentile": 0.10901,
+          "score": 0.00208
+        },
         "fix_state": "fixed",
         "fixed_in": [
           "1.1.0"
         ],
         "id": "GHSA-76c9-3jph-rj3q",
+        "kev": null,
         "location": "website/yarn.lock",
         "osv_confirmed": true,
         "package": "on-headers",
         "severity": "Low",
+        "summary": "on-headers is vulnerable to http response header manipulation",
         "url": "https://github.com/advisories/GHSA-76c9-3jph-rj3q",
         "version": "1.0.2"
       },
@@ -13836,29 +14948,39 @@
           "CVE-2026-115897"
         ],
         "ecosystem": "npm",
+        "epss": {
+          "cve": "CVE-2026-115897",
+          "percentile": 0.23496,
+          "score": 0.00307
+        },
         "fix_state": "fixed",
         "fixed_in": [
           "7.1.3"
         ],
         "id": "GHSA-m5mm-p8h7-m29v",
+        "kev": null,
         "location": "website/yarn.lock",
         "osv_confirmed": true,
         "package": "serialize-javascript",
         "severity": "Low",
+        "summary": "Serialize JavaScript: Cross-site scripting (XSS) via unescaped </script at the end of a serialized function body",
         "url": "https://github.com/advisories/GHSA-m5mm-p8h7-m29v",
         "version": "6.0.2"
       },
       {
         "aliases": [],
         "ecosystem": "golang",
+        "epss": null,
         "fix_state": "unknown",
         "fixed_in": [],
         "id": "GO-2026-5932",
         "in_binary": "module in binary",
+        "kev": null,
         "location": "go.mod",
         "osv_confirmed": true,
         "package": "golang.org/x/crypto",
         "severity": "Unknown",
+        "summary": "The golang.org/x/crypto/openpgp package is unsafe by design, has numerous known security issues, is not maintained, and should not be used. If you are required to interoperate with OpenPGP systems and need a maintained package, consider github.com/ProtonMail/go-crypto/openpgp which is a maintained f",
         "url": "https://go.dev/issue/44226",
         "version": "v0.53.0"
       },
@@ -13867,16 +14989,23 @@
           "CVE-2026-78661"
         ],
         "ecosystem": "golang",
+        "epss": {
+          "cve": "CVE-2026-78661",
+          "percentile": 0.08063,
+          "score": 0.00185
+        },
         "fix_state": "fixed",
         "fixed_in": [
           "0.62.0"
         ],
         "id": "GO-2026-6860",
         "in_binary": "module in binary",
+        "kev": null,
         "location": "go.mod",
         "osv_confirmed": true,
         "package": "golang.org/x/net",
         "severity": "Unknown",
+        "summary": "When coalescing adjacent text nodes in addText and fosterParent, appending to an existing TextNode's Data via string concatenation (n.Data += text) reallocated and copied the accumulated string on every token. Inputs containing many short text runs separated by ignored end tags (such as \"a</x>\") cau",
         "url": "https://go.dev/cl/849365",
         "version": "v0.56.0"
       },
@@ -13885,16 +15014,23 @@
           "CVE-2026-97045"
         ],
         "ecosystem": "golang",
+        "epss": {
+          "cve": "CVE-2026-97045",
+          "percentile": 0.10117,
+          "score": 0.00202
+        },
         "fix_state": "fixed",
         "fixed_in": [
           "0.62.0"
         ],
         "id": "GO-2026-6866",
         "in_binary": "module in binary",
+        "kev": null,
         "location": "go.mod",
         "osv_confirmed": true,
         "package": "golang.org/x/net",
         "severity": "Unknown",
+        "summary": "In childTextNodesAreLiteral, walking up the tree previously stopped at the nearest foreign ancestor once an HTML integration point was found. However, that integration point may itself be a descendant of an element that was foster-parented into a foreign namespace (such as <mglyph> or <malignmark> f",
         "url": "https://go.dev/cl/855121",
         "version": "v0.56.0"
       }
@@ -14005,5 +15141,5 @@
       ]
     }
   },
-  "updated": "2026-11-01"
+  "updated": "2026-11-02"
 }

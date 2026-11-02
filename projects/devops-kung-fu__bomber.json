@@ -37,6 +37,50 @@
         "Medium": 1,
         "files": 2
       }
+    },
+    {
+      "added": 0,
+      "commit": "acc6bd257b9850e22a604ea96815476a83e7a15a",
+      "date": "2026-11-02",
+      "dependencies": 44,
+      "errors": [],
+      "fixable": 27,
+      "go_version": "go1.23.1",
+      "in_binary": {
+        "dependencies": 17,
+        "stdlib": 66,
+        "total": 83
+      },
+      "kev": 0,
+      "kev_new": 0,
+      "new_vulnerabilities": 0,
+      "osv_confirmed": 27,
+      "osv_only": 0,
+      "ref": "v0.5.1",
+      "release_changed": false,
+      "release_integrity": "checksums-only",
+      "removed": 0,
+      "resolved_vulnerabilities": 0,
+      "scorecard": null,
+      "scorecard_date": null,
+      "scorecard_note": "the project is not in the OpenSSF public dataset; the Scorecard CLI fallback failed (exit 1: 2026/11/02 01:32:45 error during command execution: one or more checks failed during execution)",
+      "scorecard_source": null,
+      "upgraded": 0,
+      "vulnerabilities": {
+        "Critical": 1,
+        "High": 13,
+        "Low": 1,
+        "Medium": 10,
+        "Negligible": 0,
+        "Unknown": 2
+      },
+      "vulnerable_packages": 5,
+      "workflow": {
+        "High": 7,
+        "Low": 0,
+        "Medium": 1,
+        "files": 2
+      }
     }
   ],
   "latest": {
@@ -457,6 +501,8 @@
     "go_binary": {
       "asset": "bomber_0.5.1_linux_amd64.tar.gz",
       "binary": "bomber",
+      "db": "https://vuln.go.dev",
+      "db_last_modified": "2026-10-27T21:16:18Z",
       "findings": [
         {
           "aliases": [
@@ -478,6 +524,18 @@
           "level": "symbol",
           "module": "stdlib",
           "summary": "Sensitive headers incorrectly sent after cross-domain redirect in net/http",
+          "version": "v1.23.1"
+        },
+        {
+          "aliases": [
+            "CVE-2025-22870",
+            "GHSA-qxp5-gwg8-xv66"
+          ],
+          "fixed_version": "v1.23.7",
+          "id": "GO-2025-3503",
+          "level": "symbol",
+          "module": "stdlib",
+          "summary": "HTTP Proxy bypass using IPv6 Zone IDs in golang.org/x/net",
           "version": "v1.23.1"
         },
         {
@@ -1236,18 +1294,6 @@
         },
         {
           "aliases": [
-            "CVE-2025-22870",
-            "GHSA-qxp5-gwg8-xv66"
-          ],
-          "fixed_version": "v0.36.0",
-          "id": "GO-2025-3503",
-          "level": "symbol",
-          "module": "golang.org/x/net",
-          "summary": "HTTP Proxy bypass using IPv6 Zone IDs in golang.org/x/net",
-          "version": "v0.29.0"
-        },
-        {
-          "aliases": [
             "CVE-2025-22872"
           ],
           "fixed_version": "v0.38.0",
@@ -1433,25 +1479,32 @@
       ],
       "removed": 0
     },
-    "scanned_at": "2026-11-01T19:05:37+00:00",
+    "scanned_at": "2026-11-02T01:32:19+00:00",
     "scorecard": null,
-    "scorecard_note": "scorecard exited with 1: github tokens can't read classic branch protection rules: https://github.com/ossf/scorecard-action/blob/main/docs/authentication/fine-grained-auth-token.md\nError: one or more checks failed during execution\n2026/11/01 19:06:03 error during command execution: one or more checks failed during execution",
+    "scorecard_note": "the project is not in the OpenSSF public dataset; the Scorecard CLI fallback failed (exit 1: 2026/11/02 01:32:45 error during command execution: one or more checks failed during execution)",
     "vulnerabilities": [
       {
         "aliases": [
           "CVE-2026-78663"
         ],
         "ecosystem": "golang",
+        "epss": {
+          "cve": "CVE-2026-78663",
+          "percentile": 0.49813,
+          "score": 0.00622
+        },
         "fix_state": "fixed",
         "fixed_in": [
           "0.60.0"
         ],
         "id": "GO-2026-6612",
         "in_binary": "vulnerable code in binary",
+        "kev": null,
         "location": "go.mod",
         "osv_confirmed": true,
         "package": "golang.org/x/net",
         "severity": "Critical",
+        "summary": "The HTTP/2 server can refund connection-level flow control twice for the same data: Once when a client resets a stream (refunding data for any sent-but-unread portion of the stream), and again when a request handler reads the buffered data. A malicious client can exploit this to bypass the configure",
         "url": "https://go.dev/cl/847187",
         "version": "v0.29.0"
       },
@@ -1460,16 +1513,23 @@
           "CVE-2026-40890"
         ],
         "ecosystem": "golang",
+        "epss": {
+          "cve": "CVE-2026-40890",
+          "percentile": 0.2815,
+          "score": 0.00346
+        },
         "fix_state": "fixed",
         "fixed_in": [
           "0.0.0-20260411013819-759bbc3e3207"
         ],
         "id": "GHSA-77fj-vx54-gvh7",
         "in_binary": "vulnerable code in binary",
+        "kev": null,
         "location": "go.mod",
         "osv_confirmed": true,
         "package": "github.com/gomarkdown/markdown",
         "severity": "High",
+        "summary": "Go Markdown has an Out-of-bounds Read in SmartypantsRenderer",
         "url": "https://github.com/advisories/GHSA-77fj-vx54-gvh7",
         "version": "v0.0.0-20240730141124-034f12af3bf6"
       },
@@ -1478,16 +1538,23 @@
           "CVE-2026-102941"
         ],
         "ecosystem": "golang",
+        "epss": {
+          "cve": "CVE-2026-102941",
+          "percentile": 0.20376,
+          "score": 0.00279
+        },
         "fix_state": "fixed",
         "fixed_in": [
           "0.0.0-20260724235538-61af6e1e6971"
         ],
         "id": "GHSA-cv23-7vc5-jfh7",
         "in_binary": "vulnerable code not in binary",
+        "kev": null,
         "location": "go.mod",
         "osv_confirmed": true,
         "package": "github.com/gomarkdown/markdown",
         "severity": "High",
+        "summary": "gomarkdown/markdown IsSafeURL panics on short URLs",
         "url": "https://github.com/advisories/GHSA-cv23-7vc5-jfh7",
         "version": "v0.0.0-20240730141124-034f12af3bf6"
       },
@@ -1496,16 +1563,23 @@
           "CVE-2026-56865"
         ],
         "ecosystem": "golang",
+        "epss": {
+          "cve": "CVE-2026-56865",
+          "percentile": 0.02533,
+          "score": 0.00129
+        },
         "fix_state": "fixed",
         "fixed_in": [
           "0.40.0"
         ],
         "id": "GO-2026-6179",
         "in_binary": "vulnerable code in binary",
+        "kev": null,
         "location": "go.mod",
         "osv_confirmed": true,
         "package": "golang.org/x/mod",
         "severity": "High",
+        "summary": "A malicious GOPROXY was previously capable of forging up to two sumdb tiles that allow for a requested module to bypass the GOSUMDB check and persist attacker-controlled module content to a local Go module cache. This attack allows for a malicious GOPROXY to serve malicious module content that canno",
         "url": "https://go.dev/issue/80744",
         "version": "v0.21.0"
       },
@@ -1514,16 +1588,23 @@
           "CVE-2026-56864"
         ],
         "ecosystem": "golang",
+        "epss": {
+          "cve": "CVE-2026-56864",
+          "percentile": 0.22506,
+          "score": 0.00298
+        },
         "fix_state": "fixed",
         "fixed_in": [
           "0.40.0"
         ],
         "id": "GO-2026-6180",
         "in_binary": "vulnerable code in binary",
+        "kev": null,
         "location": "go.mod",
         "osv_confirmed": true,
         "package": "golang.org/x/mod",
         "severity": "High",
+        "summary": "A malicious GOSUMDB was capable of serving arbitrary module content not contained within the transparency log. This attack allows for a coordinating GOPROXY and GOSUMDB to serve a client malicious module content that cannot be detected by evaluating the transparency log. In order to determine if you",
         "url": "https://go.dev/issue/80745",
         "version": "v0.21.0"
       },
@@ -1532,16 +1613,23 @@
           "CVE-2026-33814"
         ],
         "ecosystem": "golang",
+        "epss": {
+          "cve": "CVE-2026-33814",
+          "percentile": 0.57885,
+          "score": 0.0084
+        },
         "fix_state": "fixed",
         "fixed_in": [
           "0.53.0"
         ],
         "id": "GO-2026-4918",
         "in_binary": "vulnerable code in binary",
+        "kev": null,
         "location": "go.mod",
         "osv_confirmed": true,
         "package": "golang.org/x/net",
         "severity": "High",
+        "summary": "When processing HTTP/2 SETTINGS frames, transport will enter an infinite loop of writing CONTINUATION frames if it receives a SETTINGS_MAX_FRAME_SIZE with a value of 0.",
         "url": "https://go.dev/cl/761581",
         "version": "v0.29.0"
       },
@@ -1550,16 +1638,23 @@
           "CVE-2026-39821"
         ],
         "ecosystem": "golang",
+        "epss": {
+          "cve": "CVE-2026-39821",
+          "percentile": 0.78915,
+          "score": 0.01834
+        },
         "fix_state": "fixed",
         "fixed_in": [
           "0.55.0"
         ],
         "id": "GO-2026-5026",
         "in_binary": "vulnerable code in binary",
+        "kev": null,
         "location": "go.mod",
         "osv_confirmed": true,
         "package": "golang.org/x/net",
         "severity": "High",
+        "summary": "The ToASCII and ToUnicode functions incorrectly accept Punycode-encoded labels that decode to an ASCII-only label. For example, ToUnicode(\"xn--example-.com\") incorrectly returns the name \"example.com\" rather than an error. This behavior can lead to privilege escalation in programs using the idna pac",
         "url": "https://go.dev/cl/767220",
         "version": "v0.29.0"
       },
@@ -1568,16 +1663,23 @@
           "CVE-2026-46600"
         ],
         "ecosystem": "golang",
+        "epss": {
+          "cve": "CVE-2026-46600",
+          "percentile": 0.45991,
+          "score": 0.00549
+        },
         "fix_state": "fixed",
         "fixed_in": [
           "0.56.0"
         ],
         "id": "GO-2026-5942",
         "in_binary": "vulnerable code in binary",
+        "kev": null,
         "location": "go.mod",
         "osv_confirmed": true,
         "package": "golang.org/x/net",
         "severity": "High",
+        "summary": "Parsing an invalid SVCB or HTTPS RR can panic when the size of a parameter value overflows the message buffer.",
         "url": "https://go.dev/cl/786345",
         "version": "v0.29.0"
       },
@@ -1586,16 +1688,23 @@
           "CVE-2026-78659"
         ],
         "ecosystem": "golang",
+        "epss": {
+          "cve": "CVE-2026-78659",
+          "percentile": 0.50082,
+          "score": 0.00627
+        },
         "fix_state": "fixed",
         "fixed_in": [
           "0.60.0"
         ],
         "id": "GO-2026-6603",
         "in_binary": "vulnerable code in binary",
+        "kev": null,
         "location": "go.mod",
         "osv_confirmed": true,
         "package": "golang.org/x/net",
         "severity": "High",
+        "summary": "When \"Trailer\" headers are sent by a client, the HTTP server internally uses the header values to populate the Request.Trailer map passed to the server handler. Because Request.Trailer is a map, each entry incurs memory overhead. For HTTP/2 servers, a malicious client can exploit this by sending a \"",
         "url": "https://go.dev/cl/847185",
         "version": "v0.29.0"
       },
@@ -1604,16 +1713,23 @@
           "CVE-2026-78660"
         ],
         "ecosystem": "golang",
+        "epss": {
+          "cve": "CVE-2026-78660",
+          "percentile": 0.36838,
+          "score": 0.00425
+        },
         "fix_state": "fixed",
         "fixed_in": [
           "0.60.0"
         ],
         "id": "GO-2026-6610",
         "in_binary": "vulnerable code in binary",
+        "kev": null,
         "location": "go.mod",
         "osv_confirmed": true,
         "package": "golang.org/x/net",
         "severity": "High",
+        "summary": "Historically, we have been rather lax about malformed framing-related headers in our HTTP/2 implementation, as they cannot interfere with HTTP/2 framing. However, this makes it possible for our HTTP/2 implementation to forward responses containing such headers to an HTTP/1 client when acting as a re",
         "url": "https://go.dev/cl/835145",
         "version": "v0.29.0"
       },
@@ -1622,16 +1738,23 @@
           "CVE-2026-78669"
         ],
         "ecosystem": "golang",
+        "epss": {
+          "cve": "CVE-2026-78669",
+          "percentile": 0.49426,
+          "score": 0.00614
+        },
         "fix_state": "fixed",
         "fixed_in": [
           "0.60.0"
         ],
         "id": "GO-2026-6611",
         "in_binary": "vulnerable code in binary",
+        "kev": null,
         "location": "go.mod",
         "osv_confirmed": true,
         "package": "golang.org/x/net",
         "severity": "High",
+        "summary": "A malicious HTTP/2 peer can cause excessive CPU consumption in the client or server by opening a large number of streams and then sending many small SETTINGS frames containing SETTINGS_INITIAL_WINDOW_SIZE values.",
         "url": "https://go.dev/cl/847186",
         "version": "v0.29.0"
       },
@@ -1640,16 +1763,23 @@
           "CVE-2026-97032"
         ],
         "ecosystem": "golang",
+        "epss": {
+          "cve": "CVE-2026-97032",
+          "percentile": 0.42154,
+          "score": 0.0049
+        },
         "fix_state": "fixed",
         "fixed_in": [
           "0.60.0"
         ],
         "id": "GO-2026-6617",
         "in_binary": "vulnerable code in binary",
+        "kev": null,
         "location": "go.mod",
         "osv_confirmed": true,
         "package": "golang.org/x/net",
         "severity": "High",
+        "summary": "HTTP/2 servers could end up crashing due to inadvertently modifying its HPACK encoder concurrently. This happens because the server modifies the HPACK encoder from two goroutines without synchronization: one uses the encoder to encode a HEADERS frame as part of a response sent to a client and the ot",
         "url": "https://go.dev/cl/847188",
         "version": "v0.29.0"
       },
@@ -1658,16 +1788,23 @@
           "CVE-2026-56852"
         ],
         "ecosystem": "golang",
+        "epss": {
+          "cve": "CVE-2026-56852",
+          "percentile": 0.41057,
+          "score": 0.00475
+        },
         "fix_state": "fixed",
         "fixed_in": [
           "0.39.0"
         ],
         "id": "GO-2026-5970",
         "in_binary": "vulnerable code in binary",
+        "kev": null,
         "location": "go.mod",
         "osv_confirmed": true,
         "package": "golang.org/x/text",
         "severity": "High",
+        "summary": "A norm.Iter can enter an infinite loop when handling input containing invalid UTF-8 bytes.",
         "url": "https://go.dev/issue/80142",
         "version": "v0.18.0"
       },
@@ -1676,16 +1813,23 @@
           "CVE-2026-56851"
         ],
         "ecosystem": "golang",
+        "epss": {
+          "cve": "CVE-2026-56851",
+          "percentile": 0.40313,
+          "score": 0.00466
+        },
         "fix_state": "fixed",
         "fixed_in": [
           "0.41.0"
         ],
         "id": "GO-2026-6629",
         "in_binary": "vulnerable code in binary",
+        "kev": null,
         "location": "go.mod",
         "osv_confirmed": true,
         "package": "golang.org/x/text",
         "severity": "High",
+        "summary": "The Nickname profile can panic with an out-of-bounds slice error when transforming crafted input into a short destination buffer.",
         "url": "https://go.dev/cl/793360",
         "version": "v0.18.0"
       },
@@ -1694,16 +1838,23 @@
           "CVE-2026-25680"
         ],
         "ecosystem": "golang",
+        "epss": {
+          "cve": "CVE-2026-25680",
+          "percentile": 0.25766,
+          "score": 0.00326
+        },
         "fix_state": "fixed",
         "fixed_in": [
           "0.55.0"
         ],
         "id": "GHSA-5cv4-jp36-h3mw",
         "in_binary": "vulnerable code in binary",
+        "kev": null,
         "location": "go.mod",
         "osv_confirmed": true,
         "package": "golang.org/x/net",
         "severity": "Medium",
+        "summary": "Go Net HTML parser is vulnerable to denial of service",
         "url": "https://github.com/advisories/GHSA-5cv4-jp36-h3mw",
         "version": "v0.29.0"
       },
@@ -1712,16 +1863,23 @@
           "CVE-2025-22870"
         ],
         "ecosystem": "golang",
+        "epss": {
+          "cve": "CVE-2025-22870",
+          "percentile": 0.36779,
+          "score": 0.00425
+        },
         "fix_state": "fixed",
         "fixed_in": [
           "0.36.0"
         ],
         "id": "GHSA-qxp5-gwg8-xv66",
         "in_binary": "vulnerable code in binary",
+        "kev": null,
         "location": "go.mod",
         "osv_confirmed": true,
         "package": "golang.org/x/net",
         "severity": "Medium",
+        "summary": "HTTP Proxy bypass using IPv6 Zone IDs in golang.org/x/net",
         "url": "https://github.com/advisories/GHSA-qxp5-gwg8-xv66",
         "version": "v0.29.0"
       },
@@ -1730,16 +1888,23 @@
           "CVE-2025-22872"
         ],
         "ecosystem": "golang",
+        "epss": {
+          "cve": "CVE-2025-22872",
+          "percentile": 0.45712,
+          "score": 0.00545
+        },
         "fix_state": "fixed",
         "fixed_in": [
           "0.38.0"
         ],
         "id": "GHSA-vvgc-356p-c3xw",
         "in_binary": "vulnerable code in binary",
+        "kev": null,
         "location": "go.mod",
         "osv_confirmed": true,
         "package": "golang.org/x/net",
         "severity": "Medium",
+        "summary": "golang.org/x/net vulnerable to Cross-site Scripting",
         "url": "https://github.com/advisories/GHSA-vvgc-356p-c3xw",
         "version": "v0.29.0"
       },
@@ -1749,16 +1914,23 @@
           "GHSA-w32m-9786-jp63"
         ],
         "ecosystem": "golang",
+        "epss": {
+          "cve": "CVE-2024-45338",
+          "percentile": 0.64906,
+          "score": 0.01072
+        },
         "fix_state": "fixed",
         "fixed_in": [
           "0.33.0"
         ],
         "id": "GO-2024-3333",
         "in_binary": "vulnerable code in binary",
+        "kev": null,
         "location": "go.mod",
         "osv_confirmed": true,
         "package": "golang.org/x/net",
         "severity": "Medium",
+        "summary": "An attacker can craft an input to the Parse functions that would be processed non-linearly with respect to its length, resulting in extremely slow parsing. This could cause a denial of service.",
         "url": "https://go.dev/cl/637536",
         "version": "v0.29.0"
       },
@@ -1767,16 +1939,23 @@
           "CVE-2025-47911"
         ],
         "ecosystem": "golang",
+        "epss": {
+          "cve": "CVE-2025-47911",
+          "percentile": 0.46695,
+          "score": 0.00561
+        },
         "fix_state": "fixed",
         "fixed_in": [
           "0.45.0"
         ],
         "id": "GO-2026-4440",
         "in_binary": "vulnerable code in binary",
+        "kev": null,
         "location": "go.mod",
         "osv_confirmed": true,
         "package": "golang.org/x/net",
         "severity": "Medium",
+        "summary": "The html.Parse function in golang.org/x/net/html has quadratic parsing complexity when processing certain inputs, which can lead to denial of service (DoS) if an attacker provides specially crafted HTML content.",
         "url": "https://go.dev/cl/709876",
         "version": "v0.29.0"
       },
@@ -1785,16 +1964,23 @@
           "CVE-2025-58190"
         ],
         "ecosystem": "golang",
+        "epss": {
+          "cve": "CVE-2025-58190",
+          "percentile": 0.45427,
+          "score": 0.0054
+        },
         "fix_state": "fixed",
         "fixed_in": [
           "0.45.0"
         ],
         "id": "GO-2026-4441",
         "in_binary": "vulnerable code in binary",
+        "kev": null,
         "location": "go.mod",
         "osv_confirmed": true,
         "package": "golang.org/x/net",
         "severity": "Medium",
+        "summary": "The html.Parse function in golang.org/x/net/html has an infinite parsing loop when processing certain inputs, which can lead to denial of service (DoS) if an attacker provides specially crafted HTML content.",
         "url": "https://groups.google.com/g/golang-announce/c/jnQcOYpiR2c",
         "version": "v0.29.0"
       },
@@ -1803,16 +1989,23 @@
           "CVE-2026-42506"
         ],
         "ecosystem": "golang",
+        "epss": {
+          "cve": "CVE-2026-42506",
+          "percentile": 0.14566,
+          "score": 0.00235
+        },
         "fix_state": "fixed",
         "fixed_in": [
           "0.55.0"
         ],
         "id": "GO-2026-5025",
         "in_binary": "vulnerable code in binary",
+        "kev": null,
         "location": "go.mod",
         "osv_confirmed": true,
         "package": "golang.org/x/net",
         "severity": "Medium",
+        "summary": "Parsing arbitrary HTML which is then rendered using Render can result in an unexpected HTML tree. This can be leveraged to execute XSS attacks in applications that attempt to sanitize input HTML before rendering.",
         "url": "https://go.dev/issue/79571",
         "version": "v0.29.0"
       },
@@ -1821,16 +2014,23 @@
           "CVE-2026-42502"
         ],
         "ecosystem": "golang",
+        "epss": {
+          "cve": "CVE-2026-42502",
+          "percentile": 0.12982,
+          "score": 0.00223
+        },
         "fix_state": "fixed",
         "fixed_in": [
           "0.55.0"
         ],
         "id": "GO-2026-5027",
         "in_binary": "vulnerable code in binary",
+        "kev": null,
         "location": "go.mod",
         "osv_confirmed": true,
         "package": "golang.org/x/net",
         "severity": "Medium",
+        "summary": "Parsing arbitrary HTML which is then rendered using Render can result in an unexpected HTML tree. This can be leveraged to execute XSS attacks in applications that attempt to sanitize input HTML before rendering.",
         "url": "https://go.dev/issue/79572",
         "version": "v0.29.0"
       },
@@ -1839,16 +2039,23 @@
           "CVE-2026-25681"
         ],
         "ecosystem": "golang",
+        "epss": {
+          "cve": "CVE-2026-25681",
+          "percentile": 0.12983,
+          "score": 0.00223
+        },
         "fix_state": "fixed",
         "fixed_in": [
           "0.55.0"
         ],
         "id": "GO-2026-5029",
         "in_binary": "vulnerable code in binary",
+        "kev": null,
         "location": "go.mod",
         "osv_confirmed": true,
         "package": "golang.org/x/net",
         "severity": "Medium",
+        "summary": "Parsing arbitrary HTML which is then rendered using Render can result in an unexpected HTML tree. This can be leveraged to execute XSS attacks in applications that attempt to sanitize input HTML before rendering.",
         "url": "https://go.dev/issue/79574",
         "version": "v0.29.0"
       },
@@ -1857,16 +2064,23 @@
           "CVE-2026-27136"
         ],
         "ecosystem": "golang",
+        "epss": {
+          "cve": "CVE-2026-27136",
+          "percentile": 0.12983,
+          "score": 0.00223
+        },
         "fix_state": "fixed",
         "fixed_in": [
           "0.55.0"
         ],
         "id": "GO-2026-5030",
         "in_binary": "vulnerable code in binary",
+        "kev": null,
         "location": "go.mod",
         "osv_confirmed": true,
         "package": "golang.org/x/net",
         "severity": "Medium",
+        "summary": "Parsing arbitrary HTML which is then rendered using Render can result in an unexpected HTML tree. This can be leveraged to execute XSS attacks in applications that attempt to sanitize input HTML before rendering.",
         "url": "https://go.dev/issue/79575",
         "version": "v0.29.0"
       },
@@ -1875,16 +2089,23 @@
           "CVE-2026-39824"
         ],
         "ecosystem": "golang",
+        "epss": {
+          "cve": "CVE-2026-39824",
+          "percentile": 0.01457,
+          "score": 0.00114
+        },
         "fix_state": "fixed",
         "fixed_in": [
           "0.44.0"
         ],
         "id": "GO-2026-5024",
         "in_binary": "vulnerable code not in binary",
+        "kev": null,
         "location": "go.mod",
         "osv_confirmed": true,
         "package": "golang.org/x/sys",
         "severity": "Low",
+        "summary": "NewNTUnicodeString does not check for string length overflow. When provided with a string that overflows the maximum size of a NTUnicodeString (a 16-bit number of bytes), it returns a truncated string rather than an error.",
         "url": "https://go.dev/issue/78916",
         "version": "v0.25.0"
       },
@@ -1893,16 +2114,23 @@
           "CVE-2026-78661"
         ],
         "ecosystem": "golang",
+        "epss": {
+          "cve": "CVE-2026-78661",
+          "percentile": 0.08063,
+          "score": 0.00185
+        },
         "fix_state": "fixed",
         "fixed_in": [
           "0.62.0"
         ],
         "id": "GO-2026-6860",
         "in_binary": "vulnerable code in binary",
+        "kev": null,
         "location": "go.mod",
         "osv_confirmed": true,
         "package": "golang.org/x/net",
         "severity": "Unknown",
+        "summary": "When coalescing adjacent text nodes in addText and fosterParent, appending to an existing TextNode's Data via string concatenation (n.Data += text) reallocated and copied the accumulated string on every token. Inputs containing many short text runs separated by ignored end tags (such as \"a</x>\") cau",
         "url": "https://go.dev/cl/849365",
         "version": "v0.29.0"
       },
@@ -1911,16 +2139,23 @@
           "CVE-2026-97045"
         ],
         "ecosystem": "golang",
+        "epss": {
+          "cve": "CVE-2026-97045",
+          "percentile": 0.10117,
+          "score": 0.00202
+        },
         "fix_state": "fixed",
         "fixed_in": [
           "0.62.0"
         ],
         "id": "GO-2026-6866",
         "in_binary": "vulnerable code in binary",
+        "kev": null,
         "location": "go.mod",
         "osv_confirmed": true,
         "package": "golang.org/x/net",
         "severity": "Unknown",
+        "summary": "In childTextNodesAreLiteral, walking up the tree previously stopped at the nearest foreign ancestor once an HTML integration point was found. However, that integration point may itself be a descendant of an element that was foster-parented into a foreign namespace (such as <mglyph> or <malignmark> f",
         "url": "https://go.dev/cl/855121",
         "version": "v0.29.0"
       }
@@ -2011,5 +2246,5 @@
       ]
     }
   },
-  "updated": "2026-11-01"
+  "updated": "2026-11-02"
 }

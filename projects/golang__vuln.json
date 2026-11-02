@@ -33,6 +33,46 @@
         "Medium": 0,
         "files": 0
       }
+    },
+    {
+      "added": 0,
+      "commit": "d1f380186385b4f64e00313f31743df8e4b89a77",
+      "date": "2026-11-02",
+      "dependencies": 8,
+      "errors": [],
+      "fixable": 3,
+      "go_version": null,
+      "in_binary": null,
+      "kev": 0,
+      "kev_new": 0,
+      "new_vulnerabilities": 0,
+      "osv_confirmed": 3,
+      "osv_only": 0,
+      "ref": "v1.1.4",
+      "release_changed": false,
+      "release_integrity": "no-assets",
+      "removed": 0,
+      "resolved_vulnerabilities": 0,
+      "scorecard": 3.7,
+      "scorecard_date": "2026-10-19",
+      "scorecard_note": null,
+      "scorecard_source": "openssf-api",
+      "upgraded": 0,
+      "vulnerabilities": {
+        "Critical": 0,
+        "High": 2,
+        "Low": 1,
+        "Medium": 0,
+        "Negligible": 0,
+        "Unknown": 0
+      },
+      "vulnerable_packages": 2,
+      "workflow": {
+        "High": 0,
+        "Low": 0,
+        "Medium": 0,
+        "files": 0
+      }
     }
   ],
   "latest": {
@@ -195,7 +235,7 @@
       ],
       "removed": 0
     },
-    "scanned_at": "2026-11-01T19:06:17+00:00",
+    "scanned_at": "2026-11-02T01:32:24+00:00",
     "scorecard": {
       "checks": [
         {
@@ -280,15 +320,22 @@
           "CVE-2026-56865"
         ],
         "ecosystem": "golang",
+        "epss": {
+          "cve": "CVE-2026-56865",
+          "percentile": 0.02533,
+          "score": 0.00129
+        },
         "fix_state": "fixed",
         "fixed_in": [
           "0.40.0"
         ],
         "id": "GO-2026-6179",
+        "kev": null,
         "location": "go.mod",
         "osv_confirmed": true,
         "package": "golang.org/x/mod",
         "severity": "High",
+        "summary": "A malicious GOPROXY was previously capable of forging up to two sumdb tiles that allow for a requested module to bypass the GOSUMDB check and persist attacker-controlled module content to a local Go module cache. This attack allows for a malicious GOPROXY to serve malicious module content that canno",
         "url": "https://go.dev/issue/80744",
         "version": "v0.22.0"
       },
@@ -297,15 +344,22 @@
           "CVE-2026-56864"
         ],
         "ecosystem": "golang",
+        "epss": {
+          "cve": "CVE-2026-56864",
+          "percentile": 0.22506,
+          "score": 0.00298
+        },
         "fix_state": "fixed",
         "fixed_in": [
           "0.40.0"
         ],
         "id": "GO-2026-6180",
+        "kev": null,
         "location": "go.mod",
         "osv_confirmed": true,
         "package": "golang.org/x/mod",
         "severity": "High",
+        "summary": "A malicious GOSUMDB was capable of serving arbitrary module content not contained within the transparency log. This attack allows for a coordinating GOPROXY and GOSUMDB to serve a client malicious module content that cannot be detected by evaluating the transparency log. In order to determine if you",
         "url": "https://go.dev/issue/80745",
         "version": "v0.22.0"
       },
@@ -314,15 +368,22 @@
           "CVE-2026-39824"
         ],
         "ecosystem": "golang",
+        "epss": {
+          "cve": "CVE-2026-39824",
+          "percentile": 0.01457,
+          "score": 0.00114
+        },
         "fix_state": "fixed",
         "fixed_in": [
           "0.44.0"
         ],
         "id": "GO-2026-5024",
+        "kev": null,
         "location": "go.mod",
         "osv_confirmed": true,
         "package": "golang.org/x/sys",
         "severity": "Low",
+        "summary": "NewNTUnicodeString does not check for string length overflow. When provided with a string that overflows the maximum size of a NTUnicodeString (a 16-bit number of bytes), it returns a truncated string rather than an error.",
         "url": "https://go.dev/issue/78916",
         "version": "v0.29.0"
       }
@@ -332,5 +393,5 @@
       "findings": []
     }
   },
-  "updated": "2026-11-01"
+  "updated": "2026-11-02"
 }

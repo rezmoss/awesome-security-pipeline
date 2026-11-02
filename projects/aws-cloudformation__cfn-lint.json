@@ -33,6 +33,46 @@
         "Medium": 0,
         "files": 6
       }
+    },
+    {
+      "added": 0,
+      "commit": "cf5360c6ce4c9911d84858896ac7aa925f8cb4bd",
+      "date": "2026-11-02",
+      "dependencies": 7,
+      "errors": [],
+      "fixable": 0,
+      "go_version": null,
+      "in_binary": null,
+      "kev": null,
+      "kev_new": 0,
+      "new_vulnerabilities": 0,
+      "osv_confirmed": 0,
+      "osv_only": 0,
+      "ref": "v1.59.0",
+      "release_changed": false,
+      "release_integrity": "no-linux-binary",
+      "removed": 0,
+      "resolved_vulnerabilities": 2,
+      "scorecard": 6.0,
+      "scorecard_date": "2026-11-02",
+      "scorecard_note": null,
+      "scorecard_source": "scorecard-cli",
+      "upgraded": 0,
+      "vulnerabilities": {
+        "Critical": 0,
+        "High": 0,
+        "Low": 0,
+        "Medium": 0,
+        "Negligible": 0,
+        "Unknown": 0
+      },
+      "vulnerable_packages": 0,
+      "workflow": {
+        "High": 28,
+        "Low": 0,
+        "Medium": 0,
+        "files": 6
+      }
     }
   ],
   "latest": {
@@ -40,7 +80,7 @@
     "category": "Infrastructure as Code Security",
     "changes": {
       "added": [],
-      "any": false,
+      "any": true,
       "baseline": false,
       "integrity_drift": 0,
       "license_changes": [],
@@ -48,7 +88,38 @@
       "previous_ref": "v1.59.0",
       "release_changed": false,
       "removed": [],
-      "resolved_vulnerabilities": [],
+      "resolved_vulnerabilities": [
+        {
+          "aliases": [],
+          "ecosystem": "github",
+          "fix_state": "fixed",
+          "fixed_in": [
+            "1.14.3"
+          ],
+          "id": "GHSA-5xjx-3w67-w9x9",
+          "location": ".github/workflows/cd-pypi.yaml",
+          "osv_confirmed": false,
+          "package": "pypa/gh-action-pypi-publish",
+          "severity": "Critical",
+          "url": "https://github.com/advisories/GHSA-5xjx-3w67-w9x9",
+          "version": "release/v1"
+        },
+        {
+          "aliases": [],
+          "ecosystem": "github",
+          "fix_state": "fixed",
+          "fixed_in": [
+            "1.13.0"
+          ],
+          "id": "GHSA-vxmw-7h4f-hqxh",
+          "location": ".github/workflows/cd-pypi.yaml",
+          "osv_confirmed": false,
+          "package": "pypa/gh-action-pypi-publish",
+          "severity": "Low",
+          "url": "https://github.com/advisories/GHSA-vxmw-7h4f-hqxh",
+          "version": "release/v1"
+        }
+      ],
       "upgraded": [],
       "workflow_new": 0,
       "workflow_resolved": 0
@@ -152,6 +223,9 @@
     ],
     "description": "Lint AWS CloudFormation templates with security rules",
     "errors": [],
+    "excluded_matches": {
+      "action reference to a moving tag or branch": 2
+    },
     "id": "aws-cloudformation__cfn-lint",
     "manifests": [
       ".github/workflows/cd-pypi.yaml",
@@ -193,7 +267,7 @@
       ],
       "removed": 0
     },
-    "scanned_at": "2026-11-01T19:05:30+00:00",
+    "scanned_at": "2026-11-02T01:32:18+00:00",
     "scorecard": {
       "checks": [
         {
@@ -287,43 +361,12 @@
           "score": 10
         }
       ],
-      "date": "2026-11-01",
+      "date": "2026-11-02",
       "score": 6.0,
       "source": "scorecard-cli",
       "version": "v5.6.0"
     },
-    "vulnerabilities": [
-      {
-        "aliases": [],
-        "ecosystem": "github",
-        "fix_state": "fixed",
-        "fixed_in": [
-          "1.14.3"
-        ],
-        "id": "GHSA-5xjx-3w67-w9x9",
-        "location": ".github/workflows/cd-pypi.yaml",
-        "osv_confirmed": false,
-        "package": "pypa/gh-action-pypi-publish",
-        "severity": "Critical",
-        "url": "https://github.com/advisories/GHSA-5xjx-3w67-w9x9",
-        "version": "release/v1"
-      },
-      {
-        "aliases": [],
-        "ecosystem": "github",
-        "fix_state": "fixed",
-        "fixed_in": [
-          "1.13.0"
-        ],
-        "id": "GHSA-vxmw-7h4f-hqxh",
-        "location": ".github/workflows/cd-pypi.yaml",
-        "osv_confirmed": false,
-        "package": "pypa/gh-action-pypi-publish",
-        "severity": "Low",
-        "url": "https://github.com/advisories/GHSA-vxmw-7h4f-hqxh",
-        "version": "release/v1"
-      }
-    ],
+    "vulnerabilities": [],
     "workflow_audit": {
       "files": 6,
       "findings": [
@@ -620,5 +663,5 @@
       ]
     }
   },
-  "updated": "2026-11-01"
+  "updated": "2026-11-02"
 }

@@ -1,3 +1,3 @@
 # Supply-chain report data
 
-Machine-written by `.github/workflows/supply-chain-report.yml`. `projects/<owner>__<repo>.json` holds the latest inventory, findings, and weekly history for one catalog project; `runs/<date>.json` summarizes one weekly run. Do not edit by hand.
+Machine-written by `.github/workflows/supply-chain-report.yml`. `projects/<owner>__<repo>.json` holds the latest inventory, findings, and weekly history for one catalog project; `runs/<date>.json` summarizes one weekly run, including the workflow run, commit, runner image, and vulnerability databases that produced it. When a week is re-run, the replaced summary is kept under `runs/superseded/<date>/`. `SHA256SUMS` lists every file; each file is covered by a GitHub artifact attestation from the workflow (`gh attestation verify <file> --repo rezmoss/awesome-security-pipeline`). Do not edit by hand: history is append-only and checked by `scripts/supply_chain_scan.py verify`.
