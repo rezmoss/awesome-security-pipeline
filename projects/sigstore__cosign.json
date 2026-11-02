@@ -58,7 +58,7 @@
       "osv_only": 0,
       "ref": "v3.1.4",
       "release_changed": false,
-      "release_integrity": "verified",
+      "release_integrity": "signed",
       "removed": 0,
       "resolved_vulnerabilities": 0,
       "scorecard": 8.2,
@@ -88,7 +88,7 @@
     "category": "Artifact Signing & Verification",
     "changes": {
       "added": [],
-      "any": false,
+      "any": true,
       "baseline": false,
       "in_binary_new": [],
       "in_binary_resolved": [],
@@ -97,6 +97,10 @@
       "new_vulnerabilities": [],
       "previous_ref": "v3.1.4",
       "release_changed": false,
+      "release_integrity": {
+        "from": "verified",
+        "to": "signed"
+      },
       "removed": [],
       "resolved_vulnerabilities": [],
       "upgraded": [],
@@ -2706,8 +2710,10 @@
       "findings": [
         {
           "aliases": [],
+          "epss": null,
           "fixed_version": "",
           "id": "GO-2026-6225",
+          "kev": null,
           "level": "symbol",
           "module": "github.com/chrismellard/docker-credential-acr-env",
           "summary": "Credential leakage to untrusted hosts in github.com/chrismellard/docker-credential-acr-env",
@@ -2715,8 +2721,10 @@
         },
         {
           "aliases": [],
+          "epss": null,
           "fixed_version": "",
           "id": "GO-2026-5932",
+          "kev": null,
           "level": "module",
           "module": "golang.org/x/crypto",
           "summary": "The golang.org/x/crypto/openpgp package is unmaintained, unsafe by design, and has known security issues",
@@ -2726,8 +2734,14 @@
           "aliases": [
             "CVE-2026-78661"
           ],
+          "epss": {
+            "cve": "CVE-2026-78661",
+            "percentile": 0.08063,
+            "score": 0.00185
+          },
           "fixed_version": "v0.62.0",
           "id": "GO-2026-6860",
+          "kev": null,
           "level": "module",
           "module": "golang.org/x/net",
           "summary": "Avoid quadratic complexity when coalescing text nodes in html in golang.org/x/net",
@@ -2737,8 +2751,14 @@
           "aliases": [
             "CVE-2026-97045"
           ],
+          "epss": {
+            "cve": "CVE-2026-97045",
+            "percentile": 0.10117,
+            "score": 0.00202
+          },
           "fixed_version": "v0.62.0",
           "id": "GO-2026-6866",
+          "kev": null,
           "level": "module",
           "module": "golang.org/x/net",
           "summary": "Check all ancestor namespace transitions when rendering raw text in html in golang.org/x/net",
@@ -2783,13 +2803,16 @@
     "release_integrity": {
       "asset": "cosign-linux-amd64",
       "assets": 83,
+      "build_provenance": null,
       "checksums_published": true,
       "digest_matches_github": true,
+      "immutable_release": true,
       "methods": [
         {
           "covers": "asset",
           "detail": "valid Sigstore signature from an identity outside this repository's GitHub workflows",
           "method": "cosign",
+          "signer": "email:keyless@projectsigstore.iam.gserviceaccount.com",
           "status": "signed-other-identity"
         },
         {
@@ -2800,8 +2823,10 @@
       ],
       "provenance_published": false,
       "sbom_published": true,
+      "signature": "other-identity",
       "signatures_published": true,
-      "verdict": "verified"
+      "signer": "email:keyless@projectsigstore.iam.gserviceaccount.com",
+      "verdict": "signed"
     },
     "released_at": "2026-10-20T18:27:42Z",
     "repository": "sigstore/cosign",
@@ -2815,7 +2840,7 @@
       ],
       "removed": 0
     },
-    "scanned_at": "2026-11-02T01:34:09+00:00",
+    "scanned_at": "2026-11-02T03:07:49+00:00",
     "scorecard": {
       "checks": [
         {

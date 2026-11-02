@@ -3554,8 +3554,10 @@
       "findings": [
         {
           "aliases": [],
+          "epss": null,
           "fixed_version": "",
           "id": "GO-2026-5932",
+          "kev": null,
           "level": "symbol",
           "module": "golang.org/x/crypto",
           "summary": "The golang.org/x/crypto/openpgp package is unmaintained, unsafe by design, and has known security issues",
@@ -3566,8 +3568,17 @@
             "CVE-2026-33634",
             "GHSA-69fq-xp46-6x23"
           ],
+          "epss": {
+            "cve": "CVE-2026-33634",
+            "percentile": 0.99129,
+            "score": 0.59727
+          },
           "fixed_version": "",
           "id": "GO-2026-4919",
+          "kev": {
+            "cve": "CVE-2026-33634",
+            "date_added": "2026-03-26"
+          },
           "level": "module",
           "module": "github.com/aquasecurity/trivy",
           "summary": "Trivy ecosystem supply chain was briefly compromised in github.com/aquasecurity/trivy",
@@ -3617,13 +3628,16 @@
     "release_integrity": {
       "asset": "trivy_operator_Linux_x86_64.tar.gz",
       "assets": 18,
+      "build_provenance": null,
       "checksums_published": true,
       "digest_matches_github": true,
+      "immutable_release": true,
       "methods": [
         {
           "covers": "asset",
           "identity": "GitHub Actions workflow in aquasecurity/trivy-operator",
           "method": "cosign",
+          "signer": "URI:https://github.com/aquasecurity/trivy-operator/.github/workflows/release.yaml@refs/tags/v0.36.1",
           "status": "verified"
         },
         {
@@ -3634,7 +3648,9 @@
       ],
       "provenance_published": false,
       "sbom_published": false,
+      "signature": "own-workflow",
       "signatures_published": true,
+      "signer": "URI:https://github.com/aquasecurity/trivy-operator/.github/workflows/release.yaml@refs/tags/v0.36.1",
       "verdict": "verified"
     },
     "released_at": "2026-10-29T07:35:21Z",
@@ -3649,7 +3665,7 @@
       ],
       "removed": 0
     },
-    "scanned_at": "2026-11-02T01:32:19+00:00",
+    "scanned_at": "2026-11-02T03:06:08+00:00",
     "scorecard": {
       "checks": [
         {

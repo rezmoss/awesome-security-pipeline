@@ -4501,8 +4501,10 @@
       "findings": [
         {
           "aliases": [],
+          "epss": null,
           "fixed_version": "",
           "id": "GO-2026-5932",
+          "kev": null,
           "level": "symbol",
           "module": "golang.org/x/crypto",
           "summary": "The golang.org/x/crypto/openpgp package is unmaintained, unsafe by design, and has known security issues",
@@ -4512,8 +4514,14 @@
           "aliases": [
             "CVE-2026-78661"
           ],
+          "epss": {
+            "cve": "CVE-2026-78661",
+            "percentile": 0.08063,
+            "score": 0.00185
+          },
           "fixed_version": "v0.62.0",
           "id": "GO-2026-6860",
+          "kev": null,
           "level": "symbol",
           "module": "golang.org/x/net",
           "summary": "Avoid quadratic complexity when coalescing text nodes in html in golang.org/x/net",
@@ -4523,8 +4531,14 @@
           "aliases": [
             "CVE-2026-97045"
           ],
+          "epss": {
+            "cve": "CVE-2026-97045",
+            "percentile": 0.10117,
+            "score": 0.00202
+          },
           "fixed_version": "v0.62.0",
           "id": "GO-2026-6866",
+          "kev": null,
           "level": "symbol",
           "module": "golang.org/x/net",
           "summary": "Check all ancestor namespace transitions when rendering raw text in html in golang.org/x/net",
@@ -4535,8 +4549,17 @@
             "CVE-2026-33634",
             "GHSA-69fq-xp46-6x23"
           ],
+          "epss": {
+            "cve": "CVE-2026-33634",
+            "percentile": 0.99129,
+            "score": 0.59727
+          },
           "fixed_version": "",
           "id": "GO-2026-4919",
+          "kev": {
+            "cve": "CVE-2026-33634",
+            "date_added": "2026-03-26"
+          },
           "level": "module",
           "module": "github.com/aquasecurity/trivy",
           "summary": "Trivy ecosystem supply chain was briefly compromised in github.com/aquasecurity/trivy",
@@ -4587,13 +4610,16 @@
     "release_integrity": {
       "asset": "trivy_0.76.1_Linux-64bit.tar.gz",
       "assets": 47,
+      "build_provenance": "verified",
       "checksums_published": true,
       "digest_matches_github": true,
+      "immutable_release": true,
       "methods": [
         {
           "covers": "asset",
           "identity": "GitHub Actions workflow in aquasecurity/trivy",
           "method": "cosign",
+          "signer": "URI:https://github.com/aquasecurity/trivy/.github/workflows/reusable-release.yaml@refs/tags/v0.76.1",
           "status": "verified"
         },
         {
@@ -4611,7 +4637,9 @@
       ],
       "provenance_published": false,
       "sbom_published": false,
+      "signature": "own-workflow",
       "signatures_published": true,
+      "signer": "URI:https://github.com/aquasecurity/trivy/.github/workflows/reusable-release.yaml@refs/tags/v0.76.1",
       "verdict": "verified"
     },
     "released_at": "2026-10-21T11:18:34Z",
@@ -4626,7 +4654,7 @@
       ],
       "removed": 0
     },
-    "scanned_at": "2026-11-02T01:32:06+00:00",
+    "scanned_at": "2026-11-02T03:06:23+00:00",
     "scorecard": {
       "checks": [
         {
