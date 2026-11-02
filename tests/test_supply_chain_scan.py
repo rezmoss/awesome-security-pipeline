@@ -4,11 +4,13 @@ import io
 import json
 import os
 import pathlib
+import re
 import subprocess
 import tempfile
 import unittest
 import unittest.mock
 import urllib.error
+import urllib.parse
 from xml.etree import ElementTree
 
 from scripts import build_site
@@ -424,6 +426,17 @@ class SupplyChainScanTest(unittest.TestCase):
                          ["tag:rezmoss.github.io,2026:week/2026-11-01"])
         project_feed = ElementTree.parse(site / "projects" / "gitleaks" / "gitleaks" / "feed.xml").getroot()
         self.assertEqual(len(project_feed.findall(atom + "entry")), 1)
+
+        # Every relative link and asset in the built site must resolve to a file.
+        broken = []
+        for html in site.rglob("*.html"):
+            for target in re.findall(r'(?:href|src)="([^"#?]*)', html.read_text()):
+                if not target or re.match(r"[a-z]+:", target):
+                    continue
+                resolved = (html.parent / urllib.parse.unquote(target)).resolve()
+                if not (resolved.is_file() or (resolved / "index.html").is_file()):
+                    broken.append(f"{html.relative_to(site)} -> {target}")
+        self.assertEqual(broken, [])
 
     def test_csv_cells_are_never_spreadsheet_formulas(self):
         self.assertEqual([site_exports.csv_cell(value) for value in ("=cmd", "+1+1", "@x", "-2", "-x", None, True)],

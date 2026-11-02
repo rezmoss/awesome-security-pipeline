@@ -942,7 +942,7 @@ class ReportSite:
                         ('<span class="zero">no</span>' if record["kev_checked"] else '<span class="zero">—</span>'))
             epss = record["epss"]
             rows.append(
-                f"<tr{flags}><td data-sort=\"{esc(record['id'].lower())}\"><a href=\"{exports.advisory_path(record['id'])}index.html\"><code>{esc(record['id'])}</code></a>"
+                f"<tr{flags}><td data-sort=\"{esc(record['id'].lower())}\"><a href=\"../{exports.advisory_path(record['id'])}index.html\"><code>{esc(record['id'])}</code></a>"
                 + (f"<div class=\"small\">{esc(', '.join(record['aliases'][:3]))}</div>" if record["aliases"] else "") + "</td>"
                 f"<td data-sort=\"{order.get(record['severity'], 99)}\">{badge(record['severity'])}</td>"
                 f"<td class=\"small\">{esc(record['summary'][:140])}</td>"
@@ -954,7 +954,7 @@ class ReportSite:
         kev_list = ""
         if any(record["kev_checked"] for record in records):
             items = "".join(
-                f"<li><a href=\"{exports.advisory_path(record['id'])}index.html\"><code>{esc(record['id'])}</code></a> "
+                f"<li><a href=\"../{exports.advisory_path(record['id'])}index.html\"><code>{esc(record['id'])}</code></a> "
                 f"({esc(record['kev'].get('cve'))}): {len(record['tools'])} tool(s), "
                 f"{len(record['shipped'])} shipping the vulnerable code"
                 + (" — workflow references only" if record["workflow_only"] else "") + "</li>"
@@ -1007,8 +1007,13 @@ class ReportSite:
             ("matches.csv", "Derived: one row per project and advisory match, with KEV and EPSS."),
             ("advisories.csv", "Derived: one row per distinct advisory, with the tools it matches."),
         )
+        data = self.args.supply_chain_data
+
+        def linked(name):
+            return "<" not in name and (name.endswith(".csv") or bool(data and (data / name).is_file()))
+
         rows = "".join(
-            f"<tr><td>{'<code>' + esc(name) + '</code>' if '<' in name else f'<a href={chr(34)}{esc(name)}{chr(34)}><code>{esc(name)}</code></a>'}</td><td>{esc(text)}</td></tr>"
+            f"<tr><td>{f'<a href={chr(34)}{esc(name)}{chr(34)}><code>{esc(name)}</code></a>' if linked(name) else '<code>' + esc(name) + '</code>'}</td><td>{esc(text)}</td></tr>"
             for name, text in files)
         body = (
             "<h1>Report data</h1>"
