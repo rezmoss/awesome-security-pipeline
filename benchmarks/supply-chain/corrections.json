@@ -8,6 +8,12 @@
       "scope": "Week of 2026-11-01",
       "summary": "The first week was published seven times by scheduled, manual, and push-triggered runs while the report pipeline was being finished. Each publish replaced the previous one without keeping it; every version remains in the supply-chain-data branch history. From 2026-11-08 only scheduled or explicitly dispatched runs publish, and a replaced run is kept under runs/superseded/.",
       "link": "https://github.com/rezmoss/awesome-security-pipeline/commits/supply-chain-data"
+    },
+    {
+      "date": "2026-11-02",
+      "scope": "Week of 2026-11-01",
+      "summary": "A review of the first week found scanner errors, fixed from the next run: two critical \"Malware in ...\" matches were false (salesforce/cloudsplaining's own npm package name and a local file: dependency in semgrep/semgrep matched malware published under the same names), four snyk/cli matches were on its own 1.0.0-monorepo workspace package, and 17 matches were on GitHub Actions referenced by a moving tag (v4, release/v1) that follows the latest, fixed release; npm development dependencies were omitted although the method includes them; npm-shrinkwrap.json was not read (AikidoSec/safe-chain showed 7 dependencies); and directories such as integration-tests, test-fixtures, and functional-tests were not excluded as fixtures. The week's data is unchanged; its \"changes since last week\" compared same-day re-runs and is now shown as a first scan.",
+      "link": "https://github.com/rezmoss/awesome-security-pipeline/blob/main/benchmarks/supply-chain/README.md#how"
     }
   ]
 }
