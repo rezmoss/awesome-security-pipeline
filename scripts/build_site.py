@@ -546,11 +546,14 @@ class ReportSite:
             serious = [record for record in self.advisories.values() if record["severity"] in ("Critical", "High")]
             kev_checked = any(record["kev_checked"] for record in self.advisories.values())
             in_kev = [record for record in self.advisories.values() if record["kev"]]
+            disputed_kev = sum(1 for record in in_kev if self.shipped_only_disputed(record))
             shipped = [record for record in self.advisories.values() if record["shipped"]]
             kev_card = (
                 f'<div class="card"><div class="big">{len(in_kev)}</div><div class="small">matched advisories in the '
                 f'<a href="advisories/index.html#kev">CISA KEV catalog</a>, {sum(1 for record in in_kev if record["shipped"])} of them '
-                "with vulnerable code in a shipped binary</div></div>"
+                "with vulnerable code in a shipped binary"
+                + (f' (<a href="corrections/index.html#disputes">{disputed_kev} disputed</a>)' if disputed_kev else "")
+                + "</div></div>"
                 if kev_checked else "")
             go_tools = [item for item in entries if item.get("in_binary")]
             go_vulnerable = sum(1 for item in go_tools if item["in_binary"]["total"])
@@ -650,7 +653,8 @@ class ReportSite:
 
         def binary_link(finding: dict[str, Any]) -> tuple[str | None, str]:
             match = binary_only.get((finding["id"], finding.get("module")))
-            return (advisory_anchor(match) if match else None), self.advisory_link(finding, depth)
+            note = self.dispute_note(repository, match, depth) if match else ""
+            return (advisory_anchor(match) if match else None), self.advisory_link(finding, depth) + note
 
         parts.append(sections.reachability_section(go, vulns, project.get("go_binary_note"), binary_link))
         parts.append(sections.release_section(project.get("release_integrity"), repository))
@@ -731,16 +735,27 @@ class ReportSite:
             return f"<code>{esc(item['id'])}</code>"
         return f'<a href="{"../" * depth}{exports.advisory_path(key)}index.html"><code>{esc(item["id"])}</code></a>'
 
+    def recorded_dispute(self, repository: str, item: dict[str, Any]) -> dict[str, Any] | None:
+        return self.disputes.get(exports.dispute_key(repository, item["id"], f"{item['package']}@{item['version']}")) \
+            or self.disputes.get(exports.dispute_key(repository, item["id"], ""))
+
+    def shipped_only_disputed(self, record: dict[str, Any]) -> bool:
+        """Every shipped match of this advisory has a recorded dispute."""
+        shipped = [entry for entry in record["matches"] if entry["item"].get("in_binary") == exports.SHIPPED]
+        return bool(shipped) and all(self.recorded_dispute(entry["project"]["repository"], entry["item"]) for entry in shipped)
+
+    def dispute_note(self, repository: str, item: dict[str, Any], depth: int) -> str:
+        recorded = self.recorded_dispute(repository, item)
+        if not recorded:
+            return ""
+        return (f'<div class="small warn"><a href="{"../" * depth}corrections/index.html#disputes">{esc(recorded.get("status", "disputed"))}</a>: '
+                f'{esc(recorded.get("summary", ""))}</div>')
+
     def dispute_cell(self, project: dict[str, Any], item: dict[str, Any], depth: int) -> str:
         page = f"{self.site_url}{project_path(project['repository'])}index.html#{advisory_anchor(item)}"
-        recorded = self.disputes.get(exports.dispute_key(project["repository"], item["id"], f"{item['package']}@{item['version']}")) \
-            or self.disputes.get(exports.dispute_key(project["repository"], item["id"], ""))
-        note = ""
-        if recorded:
-            note = (f'<div class="small warn"><a href="{"../" * depth}corrections/index.html#disputes">{esc(recorded.get("status", "disputed"))}</a>: '
-                    f'{esc(recorded.get("summary", ""))}</div>')
         return (f'<td class="small"><a href="{esc(exports.dispute_url(self.repository, project, item, page))}" '
-                f'title="Report that this match is wrong, not applicable, or fixed">Dispute</a>{note}</td>')
+                f'title="Report that this match is wrong, not applicable, or fixed">Dispute</a>'
+                f'{self.dispute_note(project["repository"], item, depth)}</td>')
 
     def project_vulnerabilities(self, project: dict[str, Any], depth: int = 3) -> str:
         vulns = project.get("vulnerabilities")
@@ -1042,6 +1057,7 @@ class ReportSite:
                 f"<li><a href=\"../{exports.advisory_path(record['id'])}index.html\"><code>{esc(record['id'])}</code></a> "
                 f"({esc(record['kev'].get('cve'))}): {len(record['tools'])} tool(s), "
                 f"{len(record['shipped'])} shipping the vulnerable code"
+                + (' (<a href="../corrections/index.html#disputes">disputed</a>)' if self.shipped_only_disputed(record) else "")
                 + (" — workflow references only" if record["workflow_only"] else "") + "</li>"
                 for record in in_kev)
             kev_list = (f'<h2 id="kev">In the CISA KEV catalog ({len(in_kev)})</h2>'
@@ -1290,7 +1306,10 @@ class ReportSite:
         )
 
         dispute_rows = "".join(
-            f"<tr><td>{esc(entry.get('date', ''))}</td><td><a href=\"../{project_path(entry['repository'])}index.html\">{esc(entry['repository'])}</a></td>"
+            f"<tr><td>{esc(entry.get('date', ''))}</td><td>"
+            + (f"<a href=\"../{project_path(entry['repository'])}index.html\">{esc(entry['repository'])}</a>"
+               if entry["repository"] in self.projects or entry["repository"] in self.retired else esc(entry["repository"]))
+            + "</td>"
             f"<td><code>{esc(entry['advisory'])}</code>{(' in <code>' + esc(entry['package']) + '</code>') if entry.get('package') else ''}</td>"
             f"<td>{esc(entry.get('status', ''))}</td><td>{esc(entry.get('summary', ''))}</td><td>{source(entry)}</td></tr>"
             for entry in sorted(documented.get("disputes") or [], key=lambda item: item.get("date", ""), reverse=True)
