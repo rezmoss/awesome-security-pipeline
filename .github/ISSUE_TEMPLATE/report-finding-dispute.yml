@@ -1,0 +1,102 @@
+name: Supply-chain report finding dispute
+description: Report that an advisory match in the weekly supply-chain report is wrong, does not apply, or is already fixed.
+title: "[Finding]: "
+labels:
+  - bug
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Use this form for one advisory match on a project page of the [weekly supply-chain report](https://rezmoss.github.io/awesome-security-pipeline/). The **Dispute** link on each match fills in the first fields. Disputes do not remove a match: if accepted, the match is annotated on the project page and listed on the [corrections page](https://rezmoss.github.io/awesome-security-pipeline/corrections/#disputes).
+
+  - type: input
+    id: project
+    attributes:
+      label: Project
+      placeholder: owner/repository
+    validations:
+      required: true
+
+  - type: input
+    id: advisory
+    attributes:
+      label: Advisory
+      placeholder: GHSA-xxxx-xxxx-xxxx, GO-YYYY-NNNN, or CVE-YYYY-NNNNN
+    validations:
+      required: true
+
+  - type: input
+    id: package
+    attributes:
+      label: Package and version matched
+      placeholder: golang.org/x/net@v0.30.0
+    validations:
+      required: true
+
+  - type: input
+    id: version_scanned
+    attributes:
+      label: Project release scanned
+      placeholder: v1.2.3
+    validations:
+      required: true
+
+  - type: input
+    id: location
+    attributes:
+      label: Report page
+      description: Link to the match on the report.
+    validations:
+      required: false
+
+  - type: dropdown
+    id: claim
+    attributes:
+      label: What is wrong?
+      options:
+        - The package version is not affected (false match)
+        - Affected version, but the vulnerable code is not used or not shipped
+        - Already fixed in the scanned release
+        - The package is not part of the scanned release
+        - Wrong severity
+        - Other, explained below
+    validations:
+      required: true
+
+  - type: textarea
+    id: evidence
+    attributes:
+      label: Evidence
+      description: Link to the advisory's affected ranges, the release's lockfile or build, govulncheck output, or another checkable source.
+    validations:
+      required: true
+
+  - type: input
+    id: vex_url
+    attributes:
+      label: VEX statement (optional)
+      description: If the project publishes an OpenVEX or CSAF VEX document covering this match, link to it in the project's own repository or release.
+    validations:
+      required: false
+
+  - type: dropdown
+    id: affiliation
+    attributes:
+      label: Affiliation with the affected project
+      options:
+        - No affiliation
+        - Maintainer, author, or contributor
+        - Employee, sponsor, or other financial relationship
+        - Other relationship disclosed below
+    validations:
+      required: true
+
+  - type: checkboxes
+    id: confirmation
+    attributes:
+      label: Confirmation
+      options:
+        - label: I searched existing issues for this finding.
+          required: true
+        - label: I understand that an advisory match describes a declared dependency version and is not a claim that the tool is exploitable.
+          required: true
