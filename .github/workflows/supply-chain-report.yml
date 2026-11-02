@@ -19,9 +19,11 @@ on:
       - ".github/workflows/supply-chain-report.yml"
       - "scripts/supply_chain_scan.py"
       - "scripts/supply_chain_checks.py"
+      - "scripts/enrichment.py"
       - "scripts/catalog.py"
       - "scripts/build_site.py"
       - "scripts/site_sections.py"
+      - "scripts/site_exports.py"
       - "scripts/fetch-site-inputs.sh"
       - "scripts/report-run.sh"
       - "scripts/install-supply-chain-tools.sh"
@@ -36,6 +38,7 @@ on:
       - ".github/workflows/supply-chain-report.yml"
       - "scripts/build_site.py"
       - "scripts/site_sections.py"
+      - "scripts/site_exports.py"
       - "scripts/fetch-site-inputs.sh"
       - "scripts/report-run.sh"
       - "benchmarks/supply-chain/*.json"
@@ -133,6 +136,22 @@ jobs:
         with:
           name: supply-chain-targets
           path: targets.json
+          retention-days: 90
+
+      # Downloaded here, in a read-only job, so the job that writes the data branch only reads files.
+      # A failed download is recorded in enrichment.json and the week is published without it.
+      - name: Download the CISA KEV catalog and EPSS scores
+        if: steps.targets.outputs.mode != 'site'
+        shell: bash
+        run: python3 scripts/supply_chain_scan.py enrich --output-dir enrichment
+
+      - name: Retain exploitation data
+        if: steps.targets.outputs.mode != 'site'
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        with:
+          name: supply-chain-enrichment
+          path: enrichment
+          if-no-files-found: error
           retention-days: 90
 
   scan:
@@ -253,6 +272,12 @@ jobs:
           name: supply-chain-targets
           path: shards
 
+      - name: Download exploitation data
+        uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093 # v4
+        with:
+          name: supply-chain-enrichment
+          path: shards/supply-chain-enrichment
+
       - name: Prepare the data branch worktree
         shell: bash
         run: |
@@ -288,7 +313,8 @@ jobs:
         run: |
           python3 scripts/supply_chain_scan.py publish \
             --shards-dir shards --data-dir data --date "$DATE" \
-            --reason "$REASON" --evidence-release "$TAG"
+            --reason "$REASON" --evidence-release "$TAG" \
+            --enrichment-dir shards/supply-chain-enrichment
 
       - name: Commit the data branch
         id: commit
@@ -362,7 +388,7 @@ jobs:
             echo "Raw evidence for the [weekly supply-chain report]($site/history/$DATE/index.html) of $DATE: $projects catalog projects."
             echo
             echo "- Produced by [run $GITHUB_RUN_ID (attempt $GITHUB_RUN_ATTEMPT)]($GITHUB_SERVER_URL/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID) at commit $GITHUB_SHA."
-            echo "- \`supply-chain-evidence-$DATE.tar.gz\`: per project, the CycloneDX SBOM, Grype, OSV-Scanner, and govulncheck output, sbomlyze diff, and \`summary.json\` with release-integrity details; plus the target list."
+            echo "- \`supply-chain-evidence-$DATE.tar.gz\`: per project, the CycloneDX SBOM, Grype, OSV-Scanner, and govulncheck output, sbomlyze diff, and \`summary.json\` with release-integrity details; plus the target list and the CISA KEV and FIRST EPSS snapshots used (\`supply-chain-enrichment/\`)."
             echo "- \`data-SHA256SUMS\`: digests of every file in the data branch at commit $SHA, which this tag points to."
             echo
             echo "Verify: \`gh attestation verify supply-chain-evidence-$DATE.tar.gz --repo $GITHUB_REPOSITORY --signer-workflow $GITHUB_REPOSITORY/.github/workflows/supply-chain-report.yml\`. See $site/verify/index.html for what this proves."
@@ -395,6 +421,13 @@ jobs:
           pattern: supply-chain-shard-*
           path: site-input/supply-chain-artifacts
 
+      - name: Download exploitation data for previews
+        if: needs.targets.outputs.mode == 'preview'
+        uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093 # v4
+        with:
+          name: supply-chain-enrichment
+          path: site-input/enrichment
+
       - name: Fetch the data branch
         env:
           GH_TOKEN: ${{ github.token }}
@@ -410,7 +443,8 @@ jobs:
           python3 scripts/supply_chain_scan.py publish \
             --shards-dir site-input/supply-chain-artifacts \
             --data-dir site-input/supply-chain-data \
-            --date "$DATE" --reason "preview, not published"
+            --date "$DATE" --reason "preview, not published" \
+            --enrichment-dir site-input/enrichment
 
       - name: Build static site
         shell: bash

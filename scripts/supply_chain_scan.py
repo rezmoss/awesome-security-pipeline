@@ -5,6 +5,7 @@ Subcommands:
   targets   read the active tools from tools/, resolve each project's latest release, and shard the list
   scan      fetch the manifests and lockfiles at each release tag, then run Syft, Grype, and sbomlyze
   publish   record the week's results in the data branch and compute changes from the previous week
+  enrich    download the CISA KEV catalog and FIRST EPSS scores applied to matches at publish time
   baseline  print the run that produced the previous week's data, for drift comparison
   verify    check the data branch: recomputation, checksums, append-only history, and attestations
 
@@ -32,9 +33,10 @@ from typing import Any
 sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent.parent))
 
 from scripts import catalog  # noqa: E402
+from scripts import enrichment  # noqa: E402
 from scripts import supply_chain_checks as checks  # noqa: E402
 
-SCHEMA_VERSION = 2
+SCHEMA_VERSION = 3
 WORKFLOW_PATH = ".github/workflows/supply-chain-report.yml"
 GO_VULN_INDEX = "https://vuln.go.dev/index/db.json"
 CHECKSUMS_FILE = "SHA256SUMS"
@@ -269,6 +271,7 @@ def normalize_grype(report: dict[str, Any]) -> list[dict[str, Any]]:
             "fixed_in": list(fix.get("versions") or []),
             "fix_state": str(fix.get("state") or "unknown"),
             "url": str(vulnerability.get("dataSource") or ""),
+            "summary": " ".join(str(vulnerability.get("description") or "").split())[:300],
             "location": str(((artifact.get("locations") or [{}])[0]).get("path", "")).lstrip("/"),
         }
         findings[(entry["id"], entry["package"], entry["version"])] = entry
@@ -584,11 +587,18 @@ def changes(previous: dict[str, Any] | None, current: dict[str, Any]) -> dict[st
             return {item["id"] for item in project["go_binary"]["findings"] if item["level"] == "symbol"}
         result["in_binary_new"] = sorted(in_binary(current) - in_binary(previous))
         result["in_binary_resolved"] = sorted(in_binary(previous) - in_binary(current))
+    if current.get("vulnerabilities") and any("kev" in item for item in previous.get("vulnerabilities") or []):
+        # Only once last week was checked against KEV too; otherwise every listed match would look new.
+        earlier = {finding_key(item): item for item in previous.get("vulnerabilities") or []}
+        result["kev_new"] = [
+            item for item in current["vulnerabilities"]
+            if item.get("kev") and not (earlier.get(finding_key(item)) or {}).get("kev")
+        ]
     result["any"] = bool(
         result["release_changed"] or result["added"] or result["removed"] or result["upgraded"]
         or result["license_changes"] or result.get("new_vulnerabilities") or result.get("resolved_vulnerabilities")
         or result["integrity_drift"] or result.get("scorecard") or result.get("release_integrity")
-        or result.get("workflow_new") or result.get("in_binary_new")
+        or result.get("workflow_new") or result.get("in_binary_new") or result.get("kev_new")
     )
     return result
 
@@ -604,6 +614,9 @@ def history_entry(date: str, project: dict[str, Any]) -> dict[str, Any]:
         "dependencies": len(project.get("components") or []) if project.get("components") is not None else None,
         "vulnerabilities": severity_counts(vulns) if vulns is not None else None,
         "fixable": sum(1 for item in vulns or [] if item.get("fixed_in")) if vulns is not None else None,
+        "vulnerable_packages": len({(item["package"], item["version"]) for item in vulns or []}) if vulns is not None else None,
+        "kev": sum(1 for item in vulns or [] if item.get("kev")) if vulns is not None and any("kev" in item for item in vulns) else None,
+        "kev_new": len(change.get("kev_new") or []),
         "added": len(change.get("added") or []),
         "removed": len(change.get("removed") or []),
         "upgraded": len(change.get("upgraded") or []),
@@ -738,6 +751,7 @@ def command_publish(args: argparse.Namespace) -> int:
         superseded.parent.mkdir(parents=True, exist_ok=True)
         shutil.copyfile(run_file, superseded)
     baseline_commit = previous_week_commit(args.data_dir, args.date) if superseded else None
+    context = enrichment.load(args.enrichment_dir)
     tools: dict[str, Any] = {}
     environments = []
     week = []
@@ -758,7 +772,9 @@ def command_publish(args: argparse.Namespace) -> int:
                 # A failed scan keeps last week's inventory visible and is marked as failed.
                 project = {**previous, "errors": project.get("errors"), "scanned_at": project.get("scanned_at"), "stale": True}
                 project["changes"] = {"baseline": False, "any": False, "scan_failed": True}
+                enrichment.annotate(project.get("vulnerabilities"), context)
             else:
+                enrichment.annotate(project.get("vulnerabilities"), context)
                 if not project.get("scorecard") and previous and previous.get("scorecard"):
                     # Scorecard CLI runs are rate limited; keep the last result until it is refreshed.
                     project["scorecard"] = {**previous["scorecard"], "carried_forward": True}
@@ -773,7 +789,7 @@ def command_publish(args: argparse.Namespace) -> int:
     write_json(run_file, {
         "schema_version": SCHEMA_VERSION, "date": args.date, "generated_at": utc_now(),
         "commit": args.commit, "tools": tools, "projects": week,
-        "provenance": {"run": provenance, "shards": environments},
+        "provenance": {"run": provenance, "shards": environments, "enrichment": enrichment.provenance(context)},
         "evidence_release": args.evidence_release,
         "supersedes": superseded.relative_to(args.data_dir).as_posix() if superseded else None,
     }, indent=None)
@@ -796,6 +812,16 @@ def command_publish(args: argparse.Namespace) -> int:
     )
     write_checksums(args.data_dir)
     print(f"Recorded {len(week)} projects for {args.date}" + (f" (superseding {superseded.name})" if superseded else ""))
+    return 0
+
+
+# ----- enrich ----------------------------------------------------------------------------
+
+def command_enrich(args: argparse.Namespace) -> int:
+    metadata = enrichment.fetch(args.output_dir)
+    for key in ("kev", "epss"):
+        entry = metadata[key]
+        print(f"{key}: " + (f"failed ({entry['error']})" if "error" in entry else f"{entry.get('version')} ({entry.get('count')} entries)"))
     return 0
 
 
@@ -975,6 +1001,9 @@ def parse_args() -> argparse.Namespace:
     publish.add_argument("--commit", default=os.environ.get("GITHUB_SHA", "local"))
     publish.add_argument("--reason", default="", help="why this run was started, recorded with its provenance")
     publish.add_argument("--evidence-release", default=None, help="tag of the release holding this run's raw evidence")
+    publish.add_argument("--enrichment-dir", type=pathlib.Path, help="output of `enrich` (CISA KEV and EPSS snapshots)")
+    enrich = commands.add_parser("enrich")
+    enrich.add_argument("--output-dir", type=pathlib.Path, required=True)
     baseline = commands.add_parser("baseline")
     baseline.add_argument("--data-dir", type=pathlib.Path, required=True)
     baseline.add_argument("--date", default=dt.datetime.now(dt.timezone.utc).date().isoformat())
@@ -988,7 +1017,7 @@ def parse_args() -> argparse.Namespace:
 
 def main() -> int:
     args = parse_args()
-    return {"targets": command_targets, "scan": command_scan, "publish": command_publish,
+    return {"targets": command_targets, "scan": command_scan, "publish": command_publish, "enrich": command_enrich,
             "baseline": command_baseline, "verify": command_verify}[args.command](args)
 
 

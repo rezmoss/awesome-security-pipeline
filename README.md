@@ -14,7 +14,7 @@ Start with a working pipeline, not an empty checklist. The included GitHub Actio
 
 [**Run the tested pipeline →**](#10-minute-quick-start) · [Choose controls for your project](#choose-your-baseline) · [Browse tools by pipeline stage](#tool-catalog) · [Read the verification methodology](docs/methodology.md)
 
-**[Weekly supply-chain report →](https://rezmoss.github.io/awesome-security-pipeline/)** Every tool in this list is scanned each week at its latest release: dependencies and known vulnerabilities, vulnerable code in the shipped binary, release signature verification, OpenSSF Scorecard, a GitHub Actions workflow audit, and what changed since last week. [Method](benchmarks/supply-chain/README.md).
+**[Weekly supply-chain report →](https://rezmoss.github.io/awesome-security-pipeline/)** Every tool in this list is scanned each week at its latest release: dependencies and known vulnerabilities, vulnerable code in the shipped binary, release signature verification, OpenSSF Scorecard, a GitHub Actions workflow audit, CISA KEV and EPSS context, and what changed since last week. [Per-advisory pages](https://rezmoss.github.io/awesome-security-pipeline/advisories/) show which tools match each advisory and which ship the vulnerable code; data is available as JSON, CSV, and Atom feeds. [Method](benchmarks/supply-chain/README.md).
 
 [![Security controls from commit through signed package](assets/security-pipeline-architecture.svg)](assets/security-pipeline-architecture.svg)
 

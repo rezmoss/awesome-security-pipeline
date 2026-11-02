@@ -1,3 +1,5 @@
+import csv
+import gzip
 import io
 import json
 import os
@@ -7,8 +9,11 @@ import tempfile
 import unittest
 import unittest.mock
 import urllib.error
+from xml.etree import ElementTree
 
 from scripts import build_site
+from scripts import enrichment
+from scripts import site_exports
 from scripts import supply_chain_checks as checks
 from scripts import supply_chain_scan as scan
 
@@ -213,9 +218,11 @@ class SupplyChainScanTest(unittest.TestCase):
         for path in ("history/index.html", "history/2026-11-08/index.html", "data/index.json", "style.css"):
             self.assertTrue((site / path).is_file(), path)
 
-    def publish(self, shards, data, date, **environment):
+    def publish(self, shards, data, date, enrichment=None, **environment):
         """Publish with only the given GitHub Actions variables, so tests behave the same in CI."""
         argv = ["scan", "publish", "--shards-dir", str(shards), "--data-dir", str(data), "--date", date]
+        if enrichment:
+            argv += ["--enrichment-dir", str(enrichment)]
         clean = {key: value for key, value in os.environ.items() if not key.startswith("GITHUB_")}
         with unittest.mock.patch("sys.argv", argv), unittest.mock.patch.dict(os.environ, {**clean, **environment}, clear=True):
             self.assertEqual(scan.main(), 0)
@@ -310,6 +317,118 @@ class SupplyChainScanTest(unittest.TestCase):
         problems, _ = scan.verify_history(data, [])
         self.assertTrue(any("rewrites runs/2026-11-01.json" in item for item in problems), problems)
 
+    @staticmethod
+    def write_enrichment(directory, kev_ids, epss):
+        directory.mkdir(parents=True, exist_ok=True)
+        (directory / "kev.json").write_text(json.dumps({"catalogVersion": "1", "vulnerabilities": [
+            {"cveID": cve, "dateAdded": "2026-11-02"} for cve in kev_ids]}))
+        rows = "".join(f"{cve},{score},0.9\n" for cve, score in epss.items())
+        (directory / "epss_scores.csv.gz").write_bytes(gzip.compress(
+            f"#model_version:v1,score_date:2026-11-01T00:00:00Z\ncve,epss,percentile\n{rows}".encode()))
+        (directory / "enrichment.json").write_text(json.dumps({
+            "fetched_at": "2026-11-01T00:00:00+00:00", "kev": {"version": "1", "count": len(kev_ids)}, "epss": {"version": "v1"}}))
+
+    def test_kev_and_epss_are_applied_at_publish_and_new_kev_listings_are_changes(self):
+        temporary = tempfile.TemporaryDirectory()
+        self.addCleanup(temporary.cleanup)
+        root = pathlib.Path(temporary.name)
+        data = root / "data"
+        vulnerable = finding("GHSA-k", "a")
+        vulnerable["aliases"] = ["CVE-2026-1"]
+        for week in ("week1", "week2"):
+            self.write_shard(root / week, "v1", [component("a", "1")], [dict(vulnerable)])
+        self.write_enrichment(root / "e1", [], {"CVE-2026-1": 0.02})
+        self.write_enrichment(root / "e2", ["CVE-2026-1"], {"CVE-2026-1": 0.5})
+        self.publish(root / "week1", data, "2026-11-01", enrichment=root / "e1")
+        self.publish(root / "week2", data, "2026-11-08", enrichment=root / "e2")
+
+        stored = json.loads((data / "projects" / "gitleaks__gitleaks.json").read_text())
+        match = stored["latest"]["vulnerabilities"][0]
+        self.assertEqual(match["kev"], {"date_added": "2026-11-02", "cve": "CVE-2026-1"})
+        self.assertEqual(match["epss"], {"score": 0.5, "percentile": 0.9, "cve": "CVE-2026-1"})
+        self.assertEqual([item["id"] for item in stored["latest"]["changes"]["kev_new"]], ["GHSA-k"])
+        self.assertTrue(stored["latest"]["changes"]["any"])
+        self.assertEqual((stored["history"][0]["kev"], stored["history"][1]["kev"], stored["history"][1]["kev_new"]), (0, 1, 1))
+        run = json.loads((data / "runs" / "2026-11-08.json").read_text())
+        self.assertEqual(run["provenance"]["enrichment"]["kev"]["version"], "1")
+        self.assertEqual(scan.verify_tree(data), [])
+
+        # Without enrichment, matches carry no kev key: "not checked" rather than "not listed".
+        unchecked = [dict(vulnerable)]
+        enrichment.annotate(unchecked, None)
+        self.assertNotIn("kev", unchecked[0])
+
+    def test_site_counts_every_severity_and_writes_advisories_exports_feeds_and_badges(self):
+        temporary = tempfile.TemporaryDirectory()
+        self.addCleanup(temporary.cleanup)
+        root = pathlib.Path(temporary.name)
+        data, site = root / "data", root / "site"
+        shared_ghsa = finding("GHSA-s", "x/net")
+        shared_ghsa["aliases"] = ["CVE-2026-7"]
+        shared_ghsa["in_binary"] = "vulnerable code in binary"
+        shared_cve = finding("CVE-2026-7", "x/net")
+        shared_cve["aliases"] = ["GHSA-s"]
+        projects = [
+            {"id": "gitleaks__gitleaks", "repository": "gitleaks/gitleaks", "name": "gitleaks", "ref": "v1", "ref_kind": "release",
+             "components": [component("x/net", "1")], "errors": [],
+             "vulnerabilities": [shared_ghsa, finding("GHSA-u", "x/net", "Unknown"), finding("GHSA-n", "x/net", "Negligible")],
+             "go_binary": {"go_version": "go1.24", "binary": "gitleaks", "asset": "a.tar.gz", "main_module": "",
+                           "findings": [{"id": "GO-1", "aliases": ["GHSA-s"], "level": "symbol", "module": "x/net",
+                                         "version": "1", "summary": "Bad =parsing"}]},
+             "release_integrity": {"verdict": "verified"}},
+            {"id": "aquasecurity__trivy", "repository": "aquasecurity/trivy", "name": "trivy", "ref": "v2", "ref_kind": "release",
+             "components": [component("x/net", "1")], "errors": [], "vulnerabilities": [shared_cve]},
+        ]
+        (root / "shards").mkdir()
+        (root / "shards" / "shard-0.json").write_text(json.dumps({"tools": {}, "projects": projects}))
+        self.write_enrichment(root / "e", ["CVE-2026-7"], {"CVE-2026-7": 0.3})
+        self.publish(root / "shards", data, "2026-11-01", enrichment=root / "e")
+        argv = ["build", "--output", str(site), "--supply-chain-data", str(data)]
+        with unittest.mock.patch("sys.argv", argv):
+            self.assertEqual(build_site.main(), 0)
+
+        overview = (site / "index.html").read_text()
+        self.assertIn("4 matches of any severity", overview)
+        self.assertIn('title="Unknown or negligible severity">Unknown</th>', overview)
+        self.assertIn('table class="sortable" id="projects-table"', overview)
+        self.assertTrue((site / "report.js").is_file())
+
+        # GHSA-s and CVE-2026-7 alias each other: one advisory page listing both tools.
+        page = (site / "advisories" / "GHSA-s" / "index.html").read_text()
+        self.assertFalse((site / "advisories" / "CVE-2026-7").exists())
+        self.assertIn("trivy", page)
+        self.assertIn("gitleaks", page)
+        self.assertIn("Bad =parsing", page)
+        self.assertIn("not analyzed", page)
+        self.assertNotIn("noindex", page)
+        self.assertIn("noindex", (site / "advisories" / "GHSA-u" / "index.html").read_text())
+        self.assertIn('href="../../../advisories/GHSA-s/index.html"',
+                      (site / "projects" / "gitleaks" / "gitleaks" / "index.html").read_text())
+
+        project = (site / "projects" / "gitleaks" / "gitleaks" / "index.html").read_text()
+        self.assertIn("template=report-finding-dispute.yml", project)
+        self.assertIn("advisory=GHSA-s", project)
+        self.assertIn("badges%2Fgitleaks%2Fgitleaks%2Frelease.json", project)
+        self.assertEqual(json.loads((site / "badges/gitleaks/gitleaks/in-binary.json").read_text())["message"], "1")
+        self.assertFalse((site / "badges/aquasecurity/trivy/in-binary.json").exists())
+
+        matches = list(csv.DictReader(io.StringIO((site / "data" / "matches.csv").read_text())))
+        self.assertEqual(len(matches), 4)
+        self.assertEqual({row["canonical_advisory"] for row in matches if row["package"] == "x/net" and row["kev"] == "true"}, {"GHSA-s"})
+        self.assertEqual(len(list(csv.DictReader(io.StringIO((site / "data" / "advisories.csv").read_text())))), 3)
+        self.assertEqual(len(list(csv.DictReader(io.StringIO((site / "data" / "projects.csv").read_text())))), 2)
+
+        feed = ElementTree.parse(site / "feed.xml").getroot()
+        atom = "{http://www.w3.org/2005/Atom}"
+        self.assertEqual([entry.find(atom + "id").text for entry in feed.findall(atom + "entry")],
+                         ["tag:rezmoss.github.io,2026:week/2026-11-01"])
+        project_feed = ElementTree.parse(site / "projects" / "gitleaks" / "gitleaks" / "feed.xml").getroot()
+        self.assertEqual(len(project_feed.findall(atom + "entry")), 1)
+
+    def test_csv_cells_are_never_spreadsheet_formulas(self):
+        self.assertEqual([site_exports.csv_cell(value) for value in ("=cmd", "+1+1", "@x", "-2", "-x", None, True)],
+                         ["'=cmd", "'+1+1", "'@x", "-2", "'-x", "", "true"])
+
     def test_every_manual_override_is_documented(self):
         pins = json.loads((ROOT / "benchmarks/supply-chain/release-tags.json").read_text())["projects"]
         for name, entry in pins.items():
@@ -317,6 +436,9 @@ class SupplyChainScanTest(unittest.TestCase):
         corrections = json.loads((ROOT / "benchmarks/supply-chain/corrections.json").read_text())
         for entry in corrections["entries"]:
             self.assertTrue(entry.get("date") and entry.get("summary") and (entry.get("pr") or entry.get("link")), entry)
+        for entry in corrections.get("disputes") or []:
+            self.assertTrue(entry.get("date") and entry.get("repository") and entry.get("advisory") and entry.get("status")
+                            and entry.get("summary") and (entry.get("pr") or entry.get("link")), entry)
         documented = corrections["catalog_exceptions"]
         for path in sorted((ROOT / "tools").glob("*.json")):
             tool = json.loads(path.read_text())
