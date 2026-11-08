@@ -659,10 +659,14 @@ def changes(previous: dict[str, Any] | None, current: dict[str, Any]) -> dict[st
     if site_exports.all_matches(current) and any("kev" in item for item in site_exports.all_matches(previous)):
         # Only once last week was checked against KEV too; otherwise every listed match would look new.
         # Includes govulncheck-only findings in the shipped binary.
+        # A match first seen this week counts only if CISA listed it since last week's scan; a new match
+        # for a CVE that was already in KEV is a new vulnerability, not a KEV status change.
         earlier = {finding_key(item): item for item in site_exports.all_matches(previous)}
+        since = (previous.get("scanned_at") or "")[:10]
         result["kev_new"] = [
             item for item in site_exports.all_matches(current)
             if item.get("kev") and not (earlier.get(finding_key(item)) or {}).get("kev")
+            and (finding_key(item) in earlier or (item["kev"].get("date_added") or "") >= since)
         ]
     result["any"] = bool(
         result["release_changed"] or result["added"] or result["removed"] or result["upgraded"]

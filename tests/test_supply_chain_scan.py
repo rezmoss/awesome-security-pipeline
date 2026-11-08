@@ -464,10 +464,10 @@ class SupplyChainScanTest(unittest.TestCase):
         self.assertTrue(any("rewrites runs/2026-11-01.json" in item for item in problems), problems)
 
     @staticmethod
-    def write_enrichment(directory, kev_ids, epss):
+    def write_enrichment(directory, kev_ids, epss, added=None):
         directory.mkdir(parents=True, exist_ok=True)
         (directory / "kev.json").write_text(json.dumps({"catalogVersion": "1", "vulnerabilities": [
-            {"cveID": cve, "dateAdded": "2026-11-02"} for cve in kev_ids]}))
+            {"cveID": cve, "dateAdded": (added or {}).get(cve, "2026-11-02")} for cve in kev_ids]}))
         rows = "".join(f"{cve},{score},0.9\n" for cve, score in epss.items())
         (directory / "epss_scores.csv.gz").write_bytes(gzip.compress(
             f"#model_version:v1,score_date:2026-11-01T00:00:00Z\ncve,epss,percentile\n{rows}".encode()))
@@ -503,6 +503,27 @@ class SupplyChainScanTest(unittest.TestCase):
         unchecked = [dict(vulnerable)]
         enrichment.annotate(unchecked, None)
         self.assertNotIn("kev", unchecked[0])
+
+    def test_a_new_match_for_a_cve_already_in_kev_is_not_newly_listed(self):
+        temporary = tempfile.TemporaryDirectory()
+        self.addCleanup(temporary.cleanup)
+        root = pathlib.Path(temporary.name)
+        data = root / "data"
+        old, fresh, listed = finding("GHSA-old", "a"), finding("GHSA-new", "b"), finding("GHSA-listed", "c")
+        old["aliases"], fresh["aliases"], listed["aliases"] = ["CVE-2026-1"], ["CVE-2026-2"], ["CVE-2026-3"]
+        components = [component("a", "1"), component("b", "1"), component("c", "1")]
+        self.write_shard(root / "week1", "v1", components, [dict(listed)])
+        self.write_shard(root / "week2", "v1", components, [old, fresh, dict(listed)])
+        self.write_enrichment(root / "e1", ["CVE-2026-1"], {})
+        self.write_enrichment(root / "e2", ["CVE-2026-1", "CVE-2026-2", "CVE-2026-3"], {},
+                              added={"CVE-2026-1": "2026-10-27", "CVE-2026-2": "2026-11-04", "CVE-2026-3": "2026-10-20"})
+        self.publish(root / "week1", data, "2026-11-01", enrichment=root / "e1")
+        self.publish(root / "week2", data, "2026-11-08", enrichment=root / "e2")
+
+        stored = json.loads((data / "projects" / "gitleaks__gitleaks.json").read_text())
+        # GHSA-old: new match, CVE already listed. GHSA-new: listed since last scan. GHSA-listed: status changed.
+        self.assertEqual(sorted(item["id"] for item in stored["latest"]["changes"]["kev_new"]), ["GHSA-listed", "GHSA-new"])
+        self.assertEqual(stored["history"][1]["kev"], 3)
 
     def test_site_counts_every_severity_and_writes_advisories_exports_feeds_and_badges(self):
         temporary = tempfile.TemporaryDirectory()
