@@ -73,6 +73,46 @@
         "Medium": 39,
         "files": 50
       }
+    },
+    {
+      "added": 0,
+      "commit": "0e7c41b936218bd2401ab0f891c93bec10e2e8e4",
+      "date": "2026-11-08",
+      "dependencies": 650,
+      "errors": [],
+      "fixable": 23,
+      "go_version": null,
+      "in_binary": null,
+      "kev": 1,
+      "kev_new": 1,
+      "new_vulnerabilities": 2,
+      "osv_confirmed": 26,
+      "osv_only": 116,
+      "ref": "v2.2.1",
+      "release_changed": false,
+      "release_integrity": "no-assets",
+      "removed": 0,
+      "resolved_vulnerabilities": 0,
+      "scorecard": 6.5,
+      "scorecard_date": "2026-11-02",
+      "scorecard_note": null,
+      "scorecard_source": "openssf-api",
+      "upgraded": 0,
+      "vulnerabilities": {
+        "Critical": 1,
+        "High": 14,
+        "Low": 0,
+        "Medium": 10,
+        "Negligible": 0,
+        "Unknown": 2
+      },
+      "vulnerable_packages": 10,
+      "workflow": {
+        "High": 202,
+        "Low": 97,
+        "Medium": 39,
+        "files": 50
+      }
     }
   ],
   "latest": {
@@ -83,17 +123,99 @@
       "any": true,
       "baseline": false,
       "integrity_drift": 0,
+      "kev_new": [
+        {
+          "aliases": [
+            "CVE-2026-111497",
+            "GHSA-c9gr-gmg4-2vqv"
+          ],
+          "ecosystem": "golang",
+          "epss": {
+            "cve": "CVE-2026-111497",
+            "percentile": 0.99669,
+            "score": 0.82641
+          },
+          "fix_state": "fixed",
+          "fixed_in": [
+            "1.2.7"
+          ],
+          "id": "GO-2026-6888",
+          "kev": {
+            "cve": "CVE-2026-111497",
+            "date_added": "2026-10-27"
+          },
+          "location": "go.mod",
+          "osv_confirmed": true,
+          "package": "github.com/andybalholm/brotli",
+          "severity": "Critical",
+          "summary": "In github.com/andybalholm/brotli before v1.2.7, the decompressor allocates memory for Huffman tables and block-type trees on every meta-block header without bounding the cumulative allocations relative to the input size. A small crafted brotli stream containing many empty meta-blocks with new Huffma",
+          "url": "https://github.com/andybalholm/brotli/security/advisories/GHSA-c9gr-gmg4-2vqv",
+          "version": "v1.2.0"
+        }
+      ],
       "license_changes": [],
-      "new_vulnerabilities": [],
+      "new_vulnerabilities": [
+        {
+          "aliases": [
+            "CVE-2026-116591",
+            "GHSA-fpmh-frq8-7rj8"
+          ],
+          "ecosystem": "golang",
+          "epss": {
+            "cve": "CVE-2026-116591",
+            "percentile": 0.26636,
+            "score": 0.00333
+          },
+          "fix_state": "fixed",
+          "fixed_in": [
+            "1.20.2"
+          ],
+          "id": "GO-2026-6865",
+          "kev": null,
+          "location": "tools/pipeline/go.mod",
+          "osv_confirmed": true,
+          "package": "github.com/klauspost/compress",
+          "severity": "High",
+          "summary": "Panic on two-block frames in github.com/klauspost/compress",
+          "url": "https://github.com/klauspost/compress/security/advisories/GHSA-fpmh-frq8-7rj8",
+          "version": "v1.19.1"
+        },
+        {
+          "aliases": [
+            "CVE-2026-111497",
+            "GHSA-c9gr-gmg4-2vqv"
+          ],
+          "ecosystem": "golang",
+          "epss": {
+            "cve": "CVE-2026-111497",
+            "percentile": 0.99669,
+            "score": 0.82641
+          },
+          "fix_state": "fixed",
+          "fixed_in": [
+            "1.2.7"
+          ],
+          "id": "GO-2026-6888",
+          "kev": {
+            "cve": "CVE-2026-111497",
+            "date_added": "2026-10-27"
+          },
+          "location": "go.mod",
+          "osv_confirmed": true,
+          "package": "github.com/andybalholm/brotli",
+          "severity": "Critical",
+          "summary": "In github.com/andybalholm/brotli before v1.2.7, the decompressor allocates memory for Huffman tables and block-type trees on every meta-block header without bounding the cumulative allocations relative to the input size. A small crafted brotli stream containing many empty meta-blocks with new Huffma",
+          "url": "https://github.com/andybalholm/brotli/security/advisories/GHSA-c9gr-gmg4-2vqv",
+          "version": "v1.2.0"
+        }
+      ],
       "previous_ref": "v2.2.1",
       "release_changed": false,
-      "removed": [
-        "sqlc-dev/setup-sqlc@v5.0.0"
-      ],
+      "removed": [],
       "resolved_vulnerabilities": [],
       "upgraded": [],
       "workflow_new": 0,
-      "workflow_resolved": 2
+      "workflow_resolved": 0
     },
     "commit": "0e7c41b936218bd2401ab0f891c93bec10e2e8e4",
     "compliance": {
@@ -5439,9 +5561,9 @@
     ],
     "name": "vault",
     "osv": {
-      "advisories": 189,
+      "advisories": 193,
       "available": true,
-      "confirmed": 24,
+      "confirmed": 26,
       "osv_only": [
         {
           "ecosystem": "Go",
@@ -6328,6 +6450,28 @@
         {
           "ecosystem": "npm",
           "ids": [
+            "CVE-2026-2950",
+            "GHSA-f23m-r3pf-42rh"
+          ],
+          "package": "lodash",
+          "score": "6.5",
+          "severity": "Medium",
+          "version": "4.18.0"
+        },
+        {
+          "ecosystem": "npm",
+          "ids": [
+            "CVE-2026-2950",
+            "GHSA-f23m-r3pf-42rh"
+          ],
+          "package": "lodash-es",
+          "score": "6.5",
+          "severity": "Medium",
+          "version": "4.18.0"
+        },
+        {
+          "ecosystem": "npm",
+          "ids": [
             "GHSA-253c-mchw-3w2r"
           ],
           "package": "markdown-it",
@@ -6389,28 +6533,6 @@
           "score": "6.9",
           "severity": "Medium",
           "version": "10.2.5"
-        },
-        {
-          "ecosystem": "npm",
-          "ids": [
-            "CVE-2026-118764",
-            "GHSA-g3hv-75wg-m249"
-          ],
-          "package": "minimatch",
-          "score": "6.9",
-          "severity": "Medium",
-          "version": "3.1.5"
-        },
-        {
-          "ecosystem": "npm",
-          "ids": [
-            "CVE-2026-118764",
-            "GHSA-g3hv-75wg-m249"
-          ],
-          "package": "minimatch",
-          "score": "6.9",
-          "severity": "Medium",
-          "version": "5.1.9"
         },
         {
           "ecosystem": "npm",
@@ -6743,14 +6865,12 @@
       "changed": 0,
       "drift": {},
       "findings": [
-        "Attack surface: -6 packages (-0.3%)",
-        "0 version changes among 2,003 shared packages \u2014 no actual upgrades",
-        "Core system packages stable: golang (1,743) unchanged"
+        "0 version changes among 1,999 shared packages \u2014 no actual upgrades",
+        "Core system packages stable: golang (1,743), github (125), library (71), file (60) unchanged"
       ],
-      "html": "sbomlyze-diff.html",
-      "removed": 2
+      "removed": 0
     },
-    "scanned_at": "2026-11-02T03:06:50+00:00",
+    "scanned_at": "2026-11-08T05:53:30+00:00",
     "scorecard": {
       "checks": [
         {
@@ -6824,7 +6944,7 @@
           "score": -1
         }
       ],
-      "date": "2026-10-19",
+      "date": "2026-11-02",
       "score": 6.5,
       "source": "openssf-api",
       "version": "v5.6.0"
@@ -6832,19 +6952,47 @@
     "vulnerabilities": [
       {
         "aliases": [
+          "CVE-2026-111497",
+          "GHSA-c9gr-gmg4-2vqv"
+        ],
+        "ecosystem": "golang",
+        "epss": {
+          "cve": "CVE-2026-111497",
+          "percentile": 0.99669,
+          "score": 0.82641
+        },
+        "fix_state": "fixed",
+        "fixed_in": [
+          "1.2.7"
+        ],
+        "id": "GO-2026-6888",
+        "kev": {
+          "cve": "CVE-2026-111497",
+          "date_added": "2026-10-27"
+        },
+        "location": "go.mod",
+        "osv_confirmed": true,
+        "package": "github.com/andybalholm/brotli",
+        "severity": "Critical",
+        "summary": "In github.com/andybalholm/brotli before v1.2.7, the decompressor allocates memory for Huffman tables and block-type trees on every meta-block header without bounding the cumulative allocations relative to the input size. A small crafted brotli stream containing many empty meta-blocks with new Huffma",
+        "url": "https://github.com/andybalholm/brotli/security/advisories/GHSA-c9gr-gmg4-2vqv",
+        "version": "v1.2.0"
+      },
+      {
+        "aliases": [
           "CVE-2026-116587"
         ],
         "ecosystem": "golang",
         "epss": {
           "cve": "CVE-2026-116587",
-          "percentile": 0.3048,
+          "percentile": 0.30652,
           "score": 0.00366
         },
         "fix_state": "not-fixed",
         "fixed_in": [],
         "id": "GHSA-mgcc-cww5-fp2q",
         "kev": null,
-        "location": "go.mod",
+        "location": "command/client/go.mod",
         "osv_confirmed": true,
         "package": "github.com/go-jose/go-jose/v3",
         "severity": "High",
@@ -6859,7 +7007,7 @@
         "ecosystem": "golang",
         "epss": {
           "cve": "CVE-2026-116587",
-          "percentile": 0.3048,
+          "percentile": 0.30652,
           "score": 0.00366
         },
         "fix_state": "fixed",
@@ -6868,7 +7016,7 @@
         ],
         "id": "GHSA-mgcc-cww5-fp2q",
         "kev": null,
-        "location": "api/auth/azure/go.mod",
+        "location": "api/auth/kubernetes/go.mod",
         "osv_confirmed": true,
         "package": "github.com/go-jose/go-jose/v4",
         "severity": "High",
@@ -6878,12 +7026,37 @@
       },
       {
         "aliases": [
+          "CVE-2026-116591",
+          "GHSA-fpmh-frq8-7rj8"
+        ],
+        "ecosystem": "golang",
+        "epss": {
+          "cve": "CVE-2026-116591",
+          "percentile": 0.26636,
+          "score": 0.00333
+        },
+        "fix_state": "fixed",
+        "fixed_in": [
+          "1.20.2"
+        ],
+        "id": "GO-2026-6865",
+        "kev": null,
+        "location": "tools/pipeline/go.mod",
+        "osv_confirmed": true,
+        "package": "github.com/klauspost/compress",
+        "severity": "High",
+        "summary": "Panic on two-block frames in github.com/klauspost/compress",
+        "url": "https://github.com/klauspost/compress/security/advisories/GHSA-fpmh-frq8-7rj8",
+        "version": "v1.19.1"
+      },
+      {
+        "aliases": [
           "CVE-2026-113729"
         ],
         "ecosystem": "golang",
         "epss": {
           "cve": "CVE-2026-113729",
-          "percentile": 0.39775,
+          "percentile": 0.39992,
           "score": 0.00459
         },
         "fix_state": "fixed",
@@ -6907,7 +7080,7 @@
         "ecosystem": "golang",
         "epss": {
           "cve": "CVE-2026-107214",
-          "percentile": 0.15207,
+          "percentile": 0.15237,
           "score": 0.0024
         },
         "fix_state": "fixed",
@@ -6931,7 +7104,7 @@
         "ecosystem": "golang",
         "epss": {
           "cve": "CVE-2026-107217",
-          "percentile": 0.30109,
+          "percentile": 0.30289,
           "score": 0.00363
         },
         "fix_state": "fixed",
@@ -6955,7 +7128,7 @@
         "ecosystem": "golang",
         "epss": {
           "cve": "CVE-2026-107223",
-          "percentile": 0.30959,
+          "percentile": 0.31143,
           "score": 0.0037
         },
         "fix_state": "fixed",
@@ -6979,7 +7152,7 @@
         "ecosystem": "golang",
         "epss": {
           "cve": "CVE-2026-107219",
-          "percentile": 0.30108,
+          "percentile": 0.3029,
           "score": 0.00363
         },
         "fix_state": "fixed",
@@ -7003,7 +7176,7 @@
         "ecosystem": "golang",
         "epss": {
           "cve": "CVE-2026-107212",
-          "percentile": 0.30108,
+          "percentile": 0.30289,
           "score": 0.00363
         },
         "fix_state": "fixed",
@@ -7027,7 +7200,7 @@
         "ecosystem": "golang",
         "epss": {
           "cve": "CVE-2026-107211",
-          "percentile": 0.14347,
+          "percentile": 0.14373,
           "score": 0.00234
         },
         "fix_state": "fixed",
@@ -7051,7 +7224,7 @@
         "ecosystem": "golang",
         "epss": {
           "cve": "CVE-2026-107213",
-          "percentile": 0.14347,
+          "percentile": 0.14372,
           "score": 0.00234
         },
         "fix_state": "fixed",
@@ -7075,7 +7248,7 @@
         "ecosystem": "golang",
         "epss": {
           "cve": "CVE-2026-107216",
-          "percentile": 0.31504,
+          "percentile": 0.31703,
           "score": 0.00375
         },
         "fix_state": "fixed",
@@ -7099,7 +7272,7 @@
         "ecosystem": "golang",
         "epss": {
           "cve": "CVE-2026-107215",
-          "percentile": 0.15207,
+          "percentile": 0.15238,
           "score": 0.0024
         },
         "fix_state": "fixed",
@@ -7118,12 +7291,36 @@
       },
       {
         "aliases": [
+          "CVE-2026-78661"
+        ],
+        "ecosystem": "golang",
+        "epss": {
+          "cve": "CVE-2026-78661",
+          "percentile": 0.35396,
+          "score": 0.00409
+        },
+        "fix_state": "fixed",
+        "fixed_in": [
+          "0.62.0"
+        ],
+        "id": "GO-2026-6860",
+        "kev": null,
+        "location": "api/auth/cert/go.mod",
+        "osv_confirmed": true,
+        "package": "golang.org/x/net",
+        "severity": "High",
+        "summary": "When coalescing adjacent text nodes in addText and fosterParent, appending to an existing TextNode's Data via string concatenation (n.Data += text) reallocated and copied the accumulated string on every token. Inputs containing many short text runs separated by ignored end tags (such as \"a</x>\") cau",
+        "url": "https://go.dev/cl/849365",
+        "version": "v0.60.0"
+      },
+      {
+        "aliases": [
           "CVE-2026-116585"
         ],
         "ecosystem": "golang",
         "epss": {
           "cve": "CVE-2026-116585",
-          "percentile": 0.18368,
+          "percentile": 0.18412,
           "score": 0.00264
         },
         "fix_state": "not-fixed",
@@ -7145,14 +7342,14 @@
         "ecosystem": "golang",
         "epss": {
           "cve": "CVE-2026-116586",
-          "percentile": 0.21769,
+          "percentile": 0.21863,
           "score": 0.00292
         },
         "fix_state": "not-fixed",
         "fixed_in": [],
         "id": "GHSA-vvm8-gf78-28g4",
         "kev": null,
-        "location": "go.mod",
+        "location": "command/client/go.mod",
         "osv_confirmed": true,
         "package": "github.com/go-jose/go-jose/v3",
         "severity": "Medium",
@@ -7167,7 +7364,7 @@
         "ecosystem": "golang",
         "epss": {
           "cve": "CVE-2026-86597",
-          "percentile": 0.00389,
+          "percentile": 0.004,
           "score": 0.00089
         },
         "fix_state": "not-fixed",
@@ -7189,7 +7386,7 @@
         "ecosystem": "golang",
         "epss": {
           "cve": "CVE-2026-107225",
-          "percentile": 0.1921,
+          "percentile": 0.19269,
           "score": 0.0027
         },
         "fix_state": "fixed",
@@ -7213,7 +7410,7 @@
         "ecosystem": "golang",
         "epss": {
           "cve": "CVE-2026-107218",
-          "percentile": 0.23769,
+          "percentile": 0.23892,
           "score": 0.00309
         },
         "fix_state": "fixed",
@@ -7237,7 +7434,7 @@
         "ecosystem": "golang",
         "epss": {
           "cve": "CVE-2026-107221",
-          "percentile": 0.19209,
+          "percentile": 0.19269,
           "score": 0.0027
         },
         "fix_state": "fixed",
@@ -7261,7 +7458,7 @@
         "ecosystem": "golang",
         "epss": {
           "cve": "CVE-2026-107224",
-          "percentile": 0.23473,
+          "percentile": 0.23594,
           "score": 0.00306
         },
         "fix_state": "fixed",
@@ -7285,7 +7482,7 @@
         "ecosystem": "golang",
         "epss": {
           "cve": "CVE-2026-107220",
-          "percentile": 0.18381,
+          "percentile": 0.18424,
           "score": 0.00264
         },
         "fix_state": "fixed",
@@ -7309,7 +7506,7 @@
         "ecosystem": "golang",
         "epss": {
           "cve": "CVE-2026-107222",
-          "percentile": 0.1921,
+          "percentile": 0.19269,
           "score": 0.0027
         },
         "fix_state": "fixed",
@@ -7327,14 +7524,40 @@
         "version": "v2.11.0"
       },
       {
+        "aliases": [
+          "CVE-2026-97045"
+        ],
+        "ecosystem": "golang",
+        "epss": {
+          "cve": "CVE-2026-97045",
+          "percentile": 0.18952,
+          "score": 0.00267
+        },
+        "fix_state": "fixed",
+        "fixed_in": [
+          "0.62.0"
+        ],
+        "id": "GO-2026-6866",
+        "kev": null,
+        "location": "api/auth/userpass/go.mod",
+        "osv_confirmed": true,
+        "package": "golang.org/x/net",
+        "severity": "Medium",
+        "summary": "In childTextNodesAreLiteral, walking up the tree previously stopped at the nearest foreign ancestor once an HTML integration point was found. However, that integration point may itself be a descendant of an element that was foster-parented into a foreign namespace (such as <mglyph> or <malignmark> f",
+        "url": "https://go.dev/cl/855121",
+        "version": "v0.60.0"
+      },
+      {
         "aliases": [],
         "ecosystem": "golang",
         "epss": null,
-        "fix_state": "unknown",
-        "fixed_in": [],
+        "fix_state": "fixed",
+        "fixed_in": [
+          "0.58.1-0.20261009181718-2f1f834330b2"
+        ],
         "id": "GO-2026-5932",
         "kev": null,
-        "location": "api/auth/gcp/go.mod",
+        "location": "tools/pipeline/go.mod",
         "osv_confirmed": true,
         "package": "golang.org/x/crypto",
         "severity": "Unknown",
@@ -7346,8 +7569,10 @@
         "aliases": [],
         "ecosystem": "golang",
         "epss": null,
-        "fix_state": "unknown",
-        "fixed_in": [],
+        "fix_state": "fixed",
+        "fixed_in": [
+          "0.58.1-0.20261009181718-2f1f834330b2"
+        ],
         "id": "GO-2026-5932",
         "kev": null,
         "location": "go.mod",
@@ -7357,54 +7582,6 @@
         "summary": "The golang.org/x/crypto/openpgp package is unsafe by design, has numerous known security issues, is not maintained, and should not be used. If you are required to interoperate with OpenPGP systems and need a maintained package, consider github.com/ProtonMail/go-crypto/openpgp which is a maintained f",
         "url": "https://go.dev/issue/44226",
         "version": "v0.58.0"
-      },
-      {
-        "aliases": [
-          "CVE-2026-78661"
-        ],
-        "ecosystem": "golang",
-        "epss": {
-          "cve": "CVE-2026-78661",
-          "percentile": 0.08063,
-          "score": 0.00185
-        },
-        "fix_state": "fixed",
-        "fixed_in": [
-          "0.62.0"
-        ],
-        "id": "GO-2026-6860",
-        "kev": null,
-        "location": "api/auth/approle/go.mod",
-        "osv_confirmed": true,
-        "package": "golang.org/x/net",
-        "severity": "Unknown",
-        "summary": "When coalescing adjacent text nodes in addText and fosterParent, appending to an existing TextNode's Data via string concatenation (n.Data += text) reallocated and copied the accumulated string on every token. Inputs containing many short text runs separated by ignored end tags (such as \"a</x>\") cau",
-        "url": "https://go.dev/cl/849365",
-        "version": "v0.60.0"
-      },
-      {
-        "aliases": [
-          "CVE-2026-97045"
-        ],
-        "ecosystem": "golang",
-        "epss": {
-          "cve": "CVE-2026-97045",
-          "percentile": 0.10117,
-          "score": 0.00202
-        },
-        "fix_state": "fixed",
-        "fixed_in": [
-          "0.62.0"
-        ],
-        "id": "GO-2026-6866",
-        "kev": null,
-        "location": "tools/pipeline/go.mod",
-        "osv_confirmed": true,
-        "package": "golang.org/x/net",
-        "severity": "Unknown",
-        "summary": "In childTextNodesAreLiteral, walking up the tree previously stopped at the nearest foreign ancestor once an HTML integration point was found. However, that integration point may itself be a descendant of an element that was foster-parented into a foreign namespace (such as <mglyph> or <malignmark> f",
-        "url": "https://go.dev/cl/855121",
-        "version": "v0.60.0"
       }
     ],
     "workflow_audit": {
@@ -10803,5 +10980,5 @@
       ]
     }
   },
-  "updated": "2026-11-02"
+  "updated": "2026-11-08"
 }

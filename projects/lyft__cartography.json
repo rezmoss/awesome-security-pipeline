@@ -73,6 +73,46 @@
         "Medium": 0,
         "files": 6
       }
+    },
+    {
+      "added": 0,
+      "commit": "66ead780c590c2db63947286fa8d5131f44697f8",
+      "date": "2026-11-08",
+      "dependencies": 262,
+      "errors": [],
+      "fixable": 23,
+      "go_version": null,
+      "in_binary": null,
+      "kev": 0,
+      "kev_new": 0,
+      "new_vulnerabilities": 1,
+      "osv_confirmed": 23,
+      "osv_only": 0,
+      "ref": "0.144.0",
+      "release_changed": false,
+      "release_integrity": "no-assets",
+      "removed": 0,
+      "resolved_vulnerabilities": 0,
+      "scorecard": 8.8,
+      "scorecard_date": "2026-11-02",
+      "scorecard_note": null,
+      "scorecard_source": "openssf-api",
+      "upgraded": 0,
+      "vulnerabilities": {
+        "Critical": 0,
+        "High": 7,
+        "Low": 5,
+        "Medium": 11,
+        "Negligible": 0,
+        "Unknown": 0
+      },
+      "vulnerable_packages": 6,
+      "workflow": {
+        "High": 0,
+        "Low": 0,
+        "Medium": 0,
+        "files": 6
+      }
     }
   ],
   "latest": {
@@ -80,15 +120,45 @@
     "category": "Cloud Security",
     "changes": {
       "added": [],
-      "any": false,
+      "any": true,
       "baseline": false,
       "integrity_drift": 0,
+      "kev_new": [],
       "license_changes": [],
-      "new_vulnerabilities": [],
+      "new_vulnerabilities": [
+        {
+          "aliases": [
+            "CVE-2026-49272"
+          ],
+          "ecosystem": "pypi",
+          "epss": {
+            "cve": "CVE-2026-49272",
+            "percentile": 0.26053,
+            "score": 0.00328
+          },
+          "fix_state": "fixed",
+          "fixed_in": [
+            "4.0.1"
+          ],
+          "id": "GHSA-3jp2-3mrg-2vxc",
+          "kev": null,
+          "location": "uv.lock",
+          "osv_confirmed": true,
+          "package": "oauthlib",
+          "severity": "High",
+          "summary": "OAuthLib: Bearer token can be retrieved as long as client knows a valid client ID for device workflow",
+          "url": "https://github.com/advisories/GHSA-3jp2-3mrg-2vxc",
+          "version": "4.0.0"
+        }
+      ],
       "previous_ref": "0.144.0",
       "release_changed": false,
       "removed": [],
       "resolved_vulnerabilities": [],
+      "scorecard": {
+        "from": 8.1,
+        "to": 8.8
+      },
       "upgraded": [],
       "workflow_new": 0,
       "workflow_resolved": 0
@@ -2247,9 +2317,9 @@
     ],
     "name": "cartography",
     "osv": {
-      "advisories": 22,
+      "advisories": 23,
       "available": true,
-      "confirmed": 22,
+      "confirmed": 23,
       "osv_only": [],
       "warning": null
     },
@@ -2276,7 +2346,7 @@
       ],
       "removed": 0
     },
-    "scanned_at": "2026-11-02T03:07:39+00:00",
+    "scanned_at": "2026-11-08T05:54:28+00:00",
     "scorecard": {
       "checks": [
         {
@@ -2290,18 +2360,13 @@
           "score": 0
         },
         {
-          "name": "SAST",
-          "reason": "SAST tool is not run on all commits -- score normalized to 0",
-          "score": 0
+          "name": "Binary-Artifacts",
+          "reason": "no binaries found in the repo",
+          "score": 10
         },
         {
           "name": "Code-Review",
-          "reason": "Found 21/22 approved changesets -- score normalized to 9",
-          "score": 9
-        },
-        {
-          "name": "Binary-Artifacts",
-          "reason": "no binaries found in the repo",
+          "reason": "all changesets reviewed",
           "score": 10
         },
         {
@@ -2316,7 +2381,7 @@
         },
         {
           "name": "Maintained",
-          "reason": "30 commit(s) and 4 issue activity found in the last 90 days -- score normalized to 10",
+          "reason": "30 commit(s) and 2 issue activity found in the last 90 days -- score normalized to 10",
           "score": 10
         },
         {
@@ -2345,13 +2410,18 @@
           "score": -1
         },
         {
+          "name": "SAST",
+          "reason": "internal error: internal error: Client.Checks.ListCheckRunsForRef: error during graphqlHandler.setupCheckRuns: Although you appear to have the correct authorization credentials, the `cursor` organization has an IP allow list enabled, and your IP address is not permitted to access this resource.",
+          "score": -1
+        },
+        {
           "name": "Signed-Releases",
           "reason": "no releases found",
           "score": -1
         }
       ],
-      "date": "2026-10-26",
-      "score": 8.1,
+      "date": "2026-11-02",
+      "score": 8.8,
       "source": "openssf-api",
       "version": "v5.6.0"
     },
@@ -2363,7 +2433,7 @@
         "ecosystem": "pypi",
         "epss": {
           "cve": "CVE-2026-112940",
-          "percentile": 0.08746,
+          "percentile": 0.08759,
           "score": 0.0019
         },
         "fix_state": "fixed",
@@ -2382,12 +2452,36 @@
       },
       {
         "aliases": [
+          "CVE-2026-49272"
+        ],
+        "ecosystem": "pypi",
+        "epss": {
+          "cve": "CVE-2026-49272",
+          "percentile": 0.26053,
+          "score": 0.00328
+        },
+        "fix_state": "fixed",
+        "fixed_in": [
+          "4.0.1"
+        ],
+        "id": "GHSA-3jp2-3mrg-2vxc",
+        "kev": null,
+        "location": "uv.lock",
+        "osv_confirmed": true,
+        "package": "oauthlib",
+        "severity": "High",
+        "summary": "OAuthLib: Bearer token can be retrieved as long as client knows a valid client ID for device workflow",
+        "url": "https://github.com/advisories/GHSA-3jp2-3mrg-2vxc",
+        "version": "4.0.0"
+      },
+      {
+        "aliases": [
           "CVE-2026-119196"
         ],
         "ecosystem": "pypi",
         "epss": {
           "cve": "CVE-2026-119196",
-          "percentile": 0.36816,
+          "percentile": 0.37039,
           "score": 0.00425
         },
         "fix_state": "fixed",
@@ -2411,7 +2505,7 @@
         "ecosystem": "pypi",
         "epss": {
           "cve": "CVE-2026-119195",
-          "percentile": 0.4464,
+          "percentile": 0.44861,
           "score": 0.00527
         },
         "fix_state": "fixed",
@@ -2435,7 +2529,7 @@
         "ecosystem": "pypi",
         "epss": {
           "cve": "CVE-2026-119194",
-          "percentile": 0.36816,
+          "percentile": 0.37039,
           "score": 0.00425
         },
         "fix_state": "fixed",
@@ -2459,7 +2553,7 @@
         "ecosystem": "pypi",
         "epss": {
           "cve": "CVE-2026-119197",
-          "percentile": 0.36817,
+          "percentile": 0.37039,
           "score": 0.00425
         },
         "fix_state": "fixed",
@@ -2483,7 +2577,7 @@
         "ecosystem": "pypi",
         "epss": {
           "cve": "CVE-2026-115586",
-          "percentile": 0.19365,
+          "percentile": 0.19422,
           "score": 0.00271
         },
         "fix_state": "fixed",
@@ -2505,7 +2599,11 @@
           "CVE-2026-112908"
         ],
         "ecosystem": "pypi",
-        "epss": null,
+        "epss": {
+          "cve": "CVE-2026-112908",
+          "percentile": 0.01911,
+          "score": 0.00121
+        },
         "fix_state": "fixed",
         "fixed_in": [
           "4.2.1"
@@ -2527,7 +2625,7 @@
         "ecosystem": "pypi",
         "epss": {
           "cve": "CVE-2026-112909",
-          "percentile": 0.12637,
+          "percentile": 0.12668,
           "score": 0.0022
         },
         "fix_state": "fixed",
@@ -2549,7 +2647,11 @@
           "CVE-2026-112910"
         ],
         "ecosystem": "pypi",
-        "epss": null,
+        "epss": {
+          "cve": "CVE-2026-112910",
+          "percentile": 0.05321,
+          "score": 0.00161
+        },
         "fix_state": "fixed",
         "fixed_in": [
           "4.2.1"
@@ -2571,7 +2673,7 @@
         "ecosystem": "pypi",
         "epss": {
           "cve": "CVE-2026-112911",
-          "percentile": 0.03966,
+          "percentile": 0.04004,
           "score": 0.00148
         },
         "fix_state": "fixed",
@@ -2595,7 +2697,7 @@
         "ecosystem": "pypi",
         "epss": {
           "cve": "CVE-2026-112915",
-          "percentile": 0.1226,
+          "percentile": 0.12303,
           "score": 0.00218
         },
         "fix_state": "fixed",
@@ -2619,7 +2721,7 @@
         "ecosystem": "pypi",
         "epss": {
           "cve": "CVE-2026-112935",
-          "percentile": 0.02761,
+          "percentile": 0.02797,
           "score": 0.00132
         },
         "fix_state": "fixed",
@@ -2643,7 +2745,7 @@
         "ecosystem": "pypi",
         "epss": {
           "cve": "CVE-2026-112936",
-          "percentile": 0.14138,
+          "percentile": 0.14157,
           "score": 0.00232
         },
         "fix_state": "fixed",
@@ -2665,7 +2767,11 @@
           "CVE-2026-112938"
         ],
         "ecosystem": "pypi",
-        "epss": null,
+        "epss": {
+          "cve": "CVE-2026-112938",
+          "percentile": 0.01139,
+          "score": 0.00107
+        },
         "fix_state": "fixed",
         "fixed_in": [
           "4.2.1"
@@ -2687,7 +2793,7 @@
         "ecosystem": "pypi",
         "epss": {
           "cve": "CVE-2026-112939",
-          "percentile": 0.03305,
+          "percentile": 0.03346,
           "score": 0.0014
         },
         "fix_state": "fixed",
@@ -2711,8 +2817,8 @@
         "ecosystem": "pypi",
         "epss": {
           "cve": "CVE-2026-59890",
-          "percentile": 0.34795,
-          "score": 0.00405
+          "percentile": 0.4507,
+          "score": 0.0053
         },
         "fix_state": "fixed",
         "fixed_in": [
@@ -2735,7 +2841,7 @@
         "ecosystem": "pypi",
         "epss": {
           "cve": "CVE-2026-113713",
-          "percentile": 0.10364,
+          "percentile": 0.10407,
           "score": 0.00204
         },
         "fix_state": "fixed",
@@ -2757,7 +2863,11 @@
           "CVE-2026-112907"
         ],
         "ecosystem": "pypi",
-        "epss": null,
+        "epss": {
+          "cve": "CVE-2026-112907",
+          "percentile": 0.0103,
+          "score": 0.00104
+        },
         "fix_state": "fixed",
         "fixed_in": [
           "4.2.1"
@@ -2779,7 +2889,7 @@
         "ecosystem": "pypi",
         "epss": {
           "cve": "CVE-2026-112912",
-          "percentile": 0.11672,
+          "percentile": 0.11721,
           "score": 0.00213
         },
         "fix_state": "fixed",
@@ -2801,7 +2911,11 @@
           "CVE-2026-112913"
         ],
         "ecosystem": "pypi",
-        "epss": null,
+        "epss": {
+          "cve": "CVE-2026-112913",
+          "percentile": 0.01713,
+          "score": 0.00118
+        },
         "fix_state": "fixed",
         "fixed_in": [
           "4.2.1"
@@ -2823,7 +2937,7 @@
         "ecosystem": "pypi",
         "epss": {
           "cve": "CVE-2026-4539",
-          "percentile": 0.05024,
+          "percentile": 0.05068,
           "score": 0.00159
         },
         "fix_state": "fixed",
@@ -2875,5 +2989,5 @@
       ]
     }
   },
-  "updated": "2026-11-02"
+  "updated": "2026-11-08"
 }

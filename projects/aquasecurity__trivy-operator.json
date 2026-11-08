@@ -81,6 +81,50 @@
         "Medium": 0,
         "files": 9
       }
+    },
+    {
+      "added": 0,
+      "commit": "b40091af2bfba4c90b109fc0817d6c3f49bfc9a4",
+      "date": "2026-11-08",
+      "dependencies": 425,
+      "errors": [],
+      "fixable": 2,
+      "go_version": "go1.27.3",
+      "in_binary": {
+        "dependencies": 2,
+        "stdlib": 0,
+        "total": 2
+      },
+      "kev": 0,
+      "kev_new": 0,
+      "new_vulnerabilities": 1,
+      "osv_confirmed": 2,
+      "osv_only": 0,
+      "ref": "v0.36.1",
+      "release_changed": false,
+      "release_integrity": "verified",
+      "removed": 0,
+      "resolved_vulnerabilities": 0,
+      "scorecard": 7.5,
+      "scorecard_date": "2026-11-08",
+      "scorecard_note": null,
+      "scorecard_source": "scorecard-cli",
+      "upgraded": 0,
+      "vulnerabilities": {
+        "Critical": 0,
+        "High": 1,
+        "Low": 0,
+        "Medium": 0,
+        "Negligible": 0,
+        "Unknown": 1
+      },
+      "vulnerable_packages": 2,
+      "workflow": {
+        "High": 1,
+        "Low": 0,
+        "Medium": 0,
+        "files": 9
+      }
     }
   ],
   "latest": {
@@ -88,13 +132,43 @@
     "category": "Kubernetes Security",
     "changes": {
       "added": [],
-      "any": false,
+      "any": true,
       "baseline": false,
-      "in_binary_new": [],
+      "in_binary_new": [
+        "GO-2026-6865"
+      ],
       "in_binary_resolved": [],
       "integrity_drift": 0,
+      "kev_new": [],
       "license_changes": [],
-      "new_vulnerabilities": [],
+      "new_vulnerabilities": [
+        {
+          "aliases": [
+            "CVE-2026-116591",
+            "GHSA-fpmh-frq8-7rj8"
+          ],
+          "ecosystem": "golang",
+          "epss": {
+            "cve": "CVE-2026-116591",
+            "percentile": 0.26636,
+            "score": 0.00333
+          },
+          "fix_state": "fixed",
+          "fixed_in": [
+            "1.20.2"
+          ],
+          "id": "GO-2026-6865",
+          "in_binary": "vulnerable code in binary",
+          "kev": null,
+          "location": "go.mod",
+          "osv_confirmed": true,
+          "package": "github.com/klauspost/compress",
+          "severity": "High",
+          "summary": "Panic on two-block frames in github.com/klauspost/compress",
+          "url": "https://github.com/klauspost/compress/security/advisories/GHSA-fpmh-frq8-7rj8",
+          "version": "v1.20.1"
+        }
+      ],
       "previous_ref": "v0.36.1",
       "release_changed": false,
       "removed": [],
@@ -3550,39 +3624,36 @@
       "asset": "trivy_operator_Linux_x86_64.tar.gz",
       "binary": "trivy-operator",
       "db": "https://vuln.go.dev",
-      "db_last_modified": "2026-10-27T21:16:18Z",
+      "db_last_modified": "2026-11-05T23:49:57Z",
       "findings": [
+        {
+          "aliases": [
+            "CVE-2026-116591",
+            "GHSA-fpmh-frq8-7rj8"
+          ],
+          "epss": {
+            "cve": "CVE-2026-116591",
+            "percentile": 0.26636,
+            "score": 0.00333
+          },
+          "fixed_version": "v1.20.2",
+          "id": "GO-2026-6865",
+          "kev": null,
+          "level": "symbol",
+          "module": "github.com/klauspost/compress",
+          "summary": "Panic on two-block frames in github.com/klauspost/compress",
+          "version": "v1.20.1"
+        },
         {
           "aliases": [],
           "epss": null,
-          "fixed_version": "",
+          "fixed_version": "v0.58.1-0.20261009181718-2f1f834330b2",
           "id": "GO-2026-5932",
           "kev": null,
           "level": "symbol",
           "module": "golang.org/x/crypto",
           "summary": "The golang.org/x/crypto/openpgp package is unmaintained, unsafe by design, and has known security issues",
           "version": "v0.58.0"
-        },
-        {
-          "aliases": [
-            "CVE-2026-33634",
-            "GHSA-69fq-xp46-6x23"
-          ],
-          "epss": {
-            "cve": "CVE-2026-33634",
-            "percentile": 0.99129,
-            "score": 0.59727
-          },
-          "fixed_version": "",
-          "id": "GO-2026-4919",
-          "kev": {
-            "cve": "CVE-2026-33634",
-            "date_added": "2026-03-26"
-          },
-          "level": "module",
-          "module": "github.com/aquasecurity/trivy",
-          "summary": "Trivy ecosystem supply chain was briefly compromised in github.com/aquasecurity/trivy",
-          "version": "v0.76.1"
         }
       ],
       "go_version": "go1.27.3",
@@ -3606,21 +3677,8 @@
     "osv": {
       "advisories": 2,
       "available": true,
-      "confirmed": 1,
-      "osv_only": [
-        {
-          "ecosystem": "Go",
-          "ids": [
-            "CVE-2026-33634",
-            "GHSA-69fq-xp46-6x23",
-            "GO-2026-4919"
-          ],
-          "package": "github.com/aquasecurity/trivy",
-          "score": "",
-          "severity": "Unknown",
-          "version": "0.76.1"
-        }
-      ],
+      "confirmed": 2,
+      "osv_only": [],
       "warning": null
     },
     "ref": "v0.36.1",
@@ -3665,7 +3723,7 @@
       ],
       "removed": 0
     },
-    "scanned_at": "2026-11-02T03:06:08+00:00",
+    "scanned_at": "2026-11-08T05:53:11+00:00",
     "scorecard": {
       "checks": [
         {
@@ -3750,7 +3808,7 @@
         },
         {
           "name": "Maintained",
-          "reason": "21 commit(s) and 0 issue activity found in the last 90 days -- score normalized to 10",
+          "reason": "17 commit(s) and 0 issue activity found in the last 90 days -- score normalized to 10",
           "score": 10
         },
         {
@@ -3759,18 +3817,46 @@
           "score": 10
         }
       ],
-      "date": "2026-11-02",
+      "date": "2026-11-08",
       "score": 7.5,
       "source": "scorecard-cli",
       "version": "v5.6.0"
     },
     "vulnerabilities": [
       {
+        "aliases": [
+          "CVE-2026-116591",
+          "GHSA-fpmh-frq8-7rj8"
+        ],
+        "ecosystem": "golang",
+        "epss": {
+          "cve": "CVE-2026-116591",
+          "percentile": 0.26636,
+          "score": 0.00333
+        },
+        "fix_state": "fixed",
+        "fixed_in": [
+          "1.20.2"
+        ],
+        "id": "GO-2026-6865",
+        "in_binary": "vulnerable code in binary",
+        "kev": null,
+        "location": "go.mod",
+        "osv_confirmed": true,
+        "package": "github.com/klauspost/compress",
+        "severity": "High",
+        "summary": "Panic on two-block frames in github.com/klauspost/compress",
+        "url": "https://github.com/klauspost/compress/security/advisories/GHSA-fpmh-frq8-7rj8",
+        "version": "v1.20.1"
+      },
+      {
         "aliases": [],
         "ecosystem": "golang",
         "epss": null,
-        "fix_state": "unknown",
-        "fixed_in": [],
+        "fix_state": "fixed",
+        "fixed_in": [
+          "0.58.1-0.20261009181718-2f1f834330b2"
+        ],
         "id": "GO-2026-5932",
         "in_binary": "vulnerable code in binary",
         "kev": null,
@@ -3799,5 +3885,5 @@
       ]
     }
   },
-  "updated": "2026-11-02"
+  "updated": "2026-11-08"
 }

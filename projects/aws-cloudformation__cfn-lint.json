@@ -73,6 +73,46 @@
         "Medium": 0,
         "files": 6
       }
+    },
+    {
+      "added": 0,
+      "commit": "1d19193ad79ed20c83bf3fbafb6cd506e6d15b62",
+      "date": "2026-11-08",
+      "dependencies": 7,
+      "errors": [],
+      "fixable": 0,
+      "go_version": null,
+      "in_binary": null,
+      "kev": null,
+      "kev_new": 0,
+      "new_vulnerabilities": 0,
+      "osv_confirmed": 0,
+      "osv_only": 0,
+      "ref": "v1.60.0",
+      "release_changed": true,
+      "release_integrity": "no-linux-binary",
+      "removed": 0,
+      "resolved_vulnerabilities": 0,
+      "scorecard": 6.2,
+      "scorecard_date": "2026-11-08",
+      "scorecard_note": null,
+      "scorecard_source": "scorecard-cli",
+      "upgraded": 1,
+      "vulnerabilities": {
+        "Critical": 0,
+        "High": 0,
+        "Low": 0,
+        "Medium": 0,
+        "Negligible": 0,
+        "Unknown": 0
+      },
+      "vulnerable_packages": 0,
+      "workflow": {
+        "High": 27,
+        "Low": 0,
+        "Medium": 0,
+        "files": 6
+      }
     }
   ],
   "latest": {
@@ -82,49 +122,29 @@
       "added": [],
       "any": true,
       "baseline": false,
-      "integrity_drift": 0,
+      "integrity_drift": 1,
       "license_changes": [],
       "new_vulnerabilities": [],
       "previous_ref": "v1.59.0",
-      "release_changed": false,
+      "release_changed": true,
       "removed": [],
-      "resolved_vulnerabilities": [
+      "resolved_vulnerabilities": [],
+      "scorecard": {
+        "from": 6.0,
+        "to": 6.2
+      },
+      "upgraded": [
         {
-          "aliases": [],
           "ecosystem": "github",
-          "fix_state": "fixed",
-          "fixed_in": [
-            "1.14.3"
-          ],
-          "id": "GHSA-5xjx-3w67-w9x9",
-          "location": ".github/workflows/cd-pypi.yaml",
-          "osv_confirmed": false,
+          "from": "release/v1",
           "package": "pypa/gh-action-pypi-publish",
-          "severity": "Critical",
-          "url": "https://github.com/advisories/GHSA-5xjx-3w67-w9x9",
-          "version": "release/v1"
-        },
-        {
-          "aliases": [],
-          "ecosystem": "github",
-          "fix_state": "fixed",
-          "fixed_in": [
-            "1.13.0"
-          ],
-          "id": "GHSA-vxmw-7h4f-hqxh",
-          "location": ".github/workflows/cd-pypi.yaml",
-          "osv_confirmed": false,
-          "package": "pypa/gh-action-pypi-publish",
-          "severity": "Low",
-          "url": "https://github.com/advisories/GHSA-vxmw-7h4f-hqxh",
-          "version": "release/v1"
+          "to": "v1.14.3"
         }
       ],
-      "upgraded": [],
       "workflow_new": 0,
       "workflow_resolved": 0
     },
-    "commit": "cf5360c6ce4c9911d84858896ac7aa925f8cb4bd",
+    "commit": "1d19193ad79ed20c83bf3fbafb6cd506e6d15b62",
     "compliance": {
       "overall_score": 55,
       "standards": {
@@ -209,8 +229,8 @@
         "licenses": [],
         "location": ".github/workflows/cd-pypi.yaml",
         "name": "pypa/gh-action-pypi-publish",
-        "purl": "pkg:github/pypa/gh-action-pypi-publish@release%2Fv1",
-        "version": "release/v1"
+        "purl": "pkg:github/pypa/gh-action-pypi-publish@v1.14.3",
+        "version": "v1.14.3"
       },
       {
         "ecosystem": "github",
@@ -223,9 +243,6 @@
     ],
     "description": "Lint AWS CloudFormation templates with security rules",
     "errors": [],
-    "excluded_matches": {
-      "action reference to a moving tag or branch": 2
-    },
     "id": "aws-cloudformation__cfn-lint",
     "manifests": [
       ".github/workflows/cd-pypi.yaml",
@@ -244,10 +261,10 @@
       "osv_only": [],
       "warning": null
     },
-    "ref": "v1.59.0",
+    "ref": "v1.60.0",
     "ref_kind": "release",
     "release_integrity": {
-      "assets": 2,
+      "assets": 3,
       "checksums_published": false,
       "methods": [],
       "provenance_published": false,
@@ -255,19 +272,24 @@
       "signatures_published": false,
       "verdict": "no-linux-binary"
     },
-    "released_at": "2026-10-28T18:33:59Z",
+    "released_at": "2026-11-05T23:42:03Z",
     "repository": "aws-cloudformation/cfn-lint",
     "sbomlyze_diff": {
       "added": 0,
-      "changed": 0,
-      "drift": {},
+      "changed": 2,
+      "drift": {
+        "integrity_drift": 1,
+        "metadata_drift": 0,
+        "version_drift": 1
+      },
       "findings": [
-        "0 version changes among 25 shared packages \u2014 no actual upgrades",
+        "Integrity drift (1 total): 1 unknown",
         "Core system packages stable: github (19) unchanged"
       ],
+      "html": "sbomlyze-diff.html",
       "removed": 0
     },
-    "scanned_at": "2026-11-02T03:06:09+00:00",
+    "scanned_at": "2026-11-08T05:52:57+00:00",
     "scorecard": {
       "checks": [
         {
@@ -307,17 +329,17 @@
         },
         {
           "name": "Code-Review",
-          "reason": "Found 17/29 approved changesets -- score normalized to 5",
-          "score": 5
-        },
-        {
-          "name": "CI-Tests",
-          "reason": "22 out of 29 merged PRs checked by a CI test -- score normalized to 7",
+          "reason": "Found 21/29 approved changesets -- score normalized to 7",
           "score": 7
         },
         {
           "name": "Binary-Artifacts",
           "reason": "no binaries found in the repo",
+          "score": 10
+        },
+        {
+          "name": "CI-Tests",
+          "reason": "30 out of 30 merged PRs checked by a CI test -- score normalized to 10",
           "score": 10
         },
         {
@@ -361,8 +383,8 @@
           "score": 10
         }
       ],
-      "date": "2026-11-02",
-      "score": 6.0,
+      "date": "2026-11-08",
+      "score": 6.2,
       "source": "scorecard-cli",
       "version": "v5.6.0"
     },
@@ -384,17 +406,7 @@
           "confidence": "High",
           "description": "unpinned action reference",
           "file": ".github/workflows/cd-pypi.yaml",
-          "line": 17,
-          "note": "this step",
-          "rule": "unpinned-uses",
-          "severity": "High",
-          "url": "https://docs.zizmor.sh/audits/#unpinned-uses"
-        },
-        {
-          "confidence": "High",
-          "description": "unpinned action reference",
-          "file": ".github/workflows/cd-pypi.yaml",
-          "line": 36,
+          "line": 19,
           "note": "this step",
           "rule": "unpinned-uses",
           "severity": "High",
@@ -663,5 +675,5 @@
       ]
     }
   },
-  "updated": "2026-11-02"
+  "updated": "2026-11-08"
 }

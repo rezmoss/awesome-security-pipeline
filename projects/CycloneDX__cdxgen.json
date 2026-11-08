@@ -73,27 +73,411 @@
         "Medium": 0,
         "files": 27
       }
+    },
+    {
+      "added": 10,
+      "commit": "5951a068f08a728a40e30aaaec89481f7027ce68",
+      "date": "2026-11-08",
+      "dependencies": 339,
+      "errors": [],
+      "fixable": 11,
+      "go_version": null,
+      "in_binary": null,
+      "kev": 0,
+      "kev_new": 0,
+      "new_vulnerabilities": 0,
+      "osv_confirmed": 11,
+      "osv_only": 0,
+      "ref": "v13.7.0",
+      "release_changed": true,
+      "release_integrity": "checksums-only",
+      "removed": 0,
+      "resolved_vulnerabilities": 2,
+      "scorecard": null,
+      "scorecard_date": null,
+      "scorecard_note": "the project is not in the OpenSSF public dataset; the Scorecard CLI fallback was skipped because this shard's weekly budget was used",
+      "scorecard_source": null,
+      "upgraded": 47,
+      "vulnerabilities": {
+        "Critical": 1,
+        "High": 3,
+        "Low": 2,
+        "Medium": 5,
+        "Negligible": 0,
+        "Unknown": 0
+      },
+      "vulnerable_packages": 6,
+      "workflow": {
+        "High": 1,
+        "Low": 30,
+        "Medium": 0,
+        "files": 27
+      }
     }
   ],
   "latest": {
     "archived": false,
     "category": "SBOM Generation",
     "changes": {
-      "added": [],
-      "any": false,
+      "added": [
+        "actions/setup-java@v6.2.0",
+        "docker/login-action@v4.8.0",
+        "int128/docker-manifest-create-action@v2.30.0",
+        "softprops/action-gh-release@v3.0.4",
+        "@biomejs/cli-android-arm64@2.6.4",
+        "@biomejs/cli-android-x64@2.6.4",
+        "@isaacs/nonrecursive-glob-match@1.0.3",
+        "glob@14.0.3",
+        "minimatch@11.0.3",
+        "path-scurry@3.0.0"
+      ],
+      "any": true,
       "baseline": false,
-      "integrity_drift": 0,
+      "integrity_drift": 20,
+      "kev_new": [],
       "license_changes": [],
       "new_vulnerabilities": [],
       "previous_ref": "v13.6.0",
-      "release_changed": false,
+      "release_changed": true,
       "removed": [],
-      "resolved_vulnerabilities": [],
-      "upgraded": [],
+      "resolved_vulnerabilities": [
+        {
+          "aliases": [
+            "CVE-2026-111181"
+          ],
+          "ecosystem": "npm",
+          "epss": {
+            "cve": "CVE-2026-111181",
+            "percentile": 0.32919,
+            "score": 0.00388
+          },
+          "fix_state": "fixed",
+          "fixed_in": [
+            "2.4.0"
+          ],
+          "id": "GHSA-27r3-jxmh-p828",
+          "kev": null,
+          "location": "pnpm-lock.yaml",
+          "osv_confirmed": true,
+          "package": "body-parser",
+          "severity": "High",
+          "summary": "body-parser vulnerable to Denial of Service via trailing bytes after a compressed request body",
+          "url": "https://github.com/advisories/GHSA-27r3-jxmh-p828",
+          "version": "2.3.0"
+        },
+        {
+          "aliases": [
+            "CVE-2026-110816"
+          ],
+          "ecosystem": "npm",
+          "epss": {
+            "cve": "CVE-2026-110816",
+            "percentile": 0.30708,
+            "score": 0.00368
+          },
+          "fix_state": "fixed",
+          "fixed_in": [
+            "6.16.1"
+          ],
+          "id": "GHSA-6pq8-jhm2-2vcw",
+          "kev": null,
+          "location": "pnpm-lock.yaml",
+          "osv_confirmed": true,
+          "package": "qs",
+          "severity": "Medium",
+          "summary": "qs : qs.stringify with arrayFormat 'comma' throws an uncaught TypeError on array elements carrying a non-callable own toString (DoS)",
+          "url": "https://github.com/advisories/GHSA-6pq8-jhm2-2vcw",
+          "version": "6.16.0"
+        }
+      ],
+      "upgraded": [
+        {
+          "ecosystem": "github",
+          "from": "v2.27.3",
+          "package": "github/codeql-action/analyze",
+          "to": "v2.27.4"
+        },
+        {
+          "ecosystem": "github",
+          "from": "v2.27.3",
+          "package": "github/codeql-action/init",
+          "to": "v2.27.4"
+        },
+        {
+          "ecosystem": "github",
+          "from": "v6.1.0",
+          "package": "pnpm/action-setup",
+          "to": "v6.1.1"
+        },
+        {
+          "ecosystem": "github",
+          "from": "v1.5.12",
+          "package": "sbt/setup-sbt",
+          "to": "v1.5.14"
+        },
+        {
+          "ecosystem": "npm",
+          "from": "3.1.1",
+          "package": "@appthreat/atom",
+          "to": "3.2.1"
+        },
+        {
+          "ecosystem": "npm",
+          "from": "3.1.1",
+          "package": "@appthreat/atom-darwin-amd64",
+          "to": "3.2.1"
+        },
+        {
+          "ecosystem": "npm",
+          "from": "3.1.1",
+          "package": "@appthreat/atom-darwin-arm64",
+          "to": "3.2.1"
+        },
+        {
+          "ecosystem": "npm",
+          "from": "3.1.1",
+          "package": "@appthreat/atom-jar",
+          "to": "3.2.1"
+        },
+        {
+          "ecosystem": "npm",
+          "from": "3.1.1",
+          "package": "@appthreat/atom-linux-amd64",
+          "to": "3.2.1"
+        },
+        {
+          "ecosystem": "npm",
+          "from": "3.1.1",
+          "package": "@appthreat/atom-linux-amd64-musl",
+          "to": "3.2.1"
+        },
+        {
+          "ecosystem": "npm",
+          "from": "3.1.1",
+          "package": "@appthreat/atom-linux-arm64",
+          "to": "3.2.1"
+        },
+        {
+          "ecosystem": "npm",
+          "from": "3.1.1",
+          "package": "@appthreat/atom-linux-arm64-musl",
+          "to": "3.2.1"
+        },
+        {
+          "ecosystem": "npm",
+          "from": "3.1.1",
+          "package": "@appthreat/atom-windows-amd64",
+          "to": "3.2.1"
+        },
+        {
+          "ecosystem": "npm",
+          "from": "3.1.1",
+          "package": "@appthreat/atom-windows-arm64",
+          "to": "3.2.1"
+        },
+        {
+          "ecosystem": "npm",
+          "from": "8.0.6",
+          "package": "@babel/generator",
+          "to": "8.0.10"
+        },
+        {
+          "ecosystem": "npm",
+          "from": "8.0.6",
+          "package": "@babel/helper-string-parser",
+          "to": "8.0.8"
+        },
+        {
+          "ecosystem": "npm",
+          "from": "8.0.7",
+          "package": "@babel/parser",
+          "to": "8.0.10"
+        },
+        {
+          "ecosystem": "npm",
+          "from": "8.0.7",
+          "package": "@babel/traverse",
+          "to": "8.0.10"
+        },
+        {
+          "ecosystem": "npm",
+          "from": "8.0.6",
+          "package": "@babel/types",
+          "to": "8.0.10"
+        },
+        {
+          "ecosystem": "npm",
+          "from": "2.5.15",
+          "package": "@biomejs/biome",
+          "to": "2.6.4"
+        },
+        {
+          "ecosystem": "npm",
+          "from": "2.5.15",
+          "package": "@biomejs/cli-darwin-arm64",
+          "to": "2.6.4"
+        },
+        {
+          "ecosystem": "npm",
+          "from": "2.5.15",
+          "package": "@biomejs/cli-darwin-x64",
+          "to": "2.6.4"
+        },
+        {
+          "ecosystem": "npm",
+          "from": "2.5.15",
+          "package": "@biomejs/cli-linux-arm64",
+          "to": "2.6.4"
+        },
+        {
+          "ecosystem": "npm",
+          "from": "2.5.15",
+          "package": "@biomejs/cli-linux-arm64-musl",
+          "to": "2.6.4"
+        },
+        {
+          "ecosystem": "npm",
+          "from": "2.5.15",
+          "package": "@biomejs/cli-linux-x64",
+          "to": "2.6.4"
+        },
+        {
+          "ecosystem": "npm",
+          "from": "2.5.15",
+          "package": "@biomejs/cli-linux-x64-musl",
+          "to": "2.6.4"
+        },
+        {
+          "ecosystem": "npm",
+          "from": "2.5.15",
+          "package": "@biomejs/cli-win32-arm64",
+          "to": "2.6.4"
+        },
+        {
+          "ecosystem": "npm",
+          "from": "2.5.15",
+          "package": "@biomejs/cli-win32-x64",
+          "to": "2.6.4"
+        },
+        {
+          "ecosystem": "npm",
+          "from": "0.7.0",
+          "package": "@cdxgen/cdx-hbom",
+          "to": "0.8.0"
+        },
+        {
+          "ecosystem": "npm",
+          "from": "12.10.1",
+          "package": "@pnpm/exe.android-arm64",
+          "to": "12.16.1"
+        },
+        {
+          "ecosystem": "npm",
+          "from": "12.10.1",
+          "package": "@pnpm/exe.android-x64",
+          "to": "12.16.1"
+        },
+        {
+          "ecosystem": "npm",
+          "from": "12.10.1",
+          "package": "@pnpm/exe.darwin-arm64",
+          "to": "12.16.1"
+        },
+        {
+          "ecosystem": "npm",
+          "from": "12.10.1",
+          "package": "@pnpm/exe.darwin-x64",
+          "to": "12.16.1"
+        },
+        {
+          "ecosystem": "npm",
+          "from": "12.10.1",
+          "package": "@pnpm/exe.freebsd-x64",
+          "to": "12.16.1"
+        },
+        {
+          "ecosystem": "npm",
+          "from": "12.10.1",
+          "package": "@pnpm/exe.linux-arm64",
+          "to": "12.16.1"
+        },
+        {
+          "ecosystem": "npm",
+          "from": "12.10.1",
+          "package": "@pnpm/exe.linux-arm64-musl",
+          "to": "12.16.1"
+        },
+        {
+          "ecosystem": "npm",
+          "from": "12.10.1",
+          "package": "@pnpm/exe.linux-ppc64",
+          "to": "12.16.1"
+        },
+        {
+          "ecosystem": "npm",
+          "from": "12.10.1",
+          "package": "@pnpm/exe.linux-riscv64",
+          "to": "12.16.1"
+        },
+        {
+          "ecosystem": "npm",
+          "from": "12.10.1",
+          "package": "@pnpm/exe.linux-s390x",
+          "to": "12.16.1"
+        },
+        {
+          "ecosystem": "npm",
+          "from": "12.10.1",
+          "package": "@pnpm/exe.linux-x64",
+          "to": "12.16.1"
+        },
+        {
+          "ecosystem": "npm",
+          "from": "12.10.1",
+          "package": "@pnpm/exe.linux-x64-musl",
+          "to": "12.16.1"
+        },
+        {
+          "ecosystem": "npm",
+          "from": "12.10.1",
+          "package": "@pnpm/exe.win32-arm64",
+          "to": "12.16.1"
+        },
+        {
+          "ecosystem": "npm",
+          "from": "12.10.1",
+          "package": "@pnpm/exe.win32-x64",
+          "to": "12.16.1"
+        },
+        {
+          "ecosystem": "npm",
+          "from": "2.3.0",
+          "package": "body-parser",
+          "to": "2.4.0"
+        },
+        {
+          "ecosystem": "npm",
+          "from": "2.8.0",
+          "package": "esmock",
+          "to": "3.0.0"
+        },
+        {
+          "ecosystem": "npm",
+          "from": "12.10.1",
+          "package": "pnpm",
+          "to": "12.16.1"
+        },
+        {
+          "ecosystem": "npm",
+          "from": "6.16.0",
+          "package": "qs",
+          "to": "6.17.1"
+        }
+      ],
       "workflow_new": 0,
       "workflow_resolved": 0
     },
-    "commit": "e0078793c05291a4cb4dc890d8f8f7769180beab",
+    "commit": "5951a068f08a728a40e30aaaec89481f7027ce68",
     "compliance": {
       "overall_score": 55,
       "standards": {
@@ -176,10 +560,18 @@
       {
         "ecosystem": "github",
         "licenses": [],
-        "location": ".github/workflows/binary-builds.yml",
+        "location": ".github/workflows/python-atom-tests.yml",
         "name": "actions/setup-java",
         "purl": "pkg:github/actions/setup-java@v6.1.0",
         "version": "v6.1.0"
+      },
+      {
+        "ecosystem": "github",
+        "licenses": [],
+        "location": ".github/workflows/binary-builds.yml",
+        "name": "actions/setup-java",
+        "purl": "pkg:github/actions/setup-java@v6.2.0",
+        "version": "v6.2.0"
       },
       {
         "ecosystem": "github",
@@ -264,10 +656,18 @@
       {
         "ecosystem": "github",
         "licenses": [],
-        "location": ".github/workflows/image-build.yml",
+        "location": ".github/workflows/npm-release.yml",
         "name": "docker/login-action",
         "purl": "pkg:github/docker/login-action@v4.6.0",
         "version": "v4.6.0"
+      },
+      {
+        "ecosystem": "github",
+        "licenses": [],
+        "location": ".github/workflows/image-build.yml",
+        "name": "docker/login-action",
+        "purl": "pkg:github/docker/login-action@v4.8.0",
+        "version": "v4.8.0"
       },
       {
         "ecosystem": "github",
@@ -298,24 +698,32 @@
         "licenses": [],
         "location": ".github/workflows/codeql.yml",
         "name": "github/codeql-action/analyze",
-        "purl": "pkg:github/github/codeql-action@v2.27.3#analyze",
-        "version": "v2.27.3"
+        "purl": "pkg:github/github/codeql-action@v2.27.4#analyze",
+        "version": "v2.27.4"
       },
       {
         "ecosystem": "github",
         "licenses": [],
         "location": ".github/workflows/codeql.yml",
         "name": "github/codeql-action/init",
-        "purl": "pkg:github/github/codeql-action@v2.27.3#init",
-        "version": "v2.27.3"
+        "purl": "pkg:github/github/codeql-action@v2.27.4#init",
+        "version": "v2.27.4"
+      },
+      {
+        "ecosystem": "github",
+        "licenses": [],
+        "location": ".github/workflows/npm-release.yml",
+        "name": "int128/docker-manifest-create-action",
+        "purl": "pkg:github/int128/docker-manifest-create-action@v2.29.0",
+        "version": "v2.29.0"
       },
       {
         "ecosystem": "github",
         "licenses": [],
         "location": ".github/workflows/image-build.yml",
         "name": "int128/docker-manifest-create-action",
-        "purl": "pkg:github/int128/docker-manifest-create-action@v2.29.0",
-        "version": "v2.29.0"
+        "purl": "pkg:github/int128/docker-manifest-create-action@v2.30.0",
+        "version": "v2.30.0"
       },
       {
         "ecosystem": "github",
@@ -338,8 +746,8 @@
         "licenses": [],
         "location": ".github/workflows/binary-builds.yml",
         "name": "pnpm/action-setup",
-        "purl": "pkg:github/pnpm/action-setup@v6.1.0",
-        "version": "v6.1.0"
+        "purl": "pkg:github/pnpm/action-setup@v6.1.1",
+        "version": "v6.1.1"
       },
       {
         "ecosystem": "github",
@@ -354,24 +762,32 @@
         "licenses": [],
         "location": ".github/workflows/repotests.yml",
         "name": "sbt/setup-sbt",
-        "purl": "pkg:github/sbt/setup-sbt@v1.5.12",
-        "version": "v1.5.12"
+        "purl": "pkg:github/sbt/setup-sbt@v1.5.14",
+        "version": "v1.5.14"
+      },
+      {
+        "ecosystem": "github",
+        "licenses": [],
+        "location": ".github/workflows/npm-release.yml",
+        "name": "softprops/action-gh-release",
+        "purl": "pkg:github/softprops/action-gh-release@v3.0.3",
+        "version": "v3.0.3"
       },
       {
         "ecosystem": "github",
         "licenses": [],
         "location": ".github/workflows/binary-builds.yml",
         "name": "softprops/action-gh-release",
-        "purl": "pkg:github/softprops/action-gh-release@v3.0.3",
-        "version": "v3.0.3"
+        "purl": "pkg:github/softprops/action-gh-release@v3.0.4",
+        "version": "v3.0.4"
       },
       {
         "ecosystem": "npm",
         "licenses": [],
         "location": "pnpm-lock.yaml",
         "name": "@appthreat/atom",
-        "purl": "pkg:npm/%40appthreat/atom@3.1.1",
-        "version": "3.1.1"
+        "purl": "pkg:npm/%40appthreat/atom@3.2.1",
+        "version": "3.2.1"
       },
       {
         "ecosystem": "npm",
@@ -386,56 +802,56 @@
         "licenses": [],
         "location": "pnpm-lock.yaml",
         "name": "@appthreat/atom-darwin-amd64",
-        "purl": "pkg:npm/%40appthreat/atom-darwin-amd64@3.1.1",
-        "version": "3.1.1"
+        "purl": "pkg:npm/%40appthreat/atom-darwin-amd64@3.2.1",
+        "version": "3.2.1"
       },
       {
         "ecosystem": "npm",
         "licenses": [],
         "location": "pnpm-lock.yaml",
         "name": "@appthreat/atom-darwin-arm64",
-        "purl": "pkg:npm/%40appthreat/atom-darwin-arm64@3.1.1",
-        "version": "3.1.1"
+        "purl": "pkg:npm/%40appthreat/atom-darwin-arm64@3.2.1",
+        "version": "3.2.1"
       },
       {
         "ecosystem": "npm",
         "licenses": [],
         "location": "pnpm-lock.yaml",
         "name": "@appthreat/atom-jar",
-        "purl": "pkg:npm/%40appthreat/atom-jar@3.1.1",
-        "version": "3.1.1"
+        "purl": "pkg:npm/%40appthreat/atom-jar@3.2.1",
+        "version": "3.2.1"
       },
       {
         "ecosystem": "npm",
         "licenses": [],
         "location": "pnpm-lock.yaml",
         "name": "@appthreat/atom-linux-amd64",
-        "purl": "pkg:npm/%40appthreat/atom-linux-amd64@3.1.1",
-        "version": "3.1.1"
+        "purl": "pkg:npm/%40appthreat/atom-linux-amd64@3.2.1",
+        "version": "3.2.1"
       },
       {
         "ecosystem": "npm",
         "licenses": [],
         "location": "pnpm-lock.yaml",
         "name": "@appthreat/atom-linux-amd64-musl",
-        "purl": "pkg:npm/%40appthreat/atom-linux-amd64-musl@3.1.1",
-        "version": "3.1.1"
+        "purl": "pkg:npm/%40appthreat/atom-linux-amd64-musl@3.2.1",
+        "version": "3.2.1"
       },
       {
         "ecosystem": "npm",
         "licenses": [],
         "location": "pnpm-lock.yaml",
         "name": "@appthreat/atom-linux-arm64",
-        "purl": "pkg:npm/%40appthreat/atom-linux-arm64@3.1.1",
-        "version": "3.1.1"
+        "purl": "pkg:npm/%40appthreat/atom-linux-arm64@3.2.1",
+        "version": "3.2.1"
       },
       {
         "ecosystem": "npm",
         "licenses": [],
         "location": "pnpm-lock.yaml",
         "name": "@appthreat/atom-linux-arm64-musl",
-        "purl": "pkg:npm/%40appthreat/atom-linux-arm64-musl@3.1.1",
-        "version": "3.1.1"
+        "purl": "pkg:npm/%40appthreat/atom-linux-arm64-musl@3.2.1",
+        "version": "3.2.1"
       },
       {
         "ecosystem": "npm",
@@ -450,16 +866,16 @@
         "licenses": [],
         "location": "pnpm-lock.yaml",
         "name": "@appthreat/atom-windows-amd64",
-        "purl": "pkg:npm/%40appthreat/atom-windows-amd64@3.1.1",
-        "version": "3.1.1"
+        "purl": "pkg:npm/%40appthreat/atom-windows-amd64@3.2.1",
+        "version": "3.2.1"
       },
       {
         "ecosystem": "npm",
         "licenses": [],
         "location": "pnpm-lock.yaml",
         "name": "@appthreat/atom-windows-arm64",
-        "purl": "pkg:npm/%40appthreat/atom-windows-arm64@3.1.1",
-        "version": "3.1.1"
+        "purl": "pkg:npm/%40appthreat/atom-windows-arm64@3.2.1",
+        "version": "3.2.1"
       },
       {
         "ecosystem": "npm",
@@ -474,8 +890,8 @@
         "licenses": [],
         "location": "pnpm-lock.yaml",
         "name": "@babel/generator",
-        "purl": "pkg:npm/%40babel/generator@8.0.6",
-        "version": "8.0.6"
+        "purl": "pkg:npm/%40babel/generator@8.0.10",
+        "version": "8.0.10"
       },
       {
         "ecosystem": "npm",
@@ -490,8 +906,8 @@
         "licenses": [],
         "location": "pnpm-lock.yaml",
         "name": "@babel/helper-string-parser",
-        "purl": "pkg:npm/%40babel/helper-string-parser@8.0.6",
-        "version": "8.0.6"
+        "purl": "pkg:npm/%40babel/helper-string-parser@8.0.8",
+        "version": "8.0.8"
       },
       {
         "ecosystem": "npm",
@@ -506,8 +922,8 @@
         "licenses": [],
         "location": "pnpm-lock.yaml",
         "name": "@babel/parser",
-        "purl": "pkg:npm/%40babel/parser@8.0.7",
-        "version": "8.0.7"
+        "purl": "pkg:npm/%40babel/parser@8.0.10",
+        "version": "8.0.10"
       },
       {
         "ecosystem": "npm",
@@ -522,88 +938,104 @@
         "licenses": [],
         "location": "pnpm-lock.yaml",
         "name": "@babel/traverse",
-        "purl": "pkg:npm/%40babel/traverse@8.0.7",
-        "version": "8.0.7"
+        "purl": "pkg:npm/%40babel/traverse@8.0.10",
+        "version": "8.0.10"
       },
       {
         "ecosystem": "npm",
         "licenses": [],
         "location": "pnpm-lock.yaml",
         "name": "@babel/types",
-        "purl": "pkg:npm/%40babel/types@8.0.6",
-        "version": "8.0.6"
+        "purl": "pkg:npm/%40babel/types@8.0.10",
+        "version": "8.0.10"
       },
       {
         "ecosystem": "npm",
         "licenses": [],
         "location": "pnpm-lock.yaml",
         "name": "@biomejs/biome",
-        "purl": "pkg:npm/%40biomejs/biome@2.5.15",
-        "version": "2.5.15"
+        "purl": "pkg:npm/%40biomejs/biome@2.6.4",
+        "version": "2.6.4"
+      },
+      {
+        "ecosystem": "npm",
+        "licenses": [],
+        "location": "pnpm-lock.yaml",
+        "name": "@biomejs/cli-android-arm64",
+        "purl": "pkg:npm/%40biomejs/cli-android-arm64@2.6.4",
+        "version": "2.6.4"
+      },
+      {
+        "ecosystem": "npm",
+        "licenses": [],
+        "location": "pnpm-lock.yaml",
+        "name": "@biomejs/cli-android-x64",
+        "purl": "pkg:npm/%40biomejs/cli-android-x64@2.6.4",
+        "version": "2.6.4"
       },
       {
         "ecosystem": "npm",
         "licenses": [],
         "location": "pnpm-lock.yaml",
         "name": "@biomejs/cli-darwin-arm64",
-        "purl": "pkg:npm/%40biomejs/cli-darwin-arm64@2.5.15",
-        "version": "2.5.15"
+        "purl": "pkg:npm/%40biomejs/cli-darwin-arm64@2.6.4",
+        "version": "2.6.4"
       },
       {
         "ecosystem": "npm",
         "licenses": [],
         "location": "pnpm-lock.yaml",
         "name": "@biomejs/cli-darwin-x64",
-        "purl": "pkg:npm/%40biomejs/cli-darwin-x64@2.5.15",
-        "version": "2.5.15"
+        "purl": "pkg:npm/%40biomejs/cli-darwin-x64@2.6.4",
+        "version": "2.6.4"
       },
       {
         "ecosystem": "npm",
         "licenses": [],
         "location": "pnpm-lock.yaml",
         "name": "@biomejs/cli-linux-arm64",
-        "purl": "pkg:npm/%40biomejs/cli-linux-arm64@2.5.15",
-        "version": "2.5.15"
+        "purl": "pkg:npm/%40biomejs/cli-linux-arm64@2.6.4",
+        "version": "2.6.4"
       },
       {
         "ecosystem": "npm",
         "licenses": [],
         "location": "pnpm-lock.yaml",
         "name": "@biomejs/cli-linux-arm64-musl",
-        "purl": "pkg:npm/%40biomejs/cli-linux-arm64-musl@2.5.15",
-        "version": "2.5.15"
+        "purl": "pkg:npm/%40biomejs/cli-linux-arm64-musl@2.6.4",
+        "version": "2.6.4"
       },
       {
         "ecosystem": "npm",
         "licenses": [],
         "location": "pnpm-lock.yaml",
         "name": "@biomejs/cli-linux-x64",
-        "purl": "pkg:npm/%40biomejs/cli-linux-x64@2.5.15",
-        "version": "2.5.15"
+        "purl": "pkg:npm/%40biomejs/cli-linux-x64@2.6.4",
+        "version": "2.6.4"
       },
       {
         "ecosystem": "npm",
         "licenses": [],
         "location": "pnpm-lock.yaml",
         "name": "@biomejs/cli-linux-x64-musl",
-        "purl": "pkg:npm/%40biomejs/cli-linux-x64-musl@2.5.15",
-        "version": "2.5.15"
+        "purl": "pkg:npm/%40biomejs/cli-linux-x64-musl@2.6.4",
+        "version": "2.6.4"
       },
       {
         "ecosystem": "npm",
         "licenses": [],
         "location": "pnpm-lock.yaml",
         "name": "@biomejs/cli-win32-arm64",
-        "purl": "pkg:npm/%40biomejs/cli-win32-arm64@2.5.15",
-        "version": "2.5.15"
+        "purl": "pkg:npm/%40biomejs/cli-win32-arm64@2.6.4",
+        "version": "2.6.4"
       },
       {
         "ecosystem": "npm",
         "licenses": [],
         "location": "pnpm-lock.yaml",
         "name": "@biomejs/cli-win32-x64",
-        "purl": "pkg:npm/%40biomejs/cli-win32-x64@2.5.15",
-        "version": "2.5.15"
+        "purl": "pkg:npm/%40biomejs/cli-win32-x64@2.6.4",
+        "version": "2.6.4"
       },
       {
         "ecosystem": "npm",
@@ -626,8 +1058,8 @@
         "licenses": [],
         "location": "pnpm-lock.yaml",
         "name": "@cdxgen/cdx-hbom",
-        "purl": "pkg:npm/%40cdxgen/cdx-hbom@0.7.0",
-        "version": "0.7.0"
+        "purl": "pkg:npm/%40cdxgen/cdx-hbom@0.8.0",
+        "version": "0.8.0"
       },
       {
         "ecosystem": "npm",
@@ -809,6 +1241,14 @@
         "ecosystem": "npm",
         "licenses": [],
         "location": "pnpm-lock.yaml",
+        "name": "@isaacs/nonrecursive-glob-match",
+        "purl": "pkg:npm/%40isaacs/nonrecursive-glob-match@1.0.3",
+        "version": "1.0.3"
+      },
+      {
+        "ecosystem": "npm",
+        "licenses": [],
+        "location": "pnpm-lock.yaml",
         "name": "@isaacs/string-locale-compare",
         "purl": "pkg:npm/%40isaacs/string-locale-compare@1.1.0",
         "version": "1.1.0"
@@ -914,112 +1354,112 @@
         "licenses": [],
         "location": "pnpm-lock.yaml",
         "name": "@pnpm/exe.android-arm64",
-        "purl": "pkg:npm/%40pnpm/exe.android-arm64@12.10.1",
-        "version": "12.10.1"
+        "purl": "pkg:npm/%40pnpm/exe.android-arm64@12.16.1",
+        "version": "12.16.1"
       },
       {
         "ecosystem": "npm",
         "licenses": [],
         "location": "pnpm-lock.yaml",
         "name": "@pnpm/exe.android-x64",
-        "purl": "pkg:npm/%40pnpm/exe.android-x64@12.10.1",
-        "version": "12.10.1"
+        "purl": "pkg:npm/%40pnpm/exe.android-x64@12.16.1",
+        "version": "12.16.1"
       },
       {
         "ecosystem": "npm",
         "licenses": [],
         "location": "pnpm-lock.yaml",
         "name": "@pnpm/exe.darwin-arm64",
-        "purl": "pkg:npm/%40pnpm/exe.darwin-arm64@12.10.1",
-        "version": "12.10.1"
+        "purl": "pkg:npm/%40pnpm/exe.darwin-arm64@12.16.1",
+        "version": "12.16.1"
       },
       {
         "ecosystem": "npm",
         "licenses": [],
         "location": "pnpm-lock.yaml",
         "name": "@pnpm/exe.darwin-x64",
-        "purl": "pkg:npm/%40pnpm/exe.darwin-x64@12.10.1",
-        "version": "12.10.1"
+        "purl": "pkg:npm/%40pnpm/exe.darwin-x64@12.16.1",
+        "version": "12.16.1"
       },
       {
         "ecosystem": "npm",
         "licenses": [],
         "location": "pnpm-lock.yaml",
         "name": "@pnpm/exe.freebsd-x64",
-        "purl": "pkg:npm/%40pnpm/exe.freebsd-x64@12.10.1",
-        "version": "12.10.1"
+        "purl": "pkg:npm/%40pnpm/exe.freebsd-x64@12.16.1",
+        "version": "12.16.1"
       },
       {
         "ecosystem": "npm",
         "licenses": [],
         "location": "pnpm-lock.yaml",
         "name": "@pnpm/exe.linux-arm64",
-        "purl": "pkg:npm/%40pnpm/exe.linux-arm64@12.10.1",
-        "version": "12.10.1"
+        "purl": "pkg:npm/%40pnpm/exe.linux-arm64@12.16.1",
+        "version": "12.16.1"
       },
       {
         "ecosystem": "npm",
         "licenses": [],
         "location": "pnpm-lock.yaml",
         "name": "@pnpm/exe.linux-arm64-musl",
-        "purl": "pkg:npm/%40pnpm/exe.linux-arm64-musl@12.10.1",
-        "version": "12.10.1"
+        "purl": "pkg:npm/%40pnpm/exe.linux-arm64-musl@12.16.1",
+        "version": "12.16.1"
       },
       {
         "ecosystem": "npm",
         "licenses": [],
         "location": "pnpm-lock.yaml",
         "name": "@pnpm/exe.linux-ppc64",
-        "purl": "pkg:npm/%40pnpm/exe.linux-ppc64@12.10.1",
-        "version": "12.10.1"
+        "purl": "pkg:npm/%40pnpm/exe.linux-ppc64@12.16.1",
+        "version": "12.16.1"
       },
       {
         "ecosystem": "npm",
         "licenses": [],
         "location": "pnpm-lock.yaml",
         "name": "@pnpm/exe.linux-riscv64",
-        "purl": "pkg:npm/%40pnpm/exe.linux-riscv64@12.10.1",
-        "version": "12.10.1"
+        "purl": "pkg:npm/%40pnpm/exe.linux-riscv64@12.16.1",
+        "version": "12.16.1"
       },
       {
         "ecosystem": "npm",
         "licenses": [],
         "location": "pnpm-lock.yaml",
         "name": "@pnpm/exe.linux-s390x",
-        "purl": "pkg:npm/%40pnpm/exe.linux-s390x@12.10.1",
-        "version": "12.10.1"
+        "purl": "pkg:npm/%40pnpm/exe.linux-s390x@12.16.1",
+        "version": "12.16.1"
       },
       {
         "ecosystem": "npm",
         "licenses": [],
         "location": "pnpm-lock.yaml",
         "name": "@pnpm/exe.linux-x64",
-        "purl": "pkg:npm/%40pnpm/exe.linux-x64@12.10.1",
-        "version": "12.10.1"
+        "purl": "pkg:npm/%40pnpm/exe.linux-x64@12.16.1",
+        "version": "12.16.1"
       },
       {
         "ecosystem": "npm",
         "licenses": [],
         "location": "pnpm-lock.yaml",
         "name": "@pnpm/exe.linux-x64-musl",
-        "purl": "pkg:npm/%40pnpm/exe.linux-x64-musl@12.10.1",
-        "version": "12.10.1"
+        "purl": "pkg:npm/%40pnpm/exe.linux-x64-musl@12.16.1",
+        "version": "12.16.1"
       },
       {
         "ecosystem": "npm",
         "licenses": [],
         "location": "pnpm-lock.yaml",
         "name": "@pnpm/exe.win32-arm64",
-        "purl": "pkg:npm/%40pnpm/exe.win32-arm64@12.10.1",
-        "version": "12.10.1"
+        "purl": "pkg:npm/%40pnpm/exe.win32-arm64@12.16.1",
+        "version": "12.16.1"
       },
       {
         "ecosystem": "npm",
         "licenses": [],
         "location": "pnpm-lock.yaml",
         "name": "@pnpm/exe.win32-x64",
-        "purl": "pkg:npm/%40pnpm/exe.win32-x64@12.10.1",
-        "version": "12.10.1"
+        "purl": "pkg:npm/%40pnpm/exe.win32-x64@12.16.1",
+        "version": "12.16.1"
       },
       {
         "ecosystem": "npm",
@@ -1306,8 +1746,8 @@
         "licenses": [],
         "location": "pnpm-lock.yaml",
         "name": "body-parser",
-        "purl": "pkg:npm/body-parser@2.3.0",
-        "version": "2.3.0"
+        "purl": "pkg:npm/body-parser@2.4.0",
+        "version": "2.4.0"
       },
       {
         "ecosystem": "npm",
@@ -1546,8 +1986,8 @@
         "licenses": [],
         "location": "pnpm-lock.yaml",
         "name": "esmock",
-        "purl": "pkg:npm/esmock@2.8.0",
-        "version": "2.8.0"
+        "purl": "pkg:npm/esmock@3.0.0",
+        "version": "3.0.0"
       },
       {
         "ecosystem": "npm",
@@ -1628,6 +2068,14 @@
         "name": "glob",
         "purl": "pkg:npm/glob@13.0.6",
         "version": "13.0.6"
+      },
+      {
+        "ecosystem": "npm",
+        "licenses": [],
+        "location": "pnpm-lock.yaml",
+        "name": "glob",
+        "purl": "pkg:npm/glob@14.0.3",
+        "version": "14.0.3"
       },
       {
         "ecosystem": "npm",
@@ -1849,6 +2297,14 @@
         "ecosystem": "npm",
         "licenses": [],
         "location": "pnpm-lock.yaml",
+        "name": "minimatch",
+        "purl": "pkg:npm/minimatch@11.0.3",
+        "version": "11.0.3"
+      },
+      {
+        "ecosystem": "npm",
+        "licenses": [],
+        "location": "pnpm-lock.yaml",
         "name": "minipass",
         "purl": "pkg:npm/minipass@7.1.3",
         "version": "7.1.3"
@@ -1985,9 +2441,17 @@
         "ecosystem": "npm",
         "licenses": [],
         "location": "pnpm-lock.yaml",
+        "name": "path-scurry",
+        "purl": "pkg:npm/path-scurry@3.0.0",
+        "version": "3.0.0"
+      },
+      {
+        "ecosystem": "npm",
+        "licenses": [],
+        "location": "pnpm-lock.yaml",
         "name": "pnpm",
-        "purl": "pkg:npm/pnpm@12.10.1",
-        "version": "12.10.1"
+        "purl": "pkg:npm/pnpm@12.16.1",
+        "version": "12.16.1"
       },
       {
         "ecosystem": "npm",
@@ -2010,8 +2474,8 @@
         "licenses": [],
         "location": "pnpm-lock.yaml",
         "name": "qs",
-        "purl": "pkg:npm/qs@6.16.0",
-        "version": "6.16.0"
+        "purl": "pkg:npm/qs@6.17.1",
+        "version": "6.17.1"
       },
       {
         "ecosystem": "npm",
@@ -2805,13 +3269,13 @@
     ],
     "name": "cdxgen",
     "osv": {
-      "advisories": 13,
+      "advisories": 11,
       "available": true,
-      "confirmed": 13,
+      "confirmed": 11,
       "osv_only": [],
       "warning": null
     },
-    "ref": "v13.6.0",
+    "ref": "v13.7.0",
     "ref_kind": "release",
     "release_integrity": {
       "asset": "cdxgen-linux-amd64",
@@ -2828,19 +3292,26 @@
       "signer": null,
       "verdict": "checksums-only"
     },
-    "released_at": "2026-10-31T09:35:36Z",
+    "released_at": "2026-11-07T23:38:25Z",
     "repository": "CycloneDX/cdxgen",
     "sbomlyze_diff": {
-      "added": 0,
-      "changed": 0,
-      "drift": {},
+      "added": 3,
+      "changed": 66,
+      "drift": {
+        "integrity_drift": 20,
+        "metadata_drift": 0,
+        "version_drift": 46
+      },
       "findings": [
-        "0 version changes among 437 shared packages \u2014 no actual upgrades",
-        "Core system packages stable: npm (249), github (106), pypi (48), file (28) unchanged"
+        "Attack surface: +9 packages (2.1%)",
+        "46 version upgrades (1 major, 40 minor, 5 patch) among 437 shared packages",
+        "Integrity drift (20 total): 20 unknown",
+        "Core system packages stable: pypi (48), file (28) unchanged"
       ],
+      "html": "sbomlyze-diff.html",
       "removed": 0
     },
-    "scanned_at": "2026-11-02T03:07:37+00:00",
+    "scanned_at": "2026-11-08T05:53:53+00:00",
     "scorecard": null,
     "scorecard_note": "the project is not in the OpenSSF public dataset; the Scorecard CLI fallback was skipped because this shard's weekly budget was used",
     "vulnerabilities": [
@@ -2864,36 +3335,12 @@
       },
       {
         "aliases": [
-          "CVE-2026-111181"
-        ],
-        "ecosystem": "npm",
-        "epss": {
-          "cve": "CVE-2026-111181",
-          "percentile": 0.32919,
-          "score": 0.00388
-        },
-        "fix_state": "fixed",
-        "fixed_in": [
-          "2.4.0"
-        ],
-        "id": "GHSA-27r3-jxmh-p828",
-        "kev": null,
-        "location": "pnpm-lock.yaml",
-        "osv_confirmed": true,
-        "package": "body-parser",
-        "severity": "High",
-        "summary": "body-parser vulnerable to Denial of Service via trailing bytes after a compressed request body",
-        "url": "https://github.com/advisories/GHSA-27r3-jxmh-p828",
-        "version": "2.3.0"
-      },
-      {
-        "aliases": [
           "CVE-2026-114605"
         ],
         "ecosystem": "pypi",
         "epss": {
           "cve": "CVE-2026-114605",
-          "percentile": 0.40313,
+          "percentile": 0.40535,
           "score": 0.00466
         },
         "fix_state": "fixed",
@@ -2917,7 +3364,7 @@
         "ecosystem": "pypi",
         "epss": {
           "cve": "CVE-2026-97687",
-          "percentile": 0.10658,
+          "percentile": 0.10707,
           "score": 0.00206
         },
         "fix_state": "fixed",
@@ -2941,7 +3388,7 @@
         "ecosystem": "pypi",
         "epss": {
           "cve": "CVE-2026-97689",
-          "percentile": 0.26853,
+          "percentile": 0.26984,
           "score": 0.00335
         },
         "fix_state": "fixed",
@@ -2965,7 +3412,7 @@
         "ecosystem": "npm",
         "epss": {
           "cve": "CVE-2026-110306",
-          "percentile": 0.1635,
+          "percentile": 0.16394,
           "score": 0.0025
         },
         "fix_state": "fixed",
@@ -2989,7 +3436,7 @@
         "ecosystem": "npm",
         "epss": {
           "cve": "CVE-2026-110180",
-          "percentile": 0.17118,
+          "percentile": 0.17172,
           "score": 0.00255
         },
         "fix_state": "fixed",
@@ -3013,7 +3460,7 @@
         "ecosystem": "npm",
         "epss": {
           "cve": "CVE-2026-118773",
-          "percentile": 0.28707,
+          "percentile": 0.28872,
           "score": 0.0035
         },
         "fix_state": "fixed",
@@ -3037,8 +3484,8 @@
         "ecosystem": "npm",
         "epss": {
           "cve": "CVE-2026-118764",
-          "percentile": 0.21751,
-          "score": 0.00291
+          "percentile": 0.23009,
+          "score": 0.00301
         },
         "fix_state": "fixed",
         "fixed_in": [
@@ -3056,36 +3503,12 @@
       },
       {
         "aliases": [
-          "CVE-2026-110816"
-        ],
-        "ecosystem": "npm",
-        "epss": {
-          "cve": "CVE-2026-110816",
-          "percentile": 0.30708,
-          "score": 0.00368
-        },
-        "fix_state": "fixed",
-        "fixed_in": [
-          "6.16.1"
-        ],
-        "id": "GHSA-6pq8-jhm2-2vcw",
-        "kev": null,
-        "location": "pnpm-lock.yaml",
-        "osv_confirmed": true,
-        "package": "qs",
-        "severity": "Medium",
-        "summary": "qs : qs.stringify with arrayFormat 'comma' throws an uncaught TypeError on array elements carrying a non-callable own toString (DoS)",
-        "url": "https://github.com/advisories/GHSA-6pq8-jhm2-2vcw",
-        "version": "6.16.0"
-      },
-      {
-        "aliases": [
           "CVE-2026-97688"
         ],
         "ecosystem": "pypi",
         "epss": {
           "cve": "CVE-2026-97688",
-          "percentile": 0.21778,
+          "percentile": 0.21874,
           "score": 0.00292
         },
         "fix_state": "fixed",
@@ -3109,7 +3532,7 @@
         "ecosystem": "npm",
         "epss": {
           "cve": "CVE-2026-110725",
-          "percentile": 0.22997,
+          "percentile": 0.23115,
           "score": 0.00302
         },
         "fix_state": "fixed",
@@ -3133,7 +3556,7 @@
         "ecosystem": "npm",
         "epss": {
           "cve": "CVE-2026-110095",
-          "percentile": 0.21547,
+          "percentile": 0.21629,
           "score": 0.00289
         },
         "fix_state": "fixed",
@@ -3527,5 +3950,5 @@
       ]
     }
   },
-  "updated": "2026-11-02"
+  "updated": "2026-11-08"
 }

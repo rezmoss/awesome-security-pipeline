@@ -81,6 +81,50 @@
         "Medium": 1,
         "files": 15
       }
+    },
+    {
+      "added": 0,
+      "commit": "482d9e368c2ddfed67ced59259fa6a247bb5f1e5",
+      "date": "2026-11-08",
+      "dependencies": 156,
+      "errors": [],
+      "fixable": 6,
+      "go_version": "go1.27.3",
+      "in_binary": {
+        "dependencies": 1,
+        "stdlib": 0,
+        "total": 1
+      },
+      "kev": 0,
+      "kev_new": 0,
+      "new_vulnerabilities": 1,
+      "osv_confirmed": 6,
+      "osv_only": 0,
+      "ref": "v1.22.2",
+      "release_changed": true,
+      "release_integrity": "immutable",
+      "removed": 0,
+      "resolved_vulnerabilities": 0,
+      "scorecard": 8.2,
+      "scorecard_date": "2026-11-07",
+      "scorecard_note": null,
+      "scorecard_source": "openssf-api",
+      "upgraded": 0,
+      "vulnerabilities": {
+        "Critical": 0,
+        "High": 4,
+        "Low": 0,
+        "Medium": 1,
+        "Negligible": 0,
+        "Unknown": 1
+      },
+      "vulnerable_packages": 4,
+      "workflow": {
+        "High": 1,
+        "Low": 6,
+        "Medium": 1,
+        "files": 15
+      }
     }
   ],
   "latest": {
@@ -90,24 +134,50 @@
       "added": [],
       "any": true,
       "baseline": false,
-      "in_binary_new": [],
+      "in_binary_new": [
+        "GO-2026-6865"
+      ],
       "in_binary_resolved": [],
-      "integrity_drift": 0,
+      "integrity_drift": 2,
+      "kev_new": [],
       "license_changes": [],
-      "new_vulnerabilities": [],
+      "new_vulnerabilities": [
+        {
+          "aliases": [
+            "CVE-2026-116591",
+            "GHSA-fpmh-frq8-7rj8"
+          ],
+          "ecosystem": "golang",
+          "epss": {
+            "cve": "CVE-2026-116591",
+            "percentile": 0.26636,
+            "score": 0.00333
+          },
+          "fix_state": "fixed",
+          "fixed_in": [
+            "1.20.2"
+          ],
+          "id": "GO-2026-6865",
+          "in_binary": "vulnerable code in binary",
+          "kev": null,
+          "location": "go.mod",
+          "osv_confirmed": true,
+          "package": "github.com/klauspost/compress",
+          "severity": "High",
+          "summary": "Panic on two-block frames in github.com/klauspost/compress",
+          "url": "https://github.com/klauspost/compress/security/advisories/GHSA-fpmh-frq8-7rj8",
+          "version": "v1.20.0"
+        }
+      ],
       "previous_ref": "v1.22.0",
-      "release_changed": false,
-      "release_integrity": {
-        "from": "verified",
-        "to": "immutable"
-      },
+      "release_changed": true,
       "removed": [],
       "resolved_vulnerabilities": [],
       "upgraded": [],
       "workflow_new": 0,
       "workflow_resolved": 0
     },
-    "commit": "d4c8d0c8812290c3e3715ca4cf958f75283f6ec4",
+    "commit": "482d9e368c2ddfed67ced59259fa6a247bb5f1e5",
     "compliance": {
       "overall_score": 55,
       "standards": {
@@ -1459,12 +1529,30 @@
       "asset": "opa_linux_amd64",
       "binary": "opa_linux_amd64",
       "db": "https://vuln.go.dev",
-      "db_last_modified": "2026-10-27T21:16:18Z",
+      "db_last_modified": "2026-11-05T23:49:57Z",
       "findings": [
+        {
+          "aliases": [
+            "CVE-2026-116591",
+            "GHSA-fpmh-frq8-7rj8"
+          ],
+          "epss": {
+            "cve": "CVE-2026-116591",
+            "percentile": 0.26636,
+            "score": 0.00333
+          },
+          "fixed_version": "v1.20.2",
+          "id": "GO-2026-6865",
+          "kev": null,
+          "level": "symbol",
+          "module": "github.com/klauspost/compress",
+          "summary": "Panic on two-block frames in github.com/klauspost/compress",
+          "version": "v1.20.0"
+        },
         {
           "aliases": [],
           "epss": null,
-          "fixed_version": "",
+          "fixed_version": "v0.58.1-0.20261009181718-2f1f834330b2",
           "id": "GO-2026-5932",
           "kev": null,
           "level": "module",
@@ -1478,8 +1566,8 @@
           ],
           "epss": {
             "cve": "CVE-2026-78661",
-            "percentile": 0.08063,
-            "score": 0.00185
+            "percentile": 0.35396,
+            "score": 0.00409
           },
           "fixed_version": "v0.62.0",
           "id": "GO-2026-6860",
@@ -1495,8 +1583,8 @@
           ],
           "epss": {
             "cve": "CVE-2026-97045",
-            "percentile": 0.10117,
-            "score": 0.00202
+            "percentile": 0.18952,
+            "score": 0.00267
           },
           "fixed_version": "v0.62.0",
           "id": "GO-2026-6866",
@@ -1536,13 +1624,13 @@
     ],
     "name": "opa",
     "osv": {
-      "advisories": 5,
+      "advisories": 6,
       "available": true,
-      "confirmed": 5,
+      "confirmed": 6,
       "osv_only": [],
       "warning": null
     },
-    "ref": "v1.22.0",
+    "ref": "v1.22.2",
     "ref_kind": "release",
     "release_integrity": {
       "asset": "opa_linux_amd64",
@@ -1565,19 +1653,25 @@
       "signer": null,
       "verdict": "immutable"
     },
-    "released_at": "2026-10-29T15:34:18Z",
+    "released_at": "2026-11-06T00:02:09Z",
     "repository": "open-policy-agent/opa",
     "sbomlyze_diff": {
       "added": 0,
-      "changed": 0,
-      "drift": {},
+      "changed": 2,
+      "drift": {
+        "integrity_drift": 2,
+        "metadata_drift": 0,
+        "version_drift": 0
+      },
       "findings": [
         "0 version changes among 220 shared packages \u2014 no actual upgrades",
+        "Integrity drift (2 total): 2 unknown",
         "Core system packages stable: golang (133), github (63), file (18) unchanged"
       ],
+      "html": "sbomlyze-diff.html",
       "removed": 0
     },
-    "scanned_at": "2026-11-02T03:07:33+00:00",
+    "scanned_at": "2026-11-08T05:54:10+00:00",
     "scorecard": {
       "checks": [
         {
@@ -1598,11 +1692,16 @@
         {
           "name": "SAST",
           "reason": "SAST tool detected but not run on all commits",
-          "score": 7
+          "score": 8
         },
         {
           "name": "Binary-Artifacts",
           "reason": "binaries present in source code",
+          "score": 9
+        },
+        {
+          "name": "Code-Review",
+          "reason": "Found 22/24 approved changesets -- score normalized to 9",
           "score": 9
         },
         {
@@ -1622,12 +1721,7 @@
         },
         {
           "name": "CI-Tests",
-          "reason": "30 out of 30 merged PRs checked by a CI test -- score normalized to 10",
-          "score": 10
-        },
-        {
-          "name": "Code-Review",
-          "reason": "all changesets reviewed",
+          "reason": "27 out of 27 merged PRs checked by a CI test -- score normalized to 10",
           "score": 10
         },
         {
@@ -1657,7 +1751,7 @@
         },
         {
           "name": "Maintained",
-          "reason": "30 commit(s) and 9 issue activity found in the last 90 days -- score normalized to 10",
+          "reason": "30 commit(s) and 18 issue activity found in the last 90 days -- score normalized to 10",
           "score": 10
         },
         {
@@ -1671,7 +1765,7 @@
           "score": -1
         }
       ],
-      "date": "2026-11-01",
+      "date": "2026-11-07",
       "score": 8.2,
       "source": "openssf-api",
       "version": "v5.6.0"
@@ -1679,12 +1773,38 @@
     "vulnerabilities": [
       {
         "aliases": [
+          "CVE-2026-116591",
+          "GHSA-fpmh-frq8-7rj8"
+        ],
+        "ecosystem": "golang",
+        "epss": {
+          "cve": "CVE-2026-116591",
+          "percentile": 0.26636,
+          "score": 0.00333
+        },
+        "fix_state": "fixed",
+        "fixed_in": [
+          "1.20.2"
+        ],
+        "id": "GO-2026-6865",
+        "in_binary": "vulnerable code in binary",
+        "kev": null,
+        "location": "go.mod",
+        "osv_confirmed": true,
+        "package": "github.com/klauspost/compress",
+        "severity": "High",
+        "summary": "Panic on two-block frames in github.com/klauspost/compress",
+        "url": "https://github.com/klauspost/compress/security/advisories/GHSA-fpmh-frq8-7rj8",
+        "version": "v1.20.0"
+      },
+      {
+        "aliases": [
           "CVE-2026-56865"
         ],
         "ecosystem": "golang",
         "epss": {
           "cve": "CVE-2026-56865",
-          "percentile": 0.02533,
+          "percentile": 0.02572,
           "score": 0.00129
         },
         "fix_state": "fixed",
@@ -1709,7 +1829,7 @@
         "ecosystem": "golang",
         "epss": {
           "cve": "CVE-2026-56864",
-          "percentile": 0.22506,
+          "percentile": 0.22617,
           "score": 0.00298
         },
         "fix_state": "fixed",
@@ -1728,31 +1848,14 @@
         "version": "v0.35.0"
       },
       {
-        "aliases": [],
-        "ecosystem": "golang",
-        "epss": null,
-        "fix_state": "unknown",
-        "fixed_in": [],
-        "id": "GO-2026-5932",
-        "in_binary": "module in binary",
-        "kev": null,
-        "location": "go.mod",
-        "osv_confirmed": true,
-        "package": "golang.org/x/crypto",
-        "severity": "Unknown",
-        "summary": "The golang.org/x/crypto/openpgp package is unsafe by design, has numerous known security issues, is not maintained, and should not be used. If you are required to interoperate with OpenPGP systems and need a maintained package, consider github.com/ProtonMail/go-crypto/openpgp which is a maintained f",
-        "url": "https://go.dev/issue/44226",
-        "version": "v0.57.0"
-      },
-      {
         "aliases": [
           "CVE-2026-78661"
         ],
         "ecosystem": "golang",
         "epss": {
           "cve": "CVE-2026-78661",
-          "percentile": 0.08063,
-          "score": 0.00185
+          "percentile": 0.35396,
+          "score": 0.00409
         },
         "fix_state": "fixed",
         "fixed_in": [
@@ -1764,7 +1867,7 @@
         "location": "go.mod",
         "osv_confirmed": true,
         "package": "golang.org/x/net",
-        "severity": "Unknown",
+        "severity": "High",
         "summary": "When coalescing adjacent text nodes in addText and fosterParent, appending to an existing TextNode's Data via string concatenation (n.Data += text) reallocated and copied the accumulated string on every token. Inputs containing many short text runs separated by ignored end tags (such as \"a</x>\") cau",
         "url": "https://go.dev/cl/849365",
         "version": "v0.60.0"
@@ -1776,8 +1879,8 @@
         "ecosystem": "golang",
         "epss": {
           "cve": "CVE-2026-97045",
-          "percentile": 0.10117,
-          "score": 0.00202
+          "percentile": 0.18952,
+          "score": 0.00267
         },
         "fix_state": "fixed",
         "fixed_in": [
@@ -1789,10 +1892,29 @@
         "location": "go.mod",
         "osv_confirmed": true,
         "package": "golang.org/x/net",
-        "severity": "Unknown",
+        "severity": "Medium",
         "summary": "In childTextNodesAreLiteral, walking up the tree previously stopped at the nearest foreign ancestor once an HTML integration point was found. However, that integration point may itself be a descendant of an element that was foster-parented into a foreign namespace (such as <mglyph> or <malignmark> f",
         "url": "https://go.dev/cl/855121",
         "version": "v0.60.0"
+      },
+      {
+        "aliases": [],
+        "ecosystem": "golang",
+        "epss": null,
+        "fix_state": "fixed",
+        "fixed_in": [
+          "0.58.1-0.20261009181718-2f1f834330b2"
+        ],
+        "id": "GO-2026-5932",
+        "in_binary": "module in binary",
+        "kev": null,
+        "location": "go.mod",
+        "osv_confirmed": true,
+        "package": "golang.org/x/crypto",
+        "severity": "Unknown",
+        "summary": "The golang.org/x/crypto/openpgp package is unsafe by design, has numerous known security issues, is not maintained, and should not be used. If you are required to interoperate with OpenPGP systems and need a maintained package, consider github.com/ProtonMail/go-crypto/openpgp which is a maintained f",
+        "url": "https://go.dev/issue/44226",
+        "version": "v0.57.0"
       }
     ],
     "workflow_audit": {
@@ -1881,5 +2003,5 @@
       ]
     }
   },
-  "updated": "2026-11-02"
+  "updated": "2026-11-08"
 }

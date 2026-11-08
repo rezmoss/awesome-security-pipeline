@@ -73,6 +73,46 @@
         "Medium": 2,
         "files": 11
       }
+    },
+    {
+      "added": 0,
+      "commit": "ea68ca03c865c5f324e86e849ced20ed3cf9dbbb",
+      "date": "2026-11-08",
+      "dependencies": 332,
+      "errors": [],
+      "fixable": 6,
+      "go_version": null,
+      "in_binary": null,
+      "kev": 0,
+      "kev_new": 0,
+      "new_vulnerabilities": 0,
+      "osv_confirmed": 12,
+      "osv_only": 0,
+      "ref": "v3.99.8",
+      "release_changed": true,
+      "release_integrity": "verified",
+      "removed": 3,
+      "resolved_vulnerabilities": 0,
+      "scorecard": 7.6,
+      "scorecard_date": "2026-11-02",
+      "scorecard_note": null,
+      "scorecard_source": "openssf-api",
+      "upgraded": 5,
+      "vulnerabilities": {
+        "Critical": 0,
+        "High": 5,
+        "Low": 0,
+        "Medium": 6,
+        "Negligible": 0,
+        "Unknown": 1
+      },
+      "vulnerable_packages": 5,
+      "workflow": {
+        "High": 3,
+        "Low": 1,
+        "Medium": 2,
+        "files": 11
+      }
     }
   ],
   "latest": {
@@ -80,20 +120,60 @@
     "category": "Pre-commit & Secrets Detection",
     "changes": {
       "added": [],
-      "any": false,
+      "any": true,
       "baseline": false,
-      "integrity_drift": 0,
+      "integrity_drift": 1,
+      "kev_new": [],
       "license_changes": [],
       "new_vulnerabilities": [],
       "previous_ref": "v3.99.7",
-      "release_changed": false,
-      "removed": [],
+      "release_changed": true,
+      "removed": [
+        "github.com/hashicorp/errwrap@v1.1.0",
+        "github.com/hashicorp/go-multierror@v1.1.1",
+        "github.com/klauspost/cpuid/v2@v2.3.0"
+      ],
       "resolved_vulnerabilities": [],
-      "upgraded": [],
+      "scorecard": {
+        "from": 7.9,
+        "to": 7.6
+      },
+      "upgraded": [
+        {
+          "ecosystem": "golang",
+          "from": "v5.9.0",
+          "package": "github.com/go-git/go-billy/v5",
+          "to": "v5.9.2"
+        },
+        {
+          "ecosystem": "golang",
+          "from": "v5.19.2",
+          "package": "github.com/go-git/go-git/v5",
+          "to": "v5.19.3"
+        },
+        {
+          "ecosystem": "golang",
+          "from": "v0.2.0",
+          "package": "github.com/jlaffaye/ftp",
+          "to": "v0.2.4"
+        },
+        {
+          "ecosystem": "golang",
+          "from": "v0.0.20",
+          "package": "github.com/mattn/go-isatty",
+          "to": "v0.0.24"
+        },
+        {
+          "ecosystem": "golang",
+          "from": "v0.6.0",
+          "package": "github.com/pjbgf/sha1cd",
+          "to": "v0.7.0"
+        }
+      ],
       "workflow_new": 0,
       "workflow_resolved": 0
     },
-    "commit": "31ce31ee1abbcc7dc8eee5764c17121c3044c8b2",
+    "commit": "ea68ca03c865c5f324e86e849ced20ed3cf9dbbb",
     "compliance": {
       "overall_score": 55,
       "standards": {
@@ -1154,16 +1234,16 @@
         "licenses": [],
         "location": "go.mod",
         "name": "github.com/go-git/go-billy/v5",
-        "purl": "pkg:golang/github.com/go-git/go-billy/v5@v5.9.0",
-        "version": "v5.9.0"
+        "purl": "pkg:golang/github.com/go-git/go-billy/v5@v5.9.2",
+        "version": "v5.9.2"
       },
       {
         "ecosystem": "golang",
         "licenses": [],
         "location": "go.mod",
         "name": "github.com/go-git/go-git/v5",
-        "purl": "pkg:golang/github.com/go-git/go-git/v5@v5.19.2",
-        "version": "v5.19.2"
+        "purl": "pkg:golang/github.com/go-git/go-git/v5@v5.19.3",
+        "version": "v5.19.3"
       },
       {
         "ecosystem": "golang",
@@ -1433,25 +1513,9 @@
         "ecosystem": "golang",
         "licenses": [],
         "location": "go.mod",
-        "name": "github.com/hashicorp/errwrap",
-        "purl": "pkg:golang/github.com/hashicorp/errwrap@v1.1.0",
-        "version": "v1.1.0"
-      },
-      {
-        "ecosystem": "golang",
-        "licenses": [],
-        "location": "go.mod",
         "name": "github.com/hashicorp/go-cleanhttp",
         "purl": "pkg:golang/github.com/hashicorp/go-cleanhttp@v0.5.2",
         "version": "v0.5.2"
-      },
-      {
-        "ecosystem": "golang",
-        "licenses": [],
-        "location": "go.mod",
-        "name": "github.com/hashicorp/go-multierror",
-        "purl": "pkg:golang/github.com/hashicorp/go-multierror@v1.1.1",
-        "version": "v1.1.1"
       },
       {
         "ecosystem": "golang",
@@ -1514,8 +1578,8 @@
         "licenses": [],
         "location": "go.mod",
         "name": "github.com/jlaffaye/ftp",
-        "purl": "pkg:golang/github.com/jlaffaye/ftp@v0.2.0",
-        "version": "v0.2.0"
+        "purl": "pkg:golang/github.com/jlaffaye/ftp@v0.2.4",
+        "version": "v0.2.4"
       },
       {
         "ecosystem": "golang",
@@ -1564,14 +1628,6 @@
         "name": "github.com/klauspost/compress",
         "purl": "pkg:golang/github.com/klauspost/compress@v1.20.3",
         "version": "v1.20.3"
-      },
-      {
-        "ecosystem": "golang",
-        "licenses": [],
-        "location": "go.mod",
-        "name": "github.com/klauspost/cpuid/v2",
-        "purl": "pkg:golang/github.com/klauspost/cpuid/v2@v2.3.0",
-        "version": "v2.3.0"
       },
       {
         "ecosystem": "golang",
@@ -1698,8 +1754,8 @@
         "licenses": [],
         "location": "go.mod",
         "name": "github.com/mattn/go-isatty",
-        "purl": "pkg:golang/github.com/mattn/go-isatty@v0.0.20",
-        "version": "v0.0.20"
+        "purl": "pkg:golang/github.com/mattn/go-isatty@v0.0.24",
+        "version": "v0.0.24"
       },
       {
         "ecosystem": "golang",
@@ -1962,8 +2018,8 @@
         "licenses": [],
         "location": "go.mod",
         "name": "github.com/pjbgf/sha1cd",
-        "purl": "pkg:golang/github.com/pjbgf/sha1cd@v0.6.0",
-        "version": "v0.6.0"
+        "purl": "pkg:golang/github.com/pjbgf/sha1cd@v0.7.0",
+        "version": "v0.7.0"
       },
       {
         "ecosystem": "golang",
@@ -2816,7 +2872,7 @@
     ],
     "description": "Find credentials in git history and live systems",
     "errors": [],
-    "go_binary_note": "trufflehog_3.99.7_linux_amd64.tar.gz could not be analyzed: no Go build information (the binary may be compressed, for example with UPX, or not built with Go)",
+    "go_binary_note": "trufflehog_3.99.8_linux_amd64.tar.gz could not be analyzed: no Go build information (the binary may be compressed, for example with UPX, or not built with Go)",
     "id": "trufflesecurity__trufflehog",
     "manifests": [
       ".github/workflows/codeql-analysis.yml",
@@ -2841,10 +2897,10 @@
       "osv_only": [],
       "warning": null
     },
-    "ref": "v3.99.7",
+    "ref": "v3.99.8",
     "ref_kind": "release",
     "release_integrity": {
-      "asset": "trufflehog_3.99.7_linux_amd64.tar.gz",
+      "asset": "trufflehog_3.99.8_linux_amd64.tar.gz",
       "assets": 9,
       "build_provenance": null,
       "checksums_published": true,
@@ -2852,10 +2908,10 @@
       "immutable_release": null,
       "methods": [
         {
-          "covers": "checksums file trufflehog_3.99.7_checksums.txt",
+          "covers": "checksums file trufflehog_3.99.8_checksums.txt",
           "identity": "GitHub Actions workflow in trufflesecurity/trufflehog",
           "method": "cosign",
-          "signer": "URI:https://github.com/trufflesecurity/trufflehog/.github/workflows/release.yml@refs/tags/v3.99.7",
+          "signer": "URI:https://github.com/trufflesecurity/trufflehog/.github/workflows/release.yml@refs/tags/v3.99.8",
           "status": "verified"
         }
       ],
@@ -2863,22 +2919,29 @@
       "sbom_published": false,
       "signature": "own-workflow",
       "signatures_published": true,
-      "signer": "URI:https://github.com/trufflesecurity/trufflehog/.github/workflows/release.yml@refs/tags/v3.99.7",
+      "signer": "URI:https://github.com/trufflesecurity/trufflehog/.github/workflows/release.yml@refs/tags/v3.99.8",
       "verdict": "verified"
     },
-    "released_at": "2026-10-24T06:04:25Z",
+    "released_at": "2026-11-02T18:38:05Z",
     "repository": "trufflesecurity/trufflehog",
     "sbomlyze_diff": {
       "added": 0,
-      "changed": 0,
-      "drift": {},
+      "changed": 6,
+      "drift": {
+        "integrity_drift": 1,
+        "metadata_drift": 0,
+        "version_drift": 5
+      },
       "findings": [
-        "0 version changes among 363 shared packages \u2014 no actual upgrades",
-        "Core system packages stable: golang (314), github (37), file (11) unchanged"
+        "Attack surface: -3 packages (-0.8%)",
+        "5 version upgrades (1 major, 4 minor) among 360 shared packages",
+        "Integrity drift (1 total): 1 unknown",
+        "Core system packages stable: github (37), file (11) unchanged"
       ],
-      "removed": 0
+      "html": "sbomlyze-diff.html",
+      "removed": 3
     },
-    "scanned_at": "2026-11-02T03:08:27+00:00",
+    "scanned_at": "2026-11-08T05:54:40+00:00",
     "scorecard": {
       "checks": [
         {
@@ -2902,6 +2965,11 @@
           "score": 7
         },
         {
+          "name": "Code-Review",
+          "reason": "Found 19/22 approved changesets -- score normalized to 8",
+          "score": 8
+        },
+        {
           "name": "Signed-Releases",
           "reason": "5 out of the last 5 releases have a total of 5 signed artifacts.",
           "score": 8
@@ -2910,11 +2978,6 @@
           "name": "Binary-Artifacts",
           "reason": "binaries present in source code",
           "score": 9
-        },
-        {
-          "name": "Code-Review",
-          "reason": "all changesets reviewed",
-          "score": 10
         },
         {
           "name": "Dangerous-Workflow",
@@ -2942,18 +3005,18 @@
           "score": 10
         },
         {
-          "name": "SAST",
-          "reason": "SAST tool is run on all commits",
-          "score": 10
-        },
-        {
           "name": "Security-Policy",
           "reason": "security policy file detected",
           "score": 10
+        },
+        {
+          "name": "SAST",
+          "reason": "internal error: internal error: Client.Checks.ListCheckRunsForRef: error during graphqlHandler.setupCheckRuns: Although you appear to have the correct authorization credentials, the `cursor` organization has an IP allow list enabled, and your IP address is not permitted to access this resource.",
+          "score": -1
         }
       ],
-      "date": "2026-10-19",
-      "score": 7.9,
+      "date": "2026-11-02",
+      "score": 7.6,
       "source": "openssf-api",
       "version": "v5.6.0"
     },
@@ -2965,7 +3028,7 @@
         "ecosystem": "golang",
         "epss": {
           "cve": "CVE-2026-42306",
-          "percentile": 0.01018,
+          "percentile": 0.01038,
           "score": 0.00104
         },
         "fix_state": "not-fixed",
@@ -2987,7 +3050,7 @@
         "ecosystem": "golang",
         "epss": {
           "cve": "CVE-2026-41567",
-          "percentile": 0.04603,
+          "percentile": 0.04653,
           "score": 0.00155
         },
         "fix_state": "not-fixed",
@@ -3010,7 +3073,7 @@
         "ecosystem": "golang",
         "epss": {
           "cve": "CVE-2026-34040",
-          "percentile": 0.95361,
+          "percentile": 0.95391,
           "score": 0.0927
         },
         "fix_state": "unknown",
@@ -3032,7 +3095,7 @@
         "ecosystem": "golang",
         "epss": {
           "cve": "CVE-2026-116587",
-          "percentile": 0.3048,
+          "percentile": 0.30652,
           "score": 0.00366
         },
         "fix_state": "fixed",
@@ -3051,12 +3114,36 @@
       },
       {
         "aliases": [
+          "CVE-2026-78661"
+        ],
+        "ecosystem": "golang",
+        "epss": {
+          "cve": "CVE-2026-78661",
+          "percentile": 0.35396,
+          "score": 0.00409
+        },
+        "fix_state": "fixed",
+        "fixed_in": [
+          "0.62.0"
+        ],
+        "id": "GO-2026-6860",
+        "kev": null,
+        "location": "go.mod",
+        "osv_confirmed": true,
+        "package": "golang.org/x/net",
+        "severity": "High",
+        "summary": "When coalescing adjacent text nodes in addText and fosterParent, appending to an existing TextNode's Data via string concatenation (n.Data += text) reallocated and copied the accumulated string on every token. Inputs containing many short text runs separated by ignored end tags (such as \"a</x>\") cau",
+        "url": "https://go.dev/cl/849365",
+        "version": "v0.60.0"
+      },
+      {
+        "aliases": [
           "CVE-2026-85747"
         ],
         "ecosystem": "golang",
         "epss": {
           "cve": "CVE-2026-85747",
-          "percentile": 0.12276,
+          "percentile": 0.12318,
           "score": 0.00218
         },
         "fix_state": "not-fixed",
@@ -3078,7 +3165,7 @@
         "ecosystem": "golang",
         "epss": {
           "cve": "CVE-2026-33997",
-          "percentile": 0.34433,
+          "percentile": 0.34663,
           "score": 0.00402
         },
         "fix_state": "not-fixed",
@@ -3100,7 +3187,7 @@
         "ecosystem": "golang",
         "epss": {
           "cve": "CVE-2026-41568",
-          "percentile": 0.01188,
+          "percentile": 0.01204,
           "score": 0.00108
         },
         "fix_state": "not-fixed",
@@ -3122,7 +3209,7 @@
         "ecosystem": "golang",
         "epss": {
           "cve": "CVE-2026-116585",
-          "percentile": 0.18368,
+          "percentile": 0.18412,
           "score": 0.00264
         },
         "fix_state": "fixed",
@@ -3146,7 +3233,7 @@
         "ecosystem": "golang",
         "epss": {
           "cve": "CVE-2026-116586",
-          "percentile": 0.21769,
+          "percentile": 0.21863,
           "score": 0.00292
         },
         "fix_state": "fixed",
@@ -3164,54 +3251,14 @@
         "version": "v4.1.4"
       },
       {
-        "aliases": [],
-        "ecosystem": "golang",
-        "epss": null,
-        "fix_state": "unknown",
-        "fixed_in": [],
-        "id": "GO-2026-5932",
-        "kev": null,
-        "location": "go.mod",
-        "osv_confirmed": true,
-        "package": "golang.org/x/crypto",
-        "severity": "Unknown",
-        "summary": "The golang.org/x/crypto/openpgp package is unsafe by design, has numerous known security issues, is not maintained, and should not be used. If you are required to interoperate with OpenPGP systems and need a maintained package, consider github.com/ProtonMail/go-crypto/openpgp which is a maintained f",
-        "url": "https://go.dev/issue/44226",
-        "version": "v0.57.0"
-      },
-      {
-        "aliases": [
-          "CVE-2026-78661"
-        ],
-        "ecosystem": "golang",
-        "epss": {
-          "cve": "CVE-2026-78661",
-          "percentile": 0.08063,
-          "score": 0.00185
-        },
-        "fix_state": "fixed",
-        "fixed_in": [
-          "0.62.0"
-        ],
-        "id": "GO-2026-6860",
-        "kev": null,
-        "location": "go.mod",
-        "osv_confirmed": true,
-        "package": "golang.org/x/net",
-        "severity": "Unknown",
-        "summary": "When coalescing adjacent text nodes in addText and fosterParent, appending to an existing TextNode's Data via string concatenation (n.Data += text) reallocated and copied the accumulated string on every token. Inputs containing many short text runs separated by ignored end tags (such as \"a</x>\") cau",
-        "url": "https://go.dev/cl/849365",
-        "version": "v0.60.0"
-      },
-      {
         "aliases": [
           "CVE-2026-97045"
         ],
         "ecosystem": "golang",
         "epss": {
           "cve": "CVE-2026-97045",
-          "percentile": 0.10117,
-          "score": 0.00202
+          "percentile": 0.18952,
+          "score": 0.00267
         },
         "fix_state": "fixed",
         "fixed_in": [
@@ -3222,10 +3269,28 @@
         "location": "go.mod",
         "osv_confirmed": true,
         "package": "golang.org/x/net",
-        "severity": "Unknown",
+        "severity": "Medium",
         "summary": "In childTextNodesAreLiteral, walking up the tree previously stopped at the nearest foreign ancestor once an HTML integration point was found. However, that integration point may itself be a descendant of an element that was foster-parented into a foreign namespace (such as <mglyph> or <malignmark> f",
         "url": "https://go.dev/cl/855121",
         "version": "v0.60.0"
+      },
+      {
+        "aliases": [],
+        "ecosystem": "golang",
+        "epss": null,
+        "fix_state": "fixed",
+        "fixed_in": [
+          "0.58.1-0.20261009181718-2f1f834330b2"
+        ],
+        "id": "GO-2026-5932",
+        "kev": null,
+        "location": "go.mod",
+        "osv_confirmed": true,
+        "package": "golang.org/x/crypto",
+        "severity": "Unknown",
+        "summary": "The golang.org/x/crypto/openpgp package is unsafe by design, has numerous known security issues, is not maintained, and should not be used. If you are required to interoperate with OpenPGP systems and need a maintained package, consider github.com/ProtonMail/go-crypto/openpgp which is a maintained f",
+        "url": "https://go.dev/issue/44226",
+        "version": "v0.57.0"
       }
     ],
     "workflow_audit": {
@@ -3294,5 +3359,5 @@
       ]
     }
   },
-  "updated": "2026-11-02"
+  "updated": "2026-11-08"
 }

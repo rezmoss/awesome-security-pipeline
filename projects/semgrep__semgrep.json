@@ -73,41 +73,77 @@
         "Medium": 27,
         "files": 13
       }
+    },
+    {
+      "added": 1,
+      "commit": "ac37d1f6e47b17648b8f854d6e2f2d72fade2567",
+      "date": "2026-11-08",
+      "dependencies": 216,
+      "errors": [],
+      "fixable": 71,
+      "go_version": null,
+      "in_binary": null,
+      "kev": 1,
+      "kev_new": 0,
+      "new_vulnerabilities": 0,
+      "osv_confirmed": 71,
+      "osv_only": 0,
+      "ref": "v1.184.0",
+      "release_changed": true,
+      "release_integrity": "no-assets",
+      "removed": 0,
+      "resolved_vulnerabilities": 0,
+      "scorecard": null,
+      "scorecard_date": null,
+      "scorecard_note": "the project is not in the OpenSSF public dataset; the Scorecard CLI fallback was skipped because this shard's weekly budget was used",
+      "scorecard_source": null,
+      "upgraded": 1,
+      "vulnerabilities": {
+        "Critical": 1,
+        "High": 26,
+        "Low": 13,
+        "Medium": 31,
+        "Negligible": 0,
+        "Unknown": 0
+      },
+      "vulnerable_packages": 20,
+      "workflow": {
+        "High": 8,
+        "Low": 4,
+        "Medium": 27,
+        "files": 13
+      }
     }
   ],
   "latest": {
     "archived": false,
     "category": "Static Application Security Testing (SAST) \u203a Multi-language",
     "changes": {
-      "added": [],
+      "added": [
+        "structlog@26.1.0"
+      ],
       "any": true,
       "baseline": false,
-      "integrity_drift": 0,
+      "integrity_drift": 2,
+      "kev_new": [],
       "license_changes": [],
       "new_vulnerabilities": [],
       "previous_ref": "v1.183.0",
-      "release_changed": false,
+      "release_changed": true,
       "removed": [],
-      "resolved_vulnerabilities": [
+      "resolved_vulnerabilities": [],
+      "upgraded": [
         {
-          "aliases": [],
-          "ecosystem": "npm",
-          "fix_state": "not-fixed",
-          "fixed_in": [],
-          "id": "GHSA-hhhw-6fm7-r8ff",
-          "location": "libs/ocaml-tree-sitter-semgrep/lang/semgrep-grammars/package-lock.json",
-          "osv_confirmed": false,
-          "package": "tree-sitter-r",
-          "severity": "Critical",
-          "url": "https://github.com/advisories/GHSA-hhhw-6fm7-r8ff",
-          "version": "file:src/tree-sitter-r"
+          "ecosystem": "pypi",
+          "from": "1.183.0",
+          "package": "semgrep",
+          "to": "1.184.0"
         }
       ],
-      "upgraded": [],
       "workflow_new": 0,
       "workflow_resolved": 0
     },
-    "commit": "4fe07d805dd2a4b64fed486e95136923f08648d0",
+    "commit": "ac37d1f6e47b17648b8f854d6e2f2d72fade2567",
     "compliance": {
       "overall_score": 55,
       "standards": {
@@ -1656,8 +1692,8 @@
         "licenses": [],
         "location": "cli/uv.lock",
         "name": "semgrep",
-        "purl": "pkg:pypi/semgrep@1.183.0",
-        "version": "1.183.0"
+        "purl": "pkg:pypi/semgrep@1.184.0",
+        "version": "1.184.0"
       },
       {
         "ecosystem": "pypi",
@@ -1690,6 +1726,14 @@
         "name": "starlette",
         "purl": "pkg:pypi/starlette@0.52.1",
         "version": "0.52.1"
+      },
+      {
+        "ecosystem": "pypi",
+        "licenses": [],
+        "location": "cli/uv.lock",
+        "name": "structlog",
+        "purl": "pkg:pypi/structlog@26.1.0",
+        "version": "26.1.0"
       },
       {
         "ecosystem": "pypi",
@@ -1918,7 +1962,7 @@
       "osv_only": [],
       "warning": null
     },
-    "ref": "v1.183.0",
+    "ref": "v1.184.0",
     "ref_kind": "release",
     "release_integrity": {
       "assets": 0,
@@ -1929,19 +1973,26 @@
       "signatures_published": false,
       "verdict": "no-assets"
     },
-    "released_at": "2026-10-29T21:29:24Z",
+    "released_at": "2026-11-05T19:17:04Z",
     "repository": "semgrep/semgrep",
     "sbomlyze_diff": {
-      "added": 0,
-      "changed": 0,
-      "drift": {},
+      "added": 1,
+      "changed": 3,
+      "drift": {
+        "integrity_drift": 2,
+        "metadata_drift": 0,
+        "version_drift": 1
+      },
       "findings": [
-        "0 version changes among 263 shared packages \u2014 no actual upgrades",
-        "Core system packages stable: pypi (124), npm (69), github (39), file (22) unchanged"
+        "Attack surface: +1 packages (0.4%)",
+        "1 version upgrades (1 minor) among 263 shared packages",
+        "Integrity drift (2 total): 2 unknown",
+        "Core system packages stable: npm (69), github (39), file (22) unchanged"
       ],
+      "html": "sbomlyze-diff.html",
       "removed": 0
     },
-    "scanned_at": "2026-11-02T03:09:31+00:00",
+    "scanned_at": "2026-11-08T05:55:56+00:00",
     "scorecard": null,
     "scorecard_note": "the project is not in the OpenSSF public dataset; the Scorecard CLI fallback was skipped because this shard's weekly budget was used",
     "vulnerabilities": [
@@ -1952,7 +2003,7 @@
         "ecosystem": "npm",
         "epss": {
           "cve": "CVE-2021-44906",
-          "percentile": 0.91634,
+          "percentile": 0.91686,
           "score": 0.04581
         },
         "fix_state": "fixed",
@@ -1994,7 +2045,7 @@
         "ecosystem": "pypi",
         "epss": {
           "cve": "CVE-2026-69247",
-          "percentile": 0.19874,
+          "percentile": 0.19944,
           "score": 0.00274
         },
         "fix_state": "fixed",
@@ -2018,7 +2069,7 @@
         "ecosystem": "pypi",
         "epss": {
           "cve": "CVE-2026-69249",
-          "percentile": 0.17998,
+          "percentile": 0.18041,
           "score": 0.00262
         },
         "fix_state": "fixed",
@@ -2042,8 +2093,8 @@
         "ecosystem": "pypi",
         "epss": {
           "cve": "CVE-2026-26007",
-          "percentile": 0.331,
-          "score": 0.0039
+          "percentile": 0.32677,
+          "score": 0.00384
         },
         "fix_state": "fixed",
         "fixed_in": [
@@ -2066,7 +2117,7 @@
         "ecosystem": "pypi",
         "epss": {
           "cve": "CVE-2026-116588",
-          "percentile": 0.40503,
+          "percentile": 0.4073,
           "score": 0.00468
         },
         "fix_state": "fixed",
@@ -2090,7 +2141,7 @@
         "ecosystem": "pypi",
         "epss": {
           "cve": "CVE-2026-50271",
-          "percentile": 0.56357,
+          "percentile": 0.56582,
           "score": 0.00793
         },
         "fix_state": "fixed",
@@ -2114,7 +2165,7 @@
         "ecosystem": "pypi",
         "epss": {
           "cve": "CVE-2026-116589",
-          "percentile": 0.25891,
+          "percentile": 0.26025,
           "score": 0.00328
         },
         "fix_state": "fixed",
@@ -2138,7 +2189,7 @@
         "ecosystem": "pypi",
         "epss": {
           "cve": "CVE-2026-112940",
-          "percentile": 0.08746,
+          "percentile": 0.08759,
           "score": 0.0019
         },
         "fix_state": "fixed",
@@ -2162,7 +2213,7 @@
         "ecosystem": "pypi",
         "epss": {
           "cve": "CVE-2026-0994",
-          "percentile": 0.53608,
+          "percentile": 0.53829,
           "score": 0.00712
         },
         "fix_state": "fixed",
@@ -2186,7 +2237,7 @@
         "ecosystem": "pypi",
         "epss": {
           "cve": "CVE-2026-53539",
-          "percentile": 0.39873,
+          "percentile": 0.40092,
           "score": 0.0046
         },
         "fix_state": "fixed",
@@ -2210,7 +2261,7 @@
         "ecosystem": "pypi",
         "epss": {
           "cve": "CVE-2026-42561",
-          "percentile": 0.54639,
+          "percentile": 0.54863,
           "score": 0.0074
         },
         "fix_state": "fixed",
@@ -2234,7 +2285,7 @@
         "ecosystem": "pypi",
         "epss": {
           "cve": "CVE-2026-24486",
-          "percentile": 0.82568,
+          "percentile": 0.82671,
           "score": 0.02206
         },
         "fix_state": "fixed",
@@ -2258,7 +2309,7 @@
         "ecosystem": "npm",
         "epss": {
           "cve": "CVE-2022-25883",
-          "percentile": 0.86273,
+          "percentile": 0.86355,
           "score": 0.02761
         },
         "fix_state": "fixed",
@@ -2282,7 +2333,7 @@
         "ecosystem": "npm",
         "epss": {
           "cve": "CVE-2022-0355",
-          "percentile": 0.80993,
+          "percentile": 0.81112,
           "score": 0.02024
         },
         "fix_state": "fixed",
@@ -2306,7 +2357,7 @@
         "ecosystem": "pypi",
         "epss": {
           "cve": "CVE-2026-54283",
-          "percentile": 0.41471,
+          "percentile": 0.41705,
           "score": 0.00481
         },
         "fix_state": "fixed",
@@ -2330,7 +2381,7 @@
         "ecosystem": "pypi",
         "epss": {
           "cve": "CVE-2026-48818",
-          "percentile": 0.3067,
+          "percentile": 0.30842,
           "score": 0.00368
         },
         "fix_state": "fixed",
@@ -2354,7 +2405,7 @@
         "ecosystem": "npm",
         "epss": {
           "cve": "CVE-2025-48387",
-          "percentile": 0.47656,
+          "percentile": 0.47891,
           "score": 0.00579
         },
         "fix_state": "fixed",
@@ -2378,7 +2429,7 @@
         "ecosystem": "npm",
         "epss": {
           "cve": "CVE-2024-12905",
-          "percentile": 0.83296,
+          "percentile": 0.83399,
           "score": 0.02299
         },
         "fix_state": "fixed",
@@ -2402,8 +2453,8 @@
         "ecosystem": "npm",
         "epss": {
           "cve": "CVE-2025-59343",
-          "percentile": 0.46196,
-          "score": 0.00553
+          "percentile": 0.47951,
+          "score": 0.0058
         },
         "fix_state": "fixed",
         "fixed_in": [
@@ -2426,7 +2477,7 @@
         "ecosystem": "pypi",
         "epss": {
           "cve": "CVE-2026-113718",
-          "percentile": 0.15459,
+          "percentile": 0.15489,
           "score": 0.00242
         },
         "fix_state": "fixed",
@@ -2450,7 +2501,7 @@
         "ecosystem": "pypi",
         "epss": {
           "cve": "CVE-2026-113726",
-          "percentile": 0.28043,
+          "percentile": 0.2819,
           "score": 0.00345
         },
         "fix_state": "fixed",
@@ -2474,7 +2525,7 @@
         "ecosystem": "pypi",
         "epss": {
           "cve": "CVE-2026-113723",
-          "percentile": 0.15459,
+          "percentile": 0.15489,
           "score": 0.00242
         },
         "fix_state": "fixed",
@@ -2498,7 +2549,7 @@
         "ecosystem": "pypi",
         "epss": {
           "cve": "CVE-2026-113776",
-          "percentile": 0.19099,
+          "percentile": 0.19152,
           "score": 0.00269
         },
         "fix_state": "fixed",
@@ -2522,7 +2573,7 @@
         "ecosystem": "pypi",
         "epss": {
           "cve": "CVE-2026-113732",
-          "percentile": 0.14706,
+          "percentile": 0.14736,
           "score": 0.00236
         },
         "fix_state": "fixed",
@@ -2546,7 +2597,7 @@
         "ecosystem": "pypi",
         "epss": {
           "cve": "CVE-2026-113722",
-          "percentile": 0.21101,
+          "percentile": 0.21173,
           "score": 0.00285
         },
         "fix_state": "fixed",
@@ -2570,7 +2621,7 @@
         "ecosystem": "pypi",
         "epss": {
           "cve": "CVE-2026-113725",
-          "percentile": 0.1824,
+          "percentile": 0.18285,
           "score": 0.00263
         },
         "fix_state": "fixed",
@@ -2594,7 +2645,7 @@
         "ecosystem": "pypi",
         "epss": {
           "cve": "CVE-2026-69248",
-          "percentile": 0.15614,
+          "percentile": 0.15644,
           "score": 0.00244
         },
         "fix_state": "fixed",
@@ -2618,8 +2669,8 @@
         "ecosystem": "pypi",
         "epss": {
           "cve": "CVE-2026-39892",
-          "percentile": 0.5125,
-          "score": 0.00652
+          "percentile": 0.52537,
+          "score": 0.00677
         },
         "fix_state": "fixed",
         "fixed_in": [
@@ -2640,7 +2691,11 @@
           "CVE-2026-112908"
         ],
         "ecosystem": "pypi",
-        "epss": null,
+        "epss": {
+          "cve": "CVE-2026-112908",
+          "percentile": 0.01911,
+          "score": 0.00121
+        },
         "fix_state": "fixed",
         "fixed_in": [
           "4.2.1"
@@ -2662,7 +2717,7 @@
         "ecosystem": "pypi",
         "epss": {
           "cve": "CVE-2026-112909",
-          "percentile": 0.12637,
+          "percentile": 0.12668,
           "score": 0.0022
         },
         "fix_state": "fixed",
@@ -2684,7 +2739,11 @@
           "CVE-2026-112910"
         ],
         "ecosystem": "pypi",
-        "epss": null,
+        "epss": {
+          "cve": "CVE-2026-112910",
+          "percentile": 0.05321,
+          "score": 0.00161
+        },
         "fix_state": "fixed",
         "fixed_in": [
           "4.2.1"
@@ -2706,7 +2765,7 @@
         "ecosystem": "pypi",
         "epss": {
           "cve": "CVE-2026-112911",
-          "percentile": 0.03966,
+          "percentile": 0.04004,
           "score": 0.00148
         },
         "fix_state": "fixed",
@@ -2730,7 +2789,7 @@
         "ecosystem": "pypi",
         "epss": {
           "cve": "CVE-2026-112915",
-          "percentile": 0.1226,
+          "percentile": 0.12303,
           "score": 0.00218
         },
         "fix_state": "fixed",
@@ -2754,7 +2813,7 @@
         "ecosystem": "pypi",
         "epss": {
           "cve": "CVE-2026-112934",
-          "percentile": 0.14204,
+          "percentile": 0.14224,
           "score": 0.00233
         },
         "fix_state": "fixed",
@@ -2778,7 +2837,7 @@
         "ecosystem": "pypi",
         "epss": {
           "cve": "CVE-2026-112935",
-          "percentile": 0.02761,
+          "percentile": 0.02797,
           "score": 0.00132
         },
         "fix_state": "fixed",
@@ -2802,7 +2861,7 @@
         "ecosystem": "pypi",
         "epss": {
           "cve": "CVE-2026-112936",
-          "percentile": 0.14138,
+          "percentile": 0.14157,
           "score": 0.00232
         },
         "fix_state": "fixed",
@@ -2824,7 +2883,11 @@
           "CVE-2026-112938"
         ],
         "ecosystem": "pypi",
-        "epss": null,
+        "epss": {
+          "cve": "CVE-2026-112938",
+          "percentile": 0.01139,
+          "score": 0.00107
+        },
         "fix_state": "fixed",
         "fixed_in": [
           "4.2.1"
@@ -2846,7 +2909,7 @@
         "ecosystem": "pypi",
         "epss": {
           "cve": "CVE-2026-112939",
-          "percentile": 0.03305,
+          "percentile": 0.03346,
           "score": 0.0014
         },
         "fix_state": "fixed",
@@ -2870,7 +2933,7 @@
         "ecosystem": "pypi",
         "epss": {
           "cve": "CVE-2026-45409",
-          "percentile": 0.35091,
+          "percentile": 0.3533,
           "score": 0.00408
         },
         "fix_state": "fixed",
@@ -2894,7 +2957,7 @@
         "ecosystem": "pypi",
         "epss": {
           "cve": "CVE-2026-116685",
-          "percentile": 0.3417,
+          "percentile": 0.34399,
           "score": 0.00399
         },
         "fix_state": "fixed",
@@ -2918,7 +2981,7 @@
         "ecosystem": "pypi",
         "epss": {
           "cve": "CVE-2026-59951",
-          "percentile": 0.39721,
+          "percentile": 0.39938,
           "score": 0.00458
         },
         "fix_state": "fixed",
@@ -2942,7 +3005,7 @@
         "ecosystem": "pypi",
         "epss": {
           "cve": "CVE-2026-116686",
-          "percentile": 0.27118,
+          "percentile": 0.27241,
           "score": 0.00337
         },
         "fix_state": "fixed",
@@ -2966,7 +3029,7 @@
         "ecosystem": "pypi",
         "epss": {
           "cve": "CVE-2026-116684",
-          "percentile": 0.30372,
+          "percentile": 0.30544,
           "score": 0.00365
         },
         "fix_state": "fixed",
@@ -2990,7 +3053,7 @@
         "ecosystem": "pypi",
         "epss": {
           "cve": "CVE-2026-114603",
-          "percentile": 0.41947,
+          "percentile": 0.42187,
           "score": 0.00487
         },
         "fix_state": "fixed",
@@ -3032,7 +3095,7 @@
         "ecosystem": "pypi",
         "epss": {
           "cve": "CVE-2025-71176",
-          "percentile": 0.0448,
+          "percentile": 0.04526,
           "score": 0.00154
         },
         "fix_state": "fixed",
@@ -3056,7 +3119,7 @@
         "ecosystem": "pypi",
         "epss": {
           "cve": "CVE-2026-28684",
-          "percentile": 0.16768,
+          "percentile": 0.16814,
           "score": 0.00252
         },
         "fix_state": "fixed",
@@ -3080,7 +3143,7 @@
         "ecosystem": "pypi",
         "epss": {
           "cve": "CVE-2026-40347",
-          "percentile": 0.28742,
+          "percentile": 0.28906,
           "score": 0.00351
         },
         "fix_state": "fixed",
@@ -3104,7 +3167,7 @@
         "ecosystem": "pypi",
         "epss": {
           "cve": "CVE-2026-25645",
-          "percentile": 0.08606,
+          "percentile": 0.08624,
           "score": 0.00189
         },
         "fix_state": "fixed",
@@ -3128,8 +3191,8 @@
         "ecosystem": "pypi",
         "epss": {
           "cve": "CVE-2026-59890",
-          "percentile": 0.34795,
-          "score": 0.00405
+          "percentile": 0.4507,
+          "score": 0.0053
         },
         "fix_state": "fixed",
         "fixed_in": [
@@ -3152,7 +3215,7 @@
         "ecosystem": "pypi",
         "epss": {
           "cve": "CVE-2026-48710",
-          "percentile": 0.99383,
+          "percentile": 0.99388,
           "score": 0.70288
         },
         "fix_state": "fixed",
@@ -3179,7 +3242,7 @@
         "ecosystem": "pypi",
         "epss": {
           "cve": "CVE-2026-48817",
-          "percentile": 0.116,
+          "percentile": 0.11648,
           "score": 0.00213
         },
         "fix_state": "fixed",
@@ -3203,7 +3266,7 @@
         "ecosystem": "pypi",
         "epss": {
           "cve": "CVE-2026-113724",
-          "percentile": 0.10341,
+          "percentile": 0.10384,
           "score": 0.00203
         },
         "fix_state": "fixed",
@@ -3227,7 +3290,7 @@
         "ecosystem": "pypi",
         "epss": {
           "cve": "CVE-2026-113721",
-          "percentile": 0.03666,
+          "percentile": 0.03703,
           "score": 0.00144
         },
         "fix_state": "fixed",
@@ -3251,7 +3314,7 @@
         "ecosystem": "pypi",
         "epss": {
           "cve": "CVE-2026-113716",
-          "percentile": 0.03665,
+          "percentile": 0.03702,
           "score": 0.00144
         },
         "fix_state": "fixed",
@@ -3275,7 +3338,7 @@
         "ecosystem": "pypi",
         "epss": {
           "cve": "CVE-2026-113720",
-          "percentile": 0.02859,
+          "percentile": 0.02897,
           "score": 0.00134
         },
         "fix_state": "fixed",
@@ -3299,7 +3362,7 @@
         "ecosystem": "pypi",
         "epss": {
           "cve": "CVE-2026-113719",
-          "percentile": 0.10341,
+          "percentile": 0.10385,
           "score": 0.00203
         },
         "fix_state": "fixed",
@@ -3323,7 +3386,7 @@
         "ecosystem": "pypi",
         "epss": {
           "cve": "CVE-2026-34073",
-          "percentile": 0.13508,
+          "percentile": 0.13538,
           "score": 0.00227
         },
         "fix_state": "fixed",
@@ -3345,7 +3408,11 @@
           "CVE-2026-112907"
         ],
         "ecosystem": "pypi",
-        "epss": null,
+        "epss": {
+          "cve": "CVE-2026-112907",
+          "percentile": 0.0103,
+          "score": 0.00104
+        },
         "fix_state": "fixed",
         "fixed_in": [
           "4.2.1"
@@ -3367,7 +3434,7 @@
         "ecosystem": "pypi",
         "epss": {
           "cve": "CVE-2026-112912",
-          "percentile": 0.11672,
+          "percentile": 0.11721,
           "score": 0.00213
         },
         "fix_state": "fixed",
@@ -3389,7 +3456,11 @@
           "CVE-2026-112913"
         ],
         "ecosystem": "pypi",
-        "epss": null,
+        "epss": {
+          "cve": "CVE-2026-112913",
+          "percentile": 0.01713,
+          "score": 0.00118
+        },
         "fix_state": "fixed",
         "fixed_in": [
           "4.2.1"
@@ -3411,7 +3482,7 @@
         "ecosystem": "pypi",
         "epss": {
           "cve": "CVE-2026-4539",
-          "percentile": 0.05024,
+          "percentile": 0.05068,
           "score": 0.00159
         },
         "fix_state": "fixed",
@@ -3435,7 +3506,7 @@
         "ecosystem": "pypi",
         "epss": {
           "cve": "CVE-2026-53538",
-          "percentile": 0.17206,
+          "percentile": 0.17257,
           "score": 0.00256
         },
         "fix_state": "fixed",
@@ -3459,7 +3530,7 @@
         "ecosystem": "pypi",
         "epss": {
           "cve": "CVE-2026-53540",
-          "percentile": 0.27758,
+          "percentile": 0.27902,
           "score": 0.00342
         },
         "fix_state": "fixed",
@@ -3483,7 +3554,7 @@
         "ecosystem": "pypi",
         "epss": {
           "cve": "CVE-2026-53537",
-          "percentile": 0.21757,
+          "percentile": 0.21851,
           "score": 0.00291
         },
         "fix_state": "fixed",
@@ -3525,7 +3596,7 @@
         "ecosystem": "pypi",
         "epss": {
           "cve": "CVE-2026-54282",
-          "percentile": 0.19733,
+          "percentile": 0.19795,
           "score": 0.00273
         },
         "fix_state": "fixed",
@@ -3549,7 +3620,7 @@
         "ecosystem": "pypi",
         "epss": {
           "cve": "CVE-2026-113714",
-          "percentile": 0.16325,
+          "percentile": 0.16366,
           "score": 0.00249
         },
         "fix_state": "fixed",
@@ -3573,7 +3644,7 @@
         "ecosystem": "pypi",
         "epss": {
           "cve": "CVE-2026-113717",
-          "percentile": 0.21916,
+          "percentile": 0.22015,
           "score": 0.00293
         },
         "fix_state": "fixed",
@@ -3597,7 +3668,7 @@
         "ecosystem": "pypi",
         "epss": {
           "cve": "CVE-2026-113715",
-          "percentile": 0.15459,
+          "percentile": 0.15489,
           "score": 0.00242
         },
         "fix_state": "fixed",
@@ -4011,5 +4082,5 @@
       ]
     }
   },
-  "updated": "2026-11-02"
+  "updated": "2026-11-08"
 }

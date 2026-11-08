@@ -81,29 +81,453 @@
         "Medium": 3,
         "files": 3
       }
+    },
+    {
+      "added": 13,
+      "commit": "6e76dd36aea6a5d8dd380ddf3e9199a83d252c55",
+      "date": "2026-11-08",
+      "dependencies": 94,
+      "errors": [],
+      "fixable": 2,
+      "go_version": "go1.27.3",
+      "in_binary": {
+        "dependencies": 2,
+        "stdlib": 0,
+        "total": 2
+      },
+      "kev": 0,
+      "kev_new": 0,
+      "new_vulnerabilities": 0,
+      "osv_confirmed": 2,
+      "osv_only": 0,
+      "ref": "v10.2.6",
+      "release_changed": true,
+      "release_integrity": "signed",
+      "removed": 0,
+      "resolved_vulnerabilities": 6,
+      "scorecard": 5,
+      "scorecard_date": "2026-11-02",
+      "scorecard_note": null,
+      "scorecard_source": "openssf-api",
+      "upgraded": 33,
+      "vulnerabilities": {
+        "Critical": 0,
+        "High": 1,
+        "Low": 0,
+        "Medium": 1,
+        "Negligible": 0,
+        "Unknown": 0
+      },
+      "vulnerable_packages": 1,
+      "workflow": {
+        "High": 5,
+        "Low": 1,
+        "Medium": 3,
+        "files": 3
+      }
     }
   ],
   "latest": {
     "archived": false,
     "category": "Kubernetes Security",
     "changes": {
-      "added": [],
-      "any": false,
+      "added": [
+        "github.com/go-openapi/testify/enable/yaml/v2@v2.8.0",
+        "github.com/google/pprof@v0.0.0-20261026192309-dbd0ed30aa88",
+        "github.com/hashicorp/go-uuid@v1.0.4",
+        "github.com/klauspost/compress@v1.20.3",
+        "github.com/Masterminds/semver/v3@v3.5.0",
+        "github.com/onsi/ginkgo/v2@v2.33.1",
+        "github.com/onsi/gomega@v1.44.0",
+        "github.com/pandatix/go-abnf@v0.5.1",
+        "github.com/rogpeppe/go-internal@v1.16.0",
+        "github.com/sergi/go-diff@v1.4.0",
+        "github.com/stretchr/objx@v0.8.0",
+        "go.uber.org/zap@v1.28.0",
+        "golang.org/x/tools@v0.52.0"
+      ],
+      "any": true,
       "baseline": false,
       "in_binary_new": [],
-      "in_binary_resolved": [],
-      "integrity_drift": 0,
+      "in_binary_resolved": [
+        "GO-2026-6599",
+        "GO-2026-6600",
+        "GO-2026-6603",
+        "GO-2026-6605",
+        "GO-2026-6607",
+        "GO-2026-6608",
+        "GO-2026-6609",
+        "GO-2026-6610",
+        "GO-2026-6611",
+        "GO-2026-6612",
+        "GO-2026-6613",
+        "GO-2026-6617",
+        "GO-2026-6629",
+        "GO-2026-6809"
+      ],
+      "integrity_drift": 1,
+      "kev_new": [],
       "license_changes": [],
       "new_vulnerabilities": [],
       "previous_ref": "v10.2.5",
-      "release_changed": false,
+      "release_changed": true,
       "removed": [],
-      "resolved_vulnerabilities": [],
-      "upgraded": [],
+      "resolved_vulnerabilities": [
+        {
+          "aliases": [
+            "CVE-2026-78659"
+          ],
+          "ecosystem": "golang",
+          "epss": {
+            "cve": "CVE-2026-78659",
+            "percentile": 0.50082,
+            "score": 0.00627
+          },
+          "fix_state": "fixed",
+          "fixed_in": [
+            "0.60.0"
+          ],
+          "id": "GO-2026-6603",
+          "in_binary": "vulnerable code in binary",
+          "kev": null,
+          "location": "go.mod",
+          "osv_confirmed": true,
+          "package": "golang.org/x/net",
+          "severity": "High",
+          "summary": "When \"Trailer\" headers are sent by a client, the HTTP server internally uses the header values to populate the Request.Trailer map passed to the server handler. Because Request.Trailer is a map, each entry incurs memory overhead. For HTTP/2 servers, a malicious client can exploit this by sending a \"",
+          "url": "https://go.dev/cl/847185",
+          "version": "v0.57.0"
+        },
+        {
+          "aliases": [
+            "CVE-2026-78660"
+          ],
+          "ecosystem": "golang",
+          "epss": {
+            "cve": "CVE-2026-78660",
+            "percentile": 0.36838,
+            "score": 0.00425
+          },
+          "fix_state": "fixed",
+          "fixed_in": [
+            "0.60.0"
+          ],
+          "id": "GO-2026-6610",
+          "in_binary": "vulnerable code in binary",
+          "kev": null,
+          "location": "go.mod",
+          "osv_confirmed": true,
+          "package": "golang.org/x/net",
+          "severity": "High",
+          "summary": "Historically, we have been rather lax about malformed framing-related headers in our HTTP/2 implementation, as they cannot interfere with HTTP/2 framing. However, this makes it possible for our HTTP/2 implementation to forward responses containing such headers to an HTTP/1 client when acting as a re",
+          "url": "https://go.dev/cl/835145",
+          "version": "v0.57.0"
+        },
+        {
+          "aliases": [
+            "CVE-2026-78669"
+          ],
+          "ecosystem": "golang",
+          "epss": {
+            "cve": "CVE-2026-78669",
+            "percentile": 0.49426,
+            "score": 0.00614
+          },
+          "fix_state": "fixed",
+          "fixed_in": [
+            "0.60.0"
+          ],
+          "id": "GO-2026-6611",
+          "in_binary": "vulnerable code in binary",
+          "kev": null,
+          "location": "go.mod",
+          "osv_confirmed": true,
+          "package": "golang.org/x/net",
+          "severity": "High",
+          "summary": "A malicious HTTP/2 peer can cause excessive CPU consumption in the client or server by opening a large number of streams and then sending many small SETTINGS frames containing SETTINGS_INITIAL_WINDOW_SIZE values.",
+          "url": "https://go.dev/cl/847186",
+          "version": "v0.57.0"
+        },
+        {
+          "aliases": [
+            "CVE-2026-78663"
+          ],
+          "ecosystem": "golang",
+          "epss": {
+            "cve": "CVE-2026-78663",
+            "percentile": 0.49813,
+            "score": 0.00622
+          },
+          "fix_state": "fixed",
+          "fixed_in": [
+            "0.60.0"
+          ],
+          "id": "GO-2026-6612",
+          "in_binary": "vulnerable code in binary",
+          "kev": null,
+          "location": "go.mod",
+          "osv_confirmed": true,
+          "package": "golang.org/x/net",
+          "severity": "Critical",
+          "summary": "The HTTP/2 server can refund connection-level flow control twice for the same data: Once when a client resets a stream (refunding data for any sent-but-unread portion of the stream), and again when a request handler reads the buffered data. A malicious client can exploit this to bypass the configure",
+          "url": "https://go.dev/cl/847187",
+          "version": "v0.57.0"
+        },
+        {
+          "aliases": [
+            "CVE-2026-97032"
+          ],
+          "ecosystem": "golang",
+          "epss": {
+            "cve": "CVE-2026-97032",
+            "percentile": 0.42154,
+            "score": 0.0049
+          },
+          "fix_state": "fixed",
+          "fixed_in": [
+            "0.60.0"
+          ],
+          "id": "GO-2026-6617",
+          "in_binary": "vulnerable code in binary",
+          "kev": null,
+          "location": "go.mod",
+          "osv_confirmed": true,
+          "package": "golang.org/x/net",
+          "severity": "High",
+          "summary": "HTTP/2 servers could end up crashing due to inadvertently modifying its HPACK encoder concurrently. This happens because the server modifies the HPACK encoder from two goroutines without synchronization: one uses the encoder to encode a HEADERS frame as part of a response sent to a client and the ot",
+          "url": "https://go.dev/cl/847188",
+          "version": "v0.57.0"
+        },
+        {
+          "aliases": [
+            "CVE-2026-56851"
+          ],
+          "ecosystem": "golang",
+          "epss": {
+            "cve": "CVE-2026-56851",
+            "percentile": 0.40313,
+            "score": 0.00466
+          },
+          "fix_state": "fixed",
+          "fixed_in": [
+            "0.41.0"
+          ],
+          "id": "GO-2026-6629",
+          "in_binary": "vulnerable code in binary",
+          "kev": null,
+          "location": "go.mod",
+          "osv_confirmed": true,
+          "package": "golang.org/x/text",
+          "severity": "High",
+          "summary": "The Nickname profile can panic with an out-of-bounds slice error when transforming crafted input into a short destination buffer.",
+          "url": "https://go.dev/cl/793360",
+          "version": "v0.40.0"
+        }
+      ],
+      "upgraded": [
+        {
+          "ecosystem": "golang",
+          "from": "v5.9.0+incompatible",
+          "package": "github.com/evanphx/json-patch",
+          "to": "v5.9.11+incompatible"
+        },
+        {
+          "ecosystem": "golang",
+          "from": "v1.9.0",
+          "package": "github.com/fsnotify/fsnotify",
+          "to": "v1.10.1"
+        },
+        {
+          "ecosystem": "golang",
+          "from": "v2.9.1",
+          "package": "github.com/fxamacker/cbor/v2",
+          "to": "v2.9.6"
+        },
+        {
+          "ecosystem": "golang",
+          "from": "v1.4.3",
+          "package": "github.com/go-logr/logr",
+          "to": "v1.4.4"
+        },
+        {
+          "ecosystem": "golang",
+          "from": "v1.0.0",
+          "package": "github.com/go-openapi/jsonpointer",
+          "to": "v1.0.2"
+        },
+        {
+          "ecosystem": "golang",
+          "from": "v1.0.0",
+          "package": "github.com/go-openapi/jsonreference",
+          "to": "v1.0.3"
+        },
+        {
+          "ecosystem": "golang",
+          "from": "v0.27.1",
+          "package": "github.com/go-openapi/swag/conv",
+          "to": "v0.29.2"
+        },
+        {
+          "ecosystem": "golang",
+          "from": "v0.27.1",
+          "package": "github.com/go-openapi/swag/jsonutils",
+          "to": "v0.29.2"
+        },
+        {
+          "ecosystem": "golang",
+          "from": "v0.27.1",
+          "package": "github.com/go-openapi/swag/pools",
+          "to": "v0.29.2"
+        },
+        {
+          "ecosystem": "golang",
+          "from": "v0.27.1",
+          "package": "github.com/go-openapi/swag/typeutils",
+          "to": "v0.29.2"
+        },
+        {
+          "ecosystem": "golang",
+          "from": "v0.1.14",
+          "package": "github.com/mattn/go-colorable",
+          "to": "v0.1.16"
+        },
+        {
+          "ecosystem": "golang",
+          "from": "v0.0.20",
+          "package": "github.com/mattn/go-isatty",
+          "to": "v0.0.24"
+        },
+        {
+          "ecosystem": "golang",
+          "from": "v1.24.0",
+          "package": "github.com/prometheus/client_golang",
+          "to": "v1.25.0"
+        },
+        {
+          "ecosystem": "golang",
+          "from": "v0.6.2",
+          "package": "github.com/prometheus/client_model",
+          "to": "v0.6.3"
+        },
+        {
+          "ecosystem": "golang",
+          "from": "v0.70.0",
+          "package": "github.com/prometheus/common",
+          "to": "v0.73.0"
+        },
+        {
+          "ecosystem": "golang",
+          "from": "v0.21.1",
+          "package": "github.com/prometheus/procfs",
+          "to": "v0.23.0"
+        },
+        {
+          "ecosystem": "golang",
+          "from": "v3.0.5",
+          "package": "go.yaml.in/yaml/v3",
+          "to": "v3.0.6"
+        },
+        {
+          "ecosystem": "golang",
+          "from": "v0.57.0",
+          "package": "golang.org/x/net",
+          "to": "v0.61.0"
+        },
+        {
+          "ecosystem": "golang",
+          "from": "v0.36.0",
+          "package": "golang.org/x/oauth2",
+          "to": "v0.37.0"
+        },
+        {
+          "ecosystem": "golang",
+          "from": "v0.22.0",
+          "package": "golang.org/x/sync",
+          "to": "v0.24.0"
+        },
+        {
+          "ecosystem": "golang",
+          "from": "v0.47.0",
+          "package": "golang.org/x/sys",
+          "to": "v0.49.0"
+        },
+        {
+          "ecosystem": "golang",
+          "from": "v0.45.0",
+          "package": "golang.org/x/term",
+          "to": "v0.47.0"
+        },
+        {
+          "ecosystem": "golang",
+          "from": "v0.40.0",
+          "package": "golang.org/x/text",
+          "to": "v0.43.0"
+        },
+        {
+          "ecosystem": "golang",
+          "from": "v0.15.0",
+          "package": "golang.org/x/time",
+          "to": "v0.16.0"
+        },
+        {
+          "ecosystem": "golang",
+          "from": "v1.36.12-0.20260120151049-f2248ac996af",
+          "package": "google.golang.org/protobuf",
+          "to": "v1.36.12"
+        },
+        {
+          "ecosystem": "golang",
+          "from": "v0.37.0",
+          "package": "k8s.io/api",
+          "to": "v0.37.1"
+        },
+        {
+          "ecosystem": "golang",
+          "from": "v0.37.0",
+          "package": "k8s.io/apiextensions-apiserver",
+          "to": "v0.37.1"
+        },
+        {
+          "ecosystem": "golang",
+          "from": "v0.37.0",
+          "package": "k8s.io/apimachinery",
+          "to": "v0.37.1"
+        },
+        {
+          "ecosystem": "golang",
+          "from": "v0.37.0",
+          "package": "k8s.io/client-go",
+          "to": "v0.37.1"
+        },
+        {
+          "ecosystem": "golang",
+          "from": "v0.0.0-20260721132016-d427ff9ee9ad",
+          "package": "k8s.io/kube-openapi",
+          "to": "v0.0.0-20260821135717-be32def86098"
+        },
+        {
+          "ecosystem": "golang",
+          "from": "v0.0.0-20260626114624-be93311217bd",
+          "package": "k8s.io/utils",
+          "to": "v0.0.0-20261023123148-ca04ba58ecab"
+        },
+        {
+          "ecosystem": "golang",
+          "from": "v0.25.0",
+          "package": "sigs.k8s.io/controller-runtime",
+          "to": "v0.25.2"
+        },
+        {
+          "ecosystem": "golang",
+          "from": "v0.0.0-20250730193827-2d320260d730",
+          "package": "sigs.k8s.io/json",
+          "to": "v0.0.0-20260909141634-11ed52e25bc5"
+        }
+      ],
       "workflow_new": 0,
       "workflow_resolved": 0
     },
-    "commit": "c84bb2ea3674ee7ec044584db8c9cc9e8d17bdd0",
+    "commit": "6e76dd36aea6a5d8dd380ddf3e9199a83d252c55",
     "compliance": {
       "overall_score": 55,
       "standards": {
@@ -204,8 +628,8 @@
         "licenses": [],
         "location": "go.mod",
         "name": "github.com/evanphx/json-patch",
-        "purl": "pkg:golang/github.com/evanphx/json-patch@v5.9.0%2Bincompatible",
-        "version": "v5.9.0+incompatible"
+        "purl": "pkg:golang/github.com/evanphx/json-patch@v5.9.11%2Bincompatible",
+        "version": "v5.9.11+incompatible"
       },
       {
         "ecosystem": "golang",
@@ -236,24 +660,24 @@
         "licenses": [],
         "location": "go.mod",
         "name": "github.com/fsnotify/fsnotify",
-        "purl": "pkg:golang/github.com/fsnotify/fsnotify@v1.9.0",
-        "version": "v1.9.0"
+        "purl": "pkg:golang/github.com/fsnotify/fsnotify@v1.10.1",
+        "version": "v1.10.1"
       },
       {
         "ecosystem": "golang",
         "licenses": [],
         "location": "go.mod",
         "name": "github.com/fxamacker/cbor/v2",
-        "purl": "pkg:golang/github.com/fxamacker/cbor/v2@v2.9.1",
-        "version": "v2.9.1"
+        "purl": "pkg:golang/github.com/fxamacker/cbor/v2@v2.9.6",
+        "version": "v2.9.6"
       },
       {
         "ecosystem": "golang",
         "licenses": [],
         "location": "go.mod",
         "name": "github.com/go-logr/logr",
-        "purl": "pkg:golang/github.com/go-logr/logr@v1.4.3",
-        "version": "v1.4.3"
+        "purl": "pkg:golang/github.com/go-logr/logr@v1.4.4",
+        "version": "v1.4.4"
       },
       {
         "ecosystem": "golang",
@@ -268,16 +692,16 @@
         "licenses": [],
         "location": "go.mod",
         "name": "github.com/go-openapi/jsonpointer",
-        "purl": "pkg:golang/github.com/go-openapi/jsonpointer@v1.0.0",
-        "version": "v1.0.0"
+        "purl": "pkg:golang/github.com/go-openapi/jsonpointer@v1.0.2",
+        "version": "v1.0.2"
       },
       {
         "ecosystem": "golang",
         "licenses": [],
         "location": "go.mod",
         "name": "github.com/go-openapi/jsonreference",
-        "purl": "pkg:golang/github.com/go-openapi/jsonreference@v1.0.0",
-        "version": "v1.0.0"
+        "purl": "pkg:golang/github.com/go-openapi/jsonreference@v1.0.3",
+        "version": "v1.0.3"
       },
       {
         "ecosystem": "golang",
@@ -300,8 +724,8 @@
         "licenses": [],
         "location": "go.mod",
         "name": "github.com/go-openapi/swag/conv",
-        "purl": "pkg:golang/github.com/go-openapi/swag/conv@v0.27.1",
-        "version": "v0.27.1"
+        "purl": "pkg:golang/github.com/go-openapi/swag/conv@v0.29.2",
+        "version": "v0.29.2"
       },
       {
         "ecosystem": "golang",
@@ -316,8 +740,8 @@
         "licenses": [],
         "location": "go.mod",
         "name": "github.com/go-openapi/swag/jsonutils",
-        "purl": "pkg:golang/github.com/go-openapi/swag/jsonutils@v0.27.1",
-        "version": "v0.27.1"
+        "purl": "pkg:golang/github.com/go-openapi/swag/jsonutils@v0.29.2",
+        "version": "v0.29.2"
       },
       {
         "ecosystem": "golang",
@@ -348,8 +772,8 @@
         "licenses": [],
         "location": "go.mod",
         "name": "github.com/go-openapi/swag/pools",
-        "purl": "pkg:golang/github.com/go-openapi/swag/pools@v0.27.1",
-        "version": "v0.27.1"
+        "purl": "pkg:golang/github.com/go-openapi/swag/pools@v0.29.2",
+        "version": "v0.29.2"
       },
       {
         "ecosystem": "golang",
@@ -364,8 +788,8 @@
         "licenses": [],
         "location": "go.mod",
         "name": "github.com/go-openapi/swag/typeutils",
-        "purl": "pkg:golang/github.com/go-openapi/swag/typeutils@v0.27.1",
-        "version": "v0.27.1"
+        "purl": "pkg:golang/github.com/go-openapi/swag/typeutils@v0.29.2",
+        "version": "v0.29.2"
       },
       {
         "ecosystem": "golang",
@@ -379,9 +803,25 @@
         "ecosystem": "golang",
         "licenses": [],
         "location": "go.mod",
+        "name": "github.com/go-openapi/testify/enable/yaml/v2",
+        "purl": "pkg:golang/github.com/go-openapi/testify/enable/yaml/v2@v2.8.0",
+        "version": "v2.8.0"
+      },
+      {
+        "ecosystem": "golang",
+        "licenses": [],
+        "location": "go.mod",
         "name": "github.com/google/gnostic-models",
         "purl": "pkg:golang/github.com/google/gnostic-models@v0.7.1",
         "version": "v0.7.1"
+      },
+      {
+        "ecosystem": "golang",
+        "licenses": [],
+        "location": "go.mod",
+        "name": "github.com/google/pprof",
+        "purl": "pkg:golang/github.com/google/pprof@v0.0.0-20261026192309-dbd0ed30aa88",
+        "version": "v0.0.0-20261026192309-dbd0ed30aa88"
       },
       {
         "ecosystem": "golang",
@@ -403,6 +843,14 @@
         "ecosystem": "golang",
         "licenses": [],
         "location": "go.mod",
+        "name": "github.com/hashicorp/go-uuid",
+        "purl": "pkg:golang/github.com/hashicorp/go-uuid@v1.0.4",
+        "version": "v1.0.4"
+      },
+      {
+        "ecosystem": "golang",
+        "licenses": [],
+        "location": "go.mod",
         "name": "github.com/inconshreveable/mousetrap",
         "purl": "pkg:golang/github.com/inconshreveable/mousetrap@v1.1.0",
         "version": "v1.1.0"
@@ -419,17 +867,33 @@
         "ecosystem": "golang",
         "licenses": [],
         "location": "go.mod",
+        "name": "github.com/klauspost/compress",
+        "purl": "pkg:golang/github.com/klauspost/compress@v1.20.3",
+        "version": "v1.20.3"
+      },
+      {
+        "ecosystem": "golang",
+        "licenses": [],
+        "location": "go.mod",
+        "name": "github.com/Masterminds/semver/v3",
+        "purl": "pkg:golang/github.com/Masterminds/semver/v3@v3.5.0",
+        "version": "v3.5.0"
+      },
+      {
+        "ecosystem": "golang",
+        "licenses": [],
+        "location": "go.mod",
         "name": "github.com/mattn/go-colorable",
-        "purl": "pkg:golang/github.com/mattn/go-colorable@v0.1.14",
-        "version": "v0.1.14"
+        "purl": "pkg:golang/github.com/mattn/go-colorable@v0.1.16",
+        "version": "v0.1.16"
       },
       {
         "ecosystem": "golang",
         "licenses": [],
         "location": "go.mod",
         "name": "github.com/mattn/go-isatty",
-        "purl": "pkg:golang/github.com/mattn/go-isatty@v0.0.20",
-        "version": "v0.0.20"
+        "purl": "pkg:golang/github.com/mattn/go-isatty@v0.0.24",
+        "version": "v0.0.24"
       },
       {
         "ecosystem": "golang",
@@ -459,6 +923,30 @@
         "ecosystem": "golang",
         "licenses": [],
         "location": "go.mod",
+        "name": "github.com/onsi/ginkgo/v2",
+        "purl": "pkg:golang/github.com/onsi/ginkgo/v2@v2.33.1",
+        "version": "v2.33.1"
+      },
+      {
+        "ecosystem": "golang",
+        "licenses": [],
+        "location": "go.mod",
+        "name": "github.com/onsi/gomega",
+        "purl": "pkg:golang/github.com/onsi/gomega@v1.44.0",
+        "version": "v1.44.0"
+      },
+      {
+        "ecosystem": "golang",
+        "licenses": [],
+        "location": "go.mod",
+        "name": "github.com/pandatix/go-abnf",
+        "purl": "pkg:golang/github.com/pandatix/go-abnf@v0.5.1",
+        "version": "v0.5.1"
+      },
+      {
+        "ecosystem": "golang",
+        "licenses": [],
+        "location": "go.mod",
         "name": "github.com/pkg/errors",
         "purl": "pkg:golang/github.com/pkg/errors@v0.9.1",
         "version": "v0.9.1"
@@ -476,32 +964,32 @@
         "licenses": [],
         "location": "go.mod",
         "name": "github.com/prometheus/client_golang",
-        "purl": "pkg:golang/github.com/prometheus/client_golang@v1.24.0",
-        "version": "v1.24.0"
+        "purl": "pkg:golang/github.com/prometheus/client_golang@v1.25.0",
+        "version": "v1.25.0"
       },
       {
         "ecosystem": "golang",
         "licenses": [],
         "location": "go.mod",
         "name": "github.com/prometheus/client_model",
-        "purl": "pkg:golang/github.com/prometheus/client_model@v0.6.2",
-        "version": "v0.6.2"
+        "purl": "pkg:golang/github.com/prometheus/client_model@v0.6.3",
+        "version": "v0.6.3"
       },
       {
         "ecosystem": "golang",
         "licenses": [],
         "location": "go.mod",
         "name": "github.com/prometheus/common",
-        "purl": "pkg:golang/github.com/prometheus/common@v0.70.0",
-        "version": "v0.70.0"
+        "purl": "pkg:golang/github.com/prometheus/common@v0.73.0",
+        "version": "v0.73.0"
       },
       {
         "ecosystem": "golang",
         "licenses": [],
         "location": "go.mod",
         "name": "github.com/prometheus/procfs",
-        "purl": "pkg:golang/github.com/prometheus/procfs@v0.21.1",
-        "version": "v0.21.1"
+        "purl": "pkg:golang/github.com/prometheus/procfs@v0.23.0",
+        "version": "v0.23.0"
       },
       {
         "ecosystem": "golang",
@@ -523,9 +1011,25 @@
         "ecosystem": "golang",
         "licenses": [],
         "location": "go.mod",
+        "name": "github.com/rogpeppe/go-internal",
+        "purl": "pkg:golang/github.com/rogpeppe/go-internal@v1.16.0",
+        "version": "v1.16.0"
+      },
+      {
+        "ecosystem": "golang",
+        "licenses": [],
+        "location": "go.mod",
         "name": "github.com/samber/lo",
         "purl": "pkg:golang/github.com/samber/lo@v1.53.0",
         "version": "v1.53.0"
+      },
+      {
+        "ecosystem": "golang",
+        "licenses": [],
+        "location": "go.mod",
+        "name": "github.com/sergi/go-diff",
+        "purl": "pkg:golang/github.com/sergi/go-diff@v1.4.0",
+        "version": "v1.4.0"
       },
       {
         "ecosystem": "golang",
@@ -555,6 +1059,14 @@
         "ecosystem": "golang",
         "licenses": [],
         "location": "go.mod",
+        "name": "github.com/stretchr/objx",
+        "purl": "pkg:golang/github.com/stretchr/objx@v0.8.0",
+        "version": "v0.8.0"
+      },
+      {
+        "ecosystem": "golang",
+        "licenses": [],
+        "location": "go.mod",
         "name": "github.com/stretchr/testify",
         "purl": "pkg:golang/github.com/stretchr/testify@v1.12.1",
         "version": "v1.12.1"
@@ -579,6 +1091,14 @@
         "ecosystem": "golang",
         "licenses": [],
         "location": "go.mod",
+        "name": "go.uber.org/zap",
+        "purl": "pkg:golang/go.uber.org/zap@v1.28.0",
+        "version": "v1.28.0"
+      },
+      {
+        "ecosystem": "golang",
+        "licenses": [],
+        "location": "go.mod",
         "name": "go.yaml.in/yaml/v2",
         "purl": "pkg:golang/go.yaml.in/yaml/v2@v2.4.4",
         "version": "v2.4.4"
@@ -588,64 +1108,72 @@
         "licenses": [],
         "location": "go.mod",
         "name": "go.yaml.in/yaml/v3",
-        "purl": "pkg:golang/go.yaml.in/yaml/v3@v3.0.5",
-        "version": "v3.0.5"
+        "purl": "pkg:golang/go.yaml.in/yaml/v3@v3.0.6",
+        "version": "v3.0.6"
       },
       {
         "ecosystem": "golang",
         "licenses": [],
         "location": "go.mod",
         "name": "golang.org/x/net",
-        "purl": "pkg:golang/golang.org/x/net@v0.57.0",
-        "version": "v0.57.0"
+        "purl": "pkg:golang/golang.org/x/net@v0.61.0",
+        "version": "v0.61.0"
       },
       {
         "ecosystem": "golang",
         "licenses": [],
         "location": "go.mod",
         "name": "golang.org/x/oauth2",
-        "purl": "pkg:golang/golang.org/x/oauth2@v0.36.0",
-        "version": "v0.36.0"
+        "purl": "pkg:golang/golang.org/x/oauth2@v0.37.0",
+        "version": "v0.37.0"
       },
       {
         "ecosystem": "golang",
         "licenses": [],
         "location": "go.mod",
         "name": "golang.org/x/sync",
-        "purl": "pkg:golang/golang.org/x/sync@v0.22.0",
-        "version": "v0.22.0"
+        "purl": "pkg:golang/golang.org/x/sync@v0.24.0",
+        "version": "v0.24.0"
       },
       {
         "ecosystem": "golang",
         "licenses": [],
         "location": "go.mod",
         "name": "golang.org/x/sys",
-        "purl": "pkg:golang/golang.org/x/sys@v0.47.0",
-        "version": "v0.47.0"
+        "purl": "pkg:golang/golang.org/x/sys@v0.49.0",
+        "version": "v0.49.0"
       },
       {
         "ecosystem": "golang",
         "licenses": [],
         "location": "go.mod",
         "name": "golang.org/x/term",
-        "purl": "pkg:golang/golang.org/x/term@v0.45.0",
-        "version": "v0.45.0"
+        "purl": "pkg:golang/golang.org/x/term@v0.47.0",
+        "version": "v0.47.0"
       },
       {
         "ecosystem": "golang",
         "licenses": [],
         "location": "go.mod",
         "name": "golang.org/x/text",
-        "purl": "pkg:golang/golang.org/x/text@v0.40.0",
-        "version": "v0.40.0"
+        "purl": "pkg:golang/golang.org/x/text@v0.43.0",
+        "version": "v0.43.0"
       },
       {
         "ecosystem": "golang",
         "licenses": [],
         "location": "go.mod",
         "name": "golang.org/x/time",
-        "purl": "pkg:golang/golang.org/x/time@v0.15.0",
-        "version": "v0.15.0"
+        "purl": "pkg:golang/golang.org/x/time@v0.16.0",
+        "version": "v0.16.0"
+      },
+      {
+        "ecosystem": "golang",
+        "licenses": [],
+        "location": "go.mod",
+        "name": "golang.org/x/tools",
+        "purl": "pkg:golang/golang.org/x/tools@v0.52.0",
+        "version": "v0.52.0"
       },
       {
         "ecosystem": "golang",
@@ -660,8 +1188,8 @@
         "licenses": [],
         "location": "go.mod",
         "name": "google.golang.org/protobuf",
-        "purl": "pkg:golang/google.golang.org/protobuf@v1.36.12-0.20260120151049-f2248ac996af",
-        "version": "v1.36.12-0.20260120151049-f2248ac996af"
+        "purl": "pkg:golang/google.golang.org/protobuf@v1.36.12",
+        "version": "v1.36.12"
       },
       {
         "ecosystem": "golang",
@@ -692,32 +1220,32 @@
         "licenses": [],
         "location": "go.mod",
         "name": "k8s.io/api",
-        "purl": "pkg:golang/k8s.io/api@v0.37.0",
-        "version": "v0.37.0"
+        "purl": "pkg:golang/k8s.io/api@v0.37.1",
+        "version": "v0.37.1"
       },
       {
         "ecosystem": "golang",
         "licenses": [],
         "location": "go.mod",
         "name": "k8s.io/apiextensions-apiserver",
-        "purl": "pkg:golang/k8s.io/apiextensions-apiserver@v0.37.0",
-        "version": "v0.37.0"
+        "purl": "pkg:golang/k8s.io/apiextensions-apiserver@v0.37.1",
+        "version": "v0.37.1"
       },
       {
         "ecosystem": "golang",
         "licenses": [],
         "location": "go.mod",
         "name": "k8s.io/apimachinery",
-        "purl": "pkg:golang/k8s.io/apimachinery@v0.37.0",
-        "version": "v0.37.0"
+        "purl": "pkg:golang/k8s.io/apimachinery@v0.37.1",
+        "version": "v0.37.1"
       },
       {
         "ecosystem": "golang",
         "licenses": [],
         "location": "go.mod",
         "name": "k8s.io/client-go",
-        "purl": "pkg:golang/k8s.io/client-go@v0.37.0",
-        "version": "v0.37.0"
+        "purl": "pkg:golang/k8s.io/client-go@v0.37.1",
+        "version": "v0.37.1"
       },
       {
         "ecosystem": "golang",
@@ -732,32 +1260,32 @@
         "licenses": [],
         "location": "go.mod",
         "name": "k8s.io/kube-openapi",
-        "purl": "pkg:golang/k8s.io/kube-openapi@v0.0.0-20260721132016-d427ff9ee9ad",
-        "version": "v0.0.0-20260721132016-d427ff9ee9ad"
+        "purl": "pkg:golang/k8s.io/kube-openapi@v0.0.0-20260821135717-be32def86098",
+        "version": "v0.0.0-20260821135717-be32def86098"
       },
       {
         "ecosystem": "golang",
         "licenses": [],
         "location": "go.mod",
         "name": "k8s.io/utils",
-        "purl": "pkg:golang/k8s.io/utils@v0.0.0-20260626114624-be93311217bd",
-        "version": "v0.0.0-20260626114624-be93311217bd"
+        "purl": "pkg:golang/k8s.io/utils@v0.0.0-20261023123148-ca04ba58ecab",
+        "version": "v0.0.0-20261023123148-ca04ba58ecab"
       },
       {
         "ecosystem": "golang",
         "licenses": [],
         "location": "go.mod",
         "name": "sigs.k8s.io/controller-runtime",
-        "purl": "pkg:golang/sigs.k8s.io/controller-runtime@v0.25.0",
-        "version": "v0.25.0"
+        "purl": "pkg:golang/sigs.k8s.io/controller-runtime@v0.25.2",
+        "version": "v0.25.2"
       },
       {
         "ecosystem": "golang",
         "licenses": [],
         "location": "go.mod",
         "name": "sigs.k8s.io/json",
-        "purl": "pkg:golang/sigs.k8s.io/json@v0.0.0-20250730193827-2d320260d730",
-        "version": "v0.0.0-20250730193827-2d320260d730"
+        "purl": "pkg:golang/sigs.k8s.io/json@v0.0.0-20260909141634-11ed52e25bc5",
+        "version": "v0.0.0-20260909141634-11ed52e25bc5"
       },
       {
         "ecosystem": "golang",
@@ -795,240 +1323,19 @@
     "description": "Validate Kubernetes best practices and policies",
     "errors": [],
     "go_binary": {
-      "asset": "polaris_10.2.5_linux_amd64.tar.gz",
+      "asset": "polaris_10.2.6_linux_amd64.tar.gz",
       "binary": "polaris",
       "db": "https://vuln.go.dev",
-      "db_last_modified": "2026-10-27T21:16:18Z",
+      "db_last_modified": "2026-11-05T23:49:57Z",
       "findings": [
-        {
-          "aliases": [
-            "CVE-2026-94448"
-          ],
-          "epss": {
-            "cve": "CVE-2026-94448",
-            "percentile": 0.21475,
-            "score": 0.00289
-          },
-          "fixed_version": "v1.27.2",
-          "id": "GO-2026-6599",
-          "kev": null,
-          "level": "symbol",
-          "module": "stdlib",
-          "summary": "Reset context tracking on consecutive template expressions in html/template",
-          "version": "v1.27.1"
-        },
-        {
-          "aliases": [
-            "CVE-2026-97030"
-          ],
-          "epss": {
-            "cve": "CVE-2026-97030",
-            "percentile": 0.21475,
-            "score": 0.00289
-          },
-          "fixed_version": "v1.27.2",
-          "id": "GO-2026-6600",
-          "kev": null,
-          "level": "symbol",
-          "module": "stdlib",
-          "summary": "Recognize yield as regexp preceder keyword in html/template",
-          "version": "v1.27.1"
-        },
-        {
-          "aliases": [
-            "CVE-2026-78659"
-          ],
-          "epss": {
-            "cve": "CVE-2026-78659",
-            "percentile": 0.50082,
-            "score": 0.00627
-          },
-          "fixed_version": "v1.27.2",
-          "id": "GO-2026-6603",
-          "kev": null,
-          "level": "symbol",
-          "module": "stdlib",
-          "summary": "HTTP/2 server memory exhaustion due to Trailer headers in net/http",
-          "version": "v1.27.1"
-        },
-        {
-          "aliases": [
-            "CVE-2026-56866"
-          ],
-          "epss": {
-            "cve": "CVE-2026-56866",
-            "percentile": 0.40968,
-            "score": 0.00473
-          },
-          "fixed_version": "v1.27.2",
-          "id": "GO-2026-6605",
-          "kev": null,
-          "level": "symbol",
-          "module": "stdlib",
-          "summary": "HTTP/1 client connection desynchronization after CONNECT rejection in net/http",
-          "version": "v1.27.1"
-        },
-        {
-          "aliases": [
-            "CVE-2026-97031"
-          ],
-          "epss": {
-            "cve": "CVE-2026-97031",
-            "percentile": 0.44095,
-            "score": 0.00519
-          },
-          "fixed_version": "v1.27.2",
-          "id": "GO-2026-6607",
-          "kev": null,
-          "level": "symbol",
-          "module": "stdlib",
-          "summary": "Reject malformed ECH outer extension references in crypto/tls",
-          "version": "v1.27.1"
-        },
-        {
-          "aliases": [
-            "CVE-2026-94440"
-          ],
-          "epss": {
-            "cve": "CVE-2026-94440",
-            "percentile": 0.4362,
-            "score": 0.00511
-          },
-          "fixed_version": "v1.27.2",
-          "id": "GO-2026-6608",
-          "kev": null,
-          "level": "symbol",
-          "module": "stdlib",
-          "summary": "Memory limit bypass when parsing MIME headers in net/textproto, mime/multipart",
-          "version": "v1.27.1"
-        },
-        {
-          "aliases": [
-            "CVE-2026-78667"
-          ],
-          "epss": {
-            "cve": "CVE-2026-78667",
-            "percentile": 0.41455,
-            "score": 0.0048
-          },
-          "fixed_version": "v1.27.2",
-          "id": "GO-2026-6609",
-          "kev": null,
-          "level": "symbol",
-          "module": "stdlib",
-          "summary": "Lack of limit on size of parsed Range headers in net/http",
-          "version": "v1.27.1"
-        },
-        {
-          "aliases": [
-            "CVE-2026-78660"
-          ],
-          "epss": {
-            "cve": "CVE-2026-78660",
-            "percentile": 0.36838,
-            "score": 0.00425
-          },
-          "fixed_version": "v1.27.2",
-          "id": "GO-2026-6610",
-          "kev": null,
-          "level": "symbol",
-          "module": "stdlib",
-          "summary": "HTTP/2 transport accepts malformed framing-related headers in net/http",
-          "version": "v1.27.1"
-        },
-        {
-          "aliases": [
-            "CVE-2026-94439"
-          ],
-          "epss": {
-            "cve": "CVE-2026-94439",
-            "percentile": 0.35772,
-            "score": 0.00414
-          },
-          "fixed_version": "v1.27.2",
-          "id": "GO-2026-6613",
-          "kev": null,
-          "level": "symbol",
-          "module": "stdlib",
-          "summary": "HTTP/1 server connection desynchronization after 2xx CONNECT response in net/http",
-          "version": "v1.27.1"
-        },
-        {
-          "aliases": [
-            "CVE-2026-97032"
-          ],
-          "epss": {
-            "cve": "CVE-2026-97032",
-            "percentile": 0.42154,
-            "score": 0.0049
-          },
-          "fixed_version": "v1.27.2",
-          "id": "GO-2026-6617",
-          "kev": null,
-          "level": "symbol",
-          "module": "stdlib",
-          "summary": "HTTP/2 server crash due to HPACK encoder race in net/http",
-          "version": "v1.27.1"
-        },
-        {
-          "aliases": [
-            "CVE-2026-111943"
-          ],
-          "epss": {
-            "cve": "CVE-2026-111943",
-            "percentile": 0.33793,
-            "score": 0.00396
-          },
-          "fixed_version": "v1.27.3",
-          "id": "GO-2026-6809",
-          "kev": null,
-          "level": "symbol",
-          "module": "stdlib",
-          "summary": "Distrust compromised intermediate certificates in crypto/x509",
-          "version": "v1.27.1"
-        },
-        {
-          "aliases": [
-            "CVE-2026-78669"
-          ],
-          "epss": {
-            "cve": "CVE-2026-78669",
-            "percentile": 0.49426,
-            "score": 0.00614
-          },
-          "fixed_version": "v0.60.0",
-          "id": "GO-2026-6611",
-          "kev": null,
-          "level": "symbol",
-          "module": "golang.org/x/net",
-          "summary": "Excessive CPU consumption from repeated initial window changes in net/http",
-          "version": "v0.57.0"
-        },
-        {
-          "aliases": [
-            "CVE-2026-78663"
-          ],
-          "epss": {
-            "cve": "CVE-2026-78663",
-            "percentile": 0.49813,
-            "score": 0.00622
-          },
-          "fixed_version": "v0.60.0",
-          "id": "GO-2026-6612",
-          "kev": null,
-          "level": "symbol",
-          "module": "golang.org/x/net",
-          "summary": "Double flow control refund on HTTP/2 server streams in net/http",
-          "version": "v0.57.0"
-        },
         {
           "aliases": [
             "CVE-2026-78661"
           ],
           "epss": {
             "cve": "CVE-2026-78661",
-            "percentile": 0.08063,
-            "score": 0.00185
+            "percentile": 0.35396,
+            "score": 0.00409
           },
           "fixed_version": "v0.62.0",
           "id": "GO-2026-6860",
@@ -1036,7 +1343,7 @@
           "level": "symbol",
           "module": "golang.org/x/net",
           "summary": "Avoid quadratic complexity when coalescing text nodes in html in golang.org/x/net",
-          "version": "v0.57.0"
+          "version": "v0.61.0"
         },
         {
           "aliases": [
@@ -1044,8 +1351,8 @@
           ],
           "epss": {
             "cve": "CVE-2026-97045",
-            "percentile": 0.10117,
-            "score": 0.00202
+            "percentile": 0.18952,
+            "score": 0.00267
           },
           "fixed_version": "v0.62.0",
           "id": "GO-2026-6866",
@@ -1053,27 +1360,10 @@
           "level": "symbol",
           "module": "golang.org/x/net",
           "summary": "Check all ancestor namespace transitions when rendering raw text in html in golang.org/x/net",
-          "version": "v0.57.0"
-        },
-        {
-          "aliases": [
-            "CVE-2026-56851"
-          ],
-          "epss": {
-            "cve": "CVE-2026-56851",
-            "percentile": 0.40313,
-            "score": 0.00466
-          },
-          "fixed_version": "v0.41.0",
-          "id": "GO-2026-6629",
-          "kev": null,
-          "level": "symbol",
-          "module": "golang.org/x/text",
-          "summary": "Panic parsing crafted input in x/text/secure/precis in golang.org/x/text",
-          "version": "v0.40.0"
+          "version": "v0.61.0"
         }
       ],
-      "go_version": "go1.27.1",
+      "go_version": "go1.27.3",
       "main_module": "github.com/fairwindsops/polaris"
     },
     "id": "FairwindsOps__polaris",
@@ -1086,16 +1376,16 @@
     ],
     "name": "polaris",
     "osv": {
-      "advisories": 8,
+      "advisories": 2,
       "available": true,
-      "confirmed": 8,
+      "confirmed": 2,
       "osv_only": [],
       "warning": null
     },
-    "ref": "v10.2.5",
+    "ref": "v10.2.6",
     "ref_kind": "release",
     "release_integrity": {
-      "asset": "polaris_10.2.5_linux_amd64.tar.gz",
+      "asset": "polaris_10.2.6_linux_amd64.tar.gz",
       "assets": 16,
       "build_provenance": null,
       "checksums_published": true,
@@ -1116,19 +1406,26 @@
       "signer": null,
       "verdict": "signed"
     },
-    "released_at": "2026-09-18T14:39:52Z",
+    "released_at": "2026-11-03T19:14:35Z",
     "repository": "FairwindsOps/polaris",
     "sbomlyze_diff": {
-      "added": 0,
-      "changed": 0,
-      "drift": {},
+      "added": 13,
+      "changed": 34,
+      "drift": {
+        "integrity_drift": 1,
+        "metadata_drift": 0,
+        "version_drift": 33
+      },
       "findings": [
-        "0 version changes among 84 shared packages \u2014 no actual upgrades",
-        "Core system packages stable: golang (77) unchanged"
+        "Attack surface: +13 packages (15.5%)",
+        "1 version downgrades detected: google.golang.org/protobuf v1.36.12-0.20260120151049-f2248ac996af\u2192v1.36.12",
+        "32 version upgrades (15 major, 14 minor, 3 patch) among 84 shared packages",
+        "Integrity drift (1 total): 1 unknown"
       ],
+      "html": "sbomlyze-diff.html",
       "removed": 0
     },
-    "scanned_at": "2026-11-02T03:07:47+00:00",
+    "scanned_at": "2026-11-08T05:54:03+00:00",
     "scorecard": {
       "checks": [
         {
@@ -1163,8 +1460,8 @@
         },
         {
           "name": "Code-Review",
-          "reason": "Found 5/10 approved changesets -- score normalized to 5",
-          "score": 5
+          "reason": "Found 4/10 approved changesets -- score normalized to 4",
+          "score": 4
         },
         {
           "name": "Signed-Releases",
@@ -1202,162 +1499,12 @@
           "score": -1
         }
       ],
-      "date": "2026-10-26",
-      "score": 5.1,
+      "date": "2026-11-02",
+      "score": 5,
       "source": "openssf-api",
       "version": "v5.6.0"
     },
     "vulnerabilities": [
-      {
-        "aliases": [
-          "CVE-2026-78663"
-        ],
-        "ecosystem": "golang",
-        "epss": {
-          "cve": "CVE-2026-78663",
-          "percentile": 0.49813,
-          "score": 0.00622
-        },
-        "fix_state": "fixed",
-        "fixed_in": [
-          "0.60.0"
-        ],
-        "id": "GO-2026-6612",
-        "in_binary": "vulnerable code in binary",
-        "kev": null,
-        "location": "go.mod",
-        "osv_confirmed": true,
-        "package": "golang.org/x/net",
-        "severity": "Critical",
-        "summary": "The HTTP/2 server can refund connection-level flow control twice for the same data: Once when a client resets a stream (refunding data for any sent-but-unread portion of the stream), and again when a request handler reads the buffered data. A malicious client can exploit this to bypass the configure",
-        "url": "https://go.dev/cl/847187",
-        "version": "v0.57.0"
-      },
-      {
-        "aliases": [
-          "CVE-2026-78659"
-        ],
-        "ecosystem": "golang",
-        "epss": {
-          "cve": "CVE-2026-78659",
-          "percentile": 0.50082,
-          "score": 0.00627
-        },
-        "fix_state": "fixed",
-        "fixed_in": [
-          "0.60.0"
-        ],
-        "id": "GO-2026-6603",
-        "in_binary": "vulnerable code in binary",
-        "kev": null,
-        "location": "go.mod",
-        "osv_confirmed": true,
-        "package": "golang.org/x/net",
-        "severity": "High",
-        "summary": "When \"Trailer\" headers are sent by a client, the HTTP server internally uses the header values to populate the Request.Trailer map passed to the server handler. Because Request.Trailer is a map, each entry incurs memory overhead. For HTTP/2 servers, a malicious client can exploit this by sending a \"",
-        "url": "https://go.dev/cl/847185",
-        "version": "v0.57.0"
-      },
-      {
-        "aliases": [
-          "CVE-2026-78660"
-        ],
-        "ecosystem": "golang",
-        "epss": {
-          "cve": "CVE-2026-78660",
-          "percentile": 0.36838,
-          "score": 0.00425
-        },
-        "fix_state": "fixed",
-        "fixed_in": [
-          "0.60.0"
-        ],
-        "id": "GO-2026-6610",
-        "in_binary": "vulnerable code in binary",
-        "kev": null,
-        "location": "go.mod",
-        "osv_confirmed": true,
-        "package": "golang.org/x/net",
-        "severity": "High",
-        "summary": "Historically, we have been rather lax about malformed framing-related headers in our HTTP/2 implementation, as they cannot interfere with HTTP/2 framing. However, this makes it possible for our HTTP/2 implementation to forward responses containing such headers to an HTTP/1 client when acting as a re",
-        "url": "https://go.dev/cl/835145",
-        "version": "v0.57.0"
-      },
-      {
-        "aliases": [
-          "CVE-2026-78669"
-        ],
-        "ecosystem": "golang",
-        "epss": {
-          "cve": "CVE-2026-78669",
-          "percentile": 0.49426,
-          "score": 0.00614
-        },
-        "fix_state": "fixed",
-        "fixed_in": [
-          "0.60.0"
-        ],
-        "id": "GO-2026-6611",
-        "in_binary": "vulnerable code in binary",
-        "kev": null,
-        "location": "go.mod",
-        "osv_confirmed": true,
-        "package": "golang.org/x/net",
-        "severity": "High",
-        "summary": "A malicious HTTP/2 peer can cause excessive CPU consumption in the client or server by opening a large number of streams and then sending many small SETTINGS frames containing SETTINGS_INITIAL_WINDOW_SIZE values.",
-        "url": "https://go.dev/cl/847186",
-        "version": "v0.57.0"
-      },
-      {
-        "aliases": [
-          "CVE-2026-97032"
-        ],
-        "ecosystem": "golang",
-        "epss": {
-          "cve": "CVE-2026-97032",
-          "percentile": 0.42154,
-          "score": 0.0049
-        },
-        "fix_state": "fixed",
-        "fixed_in": [
-          "0.60.0"
-        ],
-        "id": "GO-2026-6617",
-        "in_binary": "vulnerable code in binary",
-        "kev": null,
-        "location": "go.mod",
-        "osv_confirmed": true,
-        "package": "golang.org/x/net",
-        "severity": "High",
-        "summary": "HTTP/2 servers could end up crashing due to inadvertently modifying its HPACK encoder concurrently. This happens because the server modifies the HPACK encoder from two goroutines without synchronization: one uses the encoder to encode a HEADERS frame as part of a response sent to a client and the ot",
-        "url": "https://go.dev/cl/847188",
-        "version": "v0.57.0"
-      },
-      {
-        "aliases": [
-          "CVE-2026-56851"
-        ],
-        "ecosystem": "golang",
-        "epss": {
-          "cve": "CVE-2026-56851",
-          "percentile": 0.40313,
-          "score": 0.00466
-        },
-        "fix_state": "fixed",
-        "fixed_in": [
-          "0.41.0"
-        ],
-        "id": "GO-2026-6629",
-        "in_binary": "vulnerable code in binary",
-        "kev": null,
-        "location": "go.mod",
-        "osv_confirmed": true,
-        "package": "golang.org/x/text",
-        "severity": "High",
-        "summary": "The Nickname profile can panic with an out-of-bounds slice error when transforming crafted input into a short destination buffer.",
-        "url": "https://go.dev/cl/793360",
-        "version": "v0.40.0"
-      },
       {
         "aliases": [
           "CVE-2026-78661"
@@ -1365,8 +1512,8 @@
         "ecosystem": "golang",
         "epss": {
           "cve": "CVE-2026-78661",
-          "percentile": 0.08063,
-          "score": 0.00185
+          "percentile": 0.35396,
+          "score": 0.00409
         },
         "fix_state": "fixed",
         "fixed_in": [
@@ -1378,10 +1525,10 @@
         "location": "go.mod",
         "osv_confirmed": true,
         "package": "golang.org/x/net",
-        "severity": "Unknown",
+        "severity": "High",
         "summary": "When coalescing adjacent text nodes in addText and fosterParent, appending to an existing TextNode's Data via string concatenation (n.Data += text) reallocated and copied the accumulated string on every token. Inputs containing many short text runs separated by ignored end tags (such as \"a</x>\") cau",
         "url": "https://go.dev/cl/849365",
-        "version": "v0.57.0"
+        "version": "v0.61.0"
       },
       {
         "aliases": [
@@ -1390,8 +1537,8 @@
         "ecosystem": "golang",
         "epss": {
           "cve": "CVE-2026-97045",
-          "percentile": 0.10117,
-          "score": 0.00202
+          "percentile": 0.18952,
+          "score": 0.00267
         },
         "fix_state": "fixed",
         "fixed_in": [
@@ -1403,10 +1550,10 @@
         "location": "go.mod",
         "osv_confirmed": true,
         "package": "golang.org/x/net",
-        "severity": "Unknown",
+        "severity": "Medium",
         "summary": "In childTextNodesAreLiteral, walking up the tree previously stopped at the nearest foreign ancestor once an HTML integration point was found. However, that integration point may itself be a descendant of an element that was foster-parented into a foreign namespace (such as <mglyph> or <malignmark> f",
         "url": "https://go.dev/cl/855121",
-        "version": "v0.57.0"
+        "version": "v0.61.0"
       }
     ],
     "workflow_audit": {
@@ -1505,5 +1652,5 @@
       ]
     }
   },
-  "updated": "2026-11-02"
+  "updated": "2026-11-08"
 }

@@ -81,6 +81,50 @@
         "Medium": 1,
         "files": 7
       }
+    },
+    {
+      "added": 0,
+      "commit": "4269e1dc4865647605da6af8f1828e77278106a0",
+      "date": "2026-11-08",
+      "dependencies": 229,
+      "errors": [],
+      "fixable": 17,
+      "go_version": "go1.26.10",
+      "in_binary": {
+        "dependencies": 13,
+        "stdlib": 0,
+        "total": 13
+      },
+      "kev": 0,
+      "kev_new": 0,
+      "new_vulnerabilities": 1,
+      "osv_confirmed": 21,
+      "osv_only": 2,
+      "ref": "v2.4.9",
+      "release_changed": false,
+      "release_integrity": "immutable",
+      "removed": 0,
+      "resolved_vulnerabilities": 0,
+      "scorecard": 6.8,
+      "scorecard_date": "2026-10-19",
+      "scorecard_note": null,
+      "scorecard_source": "openssf-api",
+      "upgraded": 0,
+      "vulnerabilities": {
+        "Critical": 3,
+        "High": 11,
+        "Low": 3,
+        "Medium": 3,
+        "Negligible": 0,
+        "Unknown": 1
+      },
+      "vulnerable_packages": 8,
+      "workflow": {
+        "High": 14,
+        "Low": 9,
+        "Medium": 1,
+        "files": 7
+      }
     }
   ],
   "latest": {
@@ -90,17 +134,43 @@
       "added": [],
       "any": true,
       "baseline": false,
-      "in_binary_new": [],
+      "in_binary_new": [
+        "GO-2026-6865"
+      ],
       "in_binary_resolved": [],
       "integrity_drift": 0,
+      "kev_new": [],
       "license_changes": [],
-      "new_vulnerabilities": [],
+      "new_vulnerabilities": [
+        {
+          "aliases": [
+            "CVE-2026-116591",
+            "GHSA-fpmh-frq8-7rj8"
+          ],
+          "ecosystem": "golang",
+          "epss": {
+            "cve": "CVE-2026-116591",
+            "percentile": 0.26636,
+            "score": 0.00333
+          },
+          "fix_state": "fixed",
+          "fixed_in": [
+            "1.20.2"
+          ],
+          "id": "GO-2026-6865",
+          "in_binary": "vulnerable code in binary",
+          "kev": null,
+          "location": "go.mod",
+          "osv_confirmed": true,
+          "package": "github.com/klauspost/compress",
+          "severity": "High",
+          "summary": "Panic on two-block frames in github.com/klauspost/compress",
+          "url": "https://github.com/klauspost/compress/security/advisories/GHSA-fpmh-frq8-7rj8",
+          "version": "v1.18.7"
+        }
+      ],
       "previous_ref": "v2.4.9",
       "release_changed": false,
-      "release_integrity": {
-        "from": "verified",
-        "to": "immutable"
-      },
       "removed": [],
       "resolved_vulnerabilities": [],
       "upgraded": [],
@@ -1986,7 +2056,7 @@
       "asset": "steampipe_linux_amd64.tar.gz",
       "binary": "steampipe",
       "db": "https://vuln.go.dev",
-      "db_last_modified": "2026-10-27T21:16:18Z",
+      "db_last_modified": "2026-11-05T23:49:57Z",
       "findings": [
         {
           "aliases": [
@@ -1995,7 +2065,7 @@
           ],
           "epss": {
             "cve": "CVE-2020-8912",
-            "percentile": 0.14036,
+            "percentile": 0.14055,
             "score": 0.00231
           },
           "fixed_version": "",
@@ -2013,7 +2083,7 @@
           ],
           "epss": {
             "cve": "CVE-2020-8911",
-            "percentile": 0.28235,
+            "percentile": 0.28379,
             "score": 0.00346
           },
           "fixed_version": "",
@@ -2025,9 +2095,27 @@
           "version": "v1.55.6"
         },
         {
+          "aliases": [
+            "CVE-2026-116591",
+            "GHSA-fpmh-frq8-7rj8"
+          ],
+          "epss": {
+            "cve": "CVE-2026-116591",
+            "percentile": 0.26636,
+            "score": 0.00333
+          },
+          "fixed_version": "v1.20.2",
+          "id": "GO-2026-6865",
+          "kev": null,
+          "level": "symbol",
+          "module": "github.com/klauspost/compress",
+          "summary": "Panic on two-block frames in github.com/klauspost/compress",
+          "version": "v1.18.7"
+        },
+        {
           "aliases": [],
           "epss": null,
-          "fixed_version": "",
+          "fixed_version": "v0.58.1-0.20261009181718-2f1f834330b2",
           "id": "GO-2026-5932",
           "kev": null,
           "level": "symbol",
@@ -2041,7 +2129,7 @@
           ],
           "epss": {
             "cve": "CVE-2026-78662",
-            "percentile": 0.37388,
+            "percentile": 0.37599,
             "score": 0.00431
           },
           "fixed_version": "v0.56.0",
@@ -2058,7 +2146,7 @@
           ],
           "epss": {
             "cve": "CVE-2026-56855",
-            "percentile": 0.42867,
+            "percentile": 0.43103,
             "score": 0.005
           },
           "fixed_version": "v0.56.0",
@@ -2075,8 +2163,8 @@
           ],
           "epss": {
             "cve": "CVE-2026-78659",
-            "percentile": 0.50082,
-            "score": 0.00627
+            "percentile": 0.58917,
+            "score": 0.00866
           },
           "fixed_version": "v0.60.0",
           "id": "GO-2026-6603",
@@ -2092,8 +2180,8 @@
           ],
           "epss": {
             "cve": "CVE-2026-78660",
-            "percentile": 0.36838,
-            "score": 0.00425
+            "percentile": 0.45813,
+            "score": 0.00542
           },
           "fixed_version": "v0.60.0",
           "id": "GO-2026-6610",
@@ -2109,8 +2197,8 @@
           ],
           "epss": {
             "cve": "CVE-2026-78669",
-            "percentile": 0.49426,
-            "score": 0.00614
+            "percentile": 0.58324,
+            "score": 0.00847
           },
           "fixed_version": "v0.60.0",
           "id": "GO-2026-6611",
@@ -2126,8 +2214,8 @@
           ],
           "epss": {
             "cve": "CVE-2026-78663",
-            "percentile": 0.49813,
-            "score": 0.00622
+            "percentile": 0.58678,
+            "score": 0.00858
           },
           "fixed_version": "v0.60.0",
           "id": "GO-2026-6612",
@@ -2143,8 +2231,8 @@
           ],
           "epss": {
             "cve": "CVE-2026-97032",
-            "percentile": 0.42154,
-            "score": 0.0049
+            "percentile": 0.52481,
+            "score": 0.00676
           },
           "fixed_version": "v0.60.0",
           "id": "GO-2026-6617",
@@ -2160,8 +2248,8 @@
           ],
           "epss": {
             "cve": "CVE-2026-78661",
-            "percentile": 0.08063,
-            "score": 0.00185
+            "percentile": 0.35396,
+            "score": 0.00409
           },
           "fixed_version": "v0.62.0",
           "id": "GO-2026-6860",
@@ -2177,8 +2265,8 @@
           ],
           "epss": {
             "cve": "CVE-2026-97045",
-            "percentile": 0.10117,
-            "score": 0.00202
+            "percentile": 0.18952,
+            "score": 0.00267
           },
           "fixed_version": "v0.62.0",
           "id": "GO-2026-6866",
@@ -2195,7 +2283,7 @@
           ],
           "epss": {
             "cve": "CVE-2026-53492",
-            "percentile": 0.28922,
+            "percentile": 0.29101,
             "score": 0.00353
           },
           "fixed_version": "",
@@ -2213,7 +2301,7 @@
           ],
           "epss": {
             "cve": "CVE-2026-50195",
-            "percentile": 0.23133,
+            "percentile": 0.23254,
             "score": 0.00303
           },
           "fixed_version": "",
@@ -2231,7 +2319,7 @@
           ],
           "epss": {
             "cve": "CVE-2026-53489",
-            "percentile": 0.06876,
+            "percentile": 0.06932,
             "score": 0.00174
           },
           "fixed_version": "",
@@ -2249,7 +2337,7 @@
           ],
           "epss": {
             "cve": "CVE-2026-53493",
-            "percentile": 0.29375,
+            "percentile": 0.29561,
             "score": 0.00356
           },
           "fixed_version": "v1.7.36",
@@ -2267,7 +2355,7 @@
           ],
           "epss": {
             "cve": "CVE-2026-95837",
-            "percentile": 0.011,
+            "percentile": 0.01117,
             "score": 0.00106
           },
           "fixed_version": "",
@@ -2285,7 +2373,7 @@
           ],
           "epss": {
             "cve": "CVE-2026-81870",
-            "percentile": 0.18557,
+            "percentile": 0.18599,
             "score": 0.00266
           },
           "fixed_version": "v1.45.0",
@@ -2314,9 +2402,9 @@
     ],
     "name": "steampipe",
     "osv": {
-      "advisories": 22,
+      "advisories": 23,
       "available": true,
-      "confirmed": 20,
+      "confirmed": 21,
       "osv_only": [
         {
           "ecosystem": "Go",
@@ -2380,7 +2468,7 @@
       ],
       "removed": 0
     },
-    "scanned_at": "2026-11-02T03:08:06+00:00",
+    "scanned_at": "2026-11-08T05:54:51+00:00",
     "scorecard": {
       "checks": [
         {
@@ -2468,7 +2556,7 @@
         "ecosystem": "golang",
         "epss": {
           "cve": "CVE-2026-53492",
-          "percentile": 0.28922,
+          "percentile": 0.29101,
           "score": 0.00353
         },
         "fix_state": "unknown",
@@ -2492,7 +2580,7 @@
         "ecosystem": "golang",
         "epss": {
           "cve": "CVE-2026-50195",
-          "percentile": 0.23133,
+          "percentile": 0.23254,
           "score": 0.00303
         },
         "fix_state": "unknown",
@@ -2515,8 +2603,8 @@
         "ecosystem": "golang",
         "epss": {
           "cve": "CVE-2026-78663",
-          "percentile": 0.49813,
-          "score": 0.00622
+          "percentile": 0.58678,
+          "score": 0.00858
         },
         "fix_state": "fixed",
         "fixed_in": [
@@ -2541,7 +2629,7 @@
         "ecosystem": "golang",
         "epss": {
           "cve": "CVE-2026-95837",
-          "percentile": 0.011,
+          "percentile": 0.01117,
           "score": 0.00106
         },
         "fix_state": "unknown",
@@ -2559,12 +2647,38 @@
       },
       {
         "aliases": [
+          "CVE-2026-116591",
+          "GHSA-fpmh-frq8-7rj8"
+        ],
+        "ecosystem": "golang",
+        "epss": {
+          "cve": "CVE-2026-116591",
+          "percentile": 0.26636,
+          "score": 0.00333
+        },
+        "fix_state": "fixed",
+        "fixed_in": [
+          "1.20.2"
+        ],
+        "id": "GO-2026-6865",
+        "in_binary": "vulnerable code in binary",
+        "kev": null,
+        "location": "go.mod",
+        "osv_confirmed": true,
+        "package": "github.com/klauspost/compress",
+        "severity": "High",
+        "summary": "Panic on two-block frames in github.com/klauspost/compress",
+        "url": "https://github.com/klauspost/compress/security/advisories/GHSA-fpmh-frq8-7rj8",
+        "version": "v1.18.7"
+      },
+      {
+        "aliases": [
           "CVE-2026-78662"
         ],
         "ecosystem": "golang",
         "epss": {
           "cve": "CVE-2026-78662",
-          "percentile": 0.37388,
+          "percentile": 0.37599,
           "score": 0.00431
         },
         "fix_state": "fixed",
@@ -2589,7 +2703,7 @@
         "ecosystem": "golang",
         "epss": {
           "cve": "CVE-2026-56855",
-          "percentile": 0.42867,
+          "percentile": 0.43103,
           "score": 0.005
         },
         "fix_state": "fixed",
@@ -2614,7 +2728,7 @@
         "ecosystem": "golang",
         "epss": {
           "cve": "CVE-2026-56865",
-          "percentile": 0.02533,
+          "percentile": 0.02572,
           "score": 0.00129
         },
         "fix_state": "fixed",
@@ -2639,7 +2753,7 @@
         "ecosystem": "golang",
         "epss": {
           "cve": "CVE-2026-56864",
-          "percentile": 0.22506,
+          "percentile": 0.22617,
           "score": 0.00298
         },
         "fix_state": "fixed",
@@ -2664,8 +2778,8 @@
         "ecosystem": "golang",
         "epss": {
           "cve": "CVE-2026-78659",
-          "percentile": 0.50082,
-          "score": 0.00627
+          "percentile": 0.58917,
+          "score": 0.00866
         },
         "fix_state": "fixed",
         "fixed_in": [
@@ -2689,8 +2803,8 @@
         "ecosystem": "golang",
         "epss": {
           "cve": "CVE-2026-78660",
-          "percentile": 0.36838,
-          "score": 0.00425
+          "percentile": 0.45813,
+          "score": 0.00542
         },
         "fix_state": "fixed",
         "fixed_in": [
@@ -2714,8 +2828,8 @@
         "ecosystem": "golang",
         "epss": {
           "cve": "CVE-2026-78669",
-          "percentile": 0.49426,
-          "score": 0.00614
+          "percentile": 0.58324,
+          "score": 0.00847
         },
         "fix_state": "fixed",
         "fixed_in": [
@@ -2739,8 +2853,8 @@
         "ecosystem": "golang",
         "epss": {
           "cve": "CVE-2026-97032",
-          "percentile": 0.42154,
-          "score": 0.0049
+          "percentile": 0.52481,
+          "score": 0.00676
         },
         "fix_state": "fixed",
         "fixed_in": [
@@ -2759,12 +2873,37 @@
       },
       {
         "aliases": [
+          "CVE-2026-78661"
+        ],
+        "ecosystem": "golang",
+        "epss": {
+          "cve": "CVE-2026-78661",
+          "percentile": 0.35396,
+          "score": 0.00409
+        },
+        "fix_state": "fixed",
+        "fixed_in": [
+          "0.62.0"
+        ],
+        "id": "GO-2026-6860",
+        "in_binary": "vulnerable code in binary",
+        "kev": null,
+        "location": "go.mod",
+        "osv_confirmed": true,
+        "package": "golang.org/x/net",
+        "severity": "High",
+        "summary": "When coalescing adjacent text nodes in addText and fosterParent, appending to an existing TextNode's Data via string concatenation (n.Data += text) reallocated and copied the accumulated string on every token. Inputs containing many short text runs separated by ignored end tags (such as \"a</x>\") cau",
+        "url": "https://go.dev/cl/849365",
+        "version": "v0.58.0"
+      },
+      {
+        "aliases": [
           "CVE-2026-53493"
         ],
         "ecosystem": "golang",
         "epss": {
           "cve": "CVE-2026-53493",
-          "percentile": 0.29375,
+          "percentile": 0.29561,
           "score": 0.00356
         },
         "fix_state": "fixed",
@@ -2790,7 +2929,7 @@
         "ecosystem": "golang",
         "epss": {
           "cve": "CVE-2026-53489",
-          "percentile": 0.06876,
+          "percentile": 0.06932,
           "score": 0.00174
         },
         "fix_state": "unknown",
@@ -2808,12 +2947,37 @@
       },
       {
         "aliases": [
+          "CVE-2026-97045"
+        ],
+        "ecosystem": "golang",
+        "epss": {
+          "cve": "CVE-2026-97045",
+          "percentile": 0.18952,
+          "score": 0.00267
+        },
+        "fix_state": "fixed",
+        "fixed_in": [
+          "0.62.0"
+        ],
+        "id": "GO-2026-6866",
+        "in_binary": "vulnerable code in binary",
+        "kev": null,
+        "location": "go.mod",
+        "osv_confirmed": true,
+        "package": "golang.org/x/net",
+        "severity": "Medium",
+        "summary": "In childTextNodesAreLiteral, walking up the tree previously stopped at the nearest foreign ancestor once an HTML integration point was found. However, that integration point may itself be a descendant of an element that was foster-parented into a foreign namespace (such as <mglyph> or <malignmark> f",
+        "url": "https://go.dev/cl/855121",
+        "version": "v0.58.0"
+      },
+      {
+        "aliases": [
           "CVE-2026-81870"
         ],
         "ecosystem": "golang",
         "epss": {
           "cve": "CVE-2026-81870",
-          "percentile": 0.18557,
+          "percentile": 0.18599,
           "score": 0.00266
         },
         "fix_state": "fixed",
@@ -2838,7 +3002,7 @@
         "ecosystem": "golang",
         "epss": {
           "cve": "CVE-2026-81870",
-          "percentile": 0.18557,
+          "percentile": 0.18599,
           "score": 0.00266
         },
         "fix_state": "fixed",
@@ -2863,7 +3027,7 @@
         "ecosystem": "golang",
         "epss": {
           "cve": "CVE-2026-81870",
-          "percentile": 0.18557,
+          "percentile": 0.18599,
           "score": 0.00266
         },
         "fix_state": "fixed",
@@ -2885,8 +3049,10 @@
         "aliases": [],
         "ecosystem": "golang",
         "epss": null,
-        "fix_state": "unknown",
-        "fixed_in": [],
+        "fix_state": "fixed",
+        "fixed_in": [
+          "0.58.1-0.20261009181718-2f1f834330b2"
+        ],
         "id": "GO-2026-5932",
         "in_binary": "vulnerable code in binary",
         "kev": null,
@@ -2897,56 +3063,6 @@
         "summary": "The golang.org/x/crypto/openpgp package is unsafe by design, has numerous known security issues, is not maintained, and should not be used. If you are required to interoperate with OpenPGP systems and need a maintained package, consider github.com/ProtonMail/go-crypto/openpgp which is a maintained f",
         "url": "https://go.dev/issue/44226",
         "version": "v0.55.0"
-      },
-      {
-        "aliases": [
-          "CVE-2026-78661"
-        ],
-        "ecosystem": "golang",
-        "epss": {
-          "cve": "CVE-2026-78661",
-          "percentile": 0.08063,
-          "score": 0.00185
-        },
-        "fix_state": "fixed",
-        "fixed_in": [
-          "0.62.0"
-        ],
-        "id": "GO-2026-6860",
-        "in_binary": "vulnerable code in binary",
-        "kev": null,
-        "location": "go.mod",
-        "osv_confirmed": true,
-        "package": "golang.org/x/net",
-        "severity": "Unknown",
-        "summary": "When coalescing adjacent text nodes in addText and fosterParent, appending to an existing TextNode's Data via string concatenation (n.Data += text) reallocated and copied the accumulated string on every token. Inputs containing many short text runs separated by ignored end tags (such as \"a</x>\") cau",
-        "url": "https://go.dev/cl/849365",
-        "version": "v0.58.0"
-      },
-      {
-        "aliases": [
-          "CVE-2026-97045"
-        ],
-        "ecosystem": "golang",
-        "epss": {
-          "cve": "CVE-2026-97045",
-          "percentile": 0.10117,
-          "score": 0.00202
-        },
-        "fix_state": "fixed",
-        "fixed_in": [
-          "0.62.0"
-        ],
-        "id": "GO-2026-6866",
-        "in_binary": "vulnerable code in binary",
-        "kev": null,
-        "location": "go.mod",
-        "osv_confirmed": true,
-        "package": "golang.org/x/net",
-        "severity": "Unknown",
-        "summary": "In childTextNodesAreLiteral, walking up the tree previously stopped at the nearest foreign ancestor once an HTML integration point was found. However, that integration point may itself be a descendant of an element that was foster-parented into a foreign namespace (such as <mglyph> or <malignmark> f",
-        "url": "https://go.dev/cl/855121",
-        "version": "v0.58.0"
       }
     ],
     "workflow_audit": {
@@ -3195,5 +3311,5 @@
       ]
     }
   },
-  "updated": "2026-11-02"
+  "updated": "2026-11-08"
 }
