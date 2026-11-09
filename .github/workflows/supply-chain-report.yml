@@ -14,6 +14,10 @@ on:
         description: "Why this run is needed; recorded with the run's provenance"
         type: string
         required: false
+      replay_date:
+        description: "Instead of scanning, re-derive a recorded week (YYYY-MM-DD) from its evidence release and publish it as a correction"
+        type: string
+        required: false
   pull_request:
     paths:
       - ".github/workflows/supply-chain-report.yml"
@@ -64,7 +68,10 @@ jobs:
       matrix: ${{ steps.targets.outputs.matrix }}
       mode: ${{ steps.targets.outputs.mode }}
       date: ${{ steps.targets.outputs.date }}
+      replay_release: ${{ steps.targets.outputs.replay_release }}
       baseline_run: ${{ steps.baseline.outputs.run_id }}
+      baseline_attempt: ${{ steps.baseline.outputs.attempt }}
+      baseline_release: ${{ steps.baseline.outputs.evidence_release }}
     steps:
       - name: Check out source without persisted credentials
         uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4
@@ -80,6 +87,7 @@ jobs:
         env:
           GH_TOKEN: ${{ github.token }}
           PUBLISH_INPUT: ${{ inputs.publish }}
+          REPLAY_DATE: ${{ inputs.replay_date }}
         shell: bash
         run: |
           set -euo pipefail
@@ -99,7 +107,20 @@ jobs:
           elif [[ "$GITHUB_EVENT_NAME" == "push" ]]; then
             mode=site
           fi
-          if [[ "$mode" == "site" ]]; then
+          replay_release=""
+          if [[ -n "$REPLAY_DATE" && "$mode" == "publish" && "$GITHUB_EVENT_NAME" == "workflow_dispatch" ]]; then
+            # A correction: the week's own evidence is re-derived; nothing is scanned or fetched live except the
+            # OSV API lookup, which is recorded with its own time.
+            [[ "$REPLAY_DATE" =~ ^[0-9]{4}-[0-9]{2}-[0-9]{2}$ ]] || { echo "replay_date must be YYYY-MM-DD" >&2; exit 1; }
+            git fetch --quiet --depth 1 origin "$DATA_BRANCH"
+            replay_release=$(git show "FETCH_HEAD:runs/$REPLAY_DATE.json" | jq -r '.evidence_release // empty')
+            [[ -n "$replay_release" ]] || { echo "no evidence release recorded for $REPLAY_DATE" >&2; exit 1; }
+            gh release download "$replay_release" --repo "$GITHUB_REPOSITORY" --pattern "supply-chain-evidence-*.tar.gz" --dir replay-release
+            mkdir -p replay-evidence
+            tar -xzf replay-release/supply-chain-evidence-*.tar.gz -C replay-evidence
+            cp replay-evidence/targets.json targets.json
+            matrix=$(jq -c '[.shards | to_entries[] | select(.value | length > 0) | .key]' targets.json)
+          elif [[ "$mode" == "site" ]]; then
             matrix='[]'
             echo '{"targets": [], "shards": []}' > targets.json
           else
@@ -108,6 +129,7 @@ jobs:
           fi
           echo "matrix=$matrix" >> "$GITHUB_OUTPUT"
           echo "mode=$mode" >> "$GITHUB_OUTPUT"
+          echo "replay_release=$replay_release" >> "$GITHUB_OUTPUT"
           # A week is named by its Sunday (UTC), the scheduled day; a second run in the same week supersedes the
           # first instead of starting a new week. A week already recorded under another day keeps that date.
           today=$(date -u +%F)
@@ -118,6 +140,9 @@ jobs:
           fi
           if [[ -n "$latest" && "$latest" > "$week" ]]; then
             week=$latest
+          fi
+          if [[ -n "$replay_release" ]]; then
+            week=$REPLAY_DATE
           fi
           echo "date=$week" >> "$GITHUB_OUTPUT"
           echo "### Supply-chain targets ($mode)" >> "$GITHUB_STEP_SUMMARY"
@@ -139,6 +164,11 @@ jobs:
           fi
           run_id=$(bash scripts/report-run.sh "$RUNNER_TEMP/data" "$DATE")
           echo "run_id=$run_id" >> "$GITHUB_OUTPUT"
+          if [[ -f "$RUNNER_TEMP/data/index.json" ]]; then
+            baseline=$(python3 scripts/supply_chain_scan.py baseline --data-dir "$RUNNER_TEMP/data" --date "$DATE")
+            echo "attempt=$(jq -r '.attempt // empty' <<<"$baseline")" >> "$GITHUB_OUTPUT"
+            echo "evidence_release=$(jq -r '.evidence_release // empty' <<<"$baseline")" >> "$GITHUB_OUTPUT"
+          fi
           echo "Drift baseline: ${run_id:-none (first week)}" >> "$GITHUB_STEP_SUMMARY"
 
       - name: Retain target list
@@ -153,8 +183,16 @@ jobs:
       # A failed download is recorded in enrichment.json and the week is published without it.
       - name: Download the CISA KEV catalog and EPSS scores
         if: steps.targets.outputs.mode != 'site'
+        env:
+          REPLAY_RELEASE: ${{ steps.targets.outputs.replay_release }}
         shell: bash
-        run: python3 scripts/supply_chain_scan.py enrich --output-dir enrichment
+        run: |
+          if [[ -n "$REPLAY_RELEASE" ]]; then
+            # A replay uses the snapshots the week was recorded with.
+            cp -R replay-evidence/supply-chain-enrichment enrichment
+          else
+            python3 scripts/supply_chain_scan.py enrich --output-dir enrichment
+          fi
 
       - name: Retain exploitation data
         if: steps.targets.outputs.mode != 'site'
@@ -164,6 +202,15 @@ jobs:
           path: enrichment
           if-no-files-found: error
           retention-days: 90
+
+      - name: Retain the evidence being replayed
+        if: steps.targets.outputs.replay_release != ''
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        with:
+          name: supply-chain-replay-evidence
+          path: replay-evidence
+          if-no-files-found: error
+          retention-days: 7
 
   scan:
     name: Scan shard ${{ matrix.shard }}
@@ -199,24 +246,48 @@ jobs:
           echo "$RUNNER_TEMP/tools" >> "$GITHUB_PATH"
 
       - name: Update the vulnerability database
+        if: needs.targets.outputs.replay_release == ''
         shell: bash
         run: grype db update
 
+      - name: Download the evidence being replayed
+        if: needs.targets.outputs.replay_release != ''
+        uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093 # v4
+        with:
+          name: supply-chain-replay-evidence
+          path: replay-evidence
+
       - name: Download last week's SBOMs for drift comparison
+        id: previous
         env:
           GH_TOKEN: ${{ github.token }}
           BASELINE_RUN: ${{ needs.targets.outputs.baseline_run }}
+          BASELINE_RELEASE: ${{ needs.targets.outputs.baseline_release }}
         shell: bash
         run: |
           set -euo pipefail
           run_id=$BASELINE_RUN
           mkdir -p "$RUNNER_TEMP/previous"
+          found=""
           if [[ -n "$run_id" ]] && gh run download "$run_id" --repo "$GITHUB_REPOSITORY" \
               --pattern "supply-chain-shard-*" --dir "$RUNNER_TEMP/previous-download" 2>/dev/null; then
+            found="run $run_id artifacts"
+          elif [[ -n "$BASELINE_RELEASE" ]] && gh release download "$BASELINE_RELEASE" --repo "$GITHUB_REPOSITORY" \
+              --pattern "supply-chain-evidence-*.tar.gz" --dir "$RUNNER_TEMP/previous-release" 2>/dev/null; then
+            # Artifacts expire after 90 days; the evidence release holds the same files.
+            mkdir -p "$RUNNER_TEMP/previous-download"
+            tar -xzf "$RUNNER_TEMP"/previous-release/supply-chain-evidence-*.tar.gz -C "$RUNNER_TEMP/previous-download"
+            found="evidence release $BASELINE_RELEASE"
+          fi
+          if [[ -n "$found" ]]; then
             # Flatten shard directories into one directory per project.
-            find "$RUNNER_TEMP/previous-download" -mindepth 2 -maxdepth 2 -type d \
+            find "$RUNNER_TEMP/previous-download" -mindepth 2 -maxdepth 2 -type d -name '*__*' \
               -exec cp -R {} "$RUNNER_TEMP/previous/" \;
-            echo "Comparing with run $run_id"
+            echo "run_id=$run_id" >> "$GITHUB_OUTPUT"
+            echo "Comparing with $found"
+          elif [[ -n "$run_id" ]]; then
+            # Publishing marks the dependency comparison unavailable instead of treating the week as a baseline.
+            echo "::warning::last week's SBOMs (run $run_id) could not be downloaded; dependency changes will be unavailable"
           else
             echo "No previous run; this week is a baseline."
           fi
@@ -228,18 +299,42 @@ jobs:
           GH_TOKEN: ${{ github.token }}
           GITHUB_TOKEN: ${{ github.token }}
           SCORECARD_TOKEN: ${{ secrets.SCORECARD_TOKEN }}
+          REPLAY_RELEASE: ${{ needs.targets.outputs.replay_release }}
+          SHARD: ${{ matrix.shard }}
+          PREVIOUS_RUN_ID: ${{ steps.previous.outputs.run_id }}
+          PREVIOUS_RUN_ATTEMPT: ${{ needs.targets.outputs.baseline_attempt }}
         shell: bash
         run: |
+          if [[ -n "$REPLAY_RELEASE" ]]; then
+            python3 scripts/supply_chain_scan.py replay \
+              --evidence-dir replay-evidence --shard "$SHARD" --output-dir scan-output \
+              --previous-dir "$RUNNER_TEMP/previous" \
+              --previous-run-id "$PREVIOUS_RUN_ID" --previous-run-attempt "$PREVIOUS_RUN_ATTEMPT" \
+              --osv-api --source "$REPLAY_RELEASE"
+            exit 0
+          fi
           limit=1
           if [[ -n "$SCORECARD_TOKEN" ]]; then
             limit=20
           fi
           python3 scripts/supply_chain_scan.py scan \
             --targets targets.json \
-            --shard "${{ matrix.shard }}" \
+            --shard "$SHARD" \
             --output-dir scan-output \
             --previous-dir "$RUNNER_TEMP/previous" \
+            --previous-run-id "$PREVIOUS_RUN_ID" --previous-run-attempt "$PREVIOUS_RUN_ATTEMPT" \
             --scorecard-cli-limit "$limit"
+
+      - name: Check every summary against its raw evidence
+        env:
+          SHARD: ${{ matrix.shard }}
+        shell: bash
+        run: |
+          python3 scripts/supply_chain_scan.py audit --shards-dir scan-output \
+            --previous-dir "$RUNNER_TEMP/previous" --sbomlyze sbomlyze | tee audit.txt
+          status=${PIPESTATUS[0]}
+          { echo "### Accuracy audit, shard $SHARD"; echo '```'; tail -n 50 audit.txt; echo '```'; } >> "$GITHUB_STEP_SUMMARY"
+          exit "$status"
 
       - name: Retain SBOMs, vulnerability reports, and summaries
         if: always()
@@ -323,16 +418,40 @@ jobs:
           fi
           echo "tag=$tag" >> "$GITHUB_OUTPUT"
 
+      - name: Download last week's exploitation snapshot
+        env:
+          GH_TOKEN: ${{ github.token }}
+          BASELINE_RELEASE: ${{ needs.targets.outputs.baseline_release }}
+        shell: bash
+        run: |
+          # For weeks whose run record predates the stored KEV CVE list; only JSON and CSV files are read.
+          mkdir -p previous-enrichment
+          if [[ -n "$BASELINE_RELEASE" ]] && gh release download "$BASELINE_RELEASE" --repo "$GITHUB_REPOSITORY" \
+              --pattern "supply-chain-evidence-*.tar.gz" --dir previous-release 2>/dev/null; then
+            tar -xzf previous-release/supply-chain-evidence-*.tar.gz -C previous-enrichment --strip-components=2 \
+              ./supply-chain-enrichment || true
+          fi
+
       - name: Record results and changes
         env:
           REASON: ${{ inputs.reason }}
           TAG: ${{ steps.tag.outputs.tag }}
+          REPLAY_RELEASE: ${{ needs.targets.outputs.replay_release }}
         shell: bash
         run: |
+          derivation=()
+          if [[ -n "$REPLAY_RELEASE" ]]; then
+            derivation=(--derivation "re-derived from the evidence of $REPLAY_RELEASE with the current method (scan results, release checks, and KEV/EPSS snapshots are the original ones; the OSV API lookup was made during this run)")
+          fi
           python3 scripts/supply_chain_scan.py publish \
             --shards-dir shards --data-dir data --date "$DATE" \
             --reason "$REASON" --evidence-release "$TAG" \
-            --enrichment-dir shards/supply-chain-enrichment --targets shards/targets.json
+            --enrichment-dir shards/supply-chain-enrichment --targets shards/targets.json \
+            --previous-enrichment-dir previous-enrichment "${derivation[@]}"
+
+      - name: Check the recorded week against the shard results
+        shell: bash
+        run: python3 scripts/supply_chain_scan.py audit --shards-dir shards --data-dir data --date "$DATE"
 
       - name: Commit the data branch
         id: commit

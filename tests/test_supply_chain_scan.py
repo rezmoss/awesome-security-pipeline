@@ -50,6 +50,26 @@ def finding(identifier, package, severity="High"):
             "ecosystem": "golang", "fixed_in": ["2"], "fix_state": "fixed", "url": "", "location": "go.mod"}
 
 
+def sbomlyze_diff(previous_sha, current_sha, version_changes=(), added=(), removed=(), **extra):
+    """A recorded sbomlyze comparison, as `sbomlyze_diff()` stores it (the matching itself is sbomlyze's)."""
+    def change(name, before, after, direction="upgrade", level="major", ecosystem="golang", location="go.mod"):
+        return {"name": name, "ecosystem": ecosystem, "location": location, "from": before, "to": after,
+                "direction": direction, "level": level}
+
+    def package(name, version, location="go.mod"):
+        return {"name": name, "ecosystem": "golang", "version": version, "location": location, "locations": [location]}
+
+    occurrences = {"added": [package(*item) for item in added], "removed": [package(*item) for item in removed],
+                   "version_changes": [change(*item) for item in version_changes], "integrity_changes": [],
+                   "metadata_changes": [], "license_changes": [], "moved": [], "version_set_changes": [],
+                   "file_changes": [], "files_added": [], "files_removed": [], "owned_file_drift": [],
+                   "source_change": None, "digest_coverage": {"same_version_pairs": 0, "comparable": 0}}
+    occurrences.update(extra)
+    return {"added": len(added), "removed": len(removed), "changed": len(version_changes), "drift": {}, "findings": [],
+            "previous_sbom_sha256": previous_sha, "sbom_sha256": current_sha, "baseline": {},
+            "contract": "sbomlyze-diff-0.7", "occurrences": occurrences}
+
+
 class SupplyChainScanTest(unittest.TestCase):
     def test_targets_come_from_active_tool_files(self):
         root = pathlib.Path(__file__).resolve().parent.parent
@@ -102,6 +122,22 @@ class SupplyChainScanTest(unittest.TestCase):
         self.assertEqual(findings[0]["aliases"], ["CVE-1"])
         self.assertEqual((findings[0]["fixed_in"], findings[0]["location"]), (["1.2"], "go.mod"))
 
+    def test_a_match_in_several_lockfiles_keeps_every_location_in_any_order(self):
+        def match(path, related):
+            return {"vulnerability": {"id": "GHSA-1", "severity": "High"},
+                    "relatedVulnerabilities": [{"id": related}],
+                    "artifact": {"name": "go-jose/v3", "version": "3.0.5", "purl": "pkg:golang/go-jose/v3@3.0.5",
+                                 "locations": [{"path": path}]}}
+        matches = [match("/command/client/go.mod", "CVE-1"), match("/go.mod", "CVE-2"), match("/api/go.mod", "CVE-1")]
+
+        forward = scan.normalize_grype({"matches": matches})
+        backward = scan.normalize_grype({"matches": matches[::-1]})
+
+        self.assertEqual(forward, backward)
+        self.assertEqual(len(forward), 1)
+        self.assertEqual(forward[0]["locations"], ["api/go.mod", "command/client/go.mod", "go.mod"])
+        self.assertEqual((forward[0]["location"], forward[0]["aliases"]), ("api/go.mod", ["CVE-1", "CVE-2"]))
+
     def test_matches_without_an_installed_registry_version_are_excluded_and_counted(self):
         def match(identifier, name, version, purl_type):
             return {"vulnerability": {"id": identifier, "severity": "Critical"},
@@ -144,17 +180,109 @@ class SupplyChainScanTest(unittest.TestCase):
         current = {"ref": "v2", "components": [component("a", "2"), component("c", "1"), component("e", "1"),
                                                  component("d", "1")],
                    "vulnerabilities": [finding("NEW", "e", "Critical")]}
+        previous["sbom_sha256"] = "s1"
+        current["sbomlyze_diff"] = sbomlyze_diff("s1", "s2", [("a", "1", "2"), ("x", "2", "1", "downgrade", "major")],
+                                                 added=[("e", "1")], removed=[("b", "1"), ("d", "2")])
 
         change = scan.changes(previous, current)
 
         self.assertTrue(change["release_changed"])
-        self.assertEqual(change["upgraded"], [{"package": "a", "ecosystem": "golang", "from": "1", "to": "2"}])
+        self.assertEqual(change["dependency_state"], "ok")
+        self.assertEqual(change["upgraded"], [{"package": "a", "ecosystem": "golang", "from": "1", "to": "2",
+                                               "location": "go.mod", "direction": "upgrade", "level": "major"}])
+        self.assertEqual([item["package"] for item in change["downgraded"]], ["x"])
         self.assertEqual(change["added"], ["e@1"])
         self.assertEqual(change["removed"], ["b@1", "d@2"])
+        self.assertEqual(change["new_vulnerabilities"][0]["new"]["reason"], "new package")
         self.assertEqual([item["id"] for item in change["new_vulnerabilities"]], ["NEW"])
         self.assertEqual([item["id"] for item in change["resolved_vulnerabilities"]], ["OLD"])
         self.assertTrue(change["any"])
         self.assertTrue(scan.changes(None, current)["baseline"])
+
+    def test_dependency_changes_need_the_sbom_last_week_was_built_from(self):
+        previous = {"ref": "v1", "components": [component("a", "1")], "vulnerabilities": [], "sbom_sha256": "s1"}
+        current = {"ref": "v1", "components": [component("a", "2")], "vulnerabilities": None,
+                   "sbomlyze_diff": sbomlyze_diff("other", "s2", [("a", "1", "2")])}
+
+        change = scan.changes(previous, current)
+
+        self.assertEqual(change["dependency_state"], "unavailable")
+        self.assertIn("not the one last week", change["dependency_reason"])
+        self.assertEqual(change["advisory_state"], "unavailable")
+        entry = scan.history_entry("2026-11-08", {**current, "changes": change})
+        self.assertEqual((entry["upgraded"], entry["new_vulnerabilities"]), (None, None))
+        # Weeks before SBOM digests: accepted only when the SBOM comes from the run that recorded last week.
+        del previous["sbom_sha256"]
+        current["sbomlyze_diff"]["baseline"] = {"run_id": "7"}
+        self.assertEqual(scan.changes(previous, current, {"previous_run_id": 7})["dependency_state"], "ok")
+        self.assertEqual(scan.changes(previous, current, {"previous_run_id": 8})["dependency_state"], "unavailable")
+        self.assertEqual(scan.changes({**previous, "stale": True}, current, {"previous_run_id": 7})["dependency_state"], "unavailable")
+
+    def test_alias_changes_do_not_make_an_advisory_new_and_resolved(self):
+        old, new = finding("GO-2026-5774", "chi"), finding("GHSA-3fxj-6jh8-hvhx", "chi")
+        new["aliases"] = ["GO-2026-5774"]
+        moved = finding("GHSA-2", "x")
+        bumped = dict(moved, version="2")
+        previous = {"ref": "v1", "components": [component("chi", "1"), component("x", "1")], "vulnerabilities": [old, moved],
+                    "scanned_at": "2026-11-02T00:00:00Z"}
+        fresh = dict(finding("GHSA-3", "chi"), osv_published="2026-11-05T00:00:00Z", osv_modified="2026-11-05T00:00:00Z")
+        current = {"ref": "v1", "components": [component("chi", "1"), component("x", "2")], "vulnerabilities": [new, bumped, fresh]}
+
+        change = scan.changes(previous, current)
+
+        self.assertEqual([item["id"] for item in change["new_vulnerabilities"]], ["GHSA-3"])
+        self.assertEqual(change["new_vulnerabilities"][0]["new"],
+                         {"reason": "unchanged version", "published": "2026-11-05T00:00:00Z",
+                          "modified": "2026-11-05T00:00:00Z", "advisory": "published since last scan"})
+        self.assertEqual(change["resolved_vulnerabilities"], [])
+        self.assertEqual(change["still_affected_version_changed"],
+                         [{"id": "GHSA-2", "package": "x", "ecosystem": "golang", "from": ["1"], "to": ["2"]}])
+
+    def test_resolved_only_changes_count_as_changes(self):
+        project = {"ref": "v1", "components": [component("a", "1")], "vulnerabilities": [],
+                   "workflow_audit": {"findings": []}}
+        previous = {**project, "workflow_audit": {"findings": [{"rule": "r", "file": "f", "note": "n"}]}}
+        self.assertTrue(scan.changes(previous, project)["any"])
+
+    def test_osv_coverage_tells_unchecked_packages_from_unreported_advisories(self):
+        report = {"results": [{"source": {"path": "/src/package-lock.json"}, "packages": [
+            {"package": {"name": "form-data", "version": "2.5.1", "ecosystem": "npm", "purl": "pkg:npm/form-data@2.5.1?source=LOCAL"}},
+            {"package": {"name": "left-pad", "version": "1.3.0", "ecosystem": "npm", "purl": "pkg:npm/left-pad@1.3.0"}},
+        ]}]}
+        osv = checks.parse_osv_report(report, ["/src/"])
+        grype = [dict(finding("GHSA-a", "form-data"), ecosystem="npm", version="2.5.1", location="package-lock.json", locations=["package-lock.json"]),
+                 dict(finding("GHSA-b", "left-pad"), ecosystem="npm", version="1.3.0", location="package-lock.json", locations=["package-lock.json"]),
+                 dict(finding("GHSA-c", "asteval"), ecosystem="pypi", version="1.0.6", location="setup.py", locations=["setup.py"])]
+
+        result = checks.cross_reference(grype, osv)
+
+        self.assertEqual(result["coverage"], {"not checked": 2, "not reported": 1})
+        self.assertIn("no registry source", grype[0]["osv_coverage"]["reasons"][0])
+        self.assertEqual(grype[2]["osv_coverage"]["reasons"], ["setup.py: not read by OSV-Scanner"])
+        # A report made without --all-packages says nothing about coverage.
+        partial = checks.parse_osv_report({"results": [{"source": {"path": "go.mod"}, "packages": [
+            {"package": {"name": "x", "version": "1", "ecosystem": "Go"}, "groups": [{"ids": ["GO-1"]}],
+             "vulnerabilities": [{"id": "GO-1", "published": "2026-01-01T00:00:00Z", "modified": "2026-02-01T00:00:00Z"}]}]}]}, [])
+        self.assertIsNone(partial["packages"])
+        self.assertEqual((partial["groups"][0]["published"], partial["groups"][0]["path"]), ("2026-01-01T00:00:00Z", "go.mod"))
+
+    def test_recorded_osv_api_responses_replay_without_the_network(self):
+        grype = [dict(finding("GHSA-a", "form-data"), ecosystem="npm", version="2.5.1", purl="pkg:npm/form-data@2.5.1",
+                      aliases=["CVE-2025-7783"]),
+                 dict(finding("GHSA-b", "left-pad"), ecosystem="npm", version="1.3.0", purl="pkg:npm/left-pad@1.3.0"),
+                 dict(finding("X-1", "thing"), ecosystem="hackage", version="1")]
+        evidence = {"queried_at": "2026-11-08T00:00:00+00:00",
+                    "queries": [{"package": {"ecosystem": "npm", "name": "form-data"}, "version": "2.5.1"},
+                                {"package": {"ecosystem": "npm", "name": "left-pad"}, "version": "1.3.0"}],
+                    "results": [{"vulns": [{"id": "GHSA-a", "modified": "2026-09-10T00:00:00Z"}]}, {}],
+                    "records": {"GHSA-a": {"id": "GHSA-a", "published": "2025-07-21T00:00:00Z", "modified": "2026-09-10T00:00:00Z"}}}
+        grype[2]["osv_api"] = {"state": "unsupported ecosystem"}
+
+        result = checks.apply_osv_api(grype, evidence)
+
+        self.assertEqual(result["states"], {"confirmed": 1, "not reported": 1})
+        self.assertEqual(grype[0]["osv_api"]["published"], "2025-07-21T00:00:00Z")
+        self.assertEqual(checks.osv_api_query("guava", "maven", "pkg:maven/com.google.guava/guava@1"), ("Maven", "com.google.guava:guava"))
 
     def test_cvss_scores_map_to_severity_buckets(self):
         self.assertEqual([checks.cvss_bucket(value) for value in ("9.8", "7.5", "5.3", "2.0", "", None)],
@@ -260,7 +388,7 @@ class SupplyChainScanTest(unittest.TestCase):
                  '{"finding": {"osv": "GO-1", "fixed_version": "v2", "trace": [{"module": "x/net", "version": "v1", "package": "x/net/http", "function": "Get"}]}}\n'
         objects = checks.json_stream(stream)
         self.assertEqual(len(objects), 4)
-        go = {"modules": ["x/net"], "findings": [{"id": "GO-1", "aliases": ["CVE-1"], "level": "symbol", "module": "x/net"}]}
+        go = {"modules": ["x/net"], "findings": [{"id": "GO-1", "aliases": ["CVE-1"], "level": "symbol", "module": "x/net", "version": "v1"}]}
         grype = [finding("CVE-1", "x/net"), finding("CVE-9", "x/net"), finding("CVE-8", "x/dev-only")]
 
         checks.annotate_reachability(grype, go)
@@ -268,7 +396,27 @@ class SupplyChainScanTest(unittest.TestCase):
         self.assertEqual([item["in_binary"] for item in grype],
                          ["vulnerable code in binary", "vulnerable code not in binary", "not in released binary"])
 
-    def write_shard(self, directory, ref, components, vulnerabilities, errors=None):
+    def test_govulncheck_keeps_each_module_an_advisory_affects_and_joins_on_the_version(self):
+        stream = "\n".join(json.dumps(item) for item in [
+            {"osv": {"id": "GO-1", "aliases": ["CVE-1"]}},
+            {"finding": {"osv": "GO-1", "trace": [{"module": "stdlib", "version": "v1.26.5", "package": "net/http", "function": "Get"}]}},
+            {"finding": {"osv": "GO-1", "trace": [{"module": "golang.org/x/net", "version": "v0.56.0", "package": "x", "function": "F"}]}},
+            {"finding": {"osv": "GO-1", "trace": [{"module": "golang.org/x/net", "version": "v0.56.0"}]}},
+        ])
+        findings = checks.govulncheck_findings(checks.json_stream(stream))
+        self.assertEqual([(item["module"], item["level"]) for item in findings], [("stdlib", "symbol"), ("golang.org/x/net", "symbol")])
+        go = {"findings": findings, "modules": ["golang.org/x/net", "golang.org/x/text"],
+              "module_versions": {"golang.org/x/net": "v0.56.0", "golang.org/x/text": "v0.9.0"}}
+        grype = [dict(finding("CVE-1", "golang.org/x/net"), version="v0.56.0"),
+                 dict(finding("CVE-1", "golang.org/x/text"), version="v0.8.0")]
+        checks.annotate_reachability(grype, go)
+        self.assertEqual([item["in_binary"] for item in grype], ["vulnerable code in binary", "different version in binary"])
+        self.assertEqual(grype[1]["binary_version"], "v0.9.0")
+        self.assertEqual(scan.in_binary_counts(go), {"total": 1, "stdlib": 1, "dependencies": 1, "records": 2})
+        project = {"vulnerabilities": [grype[0]], "go_binary": go}
+        self.assertEqual([(item["package"], item["version"]) for item in site_exports.binary_matches(project)], [("stdlib", "v1.26.5")])
+
+    def write_shard(self, directory, ref, components, vulnerabilities, errors=None, sbom=None, diff=None):
         project = {
             "id": "gitleaks__gitleaks", "repository": "gitleaks/gitleaks", "name": "gitleaks",
             "description": "Detect <secrets>.", "category": "Secrets", "ref": ref, "ref_kind": "release",
@@ -278,6 +426,10 @@ class SupplyChainScanTest(unittest.TestCase):
         if components is not None:
             project.update(components=components, vulnerabilities=vulnerabilities,
                            compliance={"standards": {"ntia": {"score": 71, "passed": 5, "total": 7, "failed_checks": []}}})
+            if sbom:
+                project["sbom_sha256"] = sbom
+            if diff:
+                project["sbomlyze_diff"] = diff
         directory.mkdir(parents=True, exist_ok=True)
         (directory / "shard-0.json").write_text(json.dumps({"tools": {"syft": "1", "grype": "2"}, "projects": [project]}))
 
@@ -286,8 +438,9 @@ class SupplyChainScanTest(unittest.TestCase):
         self.addCleanup(temporary.cleanup)
         root = pathlib.Path(temporary.name)
         data = root / "data"
-        self.write_shard(root / "week1", "v1", [component("a", "1")], [])
-        self.write_shard(root / "week2", "v2", [component("a", "2")], [finding("GHSA-9", "a", "Critical")])
+        self.write_shard(root / "week1", "v1", [component("a", "1")], [], sbom="s1")
+        self.write_shard(root / "week2", "v2", [component("a", "2")], [finding("GHSA-9", "a", "Critical")], sbom="s2",
+                         diff=sbomlyze_diff("s1", "s2", [("a", "1", "2")]))
         self.write_shard(root / "week3", "v2", None, None, errors=["clone failed"])
         for week, date in (("week1", "2026-11-01"), ("week2", "2026-11-08"), ("week3", "2026-11-15")):
             self.publish(root / week, data, date)
@@ -438,8 +591,8 @@ class SupplyChainScanTest(unittest.TestCase):
             git("-c", "user.name=t", "-c", "user.email=t@example.com", "commit", "--quiet", "-m", message)
 
         git("init", "--quiet")
-        self.write_shard(root / "week1", "v1", [component("a", "1")], [])
-        self.write_shard(root / "week2", "v2", [component("a", "2")], [])
+        self.write_shard(root / "week1", "v1", [component("a", "1")], [], sbom="s1")
+        self.write_shard(root / "week2", "v2", [component("a", "2")], [], sbom="s2", diff=sbomlyze_diff("s1", "s2", [("a", "1", "2")]))
         self.publish(root / "week1", data, "2026-11-01", GITHUB_RUN_ID="1")
         commit("week 1")
         self.publish(root / "week2", data, "2026-11-08", GITHUB_RUN_ID="2")
@@ -462,6 +615,28 @@ class SupplyChainScanTest(unittest.TestCase):
         commit("rewrite")
         problems, _ = scan.verify_history(data, [])
         self.assertTrue(any("rewrites runs/2026-11-01.json" in item for item in problems), problems)
+
+    def test_the_accuracy_audit_reports_a_published_week_that_differs_from_its_scan(self):
+        temporary = tempfile.TemporaryDirectory()
+        self.addCleanup(temporary.cleanup)
+        root = pathlib.Path(temporary.name)
+        data = root / "data"
+        vulnerable = dict(finding("GHSA-1", "a"), locations=["api/go.mod", "go.mod"], location="api/go.mod")
+        self.write_shard(root / "week1", "v1", [component("a", "1")], [], sbom="s1")
+        self.write_shard(root / "week2", "v2", [component("a", "2")], [vulnerable], sbom="s2",
+                         diff=sbomlyze_diff("s1", "s2", [("a", "1", "2")]))
+        self.publish(root / "week1", data, "2026-11-01")
+        self.publish(root / "week2", data, "2026-11-08")
+        self.assertEqual(scan.audit_publication(data, root / "week2", "2026-11-08"), [])
+
+        path = data / "projects" / "gitleaks__gitleaks.json"
+        stored = json.loads(path.read_text())
+        stored["latest"]["vulnerabilities"][0]["locations"] = ["go.mod"]
+        stored["history"][-1]["upgraded"] = 0
+        path.write_text(json.dumps(stored))
+        problems = scan.audit_publication(data, root / "week2", "2026-11-08")
+        self.assertTrue(any("published vulnerabilities differs" in item and "locations" in item for item in problems), problems)
+        self.assertTrue(any("history upgraded = 0" in item for item in problems), problems)
 
     @staticmethod
     def write_enrichment(directory, kev_ids, epss, added=None):
@@ -497,6 +672,9 @@ class SupplyChainScanTest(unittest.TestCase):
         self.assertEqual((stored["history"][0]["kev"], stored["history"][1]["kev"], stored["history"][1]["kev_new"]), (0, 1, 1))
         run = json.loads((data / "runs" / "2026-11-08.json").read_text())
         self.assertEqual(run["provenance"]["enrichment"]["kev"]["version"], "1")
+        self.assertEqual(run["provenance"]["enrichment"]["kev"]["cve_ids"], ["CVE-2026-1"])
+        self.assertEqual(stored["latest"]["changes"]["kev_method"], "snapshot difference")
+        self.assertEqual((match["kev_cves"], match["kev_snapshot"]), (["CVE-2026-1"], "1"))
         self.assertEqual(scan.verify_tree(data), [])
 
         # Without enrichment, matches carry no kev key: "not checked" rather than "not listed".

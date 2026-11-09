@@ -10,6 +10,7 @@ from __future__ import annotations
 import csv
 import datetime as dt
 import gzip
+import hashlib
 import io
 import json
 import pathlib
@@ -91,6 +92,9 @@ def annotate(vulnerabilities: list[dict[str, Any]] | None, data: dict[str, Any] 
         if data.get("kev") is not None:
             listed = [data["kev"][cve] | {"cve": cve} for cve in ids if cve in data["kev"]]
             item["kev"] = min(listed, key=lambda entry: entry.get("date_added") or "") if listed else None
+            # Every listed CVE alias (`kev` is the earliest) and the catalog version that was checked.
+            item["kev_cves"] = sorted(entry["cve"] for entry in listed)
+            item["kev_snapshot"] = (data["metadata"].get("kev") or {}).get("version")
         if data.get("epss") is not None:
             scored = [(data["epss"][cve], cve) for cve in ids if cve in data["epss"]]
             if scored:
@@ -98,10 +102,23 @@ def annotate(vulnerabilities: list[dict[str, Any]] | None, data: dict[str, Any] 
                 item["epss"] = {"score": score, "percentile": percentile, "cve": cve}
             else:
                 item["epss"] = None
+            item["epss_date"] = (data["metadata"].get("epss") or {}).get("released")
 
 
 def provenance(data: dict[str, Any] | None) -> dict[str, Any] | None:
     if not data:
         return None
     metadata = data["metadata"]
-    return {key: metadata.get(key) for key in ("fetched_at", "kev", "epss")}
+    result = {key: metadata.get(key) for key in ("fetched_at", "kev", "epss")}
+    if data.get("kev") is not None:
+        # The full CVE list lets next week tell which CVEs CISA added, without the old snapshot file.
+        ids = sorted(data["kev"])
+        result["kev"] = {**(result["kev"] or {}), "cve_ids": ids,
+                         "cve_ids_sha256": hashlib.sha256("\n".join(ids).encode()).hexdigest()}
+    return result
+
+
+def snapshot_ids(directory: pathlib.Path | None) -> list[str] | None:
+    """CVE ids in a stored KEV snapshot (an evidence bundle's supply-chain-enrichment directory)."""
+    data = load(directory)
+    return sorted(data["kev"]) if data and data.get("kev") is not None else None
