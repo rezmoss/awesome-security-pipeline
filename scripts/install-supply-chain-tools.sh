@@ -32,15 +32,22 @@ sbomlyze_minimum=0.7.1
 
 release_json() {
   local repository=$1
+  # Optional tag; defaults to the latest release.
+  local pinned_tag=${2:-}
+  local endpoint="releases/latest"
   local response=""
   local error_file="$work_dir/gh-api-error.log"
   local attempt delay effective_url tag
+
+  if [[ -n "$pinned_tag" ]]; then
+    endpoint="releases/tags/$pinned_tag"
+  fi
 
   for attempt in 1 2 3; do
     if response=$(gh api \
       -H "Accept: application/vnd.github+json" \
       -H "X-GitHub-Api-Version: 2022-11-28" \
-      "repos/$repository/releases/latest" 2>"$error_file") \
+      "repos/$repository/$endpoint" 2>"$error_file") \
       && jq -e '.tag_name and (.assets | type == "array")' \
         <<<"$response" >/dev/null; then
       jq -c \
@@ -56,6 +63,15 @@ release_json() {
       sleep "$delay"
     fi
   done
+
+  if [[ -n "$pinned_tag" ]]; then
+    echo "GitHub API unavailable for $repository; using pinned tag $pinned_tag" >&2
+    jq -cn \
+      --arg repository "$repository" \
+      --arg tag "$pinned_tag" \
+      '{tag_name: $tag, published_at: null, assets: [], _release_repository: $repository, _release_source: "pinned-tag"}'
+    return 0
+  fi
 
   echo "GitHub API unavailable for $repository; resolving the latest release through github.com" >&2
   effective_url=$(curl --fail --silent --show-error --location \
@@ -157,7 +173,8 @@ install_sbomlyze() {
   # and minimum-element checks.
   local repository=rezmoss/sbomlyze
   local release tag version published_at archive checksums digest release_lookup
-  release=$(release_json "$repository")
+  # SBOMLYZE_VERSION pins a release, e.g. to re-run the version that recorded published evidence.
+  release=$(release_json "$repository" "${SBOMLYZE_VERSION:+v${SBOMLYZE_VERSION#v}}")
   tag=$(jq -r '.tag_name' <<<"$release")
   version=${tag#v}
   published_at=$(jq -r '.published_at // ""' <<<"$release")

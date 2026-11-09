@@ -58,11 +58,17 @@ jobs:
           { echo '### Supply-chain data verification'; echo '```'; cat verify.txt; echo '```'; } >> "$GITHUB_STEP_SUMMARY"
           exit "$status"
 
-      - name: Install sbomlyze (checksum and attestation verified)
+      - name: Install the sbomlyze version that recorded the latest week (checksum and attestation verified)
         env:
           GH_TOKEN: ${{ github.token }}
         shell: bash
         run: |
+          set -euo pipefail
+          data="$RUNNER_TEMP/data"
+          date=$(jq -r '.latest' "$data/index.json")
+          # Re-running a newer sbomlyze can change diff fields, so match the recorded version.
+          SBOMLYZE_VERSION=$(jq -r '.tools.sbomlyze // empty' "$data/runs/$date.json")
+          export SBOMLYZE_VERSION
           bash scripts/install-supply-chain-tools.sh "$RUNNER_TEMP/tools" "$RUNNER_TEMP/tool-metadata.json" sbomlyze
           echo "$RUNNER_TEMP/tools" >> "$GITHUB_PATH"
 
