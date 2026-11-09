@@ -75,29 +75,42 @@
       }
     },
     {
-      "added": 0,
+      "added": 4,
+      "advisory_state": "ok",
       "commit": "d43883d6651b6a69e89028c65b36dcfdbb79105f",
       "date": "2026-11-08",
       "dependencies": 67,
+      "dependency_state": "ok",
+      "downgraded": 0,
       "errors": [],
+      "file_changes": 10,
       "fixable": 0,
       "go_version": null,
       "in_binary": null,
+      "in_binary_new": 0,
+      "in_binary_resolved": 0,
       "kev": null,
       "kev_new": 0,
+      "kev_new_match": 0,
+      "license_changes": 0,
+      "method": "sbomlyze-occurrence-v1",
+      "moved": 0,
+      "new_advisories": 0,
       "new_vulnerabilities": 0,
       "osv_confirmed": 0,
       "osv_only": 0,
       "ref": "7.1.0",
       "release_changed": true,
       "release_integrity": "no-linux-binary",
-      "removed": 1,
+      "removed": 0,
+      "resolved_advisories": 0,
       "resolved_vulnerabilities": 0,
       "scorecard": 4.7,
       "scorecard_date": "2026-10-19",
       "scorecard_note": null,
       "scorecard_source": "openssf-api",
-      "upgraded": 0,
+      "unknown_direction": 0,
+      "upgraded": 1,
       "vulnerabilities": {
         "Critical": 0,
         "High": 0,
@@ -112,26 +125,130 @@
         "Low": 0,
         "Medium": 3,
         "files": 14
-      }
+      },
+      "workflow_new": 1,
+      "workflow_resolved": 0
     }
   ],
   "latest": {
     "archived": false,
     "category": "Static Application Security Testing (SAST) \u203a Language-specific \u203a PHP",
     "changes": {
-      "added": [],
+      "added": [
+        "actions/checkout@v6",
+        "actions/download-artifact@v8.0.2",
+        "actions/upload-artifact@v7.0.2",
+        "shivammathur/setup-php@v2"
+      ],
+      "added_detail": [
+        {
+          "ecosystem": "github",
+          "location": ".github/workflows/apply-queued-changes.yml",
+          "locations": [
+            ".github/workflows/apply-queued-changes.yml"
+          ],
+          "name": "actions/checkout",
+          "version": "v6"
+        },
+        {
+          "ecosystem": "github",
+          "location": ".github/workflows/build-stubs.yml",
+          "locations": [
+            ".github/workflows/build-stubs.yml"
+          ],
+          "name": "actions/download-artifact",
+          "version": "v8.0.2"
+        },
+        {
+          "ecosystem": "github",
+          "location": ".github/workflows/ci.yml",
+          "locations": [
+            ".github/workflows/ci.yml"
+          ],
+          "name": "actions/upload-artifact",
+          "version": "v7.0.2"
+        },
+        {
+          "ecosystem": "github",
+          "location": ".github/workflows/apply-queued-changes.yml",
+          "locations": [
+            ".github/workflows/apply-queued-changes.yml"
+          ],
+          "name": "shivammathur/setup-php",
+          "version": "v2"
+        }
+      ],
+      "advisory_state": "ok",
       "any": true,
       "baseline": false,
-      "integrity_drift": 10,
+      "dependency_baseline": {
+        "attempt": "1",
+        "run_id": "41380955266",
+        "sbom_sha256": "46e9db606f294ace9b5bf4cd43ae2ac48e40aca094865e7066c79b7114a91932"
+      },
+      "dependency_state": "ok",
+      "digest_coverage": {
+        "after_only": 0,
+        "before_only": 0,
+        "by_kind": {},
+        "comparable": 0,
+        "disjoint_kinds": 0,
+        "packages_total": 99,
+        "same_version_pairs": 94
+      },
+      "distinct_version_changes": 1,
+      "downgraded": [],
+      "file_changes": [
+        ".github/workflows/announce-release.yml",
+        ".github/workflows/auto-release.yml",
+        ".github/workflows/bcc.yml",
+        ".github/workflows/build-docker.yml",
+        ".github/workflows/build-phar.yml",
+        ".github/workflows/build-stubs.yml",
+        ".github/workflows/ci.yml",
+        ".github/workflows/macos-scan.yml",
+        ".github/workflows/shepherd.yml",
+        ".github/workflows/windows-ci.yml"
+      ],
+      "integrity_changes": [],
+      "integrity_drift": 0,
       "license_changes": [],
+      "metadata_changes": [],
+      "method": "sbomlyze-occurrence-v1",
+      "moved": [],
+      "new_advisories": 0,
       "new_vulnerabilities": [],
       "previous_ref": "6.20.5",
       "release_changed": true,
-      "removed": [
-        "actions/upload-artifact@v7.0.1"
-      ],
+      "removed": [],
+      "removed_detail": [],
+      "resolved_advisories": 0,
       "resolved_vulnerabilities": [],
-      "upgraded": [],
+      "still_affected_version_changed": [],
+      "unknown_direction": [],
+      "upgraded": [
+        {
+          "direction": "upgrade",
+          "ecosystem": "github",
+          "from": "v7.0.1",
+          "level": "patch",
+          "location": ".github/workflows/build-stubs.yml",
+          "package": "actions/upload-artifact",
+          "to": "v7.0.2"
+        }
+      ],
+      "version_changes": [
+        {
+          "direction": "upgrade",
+          "ecosystem": "github",
+          "from": "v7.0.1",
+          "level": "patch",
+          "location": ".github/workflows/build-stubs.yml",
+          "name": "actions/upload-artifact",
+          "to": "v7.0.2"
+        }
+      ],
+      "version_set_changes": [],
       "workflow_new": 1,
       "workflow_resolved": 0
     },
@@ -832,6 +949,7 @@
       "action reference to a moving tag or branch": 1
     },
     "id": "vimeo__psalm",
+    "lock_aliases": {},
     "manifests": [
       ".github/workflows/announce-release.yml",
       ".github/workflows/apply-queued-changes.yml",
@@ -858,8 +976,14 @@
       "advisories": 0,
       "available": true,
       "confirmed": 0,
+      "coverage": {},
       "osv_only": [],
       "warning": null
+    },
+    "osv_api": {
+      "available": true,
+      "queried_at": "2026-11-09T01:36:23+00:00",
+      "states": {}
     },
     "ref": "7.1.0",
     "ref_kind": "release",
@@ -874,22 +998,164 @@
     },
     "released_at": "2026-11-08T02:28:20Z",
     "repository": "vimeo/psalm",
+    "sbom_sha256": "87e4d0201b28dfd031576c58e49ab0097d4046557c43aab03ac3cbe95fa5b8ac",
     "sbomlyze_diff": {
-      "added": 1,
-      "changed": 11,
+      "added": 5,
+      "baseline": {
+        "attempt": "1",
+        "run_id": "41380955266"
+      },
+      "changed": 1,
+      "contract": "sbomlyze-diff-0.7",
       "drift": {
-        "integrity_drift": 10,
+        "distinct_version_changes": 1,
+        "downgrades": 0,
+        "file_changes": 10,
+        "integrity_drift": 0,
+        "license_changes": 0,
         "metadata_drift": 0,
+        "owned_file_drift": 0,
+        "owned_files_changed": 0,
+        "unknown_direction": 0,
+        "upgrades": 1,
         "version_drift": 1
       },
       "findings": [
-        "Attack surface: +5 packages (4.6%)",
-        "1 version upgrades (1 minor) among 109 shared packages",
-        "Integrity drift (10 total): 10 unknown",
+        "Scanned vimeo/psalm changed: 6.20.5 \u2192 7.1.0",
+        "Inventory: +5 components (4.6%)",
+        "1 version upgrades among 95 shared packages",
+        "Integrity drift checked only 0 of 94 same-version packages; the rest carry no comparable digest",
+        "10 file entries changed content (not package integrity drift): /.github/workflows/announce-release.yml, /.github/workflows/auto-release.yml, /.github/workflows/bcc.yml, /.github/workflows/build-docker.yml, /.github/workflows/build-phar.yml + 5 more",
         "Core system packages stable: composer (57) unchanged"
       ],
       "html": "sbomlyze-diff.html",
-      "removed": 0
+      "occurrences": {
+        "added": [
+          {
+            "ecosystem": "github",
+            "location": ".github/workflows/apply-queued-changes.yml",
+            "locations": [
+              ".github/workflows/apply-queued-changes.yml"
+            ],
+            "name": "actions/checkout",
+            "version": "v6"
+          },
+          {
+            "ecosystem": "github",
+            "location": ".github/workflows/build-stubs.yml",
+            "locations": [
+              ".github/workflows/build-stubs.yml"
+            ],
+            "name": "actions/download-artifact",
+            "version": "v8.0.2"
+          },
+          {
+            "ecosystem": "github",
+            "location": ".github/workflows/ci.yml",
+            "locations": [
+              ".github/workflows/ci.yml"
+            ],
+            "name": "actions/upload-artifact",
+            "version": "v7.0.2"
+          },
+          {
+            "ecosystem": "github",
+            "location": ".github/workflows/apply-queued-changes.yml",
+            "locations": [
+              ".github/workflows/apply-queued-changes.yml"
+            ],
+            "name": "shivammathur/setup-php",
+            "version": "v2"
+          }
+        ],
+        "digest_coverage": {
+          "after_only": 0,
+          "before_only": 0,
+          "by_kind": {},
+          "comparable": 0,
+          "disjoint_kinds": 0,
+          "packages_total": 99,
+          "same_version_pairs": 94
+        },
+        "file_changes": [
+          {
+            "owners": [],
+            "path": ".github/workflows/announce-release.yml"
+          },
+          {
+            "owners": [],
+            "path": ".github/workflows/auto-release.yml"
+          },
+          {
+            "owners": [],
+            "path": ".github/workflows/bcc.yml"
+          },
+          {
+            "owners": [],
+            "path": ".github/workflows/build-docker.yml"
+          },
+          {
+            "owners": [],
+            "path": ".github/workflows/build-phar.yml"
+          },
+          {
+            "owners": [],
+            "path": ".github/workflows/build-stubs.yml"
+          },
+          {
+            "owners": [],
+            "path": ".github/workflows/ci.yml"
+          },
+          {
+            "owners": [],
+            "path": ".github/workflows/macos-scan.yml"
+          },
+          {
+            "owners": [],
+            "path": ".github/workflows/shepherd.yml"
+          },
+          {
+            "owners": [],
+            "path": ".github/workflows/windows-ci.yml"
+          }
+        ],
+        "file_coverage": {
+          "ambiguous_paths": 0,
+          "config_unknown": 0,
+          "files_compared": 14,
+          "files_unverified": 0,
+          "owned_files_after": 0,
+          "unowned_files_after": 0
+        },
+        "files_added": [],
+        "files_removed": [],
+        "integrity_changes": [],
+        "license_changes": [],
+        "metadata_changes": [],
+        "moved": [],
+        "owned_file_drift": [],
+        "removed": [],
+        "source_change": {
+          "from": "6.20.5",
+          "name": "vimeo/psalm",
+          "to": "7.1.0"
+        },
+        "version_changes": [
+          {
+            "direction": "upgrade",
+            "ecosystem": "github",
+            "from": "v7.0.1",
+            "level": "patch",
+            "location": ".github/workflows/build-stubs.yml",
+            "name": "actions/upload-artifact",
+            "to": "v7.0.2"
+          }
+        ],
+        "version_set_changes": []
+      },
+      "previous_sbom_sha256": "46e9db606f294ace9b5bf4cd43ae2ac48e40aca094865e7066c79b7114a91932",
+      "removed": 0,
+      "sbom_sha256": "87e4d0201b28dfd031576c58e49ab0097d4046557c43aab03ac3cbe95fa5b8ac"
     },
     "scanned_at": "2026-11-08T05:54:49+00:00",
     "scorecard": {

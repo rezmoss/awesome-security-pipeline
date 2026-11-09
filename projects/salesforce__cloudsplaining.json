@@ -76,15 +76,26 @@
     },
     {
       "added": 0,
+      "advisory_state": "ok",
       "commit": "75a67ea9cb6d0fdf35ff185d08dad0d45587e6f7",
       "date": "2026-11-08",
       "dependencies": 1005,
+      "dependency_state": "ok",
+      "downgraded": 0,
       "errors": [],
+      "file_changes": 0,
       "fixable": 143,
       "go_version": null,
       "in_binary": null,
+      "in_binary_new": 0,
+      "in_binary_resolved": 0,
       "kev": 0,
       "kev_new": 0,
+      "kev_new_match": 0,
+      "license_changes": 0,
+      "method": "sbomlyze-occurrence-v1",
+      "moved": 0,
+      "new_advisories": 0,
       "new_vulnerabilities": 0,
       "osv_confirmed": 143,
       "osv_only": 0,
@@ -92,11 +103,13 @@
       "release_changed": false,
       "release_integrity": "no-assets",
       "removed": 0,
+      "resolved_advisories": 0,
       "resolved_vulnerabilities": 0,
       "scorecard": 5.7,
       "scorecard_date": "2026-10-26",
       "scorecard_note": null,
       "scorecard_source": "openssf-api",
+      "unknown_direction": 0,
       "upgraded": 0,
       "vulnerabilities": {
         "Critical": 5,
@@ -112,7 +125,9 @@
         "Low": 0,
         "Medium": 1,
         "files": 7
-      }
+      },
+      "workflow_new": 0,
+      "workflow_resolved": 0
     }
   ],
   "latest": {
@@ -120,17 +135,63 @@
     "category": "Cloud Security",
     "changes": {
       "added": [],
+      "added_detail": [],
+      "advisory_state": "ok",
       "any": false,
       "baseline": false,
+      "dependency_baseline": {
+        "attempt": "1",
+        "run_id": "41380955266",
+        "sbom_sha256": "593e6ee46227b09c7426be334c2c37c6ee5747cbcd4da4915d7bd75381b20aa3"
+      },
+      "dependency_state": "ok",
+      "digest_coverage": {
+        "after_only": 0,
+        "before_only": 0,
+        "by_kind": {},
+        "comparable": 0,
+        "disjoint_kinds": 0,
+        "packages_total": 1013,
+        "same_version_pairs": 1013
+      },
+      "distinct_version_changes": null,
+      "downgraded": [],
+      "file_changes": [],
+      "integrity_changes": [],
       "integrity_drift": 0,
+      "kev_method": "snapshot difference",
       "kev_new": [],
+      "kev_new_match": [],
       "license_changes": [],
+      "metadata_changes": [],
+      "method": "sbomlyze-occurrence-v1",
+      "moved": [],
+      "new_advisories": 0,
       "new_vulnerabilities": [],
       "previous_ref": "0.9.1",
       "release_changed": false,
       "removed": [],
+      "removed_detail": [],
+      "resolved_advisories": 0,
       "resolved_vulnerabilities": [],
+      "still_affected_version_changed": [
+        {
+          "ecosystem": "npm",
+          "from": [
+            "3.1.5",
+            "9.0.9"
+          ],
+          "id": "GHSA-g3hv-75wg-m249",
+          "package": "minimatch",
+          "to": [
+            "9.0.9"
+          ]
+        }
+      ],
+      "unknown_direction": [],
       "upgraded": [],
+      "version_changes": [],
+      "version_set_changes": [],
       "workflow_new": 0,
       "workflow_resolved": 0
     },
@@ -10055,6 +10116,7 @@
       "package defined in the repository itself": 1
     },
     "id": "salesforce__cloudsplaining",
+    "lock_aliases": {},
     "manifests": [
       ".github/workflows/bump-version.yml",
       ".github/workflows/nodejs-test.yml",
@@ -10076,6 +10138,13 @@
       "osv_only": [],
       "warning": null
     },
+    "osv_api": {
+      "available": true,
+      "queried_at": "2026-11-09T01:36:30+00:00",
+      "states": {
+        "confirmed": 1
+      }
+    },
     "ref": "0.9.1",
     "ref_kind": "release",
     "release_integrity": {
@@ -10089,15 +10158,56 @@
     },
     "released_at": "2026-06-14T23:50:18Z",
     "repository": "salesforce/cloudsplaining",
+    "sbom_sha256": "b5c31cb4d14e8e80967106fb6f6d73f43e384209462b9cfa8139c8e900bf61da",
     "sbomlyze_diff": {
       "added": 0,
+      "baseline": {
+        "attempt": "1",
+        "run_id": "41380955266"
+      },
       "changed": 0,
+      "contract": "sbomlyze-diff-0.7",
       "drift": {},
       "findings": [
-        "0 version changes among 1,022 shared packages \u2014 no actual upgrades",
+        "0 version changes among 1,013 shared packages \u2014 no actual upgrades",
+        "Integrity drift checked only 0 of 1013 same-version packages; the rest carry no comparable digest",
         "Core system packages stable: npm (920), pypi (75), github (18) unchanged"
       ],
-      "removed": 0
+      "occurrences": {
+        "added": [],
+        "digest_coverage": {
+          "after_only": 0,
+          "before_only": 0,
+          "by_kind": {},
+          "comparable": 0,
+          "disjoint_kinds": 0,
+          "packages_total": 1013,
+          "same_version_pairs": 1013
+        },
+        "file_changes": [],
+        "file_coverage": {
+          "ambiguous_paths": 0,
+          "config_unknown": 0,
+          "files_compared": 9,
+          "files_unverified": 0,
+          "owned_files_after": 0,
+          "unowned_files_after": 0
+        },
+        "files_added": [],
+        "files_removed": [],
+        "integrity_changes": [],
+        "license_changes": [],
+        "metadata_changes": [],
+        "moved": [],
+        "owned_file_drift": [],
+        "removed": [],
+        "source_change": null,
+        "version_changes": [],
+        "version_set_changes": []
+      },
+      "previous_sbom_sha256": "593e6ee46227b09c7426be334c2c37c6ee5747cbcd4da4915d7bd75381b20aa3",
+      "removed": 0,
+      "sbom_sha256": "b5c31cb4d14e8e80967106fb6f6d73f43e384209462b9cfa8139c8e900bf61da"
     },
     "scanned_at": "2026-11-08T05:53:54+00:00",
     "scorecard": {
@@ -10183,15 +10293,24 @@
         "aliases": [],
         "ecosystem": "pypi",
         "epss": null,
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "2026.10.18"
         ],
         "id": "GHSA-6q48-6c7w-9gw2",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "uv.lock",
+        "locations": [
+          "uv.lock"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-10-30T14:00:02.590922333Z",
+        "osv_published": "2026-10-20T19:35:05Z",
         "package": "certifi",
+        "purl": "pkg:pypi/certifi@2026.4.22",
         "severity": "Critical",
         "summary": "certifi bundles emSign root CAs with compromised intermediate CA keys",
         "url": "https://github.com/advisories/GHSA-6q48-6c7w-9gw2",
@@ -10207,15 +10326,24 @@
           "percentile": 0.17738,
           "score": 0.0026
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "2.0.8"
         ],
         "id": "GHSA-jqcg-44mw-7w3h",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "package-lock.json",
+        "locations": [
+          "package-lock.json"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-10-05T23:45:07.322157228Z",
+        "osv_published": "2026-10-05T23:30:26Z",
         "package": "proxy-addr",
+        "purl": "pkg:npm/proxy-addr@2.0.7",
         "severity": "Critical",
         "summary": "proxy-addr vulnerable to IP spoofing via IPv4-mapped IPv6 trust subnet",
         "url": "https://github.com/advisories/GHSA-jqcg-44mw-7w3h",
@@ -10225,15 +10353,28 @@
         "aliases": [],
         "ecosystem": "github",
         "epss": null,
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "1.14.3"
         ],
         "id": "GHSA-5xjx-3w67-w9x9",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": ".github/workflows/publish.yml",
+        "locations": [
+          ".github/workflows/publish.yml"
+        ],
+        "osv_api": {
+          "id": "GHSA-5xjx-3w67-w9x9",
+          "modified": "2026-10-30T20:30:05.260372Z",
+          "published": "",
+          "state": "confirmed"
+        },
         "osv_confirmed": false,
         "package": "pypa/gh-action-pypi-publish",
+        "purl": "pkg:github/pypa/gh-action-pypi-publish@v1.13.0",
         "severity": "Critical",
         "summary": "pypi-publish action revocation of CA in the chain that Sigstore uses in Trusted Publishing and Digital Attestations for PyPI",
         "url": "https://github.com/advisories/GHSA-5xjx-3w67-w9x9",
@@ -10249,15 +10390,24 @@
           "percentile": 0.3196,
           "score": 0.00378
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "1.11.0"
         ],
         "id": "GHSA-pqg4-j6r4-53mv",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "package-lock.json",
+        "locations": [
+          "package-lock.json"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-10-06T13:45:06.393196831Z",
+        "osv_published": "2026-10-06T13:40:36Z",
         "package": "shell-quote",
+        "purl": "pkg:npm/shell-quote@1.8.4",
         "severity": "Critical",
         "summary": "shell-quote: `quote()` command injection via a line terminator in a token after a `{ comment }` token",
         "url": "https://github.com/advisories/GHSA-pqg4-j6r4-53mv",
@@ -10273,15 +10423,24 @@
           "percentile": 0.32212,
           "score": 0.0038
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "0.7.5"
         ],
         "id": "GHSA-xv26-6w52-cph6",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "package-lock.json",
+        "locations": [
+          "package-lock.json"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-09-10T03:51:12.671093404Z",
+        "osv_published": "2026-07-15T22:07:24Z",
         "package": "websocket-driver",
+        "purl": "pkg:npm/websocket-driver@0.7.4",
         "severity": "Critical",
         "summary": "websocket-driver: Message corruption via abuse of protocol length headers",
         "url": "https://github.com/advisories/GHSA-xv26-6w52-cph6",
@@ -10291,15 +10450,24 @@
         "aliases": [],
         "ecosystem": "npm",
         "epss": null,
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "3.5.42"
         ],
         "id": "GHSA-g2v6-rqmx-r4w6",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "package-lock.json",
+        "locations": [
+          "package-lock.json"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-10-05T23:00:05.334985920Z",
+        "osv_published": "2026-10-05T22:50:55Z",
         "package": "@vue/server-renderer",
+        "purl": "pkg:npm/%40vue/server-renderer@3.5.29",
         "severity": "High",
         "summary": "@vue/server-renderer: XSS via missing CR in attribute-name blacklist",
         "url": "https://github.com/advisories/GHSA-g2v6-rqmx-r4w6",
@@ -10315,15 +10483,24 @@
           "percentile": 0.33138,
           "score": 0.00388
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "1.20.9"
         ],
         "id": "GHSA-27r3-jxmh-p828",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "package-lock.json",
+        "locations": [
+          "package-lock.json"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-10-23T21:00:06.131613693Z",
+        "osv_published": "2026-10-23T20:53:11Z",
         "package": "body-parser",
+        "purl": "pkg:npm/body-parser@1.20.5",
         "severity": "High",
         "summary": "body-parser vulnerable to Denial of Service via trailing bytes after a compressed request body",
         "url": "https://github.com/advisories/GHSA-27r3-jxmh-p828",
@@ -10339,15 +10516,24 @@
           "percentile": 0.30413,
           "score": 0.00364
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "1.1.16"
         ],
         "id": "GHSA-3jxr-9vmj-r5cp",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "package-lock.json",
+        "locations": [
+          "package-lock.json"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-09-10T03:51:10.092354944Z",
+        "osv_published": "2026-07-20T20:51:09Z",
         "package": "brace-expansion",
+        "purl": "pkg:npm/brace-expansion@1.1.12",
         "severity": "High",
         "summary": "brace-expansion: DoS via exponential-time expansion of consecutive non-expanding {} groups",
         "url": "https://github.com/advisories/GHSA-3jxr-9vmj-r5cp",
@@ -10363,15 +10549,24 @@
           "percentile": 0.30413,
           "score": 0.00364
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "2.1.2"
         ],
         "id": "GHSA-3jxr-9vmj-r5cp",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "package-lock.json",
+        "locations": [
+          "package-lock.json"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-09-10T03:51:10.092354944Z",
+        "osv_published": "2026-07-20T20:51:09Z",
         "package": "brace-expansion",
+        "purl": "pkg:npm/brace-expansion@2.0.2",
         "severity": "High",
         "summary": "brace-expansion: DoS via exponential-time expansion of consecutive non-expanding {} groups",
         "url": "https://github.com/advisories/GHSA-3jxr-9vmj-r5cp",
@@ -10387,15 +10582,24 @@
           "percentile": 0.39728,
           "score": 0.00455
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "1.1.19"
         ],
         "id": "GHSA-6j4f-fj2g-mc7p",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "package-lock.json",
+        "locations": [
+          "package-lock.json"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-09-30T00:00:03.836613572Z",
+        "osv_published": "2026-09-29T23:44:58Z",
         "package": "brace-expansion",
+        "purl": "pkg:npm/brace-expansion@1.1.12",
         "severity": "High",
         "summary": "brace-expansion: DoS via uncontrolled recursion in parseCommaParts causing stack exhaustion",
         "url": "https://github.com/advisories/GHSA-6j4f-fj2g-mc7p",
@@ -10411,15 +10615,24 @@
           "percentile": 0.39728,
           "score": 0.00455
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "2.1.5"
         ],
         "id": "GHSA-6j4f-fj2g-mc7p",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "package-lock.json",
+        "locations": [
+          "package-lock.json"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-09-30T00:00:03.836613572Z",
+        "osv_published": "2026-09-29T23:44:58Z",
         "package": "brace-expansion",
+        "purl": "pkg:npm/brace-expansion@2.0.2",
         "severity": "High",
         "summary": "brace-expansion: DoS via uncontrolled recursion in parseCommaParts causing stack exhaustion",
         "url": "https://github.com/advisories/GHSA-6j4f-fj2g-mc7p",
@@ -10435,15 +10648,24 @@
           "percentile": 0.51065,
           "score": 0.00643
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "1.1.17"
         ],
         "id": "GHSA-mh99-v99m-4gvg",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "package-lock.json",
+        "locations": [
+          "package-lock.json"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-09-10T03:50:12.282849322Z",
+        "osv_published": "2026-07-24T21:53:14Z",
         "package": "brace-expansion",
+        "purl": "pkg:npm/brace-expansion@1.1.12",
         "severity": "High",
         "summary": "brace-expansion: DoS via unbounded expansion length causing an out-of-memory process crash",
         "url": "https://github.com/advisories/GHSA-mh99-v99m-4gvg",
@@ -10459,15 +10681,24 @@
           "percentile": 0.51065,
           "score": 0.00643
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "2.1.3"
         ],
         "id": "GHSA-mh99-v99m-4gvg",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "package-lock.json",
+        "locations": [
+          "package-lock.json"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-09-10T03:50:12.282849322Z",
+        "osv_published": "2026-07-24T21:53:14Z",
         "package": "brace-expansion",
+        "purl": "pkg:npm/brace-expansion@2.0.2",
         "severity": "High",
         "summary": "brace-expansion: DoS via unbounded expansion length causing an out-of-memory process crash",
         "url": "https://github.com/advisories/GHSA-mh99-v99m-4gvg",
@@ -10483,15 +10714,24 @@
           "percentile": 0.42446,
           "score": 0.00491
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "1.1.20"
         ],
         "id": "GHSA-qhr7-859c-m2p7",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "package-lock.json",
+        "locations": [
+          "package-lock.json"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-09-30T00:00:04.402763332Z",
+        "osv_published": "2026-09-29T23:45:17Z",
         "package": "brace-expansion",
+        "purl": "pkg:npm/brace-expansion@1.1.12",
         "severity": "High",
         "summary": "brace-expansion: DoS via uncontrolled recursion on nested brace groups causing stack exhaustion",
         "url": "https://github.com/advisories/GHSA-qhr7-859c-m2p7",
@@ -10507,15 +10747,24 @@
           "percentile": 0.42446,
           "score": 0.00491
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "2.1.6"
         ],
         "id": "GHSA-qhr7-859c-m2p7",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "package-lock.json",
+        "locations": [
+          "package-lock.json"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-09-30T00:00:04.402763332Z",
+        "osv_published": "2026-09-29T23:45:17Z",
         "package": "brace-expansion",
+        "purl": "pkg:npm/brace-expansion@2.0.2",
         "severity": "High",
         "summary": "brace-expansion: DoS via uncontrolled recursion on nested brace groups causing stack exhaustion",
         "url": "https://github.com/advisories/GHSA-qhr7-859c-m2p7",
@@ -10531,15 +10780,24 @@
           "percentile": 0.51252,
           "score": 0.00647
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "1.1.18"
         ],
         "id": "GHSA-rgw5-rvv9-x895",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "package-lock.json",
+        "locations": [
+          "package-lock.json"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-09-10T03:51:14.535270857Z",
+        "osv_published": "2026-08-03T16:35:32Z",
         "package": "brace-expansion",
+        "purl": "pkg:npm/brace-expansion@1.1.12",
         "severity": "High",
         "summary": "brace-expansion: DoS via unbounded intermediate arrays, bypassing the CVE-2026-14257 mitigation",
         "url": "https://github.com/advisories/GHSA-rgw5-rvv9-x895",
@@ -10555,15 +10813,24 @@
           "percentile": 0.51252,
           "score": 0.00647
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "2.1.4"
         ],
         "id": "GHSA-rgw5-rvv9-x895",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "package-lock.json",
+        "locations": [
+          "package-lock.json"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-09-10T03:51:14.535270857Z",
+        "osv_published": "2026-08-03T16:35:32Z",
         "package": "brace-expansion",
+        "purl": "pkg:npm/brace-expansion@2.0.2",
         "severity": "High",
         "summary": "brace-expansion: DoS via unbounded intermediate arrays, bypassing the CVE-2026-14257 mitigation",
         "url": "https://github.com/advisories/GHSA-rgw5-rvv9-x895",
@@ -10579,15 +10846,24 @@
           "percentile": 0.51744,
           "score": 0.00658
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "4.28.7"
         ],
         "id": "GHSA-73wf-gq98-2v4g",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "package-lock.json",
+        "locations": [
+          "package-lock.json"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-09-10T03:51:15.295037659Z",
+        "osv_published": "2026-09-01T16:41:54Z",
         "package": "browserslist",
+        "purl": "pkg:npm/browserslist@4.28.1",
         "severity": "High",
         "summary": "Browserslist: Uncaught crash / prototype write via untrusted browserslist-stats.json custom stats (normalizeStats)",
         "url": "https://github.com/advisories/GHSA-73wf-gq98-2v4g",
@@ -10603,15 +10879,24 @@
           "percentile": 0.51637,
           "score": 0.00655
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "4.28.7"
         ],
         "id": "GHSA-c83g-rgw3-j3cx",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "package-lock.json",
+        "locations": [
+          "package-lock.json"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-09-10T03:50:54.622936829Z",
+        "osv_published": "2026-09-01T16:42:13Z",
         "package": "browserslist",
+        "purl": "pkg:npm/browserslist@4.28.1",
         "severity": "High",
         "summary": "Browserslist: Unbounded memory growth (no cache eviction) via distinct query results, leading to eventual OOM",
         "url": "https://github.com/advisories/GHSA-c83g-rgw3-j3cx",
@@ -10627,15 +10912,24 @@
           "percentile": 0.41469,
           "score": 0.00477
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "1.8.2"
         ],
         "id": "GHSA-vc2v-76pw-4v95",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "package-lock.json",
+        "locations": [
+          "package-lock.json"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-10-05T23:45:07.378615963Z",
+        "osv_published": "2026-10-05T23:28:01Z",
         "package": "compression",
+        "purl": "pkg:npm/compression@1.8.1",
         "severity": "High",
         "summary": "compression vulnerable to Denial of Service via memory leak on premature response close",
         "url": "https://github.com/advisories/GHSA-vc2v-76pw-4v95",
@@ -10651,15 +10945,24 @@
           "percentile": 0.58965,
           "score": 0.00868
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "6.0.6"
         ],
         "id": "GHSA-3xgq-45jj-v275",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "package-lock.json",
+        "locations": [
+          "package-lock.json"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-09-10T03:50:20.309509025Z",
+        "osv_published": "2024-11-08T06:30:47Z",
         "package": "cross-spawn",
+        "purl": "pkg:npm/cross-spawn@5.1.0",
         "severity": "High",
         "summary": "Regular Expression Denial of Service (ReDoS) in cross-spawn",
         "url": "https://github.com/advisories/GHSA-3xgq-45jj-v275",
@@ -10669,15 +10972,24 @@
         "aliases": [],
         "ecosystem": "pypi",
         "epss": null,
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "48.0.1"
         ],
         "id": "GHSA-537c-gmf6-5ccf",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "uv.lock",
+        "locations": [
+          "uv.lock"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-09-10T03:50:48.298936410Z",
+        "osv_published": "2026-06-15T20:12:27Z",
         "package": "cryptography",
+        "purl": "pkg:pypi/cryptography@48.0.0",
         "severity": "High",
         "summary": "Vulnerable OpenSSL included in cryptography wheels",
         "url": "https://github.com/advisories/GHSA-537c-gmf6-5ccf",
@@ -10693,15 +11005,24 @@
           "percentile": 0.19944,
           "score": 0.00274
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "50.0.0"
         ],
         "id": "GHSA-g6cj-pr64-35w5",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "uv.lock",
+        "locations": [
+          "uv.lock"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-09-10T03:50:53.610446769Z",
+        "osv_published": "2026-08-03T21:17:00Z",
         "package": "cryptography",
+        "purl": "pkg:pypi/cryptography@48.0.0",
         "severity": "High",
         "summary": "cryptography: PKCS#7 EnvelopedData decryption exposes a Bleichenbacher oracle through distinguishable errors and timing",
         "url": "https://github.com/advisories/GHSA-g6cj-pr64-35w5",
@@ -10717,15 +11038,24 @@
           "percentile": 0.18041,
           "score": 0.00262
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "49.0.0"
         ],
         "id": "GHSA-jwv3-5hgf-82ww",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "uv.lock",
+        "locations": [
+          "uv.lock"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-09-24T14:45:10.238420831Z",
+        "osv_published": "2026-08-03T21:26:50Z",
         "package": "cryptography",
+        "purl": "pkg:pypi/cryptography@48.0.0",
         "severity": "High",
         "summary": "python-cryptography: Duplicate self-signed intermediates can cause exponential path-building",
         "url": "https://github.com/advisories/GHSA-jwv3-5hgf-82ww",
@@ -10741,15 +11071,24 @@
           "percentile": 0.53128,
           "score": 0.00692
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "3.1.3"
         ],
         "id": "GHSA-4c8g-83qw-93j6",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "package-lock.json",
+        "locations": [
+          "package-lock.json"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-09-11T15:45:36.494239136Z",
+        "osv_published": "2026-07-21T19:03:11Z",
         "package": "fast-uri",
+        "purl": "pkg:npm/fast-uri@3.1.2",
         "severity": "High",
         "summary": "fast-uri vulnerable to host confusion via failed IDN canonicalization",
         "url": "https://github.com/advisories/GHSA-4c8g-83qw-93j6",
@@ -10765,15 +11104,24 @@
           "percentile": 0.32212,
           "score": 0.0038
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "3.1.5"
         ],
         "id": "GHSA-7p8r-x3mc-p8w7",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "package-lock.json",
+        "locations": [
+          "package-lock.json"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-09-10T03:50:53.468438344Z",
+        "osv_published": "2026-08-03T19:16:43Z",
         "package": "fast-uri",
+        "purl": "pkg:npm/fast-uri@3.1.2",
         "severity": "High",
         "summary": "fast-uri vulnerable to host confusion via backslash authority introducer",
         "url": "https://github.com/advisories/GHSA-7p8r-x3mc-p8w7",
@@ -10789,15 +11137,24 @@
           "percentile": 0.12608,
           "score": 0.0022
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "3.1.6"
         ],
         "id": "GHSA-f65p-4m7j-42xc",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "package-lock.json",
+        "locations": [
+          "package-lock.json"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-09-10T03:51:15.292437844Z",
+        "osv_published": "2026-09-02T15:43:30Z",
         "package": "fast-uri",
+        "purl": "pkg:npm/fast-uri@3.1.2",
         "severity": "High",
         "summary": "fast-uri vulnerable to server-side request forgery via malformed IPv6 normalization",
         "url": "https://github.com/advisories/GHSA-f65p-4m7j-42xc",
@@ -10813,15 +11170,24 @@
           "percentile": 0.12608,
           "score": 0.0022
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "3.1.6"
         ],
         "id": "GHSA-fph4-wmhf-6fwf",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "package-lock.json",
+        "locations": [
+          "package-lock.json"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-09-10T03:50:54.420840001Z",
+        "osv_published": "2026-09-02T15:42:39Z",
         "package": "fast-uri",
+        "purl": "pkg:npm/fast-uri@3.1.2",
         "severity": "High",
         "summary": "fast-uri vulnerable to server-side request forgery via repeated hostname percent-decoding",
         "url": "https://github.com/advisories/GHSA-fph4-wmhf-6fwf",
@@ -10837,15 +11203,24 @@
           "percentile": 0.14154,
           "score": 0.00232
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "3.1.6"
         ],
         "id": "GHSA-jqff-g426-hqxp",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "package-lock.json",
+        "locations": [
+          "package-lock.json"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-09-10T03:50:54.467662526Z",
+        "osv_published": "2026-09-02T15:41:53Z",
         "package": "fast-uri",
+        "purl": "pkg:npm/fast-uri@3.1.2",
         "severity": "High",
         "summary": "fast-uri vulnerable to host confusion via percent-encoded scheme normalization",
         "url": "https://github.com/advisories/GHSA-jqff-g426-hqxp",
@@ -10861,15 +11236,24 @@
           "percentile": 0.15073,
           "score": 0.00239
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "3.1.7"
         ],
         "id": "GHSA-qw65-cvwx-89v3",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "package-lock.json",
+        "locations": [
+          "package-lock.json"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-09-28T21:45:03.859117836Z",
+        "osv_published": "2026-09-28T21:24:39Z",
         "package": "fast-uri",
+        "purl": "pkg:npm/fast-uri@3.1.2",
         "severity": "High",
         "summary": "fast-uri vulnerable to authority injection via an unvalidated port in serialize",
         "url": "https://github.com/advisories/GHSA-qw65-cvwx-89v3",
@@ -10885,15 +11269,24 @@
           "percentile": 0.38084,
           "score": 0.00436
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "3.1.4"
         ],
         "id": "GHSA-v2hh-gcrm-f6hx",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "package-lock.json",
+        "locations": [
+          "package-lock.json"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-09-10T03:51:12.051886648Z",
+        "osv_published": "2026-07-21T22:08:28Z",
         "package": "fast-uri",
+        "purl": "pkg:npm/fast-uri@3.1.2",
         "severity": "High",
         "summary": "fast-uri vulnerable to host confusion via literal backslash authority delimiter",
         "url": "https://github.com/advisories/GHSA-v2hh-gcrm-f6hx",
@@ -10909,15 +11302,24 @@
           "percentile": 0.08759,
           "score": 0.0019
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "4.2.1"
         ],
         "id": "GHSA-v4x8-3wr5-3wq8",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "uv.lock",
+        "locations": [
+          "uv.lock"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-10-23T22:15:04.432475030Z",
+        "osv_published": "2026-10-23T21:59:08Z",
         "package": "filelock",
+        "purl": "pkg:pypi/filelock@3.29.0",
         "severity": "High",
         "summary": "filelock ReadWriteLock: SQLite reopens the lock database by name, so a planted symlink or journal file makes the lock user's process overwrite or unlink its own files",
         "url": "https://github.com/advisories/GHSA-v4x8-3wr5-3wq8",
@@ -10933,15 +11335,24 @@
           "percentile": 0.40982,
           "score": 0.00471
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "1.16.1"
         ],
         "id": "GHSA-8r9p-f939-6h3c",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "package-lock.json",
+        "locations": [
+          "package-lock.json"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-10-20T18:00:04.701467015Z",
+        "osv_published": "2026-10-20T17:53:05Z",
         "package": "follow-redirects",
+        "purl": "pkg:npm/follow-redirects@1.16.0",
         "severity": "High",
         "summary": "follow-redirects sensitiveHeaders regex escaping can expose credential headers",
         "url": "https://github.com/advisories/GHSA-8r9p-f939-6h3c",
@@ -10957,15 +11368,24 @@
           "percentile": 0.1885,
           "score": 0.00266
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "1.16.2"
         ],
         "id": "GHSA-mrwp-f3q8-3g9p",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "package-lock.json",
+        "locations": [
+          "package-lock.json"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-10-30T23:15:06.315251750Z",
+        "osv_published": "2026-10-30T22:59:33Z",
         "package": "follow-redirects",
+        "purl": "pkg:npm/follow-redirects@1.16.0",
         "severity": "High",
         "summary": "follow-redirects: Cross-realm sensitiveHeaders arrays are discarded and custom credentials can follow redirects",
         "url": "https://github.com/advisories/GHSA-mrwp-f3q8-3g9p",
@@ -10981,15 +11401,24 @@
           "percentile": 0.40983,
           "score": 0.00471
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "1.16.1"
         ],
         "id": "GHSA-q3jh-wrc6-jgq8",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "package-lock.json",
+        "locations": [
+          "package-lock.json"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-10-20T18:15:04.527852751Z",
+        "osv_published": "2026-10-20T17:58:04Z",
         "package": "follow-redirects",
+        "purl": "pkg:npm/follow-redirects@1.16.0",
         "severity": "High",
         "summary": "follow-redirects array-form headers bypass cross-origin credential stripping",
         "url": "https://github.com/advisories/GHSA-q3jh-wrc6-jgq8",
@@ -11005,15 +11434,24 @@
           "percentile": 0.40681,
           "score": 0.00467
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "17.13.9"
         ],
         "id": "GHSA-4528-x5fx-h6hg",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "package-lock.json",
+        "locations": [
+          "package-lock.json"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-10-30T23:15:07.273035332Z",
+        "osv_published": "2026-10-30T23:10:23Z",
         "package": "joi",
+        "purl": "pkg:npm/joi@17.13.3",
         "severity": "High",
         "summary": "joi: quadratic-time split in `string().email({ multiple: true })` allows denial of service",
         "url": "https://github.com/advisories/GHSA-4528-x5fx-h6hg",
@@ -11029,15 +11467,24 @@
           "percentile": 0.48031,
           "score": 0.00582
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "17.13.7"
         ],
         "id": "GHSA-6h2x-m376-mqjq",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "package-lock.json",
+        "locations": [
+          "package-lock.json"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-10-05T23:45:07.542652334Z",
+        "osv_published": "2026-09-29T18:07:42Z",
         "package": "joi",
+        "purl": "pkg:npm/joi@17.13.3",
         "severity": "High",
         "summary": "joi: Quadratic regular-expression backtracking in `Joi.string().isoDate()`",
         "url": "https://github.com/advisories/GHSA-6h2x-m376-mqjq",
@@ -11053,15 +11500,24 @@
           "percentile": 0.45723,
           "score": 0.00541
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "4.3.2"
         ],
         "id": "GHSA-2883-xcg3-v3hh",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "package-lock.json",
+        "locations": [
+          "package-lock.json"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-09-08T21:30:05.575808098Z",
+        "osv_published": "2026-09-08T21:24:51Z",
         "package": "js-yaml",
+        "purl": "pkg:npm/js-yaml@4.1.1",
         "severity": "High",
         "summary": "js-yaml: maxTotalMergeKeys does not limit CPU use for empty merge sources",
         "url": "https://github.com/advisories/GHSA-2883-xcg3-v3hh",
@@ -11077,15 +11533,24 @@
           "percentile": 0.48222,
           "score": 0.00585
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "4.3.0"
         ],
         "id": "GHSA-52cp-r559-cp3m",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "package-lock.json",
+        "locations": [
+          "package-lock.json"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-09-10T03:50:12.263307536Z",
+        "osv_published": "2026-07-20T21:19:09Z",
         "package": "js-yaml",
+        "purl": "pkg:npm/js-yaml@4.1.1",
         "severity": "High",
         "summary": "js-yaml: YAML merge-key chains can force quadratic CPU consumption",
         "url": "https://github.com/advisories/GHSA-52cp-r559-cp3m",
@@ -11095,15 +11560,24 @@
         "aliases": [],
         "ecosystem": "npm",
         "epss": null,
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "4.3.1"
         ],
         "id": "GHSA-5p4m-2wfm-xmqj",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "package-lock.json",
+        "locations": [
+          "package-lock.json"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-09-10T03:50:53.407436483Z",
+        "osv_published": "2026-08-06T20:27:32Z",
         "package": "js-yaml",
+        "purl": "pkg:npm/js-yaml@4.1.1",
         "severity": "High",
         "summary": "JS-YAML: Quadratic CPU consumption in !!omap resolution (3.x and 4.x) \u2014 CVE-2026-59870 fix not backported",
         "url": "https://github.com/advisories/GHSA-5p4m-2wfm-xmqj",
@@ -11119,15 +11593,24 @@
           "percentile": 0.71564,
           "score": 0.01344
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "2.14.2"
         ],
         "id": "GHSA-587h-7wmj-h5pm",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "package-lock.json",
+        "locations": [
+          "package-lock.json"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-10-20T20:00:04.608979840Z",
+        "osv_published": "2026-10-20T19:48:25Z",
         "package": "launch-editor",
+        "purl": "pkg:npm/launch-editor@2.13.1",
         "severity": "High",
         "summary": "launch-editor: `fs.existsSync()` existence check can be bypassed on Windows",
         "url": "https://github.com/advisories/GHSA-587h-7wmj-h5pm",
@@ -11143,15 +11626,24 @@
           "percentile": 0.33793,
           "score": 0.00394
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "5.0.1"
         ],
         "id": "GHSA-22p9-wv53-3rq4",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "package-lock.json",
+        "locations": [
+          "package-lock.json"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-09-10T03:51:07.300156595Z",
+        "osv_published": "2026-06-26T20:47:58Z",
         "package": "linkify-it",
+        "purl": "pkg:npm/linkify-it@5.0.0",
         "severity": "High",
         "summary": "LinkifyIt#match scan loop has quadratic algorithmic complexity",
         "url": "https://github.com/advisories/GHSA-22p9-wv53-3rq4",
@@ -11167,15 +11659,24 @@
           "percentile": 0.40651,
           "score": 0.00467
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "5.0.2"
         ],
         "id": "GHSA-v245-v573-v5vm",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "package-lock.json",
+        "locations": [
+          "package-lock.json"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-09-10T03:51:12.054179363Z",
+        "osv_published": "2026-07-21T19:06:09Z",
         "package": "linkify-it",
+        "purl": "pkg:npm/linkify-it@5.0.0",
         "severity": "High",
         "summary": "linkify-it: Quadratic-complexity DoS via the `mailto:` validator scan-loop on attacker text",
         "url": "https://github.com/advisories/GHSA-v245-v573-v5vm",
@@ -11191,15 +11692,24 @@
           "percentile": 0.4626,
           "score": 0.0055
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "14.3.3"
         ],
         "id": "GHSA-gfr2-rv44-r23c",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "package-lock.json",
+        "locations": [
+          "package-lock.json"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-10-20T20:45:05.953469039Z",
+        "osv_published": "2026-10-20T20:28:44Z",
         "package": "markdown-it",
+        "purl": "pkg:npm/markdown-it@14.1.1",
         "severity": "High",
         "summary": "markdown-it: Quadratic-time rendering of a single multi-line link reference definition with default options (regression since 14.0)",
         "url": "https://github.com/advisories/GHSA-gfr2-rv44-r23c",
@@ -11215,15 +11725,24 @@
           "percentile": 0.48483,
           "score": 0.00591
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "14.3.2"
         ],
         "id": "GHSA-r7fv-28h4-cvq7",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "package-lock.json",
+        "locations": [
+          "package-lock.json"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-10-20T14:45:03.780912898Z",
+        "osv_published": "2026-10-20T14:34:50Z",
         "package": "markdown-it",
+        "purl": "pkg:npm/markdown-it@14.1.1",
         "severity": "High",
         "summary": "markdown-it: Quadratic complexity in smartquotes with unmatched closing quotes",
         "url": "https://github.com/advisories/GHSA-r7fv-28h4-cvq7",
@@ -11239,15 +11758,24 @@
           "percentile": 0.26272,
           "score": 0.0033
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "3.3.16"
         ],
         "id": "GHSA-28wg-ghj8-5hjv",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "package-lock.json",
+        "locations": [
+          "package-lock.json"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-09-10T03:50:51.191256883Z",
+        "osv_published": "2026-07-29T15:31:12Z",
         "package": "nanoid",
+        "purl": "pkg:npm/nanoid@3.3.11",
         "severity": "High",
         "summary": "nanoid: non-secure generators can loop indefinitely with negative size",
         "url": "https://github.com/advisories/GHSA-28wg-ghj8-5hjv",
@@ -11263,15 +11791,24 @@
           "percentile": 0.26411,
           "score": 0.00331
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "3.3.18"
         ],
         "id": "GHSA-2v37-7h3g-55p8",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "package-lock.json",
+        "locations": [
+          "package-lock.json"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-09-10T03:50:51.243328986Z",
+        "osv_published": "2026-07-29T15:31:12Z",
         "package": "nanoid",
+        "purl": "pkg:npm/nanoid@3.3.11",
         "severity": "High",
         "summary": "nanoid: custom generators can loop indefinitely when size is zero",
         "url": "https://github.com/advisories/GHSA-2v37-7h3g-55p8",
@@ -11287,15 +11824,24 @@
           "percentile": 0.22443,
           "score": 0.00296
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "3.3.12"
         ],
         "id": "GHSA-xwg4-73v4-xw9w",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "package-lock.json",
+        "locations": [
+          "package-lock.json"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-09-01T19:30:08.615560716Z",
+        "osv_published": "2026-09-01T19:23:45Z",
         "package": "nanoid",
+        "purl": "pkg:npm/nanoid@3.3.11",
         "severity": "High",
         "summary": "nanoid: Integer Overflow or Wraparound",
         "url": "https://github.com/advisories/GHSA-xwg4-73v4-xw9w",
@@ -11311,15 +11857,24 @@
           "percentile": 0.15918,
           "score": 0.00246
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "1.4.1"
         ],
         "id": "GHSA-5x38-2vff-x55p",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "package-lock.json",
+        "locations": [
+          "package-lock.json"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-10-30T23:15:08.080586742Z",
+        "osv_published": "2026-10-30T23:01:46Z",
         "package": "node-forge",
+        "purl": "pkg:npm/node-forge@1.4.0",
         "severity": "High",
         "summary": "Forge: X.509 basicConstraints bypass in verifyCertificateChain() via deprecated extension OIDs 2.5.29.10 and 2.5.29.13",
         "url": "https://github.com/advisories/GHSA-5x38-2vff-x55p",
@@ -11335,15 +11890,24 @@
           "percentile": 0.46619,
           "score": 0.00556
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "1.4.1"
         ],
         "id": "GHSA-7wch-p9px-956x",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "package-lock.json",
+        "locations": [
+          "package-lock.json"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-10-30T23:15:07.474415720Z",
+        "osv_published": "2026-10-30T23:02:25Z",
         "package": "node-forge",
+        "purl": "pkg:npm/node-forge@1.4.0",
         "severity": "High",
         "summary": "Forge: Regular expression denial of service in PEM decoding (pem.decode)",
         "url": "https://github.com/advisories/GHSA-7wch-p9px-956x",
@@ -11359,13 +11923,22 @@
           "percentile": 0.16184,
           "score": 0.00248
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "not-fixed",
         "fixed_in": [],
         "id": "GHSA-86w9-cpqp-85rv",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "package-lock.json",
+        "locations": [
+          "package-lock.json"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-10-01T21:40:55.016251436Z",
+        "osv_published": "2026-09-03T21:31:15Z",
         "package": "node-forge",
+        "purl": "pkg:npm/node-forge@1.4.0",
         "severity": "High",
         "summary": "node-forge RSA PKCS#1 v1.5 signature verification accepts extra nested DigestAlgorithm elements",
         "url": "https://github.com/advisories/GHSA-86w9-cpqp-85rv",
@@ -11381,15 +11954,24 @@
           "percentile": 0.35655,
           "score": 0.00411
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "1.4.1"
         ],
         "id": "GHSA-8hrf-8g6f-7xwp",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "package-lock.json",
+        "locations": [
+          "package-lock.json"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-10-30T23:15:08.387649859Z",
+        "osv_published": "2026-10-30T23:02:00Z",
         "package": "node-forge",
+        "purl": "pkg:npm/node-forge@1.4.0",
         "severity": "High",
         "summary": "Forge: Denial of service in TLS record processing via a record interleaved with a fragmented handshake message",
         "url": "https://github.com/advisories/GHSA-8hrf-8g6f-7xwp",
@@ -11405,15 +11987,24 @@
           "percentile": 0.36042,
           "score": 0.00415
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "1.4.1"
         ],
         "id": "GHSA-hqq3-7jhf-c5jx",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "package-lock.json",
+        "locations": [
+          "package-lock.json"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-10-30T23:15:07.576305226Z",
+        "osv_published": "2026-10-30T23:01:54Z",
         "package": "node-forge",
+        "purl": "pkg:npm/node-forge@1.4.0",
         "severity": "High",
         "summary": "Forge: Denial of service in TLS record processing via call stack exhaustion",
         "url": "https://github.com/advisories/GHSA-hqq3-7jhf-c5jx",
@@ -11429,15 +12020,24 @@
           "percentile": 0.0223,
           "score": 0.00125
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "1.4.1"
         ],
         "id": "GHSA-jc66-7q78-782g",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "package-lock.json",
+        "locations": [
+          "package-lock.json"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-10-30T23:15:04.512936102Z",
+        "osv_published": "2026-10-30T23:02:05Z",
         "package": "node-forge",
+        "purl": "pkg:npm/node-forge@1.4.0",
         "severity": "High",
         "summary": "Forge: PKCS#12 MAC forgery and constant-key PBE via zero iteration count",
         "url": "https://github.com/advisories/GHSA-jc66-7q78-782g",
@@ -11453,15 +12053,24 @@
           "percentile": 0.44131,
           "score": 0.00515
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "0.1.13"
         ],
         "id": "GHSA-37ch-88jc-xwx2",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "package-lock.json",
+        "locations": [
+          "package-lock.json"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-09-10T03:50:36.768786245Z",
+        "osv_published": "2026-03-27T20:04:53Z",
         "package": "path-to-regexp",
+        "purl": "pkg:npm/path-to-regexp@0.1.12",
         "severity": "High",
         "summary": "path-to-regexp vulnerable to Regular Expression Denial of Service via multiple route parameters",
         "url": "https://github.com/advisories/GHSA-37ch-88jc-xwx2",
@@ -11477,15 +12086,24 @@
           "percentile": 0.49331,
           "score": 0.00608
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "8.5.12"
         ],
         "id": "GHSA-6g55-p6wh-862q",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "package-lock.json",
+        "locations": [
+          "package-lock.json"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-09-10T03:51:10.752909750Z",
+        "osv_published": "2026-07-23T15:06:16Z",
         "package": "postcss",
+        "purl": "pkg:npm/postcss@7.0.39",
         "severity": "High",
         "summary": "PostCSS: Arbitrary file read and information disclosure via attacker-controlled sourceMappingURL in CSS comments",
         "url": "https://github.com/advisories/GHSA-6g55-p6wh-862q",
@@ -11501,15 +12119,24 @@
           "percentile": 0.49331,
           "score": 0.00608
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "8.5.12"
         ],
         "id": "GHSA-6g55-p6wh-862q",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "package-lock.json",
+        "locations": [
+          "package-lock.json"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-09-10T03:51:10.752909750Z",
+        "osv_published": "2026-07-23T15:06:16Z",
         "package": "postcss",
+        "purl": "pkg:npm/postcss@8.5.6",
         "severity": "High",
         "summary": "PostCSS: Arbitrary file read and information disclosure via attacker-controlled sourceMappingURL in CSS comments",
         "url": "https://github.com/advisories/GHSA-6g55-p6wh-862q",
@@ -11525,15 +12152,24 @@
           "percentile": 0.45036,
           "score": 0.0053
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "8.5.18"
         ],
         "id": "GHSA-r28c-9q8g-f849",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "package-lock.json",
+        "locations": [
+          "package-lock.json"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-09-10T03:50:52.854537677Z",
+        "osv_published": "2026-07-24T16:24:55Z",
         "package": "postcss",
+        "purl": "pkg:npm/postcss@7.0.39",
         "severity": "High",
         "summary": "PostCSS: Path Traversal in Previous Source Map Auto-Loading (sourceMappingURL) leads to Arbitrary .map File Disclosure",
         "url": "https://github.com/advisories/GHSA-r28c-9q8g-f849",
@@ -11549,15 +12185,24 @@
           "percentile": 0.45036,
           "score": 0.0053
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "8.5.18"
         ],
         "id": "GHSA-r28c-9q8g-f849",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "package-lock.json",
+        "locations": [
+          "package-lock.json"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-09-10T03:50:52.854537677Z",
+        "osv_published": "2026-07-24T16:24:55Z",
         "package": "postcss",
+        "purl": "pkg:npm/postcss@8.5.6",
         "severity": "High",
         "summary": "PostCSS: Path Traversal in Previous Source Map Auto-Loading (sourceMappingURL) leads to Arbitrary .map File Disclosure",
         "url": "https://github.com/advisories/GHSA-r28c-9q8g-f849",
@@ -11573,15 +12218,24 @@
           "percentile": 0.49325,
           "score": 0.00608
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "11.0.1"
         ],
         "id": "GHSA-gm37-52c6-37mw",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "uv.lock",
+        "locations": [
+          "uv.lock"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-09-10T03:51:14.089911270Z",
+        "osv_published": "2026-08-07T18:26:07Z",
         "package": "pymdown-extensions",
+        "purl": "pkg:pypi/pymdown-extensions@10.21.3",
         "severity": "High",
         "summary": "pymdown-extensions: exponential-backtracking ReDoS in caret, tilde, betterem, and magiclink inline processors",
         "url": "https://github.com/advisories/GHSA-gm37-52c6-37mw",
@@ -11591,15 +12245,24 @@
         "aliases": [],
         "ecosystem": "npm",
         "epss": null,
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "7.0.3"
         ],
         "id": "GHSA-5c6j-r48x-rmvq",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "package-lock.json",
+        "locations": [
+          "package-lock.json"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-09-10T03:50:34.154574250Z",
+        "osv_published": "2026-02-28T02:50:45Z",
         "package": "serialize-javascript",
+        "purl": "pkg:npm/serialize-javascript@6.0.2",
         "severity": "High",
         "summary": "Serialize JavaScript is Vulnerable to RCE via RegExp.flags and Date.prototype.toISOString()",
         "url": "https://github.com/advisories/GHSA-5c6j-r48x-rmvq",
@@ -11615,15 +12278,24 @@
           "percentile": 0.30003,
           "score": 0.0036
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "1.9.0"
         ],
         "id": "GHSA-395f-4hp3-45gv",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "package-lock.json",
+        "locations": [
+          "package-lock.json"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-09-10T03:51:10.090834688Z",
+        "osv_published": "2026-07-20T21:49:34Z",
         "package": "shell-quote",
+        "purl": "pkg:npm/shell-quote@1.8.4",
         "severity": "High",
         "summary": "shell-quote: Quadratic-complexity Denial of Service in `parse()` (CWE-407)",
         "url": "https://github.com/advisories/GHSA-395f-4hp3-45gv",
@@ -11639,15 +12311,24 @@
           "percentile": 0.51122,
           "score": 0.00644
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "2.8.4"
         ],
         "id": "GHSA-2wc2-fm75-p42x",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "uv.lock",
+        "locations": [
+          "uv.lock"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-09-10T03:50:51.299551127Z",
+        "osv_published": "2026-07-09T13:37:40Z",
         "package": "soupsieve",
+        "purl": "pkg:pypi/soupsieve@2.8.3",
         "severity": "High",
         "summary": "Soup Sieve has Memory Exhaustion via Large Comma-Separated Selector Lists",
         "url": "https://github.com/advisories/GHSA-2wc2-fm75-p42x",
@@ -11663,15 +12344,24 @@
           "percentile": 0.51123,
           "score": 0.00644
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "2.8.4"
         ],
         "id": "GHSA-836r-79rf-4m37",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "uv.lock",
+        "locations": [
+          "uv.lock"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-09-10T03:51:10.949295830Z",
+        "osv_published": "2026-07-09T13:37:46Z",
         "package": "soupsieve",
+        "purl": "pkg:pypi/soupsieve@2.8.3",
         "severity": "High",
         "summary": "Soup Sieve: Regular Expression Denial of Service (ReDoS) via Selector Parser",
         "url": "https://github.com/advisories/GHSA-836r-79rf-4m37",
@@ -11687,15 +12377,24 @@
           "percentile": 0.39728,
           "score": 0.00455
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "1.2.2"
         ],
         "id": "GHSA-68fv-2mgg-jv7q",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "package-lock.json",
+        "locations": [
+          "package-lock.json"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-10-05T23:45:07.974936711Z",
+        "osv_published": "2026-09-18T18:31:44Z",
         "package": "source-map-js",
+        "purl": "pkg:npm/source-map-js@1.2.1",
         "severity": "High",
         "summary": "source-map-js allows event-loop denial of service through indexed source-map section offsets",
         "url": "https://github.com/advisories/GHSA-68fv-2mgg-jv7q",
@@ -11711,15 +12410,24 @@
           "percentile": 0.3798,
           "score": 0.00435
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "2.8.3"
         ],
         "id": "GHSA-2p49-hgcm-8545",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "package-lock.json",
+        "locations": [
+          "package-lock.json"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-09-10T03:51:09.939776176Z",
+        "osv_published": "2026-07-21T19:42:04Z",
         "package": "svgo",
+        "purl": "pkg:npm/svgo@2.8.2",
         "severity": "High",
         "summary": "SVGO removeScripts plugin leaves some executable scripts intact",
         "url": "https://github.com/advisories/GHSA-2p49-hgcm-8545",
@@ -11735,15 +12443,24 @@
           "percentile": 0.44739,
           "score": 0.00525
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "2.8.4"
         ],
         "id": "GHSA-w27v-7q3p-w38r",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "package-lock.json",
+        "locations": [
+          "package-lock.json"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-09-08T21:30:04.769354630Z",
+        "osv_published": "2026-09-08T21:20:28Z",
         "package": "svgo",
+        "purl": "pkg:npm/svgo@2.8.2",
         "severity": "High",
         "summary": "SVGO: removeScripts allows executable links through namespace and control-character bypasses",
         "url": "https://github.com/advisories/GHSA-w27v-7q3p-w38r",
@@ -11759,15 +12476,24 @@
           "percentile": 0.10707,
           "score": 0.00206
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "2.8.0"
         ],
         "id": "GHSA-8988-9cw3-xx77",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "uv.lock",
+        "locations": [
+          "uv.lock"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-10-01T17:55:53.793608550Z",
+        "osv_published": "2026-09-30T14:46:04Z",
         "package": "urllib3",
+        "purl": "pkg:pypi/urllib3@2.7.0",
         "severity": "High",
         "summary": "urllib3: HTTPS proxy TLS configuration may be ignored or overridden",
         "url": "https://github.com/advisories/GHSA-8988-9cw3-xx77",
@@ -11783,15 +12509,24 @@
           "percentile": 0.26984,
           "score": 0.00335
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "2.8.0"
         ],
         "id": "GHSA-vxq7-64xx-v4gw",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "uv.lock",
+        "locations": [
+          "uv.lock"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-10-01T17:55:57.514829071Z",
+        "osv_published": "2026-09-30T14:46:18Z",
         "package": "urllib3",
+        "purl": "pkg:pypi/urllib3@2.7.0",
         "severity": "High",
         "summary": "urllib3: HTTPResponse.stream()/read_chunked() buffers an unbounded chunk-size line into memory",
         "url": "https://github.com/advisories/GHSA-vxq7-64xx-v4gw",
@@ -11807,15 +12542,24 @@
           "percentile": 0.48544,
           "score": 0.00592
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "7.4.6"
         ],
         "id": "GHSA-g84c-rxfj-3j2c",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "package-lock.json",
+        "locations": [
+          "package-lock.json"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-10-03T03:56:01.635170780Z",
+        "osv_published": "2026-09-29T16:59:18Z",
         "package": "webpack-dev-middleware",
+        "purl": "pkg:npm/webpack-dev-middleware@5.3.4",
         "severity": "High",
         "summary": "webpack-dev-middleware vulnerable to Path Traversal via non-slash-terminated publicPath",
         "url": "https://github.com/advisories/GHSA-g84c-rxfj-3j2c",
@@ -11831,15 +12575,24 @@
           "percentile": 0.73097,
           "score": 0.01426
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "7.5.11"
         ],
         "id": "GHSA-96hv-2xvq-fx4p",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "package-lock.json",
+        "locations": [
+          "package-lock.json"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-09-10T03:50:49.163643932Z",
+        "osv_published": "2026-06-15T16:34:23Z",
         "package": "ws",
+        "purl": "pkg:npm/ws@7.5.10",
         "severity": "High",
         "summary": "ws: Memory exhaustion DoS from tiny fragments and data chunks",
         "url": "https://github.com/advisories/GHSA-96hv-2xvq-fx4p",
@@ -11855,15 +12608,24 @@
           "percentile": 0.73097,
           "score": 0.01426
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "8.21.0"
         ],
         "id": "GHSA-96hv-2xvq-fx4p",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "package-lock.json",
+        "locations": [
+          "package-lock.json"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-09-10T03:50:49.163643932Z",
+        "osv_published": "2026-06-15T16:34:23Z",
         "package": "ws",
+        "purl": "pkg:npm/ws@8.19.0",
         "severity": "High",
         "summary": "ws: Memory exhaustion DoS from tiny fragments and data chunks",
         "url": "https://github.com/advisories/GHSA-96hv-2xvq-fx4p",
@@ -11879,15 +12641,24 @@
           "percentile": 0.43491,
           "score": 0.00507
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "2.11.0"
         ],
         "id": "GHSA-w5vr-8v7q-w6rv",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "package-lock.json",
+        "locations": [
+          "package-lock.json"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-09-08T21:10:57.707771Z",
+        "osv_published": "2026-08-13T12:31:09Z",
         "package": "baseline-browser-mapping",
+        "purl": "pkg:npm/baseline-browser-mapping@2.10.0",
         "severity": "Medium",
         "summary": "baseline-browser-mapping process termination on invalid input causes denial of service",
         "url": "https://github.com/advisories/GHSA-w5vr-8v7q-w6rv",
@@ -11903,15 +12674,24 @@
           "percentile": 0.39116,
           "score": 0.00447
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "1.1.13"
         ],
         "id": "GHSA-f886-m6hf-6m8v",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "package-lock.json",
+        "locations": [
+          "package-lock.json"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-09-10T03:51:00.342356761Z",
+        "osv_published": "2026-03-26T18:29:42Z",
         "package": "brace-expansion",
+        "purl": "pkg:npm/brace-expansion@1.1.12",
         "severity": "Medium",
         "summary": "brace-expansion: Zero-step sequence causes process hang and memory exhaustion",
         "url": "https://github.com/advisories/GHSA-f886-m6hf-6m8v",
@@ -11927,15 +12707,24 @@
           "percentile": 0.39116,
           "score": 0.00447
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "2.0.3"
         ],
         "id": "GHSA-f886-m6hf-6m8v",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "package-lock.json",
+        "locations": [
+          "package-lock.json"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-09-10T03:51:00.342356761Z",
+        "osv_published": "2026-03-26T18:29:42Z",
         "package": "brace-expansion",
+        "purl": "pkg:npm/brace-expansion@2.0.2",
         "severity": "Medium",
         "summary": "brace-expansion: Zero-step sequence causes process hang and memory exhaustion",
         "url": "https://github.com/advisories/GHSA-f886-m6hf-6m8v",
@@ -11951,15 +12740,24 @@
           "percentile": 0.37326,
           "score": 0.00428
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "1.1.21"
         ],
         "id": "GHSA-q2hr-2g5m-vwhr",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "package-lock.json",
+        "locations": [
+          "package-lock.json"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-09-30T00:00:03.849541183Z",
+        "osv_published": "2026-09-29T23:45:39Z",
         "package": "brace-expansion",
+        "purl": "pkg:npm/brace-expansion@1.1.12",
         "severity": "Medium",
         "summary": "brace-expansion: Quadratic-time expansion of the `{a},b}` rewrite causes CPU denial of service",
         "url": "https://github.com/advisories/GHSA-q2hr-2g5m-vwhr",
@@ -11975,15 +12773,24 @@
           "percentile": 0.37326,
           "score": 0.00428
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "2.1.7"
         ],
         "id": "GHSA-q2hr-2g5m-vwhr",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "package-lock.json",
+        "locations": [
+          "package-lock.json"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-09-30T00:00:03.849541183Z",
+        "osv_published": "2026-09-29T23:45:39Z",
         "package": "brace-expansion",
+        "purl": "pkg:npm/brace-expansion@2.0.2",
         "severity": "Medium",
         "summary": "brace-expansion: Quadratic-time expansion of the `{a},b}` rewrite causes CPU denial of service",
         "url": "https://github.com/advisories/GHSA-q2hr-2g5m-vwhr",
@@ -11999,15 +12806,24 @@
           "percentile": 0.43493,
           "score": 0.00507
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "2.9.4"
         ],
         "id": "GHSA-2wm5-q62r-hmrv",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "package-lock.json",
+        "locations": [
+          "package-lock.json"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-09-08T21:00:06.239800217Z",
+        "osv_published": "2026-09-08T20:51:57Z",
         "package": "colord",
+        "purl": "pkg:npm/colord@2.9.3",
         "severity": "Medium",
         "summary": "Colord: Slow rejection of oversized malformed color strings",
         "url": "https://github.com/advisories/GHSA-2wm5-q62r-hmrv",
@@ -12023,15 +12839,24 @@
           "percentile": 0.15644,
           "score": 0.00244
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "49.0.0"
         ],
         "id": "GHSA-m2h6-j472-rp4c",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "uv.lock",
+        "locations": [
+          "uv.lock"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-09-24T15:00:04.719975807Z",
+        "osv_published": "2026-08-03T21:26:57Z",
         "package": "cryptography",
+        "purl": "pkg:pypi/cryptography@48.0.0",
         "severity": "Medium",
         "summary": "python-cryptography verifier accepts wildcard DNS names allowing escape from permittedSubtrees",
         "url": "https://github.com/advisories/GHSA-m2h6-j472-rp4c",
@@ -12047,15 +12872,24 @@
           "percentile": 0.16845,
           "score": 0.00253
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "3.1.8"
         ],
         "id": "GHSA-hrr3-gc8f-f4qj",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "package-lock.json",
+        "locations": [
+          "package-lock.json"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-09-30T00:00:04.426165475Z",
+        "osv_published": "2026-09-29T23:54:25Z",
         "package": "fast-uri",
+        "purl": "pkg:npm/fast-uri@3.1.2",
         "severity": "Medium",
         "summary": "fast-uri vulnerable to inconsistent host case normalization via percent-encoded octets",
         "url": "https://github.com/advisories/GHSA-hrr3-gc8f-f4qj",
@@ -12071,15 +12905,24 @@
           "percentile": 0.16394,
           "score": 0.0025
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "3.1.9"
         ],
         "id": "GHSA-w74x-v6f9-j3xg",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "package-lock.json",
+        "locations": [
+          "package-lock.json"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-10-23T21:45:04.896137439Z",
+        "osv_published": "2026-10-23T21:41:36Z",
         "package": "fast-uri",
+        "purl": "pkg:npm/fast-uri@3.1.2",
         "severity": "Medium",
         "summary": "fast-uri vulnerable to URI scheme spoofing via percent-encoded scheme decoding",
         "url": "https://github.com/advisories/GHSA-w74x-v6f9-j3xg",
@@ -12095,15 +12938,24 @@
           "percentile": 0.12668,
           "score": 0.0022
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "4.2.1"
         ],
         "id": "GHSA-69hj-f68j-2879",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "uv.lock",
+        "locations": [
+          "uv.lock"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-10-28T21:15:04.974667790Z",
+        "osv_published": "2026-10-28T21:08:35Z",
         "package": "filelock",
+        "purl": "pkg:pypi/filelock@3.29.0",
         "severity": "Medium",
         "summary": "filelock: UnixFileLock truncates and chmods any regular file another user renames or hard-links onto the lock path",
         "url": "https://github.com/advisories/GHSA-69hj-f68j-2879",
@@ -12119,15 +12971,24 @@
           "percentile": 0.05321,
           "score": 0.00161
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "4.2.1"
         ],
         "id": "GHSA-8mx5-7m5m-r77g",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "uv.lock",
+        "locations": [
+          "uv.lock"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-10-28T21:15:05.688436299Z",
+        "osv_published": "2026-10-28T21:08:55Z",
         "package": "filelock",
+        "purl": "pkg:pypi/filelock@3.29.0",
         "severity": "Medium",
         "summary": "filelock: WindowsFileLock ignores mode: a 0o600 lock file and the ReadWriteLock database inherit the directory ACL",
         "url": "https://github.com/advisories/GHSA-8mx5-7m5m-r77g",
@@ -12143,15 +13004,24 @@
           "percentile": 0.12303,
           "score": 0.00218
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "4.2.1"
         ],
         "id": "GHSA-cwqr-hh33-gh44",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "uv.lock",
+        "locations": [
+          "uv.lock"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-10-28T21:15:04.923553251Z",
+        "osv_published": "2026-10-28T21:08:49Z",
         "package": "filelock",
+        "purl": "pkg:pypi/filelock@3.29.0",
         "severity": "Medium",
         "summary": "filelock ReadWriteLock: a crafted lock database makes every acquire stall or hang regardless of timeout",
         "url": "https://github.com/advisories/GHSA-cwqr-hh33-gh44",
@@ -12167,15 +13037,24 @@
           "percentile": 0.02797,
           "score": 0.00132
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "4.2.1"
         ],
         "id": "GHSA-fq56-3cx3-fjxp",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "uv.lock",
+        "locations": [
+          "uv.lock"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-10-28T21:15:04.933315565Z",
+        "osv_published": "2026-10-28T21:08:08Z",
         "package": "filelock",
+        "purl": "pkg:pypi/filelock@3.29.0",
         "severity": "Medium",
         "summary": "filelock: SoftFileLock stale-lock break removes a live lock file on a reused inode number and admits two holders",
         "url": "https://github.com/advisories/GHSA-fq56-3cx3-fjxp",
@@ -12191,15 +13070,24 @@
           "percentile": 0.14157,
           "score": 0.00232
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "4.0.9"
         ],
         "id": "GHSA-j8f7-rjxc-mr56",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "uv.lock",
+        "locations": [
+          "uv.lock"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-10-28T21:15:04.169983430Z",
+        "osv_published": "2026-10-28T21:08:30Z",
         "package": "filelock",
+        "purl": "pkg:pypi/filelock@3.29.0",
         "severity": "Medium",
         "summary": "filelock: ReadWriteLock follows a symlink at the lock path into SQLite",
         "url": "https://github.com/advisories/GHSA-j8f7-rjxc-mr56",
@@ -12215,15 +13103,24 @@
           "percentile": 0.03346,
           "score": 0.0014
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "4.2.1"
         ],
         "id": "GHSA-rfpc-qcw5-3pc4",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "uv.lock",
+        "locations": [
+          "uv.lock"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-10-28T21:15:05.584943666Z",
+        "osv_published": "2026-10-28T21:08:45Z",
         "package": "filelock",
+        "purl": "pkg:pypi/filelock@3.29.0",
         "severity": "Medium",
         "summary": "filelock: SoftFileLock removes a live holder's marker when another user forges the PID in a writable marker",
         "url": "https://github.com/advisories/GHSA-rfpc-qcw5-3pc4",
@@ -12239,15 +13136,24 @@
           "percentile": 0.28872,
           "score": 0.0035
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "14.0.2"
         ],
         "id": "GHSA-3g3m-2fjr-6pw4",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "package-lock.json",
+        "locations": [
+          "package-lock.json"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-10-30T23:15:04.503965732Z",
+        "osv_published": "2026-10-30T23:09:11Z",
         "package": "glob",
+        "purl": "pkg:npm/glob@10.5.0",
         "severity": "Medium",
         "summary": "Glob: AbortSignal cancellation bypass allows post-timeout filesystem traversal",
         "url": "https://github.com/advisories/GHSA-3g3m-2fjr-6pw4",
@@ -12263,15 +13169,24 @@
           "percentile": 0.31952,
           "score": 0.00378
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "2.0.10"
         ],
         "id": "GHSA-64mm-vxmg-q3vj",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "package-lock.json",
+        "locations": [
+          "package-lock.json"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-09-10T03:50:48.473416745Z",
+        "osv_published": "2026-06-18T13:06:11Z",
         "package": "http-proxy-middleware",
+        "purl": "pkg:npm/http-proxy-middleware@2.0.9",
         "severity": "Medium",
         "summary": "http-proxy-middleware `router` host+path substring matching allows Host-header-driven backend routing bypass",
         "url": "https://github.com/advisories/GHSA-64mm-vxmg-q3vj",
@@ -12287,15 +13202,24 @@
           "percentile": 0.4466,
           "score": 0.00524
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "17.13.4"
         ],
         "id": "GHSA-q7cg-457f-vx79",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "package-lock.json",
+        "locations": [
+          "package-lock.json"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-09-10T03:50:50.203035766Z",
+        "osv_published": "2026-06-11T13:27:32Z",
         "package": "joi",
+        "purl": "pkg:npm/joi@17.13.3",
         "severity": "Medium",
         "summary": "joi has an uncaught RangeError on deeply nested input through recursive `link()` schemas",
         "url": "https://github.com/advisories/GHSA-q7cg-457f-vx79",
@@ -12311,15 +13235,24 @@
           "percentile": 0.33246,
           "score": 0.00389
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "17.13.8"
         ],
         "id": "GHSA-wr44-6hxh-3jwq",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "package-lock.json",
+        "locations": [
+          "package-lock.json"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-10-05T23:45:08.228760837Z",
+        "osv_published": "2026-09-13T12:31:12Z",
         "package": "joi",
+        "purl": "pkg:npm/joi@17.13.3",
         "severity": "Medium",
         "summary": "joi messages compilation allows prototype replacement through __proto__ error codes",
         "url": "https://github.com/advisories/GHSA-wr44-6hxh-3jwq",
@@ -12335,15 +13268,24 @@
           "percentile": 0.36107,
           "score": 0.00415
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "4.2.0"
         ],
         "id": "GHSA-h67p-54hq-rp68",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "package-lock.json",
+        "locations": [
+          "package-lock.json"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-09-10T03:50:49.729923880Z",
+        "osv_published": "2026-06-15T17:15:07Z",
         "package": "js-yaml",
+        "purl": "pkg:npm/js-yaml@4.1.1",
         "severity": "Medium",
         "summary": "JS-YAML: Quadratic-complexity DoS in merge key handling via repeated aliases",
         "url": "https://github.com/advisories/GHSA-h67p-54hq-rp68",
@@ -12359,15 +13301,24 @@
           "percentile": 0.35982,
           "score": 0.00414
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "2.14.2"
         ],
         "id": "GHSA-698v-4r3x-3vcv",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "package-lock.json",
+        "locations": [
+          "package-lock.json"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-10-20T18:45:09.467993691Z",
+        "osv_published": "2026-10-20T18:30:24Z",
         "package": "launch-editor",
+        "purl": "pkg:npm/launch-editor@2.13.1",
         "severity": "Medium",
         "summary": "launch-editor: escapeCmdArgs() omits % escaping on Windows",
         "url": "https://github.com/advisories/GHSA-698v-4r3x-3vcv",
@@ -12383,15 +13334,24 @@
           "percentile": 0.536,
           "score": 0.00705
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "2.14.2"
         ],
         "id": "GHSA-r825-w8mm-5pxw",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "package-lock.json",
+        "locations": [
+          "package-lock.json"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-10-20T20:00:04.608907013Z",
+        "osv_published": "2026-10-20T19:51:52Z",
         "package": "launch-editor",
+        "purl": "pkg:npm/launch-editor@2.13.1",
         "severity": "Medium",
         "summary": "launch-editor: Editor CLI flag misinterpretation causing arbitrary command execution for some editors",
         "url": "https://github.com/advisories/GHSA-r825-w8mm-5pxw",
@@ -12407,15 +13367,24 @@
           "percentile": 0.35366,
           "score": 0.00408
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "2.14.1"
         ],
         "id": "GHSA-v6wh-96g9-6wx3",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "package-lock.json",
+        "locations": [
+          "package-lock.json"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-09-10T03:50:50.705036566Z",
+        "osv_published": "2026-06-15T17:18:31Z",
         "package": "launch-editor",
+        "purl": "pkg:npm/launch-editor@2.13.1",
         "severity": "Medium",
         "summary": "launch-editor: NTLMv2 hash disclosure via UNC path handling on Windows",
         "url": "https://github.com/advisories/GHSA-v6wh-96g9-6wx3",
@@ -12425,15 +13394,24 @@
         "aliases": [],
         "ecosystem": "npm",
         "epss": null,
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "14.3.1"
         ],
         "id": "GHSA-253c-mchw-3w2r",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "package-lock.json",
+        "locations": [
+          "package-lock.json"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-09-29T18:15:04.692324591Z",
+        "osv_published": "2026-09-29T17:57:56Z",
         "package": "markdown-it",
+        "purl": "pkg:npm/markdown-it@14.1.1",
         "severity": "Medium",
         "summary": "markdown-it linkify: true has two quadratic paths, so a few hundred KB of markdown blocks the event loop for tens of seconds",
         "url": "https://github.com/advisories/GHSA-253c-mchw-3w2r",
@@ -12449,15 +13427,24 @@
           "percentile": 0.32056,
           "score": 0.00379
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "14.2.0"
         ],
         "id": "GHSA-6v5v-wf23-fmfq",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "package-lock.json",
+        "locations": [
+          "package-lock.json"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-09-10T03:51:08.074107342Z",
+        "osv_published": "2026-06-15T20:41:06Z",
         "package": "markdown-it",
+        "purl": "pkg:npm/markdown-it@14.1.1",
         "severity": "Medium",
         "summary": "markdown-it: Quadratic complexity DoS in smartquotes rule via replaceAt string operations",
         "url": "https://github.com/advisories/GHSA-6v5v-wf23-fmfq",
@@ -12473,15 +13460,24 @@
           "percentile": 0.23009,
           "score": 0.00301
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "11.0.1"
         ],
         "id": "GHSA-g3hv-75wg-m249",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "package-lock.json",
+        "locations": [
+          "package-lock.json"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-11-04T17:01:25.850114200Z",
+        "osv_published": "2026-10-30T23:09:55Z",
         "package": "minimatch",
+        "purl": "pkg:npm/minimatch@9.0.9",
         "severity": "Medium",
         "summary": "minimatch has potential denial of service via globparts amplification",
         "url": "https://github.com/advisories/GHSA-g3hv-75wg-m249",
@@ -12497,15 +13493,24 @@
           "percentile": 0.25937,
           "score": 0.00327
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "9.7.7"
         ],
         "id": "GHSA-xvg9-69gf-fjrf",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "uv.lock",
+        "locations": [
+          "uv.lock"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-09-10T12:25:56.104424230Z",
+        "osv_published": "2026-09-03T19:52:32Z",
         "package": "mkdocs-material",
+        "purl": "pkg:pypi/mkdocs-material@9.7.6",
         "severity": "Medium",
         "summary": "Material for MkDocs: DOM XSS in search suggestions via query parameter",
         "url": "https://github.com/advisories/GHSA-xvg9-69gf-fjrf",
@@ -12521,15 +13526,24 @@
           "percentile": 0.10406,
           "score": 0.00204
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "1.4.1"
         ],
         "id": "GHSA-525v-9gp9-w22h",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "package-lock.json",
+        "locations": [
+          "package-lock.json"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-10-30T23:15:06.416126647Z",
+        "osv_published": "2026-10-30T23:02:30Z",
         "package": "node-forge",
+        "purl": "pkg:npm/node-forge@1.4.0",
         "severity": "Medium",
         "summary": "Forge: TLS client crash when the server sends no certificate",
         "url": "https://github.com/advisories/GHSA-525v-9gp9-w22h",
@@ -12545,15 +13559,24 @@
           "percentile": 0.1074,
           "score": 0.00206
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "1.4.1"
         ],
         "id": "GHSA-5cwg-6vw7-rj6p",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "package-lock.json",
+        "locations": [
+          "package-lock.json"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-10-30T23:15:05.406416680Z",
+        "osv_published": "2026-10-30T23:02:09Z",
         "package": "node-forge",
+        "purl": "pkg:npm/node-forge@1.4.0",
         "severity": "Medium",
         "summary": "Forge: AES-GCM authentication bypass via unvalidated tagLength option",
         "url": "https://github.com/advisories/GHSA-5cwg-6vw7-rj6p",
@@ -12569,15 +13592,24 @@
           "percentile": 0.20074,
           "score": 0.00275
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "1.4.1"
         ],
         "id": "GHSA-6wvx-3r32-xmcg",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "package-lock.json",
+        "locations": [
+          "package-lock.json"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-10-30T23:15:05.413239324Z",
+        "osv_published": "2026-10-30T23:02:35Z",
         "package": "node-forge",
+        "purl": "pkg:npm/node-forge@1.4.0",
         "severity": "Medium",
         "summary": "Forge: Prototype Pollution in forge.http cookie handling via a malicious Set-Cookie",
         "url": "https://github.com/advisories/GHSA-6wvx-3r32-xmcg",
@@ -12593,15 +13625,24 @@
           "percentile": 0.62238,
           "score": 0.00973
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "8.4.31"
         ],
         "id": "GHSA-7fh5-64p2-3v2j",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "package-lock.json",
+        "locations": [
+          "package-lock.json"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-09-10T03:49:57.862104145Z",
+        "osv_published": "2023-09-30T00:31:10Z",
         "package": "postcss",
+        "purl": "pkg:npm/postcss@7.0.39",
         "severity": "Medium",
         "summary": "PostCSS line return parsing error",
         "url": "https://github.com/advisories/GHSA-7fh5-64p2-3v2j",
@@ -12617,15 +13658,24 @@
           "percentile": 0.39421,
           "score": 0.00451
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "8.5.23"
         ],
         "id": "GHSA-fxqj-rqcc-2cmp",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "package-lock.json",
+        "locations": [
+          "package-lock.json"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-09-10T03:50:53.572374167Z",
+        "osv_published": "2026-08-03T17:11:39Z",
         "package": "postcss",
+        "purl": "pkg:npm/postcss@7.0.39",
         "severity": "Medium",
         "summary": "PostCSS: incomplete fix of GHSA-6g55-p6wh-862q \u2014 attacker-controlled sourceMappingURL reads arbitrary .map files when `from` is unset",
         "url": "https://github.com/advisories/GHSA-fxqj-rqcc-2cmp",
@@ -12641,15 +13691,24 @@
           "percentile": 0.39421,
           "score": 0.00451
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "8.5.23"
         ],
         "id": "GHSA-fxqj-rqcc-2cmp",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "package-lock.json",
+        "locations": [
+          "package-lock.json"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-09-10T03:50:53.572374167Z",
+        "osv_published": "2026-08-03T17:11:39Z",
         "package": "postcss",
+        "purl": "pkg:npm/postcss@8.5.6",
         "severity": "Medium",
         "summary": "PostCSS: incomplete fix of GHSA-6g55-p6wh-862q \u2014 attacker-controlled sourceMappingURL reads arbitrary .map files when `from` is unset",
         "url": "https://github.com/advisories/GHSA-fxqj-rqcc-2cmp",
@@ -12665,15 +13724,24 @@
           "percentile": 0.10525,
           "score": 0.00205
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "8.5.10"
         ],
         "id": "GHSA-qx2v-qp2m-jg93",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "package-lock.json",
+        "locations": [
+          "package-lock.json"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-09-10T03:51:02.916463871Z",
+        "osv_published": "2026-04-24T15:31:42Z",
         "package": "postcss",
+        "purl": "pkg:npm/postcss@7.0.39",
         "severity": "Medium",
         "summary": "PostCSS has XSS via Unescaped </style> in its CSS Stringify Output",
         "url": "https://github.com/advisories/GHSA-qx2v-qp2m-jg93",
@@ -12689,15 +13757,24 @@
           "percentile": 0.10525,
           "score": 0.00205
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "8.5.10"
         ],
         "id": "GHSA-qx2v-qp2m-jg93",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "package-lock.json",
+        "locations": [
+          "package-lock.json"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-09-10T03:51:02.916463871Z",
+        "osv_published": "2026-04-24T15:31:42Z",
         "package": "postcss",
+        "purl": "pkg:npm/postcss@8.5.6",
         "severity": "Medium",
         "summary": "PostCSS has XSS via Unescaped </style> in its CSS Stringify Output",
         "url": "https://github.com/advisories/GHSA-qx2v-qp2m-jg93",
@@ -12713,15 +13790,24 @@
           "percentile": 0.33213,
           "score": 0.00389
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "6.1.5"
         ],
         "id": "GHSA-rj75-hqrm-r3gf",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "package-lock.json",
+        "locations": [
+          "package-lock.json"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-10-26T14:16:59.921540799Z",
+        "osv_published": "2026-10-05T22:53:54Z",
         "package": "postcss-selector-parser",
+        "purl": "pkg:npm/postcss-selector-parser@6.1.2",
         "severity": "Medium",
         "summary": "PostCSS: Quadratic complexity in flat selector parsing allows CPU exhaustion",
         "url": "https://github.com/advisories/GHSA-rj75-hqrm-r3gf",
@@ -12737,15 +13823,24 @@
           "percentile": 0.33213,
           "score": 0.00389
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "7.1.6"
         ],
         "id": "GHSA-rj75-hqrm-r3gf",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "package-lock.json",
+        "locations": [
+          "package-lock.json"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-10-26T14:16:59.921540799Z",
+        "osv_published": "2026-10-05T22:53:54Z",
         "package": "postcss-selector-parser",
+        "purl": "pkg:npm/postcss-selector-parser@7.1.1",
         "severity": "Medium",
         "summary": "PostCSS: Quadratic complexity in flat selector parsing allows CPU exhaustion",
         "url": "https://github.com/advisories/GHSA-rj75-hqrm-r3gf",
@@ -12761,15 +13856,24 @@
           "percentile": 0.34809,
           "score": 0.00403
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "11.0.0"
         ],
         "id": "GHSA-9xwg-3r6f-jcx2",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "uv.lock",
+        "locations": [
+          "uv.lock"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-09-10T03:51:11.365684709Z",
+        "osv_published": "2026-07-24T16:18:33Z",
         "package": "pymdown-extensions",
+        "purl": "pkg:pypi/pymdown-extensions@10.21.3",
         "severity": "Medium",
         "summary": "PyMdown Extensions: Path traversal in the b64 extension lets <img src> read files outside base_path",
         "url": "https://github.com/advisories/GHSA-9xwg-3r6f-jcx2",
@@ -12785,15 +13889,24 @@
           "percentile": 0.34031,
           "score": 0.00396
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "6.16.0"
         ],
         "id": "GHSA-4mjr-xmp4-gh2g",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "package-lock.json",
+        "locations": [
+          "package-lock.json"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-09-10T03:51:14.991984096Z",
+        "osv_published": "2026-09-02T14:45:13Z",
         "package": "qs",
+        "purl": "pkg:npm/qs@6.15.2",
         "severity": "Medium",
         "summary": "qs: Denial of Service via Attacker Controlled isBuffer",
         "url": "https://github.com/advisories/GHSA-4mjr-xmp4-gh2g",
@@ -12809,15 +13922,24 @@
           "percentile": 0.30881,
           "score": 0.00368
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "6.16.1"
         ],
         "id": "GHSA-6pq8-jhm2-2vcw",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "package-lock.json",
+        "locations": [
+          "package-lock.json"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-10-27T16:15:05.324423680Z",
+        "osv_published": "2026-10-27T16:10:55Z",
         "package": "qs",
+        "purl": "pkg:npm/qs@6.15.2",
         "severity": "Medium",
         "summary": "qs : qs.stringify with arrayFormat 'comma' throws an uncaught TypeError on array elements carrying a non-callable own toString (DoS)",
         "url": "https://github.com/advisories/GHSA-6pq8-jhm2-2vcw",
@@ -12833,15 +13955,24 @@
           "percentile": 0.45675,
           "score": 0.0054
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "6.16.0"
         ],
         "id": "GHSA-x5fp-wj9c-mxmx",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "package-lock.json",
+        "locations": [
+          "package-lock.json"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-09-10T03:50:54.569331980Z",
+        "osv_published": "2026-09-02T14:46:57Z",
         "package": "qs",
+        "purl": "pkg:npm/qs@6.15.2",
         "severity": "Medium",
         "summary": "qs array-limit bypass via bracket-key comma parsing",
         "url": "https://github.com/advisories/GHSA-x5fp-wj9c-mxmx",
@@ -12857,15 +13988,24 @@
           "percentile": 0.42437,
           "score": 0.00491
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "7.0.5"
         ],
         "id": "GHSA-qj8w-gfj5-8c6v",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "package-lock.json",
+        "locations": [
+          "package-lock.json"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-09-10T03:50:40.557735802Z",
+        "osv_published": "2026-03-27T18:18:54Z",
         "package": "serialize-javascript",
+        "purl": "pkg:npm/serialize-javascript@6.0.2",
         "severity": "Medium",
         "summary": "Serialize JavaScript has CPU Exhaustion Denial of Service via crafted array-like objects",
         "url": "https://github.com/advisories/GHSA-qj8w-gfj5-8c6v",
@@ -12881,15 +14021,24 @@
           "percentile": 0.49412,
           "score": 0.00609
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "2.9.0"
         ],
         "id": "GHSA-gjv8-xp57-g29c",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "uv.lock",
+        "locations": [
+          "uv.lock"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-10-01T17:56:08.291385035Z",
+        "osv_published": "2026-09-17T20:32:58Z",
         "package": "soupsieve",
+        "purl": "pkg:pypi/soupsieve@2.8.3",
         "severity": "Medium",
         "summary": "Soup Sieve: Polynomial-time ReDoS (O(n\u00b2)) in the `IDENTIFIER` / `VALUE` selector sub-patterns",
         "url": "https://github.com/advisories/GHSA-gjv8-xp57-g29c",
@@ -12905,15 +14054,24 @@
           "percentile": 0.49411,
           "score": 0.00609
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "2.9.0"
         ],
         "id": "GHSA-j934-xhv5-fg8f",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "uv.lock",
+        "locations": [
+          "uv.lock"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-10-01T17:56:03.541286563Z",
+        "osv_published": "2026-09-17T20:32:53Z",
         "package": "soupsieve",
+        "purl": "pkg:pypi/soupsieve@2.8.3",
         "severity": "Medium",
         "summary": "Soup Sieve: Polynomial-time ReDoS (O(n\u00b2)) in the whitespace/comment trimming regex `RE_WS_END` (triggers on VALID selectors)",
         "url": "https://github.com/advisories/GHSA-j934-xhv5-fg8f",
@@ -12929,15 +14087,24 @@
           "percentile": 0.37429,
           "score": 0.0043
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "2.8.4"
         ],
         "id": "GHSA-4vpr-x523-8j87",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "package-lock.json",
+        "locations": [
+          "package-lock.json"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-09-08T21:30:05.558835894Z",
+        "osv_published": "2026-09-08T21:20:05Z",
         "package": "svgo",
+        "purl": "pkg:npm/svgo@2.8.2",
         "severity": "Medium",
         "summary": "SVGO: removeScripts incompletely sanitizes executable HTML in SVG foreignObject elements",
         "url": "https://github.com/advisories/GHSA-4vpr-x523-8j87",
@@ -12953,15 +14120,24 @@
           "percentile": 0.21874,
           "score": 0.00292
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "2.8.0"
         ],
         "id": "GHSA-gh4c-6fx4-qh6g",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "uv.lock",
+        "locations": [
+          "uv.lock"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-10-01T17:55:40.608255720Z",
+        "osv_published": "2026-09-30T15:00:38Z",
         "package": "urllib3",
+        "purl": "pkg:pypi/urllib3@2.7.0",
         "severity": "Medium",
         "summary": "urllib3: Chunked Deflate streaming can enter an infinite loop",
         "url": "https://github.com/advisories/GHSA-gh4c-6fx4-qh6g",
@@ -12977,15 +14153,24 @@
           "percentile": 0.28798,
           "score": 0.0035
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "11.1.1"
         ],
         "id": "GHSA-w5hq-g745-h8pq",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "package-lock.json",
+        "locations": [
+          "package-lock.json"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-09-10T03:51:03.663336650Z",
+        "osv_published": "2026-04-22T20:53:24Z",
         "package": "uuid",
+        "purl": "pkg:npm/uuid@8.3.2",
         "severity": "Medium",
         "summary": "uuid: Missing buffer bounds check in v3/v5/v6 when buf is provided",
         "url": "https://github.com/advisories/GHSA-w5hq-g745-h8pq",
@@ -13001,15 +14186,24 @@
           "percentile": 0.48869,
           "score": 0.00598
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "5.2.1"
         ],
         "id": "GHSA-4v9v-hfq4-rm2v",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "package-lock.json",
+        "locations": [
+          "package-lock.json"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-09-10T03:50:24.784004995Z",
+        "osv_published": "2025-06-04T21:09:13Z",
         "package": "webpack-dev-server",
+        "purl": "pkg:npm/webpack-dev-server@4.15.2",
         "severity": "Medium",
         "summary": "webpack-dev-server users' source code may be stolen when they access a malicious web site",
         "url": "https://github.com/advisories/GHSA-4v9v-hfq4-rm2v",
@@ -13025,15 +14219,24 @@
           "percentile": 0.21821,
           "score": 0.00291
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "5.2.4"
         ],
         "id": "GHSA-79cf-xcqc-c78w",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "package-lock.json",
+        "locations": [
+          "package-lock.json"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-09-10T03:50:46.202661971Z",
+        "osv_published": "2026-05-18T13:31:42Z",
         "package": "webpack-dev-server",
+        "purl": "pkg:npm/webpack-dev-server@4.15.2",
         "severity": "Medium",
         "summary": "webpack-dev-server vulnerable to cross-origin source code exposure on non-HTTPS origins",
         "url": "https://github.com/advisories/GHSA-79cf-xcqc-c78w",
@@ -13049,15 +14252,24 @@
           "percentile": 0.29658,
           "score": 0.00357
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "5.2.1"
         ],
         "id": "GHSA-9jgg-88mc-972h",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "package-lock.json",
+        "locations": [
+          "package-lock.json"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-09-10T03:50:25.088634204Z",
+        "osv_published": "2025-06-04T21:09:38Z",
         "package": "webpack-dev-server",
+        "purl": "pkg:npm/webpack-dev-server@4.15.2",
         "severity": "Medium",
         "summary": "webpack-dev-server users' source code may be stolen when they access a malicious web site with non-Chromium based browser",
         "url": "https://github.com/advisories/GHSA-9jgg-88mc-972h",
@@ -13073,15 +14285,24 @@
           "percentile": 0.44477,
           "score": 0.00521
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "5.2.6"
         ],
         "id": "GHSA-f5vj-f2hx-8m93",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "package-lock.json",
+        "locations": [
+          "package-lock.json"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-09-10T03:50:51.837057467Z",
+        "osv_published": "2026-07-20T22:01:56Z",
         "package": "webpack-dev-server",
+        "purl": "pkg:npm/webpack-dev-server@4.15.2",
         "severity": "Medium",
         "summary": "webpack-dev-server vulnerable to cross-site request forgery via internal developer endpoints",
         "url": "https://github.com/advisories/GHSA-f5vj-f2hx-8m93",
@@ -13097,15 +14318,24 @@
           "percentile": 0.44207,
           "score": 0.00517
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "5.2.6"
         ],
         "id": "GHSA-m28w-2pqf-7qgj",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "package-lock.json",
+        "locations": [
+          "package-lock.json"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-09-10T03:50:52.455906127Z",
+        "osv_published": "2026-07-20T22:02:31Z",
         "package": "webpack-dev-server",
+        "purl": "pkg:npm/webpack-dev-server@4.15.2",
         "severity": "Medium",
         "summary": "webpack-dev-server vulnerable to denial of service via a malformed Host or Origin header",
         "url": "https://github.com/advisories/GHSA-m28w-2pqf-7qgj",
@@ -13121,15 +14351,24 @@
           "percentile": 0.05512,
           "score": 0.00163
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "5.2.5"
         ],
         "id": "GHSA-mx8g-39q3-5c79",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "package-lock.json",
+        "locations": [
+          "package-lock.json"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-09-10T03:51:09.136558749Z",
+        "osv_published": "2026-06-17T18:13:31Z",
         "package": "webpack-dev-server",
+        "purl": "pkg:npm/webpack-dev-server@4.15.2",
         "severity": "Medium",
         "summary": "webpack-dev-server vulnerable to HMR WebSocket interception via permissive user proxies",
         "url": "https://github.com/advisories/GHSA-mx8g-39q3-5c79",
@@ -13145,15 +14384,24 @@
           "percentile": 0.38903,
           "score": 0.00445
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "0.7.5"
         ],
         "id": "GHSA-mp7j-qc5w-4988",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "package-lock.json",
+        "locations": [
+          "package-lock.json"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-09-10T03:50:52.769661814Z",
+        "osv_published": "2026-07-15T22:08:17Z",
         "package": "websocket-driver",
+        "purl": "pkg:npm/websocket-driver@0.7.4",
         "severity": "Medium",
         "summary": "websocket-driver: Resource limit bypass via message compression",
         "url": "https://github.com/advisories/GHSA-mp7j-qc5w-4988",
@@ -13169,15 +14417,24 @@
           "percentile": 0.31095,
           "score": 0.0037
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "3.1.9"
         ],
         "id": "GHSA-g6x2-hccm-hh4m",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "uv.lock",
+        "locations": [
+          "uv.lock"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-10-15T14:56:11.020811348Z",
+        "osv_published": "2026-10-05T23:48:39Z",
         "package": "werkzeug",
+        "purl": "pkg:pypi/werkzeug@3.1.8",
         "severity": "Medium",
         "summary": "Werkzeug safe_join() allows Windows special device names",
         "url": "https://github.com/advisories/GHSA-g6x2-hccm-hh4m",
@@ -13193,15 +14450,24 @@
           "percentile": 0.55028,
           "score": 0.00745
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "8.20.1"
         ],
         "id": "GHSA-58qx-3vcg-4xpx",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "package-lock.json",
+        "locations": [
+          "package-lock.json"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-09-10T03:51:04.572514669Z",
+        "osv_published": "2026-05-18T19:02:40Z",
         "package": "ws",
+        "purl": "pkg:npm/ws@8.19.0",
         "severity": "Medium",
         "summary": "ws: Uninitialized memory disclosure",
         "url": "https://github.com/advisories/GHSA-58qx-3vcg-4xpx",
@@ -13217,15 +14483,24 @@
           "percentile": 0.04353,
           "score": 0.00152
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "7.29.6"
         ],
         "id": "GHSA-4x5r-pxfx-6jf8",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "package-lock.json",
+        "locations": [
+          "package-lock.json"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-09-10T03:50:48.280629201Z",
+        "osv_published": "2026-06-15T17:14:14Z",
         "package": "@babel/core",
+        "purl": "pkg:npm/%40babel/core@7.29.0",
         "severity": "Low",
         "summary": "@babel/core: Arbitrary File Read via sourceMappingURL Comment",
         "url": "https://github.com/advisories/GHSA-4x5r-pxfx-6jf8",
@@ -13241,15 +14516,24 @@
           "percentile": 0.35731,
           "score": 0.00412
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "1.20.6"
         ],
         "id": "GHSA-v422-hmwv-36x6",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "package-lock.json",
+        "locations": [
+          "package-lock.json"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-09-10T03:50:53.014509971Z",
+        "osv_published": "2026-07-20T23:23:26Z",
         "package": "body-parser",
+        "purl": "pkg:npm/body-parser@1.20.5",
         "severity": "Low",
         "summary": "body-parser vulnerable to denial of service when invalid limit value silently disables size enforcement",
         "url": "https://github.com/advisories/GHSA-v422-hmwv-36x6",
@@ -13265,15 +14549,24 @@
           "percentile": 0.49786,
           "score": 0.00616
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "8.0.3"
         ],
         "id": "GHSA-73rr-hh4g-fpgx",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "package-lock.json",
+        "locations": [
+          "package-lock.json"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-09-10T03:50:32.703687207Z",
+        "osv_published": "2026-01-14T21:34:12Z",
         "package": "diff",
+        "purl": "pkg:npm/diff@7.0.0",
         "severity": "Low",
         "summary": "jsdiff has a Denial of Service vulnerability in parsePatch and applyPatch",
         "url": "https://github.com/advisories/GHSA-73rr-hh4g-fpgx",
@@ -13289,15 +14582,24 @@
           "percentile": 0.23115,
           "score": 0.00302
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "3.1.9"
         ],
         "id": "GHSA-333x-w4r6-6crp",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "package-lock.json",
+        "locations": [
+          "package-lock.json"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-10-23T21:45:04.900311356Z",
+        "osv_published": "2026-10-23T21:36:40Z",
         "package": "fast-uri",
+        "purl": "pkg:npm/fast-uri@3.1.2",
         "severity": "Low",
         "summary": "fast-uri vulnerable to scheme injection via an unescaped first-segment colon in suffix references",
         "url": "https://github.com/advisories/GHSA-333x-w4r6-6crp",
@@ -13313,15 +14615,24 @@
           "percentile": 0.21629,
           "score": 0.00289
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "3.1.9"
         ],
         "id": "GHSA-xhq7-xmqj-769h",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "package-lock.json",
+        "locations": [
+          "package-lock.json"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-10-23T21:45:04.902389903Z",
+        "osv_published": "2026-10-23T21:39:34Z",
         "package": "fast-uri",
+        "purl": "pkg:npm/fast-uri@3.1.2",
         "severity": "Low",
         "summary": "fast-uri vulnerable to improper path equivalence in relative reference normalization",
         "url": "https://github.com/advisories/GHSA-xhq7-xmqj-769h",
@@ -13337,15 +14648,24 @@
           "percentile": 0.0103,
           "score": 0.00104
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "4.2.1"
         ],
         "id": "GHSA-567q-5qvw-pf92",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "uv.lock",
+        "locations": [
+          "uv.lock"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-10-23T22:45:03.452878321Z",
+        "osv_published": "2026-10-23T22:27:32Z",
         "package": "filelock",
+        "purl": "pkg:pypi/filelock@3.29.0",
         "severity": "Low",
         "summary": "filelock: On Windows an oplock on a soft lock's marker holds SoftFileLock.acquire() past its timeout and blocks the stale break",
         "url": "https://github.com/advisories/GHSA-567q-5qvw-pf92",
@@ -13361,15 +14681,24 @@
           "percentile": 0.01713,
           "score": 0.00118
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "4.2.1"
         ],
         "id": "GHSA-9vhv-jxww-xfm5",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "uv.lock",
+        "locations": [
+          "uv.lock"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-10-23T22:45:03.439584635Z",
+        "osv_published": "2026-10-23T22:28:19Z",
         "package": "filelock",
+        "purl": "pkg:pypi/filelock@3.29.0",
         "severity": "Low",
         "summary": "filelock: ReadWriteLock on Windows acts on SQLite side files another local user places beside its database",
         "url": "https://github.com/advisories/GHSA-9vhv-jxww-xfm5",
@@ -13385,15 +14714,24 @@
           "percentile": 0.33246,
           "score": 0.00389
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "17.13.6"
         ],
         "id": "GHSA-6w3j-5fw6-r9vr",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "package-lock.json",
+        "locations": [
+          "package-lock.json"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-11-05T10:55:49.405863204Z",
+        "osv_published": "2026-09-08T20:55:58Z",
         "package": "joi",
+        "purl": "pkg:npm/joi@17.13.3",
         "severity": "Low",
         "summary": "joi: Prototype pollution via a `__proto__` language key in custom messages",
         "url": "https://github.com/advisories/GHSA-6w3j-5fw6-r9vr",
@@ -13409,15 +14747,24 @@
           "percentile": 0.33246,
           "score": 0.00389
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "17.13.5"
         ],
         "id": "GHSA-gg4h-3hg2-grpc",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "package-lock.json",
+        "locations": [
+          "package-lock.json"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-09-08T21:00:05.097709715Z",
+        "osv_published": "2026-09-08T20:51:21Z",
         "package": "joi",
+        "purl": "pkg:npm/joi@17.13.3",
         "severity": "Low",
         "summary": "joi: object().rename() with a template target can set the validated object's prototype",
         "url": "https://github.com/advisories/GHSA-gg4h-3hg2-grpc",
@@ -13433,15 +14780,24 @@
           "percentile": 0.37265,
           "score": 0.00428
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "14.3.3"
         ],
         "id": "GHSA-vfgh-jcmw-g37q",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "package-lock.json",
+        "locations": [
+          "package-lock.json"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-10-20T20:15:05.220039200Z",
+        "osv_published": "2026-10-20T20:08:19Z",
         "package": "markdown-it",
+        "purl": "pkg:npm/markdown-it@14.1.1",
         "severity": "Low",
         "summary": "markdown-it: Quadratic-time denial of service in inline HTML parsing with html enabled",
         "url": "https://github.com/advisories/GHSA-vfgh-jcmw-g37q",
@@ -13457,15 +14813,24 @@
           "percentile": 0.06647,
           "score": 0.00172
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "1.4.1"
         ],
         "id": "GHSA-4487-j8r4-4g2f",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "package-lock.json",
+        "locations": [
+          "package-lock.json"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-10-30T23:15:05.499229226Z",
+        "osv_published": "2026-10-30T23:02:14Z",
         "package": "node-forge",
+        "purl": "pkg:npm/node-forge@1.4.0",
         "severity": "Low",
         "summary": "Forge: verifyCertificateChain() removes trusted CA certificates with the same subject from the CA store",
         "url": "https://github.com/advisories/GHSA-4487-j8r4-4g2f",
@@ -13481,15 +14846,24 @@
           "percentile": 0.24268,
           "score": 0.00312
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "1.4.1"
         ],
         "id": "GHSA-4642-5mcj-2rqw",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "package-lock.json",
+        "locations": [
+          "package-lock.json"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-10-30T23:15:04.474856550Z",
+        "osv_published": "2026-10-30T23:02:40Z",
         "package": "node-forge",
+        "purl": "pkg:npm/node-forge@1.4.0",
         "severity": "Low",
         "summary": "Forge: ASN.1 OID first arc truncation in asn1.oidToDer",
         "url": "https://github.com/advisories/GHSA-4642-5mcj-2rqw",
@@ -13505,15 +14879,24 @@
           "percentile": 0.01758,
           "score": 0.00119
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "1.4.1"
         ],
         "id": "GHSA-h6cr-wjv9-3cpp",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "package-lock.json",
+        "locations": [
+          "package-lock.json"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-10-30T23:15:04.479846783Z",
+        "osv_published": "2026-10-30T23:02:20Z",
         "package": "node-forge",
+        "purl": "pkg:npm/node-forge@1.4.0",
         "severity": "Low",
         "summary": "Forge: Denial of Service via infinite loop in BigInteger.modInverse() with negative input (incomplete fix of CVE-2026-33891)",
         "url": "https://github.com/advisories/GHSA-h6cr-wjv9-3cpp",
@@ -13529,15 +14912,24 @@
           "percentile": 0.25733,
           "score": 0.00325
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "6.1.3"
         ],
         "id": "GHSA-w9m9-85wc-3x92",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "package-lock.json",
+        "locations": [
+          "package-lock.json"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-09-10T03:50:47.767644603Z",
+        "osv_published": "2026-05-26T13:30:30Z",
         "package": "postcss-selector-parser",
+        "purl": "pkg:npm/postcss-selector-parser@6.1.2",
         "severity": "Low",
         "summary": "postcss-selector-parser allows denial of service through uncontrolled AST recursion",
         "url": "https://github.com/advisories/GHSA-w9m9-85wc-3x92",
@@ -13553,15 +14945,24 @@
           "percentile": 0.25733,
           "score": 0.00325
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "7.1.3"
         ],
         "id": "GHSA-w9m9-85wc-3x92",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "package-lock.json",
+        "locations": [
+          "package-lock.json"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-09-10T03:50:47.767644603Z",
+        "osv_published": "2026-05-26T13:30:30Z",
         "package": "postcss-selector-parser",
+        "purl": "pkg:npm/postcss-selector-parser@7.1.1",
         "severity": "Low",
         "summary": "postcss-selector-parser allows denial of service through uncontrolled AST recursion",
         "url": "https://github.com/advisories/GHSA-w9m9-85wc-3x92",
@@ -13577,15 +14978,24 @@
           "percentile": 0.23617,
           "score": 0.00307
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "7.1.3"
         ],
         "id": "GHSA-m5mm-p8h7-m29v",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "package-lock.json",
+        "locations": [
+          "package-lock.json"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-10-24T02:55:55.507718062Z",
+        "osv_published": "2026-10-23T22:09:52Z",
         "package": "serialize-javascript",
+        "purl": "pkg:npm/serialize-javascript@6.0.2",
         "severity": "Low",
         "summary": "Serialize JavaScript: Cross-site scripting (XSS) via unescaped </script at the end of a serialized function body",
         "url": "https://github.com/advisories/GHSA-m5mm-p8h7-m29v",

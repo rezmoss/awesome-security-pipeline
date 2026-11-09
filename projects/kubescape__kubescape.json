@@ -83,20 +83,32 @@
       }
     },
     {
-      "added": 14,
+      "added": 15,
+      "advisory_state": "ok",
       "commit": "ec65d3184f6bab7d1ad6e5db9d970d452316d253",
       "date": "2026-11-08",
       "dependencies": 654,
+      "dependency_state": "ok",
+      "downgraded": 0,
       "errors": [],
+      "file_changes": 3,
       "fixable": 10,
       "go_version": "go1.27.0",
       "in_binary": {
         "dependencies": 8,
+        "records": 22,
         "stdlib": 12,
         "total": 20
       },
+      "in_binary_new": 9,
+      "in_binary_resolved": 1,
       "kev": 1,
-      "kev_new": 1,
+      "kev_new": 0,
+      "kev_new_match": 1,
+      "license_changes": 0,
+      "method": "sbomlyze-occurrence-v1",
+      "moved": 0,
+      "new_advisories": 5,
       "new_vulnerabilities": 5,
       "osv_confirmed": 19,
       "osv_only": 3,
@@ -104,11 +116,13 @@
       "release_changed": true,
       "release_integrity": "verified",
       "removed": 4,
+      "resolved_advisories": 5,
       "resolved_vulnerabilities": 5,
       "scorecard": 7.8,
       "scorecard_date": "2026-11-07",
       "scorecard_note": null,
       "scorecard_source": "openssf-api",
+      "unknown_direction": 0,
       "upgraded": 26,
       "vulnerabilities": {
         "Critical": 1,
@@ -124,7 +138,9 @@
         "Low": 4,
         "Medium": 2,
         "files": 9
-      }
+      },
+      "workflow_new": 1,
+      "workflow_resolved": 0
     }
   ],
   "latest": {
@@ -132,23 +148,186 @@
     "category": "Kubernetes Security",
     "changes": {
       "added": [
+        "actions/upload-artifact@v7.0.2",
         "revanite-io/osps-baseline-action@v1.5.4",
         "revanite-io/pvtr-publish-results/.github/workflows/publish.yml@v1",
+        "github.com/NYTimes/gziphandler@v1.1.1",
         "github.com/coreos/go-semver@v0.3.1",
         "github.com/coreos/go-systemd/v22@v22.7.0",
         "github.com/golang/protobuf@v1.5.4",
         "github.com/grpc-ecosystem/go-grpc-middleware/providers/prometheus@v1.1.0",
         "github.com/grpc-ecosystem/go-grpc-middleware/v2@v2.3.3",
         "github.com/kubescape/storage/pkg/apiauth@v0.1.0",
-        "github.com/NYTimes/gziphandler@v1.1.1",
         "go.etcd.io/etcd/api/v3@v3.7.0",
         "go.etcd.io/etcd/client/pkg/v3@v3.7.0",
         "go.etcd.io/etcd/client/v3@v3.7.0",
         "gopkg.in/natefinch/lumberjack.v2@v2.2.1",
         "k8s.io/kms@v0.37.2"
       ],
+      "added_detail": [
+        {
+          "ecosystem": "github",
+          "location": ".github/workflows/osps-baseline.yml",
+          "locations": [
+            ".github/workflows/osps-baseline.yml"
+          ],
+          "name": "actions/upload-artifact",
+          "version": "v7.0.2"
+        },
+        {
+          "ecosystem": "github",
+          "location": ".github/workflows/osps-baseline.yml",
+          "locations": [
+            ".github/workflows/osps-baseline.yml"
+          ],
+          "name": "revanite-io/osps-baseline-action",
+          "version": "v1.5.4"
+        },
+        {
+          "ecosystem": "github",
+          "location": ".github/workflows/publish-results.yml",
+          "locations": [
+            ".github/workflows/publish-results.yml"
+          ],
+          "name": "revanite-io/pvtr-publish-results/.github/workflows/publish.yml",
+          "version": "v1"
+        },
+        {
+          "ecosystem": "golang",
+          "location": "go.mod",
+          "locations": [
+            "go.mod"
+          ],
+          "name": "github.com/NYTimes/gziphandler",
+          "version": "v1.1.1"
+        },
+        {
+          "ecosystem": "golang",
+          "location": "go.mod",
+          "locations": [
+            "go.mod"
+          ],
+          "name": "github.com/coreos/go-semver",
+          "version": "v0.3.1"
+        },
+        {
+          "ecosystem": "golang",
+          "location": "go.mod",
+          "locations": [
+            "go.mod"
+          ],
+          "name": "github.com/coreos/go-systemd/v22",
+          "version": "v22.7.0"
+        },
+        {
+          "ecosystem": "golang",
+          "location": "go.mod",
+          "locations": [
+            "go.mod"
+          ],
+          "name": "github.com/golang/protobuf",
+          "version": "v1.5.4"
+        },
+        {
+          "ecosystem": "golang",
+          "location": "go.mod",
+          "locations": [
+            "go.mod"
+          ],
+          "name": "github.com/grpc-ecosystem/go-grpc-middleware/providers/prometheus",
+          "version": "v1.1.0"
+        },
+        {
+          "ecosystem": "golang",
+          "location": "go.mod",
+          "locations": [
+            "go.mod"
+          ],
+          "name": "github.com/grpc-ecosystem/go-grpc-middleware/v2",
+          "version": "v2.3.3"
+        },
+        {
+          "ecosystem": "golang",
+          "location": "go.mod",
+          "locations": [
+            "go.mod"
+          ],
+          "name": "github.com/kubescape/storage/pkg/apiauth",
+          "version": "v0.1.0"
+        },
+        {
+          "ecosystem": "golang",
+          "location": "go.mod",
+          "locations": [
+            "go.mod"
+          ],
+          "name": "go.etcd.io/etcd/api/v3",
+          "version": "v3.7.0"
+        },
+        {
+          "ecosystem": "golang",
+          "location": "go.mod",
+          "locations": [
+            "go.mod"
+          ],
+          "name": "go.etcd.io/etcd/client/pkg/v3",
+          "version": "v3.7.0"
+        },
+        {
+          "ecosystem": "golang",
+          "location": "go.mod",
+          "locations": [
+            "go.mod"
+          ],
+          "name": "go.etcd.io/etcd/client/v3",
+          "version": "v3.7.0"
+        },
+        {
+          "ecosystem": "golang",
+          "location": "go.mod",
+          "locations": [
+            "go.mod"
+          ],
+          "name": "gopkg.in/natefinch/lumberjack.v2",
+          "version": "v2.2.1"
+        },
+        {
+          "ecosystem": "golang",
+          "location": "go.mod",
+          "locations": [
+            "go.mod"
+          ],
+          "name": "k8s.io/kms",
+          "version": "v0.37.2"
+        }
+      ],
+      "advisory_state": "ok",
       "any": true,
       "baseline": false,
+      "dependency_baseline": {
+        "attempt": "1",
+        "run_id": "41380955266",
+        "sbom_sha256": "db23e306c827850fe589ba9adca06bba12ddd6968c46066ed90494877eec1eb0"
+      },
+      "dependency_state": "ok",
+      "digest_coverage": {
+        "after_only": 0,
+        "before_only": 0,
+        "by_kind": {
+          "go-h1": 593
+        },
+        "comparable": 593,
+        "disjoint_kinds": 0,
+        "packages_total": 665,
+        "same_version_pairs": 624
+      },
+      "distinct_version_changes": 26,
+      "downgraded": [],
+      "file_changes": [
+        ".github/workflows/02-release.yaml",
+        ".github/workflows/a-pr-scanner.yaml",
+        "go.mod"
+      ],
       "in_binary_new": [
         "GO-2026-6599",
         "GO-2026-6600",
@@ -163,8 +342,11 @@
       "in_binary_resolved": [
         "GO-2026-4919"
       ],
-      "integrity_drift": 3,
-      "kev_new": [
+      "integrity_changes": [],
+      "integrity_drift": 0,
+      "kev_method": "snapshot difference",
+      "kev_new": [],
+      "kev_new_match": [
         {
           "aliases": [
             "CVE-2026-111497",
@@ -176,6 +358,7 @@
             "percentile": 0.99669,
             "score": 0.82641
           },
+          "epss_date": "2026-11-07T12:00:22Z",
           "fix_state": "fixed",
           "fixed_in": [
             "1.2.7"
@@ -186,9 +369,19 @@
             "cve": "CVE-2026-111497",
             "date_added": "2026-10-27"
           },
+          "kev_cves": [
+            "CVE-2026-111497"
+          ],
+          "kev_snapshot": "2026.11.06",
           "location": "go.mod",
+          "locations": [
+            "go.mod"
+          ],
           "osv_confirmed": true,
+          "osv_modified": "2026-11-05T23:25:49.434824566Z",
+          "osv_published": "2026-11-05T22:55:15Z",
           "package": "github.com/andybalholm/brotli",
+          "purl": "pkg:golang/github.com/andybalholm/brotli@v1.2.0",
           "severity": "Critical",
           "summary": "In github.com/andybalholm/brotli before v1.2.7, the decompressor allocates memory for Huffman tables and block-type trees on every meta-block header without bounding the cumulative allocations relative to the input size. A small crafted brotli stream containing many empty meta-blocks with new Huffma",
           "url": "https://github.com/andybalholm/brotli/security/advisories/GHSA-c9gr-gmg4-2vqv",
@@ -196,6 +389,10 @@
         }
       ],
       "license_changes": [],
+      "metadata_changes": [],
+      "method": "sbomlyze-occurrence-v1",
+      "moved": [],
+      "new_advisories": 5,
       "new_vulnerabilities": [
         {
           "aliases": [
@@ -208,6 +405,7 @@
             "percentile": 0.3409,
             "score": 0.00396
           },
+          "epss_date": "2026-11-07T12:00:22Z",
           "fix_state": "fixed",
           "fixed_in": [
             "3.5.33",
@@ -217,39 +415,26 @@
           "id": "GO-2026-6107",
           "in_binary": "not in released binary",
           "kev": null,
+          "kev_cves": [],
+          "kev_snapshot": "2026.11.06",
           "location": "go.mod",
+          "locations": [
+            "go.mod"
+          ],
+          "new": {
+            "modified": "2026-08-19T21:41:59.273853582Z",
+            "published": "2026-08-18T16:38:10Z",
+            "reason": "new package"
+          },
           "osv_confirmed": true,
+          "osv_modified": "2026-08-19T21:41:59.273853582Z",
+          "osv_published": "2026-08-18T16:38:10Z",
           "package": "go.etcd.io/etcd/client/pkg/v3",
+          "purl": "pkg:golang/go.etcd.io/etcd/client/pkg/v3@v3.7.0",
           "severity": "High",
           "summary": "In go.etcd.io/etcd/client/pkg/v3 before 3.5.33, 3.6.14, and 3.7.1, TLS handshakes on listeners created by NewTLSListener do not enforce a handshake deadline. An unauthenticated network attacker who connects to an etcd TLS listener without sending a ClientHello causes a goroutine and a tracking map e",
           "url": "https://github.com/etcd-io/etcd/security/advisories/GHSA-6vch-q96h-7gc3",
           "version": "v3.7.0"
-        },
-        {
-          "aliases": [
-            "CVE-2026-116591",
-            "GHSA-fpmh-frq8-7rj8"
-          ],
-          "ecosystem": "golang",
-          "epss": {
-            "cve": "CVE-2026-116591",
-            "percentile": 0.26636,
-            "score": 0.00333
-          },
-          "fix_state": "fixed",
-          "fixed_in": [
-            "1.20.2"
-          ],
-          "id": "GO-2026-6865",
-          "in_binary": "vulnerable code in binary",
-          "kev": null,
-          "location": "go.mod",
-          "osv_confirmed": true,
-          "package": "github.com/klauspost/compress",
-          "severity": "High",
-          "summary": "Panic on two-block frames in github.com/klauspost/compress",
-          "url": "https://github.com/klauspost/compress/security/advisories/GHSA-fpmh-frq8-7rj8",
-          "version": "v1.20.1"
         },
         {
           "aliases": [
@@ -262,6 +447,7 @@
             "percentile": 0.99669,
             "score": 0.82641
           },
+          "epss_date": "2026-11-07T12:00:22Z",
           "fix_state": "fixed",
           "fixed_in": [
             "1.2.7"
@@ -272,26 +458,98 @@
             "cve": "CVE-2026-111497",
             "date_added": "2026-10-27"
           },
+          "kev_cves": [
+            "CVE-2026-111497"
+          ],
+          "kev_snapshot": "2026.11.06",
           "location": "go.mod",
+          "locations": [
+            "go.mod"
+          ],
+          "new": {
+            "advisory": "published since last scan",
+            "modified": "2026-11-05T23:25:49.434824566Z",
+            "published": "2026-11-05T22:55:15Z",
+            "reason": "unchanged version"
+          },
           "osv_confirmed": true,
+          "osv_modified": "2026-11-05T23:25:49.434824566Z",
+          "osv_published": "2026-11-05T22:55:15Z",
           "package": "github.com/andybalholm/brotli",
+          "purl": "pkg:golang/github.com/andybalholm/brotli@v1.2.0",
           "severity": "Critical",
           "summary": "In github.com/andybalholm/brotli before v1.2.7, the decompressor allocates memory for Huffman tables and block-type trees on every meta-block header without bounding the cumulative allocations relative to the input size. A small crafted brotli stream containing many empty meta-blocks with new Huffma",
           "url": "https://github.com/andybalholm/brotli/security/advisories/GHSA-c9gr-gmg4-2vqv",
           "version": "v1.2.0"
         },
         {
+          "aliases": [
+            "CVE-2026-116591",
+            "GHSA-fpmh-frq8-7rj8"
+          ],
+          "ecosystem": "golang",
+          "epss": {
+            "cve": "CVE-2026-116591",
+            "percentile": 0.26636,
+            "score": 0.00333
+          },
+          "epss_date": "2026-11-07T12:00:22Z",
+          "fix_state": "fixed",
+          "fixed_in": [
+            "1.20.2"
+          ],
+          "id": "GO-2026-6865",
+          "in_binary": "vulnerable code in binary",
+          "kev": null,
+          "kev_cves": [],
+          "kev_snapshot": "2026.11.06",
+          "location": "go.mod",
+          "locations": [
+            "go.mod"
+          ],
+          "new": {
+            "advisory": "published since last scan",
+            "modified": "2026-11-05T23:15:14.472777299Z",
+            "published": "2026-11-05T22:54:32Z",
+            "reason": "unchanged version"
+          },
+          "osv_confirmed": true,
+          "osv_modified": "2026-11-05T23:15:14.472777299Z",
+          "osv_published": "2026-11-05T22:54:32Z",
+          "package": "github.com/klauspost/compress",
+          "purl": "pkg:golang/github.com/klauspost/compress@v1.20.1",
+          "severity": "High",
+          "summary": "Panic on two-block frames in github.com/klauspost/compress",
+          "url": "https://github.com/klauspost/compress/security/advisories/GHSA-fpmh-frq8-7rj8",
+          "version": "v1.20.1"
+        },
+        {
           "aliases": [],
           "ecosystem": "golang",
           "epss": null,
+          "epss_date": "2026-11-07T12:00:22Z",
           "fix_state": "unknown",
           "fixed_in": [],
           "id": "GO-2026-6905",
           "in_binary": "vulnerable code in binary",
           "kev": null,
+          "kev_cves": [],
+          "kev_snapshot": "2026.11.06",
           "location": "go.mod",
+          "locations": [
+            "go.mod"
+          ],
+          "new": {
+            "advisory": "published since last scan",
+            "modified": "2026-11-05T23:15:18.148866409Z",
+            "published": "2026-11-05T22:55:15Z",
+            "reason": "unchanged version"
+          },
           "osv_confirmed": true,
+          "osv_modified": "2026-11-05T23:15:18.148866409Z",
+          "osv_published": "2026-11-05T22:55:15Z",
           "package": "github.com/blakesmith/ar",
+          "purl": "pkg:golang/github.com/blakesmith/ar@v0.0.0-20190502131153-809d4375e1fb",
           "severity": "Unknown",
           "summary": "Reader.Next parses the 10-byte decimal size field of an archive member header with strconv.ParseInt without rejecting negative values. A header with a negative size leaves the reader with a negative remaining byte count, causing the subsequent call to Reader.Read to panic with a slice bounds out of ",
           "url": "https://github.com/golang/vulndb/issues/6905",
@@ -301,14 +559,29 @@
           "aliases": [],
           "ecosystem": "golang",
           "epss": null,
+          "epss_date": "2026-11-07T12:00:22Z",
           "fix_state": "unknown",
           "fixed_in": [],
           "id": "GO-2026-6911",
           "in_binary": "module in binary",
           "kev": null,
+          "kev_cves": [],
+          "kev_snapshot": "2026.11.06",
           "location": "go.mod",
+          "locations": [
+            "go.mod"
+          ],
+          "new": {
+            "advisory": "published since last scan",
+            "modified": "2026-11-05T23:15:16.971949313Z",
+            "published": "2026-11-05T22:55:15Z",
+            "reason": "changed version"
+          },
           "osv_confirmed": true,
+          "osv_modified": "2026-11-05T23:15:16.971949313Z",
+          "osv_published": "2026-11-05T22:55:15Z",
           "package": "github.com/mark3labs/mcp-go",
+          "purl": "pkg:golang/github.com/mark3labs/mcp-go@v1.4.0",
           "severity": "Unknown",
           "summary": "In github.com/mark3labs/mcp-go/client/transport, NewStreamableHTTP constructs an http.Client with a nil CheckRedirect policy when no custom WithHTTPBasicClient is supplied, and attaches static custom headers and OAuth bearer tokens inside a RoundTripper layer. If an MCP server responds with a 3xx re",
           "url": "https://github.com/golang/vulndb/issues/6911",
@@ -323,6 +596,45 @@
         "github.com/rcrowley/go-metrics@v0.0.0-20250401214520-65e299d6c5c9",
         "github.com/tchap/go-patricia/v2@v2.3.3"
       ],
+      "removed_detail": [
+        {
+          "ecosystem": "golang",
+          "location": "go.mod",
+          "locations": [
+            "go.mod"
+          ],
+          "name": "github.com/gorilla/websocket",
+          "version": "v1.5.4-0.20250319132907-e064f32e3674"
+        },
+        {
+          "ecosystem": "golang",
+          "location": "go.mod",
+          "locations": [
+            "go.mod"
+          ],
+          "name": "github.com/moby/spdystream",
+          "version": "v0.5.1"
+        },
+        {
+          "ecosystem": "golang",
+          "location": "go.mod",
+          "locations": [
+            "go.mod"
+          ],
+          "name": "github.com/rcrowley/go-metrics",
+          "version": "v0.0.0-20250401214520-65e299d6c5c9"
+        },
+        {
+          "ecosystem": "golang",
+          "location": "go.mod",
+          "locations": [
+            "go.mod"
+          ],
+          "name": "github.com/tchap/go-patricia/v2",
+          "version": "v2.3.3"
+        }
+      ],
+      "resolved_advisories": 5,
       "resolved_vulnerabilities": [
         {
           "aliases": [
@@ -454,164 +766,504 @@
         "from": 7.6,
         "to": 7.8
       },
+      "still_affected_version_changed": [
+        {
+          "ecosystem": "golang",
+          "from": [
+            "v0.59.0"
+          ],
+          "id": "GO-2026-6860",
+          "package": "golang.org/x/net",
+          "to": [
+            "v0.60.0"
+          ]
+        },
+        {
+          "ecosystem": "golang",
+          "from": [
+            "v0.59.0"
+          ],
+          "id": "GO-2026-6866",
+          "package": "golang.org/x/net",
+          "to": [
+            "v0.60.0"
+          ]
+        }
+      ],
+      "unknown_direction": [],
       "upgraded": [
         {
+          "direction": "upgrade",
           "ecosystem": "github",
           "from": "v6.6.1",
+          "level": "patch",
+          "location": ".github/workflows/02-release.yaml",
           "package": "mikepenz/action-junit-report",
           "to": "v6.6.2"
         },
         {
+          "direction": "upgrade",
           "ecosystem": "golang",
           "from": "v1.4.13",
+          "level": "patch",
+          "location": "go.mod",
           "package": "github.com/gabriel-vasile/mimetype",
           "to": "v1.4.16"
         },
         {
+          "direction": "upgrade",
           "ecosystem": "golang",
           "from": "v0.2.3",
+          "level": "major",
+          "location": "go.mod",
           "package": "github.com/gobwas/glob",
           "to": "v1.0.0"
         },
         {
+          "direction": "upgrade",
           "ecosystem": "golang",
           "from": "v2.0.38",
+          "level": "patch",
+          "location": "go.mod",
           "package": "github.com/kubescape/regolibrary/v2",
           "to": "v2.0.39"
         },
         {
+          "direction": "upgrade",
           "ecosystem": "golang",
           "from": "v1.2.1",
+          "level": "minor",
+          "location": "go.mod",
           "package": "github.com/lestrrat-go/dsig",
           "to": "v1.4.0"
         },
         {
+          "direction": "upgrade",
           "ecosystem": "golang",
           "from": "v3.0.5",
+          "level": "patch",
+          "location": "go.mod",
           "package": "github.com/lestrrat-go/httprc/v3",
           "to": "v3.0.6"
         },
         {
+          "direction": "upgrade",
           "ecosystem": "golang",
           "from": "v3.1.1",
+          "level": "minor",
+          "location": "go.mod",
           "package": "github.com/lestrrat-go/jwx/v3",
           "to": "v3.3.0"
         },
         {
+          "direction": "upgrade",
           "ecosystem": "golang",
           "from": "v1.0.0",
+          "level": "minor",
+          "location": "go.mod",
           "package": "github.com/mark3labs/mcp-go",
           "to": "v1.4.0"
         },
         {
+          "direction": "upgrade",
           "ecosystem": "golang",
           "from": "v1.1.4",
+          "level": "patch",
+          "location": "go.mod",
           "package": "github.com/olekukonko/tablewriter",
           "to": "v1.1.5"
         },
         {
+          "direction": "upgrade",
           "ecosystem": "golang",
           "from": "v1.19.0",
+          "level": "minor",
+          "location": "go.mod",
           "package": "github.com/open-policy-agent/opa",
           "to": "v1.22.0"
         },
         {
+          "direction": "upgrade",
           "ecosystem": "golang",
           "from": "v0.6.2",
+          "level": "patch",
+          "location": "go.mod",
           "package": "github.com/prometheus/client_model",
           "to": "v0.6.3"
         },
         {
+          "direction": "upgrade",
           "ecosystem": "golang",
           "from": "v3.13.0",
+          "level": "minor",
+          "location": "go.mod",
           "package": "github.com/schollz/progressbar/v3",
           "to": "v3.19.1"
         },
         {
+          "direction": "upgrade",
           "ecosystem": "golang",
           "from": "v2.5.36",
+          "level": "patch",
+          "location": "go.mod",
           "package": "github.com/vektah/gqlparser/v2",
           "to": "v2.5.58"
         },
         {
+          "direction": "upgrade",
           "ecosystem": "golang",
           "from": "v0.71.0",
+          "level": "minor",
+          "location": "go.mod",
           "package": "go.opentelemetry.io/contrib/instrumentation/net/http/otelhttp",
           "to": "v0.72.0"
         },
         {
+          "direction": "upgrade",
           "ecosystem": "golang",
           "from": "v0.59.0",
+          "level": "minor",
+          "location": "go.mod",
           "package": "golang.org/x/net",
           "to": "v0.60.0"
         },
         {
+          "direction": "upgrade",
           "ecosystem": "golang",
           "from": "v0.37.1",
+          "level": "patch",
+          "location": "go.mod",
           "package": "k8s.io/api",
           "to": "v0.37.2"
         },
         {
+          "direction": "upgrade",
           "ecosystem": "golang",
           "from": "v0.36.2",
+          "level": "minor",
+          "location": "go.mod",
           "package": "k8s.io/apiextensions-apiserver",
           "to": "v0.37.0"
         },
         {
+          "direction": "upgrade",
           "ecosystem": "golang",
           "from": "v0.37.1",
+          "level": "patch",
+          "location": "go.mod",
           "package": "k8s.io/apimachinery",
           "to": "v0.37.2"
         },
         {
+          "direction": "upgrade",
           "ecosystem": "golang",
           "from": "v0.37.1",
+          "level": "patch",
+          "location": "go.mod",
           "package": "k8s.io/apiserver",
           "to": "v0.37.2"
         },
         {
+          "direction": "upgrade",
           "ecosystem": "golang",
           "from": "v0.37.1",
+          "level": "patch",
+          "location": "go.mod",
           "package": "k8s.io/client-go",
           "to": "v0.37.2"
         },
         {
+          "direction": "upgrade",
           "ecosystem": "golang",
           "from": "v0.37.1",
+          "level": "patch",
+          "location": "go.mod",
           "package": "k8s.io/component-base",
           "to": "v0.37.2"
         },
         {
+          "direction": "upgrade",
           "ecosystem": "golang",
           "from": "v0.37.1",
+          "level": "patch",
+          "location": "go.mod",
           "package": "k8s.io/pod-security-admission",
           "to": "v0.37.2"
         },
         {
+          "direction": "upgrade",
           "ecosystem": "golang",
           "from": "v0.37.1",
+          "level": "patch",
+          "location": "go.mod",
           "package": "k8s.io/streaming",
           "to": "v0.37.2"
         },
         {
+          "direction": "upgrade",
           "ecosystem": "golang",
           "from": "v0.24.0",
+          "level": "minor",
+          "location": "go.mod",
           "package": "sigs.k8s.io/controller-runtime",
           "to": "v0.25.2"
         },
         {
+          "direction": "upgrade",
           "ecosystem": "golang",
           "from": "v0.21.1",
+          "level": "patch",
+          "location": "go.mod",
           "package": "sigs.k8s.io/kustomize/api",
           "to": "v0.21.3"
         },
         {
+          "direction": "upgrade",
           "ecosystem": "golang",
           "from": "v0.21.2",
+          "level": "patch",
+          "location": "go.mod",
           "package": "sigs.k8s.io/kustomize/kyaml",
           "to": "v0.21.3"
         }
       ],
+      "version_changes": [
+        {
+          "direction": "upgrade",
+          "ecosystem": "github",
+          "from": "v6.6.1",
+          "level": "patch",
+          "location": ".github/workflows/02-release.yaml",
+          "name": "mikepenz/action-junit-report",
+          "to": "v6.6.2"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "golang",
+          "from": "v1.4.13",
+          "level": "patch",
+          "location": "go.mod",
+          "name": "github.com/gabriel-vasile/mimetype",
+          "to": "v1.4.16"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "golang",
+          "from": "v0.2.3",
+          "level": "major",
+          "location": "go.mod",
+          "name": "github.com/gobwas/glob",
+          "to": "v1.0.0"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "golang",
+          "from": "v2.0.38",
+          "level": "patch",
+          "location": "go.mod",
+          "name": "github.com/kubescape/regolibrary/v2",
+          "to": "v2.0.39"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "golang",
+          "from": "v1.2.1",
+          "level": "minor",
+          "location": "go.mod",
+          "name": "github.com/lestrrat-go/dsig",
+          "to": "v1.4.0"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "golang",
+          "from": "v3.0.5",
+          "level": "patch",
+          "location": "go.mod",
+          "name": "github.com/lestrrat-go/httprc/v3",
+          "to": "v3.0.6"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "golang",
+          "from": "v3.1.1",
+          "level": "minor",
+          "location": "go.mod",
+          "name": "github.com/lestrrat-go/jwx/v3",
+          "to": "v3.3.0"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "golang",
+          "from": "v1.0.0",
+          "level": "minor",
+          "location": "go.mod",
+          "name": "github.com/mark3labs/mcp-go",
+          "to": "v1.4.0"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "golang",
+          "from": "v1.1.4",
+          "level": "patch",
+          "location": "go.mod",
+          "name": "github.com/olekukonko/tablewriter",
+          "to": "v1.1.5"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "golang",
+          "from": "v1.19.0",
+          "level": "minor",
+          "location": "go.mod",
+          "name": "github.com/open-policy-agent/opa",
+          "to": "v1.22.0"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "golang",
+          "from": "v0.6.2",
+          "level": "patch",
+          "location": "go.mod",
+          "name": "github.com/prometheus/client_model",
+          "to": "v0.6.3"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "golang",
+          "from": "v3.13.0",
+          "level": "minor",
+          "location": "go.mod",
+          "name": "github.com/schollz/progressbar/v3",
+          "to": "v3.19.1"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "golang",
+          "from": "v2.5.36",
+          "level": "patch",
+          "location": "go.mod",
+          "name": "github.com/vektah/gqlparser/v2",
+          "to": "v2.5.58"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "golang",
+          "from": "v0.71.0",
+          "level": "minor",
+          "location": "go.mod",
+          "name": "go.opentelemetry.io/contrib/instrumentation/net/http/otelhttp",
+          "to": "v0.72.0"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "golang",
+          "from": "v0.59.0",
+          "level": "minor",
+          "location": "go.mod",
+          "name": "golang.org/x/net",
+          "to": "v0.60.0"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "golang",
+          "from": "v0.37.1",
+          "level": "patch",
+          "location": "go.mod",
+          "name": "k8s.io/api",
+          "to": "v0.37.2"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "golang",
+          "from": "v0.36.2",
+          "level": "minor",
+          "location": "go.mod",
+          "name": "k8s.io/apiextensions-apiserver",
+          "to": "v0.37.0"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "golang",
+          "from": "v0.37.1",
+          "level": "patch",
+          "location": "go.mod",
+          "name": "k8s.io/apimachinery",
+          "to": "v0.37.2"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "golang",
+          "from": "v0.37.1",
+          "level": "patch",
+          "location": "go.mod",
+          "name": "k8s.io/apiserver",
+          "to": "v0.37.2"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "golang",
+          "from": "v0.37.1",
+          "level": "patch",
+          "location": "go.mod",
+          "name": "k8s.io/client-go",
+          "to": "v0.37.2"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "golang",
+          "from": "v0.37.1",
+          "level": "patch",
+          "location": "go.mod",
+          "name": "k8s.io/component-base",
+          "to": "v0.37.2"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "golang",
+          "from": "v0.37.1",
+          "level": "patch",
+          "location": "go.mod",
+          "name": "k8s.io/pod-security-admission",
+          "to": "v0.37.2"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "golang",
+          "from": "v0.37.1",
+          "level": "patch",
+          "location": "go.mod",
+          "name": "k8s.io/streaming",
+          "to": "v0.37.2"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "golang",
+          "from": "v0.24.0",
+          "level": "minor",
+          "location": "go.mod",
+          "name": "sigs.k8s.io/controller-runtime",
+          "to": "v0.25.2"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "golang",
+          "from": "v0.21.1",
+          "level": "patch",
+          "location": "go.mod",
+          "name": "sigs.k8s.io/kustomize/api",
+          "to": "v0.21.3"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "golang",
+          "from": "v0.21.2",
+          "level": "patch",
+          "location": "go.mod",
+          "name": "sigs.k8s.io/kustomize/kyaml",
+          "to": "v0.21.3"
+        }
+      ],
+      "version_set_changes": [],
       "workflow_new": 1,
       "workflow_resolved": 0
     },
@@ -5905,11 +6557,16 @@
             "percentile": 0.21554,
             "score": 0.00289
           },
+          "epss_date": "2026-11-07T12:00:22Z",
           "fixed_version": "v1.27.2",
           "id": "GO-2026-6599",
           "kev": null,
+          "kev_cves": [],
+          "kev_snapshot": "2026.11.06",
           "level": "symbol",
+          "modified": "2026-10-08T22:31:09Z",
           "module": "stdlib",
+          "published": "2026-10-08T22:31:09Z",
           "summary": "Reset context tracking on consecutive template expressions in html/template",
           "version": "v1.27.0"
         },
@@ -5922,11 +6579,16 @@
             "percentile": 0.21554,
             "score": 0.00289
           },
+          "epss_date": "2026-11-07T12:00:22Z",
           "fixed_version": "v1.27.2",
           "id": "GO-2026-6600",
           "kev": null,
+          "kev_cves": [],
+          "kev_snapshot": "2026.11.06",
           "level": "symbol",
+          "modified": "2026-10-08T22:31:09Z",
           "module": "stdlib",
+          "published": "2026-10-08T22:31:09Z",
           "summary": "Recognize yield as regexp preceder keyword in html/template",
           "version": "v1.27.0"
         },
@@ -5939,11 +6601,16 @@
             "percentile": 0.58917,
             "score": 0.00866
           },
+          "epss_date": "2026-11-07T12:00:22Z",
           "fixed_version": "v1.27.2",
           "id": "GO-2026-6603",
           "kev": null,
+          "kev_cves": [],
+          "kev_snapshot": "2026.11.06",
           "level": "symbol",
+          "modified": "2026-10-08T22:31:09Z",
           "module": "stdlib",
+          "published": "2026-10-08T22:31:09Z",
           "summary": "HTTP/2 server memory exhaustion due to Trailer headers in net/http",
           "version": "v1.27.0"
         },
@@ -5956,11 +6623,16 @@
             "percentile": 0.49136,
             "score": 0.00604
           },
+          "epss_date": "2026-11-07T12:00:22Z",
           "fixed_version": "v1.27.2",
           "id": "GO-2026-6605",
           "kev": null,
+          "kev_cves": [],
+          "kev_snapshot": "2026.11.06",
           "level": "symbol",
+          "modified": "2026-10-08T22:31:09Z",
           "module": "stdlib",
+          "published": "2026-10-08T22:31:09Z",
           "summary": "HTTP/1 client connection desynchronization after CONNECT rejection in net/http",
           "version": "v1.27.0"
         },
@@ -5973,11 +6645,16 @@
             "percentile": 0.53998,
             "score": 0.00716
           },
+          "epss_date": "2026-11-07T12:00:22Z",
           "fixed_version": "v1.27.2",
           "id": "GO-2026-6607",
           "kev": null,
+          "kev_cves": [],
+          "kev_snapshot": "2026.11.06",
           "level": "symbol",
+          "modified": "2026-10-08T22:31:09Z",
           "module": "stdlib",
+          "published": "2026-10-08T22:31:09Z",
           "summary": "Reject malformed ECH outer extension references in crypto/tls",
           "version": "v1.27.0"
         },
@@ -5990,11 +6667,16 @@
             "percentile": 0.53601,
             "score": 0.00706
           },
+          "epss_date": "2026-11-07T12:00:22Z",
           "fixed_version": "v1.27.2",
           "id": "GO-2026-6608",
           "kev": null,
+          "kev_cves": [],
+          "kev_snapshot": "2026.11.06",
           "level": "symbol",
+          "modified": "2026-10-08T22:31:09Z",
           "module": "stdlib",
+          "published": "2026-10-08T22:31:09Z",
           "summary": "Memory limit bypass when parsing MIME headers in net/textproto, mime/multipart",
           "version": "v1.27.0"
         },
@@ -6007,11 +6689,16 @@
             "percentile": 0.45813,
             "score": 0.00542
           },
+          "epss_date": "2026-11-07T12:00:22Z",
           "fixed_version": "v1.27.2",
           "id": "GO-2026-6610",
           "kev": null,
+          "kev_cves": [],
+          "kev_snapshot": "2026.11.06",
           "level": "symbol",
+          "modified": "2026-10-08T22:31:09Z",
           "module": "stdlib",
+          "published": "2026-10-08T22:31:09Z",
           "summary": "HTTP/2 transport accepts malformed framing-related headers in net/http",
           "version": "v1.27.0"
         },
@@ -6024,11 +6711,16 @@
             "percentile": 0.58324,
             "score": 0.00847
           },
+          "epss_date": "2026-11-07T12:00:22Z",
           "fixed_version": "v1.27.2",
           "id": "GO-2026-6611",
           "kev": null,
+          "kev_cves": [],
+          "kev_snapshot": "2026.11.06",
           "level": "symbol",
+          "modified": "2026-10-08T22:31:09Z",
           "module": "stdlib",
+          "published": "2026-10-08T22:31:09Z",
           "summary": "Excessive CPU consumption from repeated initial window changes in net/http",
           "version": "v1.27.0"
         },
@@ -6041,11 +6733,16 @@
             "percentile": 0.58678,
             "score": 0.00858
           },
+          "epss_date": "2026-11-07T12:00:22Z",
           "fixed_version": "v1.27.2",
           "id": "GO-2026-6612",
           "kev": null,
+          "kev_cves": [],
+          "kev_snapshot": "2026.11.06",
           "level": "symbol",
+          "modified": "2026-10-08T22:31:09Z",
           "module": "stdlib",
+          "published": "2026-10-08T22:31:09Z",
           "summary": "Double flow control refund on HTTP/2 server streams in net/http",
           "version": "v1.27.0"
         },
@@ -6058,11 +6755,16 @@
             "percentile": 0.44963,
             "score": 0.00528
           },
+          "epss_date": "2026-11-07T12:00:22Z",
           "fixed_version": "v1.27.2",
           "id": "GO-2026-6613",
           "kev": null,
+          "kev_cves": [],
+          "kev_snapshot": "2026.11.06",
           "level": "symbol",
+          "modified": "2026-10-08T22:31:09Z",
           "module": "stdlib",
+          "published": "2026-10-08T22:31:09Z",
           "summary": "HTTP/1 server connection desynchronization after 2xx CONNECT response in net/http",
           "version": "v1.27.0"
         },
@@ -6075,11 +6777,16 @@
             "percentile": 0.52481,
             "score": 0.00676
           },
+          "epss_date": "2026-11-07T12:00:22Z",
           "fixed_version": "v1.27.2",
           "id": "GO-2026-6617",
           "kev": null,
+          "kev_cves": [],
+          "kev_snapshot": "2026.11.06",
           "level": "symbol",
+          "modified": "2026-10-08T22:31:09Z",
           "module": "stdlib",
+          "published": "2026-10-08T22:31:09Z",
           "summary": "HTTP/2 server crash due to HPACK encoder race in net/http",
           "version": "v1.27.0"
         },
@@ -6092,11 +6799,16 @@
             "percentile": 0.34015,
             "score": 0.00396
           },
+          "epss_date": "2026-11-07T12:00:22Z",
           "fixed_version": "v1.27.3",
           "id": "GO-2026-6809",
           "kev": null,
+          "kev_cves": [],
+          "kev_snapshot": "2026.11.06",
           "level": "symbol",
+          "modified": "2026-10-21T00:27:29Z",
           "module": "stdlib",
+          "published": "2026-10-21T00:27:29Z",
           "summary": "Distrust compromised intermediate certificates in crypto/x509",
           "version": "v1.27.0"
         },
@@ -6110,25 +6822,37 @@
             "percentile": 0.99669,
             "score": 0.82641
           },
+          "epss_date": "2026-11-07T12:00:22Z",
           "fixed_version": "v1.2.7",
           "id": "GO-2026-6888",
           "kev": {
             "cve": "CVE-2026-111497",
             "date_added": "2026-10-27"
           },
+          "kev_cves": [
+            "CVE-2026-111497"
+          ],
+          "kev_snapshot": "2026.11.06",
           "level": "symbol",
+          "modified": "2026-11-05T22:55:15Z",
           "module": "github.com/andybalholm/brotli",
+          "published": "2026-11-05T22:55:15Z",
           "summary": "Excessive memory allocation when decompressing crafted streams in github.com/andybalholm/brotli",
           "version": "v1.2.0"
         },
         {
           "aliases": [],
           "epss": null,
+          "epss_date": "2026-11-07T12:00:22Z",
           "fixed_version": "",
           "id": "GO-2026-6905",
           "kev": null,
+          "kev_cves": [],
+          "kev_snapshot": "2026.11.06",
           "level": "symbol",
+          "modified": "2026-11-05T22:55:15Z",
           "module": "github.com/blakesmith/ar",
+          "published": "2026-11-05T22:55:15Z",
           "summary": "Panic on negative member size in Reader.Read in github.com/blakesmith/ar",
           "version": "v0.0.0-20190502131153-809d4375e1fb"
         },
@@ -6142,11 +6866,16 @@
             "percentile": 0.34663,
             "score": 0.00402
           },
+          "epss_date": "2026-11-07T12:00:22Z",
           "fixed_version": "",
           "id": "GO-2026-4883",
           "kev": null,
+          "kev_cves": [],
+          "kev_snapshot": "2026.11.06",
           "level": "symbol",
+          "modified": "2026-04-02T18:42:30Z",
           "module": "github.com/docker/docker",
+          "published": "2026-04-02T18:42:30Z",
           "summary": "Moby has an Off-by-one error in its plugin privilege validation in github.com/docker/docker",
           "version": "v28.5.2+incompatible"
         },
@@ -6160,13 +6889,64 @@
             "percentile": 0.95391,
             "score": 0.0927
           },
+          "epss_date": "2026-11-07T12:00:22Z",
           "fixed_version": "",
           "id": "GO-2026-4887",
           "kev": null,
+          "kev_cves": [],
+          "kev_snapshot": "2026.11.06",
           "level": "symbol",
+          "modified": "2026-04-02T18:42:30Z",
           "module": "github.com/docker/docker",
+          "published": "2026-04-02T18:42:30Z",
           "summary": "Moby has AuthZ plugin bypass when provided oversized request bodies in github.com/docker/docker",
           "version": "v28.5.2+incompatible"
+        },
+        {
+          "aliases": [
+            "CVE-2026-33997",
+            "GHSA-pxq6-2prw-chj9"
+          ],
+          "epss": {
+            "cve": "CVE-2026-33997",
+            "percentile": 0.34663,
+            "score": 0.00402
+          },
+          "epss_date": "2026-11-07T12:00:22Z",
+          "fixed_version": "",
+          "id": "GO-2026-4883",
+          "kev": null,
+          "kev_cves": [],
+          "kev_snapshot": "2026.11.06",
+          "level": "symbol",
+          "modified": "2026-04-02T18:42:30Z",
+          "module": "github.com/docker/docker-credential-helpers",
+          "published": "2026-04-02T18:42:30Z",
+          "summary": "Moby has an Off-by-one error in its plugin privilege validation in github.com/docker/docker",
+          "version": "v0.9.8"
+        },
+        {
+          "aliases": [
+            "CVE-2026-34040",
+            "GHSA-x744-4wpc-v9h2"
+          ],
+          "epss": {
+            "cve": "CVE-2026-34040",
+            "percentile": 0.95391,
+            "score": 0.0927
+          },
+          "epss_date": "2026-11-07T12:00:22Z",
+          "fixed_version": "",
+          "id": "GO-2026-4887",
+          "kev": null,
+          "kev_cves": [],
+          "kev_snapshot": "2026.11.06",
+          "level": "symbol",
+          "modified": "2026-04-02T18:42:30Z",
+          "module": "github.com/docker/docker-credential-helpers",
+          "published": "2026-04-02T18:42:30Z",
+          "summary": "Moby has AuthZ plugin bypass when provided oversized request bodies in github.com/docker/docker",
+          "version": "v0.9.8"
         },
         {
           "aliases": [
@@ -6178,11 +6958,16 @@
             "percentile": 0.26636,
             "score": 0.00333
           },
+          "epss_date": "2026-11-07T12:00:22Z",
           "fixed_version": "v1.20.2",
           "id": "GO-2026-6865",
           "kev": null,
+          "kev_cves": [],
+          "kev_snapshot": "2026.11.06",
           "level": "symbol",
+          "modified": "2026-11-05T22:54:32Z",
           "module": "github.com/klauspost/compress",
+          "published": "2026-11-05T22:54:32Z",
           "summary": "Panic on two-block frames in github.com/klauspost/compress",
           "version": "v1.20.1"
         },
@@ -6192,22 +6977,32 @@
             "GHSA-698x-9w2p-7vvp"
           ],
           "epss": null,
+          "epss_date": "2026-11-07T12:00:22Z",
           "fixed_version": "",
           "id": "GO-2026-5939",
           "kev": null,
+          "kev_cves": [],
+          "kev_snapshot": "2026.11.06",
           "level": "symbol",
+          "modified": "2026-07-17T19:42:05Z",
           "module": "github.com/quay/claircore",
+          "published": "2026-07-17T19:42:05Z",
           "summary": "Claircore: Unauthenticated attackers can submit manifests with URIs pointing to internal services or cloud metadata endpoints in github.com/quay/claircore",
           "version": "v1.6.1"
         },
         {
           "aliases": [],
           "epss": null,
+          "epss_date": "2026-11-07T12:00:22Z",
           "fixed_version": "v0.58.1-0.20261009181718-2f1f834330b2",
           "id": "GO-2026-5932",
           "kev": null,
+          "kev_cves": [],
+          "kev_snapshot": "2026.11.06",
           "level": "symbol",
+          "modified": "2026-11-02T22:01:43Z",
           "module": "golang.org/x/crypto",
+          "published": "2026-07-07T22:15:29Z",
           "summary": "The golang.org/x/crypto/openpgp package is unmaintained, unsafe by design, and has known security issues",
           "version": "v0.57.0"
         },
@@ -6220,11 +7015,16 @@
             "percentile": 0.35737,
             "score": 0.00412
           },
+          "epss_date": "2026-11-07T12:00:22Z",
           "fixed_version": "v0.45.0",
           "id": "GO-2026-6222",
           "kev": null,
+          "kev_cves": [],
+          "kev_snapshot": "2026.11.06",
           "level": "symbol",
+          "modified": "2026-08-14T16:22:50Z",
           "module": "golang.org/x/image",
+          "published": "2026-08-14T16:22:50Z",
           "summary": "Excessive memory allocation during VP8L decoding in golang.org/x/image",
           "version": "v0.44.0"
         },
@@ -6237,22 +7037,32 @@
             "percentile": 0.51957,
             "score": 0.00663
           },
+          "epss_date": "2026-11-07T12:00:22Z",
           "fixed_version": "v1.27.2",
           "id": "GO-2026-6609",
           "kev": null,
+          "kev_cves": [],
+          "kev_snapshot": "2026.11.06",
           "level": "package",
+          "modified": "2026-10-08T22:31:09Z",
           "module": "stdlib",
+          "published": "2026-10-08T22:31:09Z",
           "summary": "Lack of limit on size of parsed Range headers in net/http",
           "version": "v1.27.0"
         },
         {
           "aliases": [],
           "epss": null,
+          "epss_date": "2026-11-07T12:00:22Z",
           "fixed_version": "",
           "id": "GO-2026-6225",
           "kev": null,
+          "kev_cves": [],
+          "kev_snapshot": "2026.11.06",
           "level": "package",
+          "modified": "2026-08-25T19:43:05Z",
           "module": "github.com/chrismellard/docker-credential-acr-env",
+          "published": "2026-08-18T18:05:09Z",
           "summary": "Credential leakage to untrusted hosts in github.com/chrismellard/docker-credential-acr-env",
           "version": "v0.0.0-20230304212654-82a0ddb27589"
         },
@@ -6265,11 +7075,16 @@
             "percentile": 0.35396,
             "score": 0.00409
           },
+          "epss_date": "2026-11-07T12:00:22Z",
           "fixed_version": "v0.62.0",
           "id": "GO-2026-6860",
           "kev": null,
+          "kev_cves": [],
+          "kev_snapshot": "2026.11.06",
           "level": "package",
+          "modified": "2026-10-27T21:16:18Z",
           "module": "golang.org/x/net",
+          "published": "2026-10-27T21:16:18Z",
           "summary": "Avoid quadratic complexity when coalescing text nodes in html in golang.org/x/net",
           "version": "v0.60.0"
         },
@@ -6282,11 +7097,16 @@
             "percentile": 0.18952,
             "score": 0.00267
           },
+          "epss_date": "2026-11-07T12:00:22Z",
           "fixed_version": "v0.62.0",
           "id": "GO-2026-6866",
           "kev": null,
+          "kev_cves": [],
+          "kev_snapshot": "2026.11.06",
           "level": "package",
+          "modified": "2026-10-27T21:16:18Z",
           "module": "golang.org/x/net",
+          "published": "2026-10-27T21:16:18Z",
           "summary": "Check all ancestor namespace transitions when rendering raw text in html in golang.org/x/net",
           "version": "v0.60.0"
         },
@@ -6300,11 +7120,16 @@
             "percentile": 0.14055,
             "score": 0.00231
           },
+          "epss_date": "2026-11-07T12:00:22Z",
           "fixed_version": "",
           "id": "GO-2022-0635",
           "kev": null,
+          "kev_cves": [],
+          "kev_snapshot": "2026.11.06",
           "level": "module",
+          "modified": "2024-12-12T22:00:07Z",
           "module": "github.com/aws/aws-sdk-go",
+          "published": "2024-12-12T22:00:07Z",
           "summary": "In-band key negotiation issue in AWS S3 Crypto SDK for golang in github.com/aws/aws-sdk-go",
           "version": "v1.55.8"
         },
@@ -6318,11 +7143,16 @@
             "percentile": 0.28379,
             "score": 0.00346
           },
+          "epss_date": "2026-11-07T12:00:22Z",
           "fixed_version": "",
           "id": "GO-2022-0646",
           "kev": null,
+          "kev_cves": [],
+          "kev_snapshot": "2026.11.06",
           "level": "module",
+          "modified": "2024-12-13T15:52:31Z",
           "module": "github.com/aws/aws-sdk-go",
+          "published": "2022-02-11T23:26:26Z",
           "summary": "CBC padding oracle issue in AWS S3 Crypto SDK for golang in github.com/aws/aws-sdk-go",
           "version": "v1.55.8"
         },
@@ -6336,11 +7166,16 @@
             "percentile": 0.12318,
             "score": 0.00218
           },
+          "epss_date": "2026-11-07T12:00:22Z",
           "fixed_version": "",
           "id": "GO-2026-6778",
           "kev": null,
+          "kev_cves": [],
+          "kev_snapshot": "2026.11.06",
           "level": "module",
+          "modified": "2026-11-05T22:54:00Z",
           "module": "github.com/docker/distribution",
+          "published": "2026-11-05T22:54:00Z",
           "summary": "Distribution: Client does not verify returned content against requested digest in github.com/distribution/distribution",
           "version": "v2.8.3+incompatible"
         },
@@ -6354,11 +7189,16 @@
             "percentile": 0.01038,
             "score": 0.00104
           },
+          "epss_date": "2026-11-07T12:00:22Z",
           "fixed_version": "",
           "id": "GO-2026-5617",
           "kev": null,
+          "kev_cves": [],
+          "kev_snapshot": "2026.11.06",
           "level": "module",
+          "modified": "2026-07-27T20:14:16Z",
           "module": "github.com/docker/docker",
+          "published": "2026-06-25T22:34:34Z",
           "summary": "Race condition in 'docker cp' in github.com/docker/docker allows bind mount redirection",
           "version": "v28.5.2+incompatible"
         },
@@ -6372,11 +7212,16 @@
             "percentile": 0.01204,
             "score": 0.00108
           },
+          "epss_date": "2026-11-07T12:00:22Z",
           "fixed_version": "",
           "id": "GO-2026-5668",
           "kev": null,
+          "kev_cves": [],
+          "kev_snapshot": "2026.11.06",
           "level": "module",
+          "modified": "2026-08-11T23:21:33Z",
           "module": "github.com/docker/docker",
+          "published": "2026-06-25T22:34:38Z",
           "summary": "Race condition in 'docker cp' in github.com/docker/docker allows creation of arbitrary files",
           "version": "v28.5.2+incompatible"
         },
@@ -6390,22 +7235,32 @@
             "percentile": 0.04653,
             "score": 0.00155
           },
+          "epss_date": "2026-11-07T12:00:22Z",
           "fixed_version": "",
           "id": "GO-2026-5746",
           "kev": null,
+          "kev_cves": [],
+          "kev_snapshot": "2026.11.06",
           "level": "module",
+          "modified": "2026-07-23T17:09:44Z",
           "module": "github.com/docker/docker",
+          "published": "2026-06-25T22:34:38Z",
           "summary": "Docker: 'PUT /containers/{id}/archive' executes container binary on the host in github.com/docker/docker",
           "version": "v28.5.2+incompatible"
         },
         {
           "aliases": [],
           "epss": null,
+          "epss_date": "2026-11-07T12:00:22Z",
           "fixed_version": "",
           "id": "GO-2026-6911",
           "kev": null,
+          "kev_cves": [],
+          "kev_snapshot": "2026.11.06",
           "level": "module",
+          "modified": "2026-11-05T22:55:15Z",
           "module": "github.com/mark3labs/mcp-go",
+          "published": "2026-11-05T22:55:15Z",
           "summary": "SSRF and credential leak via unvalidated Location header in github.com/mark3labs/mcp-go",
           "version": "v1.4.0"
         }
@@ -6414,6 +7269,7 @@
       "main_module": "github.com/kubescape/kubescape/v4"
     },
     "id": "kubescape__kubescape",
+    "lock_aliases": {},
     "manifests": [
       ".github/actions/tag-action/action.yaml",
       ".github/workflows/00-pr-scanner.yaml",
@@ -6440,7 +7296,10 @@
             "GHSA-7f33-f4f5-xwgw",
             "GO-2022-0635"
           ],
+          "modified": "2026-02-04T02:41:58.893164Z",
           "package": "github.com/aws/aws-sdk-go",
+          "path": "go.mod",
+          "published": "2024-12-12T22:00:07Z",
           "score": "",
           "severity": "Unknown",
           "version": "1.55.8"
@@ -6452,7 +7311,10 @@
             "GHSA-f5pg-7wfw-84q9",
             "GO-2022-0646"
           ],
+          "modified": "2026-02-04T02:16:32.066930Z",
           "package": "github.com/aws/aws-sdk-go",
+          "path": "go.mod",
+          "published": "2022-02-11T23:26:26Z",
           "score": "",
           "severity": "Unknown",
           "version": "1.55.8"
@@ -6464,13 +7326,21 @@
             "GHSA-698x-9w2p-7vvp",
             "GO-2026-5939"
           ],
+          "modified": "2026-07-21T19:15:27.893428935Z",
           "package": "github.com/quay/claircore",
+          "path": "go.mod",
+          "published": "2026-07-17T19:42:05Z",
           "score": "",
           "severity": "Unknown",
           "version": "1.6.1"
         }
       ],
       "warning": null
+    },
+    "osv_api": {
+      "available": true,
+      "queried_at": "2026-11-09T01:36:16+00:00",
+      "states": {}
     },
     "ref": "v4.0.20",
     "ref_kind": "release",
@@ -6506,22 +7376,497 @@
     },
     "released_at": "2026-11-06T12:59:38Z",
     "repository": "kubescape/kubescape",
+    "sbom_sha256": "94aa63bbebe7373fce8f0ee210480723b4c24aafb0803bb4ebad7a8dfd68e226",
     "sbomlyze_diff": {
-      "added": 16,
-      "changed": 29,
+      "added": 17,
+      "baseline": {
+        "attempt": "1",
+        "run_id": "41380955266"
+      },
+      "changed": 26,
+      "contract": "sbomlyze-diff-0.7",
       "drift": {
-        "integrity_drift": 3,
+        "distinct_version_changes": 26,
+        "downgrades": 0,
+        "file_changes": 3,
+        "integrity_drift": 0,
+        "license_changes": 0,
         "metadata_drift": 0,
+        "owned_file_drift": 0,
+        "owned_files_changed": 0,
+        "unknown_direction": 0,
+        "upgrades": 26,
         "version_drift": 26
       },
       "findings": [
-        "Attack surface: +13 packages (2.0%)",
-        "1 version downgrades detected: github.com/gobwas/glob v0.2.3\u2192v1.0.0",
-        "25 version upgrades (9 major, 16 minor) among 657 shared packages",
-        "Integrity drift (3 total): 3 unknown"
+        "Scanned kubescape/kubescape changed: v4.0.17 \u2192 v4.0.20",
+        "Inventory: +13 components (2.0%)",
+        "26 version upgrades (1 major, 9 minor, 16 patch) among 650 shared packages",
+        "3 file entries changed content (not package integrity drift): /.github/workflows/02-release.yaml, /.github/workflows/a-pr-scanner.yaml, /go.mod"
       ],
       "html": "sbomlyze-diff.html",
-      "removed": 4
+      "occurrences": {
+        "added": [
+          {
+            "ecosystem": "github",
+            "location": ".github/workflows/osps-baseline.yml",
+            "locations": [
+              ".github/workflows/osps-baseline.yml"
+            ],
+            "name": "actions/upload-artifact",
+            "version": "v7.0.2"
+          },
+          {
+            "ecosystem": "github",
+            "location": ".github/workflows/osps-baseline.yml",
+            "locations": [
+              ".github/workflows/osps-baseline.yml"
+            ],
+            "name": "revanite-io/osps-baseline-action",
+            "version": "v1.5.4"
+          },
+          {
+            "ecosystem": "github",
+            "location": ".github/workflows/publish-results.yml",
+            "locations": [
+              ".github/workflows/publish-results.yml"
+            ],
+            "name": "revanite-io/pvtr-publish-results/.github/workflows/publish.yml",
+            "version": "v1"
+          },
+          {
+            "ecosystem": "golang",
+            "location": "go.mod",
+            "locations": [
+              "go.mod"
+            ],
+            "name": "github.com/NYTimes/gziphandler",
+            "version": "v1.1.1"
+          },
+          {
+            "ecosystem": "golang",
+            "location": "go.mod",
+            "locations": [
+              "go.mod"
+            ],
+            "name": "github.com/coreos/go-semver",
+            "version": "v0.3.1"
+          },
+          {
+            "ecosystem": "golang",
+            "location": "go.mod",
+            "locations": [
+              "go.mod"
+            ],
+            "name": "github.com/coreos/go-systemd/v22",
+            "version": "v22.7.0"
+          },
+          {
+            "ecosystem": "golang",
+            "location": "go.mod",
+            "locations": [
+              "go.mod"
+            ],
+            "name": "github.com/golang/protobuf",
+            "version": "v1.5.4"
+          },
+          {
+            "ecosystem": "golang",
+            "location": "go.mod",
+            "locations": [
+              "go.mod"
+            ],
+            "name": "github.com/grpc-ecosystem/go-grpc-middleware/providers/prometheus",
+            "version": "v1.1.0"
+          },
+          {
+            "ecosystem": "golang",
+            "location": "go.mod",
+            "locations": [
+              "go.mod"
+            ],
+            "name": "github.com/grpc-ecosystem/go-grpc-middleware/v2",
+            "version": "v2.3.3"
+          },
+          {
+            "ecosystem": "golang",
+            "location": "go.mod",
+            "locations": [
+              "go.mod"
+            ],
+            "name": "github.com/kubescape/storage/pkg/apiauth",
+            "version": "v0.1.0"
+          },
+          {
+            "ecosystem": "golang",
+            "location": "go.mod",
+            "locations": [
+              "go.mod"
+            ],
+            "name": "go.etcd.io/etcd/api/v3",
+            "version": "v3.7.0"
+          },
+          {
+            "ecosystem": "golang",
+            "location": "go.mod",
+            "locations": [
+              "go.mod"
+            ],
+            "name": "go.etcd.io/etcd/client/pkg/v3",
+            "version": "v3.7.0"
+          },
+          {
+            "ecosystem": "golang",
+            "location": "go.mod",
+            "locations": [
+              "go.mod"
+            ],
+            "name": "go.etcd.io/etcd/client/v3",
+            "version": "v3.7.0"
+          },
+          {
+            "ecosystem": "golang",
+            "location": "go.mod",
+            "locations": [
+              "go.mod"
+            ],
+            "name": "gopkg.in/natefinch/lumberjack.v2",
+            "version": "v2.2.1"
+          },
+          {
+            "ecosystem": "golang",
+            "location": "go.mod",
+            "locations": [
+              "go.mod"
+            ],
+            "name": "k8s.io/kms",
+            "version": "v0.37.2"
+          }
+        ],
+        "digest_coverage": {
+          "after_only": 0,
+          "before_only": 0,
+          "by_kind": {
+            "go-h1": 593
+          },
+          "comparable": 593,
+          "disjoint_kinds": 0,
+          "packages_total": 665,
+          "same_version_pairs": 624
+        },
+        "file_changes": [
+          {
+            "owners": [],
+            "path": ".github/workflows/02-release.yaml"
+          },
+          {
+            "owners": [],
+            "path": ".github/workflows/a-pr-scanner.yaml"
+          },
+          {
+            "owners": [],
+            "path": "go.mod"
+          }
+        ],
+        "file_coverage": {
+          "ambiguous_paths": 0,
+          "config_unknown": 0,
+          "files_compared": 7,
+          "files_unverified": 0,
+          "owned_files_after": 0,
+          "unowned_files_after": 0
+        },
+        "files_added": [],
+        "files_removed": [],
+        "integrity_changes": [],
+        "license_changes": [],
+        "metadata_changes": [],
+        "moved": [],
+        "owned_file_drift": [],
+        "removed": [
+          {
+            "ecosystem": "golang",
+            "location": "go.mod",
+            "locations": [
+              "go.mod"
+            ],
+            "name": "github.com/gorilla/websocket",
+            "version": "v1.5.4-0.20250319132907-e064f32e3674"
+          },
+          {
+            "ecosystem": "golang",
+            "location": "go.mod",
+            "locations": [
+              "go.mod"
+            ],
+            "name": "github.com/moby/spdystream",
+            "version": "v0.5.1"
+          },
+          {
+            "ecosystem": "golang",
+            "location": "go.mod",
+            "locations": [
+              "go.mod"
+            ],
+            "name": "github.com/rcrowley/go-metrics",
+            "version": "v0.0.0-20250401214520-65e299d6c5c9"
+          },
+          {
+            "ecosystem": "golang",
+            "location": "go.mod",
+            "locations": [
+              "go.mod"
+            ],
+            "name": "github.com/tchap/go-patricia/v2",
+            "version": "v2.3.3"
+          }
+        ],
+        "source_change": {
+          "from": "v4.0.17",
+          "name": "kubescape/kubescape",
+          "to": "v4.0.20"
+        },
+        "version_changes": [
+          {
+            "direction": "upgrade",
+            "ecosystem": "github",
+            "from": "v6.6.1",
+            "level": "patch",
+            "location": ".github/workflows/02-release.yaml",
+            "name": "mikepenz/action-junit-report",
+            "to": "v6.6.2"
+          },
+          {
+            "direction": "upgrade",
+            "ecosystem": "golang",
+            "from": "v1.4.13",
+            "level": "patch",
+            "location": "go.mod",
+            "name": "github.com/gabriel-vasile/mimetype",
+            "to": "v1.4.16"
+          },
+          {
+            "direction": "upgrade",
+            "ecosystem": "golang",
+            "from": "v0.2.3",
+            "level": "major",
+            "location": "go.mod",
+            "name": "github.com/gobwas/glob",
+            "to": "v1.0.0"
+          },
+          {
+            "direction": "upgrade",
+            "ecosystem": "golang",
+            "from": "v2.0.38",
+            "level": "patch",
+            "location": "go.mod",
+            "name": "github.com/kubescape/regolibrary/v2",
+            "to": "v2.0.39"
+          },
+          {
+            "direction": "upgrade",
+            "ecosystem": "golang",
+            "from": "v1.2.1",
+            "level": "minor",
+            "location": "go.mod",
+            "name": "github.com/lestrrat-go/dsig",
+            "to": "v1.4.0"
+          },
+          {
+            "direction": "upgrade",
+            "ecosystem": "golang",
+            "from": "v3.0.5",
+            "level": "patch",
+            "location": "go.mod",
+            "name": "github.com/lestrrat-go/httprc/v3",
+            "to": "v3.0.6"
+          },
+          {
+            "direction": "upgrade",
+            "ecosystem": "golang",
+            "from": "v3.1.1",
+            "level": "minor",
+            "location": "go.mod",
+            "name": "github.com/lestrrat-go/jwx/v3",
+            "to": "v3.3.0"
+          },
+          {
+            "direction": "upgrade",
+            "ecosystem": "golang",
+            "from": "v1.0.0",
+            "level": "minor",
+            "location": "go.mod",
+            "name": "github.com/mark3labs/mcp-go",
+            "to": "v1.4.0"
+          },
+          {
+            "direction": "upgrade",
+            "ecosystem": "golang",
+            "from": "v1.1.4",
+            "level": "patch",
+            "location": "go.mod",
+            "name": "github.com/olekukonko/tablewriter",
+            "to": "v1.1.5"
+          },
+          {
+            "direction": "upgrade",
+            "ecosystem": "golang",
+            "from": "v1.19.0",
+            "level": "minor",
+            "location": "go.mod",
+            "name": "github.com/open-policy-agent/opa",
+            "to": "v1.22.0"
+          },
+          {
+            "direction": "upgrade",
+            "ecosystem": "golang",
+            "from": "v0.6.2",
+            "level": "patch",
+            "location": "go.mod",
+            "name": "github.com/prometheus/client_model",
+            "to": "v0.6.3"
+          },
+          {
+            "direction": "upgrade",
+            "ecosystem": "golang",
+            "from": "v3.13.0",
+            "level": "minor",
+            "location": "go.mod",
+            "name": "github.com/schollz/progressbar/v3",
+            "to": "v3.19.1"
+          },
+          {
+            "direction": "upgrade",
+            "ecosystem": "golang",
+            "from": "v2.5.36",
+            "level": "patch",
+            "location": "go.mod",
+            "name": "github.com/vektah/gqlparser/v2",
+            "to": "v2.5.58"
+          },
+          {
+            "direction": "upgrade",
+            "ecosystem": "golang",
+            "from": "v0.71.0",
+            "level": "minor",
+            "location": "go.mod",
+            "name": "go.opentelemetry.io/contrib/instrumentation/net/http/otelhttp",
+            "to": "v0.72.0"
+          },
+          {
+            "direction": "upgrade",
+            "ecosystem": "golang",
+            "from": "v0.59.0",
+            "level": "minor",
+            "location": "go.mod",
+            "name": "golang.org/x/net",
+            "to": "v0.60.0"
+          },
+          {
+            "direction": "upgrade",
+            "ecosystem": "golang",
+            "from": "v0.37.1",
+            "level": "patch",
+            "location": "go.mod",
+            "name": "k8s.io/api",
+            "to": "v0.37.2"
+          },
+          {
+            "direction": "upgrade",
+            "ecosystem": "golang",
+            "from": "v0.36.2",
+            "level": "minor",
+            "location": "go.mod",
+            "name": "k8s.io/apiextensions-apiserver",
+            "to": "v0.37.0"
+          },
+          {
+            "direction": "upgrade",
+            "ecosystem": "golang",
+            "from": "v0.37.1",
+            "level": "patch",
+            "location": "go.mod",
+            "name": "k8s.io/apimachinery",
+            "to": "v0.37.2"
+          },
+          {
+            "direction": "upgrade",
+            "ecosystem": "golang",
+            "from": "v0.37.1",
+            "level": "patch",
+            "location": "go.mod",
+            "name": "k8s.io/apiserver",
+            "to": "v0.37.2"
+          },
+          {
+            "direction": "upgrade",
+            "ecosystem": "golang",
+            "from": "v0.37.1",
+            "level": "patch",
+            "location": "go.mod",
+            "name": "k8s.io/client-go",
+            "to": "v0.37.2"
+          },
+          {
+            "direction": "upgrade",
+            "ecosystem": "golang",
+            "from": "v0.37.1",
+            "level": "patch",
+            "location": "go.mod",
+            "name": "k8s.io/component-base",
+            "to": "v0.37.2"
+          },
+          {
+            "direction": "upgrade",
+            "ecosystem": "golang",
+            "from": "v0.37.1",
+            "level": "patch",
+            "location": "go.mod",
+            "name": "k8s.io/pod-security-admission",
+            "to": "v0.37.2"
+          },
+          {
+            "direction": "upgrade",
+            "ecosystem": "golang",
+            "from": "v0.37.1",
+            "level": "patch",
+            "location": "go.mod",
+            "name": "k8s.io/streaming",
+            "to": "v0.37.2"
+          },
+          {
+            "direction": "upgrade",
+            "ecosystem": "golang",
+            "from": "v0.24.0",
+            "level": "minor",
+            "location": "go.mod",
+            "name": "sigs.k8s.io/controller-runtime",
+            "to": "v0.25.2"
+          },
+          {
+            "direction": "upgrade",
+            "ecosystem": "golang",
+            "from": "v0.21.1",
+            "level": "patch",
+            "location": "go.mod",
+            "name": "sigs.k8s.io/kustomize/api",
+            "to": "v0.21.3"
+          },
+          {
+            "direction": "upgrade",
+            "ecosystem": "golang",
+            "from": "v0.21.2",
+            "level": "patch",
+            "location": "go.mod",
+            "name": "sigs.k8s.io/kustomize/kyaml",
+            "to": "v0.21.3"
+          }
+        ],
+        "version_set_changes": []
+      },
+      "previous_sbom_sha256": "db23e306c827850fe589ba9adca06bba12ddd6968c46066ed90494877eec1eb0",
+      "removed": 4,
+      "sbom_sha256": "94aa63bbebe7373fce8f0ee210480723b4c24aafb0803bb4ebad7a8dfd68e226"
     },
     "scanned_at": "2026-11-08T05:53:54+00:00",
     "scorecard": {
@@ -6634,6 +7979,7 @@
           "percentile": 0.99669,
           "score": 0.82641
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "1.2.7"
@@ -6644,9 +7990,19 @@
           "cve": "CVE-2026-111497",
           "date_added": "2026-10-27"
         },
+        "kev_cves": [
+          "CVE-2026-111497"
+        ],
+        "kev_snapshot": "2026.11.06",
         "location": "go.mod",
+        "locations": [
+          "go.mod"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-11-05T23:25:49.434824566Z",
+        "osv_published": "2026-11-05T22:55:15Z",
         "package": "github.com/andybalholm/brotli",
+        "purl": "pkg:golang/github.com/andybalholm/brotli@v1.2.0",
         "severity": "Critical",
         "summary": "In github.com/andybalholm/brotli before v1.2.7, the decompressor allocates memory for Huffman tables and block-type trees on every meta-block header without bounding the cumulative allocations relative to the input size. A small crafted brotli stream containing many empty meta-blocks with new Huffma",
         "url": "https://github.com/andybalholm/brotli/security/advisories/GHSA-c9gr-gmg4-2vqv",
@@ -6662,14 +8018,23 @@
           "percentile": 0.01038,
           "score": 0.00104
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "not-fixed",
         "fixed_in": [],
         "id": "GHSA-rg2x-37c3-w2rh",
         "in_binary": "module in binary",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "go.mod",
+        "locations": [
+          "go.mod"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-09-10T03:50:47.528575532Z",
+        "osv_published": "2026-05-18T17:53:08Z",
         "package": "github.com/docker/docker",
+        "purl": "pkg:golang/github.com/docker/docker@v28.5.2%2Bincompatible",
         "severity": "High",
         "summary": "Docker: Race condition in docker cp allows bind mount redirection to host path",
         "url": "https://github.com/advisories/GHSA-rg2x-37c3-w2rh",
@@ -6685,14 +8050,23 @@
           "percentile": 0.04653,
           "score": 0.00155
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "not-fixed",
         "fixed_in": [],
         "id": "GHSA-x86f-5xw2-fm2r",
         "in_binary": "module in binary",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "go.mod",
+        "locations": [
+          "go.mod"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-09-10T03:50:47.998689316Z",
+        "osv_published": "2026-05-18T17:47:23Z",
         "package": "github.com/docker/docker",
+        "purl": "pkg:golang/github.com/docker/docker@v28.5.2%2Bincompatible",
         "severity": "High",
         "summary": "Docker: `PUT /containers/{id}/archive` executes container binary on the host",
         "url": "https://github.com/advisories/GHSA-x86f-5xw2-fm2r",
@@ -6709,14 +8083,23 @@
           "percentile": 0.95391,
           "score": 0.0927
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "unknown",
         "fixed_in": [],
         "id": "GO-2026-4887",
         "in_binary": "vulnerable code in binary",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "go.mod",
+        "locations": [
+          "go.mod"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-04-03T20:59:19.226161232Z",
+        "osv_published": "2026-04-02T18:42:30Z",
         "package": "github.com/docker/docker",
+        "purl": "pkg:golang/github.com/docker/docker@v28.5.2%2Bincompatible",
         "severity": "High",
         "summary": "Moby has AuthZ plugin bypass when provided oversized request bodies in github.com/docker/docker",
         "url": "https://github.com/moby/moby/security/advisories/GHSA-x744-4wpc-v9h2",
@@ -6732,6 +8115,7 @@
           "percentile": 0.30652,
           "score": 0.00366
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "4.1.6"
@@ -6739,9 +8123,17 @@
         "id": "GHSA-mgcc-cww5-fp2q",
         "in_binary": "vulnerable code not in binary",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "go.mod",
+        "locations": [
+          "go.mod"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-10-27T19:15:23.147827328Z",
+        "osv_published": "2026-10-27T19:01:30Z",
         "package": "github.com/go-jose/go-jose/v4",
+        "purl": "pkg:golang/github.com/go-jose/go-jose/v4@v4.1.4",
         "severity": "High",
         "summary": "Go JOSE: DoS when parsing JWKs that contain RSA keys",
         "url": "https://github.com/advisories/GHSA-mgcc-cww5-fp2q",
@@ -6758,6 +8150,7 @@
           "percentile": 0.26636,
           "score": 0.00333
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "1.20.2"
@@ -6765,9 +8158,17 @@
         "id": "GO-2026-6865",
         "in_binary": "vulnerable code in binary",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "go.mod",
+        "locations": [
+          "go.mod"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-11-05T23:15:14.472777299Z",
+        "osv_published": "2026-11-05T22:54:32Z",
         "package": "github.com/klauspost/compress",
+        "purl": "pkg:golang/github.com/klauspost/compress@v1.20.1",
         "severity": "High",
         "summary": "Panic on two-block frames in github.com/klauspost/compress",
         "url": "https://github.com/klauspost/compress/security/advisories/GHSA-fpmh-frq8-7rj8",
@@ -6784,6 +8185,7 @@
           "percentile": 0.3409,
           "score": 0.00396
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "3.5.33",
@@ -6793,9 +8195,17 @@
         "id": "GO-2026-6107",
         "in_binary": "not in released binary",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "go.mod",
+        "locations": [
+          "go.mod"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-08-19T21:41:59.273853582Z",
+        "osv_published": "2026-08-18T16:38:10Z",
         "package": "go.etcd.io/etcd/client/pkg/v3",
+        "purl": "pkg:golang/go.etcd.io/etcd/client/pkg/v3@v3.7.0",
         "severity": "High",
         "summary": "In go.etcd.io/etcd/client/pkg/v3 before 3.5.33, 3.6.14, and 3.7.1, TLS handshakes on listeners created by NewTLSListener do not enforce a handshake deadline. An unauthenticated network attacker who connects to an etcd TLS listener without sending a ClientHello causes a goroutine and a tracking map e",
         "url": "https://github.com/etcd-io/etcd/security/advisories/GHSA-6vch-q96h-7gc3",
@@ -6811,6 +8221,7 @@
           "percentile": 0.35737,
           "score": 0.00412
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "0.45.0"
@@ -6818,9 +8229,17 @@
         "id": "GO-2026-6222",
         "in_binary": "vulnerable code in binary",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "go.mod",
+        "locations": [
+          "go.mod"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-08-15T09:41:53.891904586Z",
+        "osv_published": "2026-08-14T16:22:50Z",
         "package": "golang.org/x/image",
+        "purl": "pkg:golang/golang.org/x/image@v0.44.0",
         "severity": "High",
         "summary": "VP8L decoding in golang.org/x/image/vp8l can allocate an excessive amount of memory when processing a crafted VP8L image containing many unused Huffman tree groups. This allows a remote attacker to cause a denial of service via memory exhaustion.",
         "url": "https://go.dev/issue/80069",
@@ -6836,6 +8255,7 @@
           "percentile": 0.35396,
           "score": 0.00409
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "0.62.0"
@@ -6843,9 +8263,17 @@
         "id": "GO-2026-6860",
         "in_binary": "package in binary",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "go.mod",
+        "locations": [
+          "go.mod"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-10-27T21:30:04.890809062Z",
+        "osv_published": "2026-10-27T21:16:18Z",
         "package": "golang.org/x/net",
+        "purl": "pkg:golang/golang.org/x/net@v0.60.0",
         "severity": "High",
         "summary": "When coalescing adjacent text nodes in addText and fosterParent, appending to an existing TextNode's Data via string concatenation (n.Data += text) reallocated and copied the accumulated string on every token. Inputs containing many short text runs separated by ignored end tags (such as \"a</x>\") cau",
         "url": "https://go.dev/cl/849365",
@@ -6861,14 +8289,23 @@
           "percentile": 0.12318,
           "score": 0.00218
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "not-fixed",
         "fixed_in": [],
         "id": "GHSA-685w-q87j-wqw3",
         "in_binary": "module in binary",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "go.mod",
+        "locations": [
+          "go.mod"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-11-05T23:25:40.391377389Z",
+        "osv_published": "2026-10-15T20:22:02Z",
         "package": "github.com/docker/distribution",
+        "purl": "pkg:golang/github.com/docker/distribution@v2.8.3%2Bincompatible",
         "severity": "Medium",
         "summary": "Distribution: Client `manifests.Get()` does not verify returned content against requested digest",
         "url": "https://github.com/advisories/GHSA-685w-q87j-wqw3",
@@ -6884,14 +8321,23 @@
           "percentile": 0.34663,
           "score": 0.00402
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "not-fixed",
         "fixed_in": [],
         "id": "GHSA-pxq6-2prw-chj9",
         "in_binary": "vulnerable code in binary",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "go.mod",
+        "locations": [
+          "go.mod"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-09-10T03:50:40.571293679Z",
+        "osv_published": "2026-03-27T17:38:09Z",
         "package": "github.com/docker/docker",
+        "purl": "pkg:golang/github.com/docker/docker@v28.5.2%2Bincompatible",
         "severity": "Medium",
         "summary": "Moby has an Off-by-one error in its plugin privilege validation",
         "url": "https://github.com/advisories/GHSA-pxq6-2prw-chj9",
@@ -6907,14 +8353,23 @@
           "percentile": 0.01204,
           "score": 0.00108
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "not-fixed",
         "fixed_in": [],
         "id": "GHSA-vp62-88p7-qqf5",
         "in_binary": "module in binary",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "go.mod",
+        "locations": [
+          "go.mod"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-09-10T03:51:07.017544565Z",
+        "osv_published": "2026-05-18T17:52:55Z",
         "package": "github.com/docker/docker",
+        "purl": "pkg:golang/github.com/docker/docker@v28.5.2%2Bincompatible",
         "severity": "Medium",
         "summary": "Docker: Race condition in docker cp allows creation of arbitrary empty files on the host via symlink swap",
         "url": "https://github.com/advisories/GHSA-vp62-88p7-qqf5",
@@ -6930,6 +8385,7 @@
           "percentile": 0.18412,
           "score": 0.00264
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "4.1.5"
@@ -6937,9 +8393,17 @@
         "id": "GHSA-4w3g-jfj2-cw2q",
         "in_binary": "vulnerable code not in binary",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "go.mod",
+        "locations": [
+          "go.mod"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-10-28T21:30:06.790863342Z",
+        "osv_published": "2026-10-28T21:14:00Z",
         "package": "github.com/go-jose/go-jose/v4",
+        "purl": "pkg:golang/github.com/go-jose/go-jose/v4@v4.1.4",
         "severity": "Medium",
         "summary": "Go JOSE: Panic during CBC-HMAC processing",
         "url": "https://github.com/advisories/GHSA-4w3g-jfj2-cw2q",
@@ -6955,6 +8419,7 @@
           "percentile": 0.21863,
           "score": 0.00292
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "4.1.5"
@@ -6962,9 +8427,17 @@
         "id": "GHSA-vvm8-gf78-28g4",
         "in_binary": "vulnerable code not in binary",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "go.mod",
+        "locations": [
+          "go.mod"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-10-28T21:30:05.801821772Z",
+        "osv_published": "2026-10-28T21:14:08Z",
         "package": "github.com/go-jose/go-jose/v4",
+        "purl": "pkg:golang/github.com/go-jose/go-jose/v4@v4.1.4",
         "severity": "Medium",
         "summary": "Go JOSE: Panics in JSON parsing",
         "url": "https://github.com/advisories/GHSA-vvm8-gf78-28g4",
@@ -6980,6 +8453,7 @@
           "percentile": 0.18952,
           "score": 0.00267
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "0.62.0"
@@ -6987,9 +8461,17 @@
         "id": "GO-2026-6866",
         "in_binary": "package in binary",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "go.mod",
+        "locations": [
+          "go.mod"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-10-27T21:45:08.978077289Z",
+        "osv_published": "2026-10-27T21:16:18Z",
         "package": "golang.org/x/net",
+        "purl": "pkg:golang/golang.org/x/net@v0.60.0",
         "severity": "Medium",
         "summary": "In childTextNodesAreLiteral, walking up the tree previously stopped at the nearest foreign ancestor once an HTML integration point was found. However, that integration point may itself be a descendant of an element that was foster-parented into a foreign namespace (such as <mglyph> or <malignmark> f",
         "url": "https://go.dev/cl/855121",
@@ -6999,14 +8481,23 @@
         "aliases": [],
         "ecosystem": "golang",
         "epss": null,
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "unknown",
         "fixed_in": [],
         "id": "GO-2026-6905",
         "in_binary": "vulnerable code in binary",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "go.mod",
+        "locations": [
+          "go.mod"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-11-05T23:15:18.148866409Z",
+        "osv_published": "2026-11-05T22:55:15Z",
         "package": "github.com/blakesmith/ar",
+        "purl": "pkg:golang/github.com/blakesmith/ar@v0.0.0-20190502131153-809d4375e1fb",
         "severity": "Unknown",
         "summary": "Reader.Next parses the 10-byte decimal size field of an archive member header with strconv.ParseInt without rejecting negative values. A header with a negative size leaves the reader with a negative remaining byte count, causing the subsequent call to Reader.Read to panic with a slice bounds out of ",
         "url": "https://github.com/golang/vulndb/issues/6905",
@@ -7016,14 +8507,23 @@
         "aliases": [],
         "ecosystem": "golang",
         "epss": null,
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "unknown",
         "fixed_in": [],
         "id": "GO-2026-6225",
         "in_binary": "package in binary",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "go.mod",
+        "locations": [
+          "go.mod"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-08-26T01:20:18.685370674Z",
+        "osv_published": "2026-08-18T18:05:09Z",
         "package": "github.com/chrismellard/docker-credential-acr-env",
+        "purl": "pkg:golang/github.com/chrismellard/docker-credential-acr-env@v0.0.0-20230304212654-82a0ddb27589",
         "severity": "Unknown",
         "summary": "In github.com/chrismellard/docker-credential-acr-env/pkg/credhelper, the regular expression used by isACRRegistry to validate Azure Container Registry hostnames is unanchored. As a result, arbitrary hostnames containing the substring \".azurecr.io\" (such as evil.azurecr.io.attacker.com) are treated a",
         "url": "https://github.com/chrismellard/docker-credential-acr-env/issues/21",
@@ -7033,14 +8533,23 @@
         "aliases": [],
         "ecosystem": "golang",
         "epss": null,
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "unknown",
         "fixed_in": [],
         "id": "GO-2026-6911",
         "in_binary": "module in binary",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "go.mod",
+        "locations": [
+          "go.mod"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-11-05T23:15:16.971949313Z",
+        "osv_published": "2026-11-05T22:55:15Z",
         "package": "github.com/mark3labs/mcp-go",
+        "purl": "pkg:golang/github.com/mark3labs/mcp-go@v1.4.0",
         "severity": "Unknown",
         "summary": "In github.com/mark3labs/mcp-go/client/transport, NewStreamableHTTP constructs an http.Client with a nil CheckRedirect policy when no custom WithHTTPBasicClient is supplied, and attaches static custom headers and OAuth bearer tokens inside a RoundTripper layer. If an MCP server responds with a 3xx re",
         "url": "https://github.com/golang/vulndb/issues/6911",
@@ -7050,6 +8559,7 @@
         "aliases": [],
         "ecosystem": "golang",
         "epss": null,
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "0.58.1-0.20261009181718-2f1f834330b2"
@@ -7057,9 +8567,17 @@
         "id": "GO-2026-5932",
         "in_binary": "vulnerable code in binary",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "go.mod",
+        "locations": [
+          "go.mod"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-11-02T22:15:06.677088389Z",
+        "osv_published": "2026-07-07T22:15:29Z",
         "package": "golang.org/x/crypto",
+        "purl": "pkg:golang/golang.org/x/crypto@v0.57.0",
         "severity": "Unknown",
         "summary": "The golang.org/x/crypto/openpgp package is unsafe by design, has numerous known security issues, is not maintained, and should not be used. If you are required to interoperate with OpenPGP systems and need a maintained package, consider github.com/ProtonMail/go-crypto/openpgp which is a maintained f",
         "url": "https://go.dev/issue/44226",

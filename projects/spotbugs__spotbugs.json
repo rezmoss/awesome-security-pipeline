@@ -76,27 +76,40 @@
     },
     {
       "added": 0,
+      "advisory_state": "ok",
       "commit": "6816eb256805aa6eed1dced23e6a4aea08cc6660",
       "date": "2026-11-08",
       "dependencies": 8,
+      "dependency_state": "ok",
+      "downgraded": 0,
       "errors": [],
+      "file_changes": 0,
       "fixable": 0,
       "go_version": null,
       "in_binary": null,
+      "in_binary_new": 0,
+      "in_binary_resolved": 0,
       "kev": null,
       "kev_new": 0,
+      "kev_new_match": 0,
+      "license_changes": 0,
+      "method": "sbomlyze-occurrence-v1",
+      "moved": 0,
+      "new_advisories": 0,
       "new_vulnerabilities": 0,
-      "osv_confirmed": 0,
-      "osv_only": 0,
+      "osv_confirmed": null,
+      "osv_only": null,
       "ref": "4.10.5",
       "release_changed": false,
       "release_integrity": "no-linux-binary",
       "removed": 0,
+      "resolved_advisories": 0,
       "resolved_vulnerabilities": 0,
       "scorecard": 4.8,
       "scorecard_date": "2026-11-02",
       "scorecard_note": null,
       "scorecard_source": "openssf-api",
+      "unknown_direction": 0,
       "upgraded": 0,
       "vulnerabilities": {
         "Critical": 0,
@@ -112,7 +125,9 @@
         "Low": 0,
         "Medium": 0,
         "files": 5
-      }
+      },
+      "workflow_new": 0,
+      "workflow_resolved": 0
     }
   ],
   "latest": {
@@ -120,20 +135,51 @@
     "category": "Static Application Security Testing (SAST) \u203a Multi-language",
     "changes": {
       "added": [],
+      "added_detail": [],
+      "advisory_state": "ok",
       "any": true,
       "baseline": false,
+      "dependency_baseline": {
+        "attempt": "1",
+        "run_id": "41380955266",
+        "sbom_sha256": "8d640e4ee41d74e1cd328e2f7ba05821746860a6aba2e0319d27d253c49c2760"
+      },
+      "dependency_state": "ok",
+      "digest_coverage": {
+        "after_only": 0,
+        "before_only": 0,
+        "by_kind": {},
+        "comparable": 0,
+        "disjoint_kinds": 0,
+        "packages_total": 11,
+        "same_version_pairs": 11
+      },
+      "distinct_version_changes": null,
+      "downgraded": [],
+      "file_changes": [],
+      "integrity_changes": [],
       "integrity_drift": 0,
       "license_changes": [],
+      "metadata_changes": [],
+      "method": "sbomlyze-occurrence-v1",
+      "moved": [],
+      "new_advisories": 0,
       "new_vulnerabilities": [],
       "previous_ref": "4.10.5",
       "release_changed": false,
       "removed": [],
+      "removed_detail": [],
+      "resolved_advisories": 0,
       "resolved_vulnerabilities": [],
       "scorecard": {
         "from": 4.6,
         "to": 4.8
       },
+      "still_affected_version_changed": [],
+      "unknown_direction": [],
       "upgraded": [],
+      "version_changes": [],
+      "version_set_changes": [],
       "workflow_new": 0,
       "workflow_resolved": 0
     },
@@ -245,6 +291,7 @@
     "description": "Find bug patterns in Java bytecode",
     "errors": [],
     "id": "spotbugs__spotbugs",
+    "lock_aliases": {},
     "manifests": [
       ".github/workflows/build.yaml",
       ".github/workflows/cleanup.yaml",
@@ -262,11 +309,12 @@
     ],
     "name": "spotbugs",
     "osv": {
-      "advisories": 0,
+      "available": false
+    },
+    "osv_api": {
       "available": true,
-      "confirmed": 0,
-      "osv_only": [],
-      "warning": null
+      "queried_at": "2026-11-09T01:36:30+00:00",
+      "states": {}
     },
     "ref": "4.10.5",
     "ref_kind": "release",
@@ -281,15 +329,56 @@
     },
     "released_at": "2026-10-12T03:43:33Z",
     "repository": "spotbugs/spotbugs",
+    "sbom_sha256": "84c9387d65b451f84d725e3c4cb52cbb539c4cba741ea4ba2e187505e5777184",
     "sbomlyze_diff": {
       "added": 0,
+      "baseline": {
+        "attempt": "1",
+        "run_id": "41380955266"
+      },
       "changed": 0,
+      "contract": "sbomlyze-diff-0.7",
       "drift": {},
       "findings": [
-        "0 version changes among 16 shared packages \u2014 no actual upgrades",
+        "0 version changes among 11 shared packages \u2014 no actual upgrades",
+        "Integrity drift checked only 0 of 11 same-version packages; the rest carry no comparable digest",
         "Core system packages stable: github (11) unchanged"
       ],
-      "removed": 0
+      "occurrences": {
+        "added": [],
+        "digest_coverage": {
+          "after_only": 0,
+          "before_only": 0,
+          "by_kind": {},
+          "comparable": 0,
+          "disjoint_kinds": 0,
+          "packages_total": 11,
+          "same_version_pairs": 11
+        },
+        "file_changes": [],
+        "file_coverage": {
+          "ambiguous_paths": 0,
+          "config_unknown": 0,
+          "files_compared": 5,
+          "files_unverified": 0,
+          "owned_files_after": 0,
+          "unowned_files_after": 0
+        },
+        "files_added": [],
+        "files_removed": [],
+        "integrity_changes": [],
+        "license_changes": [],
+        "metadata_changes": [],
+        "moved": [],
+        "owned_file_drift": [],
+        "removed": [],
+        "source_change": null,
+        "version_changes": [],
+        "version_set_changes": []
+      },
+      "previous_sbom_sha256": "8d640e4ee41d74e1cd328e2f7ba05821746860a6aba2e0319d27d253c49c2760",
+      "removed": 0,
+      "sbom_sha256": "84c9387d65b451f84d725e3c4cb52cbb539c4cba741ea4ba2e187505e5777184"
     },
     "scanned_at": "2026-11-08T05:53:59+00:00",
     "scorecard": {

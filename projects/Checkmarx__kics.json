@@ -76,15 +76,26 @@
     },
     {
       "added": 0,
+      "advisory_state": "ok",
       "commit": "453066aa9c66014ad7aee7dd0149ba1944c78050",
       "date": "2026-11-08",
       "dependencies": 301,
+      "dependency_state": "ok",
+      "downgraded": 0,
       "errors": [],
+      "file_changes": 0,
       "fixable": 15,
       "go_version": null,
       "in_binary": null,
+      "in_binary_new": 0,
+      "in_binary_resolved": 0,
       "kev": 0,
       "kev_new": 0,
+      "kev_new_match": 0,
+      "license_changes": 0,
+      "method": "sbomlyze-occurrence-v1",
+      "moved": 0,
+      "new_advisories": 1,
       "new_vulnerabilities": 1,
       "osv_confirmed": 19,
       "osv_only": 0,
@@ -92,11 +103,13 @@
       "release_changed": false,
       "release_integrity": "no-assets",
       "removed": 0,
+      "resolved_advisories": 0,
       "resolved_vulnerabilities": 0,
       "scorecard": null,
       "scorecard_date": null,
       "scorecard_note": "the project is not in the OpenSSF public dataset; the Scorecard CLI fallback was skipped because this shard's weekly budget was used",
       "scorecard_source": null,
+      "unknown_direction": 0,
       "upgraded": 0,
       "vulnerabilities": {
         "Critical": 3,
@@ -112,7 +125,9 @@
         "Low": 2,
         "Medium": 0,
         "files": 37
-      }
+      },
+      "workflow_new": 0,
+      "workflow_resolved": 0
     }
   ],
   "latest": {
@@ -120,11 +135,40 @@
     "category": "Infrastructure as Code Security",
     "changes": {
       "added": [],
+      "added_detail": [],
+      "advisory_state": "ok",
       "any": true,
       "baseline": false,
+      "dependency_baseline": {
+        "attempt": "1",
+        "run_id": "41380955266",
+        "sbom_sha256": "2f79494cd10a7fd9716b9c1f0825fa7b9aa6e45d1a1b87ecc36df262483c0c07"
+      },
+      "dependency_state": "ok",
+      "digest_coverage": {
+        "after_only": 0,
+        "before_only": 0,
+        "by_kind": {
+          "go-h1": 265
+        },
+        "comparable": 265,
+        "disjoint_kinds": 0,
+        "packages_total": 399,
+        "same_version_pairs": 399
+      },
+      "distinct_version_changes": null,
+      "downgraded": [],
+      "file_changes": [],
+      "integrity_changes": [],
       "integrity_drift": 0,
+      "kev_method": "snapshot difference",
       "kev_new": [],
+      "kev_new_match": [],
       "license_changes": [],
+      "metadata_changes": [],
+      "method": "sbomlyze-occurrence-v1",
+      "moved": [],
+      "new_advisories": 1,
       "new_vulnerabilities": [
         {
           "aliases": [
@@ -137,15 +181,30 @@
             "percentile": 0.26636,
             "score": 0.00333
           },
+          "epss_date": "2026-11-07T12:00:22Z",
           "fix_state": "fixed",
           "fixed_in": [
             "1.20.2"
           ],
           "id": "GO-2026-6865",
           "kev": null,
+          "kev_cves": [],
+          "kev_snapshot": "2026.11.06",
           "location": "go.mod",
+          "locations": [
+            "go.mod"
+          ],
+          "new": {
+            "advisory": "published since last scan",
+            "modified": "2026-11-05T23:15:14.472777299Z",
+            "published": "2026-11-05T22:54:32Z",
+            "reason": "unchanged version"
+          },
           "osv_confirmed": true,
+          "osv_modified": "2026-11-05T23:15:14.472777299Z",
+          "osv_published": "2026-11-05T22:54:32Z",
           "package": "github.com/klauspost/compress",
+          "purl": "pkg:golang/github.com/klauspost/compress@v1.18.7",
           "severity": "High",
           "summary": "Panic on two-block frames in github.com/klauspost/compress",
           "url": "https://github.com/klauspost/compress/security/advisories/GHSA-fpmh-frq8-7rj8",
@@ -155,8 +214,14 @@
       "previous_ref": "v2.2.0",
       "release_changed": false,
       "removed": [],
+      "removed_detail": [],
+      "resolved_advisories": 0,
       "resolved_vulnerabilities": [],
+      "still_affected_version_changed": [],
+      "unknown_direction": [],
       "upgraded": [],
+      "version_changes": [],
+      "version_set_changes": [],
       "workflow_new": 0,
       "workflow_resolved": 0
     },
@@ -2612,6 +2677,7 @@
     "description": "Find security vulnerabilities and compliance issues in IaC",
     "errors": [],
     "id": "Checkmarx__kics",
+    "lock_aliases": {},
     "manifests": [
       ".github/scripts/docs-generator/requirements.txt",
       ".github/scripts/extract-kics-info/requirements.txt",
@@ -2671,6 +2737,11 @@
       "osv_only": [],
       "warning": null
     },
+    "osv_api": {
+      "available": true,
+      "queried_at": "2026-11-09T01:36:32+00:00",
+      "states": {}
+    },
     "ref": "v2.2.0",
     "ref_kind": "release",
     "release_integrity": {
@@ -2684,15 +2755,57 @@
     },
     "released_at": "2026-09-17T10:33:31Z",
     "repository": "Checkmarx/kics",
+    "sbom_sha256": "f4830d43c4971ccd78c448d47d39952461d46ca2069c0ee4ad1c777f9a8a81a0",
     "sbomlyze_diff": {
       "added": 0,
+      "baseline": {
+        "attempt": "1",
+        "run_id": "41380955266"
+      },
       "changed": 0,
+      "contract": "sbomlyze-diff-0.7",
       "drift": {},
       "findings": [
-        "0 version changes among 439 shared packages \u2014 no actual upgrades",
+        "0 version changes among 399 shared packages \u2014 no actual upgrades",
         "Core system packages stable: golang (265), github (131), file (40) unchanged"
       ],
-      "removed": 0
+      "occurrences": {
+        "added": [],
+        "digest_coverage": {
+          "after_only": 0,
+          "before_only": 0,
+          "by_kind": {
+            "go-h1": 265
+          },
+          "comparable": 265,
+          "disjoint_kinds": 0,
+          "packages_total": 399,
+          "same_version_pairs": 399
+        },
+        "file_changes": [],
+        "file_coverage": {
+          "ambiguous_paths": 0,
+          "config_unknown": 0,
+          "files_compared": 40,
+          "files_unverified": 0,
+          "owned_files_after": 0,
+          "unowned_files_after": 0
+        },
+        "files_added": [],
+        "files_removed": [],
+        "integrity_changes": [],
+        "license_changes": [],
+        "metadata_changes": [],
+        "moved": [],
+        "owned_file_drift": [],
+        "removed": [],
+        "source_change": null,
+        "version_changes": [],
+        "version_set_changes": []
+      },
+      "previous_sbom_sha256": "2f79494cd10a7fd9716b9c1f0825fa7b9aa6e45d1a1b87ecc36df262483c0c07",
+      "removed": 0,
+      "sbom_sha256": "f4830d43c4971ccd78c448d47d39952461d46ca2069c0ee4ad1c777f9a8a81a0"
     },
     "scanned_at": "2026-11-08T05:53:52+00:00",
     "scorecard": null,
@@ -2709,13 +2822,22 @@
           "percentile": 0.29101,
           "score": 0.00353
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "unknown",
         "fixed_in": [],
         "id": "GO-2026-5064",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "go.mod",
+        "locations": [
+          "go.mod"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-06-26T06:29:23.046204676Z",
+        "osv_published": "2026-06-22T19:28:57Z",
         "package": "github.com/containerd/containerd",
+        "purl": "pkg:golang/github.com/containerd/containerd@v1.7.35",
         "severity": "Critical",
         "summary": "containerd CRI checkpoint restore CDI annotation smuggling in github.com/containerd/containerd",
         "url": "https://github.com/containerd/containerd/security/advisories/GHSA-33vj-92qq-66hc",
@@ -2732,13 +2854,22 @@
           "percentile": 0.23254,
           "score": 0.00303
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "unknown",
         "fixed_in": [],
         "id": "GO-2026-5338",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "go.mod",
+        "locations": [
+          "go.mod"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-06-26T15:44:22.793783834Z",
+        "osv_published": "2026-06-25T18:43:19Z",
         "package": "github.com/containerd/containerd",
+        "purl": "pkg:golang/github.com/containerd/containerd@v1.7.35",
         "severity": "Critical",
         "summary": "containerd: CRI checkpoint import allows local image tag poisoning in github.com/containerd/containerd",
         "url": "https://github.com/containerd/containerd/security/advisories/GHSA-cvxm-645q-p574",
@@ -2754,15 +2885,24 @@
           "percentile": 0.58678,
           "score": 0.00858
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "0.60.0"
         ],
         "id": "GO-2026-6612",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "go.mod",
+        "locations": [
+          "go.mod"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-10-16T09:55:54.129082194Z",
+        "osv_published": "2026-10-08T22:31:09Z",
         "package": "golang.org/x/net",
+        "purl": "pkg:golang/golang.org/x/net@v0.58.0",
         "severity": "Critical",
         "summary": "The HTTP/2 server can refund connection-level flow control twice for the same data: Once when a client resets a stream (refunding data for any sent-but-unread portion of the stream), and again when a request handler reads the buffered data. A malicious client can exploit this to bypass the configure",
         "url": "https://go.dev/cl/847187",
@@ -2779,13 +2919,22 @@
           "percentile": 0.01117,
           "score": 0.00106
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "unknown",
         "fixed_in": [],
         "id": "GO-2026-6791",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "go.mod",
+        "locations": [
+          "go.mod"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-10-19T21:31:38.313663029Z",
+        "osv_published": "2026-10-19T21:08:35Z",
         "package": "github.com/containerd/containerd",
+        "purl": "pkg:golang/github.com/containerd/containerd@v1.7.35",
         "severity": "High",
         "summary": "containerd CRI plugin: Checkpoint restore bypasses destination security context in github.com/containerd/containerd",
         "url": "https://github.com/containerd/containerd/security/advisories/GHSA-p7v4-vr35-mj6f",
@@ -2801,15 +2950,24 @@
           "percentile": 0.30652,
           "score": 0.00366
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "4.1.6"
         ],
         "id": "GHSA-mgcc-cww5-fp2q",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "go.mod",
+        "locations": [
+          "go.mod"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-10-27T19:15:23.147827328Z",
+        "osv_published": "2026-10-27T19:01:30Z",
         "package": "github.com/go-jose/go-jose/v4",
+        "purl": "pkg:golang/github.com/go-jose/go-jose/v4@v4.1.4",
         "severity": "High",
         "summary": "Go JOSE: DoS when parsing JWKs that contain RSA keys",
         "url": "https://github.com/advisories/GHSA-mgcc-cww5-fp2q",
@@ -2826,15 +2984,24 @@
           "percentile": 0.26636,
           "score": 0.00333
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "1.20.2"
         ],
         "id": "GO-2026-6865",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "go.mod",
+        "locations": [
+          "go.mod"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-11-05T23:15:14.472777299Z",
+        "osv_published": "2026-11-05T22:54:32Z",
         "package": "github.com/klauspost/compress",
+        "purl": "pkg:golang/github.com/klauspost/compress@v1.18.7",
         "severity": "High",
         "summary": "Panic on two-block frames in github.com/klauspost/compress",
         "url": "https://github.com/klauspost/compress/security/advisories/GHSA-fpmh-frq8-7rj8",
@@ -2850,15 +3017,24 @@
           "percentile": 0.58917,
           "score": 0.00866
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "0.60.0"
         ],
         "id": "GO-2026-6603",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "go.mod",
+        "locations": [
+          "go.mod"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-10-16T09:55:47.068117441Z",
+        "osv_published": "2026-10-08T22:31:09Z",
         "package": "golang.org/x/net",
+        "purl": "pkg:golang/golang.org/x/net@v0.58.0",
         "severity": "High",
         "summary": "When \"Trailer\" headers are sent by a client, the HTTP server internally uses the header values to populate the Request.Trailer map passed to the server handler. Because Request.Trailer is a map, each entry incurs memory overhead. For HTTP/2 servers, a malicious client can exploit this by sending a \"",
         "url": "https://go.dev/cl/847185",
@@ -2874,15 +3050,24 @@
           "percentile": 0.45813,
           "score": 0.00542
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "0.60.0"
         ],
         "id": "GO-2026-6610",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "go.mod",
+        "locations": [
+          "go.mod"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-10-16T09:56:04.364467528Z",
+        "osv_published": "2026-10-08T22:31:09Z",
         "package": "golang.org/x/net",
+        "purl": "pkg:golang/golang.org/x/net@v0.58.0",
         "severity": "High",
         "summary": "Historically, we have been rather lax about malformed framing-related headers in our HTTP/2 implementation, as they cannot interfere with HTTP/2 framing. However, this makes it possible for our HTTP/2 implementation to forward responses containing such headers to an HTTP/1 client when acting as a re",
         "url": "https://go.dev/cl/835145",
@@ -2898,15 +3083,24 @@
           "percentile": 0.58324,
           "score": 0.00847
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "0.60.0"
         ],
         "id": "GO-2026-6611",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "go.mod",
+        "locations": [
+          "go.mod"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-10-16T09:55:38.952277866Z",
+        "osv_published": "2026-10-08T22:31:09Z",
         "package": "golang.org/x/net",
+        "purl": "pkg:golang/golang.org/x/net@v0.58.0",
         "severity": "High",
         "summary": "A malicious HTTP/2 peer can cause excessive CPU consumption in the client or server by opening a large number of streams and then sending many small SETTINGS frames containing SETTINGS_INITIAL_WINDOW_SIZE values.",
         "url": "https://go.dev/cl/847186",
@@ -2922,15 +3116,24 @@
           "percentile": 0.52481,
           "score": 0.00676
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "0.60.0"
         ],
         "id": "GO-2026-6617",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "go.mod",
+        "locations": [
+          "go.mod"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-10-16T09:55:57.350751224Z",
+        "osv_published": "2026-10-08T22:31:09Z",
         "package": "golang.org/x/net",
+        "purl": "pkg:golang/golang.org/x/net@v0.58.0",
         "severity": "High",
         "summary": "HTTP/2 servers could end up crashing due to inadvertently modifying its HPACK encoder concurrently. This happens because the server modifies the HPACK encoder from two goroutines without synchronization: one uses the encoder to encode a HEADERS frame as part of a response sent to a client and the ot",
         "url": "https://go.dev/cl/847188",
@@ -2946,15 +3149,24 @@
           "percentile": 0.35396,
           "score": 0.00409
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "0.62.0"
         ],
         "id": "GO-2026-6860",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "go.mod",
+        "locations": [
+          "go.mod"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-10-27T21:30:04.890809062Z",
+        "osv_published": "2026-10-27T21:16:18Z",
         "package": "golang.org/x/net",
+        "purl": "pkg:golang/golang.org/x/net@v0.58.0",
         "severity": "High",
         "summary": "When coalescing adjacent text nodes in addText and fosterParent, appending to an existing TextNode's Data via string concatenation (n.Data += text) reallocated and copied the accumulated string on every token. Inputs containing many short text runs separated by ignored end tags (such as \"a</x>\") cau",
         "url": "https://go.dev/cl/849365",
@@ -2970,15 +3182,24 @@
           "percentile": 0.29561,
           "score": 0.00356
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "1.7.36"
         ],
         "id": "GHSA-pg57-6jwg-q645",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "go.mod",
+        "locations": [
+          "go.mod"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-10-01T20:55:46.094271282Z",
+        "osv_published": "2026-09-25T19:27:59Z",
         "package": "github.com/containerd/containerd",
+        "purl": "pkg:golang/github.com/containerd/containerd@v1.7.35",
         "severity": "Medium",
         "summary": "Containerd has image-pull DoS via crafted OCI index graph amplification",
         "url": "https://github.com/advisories/GHSA-pg57-6jwg-q645",
@@ -2995,13 +3216,22 @@
           "percentile": 0.06932,
           "score": 0.00174
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "unknown",
         "fixed_in": [],
         "id": "GO-2026-5622",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "go.mod",
+        "locations": [
+          "go.mod"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-06-26T15:44:24.122407064Z",
+        "osv_published": "2026-06-25T22:34:34Z",
         "package": "github.com/containerd/containerd",
+        "purl": "pkg:golang/github.com/containerd/containerd@v1.7.35",
         "severity": "Medium",
         "summary": "Arbitrary host CRI log file read via symlink following in CRI checkpoint restore in github.com/containerd/containerd",
         "url": "https://github.com/containerd/containerd/security/advisories/GHSA-rgh6-rfwx-v388",
@@ -3017,15 +3247,24 @@
           "percentile": 0.18412,
           "score": 0.00264
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "4.1.5"
         ],
         "id": "GHSA-4w3g-jfj2-cw2q",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "go.mod",
+        "locations": [
+          "go.mod"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-10-28T21:30:06.790863342Z",
+        "osv_published": "2026-10-28T21:14:00Z",
         "package": "github.com/go-jose/go-jose/v4",
+        "purl": "pkg:golang/github.com/go-jose/go-jose/v4@v4.1.4",
         "severity": "Medium",
         "summary": "Go JOSE: Panic during CBC-HMAC processing",
         "url": "https://github.com/advisories/GHSA-4w3g-jfj2-cw2q",
@@ -3041,15 +3280,24 @@
           "percentile": 0.21863,
           "score": 0.00292
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "4.1.5"
         ],
         "id": "GHSA-vvm8-gf78-28g4",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "go.mod",
+        "locations": [
+          "go.mod"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-10-28T21:30:05.801821772Z",
+        "osv_published": "2026-10-28T21:14:08Z",
         "package": "github.com/go-jose/go-jose/v4",
+        "purl": "pkg:golang/github.com/go-jose/go-jose/v4@v4.1.4",
         "severity": "Medium",
         "summary": "Go JOSE: Panics in JSON parsing",
         "url": "https://github.com/advisories/GHSA-vvm8-gf78-28g4",
@@ -3065,15 +3313,24 @@
           "percentile": 0.18952,
           "score": 0.00267
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "0.62.0"
         ],
         "id": "GO-2026-6866",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "go.mod",
+        "locations": [
+          "go.mod"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-10-27T21:45:08.978077289Z",
+        "osv_published": "2026-10-27T21:16:18Z",
         "package": "golang.org/x/net",
+        "purl": "pkg:golang/golang.org/x/net@v0.58.0",
         "severity": "Medium",
         "summary": "In childTextNodesAreLiteral, walking up the tree previously stopped at the nearest foreign ancestor once an HTML integration point was found. However, that integration point may itself be a descendant of an element that was foster-parented into a foreign namespace (such as <mglyph> or <malignmark> f",
         "url": "https://go.dev/cl/855121",
@@ -3089,15 +3346,24 @@
           "percentile": 0.18599,
           "score": 0.00266
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "1.45.0"
         ],
         "id": "GHSA-8wmf-6v46-5gfg",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "go.mod",
+        "locations": [
+          "go.mod"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-10-01T20:55:52.479756803Z",
+        "osv_published": "2026-09-17T20:31:06Z",
         "package": "go.opentelemetry.io/otel/sdk",
+        "purl": "pkg:golang/go.opentelemetry.io/otel/sdk@v1.44.0",
         "severity": "Low",
         "summary": "OpenTelemetry-Go: Exporter config logging may leak endpoint URLs in info logs",
         "url": "https://github.com/advisories/GHSA-8wmf-6v46-5gfg",
@@ -3113,15 +3379,24 @@
           "percentile": 0.01484,
           "score": 0.00114
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "0.44.0"
         ],
         "id": "GO-2026-5024",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": ".github/scripts/report/go.mod",
+        "locations": [
+          ".github/scripts/report/go.mod"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-06-09T18:59:22.740765220Z",
+        "osv_published": "2026-05-22T18:28:47Z",
         "package": "golang.org/x/sys",
+        "purl": "pkg:golang/golang.org/x/sys@v0.12.0",
         "severity": "Low",
         "summary": "NewNTUnicodeString does not check for string length overflow. When provided with a string that overflows the maximum size of a NTUnicodeString (a 16-bit number of bytes), it returns a truncated string rather than an error.",
         "url": "https://go.dev/issue/78916",
@@ -3131,15 +3406,24 @@
         "aliases": [],
         "ecosystem": "golang",
         "epss": null,
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "0.58.1-0.20261009181718-2f1f834330b2"
         ],
         "id": "GO-2026-5932",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "go.mod",
+        "locations": [
+          "go.mod"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-11-02T22:15:06.677088389Z",
+        "osv_published": "2026-07-07T22:15:29Z",
         "package": "golang.org/x/crypto",
+        "purl": "pkg:golang/golang.org/x/crypto@v0.56.0",
         "severity": "Unknown",
         "summary": "The golang.org/x/crypto/openpgp package is unsafe by design, has numerous known security issues, is not maintained, and should not be used. If you are required to interoperate with OpenPGP systems and need a maintained package, consider github.com/ProtonMail/go-crypto/openpgp which is a maintained f",
         "url": "https://go.dev/issue/44226",

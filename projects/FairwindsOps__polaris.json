@@ -84,19 +84,31 @@
     },
     {
       "added": 13,
+      "advisory_state": "ok",
       "commit": "6e76dd36aea6a5d8dd380ddf3e9199a83d252c55",
       "date": "2026-11-08",
       "dependencies": 94,
+      "dependency_state": "ok",
+      "downgraded": 0,
       "errors": [],
+      "file_changes": 1,
       "fixable": 2,
       "go_version": "go1.27.3",
       "in_binary": {
         "dependencies": 2,
+        "records": 2,
         "stdlib": 0,
         "total": 2
       },
+      "in_binary_new": 0,
+      "in_binary_resolved": 14,
       "kev": 0,
       "kev_new": 0,
+      "kev_new_match": 0,
+      "license_changes": 0,
+      "method": "sbomlyze-occurrence-v1",
+      "moved": 0,
+      "new_advisories": 0,
       "new_vulnerabilities": 0,
       "osv_confirmed": 2,
       "osv_only": 0,
@@ -104,11 +116,13 @@
       "release_changed": true,
       "release_integrity": "signed",
       "removed": 0,
+      "resolved_advisories": 6,
       "resolved_vulnerabilities": 6,
       "scorecard": 5,
       "scorecard_date": "2026-11-02",
       "scorecard_note": null,
       "scorecard_source": "openssf-api",
+      "unknown_direction": 0,
       "upgraded": 33,
       "vulnerabilities": {
         "Critical": 0,
@@ -124,7 +138,9 @@
         "Low": 1,
         "Medium": 3,
         "files": 3
-      }
+      },
+      "workflow_new": 0,
+      "workflow_resolved": 0
     }
   ],
   "latest": {
@@ -132,11 +148,11 @@
     "category": "Kubernetes Security",
     "changes": {
       "added": [
+        "github.com/Masterminds/semver/v3@v3.5.0",
         "github.com/go-openapi/testify/enable/yaml/v2@v2.8.0",
         "github.com/google/pprof@v0.0.0-20261026192309-dbd0ed30aa88",
         "github.com/hashicorp/go-uuid@v1.0.4",
         "github.com/klauspost/compress@v1.20.3",
-        "github.com/Masterminds/semver/v3@v3.5.0",
         "github.com/onsi/ginkgo/v2@v2.33.1",
         "github.com/onsi/gomega@v1.44.0",
         "github.com/pandatix/go-abnf@v0.5.1",
@@ -146,8 +162,150 @@
         "go.uber.org/zap@v1.28.0",
         "golang.org/x/tools@v0.52.0"
       ],
+      "added_detail": [
+        {
+          "ecosystem": "golang",
+          "location": "go.mod",
+          "locations": [
+            "go.mod"
+          ],
+          "name": "github.com/Masterminds/semver/v3",
+          "version": "v3.5.0"
+        },
+        {
+          "ecosystem": "golang",
+          "location": "go.mod",
+          "locations": [
+            "go.mod"
+          ],
+          "name": "github.com/go-openapi/testify/enable/yaml/v2",
+          "version": "v2.8.0"
+        },
+        {
+          "ecosystem": "golang",
+          "location": "go.mod",
+          "locations": [
+            "go.mod"
+          ],
+          "name": "github.com/google/pprof",
+          "version": "v0.0.0-20261026192309-dbd0ed30aa88"
+        },
+        {
+          "ecosystem": "golang",
+          "location": "go.mod",
+          "locations": [
+            "go.mod"
+          ],
+          "name": "github.com/hashicorp/go-uuid",
+          "version": "v1.0.4"
+        },
+        {
+          "ecosystem": "golang",
+          "location": "go.mod",
+          "locations": [
+            "go.mod"
+          ],
+          "name": "github.com/klauspost/compress",
+          "version": "v1.20.3"
+        },
+        {
+          "ecosystem": "golang",
+          "location": "go.mod",
+          "locations": [
+            "go.mod"
+          ],
+          "name": "github.com/onsi/ginkgo/v2",
+          "version": "v2.33.1"
+        },
+        {
+          "ecosystem": "golang",
+          "location": "go.mod",
+          "locations": [
+            "go.mod"
+          ],
+          "name": "github.com/onsi/gomega",
+          "version": "v1.44.0"
+        },
+        {
+          "ecosystem": "golang",
+          "location": "go.mod",
+          "locations": [
+            "go.mod"
+          ],
+          "name": "github.com/pandatix/go-abnf",
+          "version": "v0.5.1"
+        },
+        {
+          "ecosystem": "golang",
+          "location": "go.mod",
+          "locations": [
+            "go.mod"
+          ],
+          "name": "github.com/rogpeppe/go-internal",
+          "version": "v1.16.0"
+        },
+        {
+          "ecosystem": "golang",
+          "location": "go.mod",
+          "locations": [
+            "go.mod"
+          ],
+          "name": "github.com/sergi/go-diff",
+          "version": "v1.4.0"
+        },
+        {
+          "ecosystem": "golang",
+          "location": "go.mod",
+          "locations": [
+            "go.mod"
+          ],
+          "name": "github.com/stretchr/objx",
+          "version": "v0.8.0"
+        },
+        {
+          "ecosystem": "golang",
+          "location": "go.mod",
+          "locations": [
+            "go.mod"
+          ],
+          "name": "go.uber.org/zap",
+          "version": "v1.28.0"
+        },
+        {
+          "ecosystem": "golang",
+          "location": "go.mod",
+          "locations": [
+            "go.mod"
+          ],
+          "name": "golang.org/x/tools",
+          "version": "v0.52.0"
+        }
+      ],
+      "advisory_state": "ok",
       "any": true,
       "baseline": false,
+      "dependency_baseline": {
+        "attempt": "1",
+        "run_id": "41380955266",
+        "sbom_sha256": "2cb92c0750c34c93cc7a0f9fa1677ae04bc09501f9ebe4e0574cc43d72108878"
+      },
+      "dependency_state": "ok",
+      "digest_coverage": {
+        "after_only": 0,
+        "before_only": 0,
+        "by_kind": {
+          "go-h1": 44
+        },
+        "comparable": 44,
+        "disjoint_kinds": 0,
+        "packages_total": 94,
+        "same_version_pairs": 48
+      },
+      "distinct_version_changes": 33,
+      "downgraded": [],
+      "file_changes": [
+        "go.mod"
+      ],
       "in_binary_new": [],
       "in_binary_resolved": [
         "GO-2026-6599",
@@ -165,13 +323,22 @@
         "GO-2026-6629",
         "GO-2026-6809"
       ],
-      "integrity_drift": 1,
+      "integrity_changes": [],
+      "integrity_drift": 0,
+      "kev_method": "snapshot difference",
       "kev_new": [],
+      "kev_new_match": [],
       "license_changes": [],
+      "metadata_changes": [],
+      "method": "sbomlyze-occurrence-v1",
+      "moved": [],
+      "new_advisories": 0,
       "new_vulnerabilities": [],
       "previous_ref": "v10.2.5",
       "release_changed": true,
       "removed": [],
+      "removed_detail": [],
+      "resolved_advisories": 6,
       "resolved_vulnerabilities": [
         {
           "aliases": [
@@ -324,206 +491,630 @@
           "version": "v0.40.0"
         }
       ],
-      "upgraded": [
+      "still_affected_version_changed": [
         {
           "ecosystem": "golang",
+          "from": [
+            "v0.57.0"
+          ],
+          "id": "GO-2026-6860",
+          "package": "golang.org/x/net",
+          "to": [
+            "v0.61.0"
+          ]
+        },
+        {
+          "ecosystem": "golang",
+          "from": [
+            "v0.57.0"
+          ],
+          "id": "GO-2026-6866",
+          "package": "golang.org/x/net",
+          "to": [
+            "v0.61.0"
+          ]
+        }
+      ],
+      "unknown_direction": [],
+      "upgraded": [
+        {
+          "direction": "upgrade",
+          "ecosystem": "golang",
           "from": "v5.9.0+incompatible",
+          "level": "patch",
+          "location": "go.mod",
           "package": "github.com/evanphx/json-patch",
           "to": "v5.9.11+incompatible"
         },
         {
+          "direction": "upgrade",
           "ecosystem": "golang",
           "from": "v1.9.0",
+          "level": "minor",
+          "location": "go.mod",
           "package": "github.com/fsnotify/fsnotify",
           "to": "v1.10.1"
         },
         {
+          "direction": "upgrade",
           "ecosystem": "golang",
           "from": "v2.9.1",
+          "level": "patch",
+          "location": "go.mod",
           "package": "github.com/fxamacker/cbor/v2",
           "to": "v2.9.6"
         },
         {
+          "direction": "upgrade",
           "ecosystem": "golang",
           "from": "v1.4.3",
+          "level": "patch",
+          "location": "go.mod",
           "package": "github.com/go-logr/logr",
           "to": "v1.4.4"
         },
         {
+          "direction": "upgrade",
           "ecosystem": "golang",
           "from": "v1.0.0",
+          "level": "patch",
+          "location": "go.mod",
           "package": "github.com/go-openapi/jsonpointer",
           "to": "v1.0.2"
         },
         {
+          "direction": "upgrade",
           "ecosystem": "golang",
           "from": "v1.0.0",
+          "level": "patch",
+          "location": "go.mod",
           "package": "github.com/go-openapi/jsonreference",
           "to": "v1.0.3"
         },
         {
+          "direction": "upgrade",
           "ecosystem": "golang",
           "from": "v0.27.1",
+          "level": "minor",
+          "location": "go.mod",
           "package": "github.com/go-openapi/swag/conv",
           "to": "v0.29.2"
         },
         {
+          "direction": "upgrade",
           "ecosystem": "golang",
           "from": "v0.27.1",
+          "level": "minor",
+          "location": "go.mod",
           "package": "github.com/go-openapi/swag/jsonutils",
           "to": "v0.29.2"
         },
         {
+          "direction": "upgrade",
           "ecosystem": "golang",
           "from": "v0.27.1",
+          "level": "minor",
+          "location": "go.mod",
           "package": "github.com/go-openapi/swag/pools",
           "to": "v0.29.2"
         },
         {
+          "direction": "upgrade",
           "ecosystem": "golang",
           "from": "v0.27.1",
+          "level": "minor",
+          "location": "go.mod",
           "package": "github.com/go-openapi/swag/typeutils",
           "to": "v0.29.2"
         },
         {
+          "direction": "upgrade",
           "ecosystem": "golang",
           "from": "v0.1.14",
+          "level": "patch",
+          "location": "go.mod",
           "package": "github.com/mattn/go-colorable",
           "to": "v0.1.16"
         },
         {
+          "direction": "upgrade",
           "ecosystem": "golang",
           "from": "v0.0.20",
+          "level": "patch",
+          "location": "go.mod",
           "package": "github.com/mattn/go-isatty",
           "to": "v0.0.24"
         },
         {
+          "direction": "upgrade",
           "ecosystem": "golang",
           "from": "v1.24.0",
+          "level": "minor",
+          "location": "go.mod",
           "package": "github.com/prometheus/client_golang",
           "to": "v1.25.0"
         },
         {
+          "direction": "upgrade",
           "ecosystem": "golang",
           "from": "v0.6.2",
+          "level": "patch",
+          "location": "go.mod",
           "package": "github.com/prometheus/client_model",
           "to": "v0.6.3"
         },
         {
+          "direction": "upgrade",
           "ecosystem": "golang",
           "from": "v0.70.0",
+          "level": "minor",
+          "location": "go.mod",
           "package": "github.com/prometheus/common",
           "to": "v0.73.0"
         },
         {
+          "direction": "upgrade",
           "ecosystem": "golang",
           "from": "v0.21.1",
+          "level": "minor",
+          "location": "go.mod",
           "package": "github.com/prometheus/procfs",
           "to": "v0.23.0"
         },
         {
+          "direction": "upgrade",
           "ecosystem": "golang",
           "from": "v3.0.5",
+          "level": "patch",
+          "location": "go.mod",
           "package": "go.yaml.in/yaml/v3",
           "to": "v3.0.6"
         },
         {
+          "direction": "upgrade",
           "ecosystem": "golang",
           "from": "v0.57.0",
+          "level": "minor",
+          "location": "go.mod",
           "package": "golang.org/x/net",
           "to": "v0.61.0"
         },
         {
+          "direction": "upgrade",
           "ecosystem": "golang",
           "from": "v0.36.0",
+          "level": "minor",
+          "location": "go.mod",
           "package": "golang.org/x/oauth2",
           "to": "v0.37.0"
         },
         {
+          "direction": "upgrade",
           "ecosystem": "golang",
           "from": "v0.22.0",
+          "level": "minor",
+          "location": "go.mod",
           "package": "golang.org/x/sync",
           "to": "v0.24.0"
         },
         {
+          "direction": "upgrade",
           "ecosystem": "golang",
           "from": "v0.47.0",
+          "level": "minor",
+          "location": "go.mod",
           "package": "golang.org/x/sys",
           "to": "v0.49.0"
         },
         {
+          "direction": "upgrade",
           "ecosystem": "golang",
           "from": "v0.45.0",
+          "level": "minor",
+          "location": "go.mod",
           "package": "golang.org/x/term",
           "to": "v0.47.0"
         },
         {
+          "direction": "upgrade",
           "ecosystem": "golang",
           "from": "v0.40.0",
+          "level": "minor",
+          "location": "go.mod",
           "package": "golang.org/x/text",
           "to": "v0.43.0"
         },
         {
+          "direction": "upgrade",
           "ecosystem": "golang",
           "from": "v0.15.0",
+          "level": "minor",
+          "location": "go.mod",
           "package": "golang.org/x/time",
           "to": "v0.16.0"
         },
         {
+          "direction": "upgrade",
           "ecosystem": "golang",
           "from": "v1.36.12-0.20260120151049-f2248ac996af",
+          "level": "prerelease",
+          "location": "go.mod",
           "package": "google.golang.org/protobuf",
           "to": "v1.36.12"
         },
         {
+          "direction": "upgrade",
           "ecosystem": "golang",
           "from": "v0.37.0",
+          "level": "patch",
+          "location": "go.mod",
           "package": "k8s.io/api",
           "to": "v0.37.1"
         },
         {
+          "direction": "upgrade",
           "ecosystem": "golang",
           "from": "v0.37.0",
+          "level": "patch",
+          "location": "go.mod",
           "package": "k8s.io/apiextensions-apiserver",
           "to": "v0.37.1"
         },
         {
+          "direction": "upgrade",
           "ecosystem": "golang",
           "from": "v0.37.0",
+          "level": "patch",
+          "location": "go.mod",
           "package": "k8s.io/apimachinery",
           "to": "v0.37.1"
         },
         {
+          "direction": "upgrade",
           "ecosystem": "golang",
           "from": "v0.37.0",
+          "level": "patch",
+          "location": "go.mod",
           "package": "k8s.io/client-go",
           "to": "v0.37.1"
         },
         {
+          "direction": "upgrade",
           "ecosystem": "golang",
           "from": "v0.0.0-20260721132016-d427ff9ee9ad",
+          "level": "prerelease",
+          "location": "go.mod",
           "package": "k8s.io/kube-openapi",
           "to": "v0.0.0-20260821135717-be32def86098"
         },
         {
+          "direction": "upgrade",
           "ecosystem": "golang",
           "from": "v0.0.0-20260626114624-be93311217bd",
+          "level": "prerelease",
+          "location": "go.mod",
           "package": "k8s.io/utils",
           "to": "v0.0.0-20261023123148-ca04ba58ecab"
         },
         {
+          "direction": "upgrade",
           "ecosystem": "golang",
           "from": "v0.25.0",
+          "level": "patch",
+          "location": "go.mod",
           "package": "sigs.k8s.io/controller-runtime",
           "to": "v0.25.2"
         },
         {
+          "direction": "upgrade",
           "ecosystem": "golang",
           "from": "v0.0.0-20250730193827-2d320260d730",
+          "level": "prerelease",
+          "location": "go.mod",
           "package": "sigs.k8s.io/json",
           "to": "v0.0.0-20260909141634-11ed52e25bc5"
         }
       ],
+      "version_changes": [
+        {
+          "direction": "upgrade",
+          "ecosystem": "golang",
+          "from": "v5.9.0+incompatible",
+          "level": "patch",
+          "location": "go.mod",
+          "name": "github.com/evanphx/json-patch",
+          "to": "v5.9.11+incompatible"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "golang",
+          "from": "v1.9.0",
+          "level": "minor",
+          "location": "go.mod",
+          "name": "github.com/fsnotify/fsnotify",
+          "to": "v1.10.1"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "golang",
+          "from": "v2.9.1",
+          "level": "patch",
+          "location": "go.mod",
+          "name": "github.com/fxamacker/cbor/v2",
+          "to": "v2.9.6"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "golang",
+          "from": "v1.4.3",
+          "level": "patch",
+          "location": "go.mod",
+          "name": "github.com/go-logr/logr",
+          "to": "v1.4.4"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "golang",
+          "from": "v1.0.0",
+          "level": "patch",
+          "location": "go.mod",
+          "name": "github.com/go-openapi/jsonpointer",
+          "to": "v1.0.2"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "golang",
+          "from": "v1.0.0",
+          "level": "patch",
+          "location": "go.mod",
+          "name": "github.com/go-openapi/jsonreference",
+          "to": "v1.0.3"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "golang",
+          "from": "v0.27.1",
+          "level": "minor",
+          "location": "go.mod",
+          "name": "github.com/go-openapi/swag/conv",
+          "to": "v0.29.2"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "golang",
+          "from": "v0.27.1",
+          "level": "minor",
+          "location": "go.mod",
+          "name": "github.com/go-openapi/swag/jsonutils",
+          "to": "v0.29.2"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "golang",
+          "from": "v0.27.1",
+          "level": "minor",
+          "location": "go.mod",
+          "name": "github.com/go-openapi/swag/pools",
+          "to": "v0.29.2"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "golang",
+          "from": "v0.27.1",
+          "level": "minor",
+          "location": "go.mod",
+          "name": "github.com/go-openapi/swag/typeutils",
+          "to": "v0.29.2"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "golang",
+          "from": "v0.1.14",
+          "level": "patch",
+          "location": "go.mod",
+          "name": "github.com/mattn/go-colorable",
+          "to": "v0.1.16"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "golang",
+          "from": "v0.0.20",
+          "level": "patch",
+          "location": "go.mod",
+          "name": "github.com/mattn/go-isatty",
+          "to": "v0.0.24"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "golang",
+          "from": "v1.24.0",
+          "level": "minor",
+          "location": "go.mod",
+          "name": "github.com/prometheus/client_golang",
+          "to": "v1.25.0"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "golang",
+          "from": "v0.6.2",
+          "level": "patch",
+          "location": "go.mod",
+          "name": "github.com/prometheus/client_model",
+          "to": "v0.6.3"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "golang",
+          "from": "v0.70.0",
+          "level": "minor",
+          "location": "go.mod",
+          "name": "github.com/prometheus/common",
+          "to": "v0.73.0"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "golang",
+          "from": "v0.21.1",
+          "level": "minor",
+          "location": "go.mod",
+          "name": "github.com/prometheus/procfs",
+          "to": "v0.23.0"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "golang",
+          "from": "v3.0.5",
+          "level": "patch",
+          "location": "go.mod",
+          "name": "go.yaml.in/yaml/v3",
+          "to": "v3.0.6"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "golang",
+          "from": "v0.57.0",
+          "level": "minor",
+          "location": "go.mod",
+          "name": "golang.org/x/net",
+          "to": "v0.61.0"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "golang",
+          "from": "v0.36.0",
+          "level": "minor",
+          "location": "go.mod",
+          "name": "golang.org/x/oauth2",
+          "to": "v0.37.0"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "golang",
+          "from": "v0.22.0",
+          "level": "minor",
+          "location": "go.mod",
+          "name": "golang.org/x/sync",
+          "to": "v0.24.0"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "golang",
+          "from": "v0.47.0",
+          "level": "minor",
+          "location": "go.mod",
+          "name": "golang.org/x/sys",
+          "to": "v0.49.0"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "golang",
+          "from": "v0.45.0",
+          "level": "minor",
+          "location": "go.mod",
+          "name": "golang.org/x/term",
+          "to": "v0.47.0"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "golang",
+          "from": "v0.40.0",
+          "level": "minor",
+          "location": "go.mod",
+          "name": "golang.org/x/text",
+          "to": "v0.43.0"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "golang",
+          "from": "v0.15.0",
+          "level": "minor",
+          "location": "go.mod",
+          "name": "golang.org/x/time",
+          "to": "v0.16.0"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "golang",
+          "from": "v1.36.12-0.20260120151049-f2248ac996af",
+          "level": "prerelease",
+          "location": "go.mod",
+          "name": "google.golang.org/protobuf",
+          "to": "v1.36.12"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "golang",
+          "from": "v0.37.0",
+          "level": "patch",
+          "location": "go.mod",
+          "name": "k8s.io/api",
+          "to": "v0.37.1"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "golang",
+          "from": "v0.37.0",
+          "level": "patch",
+          "location": "go.mod",
+          "name": "k8s.io/apiextensions-apiserver",
+          "to": "v0.37.1"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "golang",
+          "from": "v0.37.0",
+          "level": "patch",
+          "location": "go.mod",
+          "name": "k8s.io/apimachinery",
+          "to": "v0.37.1"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "golang",
+          "from": "v0.37.0",
+          "level": "patch",
+          "location": "go.mod",
+          "name": "k8s.io/client-go",
+          "to": "v0.37.1"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "golang",
+          "from": "v0.0.0-20260721132016-d427ff9ee9ad",
+          "level": "prerelease",
+          "location": "go.mod",
+          "name": "k8s.io/kube-openapi",
+          "to": "v0.0.0-20260821135717-be32def86098"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "golang",
+          "from": "v0.0.0-20260626114624-be93311217bd",
+          "level": "prerelease",
+          "location": "go.mod",
+          "name": "k8s.io/utils",
+          "to": "v0.0.0-20261023123148-ca04ba58ecab"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "golang",
+          "from": "v0.25.0",
+          "level": "patch",
+          "location": "go.mod",
+          "name": "sigs.k8s.io/controller-runtime",
+          "to": "v0.25.2"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "golang",
+          "from": "v0.0.0-20250730193827-2d320260d730",
+          "level": "prerelease",
+          "location": "go.mod",
+          "name": "sigs.k8s.io/json",
+          "to": "v0.0.0-20260909141634-11ed52e25bc5"
+        }
+      ],
+      "version_set_changes": [],
       "workflow_new": 0,
       "workflow_resolved": 0
     },
@@ -1337,11 +1928,16 @@
             "percentile": 0.35396,
             "score": 0.00409
           },
+          "epss_date": "2026-11-07T12:00:22Z",
           "fixed_version": "v0.62.0",
           "id": "GO-2026-6860",
           "kev": null,
+          "kev_cves": [],
+          "kev_snapshot": "2026.11.06",
           "level": "symbol",
+          "modified": "2026-10-27T21:16:18Z",
           "module": "golang.org/x/net",
+          "published": "2026-10-27T21:16:18Z",
           "summary": "Avoid quadratic complexity when coalescing text nodes in html in golang.org/x/net",
           "version": "v0.61.0"
         },
@@ -1354,11 +1950,16 @@
             "percentile": 0.18952,
             "score": 0.00267
           },
+          "epss_date": "2026-11-07T12:00:22Z",
           "fixed_version": "v0.62.0",
           "id": "GO-2026-6866",
           "kev": null,
+          "kev_cves": [],
+          "kev_snapshot": "2026.11.06",
           "level": "symbol",
+          "modified": "2026-10-27T21:16:18Z",
           "module": "golang.org/x/net",
+          "published": "2026-10-27T21:16:18Z",
           "summary": "Check all ancestor namespace transitions when rendering raw text in html in golang.org/x/net",
           "version": "v0.61.0"
         }
@@ -1367,6 +1968,7 @@
       "main_module": "github.com/fairwindsops/polaris"
     },
     "id": "FairwindsOps__polaris",
+    "lock_aliases": {},
     "manifests": [
       ".github/actions/setup-polaris/action.yaml",
       ".github/workflows/stale.yml",
@@ -1381,6 +1983,11 @@
       "confirmed": 2,
       "osv_only": [],
       "warning": null
+    },
+    "osv_api": {
+      "available": true,
+      "queried_at": "2026-11-09T01:36:23+00:00",
+      "states": {}
     },
     "ref": "v10.2.6",
     "ref_kind": "release",
@@ -1408,22 +2015,497 @@
     },
     "released_at": "2026-11-03T19:14:35Z",
     "repository": "FairwindsOps/polaris",
+    "sbom_sha256": "9025942ec50653cb8ca2b9d9841c88699fd025228ba6cb721f8142ebc6b0ed02",
     "sbomlyze_diff": {
       "added": 13,
-      "changed": 34,
+      "baseline": {
+        "attempt": "1",
+        "run_id": "41380955266"
+      },
+      "changed": 33,
+      "contract": "sbomlyze-diff-0.7",
       "drift": {
-        "integrity_drift": 1,
+        "distinct_version_changes": 33,
+        "downgrades": 0,
+        "file_changes": 1,
+        "integrity_drift": 0,
+        "license_changes": 0,
         "metadata_drift": 0,
+        "owned_file_drift": 0,
+        "owned_files_changed": 0,
+        "unknown_direction": 0,
+        "upgrades": 33,
         "version_drift": 33
       },
       "findings": [
-        "Attack surface: +13 packages (15.5%)",
-        "1 version downgrades detected: google.golang.org/protobuf v1.36.12-0.20260120151049-f2248ac996af\u2192v1.36.12",
-        "32 version upgrades (15 major, 14 minor, 3 patch) among 84 shared packages",
-        "Integrity drift (1 total): 1 unknown"
+        "Scanned FairwindsOps/polaris changed: v10.2.5 \u2192 v10.2.6",
+        "Inventory: +13 components (15.5%)",
+        "33 version upgrades (15 minor, 14 patch, 4 prerelease) among 81 shared packages",
+        "1 file entries changed content (not package integrity drift): /go.mod"
       ],
       "html": "sbomlyze-diff.html",
-      "removed": 0
+      "occurrences": {
+        "added": [
+          {
+            "ecosystem": "golang",
+            "location": "go.mod",
+            "locations": [
+              "go.mod"
+            ],
+            "name": "github.com/Masterminds/semver/v3",
+            "version": "v3.5.0"
+          },
+          {
+            "ecosystem": "golang",
+            "location": "go.mod",
+            "locations": [
+              "go.mod"
+            ],
+            "name": "github.com/go-openapi/testify/enable/yaml/v2",
+            "version": "v2.8.0"
+          },
+          {
+            "ecosystem": "golang",
+            "location": "go.mod",
+            "locations": [
+              "go.mod"
+            ],
+            "name": "github.com/google/pprof",
+            "version": "v0.0.0-20261026192309-dbd0ed30aa88"
+          },
+          {
+            "ecosystem": "golang",
+            "location": "go.mod",
+            "locations": [
+              "go.mod"
+            ],
+            "name": "github.com/hashicorp/go-uuid",
+            "version": "v1.0.4"
+          },
+          {
+            "ecosystem": "golang",
+            "location": "go.mod",
+            "locations": [
+              "go.mod"
+            ],
+            "name": "github.com/klauspost/compress",
+            "version": "v1.20.3"
+          },
+          {
+            "ecosystem": "golang",
+            "location": "go.mod",
+            "locations": [
+              "go.mod"
+            ],
+            "name": "github.com/onsi/ginkgo/v2",
+            "version": "v2.33.1"
+          },
+          {
+            "ecosystem": "golang",
+            "location": "go.mod",
+            "locations": [
+              "go.mod"
+            ],
+            "name": "github.com/onsi/gomega",
+            "version": "v1.44.0"
+          },
+          {
+            "ecosystem": "golang",
+            "location": "go.mod",
+            "locations": [
+              "go.mod"
+            ],
+            "name": "github.com/pandatix/go-abnf",
+            "version": "v0.5.1"
+          },
+          {
+            "ecosystem": "golang",
+            "location": "go.mod",
+            "locations": [
+              "go.mod"
+            ],
+            "name": "github.com/rogpeppe/go-internal",
+            "version": "v1.16.0"
+          },
+          {
+            "ecosystem": "golang",
+            "location": "go.mod",
+            "locations": [
+              "go.mod"
+            ],
+            "name": "github.com/sergi/go-diff",
+            "version": "v1.4.0"
+          },
+          {
+            "ecosystem": "golang",
+            "location": "go.mod",
+            "locations": [
+              "go.mod"
+            ],
+            "name": "github.com/stretchr/objx",
+            "version": "v0.8.0"
+          },
+          {
+            "ecosystem": "golang",
+            "location": "go.mod",
+            "locations": [
+              "go.mod"
+            ],
+            "name": "go.uber.org/zap",
+            "version": "v1.28.0"
+          },
+          {
+            "ecosystem": "golang",
+            "location": "go.mod",
+            "locations": [
+              "go.mod"
+            ],
+            "name": "golang.org/x/tools",
+            "version": "v0.52.0"
+          }
+        ],
+        "digest_coverage": {
+          "after_only": 0,
+          "before_only": 0,
+          "by_kind": {
+            "go-h1": 44
+          },
+          "comparable": 44,
+          "disjoint_kinds": 0,
+          "packages_total": 94,
+          "same_version_pairs": 48
+        },
+        "file_changes": [
+          {
+            "owners": [],
+            "path": "go.mod"
+          }
+        ],
+        "file_coverage": {
+          "ambiguous_paths": 0,
+          "config_unknown": 0,
+          "files_compared": 3,
+          "files_unverified": 0,
+          "owned_files_after": 0,
+          "unowned_files_after": 0
+        },
+        "files_added": [],
+        "files_removed": [],
+        "integrity_changes": [],
+        "license_changes": [],
+        "metadata_changes": [],
+        "moved": [],
+        "owned_file_drift": [],
+        "removed": [],
+        "source_change": {
+          "from": "v10.2.5",
+          "name": "FairwindsOps/polaris",
+          "to": "v10.2.6"
+        },
+        "version_changes": [
+          {
+            "direction": "upgrade",
+            "ecosystem": "golang",
+            "from": "v5.9.0+incompatible",
+            "level": "patch",
+            "location": "go.mod",
+            "name": "github.com/evanphx/json-patch",
+            "to": "v5.9.11+incompatible"
+          },
+          {
+            "direction": "upgrade",
+            "ecosystem": "golang",
+            "from": "v1.9.0",
+            "level": "minor",
+            "location": "go.mod",
+            "name": "github.com/fsnotify/fsnotify",
+            "to": "v1.10.1"
+          },
+          {
+            "direction": "upgrade",
+            "ecosystem": "golang",
+            "from": "v2.9.1",
+            "level": "patch",
+            "location": "go.mod",
+            "name": "github.com/fxamacker/cbor/v2",
+            "to": "v2.9.6"
+          },
+          {
+            "direction": "upgrade",
+            "ecosystem": "golang",
+            "from": "v1.4.3",
+            "level": "patch",
+            "location": "go.mod",
+            "name": "github.com/go-logr/logr",
+            "to": "v1.4.4"
+          },
+          {
+            "direction": "upgrade",
+            "ecosystem": "golang",
+            "from": "v1.0.0",
+            "level": "patch",
+            "location": "go.mod",
+            "name": "github.com/go-openapi/jsonpointer",
+            "to": "v1.0.2"
+          },
+          {
+            "direction": "upgrade",
+            "ecosystem": "golang",
+            "from": "v1.0.0",
+            "level": "patch",
+            "location": "go.mod",
+            "name": "github.com/go-openapi/jsonreference",
+            "to": "v1.0.3"
+          },
+          {
+            "direction": "upgrade",
+            "ecosystem": "golang",
+            "from": "v0.27.1",
+            "level": "minor",
+            "location": "go.mod",
+            "name": "github.com/go-openapi/swag/conv",
+            "to": "v0.29.2"
+          },
+          {
+            "direction": "upgrade",
+            "ecosystem": "golang",
+            "from": "v0.27.1",
+            "level": "minor",
+            "location": "go.mod",
+            "name": "github.com/go-openapi/swag/jsonutils",
+            "to": "v0.29.2"
+          },
+          {
+            "direction": "upgrade",
+            "ecosystem": "golang",
+            "from": "v0.27.1",
+            "level": "minor",
+            "location": "go.mod",
+            "name": "github.com/go-openapi/swag/pools",
+            "to": "v0.29.2"
+          },
+          {
+            "direction": "upgrade",
+            "ecosystem": "golang",
+            "from": "v0.27.1",
+            "level": "minor",
+            "location": "go.mod",
+            "name": "github.com/go-openapi/swag/typeutils",
+            "to": "v0.29.2"
+          },
+          {
+            "direction": "upgrade",
+            "ecosystem": "golang",
+            "from": "v0.1.14",
+            "level": "patch",
+            "location": "go.mod",
+            "name": "github.com/mattn/go-colorable",
+            "to": "v0.1.16"
+          },
+          {
+            "direction": "upgrade",
+            "ecosystem": "golang",
+            "from": "v0.0.20",
+            "level": "patch",
+            "location": "go.mod",
+            "name": "github.com/mattn/go-isatty",
+            "to": "v0.0.24"
+          },
+          {
+            "direction": "upgrade",
+            "ecosystem": "golang",
+            "from": "v1.24.0",
+            "level": "minor",
+            "location": "go.mod",
+            "name": "github.com/prometheus/client_golang",
+            "to": "v1.25.0"
+          },
+          {
+            "direction": "upgrade",
+            "ecosystem": "golang",
+            "from": "v0.6.2",
+            "level": "patch",
+            "location": "go.mod",
+            "name": "github.com/prometheus/client_model",
+            "to": "v0.6.3"
+          },
+          {
+            "direction": "upgrade",
+            "ecosystem": "golang",
+            "from": "v0.70.0",
+            "level": "minor",
+            "location": "go.mod",
+            "name": "github.com/prometheus/common",
+            "to": "v0.73.0"
+          },
+          {
+            "direction": "upgrade",
+            "ecosystem": "golang",
+            "from": "v0.21.1",
+            "level": "minor",
+            "location": "go.mod",
+            "name": "github.com/prometheus/procfs",
+            "to": "v0.23.0"
+          },
+          {
+            "direction": "upgrade",
+            "ecosystem": "golang",
+            "from": "v3.0.5",
+            "level": "patch",
+            "location": "go.mod",
+            "name": "go.yaml.in/yaml/v3",
+            "to": "v3.0.6"
+          },
+          {
+            "direction": "upgrade",
+            "ecosystem": "golang",
+            "from": "v0.57.0",
+            "level": "minor",
+            "location": "go.mod",
+            "name": "golang.org/x/net",
+            "to": "v0.61.0"
+          },
+          {
+            "direction": "upgrade",
+            "ecosystem": "golang",
+            "from": "v0.36.0",
+            "level": "minor",
+            "location": "go.mod",
+            "name": "golang.org/x/oauth2",
+            "to": "v0.37.0"
+          },
+          {
+            "direction": "upgrade",
+            "ecosystem": "golang",
+            "from": "v0.22.0",
+            "level": "minor",
+            "location": "go.mod",
+            "name": "golang.org/x/sync",
+            "to": "v0.24.0"
+          },
+          {
+            "direction": "upgrade",
+            "ecosystem": "golang",
+            "from": "v0.47.0",
+            "level": "minor",
+            "location": "go.mod",
+            "name": "golang.org/x/sys",
+            "to": "v0.49.0"
+          },
+          {
+            "direction": "upgrade",
+            "ecosystem": "golang",
+            "from": "v0.45.0",
+            "level": "minor",
+            "location": "go.mod",
+            "name": "golang.org/x/term",
+            "to": "v0.47.0"
+          },
+          {
+            "direction": "upgrade",
+            "ecosystem": "golang",
+            "from": "v0.40.0",
+            "level": "minor",
+            "location": "go.mod",
+            "name": "golang.org/x/text",
+            "to": "v0.43.0"
+          },
+          {
+            "direction": "upgrade",
+            "ecosystem": "golang",
+            "from": "v0.15.0",
+            "level": "minor",
+            "location": "go.mod",
+            "name": "golang.org/x/time",
+            "to": "v0.16.0"
+          },
+          {
+            "direction": "upgrade",
+            "ecosystem": "golang",
+            "from": "v1.36.12-0.20260120151049-f2248ac996af",
+            "level": "prerelease",
+            "location": "go.mod",
+            "name": "google.golang.org/protobuf",
+            "to": "v1.36.12"
+          },
+          {
+            "direction": "upgrade",
+            "ecosystem": "golang",
+            "from": "v0.37.0",
+            "level": "patch",
+            "location": "go.mod",
+            "name": "k8s.io/api",
+            "to": "v0.37.1"
+          },
+          {
+            "direction": "upgrade",
+            "ecosystem": "golang",
+            "from": "v0.37.0",
+            "level": "patch",
+            "location": "go.mod",
+            "name": "k8s.io/apiextensions-apiserver",
+            "to": "v0.37.1"
+          },
+          {
+            "direction": "upgrade",
+            "ecosystem": "golang",
+            "from": "v0.37.0",
+            "level": "patch",
+            "location": "go.mod",
+            "name": "k8s.io/apimachinery",
+            "to": "v0.37.1"
+          },
+          {
+            "direction": "upgrade",
+            "ecosystem": "golang",
+            "from": "v0.37.0",
+            "level": "patch",
+            "location": "go.mod",
+            "name": "k8s.io/client-go",
+            "to": "v0.37.1"
+          },
+          {
+            "direction": "upgrade",
+            "ecosystem": "golang",
+            "from": "v0.0.0-20260721132016-d427ff9ee9ad",
+            "level": "prerelease",
+            "location": "go.mod",
+            "name": "k8s.io/kube-openapi",
+            "to": "v0.0.0-20260821135717-be32def86098"
+          },
+          {
+            "direction": "upgrade",
+            "ecosystem": "golang",
+            "from": "v0.0.0-20260626114624-be93311217bd",
+            "level": "prerelease",
+            "location": "go.mod",
+            "name": "k8s.io/utils",
+            "to": "v0.0.0-20261023123148-ca04ba58ecab"
+          },
+          {
+            "direction": "upgrade",
+            "ecosystem": "golang",
+            "from": "v0.25.0",
+            "level": "patch",
+            "location": "go.mod",
+            "name": "sigs.k8s.io/controller-runtime",
+            "to": "v0.25.2"
+          },
+          {
+            "direction": "upgrade",
+            "ecosystem": "golang",
+            "from": "v0.0.0-20250730193827-2d320260d730",
+            "level": "prerelease",
+            "location": "go.mod",
+            "name": "sigs.k8s.io/json",
+            "to": "v0.0.0-20260909141634-11ed52e25bc5"
+          }
+        ],
+        "version_set_changes": []
+      },
+      "previous_sbom_sha256": "2cb92c0750c34c93cc7a0f9fa1677ae04bc09501f9ebe4e0574cc43d72108878",
+      "removed": 0,
+      "sbom_sha256": "9025942ec50653cb8ca2b9d9841c88699fd025228ba6cb721f8142ebc6b0ed02"
     },
     "scanned_at": "2026-11-08T05:54:03+00:00",
     "scorecard": {
@@ -1515,6 +2597,7 @@
           "percentile": 0.35396,
           "score": 0.00409
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "0.62.0"
@@ -1522,9 +2605,17 @@
         "id": "GO-2026-6860",
         "in_binary": "vulnerable code in binary",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "go.mod",
+        "locations": [
+          "go.mod"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-10-27T21:30:04.890809062Z",
+        "osv_published": "2026-10-27T21:16:18Z",
         "package": "golang.org/x/net",
+        "purl": "pkg:golang/golang.org/x/net@v0.61.0",
         "severity": "High",
         "summary": "When coalescing adjacent text nodes in addText and fosterParent, appending to an existing TextNode's Data via string concatenation (n.Data += text) reallocated and copied the accumulated string on every token. Inputs containing many short text runs separated by ignored end tags (such as \"a</x>\") cau",
         "url": "https://go.dev/cl/849365",
@@ -1540,6 +2631,7 @@
           "percentile": 0.18952,
           "score": 0.00267
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "0.62.0"
@@ -1547,9 +2639,17 @@
         "id": "GO-2026-6866",
         "in_binary": "vulnerable code in binary",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "go.mod",
+        "locations": [
+          "go.mod"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-10-27T21:45:08.978077289Z",
+        "osv_published": "2026-10-27T21:16:18Z",
         "package": "golang.org/x/net",
+        "purl": "pkg:golang/golang.org/x/net@v0.61.0",
         "severity": "Medium",
         "summary": "In childTextNodesAreLiteral, walking up the tree previously stopped at the nearest foreign ancestor once an HTML integration point was found. However, that integration point may itself be a descendant of an element that was foster-parented into a foreign namespace (such as <mglyph> or <malignmark> f",
         "url": "https://go.dev/cl/855121",

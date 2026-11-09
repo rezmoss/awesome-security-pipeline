@@ -76,15 +76,26 @@
     },
     {
       "added": 0,
+      "advisory_state": "ok",
       "commit": "c82fe5d21aaa61c7f1a213db20a46f10bb3f411a",
       "date": "2026-11-08",
       "dependencies": 22,
+      "dependency_state": "ok",
+      "downgraded": 0,
       "errors": [],
+      "file_changes": 0,
       "fixable": 5,
       "go_version": null,
       "in_binary": null,
+      "in_binary_new": 0,
+      "in_binary_resolved": 0,
       "kev": 0,
       "kev_new": 0,
+      "kev_new_match": 0,
+      "license_changes": 0,
+      "method": "sbomlyze-occurrence-v1",
+      "moved": 0,
+      "new_advisories": 0,
       "new_vulnerabilities": 0,
       "osv_confirmed": 4,
       "osv_only": 0,
@@ -92,11 +103,13 @@
       "release_changed": false,
       "release_integrity": "no-linux-binary",
       "removed": 0,
+      "resolved_advisories": 0,
       "resolved_vulnerabilities": 0,
       "scorecard": 6.5,
       "scorecard_date": "2026-11-02",
       "scorecard_note": null,
       "scorecard_source": "openssf-api",
+      "unknown_direction": 0,
       "upgraded": 0,
       "vulnerabilities": {
         "Critical": 1,
@@ -112,7 +125,9 @@
         "Low": 2,
         "Medium": 0,
         "files": 3
-      }
+      },
+      "workflow_new": 0,
+      "workflow_resolved": 0
     }
   ],
   "latest": {
@@ -120,17 +135,50 @@
     "category": "Supply Chain Compliance",
     "changes": {
       "added": [],
+      "added_detail": [],
+      "advisory_state": "ok",
       "any": false,
       "baseline": false,
+      "dependency_baseline": {
+        "attempt": "1",
+        "run_id": "41380955266",
+        "sbom_sha256": "e41481d7fa1bef1498da09557d675658fc8be92e9cf9413a622e53b2635285f3"
+      },
+      "dependency_state": "ok",
+      "digest_coverage": {
+        "after_only": 0,
+        "before_only": 0,
+        "by_kind": {},
+        "comparable": 0,
+        "disjoint_kinds": 0,
+        "packages_total": 23,
+        "same_version_pairs": 23
+      },
+      "distinct_version_changes": null,
+      "downgraded": [],
+      "file_changes": [],
+      "integrity_changes": [],
       "integrity_drift": 0,
+      "kev_method": "snapshot difference",
       "kev_new": [],
+      "kev_new_match": [],
       "license_changes": [],
+      "metadata_changes": [],
+      "method": "sbomlyze-occurrence-v1",
+      "moved": [],
+      "new_advisories": 0,
       "new_vulnerabilities": [],
       "previous_ref": "v3.1.0",
       "release_changed": false,
       "removed": [],
+      "removed_detail": [],
+      "resolved_advisories": 0,
       "resolved_vulnerabilities": [],
+      "still_affected_version_changed": [],
+      "unknown_direction": [],
       "upgraded": [],
+      "version_changes": [],
+      "version_set_changes": [],
       "workflow_new": 0,
       "workflow_resolved": 0
     },
@@ -354,6 +402,7 @@
     "description": "Protect software supply-chain integrity with signed metadata",
     "errors": [],
     "id": "in-toto__in-toto",
+    "lock_aliases": {},
     "manifests": [
       ".github/workflows/_test.yml",
       ".github/workflows/cd.yml",
@@ -375,6 +424,13 @@
       "osv_only": [],
       "warning": null
     },
+    "osv_api": {
+      "available": true,
+      "queried_at": "2026-11-09T01:36:28+00:00",
+      "states": {
+        "confirmed": 1
+      }
+    },
     "ref": "v3.1.0",
     "ref_kind": "release",
     "release_integrity": {
@@ -388,15 +444,56 @@
     },
     "released_at": "2026-05-04T16:20:30Z",
     "repository": "in-toto/in-toto",
+    "sbom_sha256": "d3c85664922c1a6c2df37c2d118bd5f00e77f45da8e5fb060613b450fd4f71db",
     "sbomlyze_diff": {
       "added": 0,
+      "baseline": {
+        "attempt": "1",
+        "run_id": "41380955266"
+      },
       "changed": 0,
+      "contract": "sbomlyze-diff-0.7",
       "drift": {},
       "findings": [
-        "0 version changes among 30 shared packages \u2014 no actual upgrades",
+        "0 version changes among 23 shared packages \u2014 no actual upgrades",
+        "Integrity drift checked only 0 of 23 same-version packages; the rest carry no comparable digest",
         "Core system packages stable: pypi (13) unchanged"
       ],
-      "removed": 0
+      "occurrences": {
+        "added": [],
+        "digest_coverage": {
+          "after_only": 0,
+          "before_only": 0,
+          "by_kind": {},
+          "comparable": 0,
+          "disjoint_kinds": 0,
+          "packages_total": 23,
+          "same_version_pairs": 23
+        },
+        "file_changes": [],
+        "file_coverage": {
+          "ambiguous_paths": 0,
+          "config_unknown": 0,
+          "files_compared": 7,
+          "files_unverified": 0,
+          "owned_files_after": 0,
+          "unowned_files_after": 0
+        },
+        "files_added": [],
+        "files_removed": [],
+        "integrity_changes": [],
+        "license_changes": [],
+        "metadata_changes": [],
+        "moved": [],
+        "owned_file_drift": [],
+        "removed": [],
+        "source_change": null,
+        "version_changes": [],
+        "version_set_changes": []
+      },
+      "previous_sbom_sha256": "e41481d7fa1bef1498da09557d675658fc8be92e9cf9413a622e53b2635285f3",
+      "removed": 0,
+      "sbom_sha256": "d3c85664922c1a6c2df37c2d118bd5f00e77f45da8e5fb060613b450fd4f71db"
     },
     "scanned_at": "2026-11-08T05:54:38+00:00",
     "scorecard": {
@@ -482,15 +579,28 @@
         "aliases": [],
         "ecosystem": "github",
         "epss": null,
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "1.14.3"
         ],
         "id": "GHSA-5xjx-3w67-w9x9",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": ".github/workflows/cd.yml",
+        "locations": [
+          ".github/workflows/cd.yml"
+        ],
+        "osv_api": {
+          "id": "GHSA-5xjx-3w67-w9x9",
+          "modified": "2026-10-30T20:30:05.260372Z",
+          "published": "",
+          "state": "confirmed"
+        },
         "osv_confirmed": false,
         "package": "pypa/gh-action-pypi-publish",
+        "purl": "pkg:github/pypa/gh-action-pypi-publish@v1.14.0",
         "severity": "Critical",
         "summary": "pypi-publish action revocation of CA in the chain that Sigstore uses in Trusted Publishing and Digital Attestations for PyPI",
         "url": "https://github.com/advisories/GHSA-5xjx-3w67-w9x9",
@@ -500,15 +610,24 @@
         "aliases": [],
         "ecosystem": "pypi",
         "epss": null,
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "48.0.1"
         ],
         "id": "GHSA-537c-gmf6-5ccf",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "requirements-pinned.txt",
+        "locations": [
+          "requirements-pinned.txt"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-09-10T03:50:48.298936410Z",
+        "osv_published": "2026-06-15T20:12:27Z",
         "package": "cryptography",
+        "purl": "pkg:pypi/cryptography@46.0.7",
         "severity": "High",
         "summary": "Vulnerable OpenSSL included in cryptography wheels",
         "url": "https://github.com/advisories/GHSA-537c-gmf6-5ccf",
@@ -524,15 +643,24 @@
           "percentile": 0.19944,
           "score": 0.00274
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "50.0.0"
         ],
         "id": "GHSA-g6cj-pr64-35w5",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "requirements-pinned.txt",
+        "locations": [
+          "requirements-pinned.txt"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-09-10T03:50:53.610446769Z",
+        "osv_published": "2026-08-03T21:17:00Z",
         "package": "cryptography",
+        "purl": "pkg:pypi/cryptography@46.0.7",
         "severity": "High",
         "summary": "cryptography: PKCS#7 EnvelopedData decryption exposes a Bleichenbacher oracle through distinguishable errors and timing",
         "url": "https://github.com/advisories/GHSA-g6cj-pr64-35w5",
@@ -548,15 +676,24 @@
           "percentile": 0.18041,
           "score": 0.00262
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "49.0.0"
         ],
         "id": "GHSA-jwv3-5hgf-82ww",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "requirements-pinned.txt",
+        "locations": [
+          "requirements-pinned.txt"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-09-24T14:45:10.238420831Z",
+        "osv_published": "2026-08-03T21:26:50Z",
         "package": "cryptography",
+        "purl": "pkg:pypi/cryptography@46.0.7",
         "severity": "High",
         "summary": "python-cryptography: Duplicate self-signed intermediates can cause exponential path-building",
         "url": "https://github.com/advisories/GHSA-jwv3-5hgf-82ww",
@@ -572,15 +709,24 @@
           "percentile": 0.15644,
           "score": 0.00244
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "49.0.0"
         ],
         "id": "GHSA-m2h6-j472-rp4c",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "requirements-pinned.txt",
+        "locations": [
+          "requirements-pinned.txt"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-09-24T15:00:04.719975807Z",
+        "osv_published": "2026-08-03T21:26:57Z",
         "package": "cryptography",
+        "purl": "pkg:pypi/cryptography@46.0.7",
         "severity": "Medium",
         "summary": "python-cryptography verifier accepts wildcard DNS names allowing escape from permittedSubtrees",
         "url": "https://github.com/advisories/GHSA-m2h6-j472-rp4c",

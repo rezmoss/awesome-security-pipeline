@@ -76,28 +76,41 @@
     },
     {
       "added": 0,
+      "advisory_state": "ok",
       "commit": "1d19193ad79ed20c83bf3fbafb6cd506e6d15b62",
       "date": "2026-11-08",
       "dependencies": 7,
+      "dependency_state": "ok",
+      "downgraded": 0,
       "errors": [],
+      "file_changes": 1,
       "fixable": 0,
       "go_version": null,
       "in_binary": null,
+      "in_binary_new": 0,
+      "in_binary_resolved": 0,
       "kev": null,
       "kev_new": 0,
+      "kev_new_match": 0,
+      "license_changes": 0,
+      "method": "sbomlyze-occurrence-v1",
+      "moved": 0,
+      "new_advisories": 0,
       "new_vulnerabilities": 0,
-      "osv_confirmed": 0,
-      "osv_only": 0,
+      "osv_confirmed": null,
+      "osv_only": null,
       "ref": "v1.60.0",
       "release_changed": true,
       "release_integrity": "no-linux-binary",
       "removed": 0,
+      "resolved_advisories": 0,
       "resolved_vulnerabilities": 0,
       "scorecard": 6.2,
       "scorecard_date": "2026-11-08",
       "scorecard_note": null,
       "scorecard_source": "scorecard-cli",
-      "upgraded": 1,
+      "unknown_direction": 1,
+      "upgraded": 0,
       "vulnerabilities": {
         "Critical": 0,
         "High": 0,
@@ -112,7 +125,9 @@
         "Low": 0,
         "Medium": 0,
         "files": 6
-      }
+      },
+      "workflow_new": 0,
+      "workflow_resolved": 0
     }
   ],
   "latest": {
@@ -120,27 +135,73 @@
     "category": "Infrastructure as Code Security",
     "changes": {
       "added": [],
+      "added_detail": [],
+      "advisory_state": "ok",
       "any": true,
       "baseline": false,
-      "integrity_drift": 1,
+      "dependency_baseline": {
+        "attempt": "1",
+        "run_id": "41380955266",
+        "sbom_sha256": "5da0bf6e7440c327de68f4b3b377bd12698a217dc1978b46dfe0649f7e55ecb6"
+      },
+      "dependency_state": "ok",
+      "digest_coverage": {
+        "after_only": 0,
+        "before_only": 0,
+        "by_kind": {},
+        "comparable": 0,
+        "disjoint_kinds": 0,
+        "packages_total": 19,
+        "same_version_pairs": 18
+      },
+      "distinct_version_changes": 1,
+      "downgraded": [],
+      "file_changes": [
+        ".github/workflows/cd-pypi.yaml"
+      ],
+      "integrity_changes": [],
+      "integrity_drift": 0,
       "license_changes": [],
+      "metadata_changes": [],
+      "method": "sbomlyze-occurrence-v1",
+      "moved": [],
+      "new_advisories": 0,
       "new_vulnerabilities": [],
       "previous_ref": "v1.59.0",
       "release_changed": true,
       "removed": [],
+      "removed_detail": [],
+      "resolved_advisories": 0,
       "resolved_vulnerabilities": [],
       "scorecard": {
         "from": 6.0,
         "to": 6.2
       },
-      "upgraded": [
+      "still_affected_version_changed": [],
+      "unknown_direction": [
         {
+          "direction": "unknown",
           "ecosystem": "github",
           "from": "release/v1",
+          "level": "unknown",
+          "location": ".github/workflows/cd-pypi.yaml",
           "package": "pypa/gh-action-pypi-publish",
           "to": "v1.14.3"
         }
       ],
+      "upgraded": [],
+      "version_changes": [
+        {
+          "direction": "unknown",
+          "ecosystem": "github",
+          "from": "release/v1",
+          "level": "unknown",
+          "location": ".github/workflows/cd-pypi.yaml",
+          "name": "pypa/gh-action-pypi-publish",
+          "to": "v1.14.3"
+        }
+      ],
+      "version_set_changes": [],
       "workflow_new": 0,
       "workflow_resolved": 0
     },
@@ -244,6 +305,7 @@
     "description": "Lint AWS CloudFormation templates with security rules",
     "errors": [],
     "id": "aws-cloudformation__cfn-lint",
+    "lock_aliases": {},
     "manifests": [
       ".github/workflows/cd-pypi.yaml",
       ".github/workflows/cd-release.yaml",
@@ -255,11 +317,12 @@
     ],
     "name": "cfn-lint",
     "osv": {
-      "advisories": 0,
+      "available": false
+    },
+    "osv_api": {
       "available": true,
-      "confirmed": 0,
-      "osv_only": [],
-      "warning": null
+      "queried_at": "2026-11-09T01:36:28+00:00",
+      "states": {}
     },
     "ref": "v1.60.0",
     "ref_kind": "release",
@@ -274,20 +337,90 @@
     },
     "released_at": "2026-11-05T23:42:03Z",
     "repository": "aws-cloudformation/cfn-lint",
+    "sbom_sha256": "3f7c5923b3cbaf2fd32b8e86819e8fc59cefed60b9311b7d01c0c8953ccb88ea",
     "sbomlyze_diff": {
       "added": 0,
-      "changed": 2,
+      "baseline": {
+        "attempt": "1",
+        "run_id": "41380955266"
+      },
+      "changed": 1,
+      "contract": "sbomlyze-diff-0.7",
       "drift": {
-        "integrity_drift": 1,
+        "distinct_version_changes": 1,
+        "downgrades": 0,
+        "file_changes": 1,
+        "integrity_drift": 0,
+        "license_changes": 0,
         "metadata_drift": 0,
+        "owned_file_drift": 0,
+        "owned_files_changed": 0,
+        "unknown_direction": 1,
+        "upgrades": 0,
         "version_drift": 1
       },
       "findings": [
-        "Integrity drift (1 total): 1 unknown",
-        "Core system packages stable: github (19) unchanged"
+        "Scanned aws-cloudformation/cfn-lint changed: v1.59.0 \u2192 v1.60.0",
+        "1 version changes with unknown direction: pypa/gh-action-pypi-publish release/v1\u2192v1.14.3",
+        "Integrity drift checked only 0 of 18 same-version packages; the rest carry no comparable digest",
+        "1 file entries changed content (not package integrity drift): /.github/workflows/cd-pypi.yaml",
+        "github: 19 packages before and after (1 version changes)"
       ],
       "html": "sbomlyze-diff.html",
-      "removed": 0
+      "occurrences": {
+        "added": [],
+        "digest_coverage": {
+          "after_only": 0,
+          "before_only": 0,
+          "by_kind": {},
+          "comparable": 0,
+          "disjoint_kinds": 0,
+          "packages_total": 19,
+          "same_version_pairs": 18
+        },
+        "file_changes": [
+          {
+            "owners": [],
+            "path": ".github/workflows/cd-pypi.yaml"
+          }
+        ],
+        "file_coverage": {
+          "ambiguous_paths": 0,
+          "config_unknown": 0,
+          "files_compared": 6,
+          "files_unverified": 0,
+          "owned_files_after": 0,
+          "unowned_files_after": 0
+        },
+        "files_added": [],
+        "files_removed": [],
+        "integrity_changes": [],
+        "license_changes": [],
+        "metadata_changes": [],
+        "moved": [],
+        "owned_file_drift": [],
+        "removed": [],
+        "source_change": {
+          "from": "v1.59.0",
+          "name": "aws-cloudformation/cfn-lint",
+          "to": "v1.60.0"
+        },
+        "version_changes": [
+          {
+            "direction": "unknown",
+            "ecosystem": "github",
+            "from": "release/v1",
+            "level": "unknown",
+            "location": ".github/workflows/cd-pypi.yaml",
+            "name": "pypa/gh-action-pypi-publish",
+            "to": "v1.14.3"
+          }
+        ],
+        "version_set_changes": []
+      },
+      "previous_sbom_sha256": "5da0bf6e7440c327de68f4b3b377bd12698a217dc1978b46dfe0649f7e55ecb6",
+      "removed": 0,
+      "sbom_sha256": "3f7c5923b3cbaf2fd32b8e86819e8fc59cefed60b9311b7d01c0c8953ccb88ea"
     },
     "scanned_at": "2026-11-08T05:52:57+00:00",
     "scorecard": {

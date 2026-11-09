@@ -84,19 +84,31 @@
     },
     {
       "added": 0,
+      "advisory_state": "ok",
       "commit": "5eb1d104ef85ff2c905c877eb600e8c1dee33a22",
       "date": "2026-11-08",
       "dependencies": 79,
+      "dependency_state": "ok",
+      "downgraded": 0,
       "errors": [],
+      "file_changes": 0,
       "fixable": 3,
       "go_version": "go1.27.3",
       "in_binary": {
         "dependencies": 0,
+        "records": 0,
         "stdlib": 0,
         "total": 0
       },
+      "in_binary_new": 0,
+      "in_binary_resolved": 0,
       "kev": 0,
       "kev_new": 0,
+      "kev_new_match": 0,
+      "license_changes": 0,
+      "method": "sbomlyze-occurrence-v1",
+      "moved": 0,
+      "new_advisories": 0,
       "new_vulnerabilities": 0,
       "osv_confirmed": 3,
       "osv_only": 0,
@@ -104,11 +116,13 @@
       "release_changed": false,
       "release_integrity": "signed",
       "removed": 0,
+      "resolved_advisories": 0,
       "resolved_vulnerabilities": 0,
       "scorecard": 6.6,
       "scorecard_date": "2026-10-19",
       "scorecard_note": null,
       "scorecard_source": "openssf-api",
+      "unknown_direction": 0,
       "upgraded": 0,
       "vulnerabilities": {
         "Critical": 0,
@@ -124,7 +138,9 @@
         "Low": 1,
         "Medium": 0,
         "files": 5
-      }
+      },
+      "workflow_new": 0,
+      "workflow_resolved": 0
     }
   ],
   "latest": {
@@ -132,19 +148,54 @@
     "category": "Static Application Security Testing (SAST) \u203a Language-specific \u203a Go",
     "changes": {
       "added": [],
+      "added_detail": [],
+      "advisory_state": "ok",
       "any": false,
       "baseline": false,
+      "dependency_baseline": {
+        "attempt": "1",
+        "run_id": "41380955266",
+        "sbom_sha256": "42df814182614d0a85c9f9519cdbe8515a584e4b69fb7bdb5c8d247a386234f4"
+      },
+      "dependency_state": "ok",
+      "digest_coverage": {
+        "after_only": 0,
+        "before_only": 0,
+        "by_kind": {
+          "go-h1": 59
+        },
+        "comparable": 59,
+        "disjoint_kinds": 0,
+        "packages_total": 85,
+        "same_version_pairs": 85
+      },
+      "distinct_version_changes": null,
+      "downgraded": [],
+      "file_changes": [],
       "in_binary_new": [],
       "in_binary_resolved": [],
+      "integrity_changes": [],
       "integrity_drift": 0,
+      "kev_method": "snapshot difference",
       "kev_new": [],
+      "kev_new_match": [],
       "license_changes": [],
+      "metadata_changes": [],
+      "method": "sbomlyze-occurrence-v1",
+      "moved": [],
+      "new_advisories": 0,
       "new_vulnerabilities": [],
       "previous_ref": "v2.30.0",
       "release_changed": false,
       "removed": [],
+      "removed_detail": [],
+      "resolved_advisories": 0,
       "resolved_vulnerabilities": [],
+      "still_affected_version_changed": [],
+      "unknown_direction": [],
       "upgraded": [],
+      "version_changes": [],
+      "version_set_changes": [],
       "workflow_new": 0,
       "workflow_resolved": 0
     },
@@ -832,11 +883,16 @@
         {
           "aliases": [],
           "epss": null,
+          "epss_date": "2026-11-07T12:00:22Z",
           "fixed_version": "v0.58.1-0.20261009181718-2f1f834330b2",
           "id": "GO-2026-5932",
           "kev": null,
+          "kev_cves": [],
+          "kev_snapshot": "2026.11.06",
           "level": "module",
+          "modified": "2026-11-02T22:01:43Z",
           "module": "golang.org/x/crypto",
+          "published": "2026-07-07T22:15:29Z",
           "summary": "The golang.org/x/crypto/openpgp package is unmaintained, unsafe by design, and has known security issues",
           "version": "v0.58.0"
         },
@@ -849,11 +905,16 @@
             "percentile": 0.35396,
             "score": 0.00409
           },
+          "epss_date": "2026-11-07T12:00:22Z",
           "fixed_version": "v0.62.0",
           "id": "GO-2026-6860",
           "kev": null,
+          "kev_cves": [],
+          "kev_snapshot": "2026.11.06",
           "level": "module",
+          "modified": "2026-10-27T21:16:18Z",
           "module": "golang.org/x/net",
+          "published": "2026-10-27T21:16:18Z",
           "summary": "Avoid quadratic complexity when coalescing text nodes in html in golang.org/x/net",
           "version": "v0.61.0"
         },
@@ -866,11 +927,16 @@
             "percentile": 0.18952,
             "score": 0.00267
           },
+          "epss_date": "2026-11-07T12:00:22Z",
           "fixed_version": "v0.62.0",
           "id": "GO-2026-6866",
           "kev": null,
+          "kev_cves": [],
+          "kev_snapshot": "2026.11.06",
           "level": "module",
+          "modified": "2026-10-27T21:16:18Z",
           "module": "golang.org/x/net",
+          "published": "2026-10-27T21:16:18Z",
           "summary": "Check all ancestor namespace transitions when rendering raw text in html in golang.org/x/net",
           "version": "v0.61.0"
         }
@@ -879,6 +945,7 @@
       "main_module": "github.com/securego/gosec/v2"
     },
     "id": "securego__gosec",
+    "lock_aliases": {},
     "manifests": [
       ".github/workflows/action-integration.yml",
       ".github/workflows/ci.yml",
@@ -895,6 +962,11 @@
       "confirmed": 3,
       "osv_only": [],
       "warning": null
+    },
+    "osv_api": {
+      "available": true,
+      "queried_at": "2026-11-09T01:36:30+00:00",
+      "states": {}
     },
     "ref": "v2.30.0",
     "ref_kind": "release",
@@ -927,15 +999,57 @@
     },
     "released_at": "2026-10-23T09:22:19Z",
     "repository": "securego/gosec",
+    "sbom_sha256": "c9679555ad71bf8fdadce31d5edf5a6789b6cd2e87588aedb2e6ad363eec35df",
     "sbomlyze_diff": {
       "added": 0,
+      "baseline": {
+        "attempt": "1",
+        "run_id": "41380955266"
+      },
       "changed": 0,
+      "contract": "sbomlyze-diff-0.7",
       "drift": {},
       "findings": [
-        "0 version changes among 90 shared packages \u2014 no actual upgrades",
+        "0 version changes among 85 shared packages \u2014 no actual upgrades",
         "Core system packages stable: golang (59), github (25) unchanged"
       ],
-      "removed": 0
+      "occurrences": {
+        "added": [],
+        "digest_coverage": {
+          "after_only": 0,
+          "before_only": 0,
+          "by_kind": {
+            "go-h1": 59
+          },
+          "comparable": 59,
+          "disjoint_kinds": 0,
+          "packages_total": 85,
+          "same_version_pairs": 85
+        },
+        "file_changes": [],
+        "file_coverage": {
+          "ambiguous_paths": 0,
+          "config_unknown": 0,
+          "files_compared": 5,
+          "files_unverified": 0,
+          "owned_files_after": 0,
+          "unowned_files_after": 0
+        },
+        "files_added": [],
+        "files_removed": [],
+        "integrity_changes": [],
+        "license_changes": [],
+        "metadata_changes": [],
+        "moved": [],
+        "owned_file_drift": [],
+        "removed": [],
+        "source_change": null,
+        "version_changes": [],
+        "version_set_changes": []
+      },
+      "previous_sbom_sha256": "42df814182614d0a85c9f9519cdbe8515a584e4b69fb7bdb5c8d247a386234f4",
+      "removed": 0,
+      "sbom_sha256": "c9679555ad71bf8fdadce31d5edf5a6789b6cd2e87588aedb2e6ad363eec35df"
     },
     "scanned_at": "2026-11-08T05:55:18+00:00",
     "scorecard": {
@@ -1027,6 +1141,7 @@
           "percentile": 0.35396,
           "score": 0.00409
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "0.62.0"
@@ -1034,9 +1149,17 @@
         "id": "GO-2026-6860",
         "in_binary": "module in binary",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "go.mod",
+        "locations": [
+          "go.mod"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-10-27T21:30:04.890809062Z",
+        "osv_published": "2026-10-27T21:16:18Z",
         "package": "golang.org/x/net",
+        "purl": "pkg:golang/golang.org/x/net@v0.61.0",
         "severity": "High",
         "summary": "When coalescing adjacent text nodes in addText and fosterParent, appending to an existing TextNode's Data via string concatenation (n.Data += text) reallocated and copied the accumulated string on every token. Inputs containing many short text runs separated by ignored end tags (such as \"a</x>\") cau",
         "url": "https://go.dev/cl/849365",
@@ -1052,6 +1175,7 @@
           "percentile": 0.18952,
           "score": 0.00267
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "0.62.0"
@@ -1059,9 +1183,17 @@
         "id": "GO-2026-6866",
         "in_binary": "module in binary",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "go.mod",
+        "locations": [
+          "go.mod"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-10-27T21:45:08.978077289Z",
+        "osv_published": "2026-10-27T21:16:18Z",
         "package": "golang.org/x/net",
+        "purl": "pkg:golang/golang.org/x/net@v0.61.0",
         "severity": "Medium",
         "summary": "In childTextNodesAreLiteral, walking up the tree previously stopped at the nearest foreign ancestor once an HTML integration point was found. However, that integration point may itself be a descendant of an element that was foster-parented into a foreign namespace (such as <mglyph> or <malignmark> f",
         "url": "https://go.dev/cl/855121",
@@ -1071,6 +1203,7 @@
         "aliases": [],
         "ecosystem": "golang",
         "epss": null,
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "0.58.1-0.20261009181718-2f1f834330b2"
@@ -1078,9 +1211,17 @@
         "id": "GO-2026-5932",
         "in_binary": "module in binary",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "go.mod",
+        "locations": [
+          "go.mod"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-11-02T22:15:06.677088389Z",
+        "osv_published": "2026-07-07T22:15:29Z",
         "package": "golang.org/x/crypto",
+        "purl": "pkg:golang/golang.org/x/crypto@v0.58.0",
         "severity": "Unknown",
         "summary": "The golang.org/x/crypto/openpgp package is unsafe by design, has numerous known security issues, is not maintained, and should not be used. If you are required to interoperate with OpenPGP systems and need a maintained package, consider github.com/ProtonMail/go-crypto/openpgp which is a maintained f",
         "url": "https://go.dev/issue/44226",

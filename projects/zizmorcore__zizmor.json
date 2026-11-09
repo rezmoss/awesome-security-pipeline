@@ -76,15 +76,26 @@
     },
     {
       "added": 2,
+      "advisory_state": "ok",
       "commit": "21bd300700d43d9ba04b0c1fce72a89391ac80b4",
       "date": "2026-11-08",
       "dependencies": 496,
+      "dependency_state": "ok",
+      "downgraded": 0,
       "errors": [],
+      "file_changes": 11,
       "fixable": 4,
       "go_version": null,
       "in_binary": null,
+      "in_binary_new": 0,
+      "in_binary_resolved": 0,
       "kev": 0,
       "kev_new": 0,
+      "kev_new_match": 0,
+      "license_changes": 0,
+      "method": "sbomlyze-occurrence-v1",
+      "moved": 0,
+      "new_advisories": 0,
       "new_vulnerabilities": 0,
       "osv_confirmed": 4,
       "osv_only": 9,
@@ -92,12 +103,14 @@
       "release_changed": true,
       "release_integrity": "verified",
       "removed": 0,
+      "resolved_advisories": 0,
       "resolved_vulnerabilities": 0,
       "scorecard": null,
       "scorecard_date": null,
       "scorecard_note": "the project is not in the OpenSSF public dataset; the Scorecard CLI fallback was skipped because this shard's weekly budget was used",
       "scorecard_source": null,
-      "upgraded": 32,
+      "unknown_direction": 0,
+      "upgraded": 38,
       "vulnerabilities": {
         "Critical": 0,
         "High": 0,
@@ -112,7 +125,9 @@
         "Low": 0,
         "Medium": 0,
         "files": 11
-      }
+      },
+      "workflow_new": 0,
+      "workflow_resolved": 0
     }
   ],
   "latest": {
@@ -123,210 +138,767 @@
         "indoc@2.0.8",
         "pkg-config@0.3.34"
       ],
+      "added_detail": [
+        {
+          "ecosystem": "cargo",
+          "location": "Cargo.lock",
+          "locations": [
+            "Cargo.lock"
+          ],
+          "name": "indoc",
+          "version": "2.0.8"
+        },
+        {
+          "ecosystem": "cargo",
+          "location": "Cargo.lock",
+          "locations": [
+            "Cargo.lock"
+          ],
+          "name": "pkg-config",
+          "version": "0.3.34"
+        }
+      ],
+      "advisory_state": "ok",
       "any": true,
       "baseline": false,
-      "integrity_drift": 11,
+      "dependency_baseline": {
+        "attempt": "1",
+        "run_id": "41380955266",
+        "sbom_sha256": "99505adaf6da507a1d3c4e2968774c2950b9727e695ebb0a8f79f7d5216134fd"
+      },
+      "dependency_state": "ok",
+      "digest_coverage": {
+        "after_only": 0,
+        "before_only": 0,
+        "by_kind": {},
+        "comparable": 0,
+        "disjoint_kinds": 0,
+        "packages_total": 512,
+        "same_version_pairs": 472
+      },
+      "distinct_version_changes": 32,
+      "downgraded": [],
+      "file_changes": [
+        ".github/workflows/benchmark.yml",
+        ".github/workflows/ci.yml",
+        ".github/workflows/codegen.yml",
+        ".github/workflows/release-binaries.yml",
+        ".github/workflows/release-docker.yml",
+        ".github/workflows/release-pypi.yml",
+        ".github/workflows/site.yml",
+        ".github/workflows/test-output.yml",
+        ".github/workflows/zizmor.yml",
+        "Cargo.lock",
+        "uv.lock"
+      ],
+      "integrity_changes": [],
+      "integrity_drift": 0,
+      "kev_method": "snapshot difference",
       "kev_new": [],
+      "kev_new_match": [],
       "license_changes": [],
+      "metadata_changes": [],
+      "method": "sbomlyze-occurrence-v1",
+      "moved": [],
+      "new_advisories": 0,
       "new_vulnerabilities": [],
       "previous_ref": "v1.31.1",
       "release_changed": true,
       "removed": [],
+      "removed_detail": [],
+      "resolved_advisories": 0,
       "resolved_vulnerabilities": [],
+      "still_affected_version_changed": [],
+      "unknown_direction": [],
       "upgraded": [
         {
-          "ecosystem": "cargo",
-          "from": "1.17.0",
-          "package": "aws-lc-rs",
-          "to": "1.18.2"
-        },
-        {
-          "ecosystem": "cargo",
-          "from": "0.41.0",
-          "package": "aws-lc-sys",
-          "to": "0.46.0"
-        },
-        {
-          "ecosystem": "cargo",
-          "from": "0.58.5",
-          "package": "jsonschema",
-          "to": "0.59.0"
-        },
-        {
-          "ecosystem": "cargo",
-          "from": "0.58.5",
-          "package": "jsonschema-regex",
-          "to": "0.59.0"
-        },
-        {
-          "ecosystem": "cargo",
-          "from": "0.58.5",
-          "package": "jsonschema-value",
-          "to": "0.59.0"
-        },
-        {
-          "ecosystem": "cargo",
-          "from": "0.58.5",
-          "package": "referencing",
-          "to": "0.59.0"
-        },
-        {
-          "ecosystem": "cargo",
-          "from": "0.103.13",
-          "package": "rustls-webpki",
-          "to": "0.103.16"
-        },
-        {
-          "ecosystem": "cargo",
-          "from": "1.2.2",
-          "package": "schemars",
-          "to": "1.2.3"
-        },
-        {
-          "ecosystem": "cargo",
-          "from": "1.2.2",
-          "package": "schemars_derive",
-          "to": "1.2.3"
-        },
-        {
-          "ecosystem": "cargo",
-          "from": "1.0.151",
-          "package": "serde_json",
-          "to": "1.0.154"
-        },
-        {
-          "ecosystem": "cargo",
-          "from": "1.53.2",
-          "package": "tokio",
-          "to": "1.54.1"
-        },
-        {
-          "ecosystem": "cargo",
-          "from": "0.27.0",
-          "package": "tree-sitter",
-          "to": "0.27.1"
-        },
-        {
-          "ecosystem": "cargo",
-          "from": "0.1.8",
-          "package": "tree-sitter-language",
-          "to": "0.1.9"
-        },
-        {
-          "ecosystem": "cargo",
-          "from": "1.0.5",
-          "package": "webpki-root-certs",
-          "to": "1.0.10"
-        },
-        {
-          "ecosystem": "github",
-          "from": "v8.0.1",
-          "package": "actions/download-artifact",
-          "to": "v8.0.2"
-        },
-        {
-          "ecosystem": "github",
-          "from": "v7.0.1",
-          "package": "actions/upload-artifact",
-          "to": "v7.0.2"
-        },
-        {
-          "ecosystem": "github",
-          "from": "v10.2.0",
-          "package": "astral-sh/setup-uv",
-          "to": "v10.3.0"
-        },
-        {
-          "ecosystem": "github",
-          "from": "v5.4.0",
-          "package": "CodSpeedHQ/action",
-          "to": "v5.5.0"
-        },
-        {
-          "ecosystem": "github",
-          "from": "v1.17.0",
-          "package": "docker/github-builder/.github/workflows/build.yml",
-          "to": "v1.18.0"
-        },
-        {
-          "ecosystem": "github",
-          "from": "v4.38.2",
-          "package": "github/codeql-action/upload-sarif",
-          "to": "v4.39.0"
-        },
-        {
-          "ecosystem": "github",
-          "from": "v0.6.4",
-          "package": "zizmorcore/zizmor-action",
-          "to": "v0.7.1"
-        },
-        {
-          "ecosystem": "pypi",
-          "from": "0.0.68",
-          "package": "zensical",
-          "to": "0.0.71"
-        },
-        {
+          "direction": "upgrade",
           "ecosystem": "unknown",
           "from": "1.31.1",
+          "level": "minor",
+          "location": "Cargo.lock",
           "package": "github-actions-expressions",
           "to": "1.32.0"
         },
         {
+          "direction": "upgrade",
           "ecosystem": "unknown",
           "from": "1.31.1",
+          "level": "minor",
+          "location": "Cargo.lock",
           "package": "github-actions-models",
           "to": "1.32.0"
         },
         {
+          "direction": "upgrade",
           "ecosystem": "unknown",
           "from": "1.31.1",
+          "level": "minor",
+          "location": "Cargo.lock",
           "package": "pre-commit-models",
           "to": "1.32.0"
         },
         {
+          "direction": "upgrade",
           "ecosystem": "unknown",
           "from": "1.31.1",
+          "level": "minor",
+          "location": "Cargo.lock",
           "package": "subfeature",
           "to": "1.32.0"
         },
         {
+          "direction": "upgrade",
           "ecosystem": "unknown",
           "from": "1.31.1",
+          "level": "minor",
+          "location": "Cargo.lock",
           "package": "tree-sitter-iter",
           "to": "1.32.0"
         },
         {
+          "direction": "upgrade",
           "ecosystem": "unknown",
           "from": "1.31.1",
+          "level": "minor",
+          "location": "Cargo.lock",
           "package": "yamlpatch",
           "to": "1.32.0"
         },
         {
+          "direction": "upgrade",
           "ecosystem": "unknown",
           "from": "1.31.1",
+          "level": "minor",
+          "location": "Cargo.lock",
           "package": "yamlpath",
           "to": "1.32.0"
         },
         {
+          "direction": "upgrade",
           "ecosystem": "unknown",
           "from": "1.31.1",
-          "package": "zizmor",
-          "to": "1.32.0"
-        },
-        {
-          "ecosystem": "unknown",
-          "from": "1.31.1",
+          "level": "minor",
+          "location": "Cargo.lock",
           "package": "zizmor-dev",
           "to": "1.32.0"
         },
         {
+          "direction": "upgrade",
           "ecosystem": "unknown",
           "from": "1.31.1",
+          "level": "minor",
+          "location": "Cargo.lock",
           "package": "zizmor-sarif",
           "to": "1.32.0"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "unknown",
+          "from": "1.31.1",
+          "level": "minor",
+          "location": "Cargo.lock",
+          "package": "zizmor",
+          "to": "1.32.0"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "cargo",
+          "from": "1.17.0",
+          "level": "minor",
+          "location": "Cargo.lock",
+          "package": "aws-lc-rs",
+          "to": "1.18.2"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "cargo",
+          "from": "0.41.0",
+          "level": "minor",
+          "location": "Cargo.lock",
+          "package": "aws-lc-sys",
+          "to": "0.46.0"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "cargo",
+          "from": "0.58.5",
+          "level": "minor",
+          "location": "Cargo.lock",
+          "package": "jsonschema",
+          "to": "0.59.0"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "cargo",
+          "from": "0.58.5",
+          "level": "minor",
+          "location": "Cargo.lock",
+          "package": "jsonschema-regex",
+          "to": "0.59.0"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "cargo",
+          "from": "0.58.5",
+          "level": "minor",
+          "location": "Cargo.lock",
+          "package": "jsonschema-value",
+          "to": "0.59.0"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "cargo",
+          "from": "0.58.5",
+          "level": "minor",
+          "location": "Cargo.lock",
+          "package": "referencing",
+          "to": "0.59.0"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "cargo",
+          "from": "0.103.13",
+          "level": "patch",
+          "location": "Cargo.lock",
+          "package": "rustls-webpki",
+          "to": "0.103.16"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "cargo",
+          "from": "1.2.2",
+          "level": "patch",
+          "location": "Cargo.lock",
+          "package": "schemars",
+          "to": "1.2.3"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "cargo",
+          "from": "1.2.2",
+          "level": "patch",
+          "location": "Cargo.lock",
+          "package": "schemars_derive",
+          "to": "1.2.3"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "cargo",
+          "from": "1.0.151",
+          "level": "patch",
+          "location": "Cargo.lock",
+          "package": "serde_json",
+          "to": "1.0.154"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "cargo",
+          "from": "1.53.2",
+          "level": "minor",
+          "location": "Cargo.lock",
+          "package": "tokio",
+          "to": "1.54.1"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "cargo",
+          "from": "0.27.0",
+          "level": "patch",
+          "location": "Cargo.lock",
+          "package": "tree-sitter",
+          "to": "0.27.1"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "cargo",
+          "from": "0.1.8",
+          "level": "patch",
+          "location": "Cargo.lock",
+          "package": "tree-sitter-language",
+          "to": "0.1.9"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "cargo",
+          "from": "1.0.5",
+          "level": "patch",
+          "location": "Cargo.lock",
+          "package": "webpki-root-certs",
+          "to": "1.0.10"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "github",
+          "from": "v5.4.0",
+          "level": "minor",
+          "location": ".github/workflows/benchmark.yml",
+          "package": "CodSpeedHQ/action",
+          "to": "v5.5.0"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "github",
+          "from": "v8.0.1",
+          "level": "patch",
+          "location": ".github/workflows/release-binaries.yml",
+          "package": "actions/download-artifact",
+          "to": "v8.0.2"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "github",
+          "from": "v8.0.1",
+          "level": "patch",
+          "location": ".github/workflows/release-pypi.yml",
+          "package": "actions/download-artifact",
+          "to": "v8.0.2"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "github",
+          "from": "v7.0.1",
+          "level": "patch",
+          "location": ".github/workflows/release-binaries.yml",
+          "package": "actions/upload-artifact",
+          "to": "v7.0.2"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "github",
+          "from": "v7.0.1",
+          "level": "patch",
+          "location": ".github/workflows/release-pypi.yml",
+          "package": "actions/upload-artifact",
+          "to": "v7.0.2"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "github",
+          "from": "v10.2.0",
+          "level": "minor",
+          "location": ".github/workflows/benchmark.yml",
+          "package": "astral-sh/setup-uv",
+          "to": "v10.3.0"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "github",
+          "from": "v10.2.0",
+          "level": "minor",
+          "location": ".github/workflows/ci.yml",
+          "package": "astral-sh/setup-uv",
+          "to": "v10.3.0"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "github",
+          "from": "v10.2.0",
+          "level": "minor",
+          "location": ".github/workflows/codegen.yml",
+          "package": "astral-sh/setup-uv",
+          "to": "v10.3.0"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "github",
+          "from": "v10.2.0",
+          "level": "minor",
+          "location": ".github/workflows/release-pypi.yml",
+          "package": "astral-sh/setup-uv",
+          "to": "v10.3.0"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "github",
+          "from": "v10.2.0",
+          "level": "minor",
+          "location": ".github/workflows/site.yml",
+          "package": "astral-sh/setup-uv",
+          "to": "v10.3.0"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "github",
+          "from": "v1.17.0",
+          "level": "minor",
+          "location": ".github/workflows/release-docker.yml",
+          "package": "docker/github-builder/.github/workflows/build.yml",
+          "to": "v1.18.0"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "github",
+          "from": "v4.38.2",
+          "level": "minor",
+          "location": ".github/workflows/test-output.yml",
+          "package": "github/codeql-action/upload-sarif",
+          "to": "v4.39.0"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "github",
+          "from": "v0.6.4",
+          "level": "minor",
+          "location": ".github/workflows/zizmor.yml",
+          "package": "zizmorcore/zizmor-action",
+          "to": "v0.7.1"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "pypi",
+          "from": "0.0.68",
+          "level": "patch",
+          "location": "uv.lock",
+          "package": "zensical",
+          "to": "0.0.71"
         }
       ],
+      "version_changes": [
+        {
+          "direction": "upgrade",
+          "ecosystem": "unknown",
+          "from": "1.31.1",
+          "level": "minor",
+          "location": "Cargo.lock",
+          "name": "github-actions-expressions",
+          "to": "1.32.0"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "unknown",
+          "from": "1.31.1",
+          "level": "minor",
+          "location": "Cargo.lock",
+          "name": "github-actions-models",
+          "to": "1.32.0"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "unknown",
+          "from": "1.31.1",
+          "level": "minor",
+          "location": "Cargo.lock",
+          "name": "pre-commit-models",
+          "to": "1.32.0"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "unknown",
+          "from": "1.31.1",
+          "level": "minor",
+          "location": "Cargo.lock",
+          "name": "subfeature",
+          "to": "1.32.0"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "unknown",
+          "from": "1.31.1",
+          "level": "minor",
+          "location": "Cargo.lock",
+          "name": "tree-sitter-iter",
+          "to": "1.32.0"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "unknown",
+          "from": "1.31.1",
+          "level": "minor",
+          "location": "Cargo.lock",
+          "name": "yamlpatch",
+          "to": "1.32.0"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "unknown",
+          "from": "1.31.1",
+          "level": "minor",
+          "location": "Cargo.lock",
+          "name": "yamlpath",
+          "to": "1.32.0"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "unknown",
+          "from": "1.31.1",
+          "level": "minor",
+          "location": "Cargo.lock",
+          "name": "zizmor-dev",
+          "to": "1.32.0"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "unknown",
+          "from": "1.31.1",
+          "level": "minor",
+          "location": "Cargo.lock",
+          "name": "zizmor-sarif",
+          "to": "1.32.0"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "unknown",
+          "from": "1.31.1",
+          "level": "minor",
+          "location": "Cargo.lock",
+          "name": "zizmor",
+          "to": "1.32.0"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "cargo",
+          "from": "1.17.0",
+          "level": "minor",
+          "location": "Cargo.lock",
+          "name": "aws-lc-rs",
+          "to": "1.18.2"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "cargo",
+          "from": "0.41.0",
+          "level": "minor",
+          "location": "Cargo.lock",
+          "name": "aws-lc-sys",
+          "to": "0.46.0"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "cargo",
+          "from": "0.58.5",
+          "level": "minor",
+          "location": "Cargo.lock",
+          "name": "jsonschema",
+          "to": "0.59.0"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "cargo",
+          "from": "0.58.5",
+          "level": "minor",
+          "location": "Cargo.lock",
+          "name": "jsonschema-regex",
+          "to": "0.59.0"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "cargo",
+          "from": "0.58.5",
+          "level": "minor",
+          "location": "Cargo.lock",
+          "name": "jsonschema-value",
+          "to": "0.59.0"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "cargo",
+          "from": "0.58.5",
+          "level": "minor",
+          "location": "Cargo.lock",
+          "name": "referencing",
+          "to": "0.59.0"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "cargo",
+          "from": "0.103.13",
+          "level": "patch",
+          "location": "Cargo.lock",
+          "name": "rustls-webpki",
+          "to": "0.103.16"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "cargo",
+          "from": "1.2.2",
+          "level": "patch",
+          "location": "Cargo.lock",
+          "name": "schemars",
+          "to": "1.2.3"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "cargo",
+          "from": "1.2.2",
+          "level": "patch",
+          "location": "Cargo.lock",
+          "name": "schemars_derive",
+          "to": "1.2.3"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "cargo",
+          "from": "1.0.151",
+          "level": "patch",
+          "location": "Cargo.lock",
+          "name": "serde_json",
+          "to": "1.0.154"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "cargo",
+          "from": "1.53.2",
+          "level": "minor",
+          "location": "Cargo.lock",
+          "name": "tokio",
+          "to": "1.54.1"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "cargo",
+          "from": "0.27.0",
+          "level": "patch",
+          "location": "Cargo.lock",
+          "name": "tree-sitter",
+          "to": "0.27.1"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "cargo",
+          "from": "0.1.8",
+          "level": "patch",
+          "location": "Cargo.lock",
+          "name": "tree-sitter-language",
+          "to": "0.1.9"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "cargo",
+          "from": "1.0.5",
+          "level": "patch",
+          "location": "Cargo.lock",
+          "name": "webpki-root-certs",
+          "to": "1.0.10"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "github",
+          "from": "v5.4.0",
+          "level": "minor",
+          "location": ".github/workflows/benchmark.yml",
+          "name": "CodSpeedHQ/action",
+          "to": "v5.5.0"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "github",
+          "from": "v8.0.1",
+          "level": "patch",
+          "location": ".github/workflows/release-binaries.yml",
+          "name": "actions/download-artifact",
+          "to": "v8.0.2"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "github",
+          "from": "v8.0.1",
+          "level": "patch",
+          "location": ".github/workflows/release-pypi.yml",
+          "name": "actions/download-artifact",
+          "to": "v8.0.2"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "github",
+          "from": "v7.0.1",
+          "level": "patch",
+          "location": ".github/workflows/release-binaries.yml",
+          "name": "actions/upload-artifact",
+          "to": "v7.0.2"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "github",
+          "from": "v7.0.1",
+          "level": "patch",
+          "location": ".github/workflows/release-pypi.yml",
+          "name": "actions/upload-artifact",
+          "to": "v7.0.2"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "github",
+          "from": "v10.2.0",
+          "level": "minor",
+          "location": ".github/workflows/benchmark.yml",
+          "name": "astral-sh/setup-uv",
+          "to": "v10.3.0"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "github",
+          "from": "v10.2.0",
+          "level": "minor",
+          "location": ".github/workflows/ci.yml",
+          "name": "astral-sh/setup-uv",
+          "to": "v10.3.0"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "github",
+          "from": "v10.2.0",
+          "level": "minor",
+          "location": ".github/workflows/codegen.yml",
+          "name": "astral-sh/setup-uv",
+          "to": "v10.3.0"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "github",
+          "from": "v10.2.0",
+          "level": "minor",
+          "location": ".github/workflows/release-pypi.yml",
+          "name": "astral-sh/setup-uv",
+          "to": "v10.3.0"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "github",
+          "from": "v10.2.0",
+          "level": "minor",
+          "location": ".github/workflows/site.yml",
+          "name": "astral-sh/setup-uv",
+          "to": "v10.3.0"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "github",
+          "from": "v1.17.0",
+          "level": "minor",
+          "location": ".github/workflows/release-docker.yml",
+          "name": "docker/github-builder/.github/workflows/build.yml",
+          "to": "v1.18.0"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "github",
+          "from": "v4.38.2",
+          "level": "minor",
+          "location": ".github/workflows/test-output.yml",
+          "name": "github/codeql-action/upload-sarif",
+          "to": "v4.39.0"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "github",
+          "from": "v0.6.4",
+          "level": "minor",
+          "location": ".github/workflows/zizmor.yml",
+          "name": "zizmorcore/zizmor-action",
+          "to": "v0.7.1"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "pypi",
+          "from": "0.0.68",
+          "level": "patch",
+          "location": "uv.lock",
+          "name": "zensical",
+          "to": "0.0.71"
+        }
+      ],
+      "version_set_changes": [],
       "workflow_new": 0,
       "workflow_resolved": 0
     },
@@ -4342,6 +4914,7 @@
     "description": "Analyze GitHub Actions workflows for security issues",
     "errors": [],
     "id": "zizmorcore__zizmor",
+    "lock_aliases": {},
     "manifests": [
       ".github/workflows/benchmark.yml",
       ".github/workflows/ci.yml",
@@ -4380,7 +4953,10 @@
           "ids": [
             "RUSTSEC-2026-0204"
           ],
+          "modified": "2026-07-06T22:30:04.159269138Z",
           "package": "crossbeam-epoch",
+          "path": "Cargo.lock",
+          "published": "2026-07-06T12:00:00Z",
           "score": "",
           "severity": "Unknown",
           "version": "0.9.18"
@@ -4391,7 +4967,10 @@
             "GHSA-q83h-524g-xf6h",
             "RUSTSEC-2026-0258"
           ],
+          "modified": "2026-10-12T18:00:10.934581734Z",
           "package": "h2",
+          "path": "Cargo.lock",
+          "published": "2026-08-17T12:00:00Z",
           "score": "",
           "severity": "Unknown",
           "version": "0.4.13"
@@ -4401,7 +4980,10 @@
           "ids": [
             "RUSTSEC-2026-0186"
           ],
+          "modified": "2026-06-22T18:15:03.600280397Z",
           "package": "memmap2",
+          "path": "Cargo.lock",
+          "published": "2026-06-20T12:00:00Z",
           "score": "",
           "severity": "Unknown",
           "version": "0.5.10"
@@ -4411,7 +4993,10 @@
           "ids": [
             "RUSTSEC-2026-0441"
           ],
+          "modified": "2026-11-05T09:00:02.627533155Z",
           "package": "pin-utils",
+          "path": "Cargo.lock",
+          "published": "2026-10-01T12:00:00Z",
           "score": "",
           "severity": "Unknown",
           "version": "0.1.0"
@@ -4422,7 +5007,10 @@
             "GHSA-465w-v9q3-7j98",
             "RUSTSEC-2026-0338"
           ],
+          "modified": "2026-10-12T18:15:01.969514645Z",
           "package": "quinn-proto",
+          "path": "Cargo.lock",
+          "published": "2026-09-14T12:00:00Z",
           "score": "",
           "severity": "Unknown",
           "version": "0.11.16"
@@ -4433,7 +5021,10 @@
             "GHSA-hmxj-32vh-65vr",
             "RUSTSEC-2026-0339"
           ],
+          "modified": "2026-10-12T18:15:01.956822776Z",
           "package": "quinn-proto",
+          "path": "Cargo.lock",
+          "published": "2026-08-17T12:00:00Z",
           "score": "",
           "severity": "Unknown",
           "version": "0.11.16"
@@ -4444,7 +5035,10 @@
             "GHSA-3g6h-r5qx-f6hq",
             "RUSTSEC-2026-0340"
           ],
+          "modified": "2026-10-12T18:15:01.975478256Z",
           "package": "quinn-proto",
+          "path": "Cargo.lock",
+          "published": "2026-09-14T12:00:00Z",
           "score": "7.5",
           "severity": "High",
           "version": "0.11.16"
@@ -4455,7 +5049,10 @@
             "GHSA-qfwj-vfxf-92j2",
             "RUSTSEC-2026-0341"
           ],
+          "modified": "2026-10-12T18:15:01.969505433Z",
           "package": "quinn-proto",
+          "path": "Cargo.lock",
+          "published": "2026-08-17T12:00:00Z",
           "score": "7.5",
           "severity": "High",
           "version": "0.11.16"
@@ -4466,13 +5063,21 @@
             "GHSA-2hv7-gw8g-gpq5",
             "RUSTSEC-2026-0342"
           ],
+          "modified": "2026-10-12T18:15:01.956681478Z",
           "package": "quinn-proto",
+          "path": "Cargo.lock",
+          "published": "2026-08-17T12:00:00Z",
           "score": "",
           "severity": "Unknown",
           "version": "0.11.16"
         }
       ],
       "warning": null
+    },
+    "osv_api": {
+      "available": true,
+      "queried_at": "2026-11-09T01:36:34+00:00",
+      "states": {}
     },
     "ref": "v1.32.0",
     "ref_kind": "release",
@@ -4506,22 +5111,485 @@
     },
     "released_at": "2026-11-02T23:57:55Z",
     "repository": "zizmorcore/zizmor",
+    "sbom_sha256": "0c94c64993d782d7d1d8b8427f4dbbda2cf1c81cab04c05ceee35de892981a0c",
     "sbomlyze_diff": {
       "added": 2,
-      "changed": 43,
+      "baseline": {
+        "attempt": "1",
+        "run_id": "41380955266"
+      },
+      "changed": 38,
+      "contract": "sbomlyze-diff-0.7",
       "drift": {
-        "integrity_drift": 11,
+        "distinct_version_changes": 32,
+        "downgrades": 0,
+        "file_changes": 11,
+        "integrity_drift": 0,
+        "license_changes": 0,
         "metadata_drift": 0,
-        "version_drift": 32
+        "owned_file_drift": 0,
+        "owned_files_changed": 0,
+        "unknown_direction": 0,
+        "upgrades": 38,
+        "version_drift": 38
       },
       "findings": [
-        "Attack surface: +2 packages (0.4%)",
-        "32 version upgrades (5 major, 19 minor, 8 patch) among 523 shared packages",
-        "Integrity drift (11 total): 11 unknown",
-        "Core system packages stable: github (37), pypi (22), file (13) unchanged"
+        "Scanned zizmorcore/zizmor changed: v1.31.1 \u2192 v1.32.0",
+        "Inventory: +2 components (0.4%)",
+        "32 version upgrades (22 minor, 10 patch) across 38 occurrences among 510 shared packages",
+        "Integrity drift checked only 0 of 472 same-version packages; the rest carry no comparable digest",
+        "11 file entries changed content (not package integrity drift): /.github/workflows/benchmark.yml, /.github/workflows/ci.yml, /.github/workflows/codegen.yml, /.github/workflows/release-binaries.yml, /.github/workflows/release-docker.yml + 6 more",
+        "Core system packages stable: file (13) unchanged",
+        "github: 37 packages before and after (13 version changes)",
+        "pypi: 22 packages before and after (1 version changes)"
       ],
       "html": "sbomlyze-diff.html",
-      "removed": 0
+      "occurrences": {
+        "added": [
+          {
+            "ecosystem": "cargo",
+            "location": "Cargo.lock",
+            "locations": [
+              "Cargo.lock"
+            ],
+            "name": "indoc",
+            "version": "2.0.8"
+          },
+          {
+            "ecosystem": "cargo",
+            "location": "Cargo.lock",
+            "locations": [
+              "Cargo.lock"
+            ],
+            "name": "pkg-config",
+            "version": "0.3.34"
+          }
+        ],
+        "digest_coverage": {
+          "after_only": 0,
+          "before_only": 0,
+          "by_kind": {},
+          "comparable": 0,
+          "disjoint_kinds": 0,
+          "packages_total": 512,
+          "same_version_pairs": 472
+        },
+        "file_changes": [
+          {
+            "owners": [],
+            "path": ".github/workflows/benchmark.yml"
+          },
+          {
+            "owners": [],
+            "path": ".github/workflows/ci.yml"
+          },
+          {
+            "owners": [],
+            "path": ".github/workflows/codegen.yml"
+          },
+          {
+            "owners": [],
+            "path": ".github/workflows/release-binaries.yml"
+          },
+          {
+            "owners": [],
+            "path": ".github/workflows/release-docker.yml"
+          },
+          {
+            "owners": [],
+            "path": ".github/workflows/release-pypi.yml"
+          },
+          {
+            "owners": [],
+            "path": ".github/workflows/site.yml"
+          },
+          {
+            "owners": [],
+            "path": ".github/workflows/test-output.yml"
+          },
+          {
+            "owners": [],
+            "path": ".github/workflows/zizmor.yml"
+          },
+          {
+            "owners": [],
+            "path": "Cargo.lock"
+          },
+          {
+            "owners": [],
+            "path": "uv.lock"
+          }
+        ],
+        "file_coverage": {
+          "ambiguous_paths": 0,
+          "config_unknown": 0,
+          "files_compared": 13,
+          "files_unverified": 0,
+          "owned_files_after": 0,
+          "unowned_files_after": 0
+        },
+        "files_added": [],
+        "files_removed": [],
+        "integrity_changes": [],
+        "license_changes": [],
+        "metadata_changes": [],
+        "moved": [],
+        "owned_file_drift": [],
+        "removed": [],
+        "source_change": {
+          "from": "v1.31.1",
+          "name": "zizmorcore/zizmor",
+          "to": "v1.32.0"
+        },
+        "version_changes": [
+          {
+            "direction": "upgrade",
+            "ecosystem": "unknown",
+            "from": "1.31.1",
+            "level": "minor",
+            "location": "Cargo.lock",
+            "name": "github-actions-expressions",
+            "to": "1.32.0"
+          },
+          {
+            "direction": "upgrade",
+            "ecosystem": "unknown",
+            "from": "1.31.1",
+            "level": "minor",
+            "location": "Cargo.lock",
+            "name": "github-actions-models",
+            "to": "1.32.0"
+          },
+          {
+            "direction": "upgrade",
+            "ecosystem": "unknown",
+            "from": "1.31.1",
+            "level": "minor",
+            "location": "Cargo.lock",
+            "name": "pre-commit-models",
+            "to": "1.32.0"
+          },
+          {
+            "direction": "upgrade",
+            "ecosystem": "unknown",
+            "from": "1.31.1",
+            "level": "minor",
+            "location": "Cargo.lock",
+            "name": "subfeature",
+            "to": "1.32.0"
+          },
+          {
+            "direction": "upgrade",
+            "ecosystem": "unknown",
+            "from": "1.31.1",
+            "level": "minor",
+            "location": "Cargo.lock",
+            "name": "tree-sitter-iter",
+            "to": "1.32.0"
+          },
+          {
+            "direction": "upgrade",
+            "ecosystem": "unknown",
+            "from": "1.31.1",
+            "level": "minor",
+            "location": "Cargo.lock",
+            "name": "yamlpatch",
+            "to": "1.32.0"
+          },
+          {
+            "direction": "upgrade",
+            "ecosystem": "unknown",
+            "from": "1.31.1",
+            "level": "minor",
+            "location": "Cargo.lock",
+            "name": "yamlpath",
+            "to": "1.32.0"
+          },
+          {
+            "direction": "upgrade",
+            "ecosystem": "unknown",
+            "from": "1.31.1",
+            "level": "minor",
+            "location": "Cargo.lock",
+            "name": "zizmor-dev",
+            "to": "1.32.0"
+          },
+          {
+            "direction": "upgrade",
+            "ecosystem": "unknown",
+            "from": "1.31.1",
+            "level": "minor",
+            "location": "Cargo.lock",
+            "name": "zizmor-sarif",
+            "to": "1.32.0"
+          },
+          {
+            "direction": "upgrade",
+            "ecosystem": "unknown",
+            "from": "1.31.1",
+            "level": "minor",
+            "location": "Cargo.lock",
+            "name": "zizmor",
+            "to": "1.32.0"
+          },
+          {
+            "direction": "upgrade",
+            "ecosystem": "cargo",
+            "from": "1.17.0",
+            "level": "minor",
+            "location": "Cargo.lock",
+            "name": "aws-lc-rs",
+            "to": "1.18.2"
+          },
+          {
+            "direction": "upgrade",
+            "ecosystem": "cargo",
+            "from": "0.41.0",
+            "level": "minor",
+            "location": "Cargo.lock",
+            "name": "aws-lc-sys",
+            "to": "0.46.0"
+          },
+          {
+            "direction": "upgrade",
+            "ecosystem": "cargo",
+            "from": "0.58.5",
+            "level": "minor",
+            "location": "Cargo.lock",
+            "name": "jsonschema",
+            "to": "0.59.0"
+          },
+          {
+            "direction": "upgrade",
+            "ecosystem": "cargo",
+            "from": "0.58.5",
+            "level": "minor",
+            "location": "Cargo.lock",
+            "name": "jsonschema-regex",
+            "to": "0.59.0"
+          },
+          {
+            "direction": "upgrade",
+            "ecosystem": "cargo",
+            "from": "0.58.5",
+            "level": "minor",
+            "location": "Cargo.lock",
+            "name": "jsonschema-value",
+            "to": "0.59.0"
+          },
+          {
+            "direction": "upgrade",
+            "ecosystem": "cargo",
+            "from": "0.58.5",
+            "level": "minor",
+            "location": "Cargo.lock",
+            "name": "referencing",
+            "to": "0.59.0"
+          },
+          {
+            "direction": "upgrade",
+            "ecosystem": "cargo",
+            "from": "0.103.13",
+            "level": "patch",
+            "location": "Cargo.lock",
+            "name": "rustls-webpki",
+            "to": "0.103.16"
+          },
+          {
+            "direction": "upgrade",
+            "ecosystem": "cargo",
+            "from": "1.2.2",
+            "level": "patch",
+            "location": "Cargo.lock",
+            "name": "schemars",
+            "to": "1.2.3"
+          },
+          {
+            "direction": "upgrade",
+            "ecosystem": "cargo",
+            "from": "1.2.2",
+            "level": "patch",
+            "location": "Cargo.lock",
+            "name": "schemars_derive",
+            "to": "1.2.3"
+          },
+          {
+            "direction": "upgrade",
+            "ecosystem": "cargo",
+            "from": "1.0.151",
+            "level": "patch",
+            "location": "Cargo.lock",
+            "name": "serde_json",
+            "to": "1.0.154"
+          },
+          {
+            "direction": "upgrade",
+            "ecosystem": "cargo",
+            "from": "1.53.2",
+            "level": "minor",
+            "location": "Cargo.lock",
+            "name": "tokio",
+            "to": "1.54.1"
+          },
+          {
+            "direction": "upgrade",
+            "ecosystem": "cargo",
+            "from": "0.27.0",
+            "level": "patch",
+            "location": "Cargo.lock",
+            "name": "tree-sitter",
+            "to": "0.27.1"
+          },
+          {
+            "direction": "upgrade",
+            "ecosystem": "cargo",
+            "from": "0.1.8",
+            "level": "patch",
+            "location": "Cargo.lock",
+            "name": "tree-sitter-language",
+            "to": "0.1.9"
+          },
+          {
+            "direction": "upgrade",
+            "ecosystem": "cargo",
+            "from": "1.0.5",
+            "level": "patch",
+            "location": "Cargo.lock",
+            "name": "webpki-root-certs",
+            "to": "1.0.10"
+          },
+          {
+            "direction": "upgrade",
+            "ecosystem": "github",
+            "from": "v5.4.0",
+            "level": "minor",
+            "location": ".github/workflows/benchmark.yml",
+            "name": "CodSpeedHQ/action",
+            "to": "v5.5.0"
+          },
+          {
+            "direction": "upgrade",
+            "ecosystem": "github",
+            "from": "v8.0.1",
+            "level": "patch",
+            "location": ".github/workflows/release-binaries.yml",
+            "name": "actions/download-artifact",
+            "to": "v8.0.2"
+          },
+          {
+            "direction": "upgrade",
+            "ecosystem": "github",
+            "from": "v8.0.1",
+            "level": "patch",
+            "location": ".github/workflows/release-pypi.yml",
+            "name": "actions/download-artifact",
+            "to": "v8.0.2"
+          },
+          {
+            "direction": "upgrade",
+            "ecosystem": "github",
+            "from": "v7.0.1",
+            "level": "patch",
+            "location": ".github/workflows/release-binaries.yml",
+            "name": "actions/upload-artifact",
+            "to": "v7.0.2"
+          },
+          {
+            "direction": "upgrade",
+            "ecosystem": "github",
+            "from": "v7.0.1",
+            "level": "patch",
+            "location": ".github/workflows/release-pypi.yml",
+            "name": "actions/upload-artifact",
+            "to": "v7.0.2"
+          },
+          {
+            "direction": "upgrade",
+            "ecosystem": "github",
+            "from": "v10.2.0",
+            "level": "minor",
+            "location": ".github/workflows/benchmark.yml",
+            "name": "astral-sh/setup-uv",
+            "to": "v10.3.0"
+          },
+          {
+            "direction": "upgrade",
+            "ecosystem": "github",
+            "from": "v10.2.0",
+            "level": "minor",
+            "location": ".github/workflows/ci.yml",
+            "name": "astral-sh/setup-uv",
+            "to": "v10.3.0"
+          },
+          {
+            "direction": "upgrade",
+            "ecosystem": "github",
+            "from": "v10.2.0",
+            "level": "minor",
+            "location": ".github/workflows/codegen.yml",
+            "name": "astral-sh/setup-uv",
+            "to": "v10.3.0"
+          },
+          {
+            "direction": "upgrade",
+            "ecosystem": "github",
+            "from": "v10.2.0",
+            "level": "minor",
+            "location": ".github/workflows/release-pypi.yml",
+            "name": "astral-sh/setup-uv",
+            "to": "v10.3.0"
+          },
+          {
+            "direction": "upgrade",
+            "ecosystem": "github",
+            "from": "v10.2.0",
+            "level": "minor",
+            "location": ".github/workflows/site.yml",
+            "name": "astral-sh/setup-uv",
+            "to": "v10.3.0"
+          },
+          {
+            "direction": "upgrade",
+            "ecosystem": "github",
+            "from": "v1.17.0",
+            "level": "minor",
+            "location": ".github/workflows/release-docker.yml",
+            "name": "docker/github-builder/.github/workflows/build.yml",
+            "to": "v1.18.0"
+          },
+          {
+            "direction": "upgrade",
+            "ecosystem": "github",
+            "from": "v4.38.2",
+            "level": "minor",
+            "location": ".github/workflows/test-output.yml",
+            "name": "github/codeql-action/upload-sarif",
+            "to": "v4.39.0"
+          },
+          {
+            "direction": "upgrade",
+            "ecosystem": "github",
+            "from": "v0.6.4",
+            "level": "minor",
+            "location": ".github/workflows/zizmor.yml",
+            "name": "zizmorcore/zizmor-action",
+            "to": "v0.7.1"
+          },
+          {
+            "direction": "upgrade",
+            "ecosystem": "pypi",
+            "from": "0.0.68",
+            "level": "patch",
+            "location": "uv.lock",
+            "name": "zensical",
+            "to": "0.0.71"
+          }
+        ],
+        "version_set_changes": []
+      },
+      "previous_sbom_sha256": "99505adaf6da507a1d3c4e2968774c2950b9727e695ebb0a8f79f7d5216134fd",
+      "removed": 0,
+      "sbom_sha256": "0c94c64993d782d7d1d8b8427f4dbbda2cf1c81cab04c05ceee35de892981a0c"
     },
     "scanned_at": "2026-11-08T05:55:11+00:00",
     "scorecard": null,
@@ -4531,15 +5599,24 @@
         "aliases": [],
         "ecosystem": "cargo",
         "epss": null,
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "0.23.45"
         ],
         "id": "GHSA-2mjx-qc3c-rqvc",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "Cargo.lock",
+        "locations": [
+          "Cargo.lock"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-10-27T15:30:05.509305490Z",
+        "osv_published": "2026-09-14T12:00:00Z",
         "package": "rustls",
+        "purl": "pkg:cargo/rustls@0.23.34",
         "severity": "Medium",
         "summary": "Rustls: TLS 1.3 handshake messages incorrectly accepted across encryption level boundaries",
         "url": "https://github.com/advisories/GHSA-2mjx-qc3c-rqvc",
@@ -4549,15 +5626,24 @@
         "aliases": [],
         "ecosystem": "cargo",
         "epss": null,
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "0.23.46"
         ],
         "id": "GHSA-c8m5-c952-6cm4",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "Cargo.lock",
+        "locations": [
+          "Cargo.lock"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-10-27T16:15:05.354395696Z",
+        "osv_published": "2026-10-14T12:00:00Z",
         "package": "rustls",
+        "purl": "pkg:cargo/rustls@0.23.34",
         "severity": "Medium",
         "summary": "Rustls: Session Debug formatting exposes TLS master secrets and resumption PSKs",
         "url": "https://github.com/advisories/GHSA-c8m5-c952-6cm4",
@@ -4567,15 +5653,24 @@
         "aliases": [],
         "ecosystem": "cargo",
         "epss": null,
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "0.23.46"
         ],
         "id": "GHSA-h2v8-394m-p7vv",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "Cargo.lock",
+        "locations": [
+          "Cargo.lock"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-10-27T16:15:05.337819489Z",
+        "osv_published": "2026-10-14T12:00:00Z",
         "package": "rustls",
+        "purl": "pkg:cargo/rustls@0.23.34",
         "severity": "Low",
         "summary": "Rustls: Brotli certificate decompression can allocate an attacker-controlled amount of memory up to 1 GiB before authentication.",
         "url": "https://github.com/advisories/GHSA-h2v8-394m-p7vv",
@@ -4585,15 +5680,24 @@
         "aliases": [],
         "ecosystem": "cargo",
         "epss": null,
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "0.23.46"
         ],
         "id": "GHSA-w44r-93j7-qv28",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "Cargo.lock",
+        "locations": [
+          "Cargo.lock"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-10-27T16:15:05.340347056Z",
+        "osv_published": "2026-10-14T12:00:00Z",
         "package": "rustls",
+        "purl": "pkg:cargo/rustls@0.23.34",
         "severity": "Low",
         "summary": "rustls: An unauthenticated ServerHello poisons the per-name key-exchange record, so later ClientHellos carry only a classical X25519 share",
         "url": "https://github.com/advisories/GHSA-w44r-93j7-qv28",

@@ -84,19 +84,31 @@
     },
     {
       "added": 0,
+      "advisory_state": "ok",
       "commit": "7a43eb90ffd1d951adc1e445efd5abc0e188bfea",
       "date": "2026-11-08",
       "dependencies": 42,
+      "dependency_state": "ok",
+      "downgraded": 0,
       "errors": [],
+      "file_changes": 0,
       "fixable": 1,
       "go_version": "go1.26.10",
       "in_binary": {
         "dependencies": 0,
+        "records": 0,
         "stdlib": 0,
         "total": 0
       },
+      "in_binary_new": 0,
+      "in_binary_resolved": 0,
       "kev": 0,
       "kev_new": 0,
+      "kev_new_match": 0,
+      "license_changes": 0,
+      "method": "sbomlyze-occurrence-v1",
+      "moved": 0,
+      "new_advisories": 0,
       "new_vulnerabilities": 0,
       "osv_confirmed": 1,
       "osv_only": 0,
@@ -104,11 +116,13 @@
       "release_changed": false,
       "release_integrity": "verified",
       "removed": 0,
+      "resolved_advisories": 0,
       "resolved_vulnerabilities": 0,
       "scorecard": 8.1,
       "scorecard_date": "2026-11-06",
       "scorecard_note": null,
       "scorecard_source": "openssf-api",
+      "unknown_direction": 0,
       "upgraded": 0,
       "vulnerabilities": {
         "Critical": 0,
@@ -124,7 +138,9 @@
         "Low": 2,
         "Medium": 0,
         "files": 11
-      }
+      },
+      "workflow_new": 0,
+      "workflow_resolved": 0
     }
   ],
   "latest": {
@@ -132,23 +148,58 @@
     "category": "SBOM Generation",
     "changes": {
       "added": [],
+      "added_detail": [],
+      "advisory_state": "ok",
       "any": true,
       "baseline": false,
+      "dependency_baseline": {
+        "attempt": "1",
+        "run_id": "41380955266",
+        "sbom_sha256": "9fd6cd5265fb50053621abc70a15c33555a194fb4647d8b935474ff2e32afc76"
+      },
+      "dependency_state": "ok",
+      "digest_coverage": {
+        "after_only": 0,
+        "before_only": 0,
+        "by_kind": {
+          "go-h1": 29
+        },
+        "comparable": 29,
+        "disjoint_kinds": 0,
+        "packages_total": 53,
+        "same_version_pairs": 53
+      },
+      "distinct_version_changes": null,
+      "downgraded": [],
+      "file_changes": [],
       "in_binary_new": [],
       "in_binary_resolved": [],
+      "integrity_changes": [],
       "integrity_drift": 0,
+      "kev_method": "snapshot difference",
       "kev_new": [],
+      "kev_new_match": [],
       "license_changes": [],
+      "metadata_changes": [],
+      "method": "sbomlyze-occurrence-v1",
+      "moved": [],
+      "new_advisories": 0,
       "new_vulnerabilities": [],
       "previous_ref": "v0.6.0",
       "release_changed": false,
       "removed": [],
+      "removed_detail": [],
+      "resolved_advisories": 0,
       "resolved_vulnerabilities": [],
       "scorecard": {
         "from": 7.9,
         "to": 8.1
       },
+      "still_affected_version_changed": [],
+      "unknown_direction": [],
       "upgraded": [],
+      "version_changes": [],
+      "version_set_changes": [],
       "workflow_new": 0,
       "workflow_resolved": 0
     },
@@ -541,6 +592,7 @@
       "main_module": "github.com/rezmoss/sbomlyze"
     },
     "id": "rezmoss__sbomlyze",
+    "lock_aliases": {},
     "manifests": [
       ".github/workflows/ci.yml",
       ".github/workflows/deploy-site.yml",
@@ -563,6 +615,11 @@
       "confirmed": 1,
       "osv_only": [],
       "warning": null
+    },
+    "osv_api": {
+      "available": true,
+      "queried_at": "2026-11-09T01:36:24+00:00",
+      "states": {}
     },
     "ref": "v0.6.0",
     "ref_kind": "release",
@@ -591,15 +648,57 @@
     },
     "released_at": "2026-11-01T14:40:09Z",
     "repository": "rezmoss/sbomlyze",
+    "sbom_sha256": "8b5b3922dc7e06701a67fafc40b31a9e7f0c7bdd562f893987eabcfd814bf75b",
     "sbomlyze_diff": {
       "added": 0,
+      "baseline": {
+        "attempt": "1",
+        "run_id": "41380955266"
+      },
       "changed": 0,
+      "contract": "sbomlyze-diff-0.7",
       "drift": {},
       "findings": [
-        "0 version changes among 63 shared packages \u2014 no actual upgrades",
+        "0 version changes among 53 shared packages \u2014 no actual upgrades",
         "Core system packages stable: golang (29), github (23) unchanged"
       ],
-      "removed": 0
+      "occurrences": {
+        "added": [],
+        "digest_coverage": {
+          "after_only": 0,
+          "before_only": 0,
+          "by_kind": {
+            "go-h1": 29
+          },
+          "comparable": 29,
+          "disjoint_kinds": 0,
+          "packages_total": 53,
+          "same_version_pairs": 53
+        },
+        "file_changes": [],
+        "file_coverage": {
+          "ambiguous_paths": 0,
+          "config_unknown": 0,
+          "files_compared": 10,
+          "files_unverified": 0,
+          "owned_files_after": 0,
+          "unowned_files_after": 0
+        },
+        "files_added": [],
+        "files_removed": [],
+        "integrity_changes": [],
+        "license_changes": [],
+        "metadata_changes": [],
+        "moved": [],
+        "owned_file_drift": [],
+        "removed": [],
+        "source_change": null,
+        "version_changes": [],
+        "version_set_changes": []
+      },
+      "previous_sbom_sha256": "9fd6cd5265fb50053621abc70a15c33555a194fb4647d8b935474ff2e32afc76",
+      "removed": 0,
+      "sbom_sha256": "8b5b3922dc7e06701a67fafc40b31a9e7f0c7bdd562f893987eabcfd814bf75b"
     },
     "scanned_at": "2026-11-08T05:54:16+00:00",
     "scorecard": {
@@ -711,6 +810,7 @@
           "percentile": 0.40535,
           "score": 0.00466
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "0.41.0"
@@ -718,9 +818,17 @@
         "id": "GO-2026-6629",
         "in_binary": "not in released binary",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "go.mod",
+        "locations": [
+          "go.mod"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-10-20T10:42:24.514593111Z",
+        "osv_published": "2026-10-07T14:09:43Z",
         "package": "golang.org/x/text",
+        "purl": "pkg:golang/golang.org/x/text@v0.39.0",
         "severity": "High",
         "summary": "The Nickname profile can panic with an out-of-bounds slice error when transforming crafted input into a short destination buffer.",
         "url": "https://go.dev/cl/793360",

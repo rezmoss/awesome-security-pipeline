@@ -84,19 +84,31 @@
     },
     {
       "added": 0,
+      "advisory_state": "ok",
       "commit": "8f7ac015cb51d81992f2ffbe2b0c1451fd05d1c5",
       "date": "2026-11-08",
       "dependencies": 181,
+      "dependency_state": "ok",
+      "downgraded": 0,
       "errors": [],
+      "file_changes": 0,
       "fixable": 12,
       "go_version": "go1.27.1",
       "in_binary": {
-        "dependencies": 8,
-        "stdlib": 9,
+        "dependencies": 9,
+        "records": 22,
+        "stdlib": 13,
         "total": 17
       },
+      "in_binary_new": 1,
+      "in_binary_resolved": 0,
       "kev": 0,
       "kev_new": 0,
+      "kev_new_match": 0,
+      "license_changes": 0,
+      "method": "sbomlyze-occurrence-v1",
+      "moved": 0,
+      "new_advisories": 1,
       "new_vulnerabilities": 1,
       "osv_confirmed": 12,
       "osv_only": 21,
@@ -104,11 +116,13 @@
       "release_changed": false,
       "release_integrity": "verified",
       "removed": 0,
+      "resolved_advisories": 0,
       "resolved_vulnerabilities": 0,
       "scorecard": 7.2,
       "scorecard_date": "2026-10-26",
       "scorecard_note": null,
       "scorecard_source": "openssf-api",
+      "unknown_direction": 0,
       "upgraded": 0,
       "vulnerabilities": {
         "Critical": 1,
@@ -124,7 +138,9 @@
         "Low": 0,
         "Medium": 0,
         "files": 3
-      }
+      },
+      "workflow_new": 0,
+      "workflow_resolved": 0
     }
   ],
   "latest": {
@@ -132,15 +148,44 @@
     "category": "Policy as Code",
     "changes": {
       "added": [],
+      "added_detail": [],
+      "advisory_state": "ok",
       "any": true,
       "baseline": false,
+      "dependency_baseline": {
+        "attempt": "1",
+        "run_id": "41380955266",
+        "sbom_sha256": "76268d65e3d6e2c193f02295528aa571636ace5b6a854a6d08f9fa45f7f004ee"
+      },
+      "dependency_state": "ok",
+      "digest_coverage": {
+        "after_only": 0,
+        "before_only": 0,
+        "by_kind": {
+          "go-h1": 165
+        },
+        "comparable": 165,
+        "disjoint_kinds": 0,
+        "packages_total": 185,
+        "same_version_pairs": 185
+      },
+      "distinct_version_changes": null,
+      "downgraded": [],
+      "file_changes": [],
       "in_binary_new": [
         "GO-2026-6865"
       ],
       "in_binary_resolved": [],
+      "integrity_changes": [],
       "integrity_drift": 0,
+      "kev_method": "snapshot difference",
       "kev_new": [],
+      "kev_new_match": [],
       "license_changes": [],
+      "metadata_changes": [],
+      "method": "sbomlyze-occurrence-v1",
+      "moved": [],
+      "new_advisories": 1,
       "new_vulnerabilities": [
         {
           "aliases": [
@@ -153,6 +198,7 @@
             "percentile": 0.26636,
             "score": 0.00333
           },
+          "epss_date": "2026-11-07T12:00:22Z",
           "fix_state": "fixed",
           "fixed_in": [
             "1.20.2"
@@ -160,9 +206,23 @@
           "id": "GO-2026-6865",
           "in_binary": "vulnerable code in binary",
           "kev": null,
+          "kev_cves": [],
+          "kev_snapshot": "2026.11.06",
           "location": "go.mod",
+          "locations": [
+            "go.mod"
+          ],
+          "new": {
+            "advisory": "published since last scan",
+            "modified": "2026-11-05T23:15:14.472777299Z",
+            "published": "2026-11-05T22:54:32Z",
+            "reason": "unchanged version"
+          },
           "osv_confirmed": true,
+          "osv_modified": "2026-11-05T23:15:14.472777299Z",
+          "osv_published": "2026-11-05T22:54:32Z",
           "package": "github.com/klauspost/compress",
+          "purl": "pkg:golang/github.com/klauspost/compress@v1.20.0",
           "severity": "High",
           "summary": "Panic on two-block frames in github.com/klauspost/compress",
           "url": "https://github.com/klauspost/compress/security/advisories/GHSA-fpmh-frq8-7rj8",
@@ -172,8 +232,14 @@
       "previous_ref": "v0.71.1",
       "release_changed": false,
       "removed": [],
+      "removed_detail": [],
+      "resolved_advisories": 0,
       "resolved_vulnerabilities": [],
+      "still_affected_version_changed": [],
+      "unknown_direction": [],
       "upgraded": [],
+      "version_changes": [],
+      "version_set_changes": [],
       "workflow_new": 0,
       "workflow_resolved": 0
     },
@@ -1683,11 +1749,16 @@
             "percentile": 0.21554,
             "score": 0.00289
           },
+          "epss_date": "2026-11-07T12:00:22Z",
           "fixed_version": "v1.27.2",
           "id": "GO-2026-6599",
           "kev": null,
+          "kev_cves": [],
+          "kev_snapshot": "2026.11.06",
           "level": "symbol",
+          "modified": "2026-10-08T22:31:09Z",
           "module": "stdlib",
+          "published": "2026-10-08T22:31:09Z",
           "summary": "Reset context tracking on consecutive template expressions in html/template",
           "version": "v1.27.1"
         },
@@ -1700,12 +1771,39 @@
             "percentile": 0.21554,
             "score": 0.00289
           },
+          "epss_date": "2026-11-07T12:00:22Z",
           "fixed_version": "v1.27.2",
           "id": "GO-2026-6600",
           "kev": null,
+          "kev_cves": [],
+          "kev_snapshot": "2026.11.06",
           "level": "symbol",
+          "modified": "2026-10-08T22:31:09Z",
           "module": "stdlib",
+          "published": "2026-10-08T22:31:09Z",
           "summary": "Recognize yield as regexp preceder keyword in html/template",
+          "version": "v1.27.1"
+        },
+        {
+          "aliases": [
+            "CVE-2026-78659"
+          ],
+          "epss": {
+            "cve": "CVE-2026-78659",
+            "percentile": 0.58917,
+            "score": 0.00866
+          },
+          "epss_date": "2026-11-07T12:00:22Z",
+          "fixed_version": "v1.27.2",
+          "id": "GO-2026-6603",
+          "kev": null,
+          "kev_cves": [],
+          "kev_snapshot": "2026.11.06",
+          "level": "symbol",
+          "modified": "2026-10-08T22:31:09Z",
+          "module": "stdlib",
+          "published": "2026-10-08T22:31:09Z",
+          "summary": "HTTP/2 server memory exhaustion due to Trailer headers in net/http",
           "version": "v1.27.1"
         },
         {
@@ -1717,11 +1815,16 @@
             "percentile": 0.49136,
             "score": 0.00604
           },
+          "epss_date": "2026-11-07T12:00:22Z",
           "fixed_version": "v1.27.2",
           "id": "GO-2026-6605",
           "kev": null,
+          "kev_cves": [],
+          "kev_snapshot": "2026.11.06",
           "level": "symbol",
+          "modified": "2026-10-08T22:31:09Z",
           "module": "stdlib",
+          "published": "2026-10-08T22:31:09Z",
           "summary": "HTTP/1 client connection desynchronization after CONNECT rejection in net/http",
           "version": "v1.27.1"
         },
@@ -1734,11 +1837,16 @@
             "percentile": 0.53998,
             "score": 0.00716
           },
+          "epss_date": "2026-11-07T12:00:22Z",
           "fixed_version": "v1.27.2",
           "id": "GO-2026-6607",
           "kev": null,
+          "kev_cves": [],
+          "kev_snapshot": "2026.11.06",
           "level": "symbol",
+          "modified": "2026-10-08T22:31:09Z",
           "module": "stdlib",
+          "published": "2026-10-08T22:31:09Z",
           "summary": "Reject malformed ECH outer extension references in crypto/tls",
           "version": "v1.27.1"
         },
@@ -1751,11 +1859,16 @@
             "percentile": 0.53601,
             "score": 0.00706
           },
+          "epss_date": "2026-11-07T12:00:22Z",
           "fixed_version": "v1.27.2",
           "id": "GO-2026-6608",
           "kev": null,
+          "kev_cves": [],
+          "kev_snapshot": "2026.11.06",
           "level": "symbol",
+          "modified": "2026-10-08T22:31:09Z",
           "module": "stdlib",
+          "published": "2026-10-08T22:31:09Z",
           "summary": "Memory limit bypass when parsing MIME headers in net/textproto, mime/multipart",
           "version": "v1.27.1"
         },
@@ -1768,11 +1881,16 @@
             "percentile": 0.51957,
             "score": 0.00663
           },
+          "epss_date": "2026-11-07T12:00:22Z",
           "fixed_version": "v1.27.2",
           "id": "GO-2026-6609",
           "kev": null,
+          "kev_cves": [],
+          "kev_snapshot": "2026.11.06",
           "level": "symbol",
+          "modified": "2026-10-08T22:31:09Z",
           "module": "stdlib",
+          "published": "2026-10-08T22:31:09Z",
           "summary": "Lack of limit on size of parsed Range headers in net/http",
           "version": "v1.27.1"
         },
@@ -1785,12 +1903,61 @@
             "percentile": 0.45813,
             "score": 0.00542
           },
+          "epss_date": "2026-11-07T12:00:22Z",
           "fixed_version": "v1.27.2",
           "id": "GO-2026-6610",
           "kev": null,
+          "kev_cves": [],
+          "kev_snapshot": "2026.11.06",
           "level": "symbol",
+          "modified": "2026-10-08T22:31:09Z",
           "module": "stdlib",
+          "published": "2026-10-08T22:31:09Z",
           "summary": "HTTP/2 transport accepts malformed framing-related headers in net/http",
+          "version": "v1.27.1"
+        },
+        {
+          "aliases": [
+            "CVE-2026-78669"
+          ],
+          "epss": {
+            "cve": "CVE-2026-78669",
+            "percentile": 0.58324,
+            "score": 0.00847
+          },
+          "epss_date": "2026-11-07T12:00:22Z",
+          "fixed_version": "v1.27.2",
+          "id": "GO-2026-6611",
+          "kev": null,
+          "kev_cves": [],
+          "kev_snapshot": "2026.11.06",
+          "level": "symbol",
+          "modified": "2026-10-08T22:31:09Z",
+          "module": "stdlib",
+          "published": "2026-10-08T22:31:09Z",
+          "summary": "Excessive CPU consumption from repeated initial window changes in net/http",
+          "version": "v1.27.1"
+        },
+        {
+          "aliases": [
+            "CVE-2026-78663"
+          ],
+          "epss": {
+            "cve": "CVE-2026-78663",
+            "percentile": 0.58678,
+            "score": 0.00858
+          },
+          "epss_date": "2026-11-07T12:00:22Z",
+          "fixed_version": "v1.27.2",
+          "id": "GO-2026-6612",
+          "kev": null,
+          "kev_cves": [],
+          "kev_snapshot": "2026.11.06",
+          "level": "symbol",
+          "modified": "2026-10-08T22:31:09Z",
+          "module": "stdlib",
+          "published": "2026-10-08T22:31:09Z",
+          "summary": "Double flow control refund on HTTP/2 server streams in net/http",
           "version": "v1.27.1"
         },
         {
@@ -1802,12 +1969,39 @@
             "percentile": 0.44963,
             "score": 0.00528
           },
+          "epss_date": "2026-11-07T12:00:22Z",
           "fixed_version": "v1.27.2",
           "id": "GO-2026-6613",
           "kev": null,
+          "kev_cves": [],
+          "kev_snapshot": "2026.11.06",
           "level": "symbol",
+          "modified": "2026-10-08T22:31:09Z",
           "module": "stdlib",
+          "published": "2026-10-08T22:31:09Z",
           "summary": "HTTP/1 server connection desynchronization after 2xx CONNECT response in net/http",
+          "version": "v1.27.1"
+        },
+        {
+          "aliases": [
+            "CVE-2026-97032"
+          ],
+          "epss": {
+            "cve": "CVE-2026-97032",
+            "percentile": 0.52481,
+            "score": 0.00676
+          },
+          "epss_date": "2026-11-07T12:00:22Z",
+          "fixed_version": "v1.27.2",
+          "id": "GO-2026-6617",
+          "kev": null,
+          "kev_cves": [],
+          "kev_snapshot": "2026.11.06",
+          "level": "symbol",
+          "modified": "2026-10-08T22:31:09Z",
+          "module": "stdlib",
+          "published": "2026-10-08T22:31:09Z",
+          "summary": "HTTP/2 server crash due to HPACK encoder race in net/http",
           "version": "v1.27.1"
         },
         {
@@ -1819,11 +2013,16 @@
             "percentile": 0.34015,
             "score": 0.00396
           },
+          "epss_date": "2026-11-07T12:00:22Z",
           "fixed_version": "v1.27.3",
           "id": "GO-2026-6809",
           "kev": null,
+          "kev_cves": [],
+          "kev_snapshot": "2026.11.06",
           "level": "symbol",
+          "modified": "2026-10-21T00:27:29Z",
           "module": "stdlib",
+          "published": "2026-10-21T00:27:29Z",
           "summary": "Distrust compromised intermediate certificates in crypto/x509",
           "version": "v1.27.1"
         },
@@ -1837,22 +2036,32 @@
             "percentile": 0.26636,
             "score": 0.00333
           },
+          "epss_date": "2026-11-07T12:00:22Z",
           "fixed_version": "v1.20.2",
           "id": "GO-2026-6865",
           "kev": null,
+          "kev_cves": [],
+          "kev_snapshot": "2026.11.06",
           "level": "symbol",
+          "modified": "2026-11-05T22:54:32Z",
           "module": "github.com/klauspost/compress",
+          "published": "2026-11-05T22:54:32Z",
           "summary": "Panic on two-block frames in github.com/klauspost/compress",
           "version": "v1.20.0"
         },
         {
           "aliases": [],
           "epss": null,
+          "epss_date": "2026-11-07T12:00:22Z",
           "fixed_version": "v0.58.1-0.20261009181718-2f1f834330b2",
           "id": "GO-2026-5932",
           "kev": null,
+          "kev_cves": [],
+          "kev_snapshot": "2026.11.06",
           "level": "symbol",
+          "modified": "2026-11-02T22:01:43Z",
           "module": "golang.org/x/crypto",
+          "published": "2026-07-07T22:15:29Z",
           "summary": "The golang.org/x/crypto/openpgp package is unmaintained, unsafe by design, and has known security issues",
           "version": "v0.56.0"
         },
@@ -1865,12 +2074,39 @@
             "percentile": 0.58917,
             "score": 0.00866
           },
+          "epss_date": "2026-11-07T12:00:22Z",
           "fixed_version": "v0.60.0",
           "id": "GO-2026-6603",
           "kev": null,
+          "kev_cves": [],
+          "kev_snapshot": "2026.11.06",
           "level": "symbol",
+          "modified": "2026-10-08T22:31:09Z",
           "module": "golang.org/x/net",
+          "published": "2026-10-08T22:31:09Z",
           "summary": "HTTP/2 server memory exhaustion due to Trailer headers in net/http",
+          "version": "v0.58.0"
+        },
+        {
+          "aliases": [
+            "CVE-2026-78660"
+          ],
+          "epss": {
+            "cve": "CVE-2026-78660",
+            "percentile": 0.45813,
+            "score": 0.00542
+          },
+          "epss_date": "2026-11-07T12:00:22Z",
+          "fixed_version": "v0.60.0",
+          "id": "GO-2026-6610",
+          "kev": null,
+          "kev_cves": [],
+          "kev_snapshot": "2026.11.06",
+          "level": "symbol",
+          "modified": "2026-10-08T22:31:09Z",
+          "module": "golang.org/x/net",
+          "published": "2026-10-08T22:31:09Z",
+          "summary": "HTTP/2 transport accepts malformed framing-related headers in net/http",
           "version": "v0.58.0"
         },
         {
@@ -1882,11 +2118,16 @@
             "percentile": 0.58324,
             "score": 0.00847
           },
+          "epss_date": "2026-11-07T12:00:22Z",
           "fixed_version": "v0.60.0",
           "id": "GO-2026-6611",
           "kev": null,
+          "kev_cves": [],
+          "kev_snapshot": "2026.11.06",
           "level": "symbol",
+          "modified": "2026-10-08T22:31:09Z",
           "module": "golang.org/x/net",
+          "published": "2026-10-08T22:31:09Z",
           "summary": "Excessive CPU consumption from repeated initial window changes in net/http",
           "version": "v0.58.0"
         },
@@ -1899,11 +2140,16 @@
             "percentile": 0.58678,
             "score": 0.00858
           },
+          "epss_date": "2026-11-07T12:00:22Z",
           "fixed_version": "v0.60.0",
           "id": "GO-2026-6612",
           "kev": null,
+          "kev_cves": [],
+          "kev_snapshot": "2026.11.06",
           "level": "symbol",
+          "modified": "2026-10-08T22:31:09Z",
           "module": "golang.org/x/net",
+          "published": "2026-10-08T22:31:09Z",
           "summary": "Double flow control refund on HTTP/2 server streams in net/http",
           "version": "v0.58.0"
         },
@@ -1916,11 +2162,16 @@
             "percentile": 0.52481,
             "score": 0.00676
           },
+          "epss_date": "2026-11-07T12:00:22Z",
           "fixed_version": "v0.60.0",
           "id": "GO-2026-6617",
           "kev": null,
+          "kev_cves": [],
+          "kev_snapshot": "2026.11.06",
           "level": "symbol",
+          "modified": "2026-10-08T22:31:09Z",
           "module": "golang.org/x/net",
+          "published": "2026-10-08T22:31:09Z",
           "summary": "HTTP/2 server crash due to HPACK encoder race in net/http",
           "version": "v0.58.0"
         },
@@ -1933,11 +2184,16 @@
             "percentile": 0.35396,
             "score": 0.00409
           },
+          "epss_date": "2026-11-07T12:00:22Z",
           "fixed_version": "v0.62.0",
           "id": "GO-2026-6860",
           "kev": null,
+          "kev_cves": [],
+          "kev_snapshot": "2026.11.06",
           "level": "symbol",
+          "modified": "2026-10-27T21:16:18Z",
           "module": "golang.org/x/net",
+          "published": "2026-10-27T21:16:18Z",
           "summary": "Avoid quadratic complexity when coalescing text nodes in html in golang.org/x/net",
           "version": "v0.58.0"
         },
@@ -1950,11 +2206,16 @@
             "percentile": 0.18952,
             "score": 0.00267
           },
+          "epss_date": "2026-11-07T12:00:22Z",
           "fixed_version": "v0.62.0",
           "id": "GO-2026-6866",
           "kev": null,
+          "kev_cves": [],
+          "kev_snapshot": "2026.11.06",
           "level": "symbol",
+          "modified": "2026-10-27T21:16:18Z",
           "module": "golang.org/x/net",
+          "published": "2026-10-27T21:16:18Z",
           "summary": "Check all ancestor namespace transitions when rendering raw text in html in golang.org/x/net",
           "version": "v0.58.0"
         }
@@ -1963,6 +2224,7 @@
       "main_module": ""
     },
     "id": "open-policy-agent__conftest",
+    "lock_aliases": {},
     "manifests": [
       ".github/workflows/post_merge.yaml",
       ".github/workflows/pr.yaml",
@@ -1985,7 +2247,10 @@
             "GHSA-qmgc-5h2g-mvrw",
             "PYSEC-2026-1374"
           ],
+          "modified": "2026-09-10T03:50:33.702580779Z",
           "package": "filelock",
+          "path": "requirements-dev.txt",
+          "published": "2026-01-13T18:44:55Z",
           "score": "5.3",
           "severity": "Medium",
           "version": "3.19.1"
@@ -1997,7 +2262,10 @@
             "GHSA-w853-jp5j-5j7f",
             "PYSEC-2026-1375"
           ],
+          "modified": "2026-09-10T03:50:32.252960082Z",
           "package": "filelock",
+          "path": "requirements-dev.txt",
+          "published": "2025-12-16T20:52:55Z",
           "score": "6.3",
           "severity": "Medium",
           "version": "3.19.1"
@@ -2008,7 +2276,10 @@
             "CVE-2026-112909",
             "GHSA-69hj-f68j-2879"
           ],
+          "modified": "2026-10-28T21:15:04.974667790Z",
           "package": "filelock",
+          "path": "requirements-dev.txt",
+          "published": "2026-10-28T21:08:35Z",
           "score": "6.1",
           "severity": "Medium",
           "version": "3.19.1"
@@ -2019,7 +2290,10 @@
             "CVE-2026-112910",
             "GHSA-8mx5-7m5m-r77g"
           ],
+          "modified": "2026-10-28T21:15:05.688436299Z",
           "package": "filelock",
+          "path": "requirements-dev.txt",
+          "published": "2026-10-28T21:08:55Z",
           "score": "5.3",
           "severity": "Medium",
           "version": "3.19.1"
@@ -2031,7 +2305,10 @@
             "CVE-2026-113718",
             "GHSA-394h-qwmc-48pf"
           ],
+          "modified": "2026-10-29T10:55:57.228294866Z",
           "package": "virtualenv",
+          "path": "requirements-dev.txt",
+          "published": "2026-10-23T22:24:43Z",
           "score": "7.1",
           "severity": "High",
           "version": "21.9.1"
@@ -2043,7 +2320,10 @@
             "CVE-2026-113724",
             "GHSA-43mp-35q3-x3fq"
           ],
+          "modified": "2026-10-29T10:55:47.691444554Z",
           "package": "virtualenv",
+          "path": "requirements-dev.txt",
+          "published": "2026-10-21T21:31:34Z",
           "score": "4.5",
           "severity": "Medium",
           "version": "21.9.1"
@@ -2055,7 +2335,10 @@
             "CVE-2026-113714",
             "GHSA-494p-63j8-28p3"
           ],
+          "modified": "2026-10-29T10:55:43.999222952Z",
           "package": "virtualenv",
+          "path": "requirements-dev.txt",
+          "published": "2026-10-23T22:25:22Z",
           "score": "2.3",
           "severity": "Low",
           "version": "21.9.1"
@@ -2067,7 +2350,10 @@
             "CVE-2026-113721",
             "GHSA-558c-9hv2-4prj"
           ],
+          "modified": "2026-10-29T10:55:51.822936662Z",
           "package": "virtualenv",
+          "path": "requirements-dev.txt",
+          "published": "2026-10-22T17:03:12Z",
           "score": "4.5",
           "severity": "Medium",
           "version": "21.9.1"
@@ -2079,7 +2365,10 @@
             "CVE-2026-113726",
             "GHSA-5vjq-rrrf-7h2q"
           ],
+          "modified": "2026-10-29T10:55:33.825448161Z",
           "package": "virtualenv",
+          "path": "requirements-dev.txt",
+          "published": "2026-10-21T16:46:23Z",
           "score": "7.8",
           "severity": "High",
           "version": "21.9.1"
@@ -2091,7 +2380,10 @@
             "CVE-2026-113723",
             "GHSA-6w3r-xr62-4xcp"
           ],
+          "modified": "2026-10-29T10:55:32.039209236Z",
           "package": "virtualenv",
+          "path": "requirements-dev.txt",
+          "published": "2026-10-23T22:21:57Z",
           "score": "7.1",
           "severity": "High",
           "version": "21.9.1"
@@ -2103,7 +2395,10 @@
             "CVE-2026-113776",
             "GHSA-8rjx-v5ww-45pp"
           ],
+          "modified": "2026-10-29T10:55:59.336337258Z",
           "package": "virtualenv",
+          "path": "requirements-dev.txt",
+          "published": "2026-10-21T16:39:38Z",
           "score": "7.8",
           "severity": "High",
           "version": "21.9.1"
@@ -2115,7 +2410,10 @@
             "CVE-2026-113732",
             "GHSA-c947-3pg5-gm8q"
           ],
+          "modified": "2026-10-29T10:55:30.348006947Z",
           "package": "virtualenv",
+          "path": "requirements-dev.txt",
+          "published": "2026-10-21T16:39:58Z",
           "score": "7.8",
           "severity": "High",
           "version": "21.9.1"
@@ -2127,7 +2425,10 @@
             "CVE-2026-113722",
             "GHSA-c978-59m8-c77v"
           ],
+          "modified": "2026-10-29T10:55:46.719521464Z",
           "package": "virtualenv",
+          "path": "requirements-dev.txt",
+          "published": "2026-10-21T21:30:12Z",
           "score": "7.8",
           "severity": "High",
           "version": "21.9.1"
@@ -2139,7 +2440,10 @@
             "CVE-2026-113716",
             "GHSA-cw65-gx24-rc82"
           ],
+          "modified": "2026-10-29T10:55:59.838026441Z",
           "package": "virtualenv",
+          "path": "requirements-dev.txt",
+          "published": "2026-10-21T21:35:56Z",
           "score": "4.5",
           "severity": "Medium",
           "version": "21.9.1"
@@ -2151,7 +2455,10 @@
             "CVE-2026-113717",
             "GHSA-cx28-75q4-x26q"
           ],
+          "modified": "2026-10-29T10:55:56.839709622Z",
           "package": "virtualenv",
+          "path": "requirements-dev.txt",
+          "published": "2026-10-23T22:26:04Z",
           "score": "2.3",
           "severity": "Low",
           "version": "21.9.1"
@@ -2163,7 +2470,10 @@
             "CVE-2026-113720",
             "GHSA-fc2g-4w5p-6whm"
           ],
+          "modified": "2026-10-29T10:55:56.743073990Z",
           "package": "virtualenv",
+          "path": "requirements-dev.txt",
+          "published": "2026-10-23T22:23:11Z",
           "score": "4.4",
           "severity": "Medium",
           "version": "21.9.1"
@@ -2175,7 +2485,10 @@
             "CVE-2026-113719",
             "GHSA-hhxq-47xx-j5xx"
           ],
+          "modified": "2026-10-29T10:56:02.747342068Z",
           "package": "virtualenv",
+          "path": "requirements-dev.txt",
+          "published": "2026-10-23T22:19:15Z",
           "score": "4.5",
           "severity": "Medium",
           "version": "21.9.1"
@@ -2187,7 +2500,10 @@
             "CVE-2026-113715",
             "GHSA-qmx5-4p3x-wvqf"
           ],
+          "modified": "2026-10-29T10:55:39.718166145Z",
           "package": "virtualenv",
+          "path": "requirements-dev.txt",
+          "published": "2026-10-23T22:20:43Z",
           "score": "2.0",
           "severity": "Low",
           "version": "21.9.1"
@@ -2199,7 +2515,10 @@
             "CVE-2026-113725",
             "GHSA-vxj4-q4g9-crj7"
           ],
+          "modified": "2026-10-29T10:55:53.696944055Z",
           "package": "virtualenv",
+          "path": "requirements-dev.txt",
+          "published": "2026-10-21T16:49:01Z",
           "score": "7.8",
           "severity": "High",
           "version": "21.9.1"
@@ -2210,7 +2529,10 @@
             "GHSA-6q48-6c7w-9gw2",
             "PYSEC-2026-4320"
           ],
+          "modified": "2026-10-30T14:00:02.590922333Z",
           "package": "certifi",
+          "path": "requirements.txt",
+          "published": "2026-10-20T19:35:05Z",
           "score": "9.1",
           "severity": "Critical",
           "version": "2026.7.22"
@@ -2222,13 +2544,21 @@
             "GHSA-65pc-fj4g-8rjx",
             "PYSEC-2026-215"
           ],
+          "modified": "2026-09-10T03:50:45.700124422Z",
           "package": "idna",
+          "path": "requirements.txt",
+          "published": "2026-05-19T14:34:32Z",
           "score": "6.9",
           "severity": "Medium",
           "version": "3.9.0"
         }
       ],
       "warning": null
+    },
+    "osv_api": {
+      "available": true,
+      "queried_at": "2026-11-09T01:36:28+00:00",
+      "states": {}
     },
     "ref": "v0.71.1",
     "ref_kind": "release",
@@ -2257,15 +2587,57 @@
     },
     "released_at": "2026-10-06T04:53:53Z",
     "repository": "open-policy-agent/conftest",
+    "sbom_sha256": "70d3d38ae03aee80c9f26d20f64c7f1e473832b689090eb4801819ec473cdccf",
     "sbomlyze_diff": {
       "added": 0,
+      "baseline": {
+        "attempt": "1",
+        "run_id": "41380955266"
+      },
       "changed": 0,
+      "contract": "sbomlyze-diff-0.7",
       "drift": {},
       "findings": [
-        "0 version changes among 191 shared packages \u2014 no actual upgrades",
+        "0 version changes among 185 shared packages \u2014 no actual upgrades",
         "Core system packages stable: golang (165), github (17) unchanged"
       ],
-      "removed": 0
+      "occurrences": {
+        "added": [],
+        "digest_coverage": {
+          "after_only": 0,
+          "before_only": 0,
+          "by_kind": {
+            "go-h1": 165
+          },
+          "comparable": 165,
+          "disjoint_kinds": 0,
+          "packages_total": 185,
+          "same_version_pairs": 185
+        },
+        "file_changes": [],
+        "file_coverage": {
+          "ambiguous_paths": 0,
+          "config_unknown": 0,
+          "files_compared": 6,
+          "files_unverified": 0,
+          "owned_files_after": 0,
+          "unowned_files_after": 0
+        },
+        "files_added": [],
+        "files_removed": [],
+        "integrity_changes": [],
+        "license_changes": [],
+        "metadata_changes": [],
+        "moved": [],
+        "owned_file_drift": [],
+        "removed": [],
+        "source_change": null,
+        "version_changes": [],
+        "version_set_changes": []
+      },
+      "previous_sbom_sha256": "76268d65e3d6e2c193f02295528aa571636ace5b6a854a6d08f9fa45f7f004ee",
+      "removed": 0,
+      "sbom_sha256": "70d3d38ae03aee80c9f26d20f64c7f1e473832b689090eb4801819ec473cdccf"
     },
     "scanned_at": "2026-11-08T05:54:45+00:00",
     "scorecard": {
@@ -2357,6 +2729,7 @@
           "percentile": 0.58678,
           "score": 0.00858
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "0.60.0"
@@ -2364,9 +2737,17 @@
         "id": "GO-2026-6612",
         "in_binary": "vulnerable code in binary",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "go.mod",
+        "locations": [
+          "go.mod"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-10-16T09:55:54.129082194Z",
+        "osv_published": "2026-10-08T22:31:09Z",
         "package": "golang.org/x/net",
+        "purl": "pkg:golang/golang.org/x/net@v0.58.0",
         "severity": "Critical",
         "summary": "The HTTP/2 server can refund connection-level flow control twice for the same data: Once when a client resets a stream (refunding data for any sent-but-unread portion of the stream), and again when a request handler reads the buffered data. A malicious client can exploit this to bypass the configure",
         "url": "https://go.dev/cl/847187",
@@ -2382,6 +2763,7 @@
           "percentile": 0.30652,
           "score": 0.00366
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "4.1.6"
@@ -2389,9 +2771,17 @@
         "id": "GHSA-mgcc-cww5-fp2q",
         "in_binary": "vulnerable code not in binary",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "go.mod",
+        "locations": [
+          "go.mod"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-10-27T19:15:23.147827328Z",
+        "osv_published": "2026-10-27T19:01:30Z",
         "package": "github.com/go-jose/go-jose/v4",
+        "purl": "pkg:golang/github.com/go-jose/go-jose/v4@v4.1.4",
         "severity": "High",
         "summary": "Go JOSE: DoS when parsing JWKs that contain RSA keys",
         "url": "https://github.com/advisories/GHSA-mgcc-cww5-fp2q",
@@ -2408,6 +2798,7 @@
           "percentile": 0.26636,
           "score": 0.00333
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "1.20.2"
@@ -2415,9 +2806,17 @@
         "id": "GO-2026-6865",
         "in_binary": "vulnerable code in binary",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "go.mod",
+        "locations": [
+          "go.mod"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-11-05T23:15:14.472777299Z",
+        "osv_published": "2026-11-05T22:54:32Z",
         "package": "github.com/klauspost/compress",
+        "purl": "pkg:golang/github.com/klauspost/compress@v1.20.0",
         "severity": "High",
         "summary": "Panic on two-block frames in github.com/klauspost/compress",
         "url": "https://github.com/klauspost/compress/security/advisories/GHSA-fpmh-frq8-7rj8",
@@ -2433,6 +2832,7 @@
           "percentile": 0.58917,
           "score": 0.00866
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "0.60.0"
@@ -2440,9 +2840,17 @@
         "id": "GO-2026-6603",
         "in_binary": "vulnerable code in binary",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "go.mod",
+        "locations": [
+          "go.mod"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-10-16T09:55:47.068117441Z",
+        "osv_published": "2026-10-08T22:31:09Z",
         "package": "golang.org/x/net",
+        "purl": "pkg:golang/golang.org/x/net@v0.58.0",
         "severity": "High",
         "summary": "When \"Trailer\" headers are sent by a client, the HTTP server internally uses the header values to populate the Request.Trailer map passed to the server handler. Because Request.Trailer is a map, each entry incurs memory overhead. For HTTP/2 servers, a malicious client can exploit this by sending a \"",
         "url": "https://go.dev/cl/847185",
@@ -2458,6 +2866,7 @@
           "percentile": 0.45813,
           "score": 0.00542
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "0.60.0"
@@ -2465,9 +2874,17 @@
         "id": "GO-2026-6610",
         "in_binary": "vulnerable code in binary",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "go.mod",
+        "locations": [
+          "go.mod"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-10-16T09:56:04.364467528Z",
+        "osv_published": "2026-10-08T22:31:09Z",
         "package": "golang.org/x/net",
+        "purl": "pkg:golang/golang.org/x/net@v0.58.0",
         "severity": "High",
         "summary": "Historically, we have been rather lax about malformed framing-related headers in our HTTP/2 implementation, as they cannot interfere with HTTP/2 framing. However, this makes it possible for our HTTP/2 implementation to forward responses containing such headers to an HTTP/1 client when acting as a re",
         "url": "https://go.dev/cl/835145",
@@ -2483,6 +2900,7 @@
           "percentile": 0.58324,
           "score": 0.00847
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "0.60.0"
@@ -2490,9 +2908,17 @@
         "id": "GO-2026-6611",
         "in_binary": "vulnerable code in binary",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "go.mod",
+        "locations": [
+          "go.mod"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-10-16T09:55:38.952277866Z",
+        "osv_published": "2026-10-08T22:31:09Z",
         "package": "golang.org/x/net",
+        "purl": "pkg:golang/golang.org/x/net@v0.58.0",
         "severity": "High",
         "summary": "A malicious HTTP/2 peer can cause excessive CPU consumption in the client or server by opening a large number of streams and then sending many small SETTINGS frames containing SETTINGS_INITIAL_WINDOW_SIZE values.",
         "url": "https://go.dev/cl/847186",
@@ -2508,6 +2934,7 @@
           "percentile": 0.52481,
           "score": 0.00676
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "0.60.0"
@@ -2515,9 +2942,17 @@
         "id": "GO-2026-6617",
         "in_binary": "vulnerable code in binary",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "go.mod",
+        "locations": [
+          "go.mod"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-10-16T09:55:57.350751224Z",
+        "osv_published": "2026-10-08T22:31:09Z",
         "package": "golang.org/x/net",
+        "purl": "pkg:golang/golang.org/x/net@v0.58.0",
         "severity": "High",
         "summary": "HTTP/2 servers could end up crashing due to inadvertently modifying its HPACK encoder concurrently. This happens because the server modifies the HPACK encoder from two goroutines without synchronization: one uses the encoder to encode a HEADERS frame as part of a response sent to a client and the ot",
         "url": "https://go.dev/cl/847188",
@@ -2533,6 +2968,7 @@
           "percentile": 0.35396,
           "score": 0.00409
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "0.62.0"
@@ -2540,9 +2976,17 @@
         "id": "GO-2026-6860",
         "in_binary": "vulnerable code in binary",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "go.mod",
+        "locations": [
+          "go.mod"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-10-27T21:30:04.890809062Z",
+        "osv_published": "2026-10-27T21:16:18Z",
         "package": "golang.org/x/net",
+        "purl": "pkg:golang/golang.org/x/net@v0.58.0",
         "severity": "High",
         "summary": "When coalescing adjacent text nodes in addText and fosterParent, appending to an existing TextNode's Data via string concatenation (n.Data += text) reallocated and copied the accumulated string on every token. Inputs containing many short text runs separated by ignored end tags (such as \"a</x>\") cau",
         "url": "https://go.dev/cl/849365",
@@ -2558,6 +3002,7 @@
           "percentile": 0.18412,
           "score": 0.00264
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "4.1.5"
@@ -2565,9 +3010,17 @@
         "id": "GHSA-4w3g-jfj2-cw2q",
         "in_binary": "vulnerable code not in binary",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "go.mod",
+        "locations": [
+          "go.mod"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-10-28T21:30:06.790863342Z",
+        "osv_published": "2026-10-28T21:14:00Z",
         "package": "github.com/go-jose/go-jose/v4",
+        "purl": "pkg:golang/github.com/go-jose/go-jose/v4@v4.1.4",
         "severity": "Medium",
         "summary": "Go JOSE: Panic during CBC-HMAC processing",
         "url": "https://github.com/advisories/GHSA-4w3g-jfj2-cw2q",
@@ -2583,6 +3036,7 @@
           "percentile": 0.21863,
           "score": 0.00292
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "4.1.5"
@@ -2590,9 +3044,17 @@
         "id": "GHSA-vvm8-gf78-28g4",
         "in_binary": "vulnerable code not in binary",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "go.mod",
+        "locations": [
+          "go.mod"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-10-28T21:30:05.801821772Z",
+        "osv_published": "2026-10-28T21:14:08Z",
         "package": "github.com/go-jose/go-jose/v4",
+        "purl": "pkg:golang/github.com/go-jose/go-jose/v4@v4.1.4",
         "severity": "Medium",
         "summary": "Go JOSE: Panics in JSON parsing",
         "url": "https://github.com/advisories/GHSA-vvm8-gf78-28g4",
@@ -2608,6 +3070,7 @@
           "percentile": 0.18952,
           "score": 0.00267
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "0.62.0"
@@ -2615,9 +3078,17 @@
         "id": "GO-2026-6866",
         "in_binary": "vulnerable code in binary",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "go.mod",
+        "locations": [
+          "go.mod"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-10-27T21:45:08.978077289Z",
+        "osv_published": "2026-10-27T21:16:18Z",
         "package": "golang.org/x/net",
+        "purl": "pkg:golang/golang.org/x/net@v0.58.0",
         "severity": "Medium",
         "summary": "In childTextNodesAreLiteral, walking up the tree previously stopped at the nearest foreign ancestor once an HTML integration point was found. However, that integration point may itself be a descendant of an element that was foster-parented into a foreign namespace (such as <mglyph> or <malignmark> f",
         "url": "https://go.dev/cl/855121",
@@ -2627,6 +3098,7 @@
         "aliases": [],
         "ecosystem": "golang",
         "epss": null,
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "0.58.1-0.20261009181718-2f1f834330b2"
@@ -2634,9 +3106,17 @@
         "id": "GO-2026-5932",
         "in_binary": "vulnerable code in binary",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "go.mod",
+        "locations": [
+          "go.mod"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-11-02T22:15:06.677088389Z",
+        "osv_published": "2026-07-07T22:15:29Z",
         "package": "golang.org/x/crypto",
+        "purl": "pkg:golang/golang.org/x/crypto@v0.56.0",
         "severity": "Unknown",
         "summary": "The golang.org/x/crypto/openpgp package is unsafe by design, has numerous known security issues, is not maintained, and should not be used. If you are required to interoperate with OpenPGP systems and need a maintained package, consider github.com/ProtonMail/go-crypto/openpgp which is a maintained f",
         "url": "https://go.dev/issue/44226",

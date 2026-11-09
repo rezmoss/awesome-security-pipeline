@@ -76,15 +76,26 @@
     },
     {
       "added": 0,
+      "advisory_state": "ok",
       "commit": "281452c35cf0870969042374110f099a411bc185",
       "date": "2026-11-08",
       "dependencies": 465,
+      "dependency_state": "ok",
+      "downgraded": 0,
       "errors": [],
+      "file_changes": 0,
       "fixable": 6,
       "go_version": null,
       "in_binary": null,
+      "in_binary_new": 0,
+      "in_binary_resolved": 0,
       "kev": 0,
       "kev_new": 0,
+      "kev_new_match": 0,
+      "license_changes": 0,
+      "method": "sbomlyze-occurrence-v1",
+      "moved": 0,
+      "new_advisories": 0,
       "new_vulnerabilities": 0,
       "osv_confirmed": 6,
       "osv_only": 17,
@@ -92,11 +103,13 @@
       "release_changed": false,
       "release_integrity": "none",
       "removed": 0,
+      "resolved_advisories": 0,
       "resolved_vulnerabilities": 0,
       "scorecard": null,
       "scorecard_date": null,
       "scorecard_note": "the project is not in the OpenSSF public dataset; the Scorecard CLI fallback was skipped because this shard's weekly budget was used",
       "scorecard_source": null,
+      "unknown_direction": 0,
       "upgraded": 0,
       "vulnerabilities": {
         "Critical": 0,
@@ -112,7 +125,9 @@
         "Low": 0,
         "Medium": 28,
         "files": 11
-      }
+      },
+      "workflow_new": 0,
+      "workflow_resolved": 0
     }
   ],
   "latest": {
@@ -120,17 +135,50 @@
     "category": "Static Application Security Testing (SAST) \u203a Language-specific \u203a Rust",
     "changes": {
       "added": [],
+      "added_detail": [],
+      "advisory_state": "ok",
       "any": false,
       "baseline": false,
+      "dependency_baseline": {
+        "attempt": "1",
+        "run_id": "41380955266",
+        "sbom_sha256": "206e301c2cc881394a28eff7755eba4aabd94e60cc2a1daa30804393c12e907b"
+      },
+      "dependency_state": "ok",
+      "digest_coverage": {
+        "after_only": 0,
+        "before_only": 0,
+        "by_kind": {},
+        "comparable": 0,
+        "disjoint_kinds": 0,
+        "packages_total": 485,
+        "same_version_pairs": 485
+      },
+      "distinct_version_changes": null,
+      "downgraded": [],
+      "file_changes": [],
+      "integrity_changes": [],
       "integrity_drift": 0,
+      "kev_method": "snapshot difference",
       "kev_new": [],
+      "kev_new_match": [],
       "license_changes": [],
+      "metadata_changes": [],
+      "method": "sbomlyze-occurrence-v1",
+      "moved": [],
+      "new_advisories": 0,
       "new_vulnerabilities": [],
       "previous_ref": "cargo-audit/v0.22.2",
       "release_changed": false,
       "removed": [],
+      "removed_detail": [],
+      "resolved_advisories": 0,
       "resolved_vulnerabilities": [],
+      "still_affected_version_changed": [],
+      "unknown_direction": [],
       "upgraded": [],
+      "version_changes": [],
+      "version_set_changes": [],
       "workflow_new": 0,
       "workflow_resolved": 0
     },
@@ -3898,6 +3946,7 @@
     "description": "Audit Cargo.lock for crates with security vulnerabilities",
     "errors": [],
     "id": "RustSec__rustsec",
+    "lock_aliases": {},
     "manifests": [
       ".github/workflows/admin.yml",
       ".github/workflows/cargo-audit.yml",
@@ -3933,7 +3982,10 @@
           "ids": [
             "RUSTSEC-2026-0190"
           ],
+          "modified": "2026-06-29T14:15:03.650725453Z",
           "package": "anyhow",
+          "path": "Cargo.lock",
+          "published": "2026-06-25T12:00:00Z",
           "score": "",
           "severity": "Unknown",
           "version": "1.0.102"
@@ -3943,7 +3995,10 @@
           "ids": [
             "RUSTSEC-2026-0374"
           ],
+          "modified": "2026-10-20T11:15:37.076409305Z",
           "package": "basic-toml",
+          "path": "Cargo.lock",
+          "published": "2026-09-26T12:00:00Z",
           "score": "",
           "severity": "Unknown",
           "version": "0.1.10"
@@ -3953,7 +4008,10 @@
           "ids": [
             "RUSTSEC-2026-0204"
           ],
+          "modified": "2026-07-06T22:30:04.159269138Z",
           "package": "crossbeam-epoch",
+          "path": "Cargo.lock",
+          "published": "2026-07-06T12:00:00Z",
           "score": "",
           "severity": "Unknown",
           "version": "0.9.18"
@@ -3963,7 +4021,10 @@
           "ids": [
             "RUSTSEC-2026-0306"
           ],
+          "modified": "2026-09-23T14:15:03.274936959Z",
           "package": "faster-hex",
+          "path": "Cargo.lock",
+          "published": "2026-09-20T12:00:00Z",
           "score": "",
           "severity": "Unknown",
           "version": "0.10.0"
@@ -3973,7 +4034,10 @@
           "ids": [
             "RUSTSEC-2026-0214"
           ],
+          "modified": "2026-07-23T07:30:03.563653170Z",
           "package": "gumdrop",
+          "path": "Cargo.lock",
+          "published": "2026-07-22T12:00:00Z",
           "score": "",
           "severity": "Unknown",
           "version": "0.8.1"
@@ -3984,7 +4048,10 @@
             "GHSA-q83h-524g-xf6h",
             "RUSTSEC-2026-0258"
           ],
+          "modified": "2026-10-12T18:00:10.934581734Z",
           "package": "h2",
+          "path": "Cargo.lock",
+          "published": "2026-08-17T12:00:00Z",
           "score": "",
           "severity": "Unknown",
           "version": "0.4.14"
@@ -3995,7 +4062,10 @@
             "GHSA-8p3x-q3q3-q3v5",
             "RUSTSEC-2026-0418"
           ],
+          "modified": "2026-10-29T14:15:02.333141406Z",
           "package": "libz-sys",
+          "path": "Cargo.lock",
+          "published": "2026-10-28T12:00:00Z",
           "score": "",
           "severity": "Unknown",
           "version": "1.1.28"
@@ -4005,7 +4075,10 @@
           "ids": [
             "RUSTSEC-2026-0186"
           ],
+          "modified": "2026-06-22T18:15:03.600280397Z",
           "package": "memmap2",
+          "path": "Cargo.lock",
+          "published": "2026-06-20T12:00:00Z",
           "score": "",
           "severity": "Unknown",
           "version": "0.9.10"
@@ -4015,7 +4088,10 @@
           "ids": [
             "RUSTSEC-2026-0194"
           ],
+          "modified": "2026-07-02T08:00:03.849273679Z",
           "package": "quick-xml",
+          "path": "Cargo.lock",
+          "published": "2026-06-29T12:00:00Z",
           "score": "7.5",
           "severity": "High",
           "version": "0.39.4"
@@ -4025,7 +4101,10 @@
           "ids": [
             "RUSTSEC-2026-0195"
           ],
+          "modified": "2026-07-02T09:00:04.037478193Z",
           "package": "quick-xml",
+          "path": "Cargo.lock",
+          "published": "2026-06-29T12:00:00Z",
           "score": "7.5",
           "severity": "High",
           "version": "0.39.4"
@@ -4036,7 +4115,10 @@
             "GHSA-465w-v9q3-7j98",
             "RUSTSEC-2026-0338"
           ],
+          "modified": "2026-10-12T18:15:01.969514645Z",
           "package": "quinn-proto",
+          "path": "Cargo.lock",
+          "published": "2026-09-14T12:00:00Z",
           "score": "",
           "severity": "Unknown",
           "version": "0.11.14"
@@ -4047,7 +4129,10 @@
             "GHSA-hmxj-32vh-65vr",
             "RUSTSEC-2026-0339"
           ],
+          "modified": "2026-10-12T18:15:01.956822776Z",
           "package": "quinn-proto",
+          "path": "Cargo.lock",
+          "published": "2026-08-17T12:00:00Z",
           "score": "",
           "severity": "Unknown",
           "version": "0.11.14"
@@ -4058,7 +4143,10 @@
             "GHSA-3g6h-r5qx-f6hq",
             "RUSTSEC-2026-0340"
           ],
+          "modified": "2026-10-12T18:15:01.975478256Z",
           "package": "quinn-proto",
+          "path": "Cargo.lock",
+          "published": "2026-09-14T12:00:00Z",
           "score": "7.5",
           "severity": "High",
           "version": "0.11.14"
@@ -4069,7 +4157,10 @@
             "GHSA-2hv7-gw8g-gpq5",
             "RUSTSEC-2026-0342"
           ],
+          "modified": "2026-10-12T18:15:01.956681478Z",
           "package": "quinn-proto",
+          "path": "Cargo.lock",
+          "published": "2026-08-17T12:00:00Z",
           "score": "",
           "severity": "Unknown",
           "version": "0.11.14"
@@ -4084,7 +4175,10 @@
             "RUSTSEC-2026-0382",
             "RUSTSEC-2026-0383"
           ],
+          "modified": "2026-10-29T10:55:54.096394276Z",
           "package": "rustls-webpki",
+          "path": "Cargo.lock",
+          "published": "2026-10-20T12:00:00Z",
           "score": "",
           "severity": "Unknown",
           "version": "0.103.13"
@@ -4094,7 +4188,10 @@
           "ids": [
             "RUSTSEC-2026-0386"
           ],
+          "modified": "2026-10-23T14:45:03.847864944Z",
           "package": "tokio",
+          "path": "Cargo.lock",
+          "published": "2026-10-13T12:00:00Z",
           "score": "",
           "severity": "Unknown",
           "version": "1.52.3"
@@ -4109,13 +4206,21 @@
             "RUSTSEC-2026-0382",
             "RUSTSEC-2026-0383"
           ],
+          "modified": "2026-10-29T10:55:54.096394276Z",
           "package": "webpki-root-certs",
+          "path": "Cargo.lock",
+          "published": "2026-10-19T12:00:00Z",
           "score": "",
           "severity": "Unknown",
           "version": "1.0.7"
         }
       ],
       "warning": null
+    },
+    "osv_api": {
+      "available": true,
+      "queried_at": "2026-11-09T01:36:32+00:00",
+      "states": {}
     },
     "ref": "cargo-audit/v0.22.2",
     "ref_kind": "release",
@@ -4136,15 +4241,56 @@
     },
     "released_at": "2026-06-05T12:38:04Z",
     "repository": "RustSec/rustsec",
+    "sbom_sha256": "6263b471b2daae2d7e4c800170e97594fb73bb7e7d8f027653ae1669a938943d",
     "sbomlyze_diff": {
       "added": 0,
+      "baseline": {
+        "attempt": "1",
+        "run_id": "41380955266"
+      },
       "changed": 0,
+      "contract": "sbomlyze-diff-0.7",
       "drift": {},
       "findings": [
-        "0 version changes among 497 shared packages \u2014 no actual upgrades",
+        "0 version changes among 485 shared packages \u2014 no actual upgrades",
+        "Integrity drift checked only 0 of 485 same-version packages; the rest carry no comparable digest",
         "Core system packages stable: cargo (444), github (32), file (12) unchanged"
       ],
-      "removed": 0
+      "occurrences": {
+        "added": [],
+        "digest_coverage": {
+          "after_only": 0,
+          "before_only": 0,
+          "by_kind": {},
+          "comparable": 0,
+          "disjoint_kinds": 0,
+          "packages_total": 485,
+          "same_version_pairs": 485
+        },
+        "file_changes": [],
+        "file_coverage": {
+          "ambiguous_paths": 0,
+          "config_unknown": 0,
+          "files_compared": 12,
+          "files_unverified": 0,
+          "owned_files_after": 0,
+          "unowned_files_after": 0
+        },
+        "files_added": [],
+        "files_removed": [],
+        "integrity_changes": [],
+        "license_changes": [],
+        "metadata_changes": [],
+        "moved": [],
+        "owned_file_drift": [],
+        "removed": [],
+        "source_change": null,
+        "version_changes": [],
+        "version_set_changes": []
+      },
+      "previous_sbom_sha256": "206e301c2cc881394a28eff7755eba4aabd94e60cc2a1daa30804393c12e907b",
+      "removed": 0,
+      "sbom_sha256": "6263b471b2daae2d7e4c800170e97594fb73bb7e7d8f027653ae1669a938943d"
     },
     "scanned_at": "2026-11-08T05:54:36+00:00",
     "scorecard": null,
@@ -4154,15 +4300,24 @@
         "aliases": [],
         "ecosystem": "cargo",
         "epss": null,
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "0.11.15"
         ],
         "id": "GHSA-4w2j-m93h-cj5j",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "Cargo.lock",
+        "locations": [
+          "Cargo.lock"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-10-12T18:27:06.855127585Z",
+        "osv_published": "2026-06-22T12:00:00Z",
         "package": "quinn-proto",
+        "purl": "pkg:cargo/quinn-proto@0.11.14",
         "severity": "High",
         "summary": "Quinn: Remote memory exhaustion in quinn-proto from unbounded out-of-order stream reassembly",
         "url": "https://github.com/advisories/GHSA-4w2j-m93h-cj5j",
@@ -4172,15 +4327,24 @@
         "aliases": [],
         "ecosystem": "cargo",
         "epss": null,
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "0.21.5"
         ],
         "id": "GHSA-2vh6-hw4j-32ww",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "Cargo.lock",
+        "locations": [
+          "Cargo.lock"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-09-10T03:51:12.813155267Z",
+        "osv_published": "2026-08-28T16:09:59Z",
         "package": "gix-packetline",
+        "purl": "pkg:cargo/gix-packetline@0.21.4",
         "severity": "Medium",
         "summary": "gix-packetline: reachable panic on empty side-band packet (pre-auth network DoS)",
         "url": "https://github.com/advisories/GHSA-2vh6-hw4j-32ww",
@@ -4190,15 +4354,24 @@
         "aliases": [],
         "ecosystem": "cargo",
         "epss": null,
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "0.23.45"
         ],
         "id": "GHSA-2mjx-qc3c-rqvc",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "Cargo.lock",
+        "locations": [
+          "Cargo.lock"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-10-27T15:30:05.509305490Z",
+        "osv_published": "2026-09-14T12:00:00Z",
         "package": "rustls",
+        "purl": "pkg:cargo/rustls@0.23.40",
         "severity": "Medium",
         "summary": "Rustls: TLS 1.3 handshake messages incorrectly accepted across encryption level boundaries",
         "url": "https://github.com/advisories/GHSA-2mjx-qc3c-rqvc",
@@ -4208,15 +4381,24 @@
         "aliases": [],
         "ecosystem": "cargo",
         "epss": null,
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "0.23.46"
         ],
         "id": "GHSA-c8m5-c952-6cm4",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "Cargo.lock",
+        "locations": [
+          "Cargo.lock"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-10-27T16:15:05.354395696Z",
+        "osv_published": "2026-10-14T12:00:00Z",
         "package": "rustls",
+        "purl": "pkg:cargo/rustls@0.23.40",
         "severity": "Medium",
         "summary": "Rustls: Session Debug formatting exposes TLS master secrets and resumption PSKs",
         "url": "https://github.com/advisories/GHSA-c8m5-c952-6cm4",
@@ -4226,15 +4408,24 @@
         "aliases": [],
         "ecosystem": "cargo",
         "epss": null,
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "0.23.46"
         ],
         "id": "GHSA-h2v8-394m-p7vv",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "Cargo.lock",
+        "locations": [
+          "Cargo.lock"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-10-27T16:15:05.337819489Z",
+        "osv_published": "2026-10-14T12:00:00Z",
         "package": "rustls",
+        "purl": "pkg:cargo/rustls@0.23.40",
         "severity": "Low",
         "summary": "Rustls: Brotli certificate decompression can allocate an attacker-controlled amount of memory up to 1 GiB before authentication.",
         "url": "https://github.com/advisories/GHSA-h2v8-394m-p7vv",
@@ -4244,15 +4435,24 @@
         "aliases": [],
         "ecosystem": "cargo",
         "epss": null,
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "0.23.46"
         ],
         "id": "GHSA-w44r-93j7-qv28",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "Cargo.lock",
+        "locations": [
+          "Cargo.lock"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-10-27T16:15:05.340347056Z",
+        "osv_published": "2026-10-14T12:00:00Z",
         "package": "rustls",
+        "purl": "pkg:cargo/rustls@0.23.40",
         "severity": "Low",
         "summary": "rustls: An unauthenticated ServerHello poisons the per-name key-exchange record, so later ClientHellos carry only a classical X25519 share",
         "url": "https://github.com/advisories/GHSA-w44r-93j7-qv28",

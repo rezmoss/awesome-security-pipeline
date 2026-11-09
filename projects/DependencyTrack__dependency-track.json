@@ -76,15 +76,26 @@
     },
     {
       "added": 0,
+      "advisory_state": "ok",
       "commit": "e6c887c0207baeec1f1346e28bf90000b4b45eda",
       "date": "2026-11-08",
       "dependencies": 211,
+      "dependency_state": "ok",
+      "downgraded": 0,
       "errors": [],
+      "file_changes": 0,
       "fixable": 0,
       "go_version": null,
       "in_binary": null,
+      "in_binary_new": 0,
+      "in_binary_resolved": 0,
       "kev": null,
       "kev_new": 0,
+      "kev_new_match": 0,
+      "license_changes": 0,
+      "method": "sbomlyze-occurrence-v1",
+      "moved": 0,
+      "new_advisories": 0,
       "new_vulnerabilities": 0,
       "osv_confirmed": 0,
       "osv_only": 0,
@@ -92,11 +103,13 @@
       "release_changed": false,
       "release_integrity": "no-linux-binary",
       "removed": 0,
+      "resolved_advisories": 0,
       "resolved_vulnerabilities": 0,
       "scorecard": 7.9,
       "scorecard_date": "2026-11-02",
       "scorecard_note": null,
       "scorecard_source": "openssf-api",
+      "unknown_direction": 0,
       "upgraded": 0,
       "vulnerabilities": {
         "Critical": 0,
@@ -112,7 +125,9 @@
         "Low": 0,
         "Medium": 0,
         "files": 15
-      }
+      },
+      "workflow_new": 0,
+      "workflow_resolved": 0
     }
   ],
   "latest": {
@@ -120,20 +135,51 @@
     "category": "Software Composition Analysis (SCA)",
     "changes": {
       "added": [],
+      "added_detail": [],
+      "advisory_state": "ok",
       "any": true,
       "baseline": false,
+      "dependency_baseline": {
+        "attempt": "1",
+        "run_id": "41380955266",
+        "sbom_sha256": "f386b7946c162f002fb25ba7d0bd33a328747365d48460dd6dddab2330ab18ee"
+      },
+      "dependency_state": "ok",
+      "digest_coverage": {
+        "after_only": 0,
+        "before_only": 0,
+        "by_kind": {},
+        "comparable": 0,
+        "disjoint_kinds": 0,
+        "packages_total": 233,
+        "same_version_pairs": 233
+      },
+      "distinct_version_changes": null,
+      "downgraded": [],
+      "file_changes": [],
+      "integrity_changes": [],
       "integrity_drift": 0,
       "license_changes": [],
+      "metadata_changes": [],
+      "method": "sbomlyze-occurrence-v1",
+      "moved": [],
+      "new_advisories": 0,
       "new_vulnerabilities": [],
       "previous_ref": "5.2.1",
       "release_changed": false,
       "removed": [],
+      "removed_detail": [],
+      "resolved_advisories": 0,
       "resolved_vulnerabilities": [],
       "scorecard": {
         "from": 7.5,
         "to": 7.9
       },
+      "still_affected_version_changed": [],
+      "unknown_direction": [],
       "upgraded": [],
+      "version_changes": [],
+      "version_set_changes": [],
       "workflow_new": 0,
       "workflow_resolved": 0
     },
@@ -2011,6 +2057,7 @@
     "description": "Track components and analyze dependency risk from SBOMs",
     "errors": [],
     "id": "DependencyTrack__dependency-track",
+    "lock_aliases": {},
     "manifests": [
       ".github/workflows/_meta-build.yaml",
       ".github/workflows/ci-build.yaml",
@@ -2104,8 +2151,14 @@
       "advisories": 0,
       "available": true,
       "confirmed": 0,
+      "coverage": {},
       "osv_only": [],
       "warning": "osv-scanner could not resolve every manifest: failed resolution for vuln-data-source/osv/pom.xml: failed resolving {Maven:org.dependencytrack:vuln-data-source-osv[Concrete:5.2.1] {}}: version Maven:org.dependencytrack:os-distro-metadata[Concrete:"
+    },
+    "osv_api": {
+      "available": true,
+      "queried_at": "2026-11-09T01:36:28+00:00",
+      "states": {}
     },
     "ref": "5.2.1",
     "ref_kind": "release",
@@ -2120,15 +2173,56 @@
     },
     "released_at": "2026-10-25T11:13:32Z",
     "repository": "DependencyTrack/dependency-track",
+    "sbom_sha256": "ceb09c8185c7ab6906f4a5f1782b82d1b9fa5700706205d953833218187d0468",
     "sbomlyze_diff": {
       "added": 0,
+      "baseline": {
+        "attempt": "1",
+        "run_id": "41380955266"
+      },
       "changed": 0,
+      "contract": "sbomlyze-diff-0.7",
       "drift": {},
       "findings": [
-        "0 version changes among 315 shared packages \u2014 no actual upgrades",
+        "0 version changes among 233 shared packages \u2014 no actual upgrades",
+        "Integrity drift checked only 0 of 233 same-version packages; the rest carry no comparable digest",
         "Core system packages stable: maven (189), file (82), github (44) unchanged"
       ],
-      "removed": 0
+      "occurrences": {
+        "added": [],
+        "digest_coverage": {
+          "after_only": 0,
+          "before_only": 0,
+          "by_kind": {},
+          "comparable": 0,
+          "disjoint_kinds": 0,
+          "packages_total": 233,
+          "same_version_pairs": 233
+        },
+        "file_changes": [],
+        "file_coverage": {
+          "ambiguous_paths": 0,
+          "config_unknown": 0,
+          "files_compared": 82,
+          "files_unverified": 0,
+          "owned_files_after": 0,
+          "unowned_files_after": 0
+        },
+        "files_added": [],
+        "files_removed": [],
+        "integrity_changes": [],
+        "license_changes": [],
+        "metadata_changes": [],
+        "moved": [],
+        "owned_file_drift": [],
+        "removed": [],
+        "source_change": null,
+        "version_changes": [],
+        "version_set_changes": []
+      },
+      "previous_sbom_sha256": "f386b7946c162f002fb25ba7d0bd33a328747365d48460dd6dddab2330ab18ee",
+      "removed": 0,
+      "sbom_sha256": "ceb09c8185c7ab6906f4a5f1782b82d1b9fa5700706205d953833218187d0468"
     },
     "scanned_at": "2026-11-08T05:54:12+00:00",
     "scorecard": {

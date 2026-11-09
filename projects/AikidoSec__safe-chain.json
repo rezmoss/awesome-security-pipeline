@@ -76,15 +76,26 @@
     },
     {
       "added": 0,
+      "advisory_state": "ok",
       "commit": "1c37c007d2b625cf9a89f2484634c8ed7a725270",
       "date": "2026-11-08",
       "dependencies": 280,
+      "dependency_state": "ok",
+      "downgraded": 0,
       "errors": [],
+      "file_changes": 0,
       "fixable": 14,
       "go_version": null,
       "in_binary": null,
+      "in_binary_new": 0,
+      "in_binary_resolved": 0,
       "kev": 0,
       "kev_new": 0,
+      "kev_new_match": 0,
+      "license_changes": 0,
+      "method": "sbomlyze-occurrence-v1",
+      "moved": 0,
+      "new_advisories": 0,
       "new_vulnerabilities": 0,
       "osv_confirmed": 15,
       "osv_only": 0,
@@ -92,11 +103,13 @@
       "release_changed": false,
       "release_integrity": "immutable",
       "removed": 0,
+      "resolved_advisories": 0,
       "resolved_vulnerabilities": 0,
       "scorecard": 4.5,
       "scorecard_date": "2026-11-08",
       "scorecard_note": null,
       "scorecard_source": "scorecard-cli",
+      "unknown_direction": 0,
       "upgraded": 0,
       "vulnerabilities": {
         "Critical": 0,
@@ -112,7 +125,9 @@
         "Low": 2,
         "Medium": 7,
         "files": 4
-      }
+      },
+      "workflow_new": 0,
+      "workflow_resolved": 0
     }
   ],
   "latest": {
@@ -120,17 +135,50 @@
     "category": "Software Composition Analysis (SCA)",
     "changes": {
       "added": [],
+      "added_detail": [],
+      "advisory_state": "ok",
       "any": false,
       "baseline": false,
+      "dependency_baseline": {
+        "attempt": "1",
+        "run_id": "41380955266",
+        "sbom_sha256": "f97894a2828e4f7f50e130ed23747a942041468e8f10bb0e7e8cbbaf02a330a0"
+      },
+      "dependency_state": "ok",
+      "digest_coverage": {
+        "after_only": 0,
+        "before_only": 0,
+        "by_kind": {},
+        "comparable": 0,
+        "disjoint_kinds": 0,
+        "packages_total": 287,
+        "same_version_pairs": 287
+      },
+      "distinct_version_changes": null,
+      "downgraded": [],
+      "file_changes": [],
+      "integrity_changes": [],
       "integrity_drift": 0,
+      "kev_method": "snapshot difference",
       "kev_new": [],
+      "kev_new_match": [],
       "license_changes": [],
+      "metadata_changes": [],
+      "method": "sbomlyze-occurrence-v1",
+      "moved": [],
+      "new_advisories": 0,
       "new_vulnerabilities": [],
       "previous_ref": "1.5.27",
       "release_changed": false,
       "removed": [],
+      "removed_detail": [],
+      "resolved_advisories": 0,
       "resolved_vulnerabilities": [],
+      "still_affected_version_changed": [],
+      "unknown_direction": [],
       "upgraded": [],
+      "version_changes": [],
+      "version_set_changes": [],
       "workflow_new": 0,
       "workflow_resolved": 0
     },
@@ -2877,6 +2925,9 @@
       "action reference to a moving tag or branch": 1
     },
     "id": "AikidoSec__safe-chain",
+    "lock_aliases": {
+      "package-lock.json": "npm-shrinkwrap.json"
+    },
     "manifests": [
       ".github/workflows/build-and-release.yml",
       ".github/workflows/bump-endpoint.yml",
@@ -2893,6 +2944,11 @@
       "confirmed": 15,
       "osv_only": [],
       "warning": null
+    },
+    "osv_api": {
+      "available": true,
+      "queried_at": "2026-11-09T01:36:23+00:00",
+      "states": {}
     },
     "ref": "1.5.27",
     "ref_kind": "release",
@@ -2919,15 +2975,56 @@
     },
     "released_at": "2026-10-30T08:13:34Z",
     "repository": "AikidoSec/safe-chain",
+    "sbom_sha256": "614704b1b6589e1e6bc78b79168857b7ae250ab6c36ba7af6f567e2465fe5d08",
     "sbomlyze_diff": {
       "added": 0,
+      "baseline": {
+        "attempt": "1",
+        "run_id": "41380955266"
+      },
       "changed": 0,
+      "contract": "sbomlyze-diff-0.7",
       "drift": {},
       "findings": [
-        "0 version changes among 292 shared packages \u2014 no actual upgrades",
+        "0 version changes among 287 shared packages \u2014 no actual upgrades",
+        "Integrity drift checked only 0 of 287 same-version packages; the rest carry no comparable digest",
         "Core system packages stable: npm (273), github (13) unchanged"
       ],
-      "removed": 0
+      "occurrences": {
+        "added": [],
+        "digest_coverage": {
+          "after_only": 0,
+          "before_only": 0,
+          "by_kind": {},
+          "comparable": 0,
+          "disjoint_kinds": 0,
+          "packages_total": 287,
+          "same_version_pairs": 287
+        },
+        "file_changes": [],
+        "file_coverage": {
+          "ambiguous_paths": 0,
+          "config_unknown": 0,
+          "files_compared": 5,
+          "files_unverified": 0,
+          "owned_files_after": 0,
+          "unowned_files_after": 0
+        },
+        "files_added": [],
+        "files_removed": [],
+        "integrity_changes": [],
+        "license_changes": [],
+        "metadata_changes": [],
+        "moved": [],
+        "owned_file_drift": [],
+        "removed": [],
+        "source_change": null,
+        "version_changes": [],
+        "version_set_changes": []
+      },
+      "previous_sbom_sha256": "f97894a2828e4f7f50e130ed23747a942041468e8f10bb0e7e8cbbaf02a330a0",
+      "removed": 0,
+      "sbom_sha256": "614704b1b6589e1e6bc78b79168857b7ae250ab6c36ba7af6f567e2465fe5d08"
     },
     "scanned_at": "2026-11-08T05:52:57+00:00",
     "scorecard": {
@@ -3039,15 +3136,24 @@
           "percentile": 0.15918,
           "score": 0.00246
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "1.4.1"
         ],
         "id": "GHSA-5x38-2vff-x55p",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "npm-shrinkwrap.json",
+        "locations": [
+          "npm-shrinkwrap.json"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-10-30T23:15:08.080586742Z",
+        "osv_published": "2026-10-30T23:01:46Z",
         "package": "node-forge",
+        "purl": "pkg:npm/node-forge@1.4.0",
         "severity": "High",
         "summary": "Forge: X.509 basicConstraints bypass in verifyCertificateChain() via deprecated extension OIDs 2.5.29.10 and 2.5.29.13",
         "url": "https://github.com/advisories/GHSA-5x38-2vff-x55p",
@@ -3063,15 +3169,24 @@
           "percentile": 0.46619,
           "score": 0.00556
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "1.4.1"
         ],
         "id": "GHSA-7wch-p9px-956x",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "npm-shrinkwrap.json",
+        "locations": [
+          "npm-shrinkwrap.json"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-10-30T23:15:07.474415720Z",
+        "osv_published": "2026-10-30T23:02:25Z",
         "package": "node-forge",
+        "purl": "pkg:npm/node-forge@1.4.0",
         "severity": "High",
         "summary": "Forge: Regular expression denial of service in PEM decoding (pem.decode)",
         "url": "https://github.com/advisories/GHSA-7wch-p9px-956x",
@@ -3087,13 +3202,22 @@
           "percentile": 0.16184,
           "score": 0.00248
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "not-fixed",
         "fixed_in": [],
         "id": "GHSA-86w9-cpqp-85rv",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "npm-shrinkwrap.json",
+        "locations": [
+          "npm-shrinkwrap.json"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-10-01T21:40:55.016251436Z",
+        "osv_published": "2026-09-03T21:31:15Z",
         "package": "node-forge",
+        "purl": "pkg:npm/node-forge@1.4.0",
         "severity": "High",
         "summary": "node-forge RSA PKCS#1 v1.5 signature verification accepts extra nested DigestAlgorithm elements",
         "url": "https://github.com/advisories/GHSA-86w9-cpqp-85rv",
@@ -3109,15 +3233,24 @@
           "percentile": 0.35655,
           "score": 0.00411
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "1.4.1"
         ],
         "id": "GHSA-8hrf-8g6f-7xwp",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "npm-shrinkwrap.json",
+        "locations": [
+          "npm-shrinkwrap.json"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-10-30T23:15:08.387649859Z",
+        "osv_published": "2026-10-30T23:02:00Z",
         "package": "node-forge",
+        "purl": "pkg:npm/node-forge@1.4.0",
         "severity": "High",
         "summary": "Forge: Denial of service in TLS record processing via a record interleaved with a fragmented handshake message",
         "url": "https://github.com/advisories/GHSA-8hrf-8g6f-7xwp",
@@ -3133,15 +3266,24 @@
           "percentile": 0.36042,
           "score": 0.00415
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "1.4.1"
         ],
         "id": "GHSA-hqq3-7jhf-c5jx",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "npm-shrinkwrap.json",
+        "locations": [
+          "npm-shrinkwrap.json"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-10-30T23:15:07.576305226Z",
+        "osv_published": "2026-10-30T23:01:54Z",
         "package": "node-forge",
+        "purl": "pkg:npm/node-forge@1.4.0",
         "severity": "High",
         "summary": "Forge: Denial of service in TLS record processing via call stack exhaustion",
         "url": "https://github.com/advisories/GHSA-hqq3-7jhf-c5jx",
@@ -3157,15 +3299,24 @@
           "percentile": 0.0223,
           "score": 0.00125
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "1.4.1"
         ],
         "id": "GHSA-jc66-7q78-782g",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "npm-shrinkwrap.json",
+        "locations": [
+          "npm-shrinkwrap.json"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-10-30T23:15:04.512936102Z",
+        "osv_published": "2026-10-30T23:02:05Z",
         "package": "node-forge",
+        "purl": "pkg:npm/node-forge@1.4.0",
         "severity": "High",
         "summary": "Forge: PKCS#12 MAC forgery and constant-key PBE via zero iteration count",
         "url": "https://github.com/advisories/GHSA-jc66-7q78-782g",
@@ -3181,15 +3332,24 @@
           "percentile": 0.28872,
           "score": 0.0035
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "14.0.2"
         ],
         "id": "GHSA-3g3m-2fjr-6pw4",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "npm-shrinkwrap.json",
+        "locations": [
+          "npm-shrinkwrap.json"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-10-30T23:15:04.503965732Z",
+        "osv_published": "2026-10-30T23:09:11Z",
         "package": "glob",
+        "purl": "pkg:npm/glob@13.0.0",
         "severity": "Medium",
         "summary": "Glob: AbortSignal cancellation bypass allows post-timeout filesystem traversal",
         "url": "https://github.com/advisories/GHSA-3g3m-2fjr-6pw4",
@@ -3205,15 +3365,24 @@
           "percentile": 0.24533,
           "score": 0.00315
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "10.7.4"
         ],
         "id": "GHSA-rxp7-6hxx-x8q5",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "npm-shrinkwrap.json",
+        "locations": [
+          "npm-shrinkwrap.json"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-10-22T16:30:30.129356757Z",
+        "osv_published": "2026-10-22T16:19:39Z",
         "package": "ip-address",
+        "purl": "pkg:npm/ip-address@10.7.3",
         "severity": "Medium",
         "summary": "ip-address: Address6 matches a zone identifier in quadratic time ahead of its length limit, allowing a single long string to stall the process",
         "url": "https://github.com/advisories/GHSA-rxp7-6hxx-x8q5",
@@ -3229,15 +3398,24 @@
           "percentile": 0.23009,
           "score": 0.00301
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "11.0.1"
         ],
         "id": "GHSA-g3hv-75wg-m249",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "npm-shrinkwrap.json",
+        "locations": [
+          "npm-shrinkwrap.json"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-11-04T17:01:25.850114200Z",
+        "osv_published": "2026-10-30T23:09:55Z",
         "package": "minimatch",
+        "purl": "pkg:npm/minimatch@10.2.5",
         "severity": "Medium",
         "summary": "minimatch has potential denial of service via globparts amplification",
         "url": "https://github.com/advisories/GHSA-g3hv-75wg-m249",
@@ -3253,15 +3431,24 @@
           "percentile": 0.10406,
           "score": 0.00204
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "1.4.1"
         ],
         "id": "GHSA-525v-9gp9-w22h",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "npm-shrinkwrap.json",
+        "locations": [
+          "npm-shrinkwrap.json"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-10-30T23:15:06.416126647Z",
+        "osv_published": "2026-10-30T23:02:30Z",
         "package": "node-forge",
+        "purl": "pkg:npm/node-forge@1.4.0",
         "severity": "Medium",
         "summary": "Forge: TLS client crash when the server sends no certificate",
         "url": "https://github.com/advisories/GHSA-525v-9gp9-w22h",
@@ -3277,15 +3464,24 @@
           "percentile": 0.1074,
           "score": 0.00206
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "1.4.1"
         ],
         "id": "GHSA-5cwg-6vw7-rj6p",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "npm-shrinkwrap.json",
+        "locations": [
+          "npm-shrinkwrap.json"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-10-30T23:15:05.406416680Z",
+        "osv_published": "2026-10-30T23:02:09Z",
         "package": "node-forge",
+        "purl": "pkg:npm/node-forge@1.4.0",
         "severity": "Medium",
         "summary": "Forge: AES-GCM authentication bypass via unvalidated tagLength option",
         "url": "https://github.com/advisories/GHSA-5cwg-6vw7-rj6p",
@@ -3301,15 +3497,24 @@
           "percentile": 0.20074,
           "score": 0.00275
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "1.4.1"
         ],
         "id": "GHSA-6wvx-3r32-xmcg",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "npm-shrinkwrap.json",
+        "locations": [
+          "npm-shrinkwrap.json"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-10-30T23:15:05.413239324Z",
+        "osv_published": "2026-10-30T23:02:35Z",
         "package": "node-forge",
+        "purl": "pkg:npm/node-forge@1.4.0",
         "severity": "Medium",
         "summary": "Forge: Prototype Pollution in forge.http cookie handling via a malicious Set-Cookie",
         "url": "https://github.com/advisories/GHSA-6wvx-3r32-xmcg",
@@ -3325,15 +3530,24 @@
           "percentile": 0.06647,
           "score": 0.00172
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "1.4.1"
         ],
         "id": "GHSA-4487-j8r4-4g2f",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "npm-shrinkwrap.json",
+        "locations": [
+          "npm-shrinkwrap.json"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-10-30T23:15:05.499229226Z",
+        "osv_published": "2026-10-30T23:02:14Z",
         "package": "node-forge",
+        "purl": "pkg:npm/node-forge@1.4.0",
         "severity": "Low",
         "summary": "Forge: verifyCertificateChain() removes trusted CA certificates with the same subject from the CA store",
         "url": "https://github.com/advisories/GHSA-4487-j8r4-4g2f",
@@ -3349,15 +3563,24 @@
           "percentile": 0.24268,
           "score": 0.00312
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "1.4.1"
         ],
         "id": "GHSA-4642-5mcj-2rqw",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "npm-shrinkwrap.json",
+        "locations": [
+          "npm-shrinkwrap.json"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-10-30T23:15:04.474856550Z",
+        "osv_published": "2026-10-30T23:02:40Z",
         "package": "node-forge",
+        "purl": "pkg:npm/node-forge@1.4.0",
         "severity": "Low",
         "summary": "Forge: ASN.1 OID first arc truncation in asn1.oidToDer",
         "url": "https://github.com/advisories/GHSA-4642-5mcj-2rqw",
@@ -3373,15 +3596,24 @@
           "percentile": 0.01758,
           "score": 0.00119
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "1.4.1"
         ],
         "id": "GHSA-h6cr-wjv9-3cpp",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "npm-shrinkwrap.json",
+        "locations": [
+          "npm-shrinkwrap.json"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-10-30T23:15:04.479846783Z",
+        "osv_published": "2026-10-30T23:02:20Z",
         "package": "node-forge",
+        "purl": "pkg:npm/node-forge@1.4.0",
         "severity": "Low",
         "summary": "Forge: Denial of Service via infinite loop in BigInteger.modInverse() with negative input (incomplete fix of CVE-2026-33891)",
         "url": "https://github.com/advisories/GHSA-h6cr-wjv9-3cpp",

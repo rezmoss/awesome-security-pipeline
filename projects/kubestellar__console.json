@@ -84,19 +84,31 @@
     },
     {
       "added": 0,
+      "advisory_state": "ok",
       "commit": "2a082d0896bcd990b54b7338a1e69acde6c5c929",
       "date": "2026-11-08",
       "dependencies": 1092,
+      "dependency_state": "ok",
+      "downgraded": 0,
       "errors": [],
+      "file_changes": 0,
       "fixable": 105,
       "go_version": "go1.26.6",
       "in_binary": {
-        "dependencies": 5,
-        "stdlib": 12,
+        "dependencies": 9,
+        "records": 22,
+        "stdlib": 13,
         "total": 17
       },
+      "in_binary_new": 1,
+      "in_binary_resolved": 0,
       "kev": 0,
       "kev_new": 0,
+      "kev_new_match": 0,
+      "license_changes": 0,
+      "method": "sbomlyze-occurrence-v1",
+      "moved": 0,
+      "new_advisories": 1,
       "new_vulnerabilities": 1,
       "osv_confirmed": 106,
       "osv_only": 0,
@@ -104,11 +116,13 @@
       "release_changed": false,
       "release_integrity": "verified",
       "removed": 0,
+      "resolved_advisories": 0,
       "resolved_vulnerabilities": 0,
       "scorecard": null,
       "scorecard_date": null,
       "scorecard_note": "the OpenSSF public dataset entry is 203 days old (limit 30); the Scorecard CLI fallback was skipped because this shard's weekly budget was used",
       "scorecard_source": null,
+      "unknown_direction": 0,
       "upgraded": 0,
       "vulnerabilities": {
         "Critical": 5,
@@ -124,7 +138,9 @@
         "Low": 11,
         "Medium": 7,
         "files": 97
-      }
+      },
+      "workflow_new": 0,
+      "workflow_resolved": 0
     }
   ],
   "latest": {
@@ -132,15 +148,44 @@
     "category": "Kubernetes Security",
     "changes": {
       "added": [],
+      "added_detail": [],
+      "advisory_state": "ok",
       "any": true,
       "baseline": false,
+      "dependency_baseline": {
+        "attempt": "1",
+        "run_id": "41380955266",
+        "sbom_sha256": "4b9c1d3639245731cefbfb4bd7978de211eda690f8b6b0d268a8f2664ce1f3c1"
+      },
+      "dependency_state": "ok",
+      "digest_coverage": {
+        "after_only": 0,
+        "before_only": 0,
+        "by_kind": {
+          "go-h1": 101
+        },
+        "comparable": 101,
+        "disjoint_kinds": 0,
+        "packages_total": 1347,
+        "same_version_pairs": 1347
+      },
+      "distinct_version_changes": null,
+      "downgraded": [],
+      "file_changes": [],
       "in_binary_new": [
         "GO-2026-6865"
       ],
       "in_binary_resolved": [],
+      "integrity_changes": [],
       "integrity_drift": 0,
+      "kev_method": "snapshot difference",
       "kev_new": [],
+      "kev_new_match": [],
       "license_changes": [],
+      "metadata_changes": [],
+      "method": "sbomlyze-occurrence-v1",
+      "moved": [],
+      "new_advisories": 1,
       "new_vulnerabilities": [
         {
           "aliases": [
@@ -153,6 +198,7 @@
             "percentile": 0.26636,
             "score": 0.00333
           },
+          "epss_date": "2026-11-07T12:00:22Z",
           "fix_state": "fixed",
           "fixed_in": [
             "1.20.2"
@@ -160,9 +206,23 @@
           "id": "GO-2026-6865",
           "in_binary": "vulnerable code in binary",
           "kev": null,
+          "kev_cves": [],
+          "kev_snapshot": "2026.11.06",
           "location": "go.mod",
+          "locations": [
+            "go.mod"
+          ],
+          "new": {
+            "advisory": "published since last scan",
+            "modified": "2026-11-05T23:15:14.472777299Z",
+            "published": "2026-11-05T22:54:32Z",
+            "reason": "unchanged version"
+          },
           "osv_confirmed": true,
+          "osv_modified": "2026-11-05T23:15:14.472777299Z",
+          "osv_published": "2026-11-05T22:54:32Z",
           "package": "github.com/klauspost/compress",
+          "purl": "pkg:golang/github.com/klauspost/compress@v1.20.0",
           "severity": "High",
           "summary": "Panic on two-block frames in github.com/klauspost/compress",
           "url": "https://github.com/klauspost/compress/security/advisories/GHSA-fpmh-frq8-7rj8",
@@ -172,8 +232,14 @@
       "previous_ref": "v0.3.42",
       "release_changed": false,
       "removed": [],
+      "removed_detail": [],
+      "resolved_advisories": 0,
       "resolved_vulnerabilities": [],
+      "still_affected_version_changed": [],
+      "unknown_direction": [],
       "upgraded": [],
+      "version_changes": [],
+      "version_set_changes": [],
       "workflow_new": 0,
       "workflow_resolved": 0
     },
@@ -10761,11 +10827,16 @@
             "percentile": 0.21554,
             "score": 0.00289
           },
+          "epss_date": "2026-11-07T12:00:22Z",
           "fixed_version": "v1.26.9",
           "id": "GO-2026-6599",
           "kev": null,
+          "kev_cves": [],
+          "kev_snapshot": "2026.11.06",
           "level": "symbol",
+          "modified": "2026-10-08T22:31:09Z",
           "module": "stdlib",
+          "published": "2026-10-08T22:31:09Z",
           "summary": "Reset context tracking on consecutive template expressions in html/template",
           "version": "v1.26.6"
         },
@@ -10778,11 +10849,16 @@
             "percentile": 0.21554,
             "score": 0.00289
           },
+          "epss_date": "2026-11-07T12:00:22Z",
           "fixed_version": "v1.26.9",
           "id": "GO-2026-6600",
           "kev": null,
+          "kev_cves": [],
+          "kev_snapshot": "2026.11.06",
           "level": "symbol",
+          "modified": "2026-10-08T22:31:09Z",
           "module": "stdlib",
+          "published": "2026-10-08T22:31:09Z",
           "summary": "Recognize yield as regexp preceder keyword in html/template",
           "version": "v1.26.6"
         },
@@ -10795,11 +10871,16 @@
             "percentile": 0.58917,
             "score": 0.00866
           },
+          "epss_date": "2026-11-07T12:00:22Z",
           "fixed_version": "v1.26.9",
           "id": "GO-2026-6603",
           "kev": null,
+          "kev_cves": [],
+          "kev_snapshot": "2026.11.06",
           "level": "symbol",
+          "modified": "2026-10-08T22:31:09Z",
           "module": "stdlib",
+          "published": "2026-10-08T22:31:09Z",
           "summary": "HTTP/2 server memory exhaustion due to Trailer headers in net/http",
           "version": "v1.26.6"
         },
@@ -10812,11 +10893,16 @@
             "percentile": 0.49136,
             "score": 0.00604
           },
+          "epss_date": "2026-11-07T12:00:22Z",
           "fixed_version": "v1.26.9",
           "id": "GO-2026-6605",
           "kev": null,
+          "kev_cves": [],
+          "kev_snapshot": "2026.11.06",
           "level": "symbol",
+          "modified": "2026-10-08T22:31:09Z",
           "module": "stdlib",
+          "published": "2026-10-08T22:31:09Z",
           "summary": "HTTP/1 client connection desynchronization after CONNECT rejection in net/http",
           "version": "v1.26.6"
         },
@@ -10829,11 +10915,16 @@
             "percentile": 0.53998,
             "score": 0.00716
           },
+          "epss_date": "2026-11-07T12:00:22Z",
           "fixed_version": "v1.26.9",
           "id": "GO-2026-6607",
           "kev": null,
+          "kev_cves": [],
+          "kev_snapshot": "2026.11.06",
           "level": "symbol",
+          "modified": "2026-10-08T22:31:09Z",
           "module": "stdlib",
+          "published": "2026-10-08T22:31:09Z",
           "summary": "Reject malformed ECH outer extension references in crypto/tls",
           "version": "v1.26.6"
         },
@@ -10846,11 +10937,16 @@
             "percentile": 0.53601,
             "score": 0.00706
           },
+          "epss_date": "2026-11-07T12:00:22Z",
           "fixed_version": "v1.26.9",
           "id": "GO-2026-6608",
           "kev": null,
+          "kev_cves": [],
+          "kev_snapshot": "2026.11.06",
           "level": "symbol",
+          "modified": "2026-10-08T22:31:09Z",
           "module": "stdlib",
+          "published": "2026-10-08T22:31:09Z",
           "summary": "Memory limit bypass when parsing MIME headers in net/textproto, mime/multipart",
           "version": "v1.26.6"
         },
@@ -10863,11 +10959,16 @@
             "percentile": 0.51957,
             "score": 0.00663
           },
+          "epss_date": "2026-11-07T12:00:22Z",
           "fixed_version": "v1.26.9",
           "id": "GO-2026-6609",
           "kev": null,
+          "kev_cves": [],
+          "kev_snapshot": "2026.11.06",
           "level": "symbol",
+          "modified": "2026-10-08T22:31:09Z",
           "module": "stdlib",
+          "published": "2026-10-08T22:31:09Z",
           "summary": "Lack of limit on size of parsed Range headers in net/http",
           "version": "v1.26.6"
         },
@@ -10880,11 +10981,16 @@
             "percentile": 0.45813,
             "score": 0.00542
           },
+          "epss_date": "2026-11-07T12:00:22Z",
           "fixed_version": "v1.26.9",
           "id": "GO-2026-6610",
           "kev": null,
+          "kev_cves": [],
+          "kev_snapshot": "2026.11.06",
           "level": "symbol",
+          "modified": "2026-10-08T22:31:09Z",
           "module": "stdlib",
+          "published": "2026-10-08T22:31:09Z",
           "summary": "HTTP/2 transport accepts malformed framing-related headers in net/http",
           "version": "v1.26.6"
         },
@@ -10897,12 +11003,39 @@
             "percentile": 0.58324,
             "score": 0.00847
           },
+          "epss_date": "2026-11-07T12:00:22Z",
           "fixed_version": "v1.26.9",
           "id": "GO-2026-6611",
           "kev": null,
+          "kev_cves": [],
+          "kev_snapshot": "2026.11.06",
           "level": "symbol",
+          "modified": "2026-10-08T22:31:09Z",
           "module": "stdlib",
+          "published": "2026-10-08T22:31:09Z",
           "summary": "Excessive CPU consumption from repeated initial window changes in net/http",
+          "version": "v1.26.6"
+        },
+        {
+          "aliases": [
+            "CVE-2026-78663"
+          ],
+          "epss": {
+            "cve": "CVE-2026-78663",
+            "percentile": 0.58678,
+            "score": 0.00858
+          },
+          "epss_date": "2026-11-07T12:00:22Z",
+          "fixed_version": "v1.26.9",
+          "id": "GO-2026-6612",
+          "kev": null,
+          "kev_cves": [],
+          "kev_snapshot": "2026.11.06",
+          "level": "symbol",
+          "modified": "2026-10-08T22:31:09Z",
+          "module": "stdlib",
+          "published": "2026-10-08T22:31:09Z",
+          "summary": "Double flow control refund on HTTP/2 server streams in net/http",
           "version": "v1.26.6"
         },
         {
@@ -10914,11 +11047,16 @@
             "percentile": 0.44963,
             "score": 0.00528
           },
+          "epss_date": "2026-11-07T12:00:22Z",
           "fixed_version": "v1.26.9",
           "id": "GO-2026-6613",
           "kev": null,
+          "kev_cves": [],
+          "kev_snapshot": "2026.11.06",
           "level": "symbol",
+          "modified": "2026-10-08T22:31:09Z",
           "module": "stdlib",
+          "published": "2026-10-08T22:31:09Z",
           "summary": "HTTP/1 server connection desynchronization after 2xx CONNECT response in net/http",
           "version": "v1.26.6"
         },
@@ -10931,11 +11069,16 @@
             "percentile": 0.52481,
             "score": 0.00676
           },
+          "epss_date": "2026-11-07T12:00:22Z",
           "fixed_version": "v1.26.9",
           "id": "GO-2026-6617",
           "kev": null,
+          "kev_cves": [],
+          "kev_snapshot": "2026.11.06",
           "level": "symbol",
+          "modified": "2026-10-08T22:31:09Z",
           "module": "stdlib",
+          "published": "2026-10-08T22:31:09Z",
           "summary": "HTTP/2 server crash due to HPACK encoder race in net/http",
           "version": "v1.26.6"
         },
@@ -10948,11 +11091,16 @@
             "percentile": 0.34015,
             "score": 0.00396
           },
+          "epss_date": "2026-11-07T12:00:22Z",
           "fixed_version": "v1.26.10",
           "id": "GO-2026-6809",
           "kev": null,
+          "kev_cves": [],
+          "kev_snapshot": "2026.11.06",
           "level": "symbol",
+          "modified": "2026-10-21T00:27:29Z",
           "module": "stdlib",
+          "published": "2026-10-21T00:27:29Z",
           "summary": "Distrust compromised intermediate certificates in crypto/x509",
           "version": "v1.26.6"
         },
@@ -10966,13 +11114,84 @@
             "percentile": 0.26636,
             "score": 0.00333
           },
+          "epss_date": "2026-11-07T12:00:22Z",
           "fixed_version": "v1.20.2",
           "id": "GO-2026-6865",
           "kev": null,
+          "kev_cves": [],
+          "kev_snapshot": "2026.11.06",
           "level": "symbol",
+          "modified": "2026-11-05T22:54:32Z",
           "module": "github.com/klauspost/compress",
+          "published": "2026-11-05T22:54:32Z",
           "summary": "Panic on two-block frames in github.com/klauspost/compress",
           "version": "v1.20.0"
+        },
+        {
+          "aliases": [
+            "CVE-2026-78659"
+          ],
+          "epss": {
+            "cve": "CVE-2026-78659",
+            "percentile": 0.58917,
+            "score": 0.00866
+          },
+          "epss_date": "2026-11-07T12:00:22Z",
+          "fixed_version": "v0.60.0",
+          "id": "GO-2026-6603",
+          "kev": null,
+          "kev_cves": [],
+          "kev_snapshot": "2026.11.06",
+          "level": "symbol",
+          "modified": "2026-10-08T22:31:09Z",
+          "module": "golang.org/x/net",
+          "published": "2026-10-08T22:31:09Z",
+          "summary": "HTTP/2 server memory exhaustion due to Trailer headers in net/http",
+          "version": "v0.58.0"
+        },
+        {
+          "aliases": [
+            "CVE-2026-78660"
+          ],
+          "epss": {
+            "cve": "CVE-2026-78660",
+            "percentile": 0.45813,
+            "score": 0.00542
+          },
+          "epss_date": "2026-11-07T12:00:22Z",
+          "fixed_version": "v0.60.0",
+          "id": "GO-2026-6610",
+          "kev": null,
+          "kev_cves": [],
+          "kev_snapshot": "2026.11.06",
+          "level": "symbol",
+          "modified": "2026-10-08T22:31:09Z",
+          "module": "golang.org/x/net",
+          "published": "2026-10-08T22:31:09Z",
+          "summary": "HTTP/2 transport accepts malformed framing-related headers in net/http",
+          "version": "v0.58.0"
+        },
+        {
+          "aliases": [
+            "CVE-2026-78669"
+          ],
+          "epss": {
+            "cve": "CVE-2026-78669",
+            "percentile": 0.58324,
+            "score": 0.00847
+          },
+          "epss_date": "2026-11-07T12:00:22Z",
+          "fixed_version": "v0.60.0",
+          "id": "GO-2026-6611",
+          "kev": null,
+          "kev_cves": [],
+          "kev_snapshot": "2026.11.06",
+          "level": "symbol",
+          "modified": "2026-10-08T22:31:09Z",
+          "module": "golang.org/x/net",
+          "published": "2026-10-08T22:31:09Z",
+          "summary": "Excessive CPU consumption from repeated initial window changes in net/http",
+          "version": "v0.58.0"
         },
         {
           "aliases": [
@@ -10983,12 +11202,39 @@
             "percentile": 0.58678,
             "score": 0.00858
           },
+          "epss_date": "2026-11-07T12:00:22Z",
           "fixed_version": "v0.60.0",
           "id": "GO-2026-6612",
           "kev": null,
+          "kev_cves": [],
+          "kev_snapshot": "2026.11.06",
           "level": "symbol",
+          "modified": "2026-10-08T22:31:09Z",
           "module": "golang.org/x/net",
+          "published": "2026-10-08T22:31:09Z",
           "summary": "Double flow control refund on HTTP/2 server streams in net/http",
+          "version": "v0.58.0"
+        },
+        {
+          "aliases": [
+            "CVE-2026-97032"
+          ],
+          "epss": {
+            "cve": "CVE-2026-97032",
+            "percentile": 0.52481,
+            "score": 0.00676
+          },
+          "epss_date": "2026-11-07T12:00:22Z",
+          "fixed_version": "v0.60.0",
+          "id": "GO-2026-6617",
+          "kev": null,
+          "kev_cves": [],
+          "kev_snapshot": "2026.11.06",
+          "level": "symbol",
+          "modified": "2026-10-08T22:31:09Z",
+          "module": "golang.org/x/net",
+          "published": "2026-10-08T22:31:09Z",
+          "summary": "HTTP/2 server crash due to HPACK encoder race in net/http",
           "version": "v0.58.0"
         },
         {
@@ -11000,11 +11246,16 @@
             "percentile": 0.35396,
             "score": 0.00409
           },
+          "epss_date": "2026-11-07T12:00:22Z",
           "fixed_version": "v0.62.0",
           "id": "GO-2026-6860",
           "kev": null,
+          "kev_cves": [],
+          "kev_snapshot": "2026.11.06",
           "level": "symbol",
+          "modified": "2026-10-27T21:16:18Z",
           "module": "golang.org/x/net",
+          "published": "2026-10-27T21:16:18Z",
           "summary": "Avoid quadratic complexity when coalescing text nodes in html in golang.org/x/net",
           "version": "v0.58.0"
         },
@@ -11017,11 +11268,16 @@
             "percentile": 0.18952,
             "score": 0.00267
           },
+          "epss_date": "2026-11-07T12:00:22Z",
           "fixed_version": "v0.62.0",
           "id": "GO-2026-6866",
           "kev": null,
+          "kev_cves": [],
+          "kev_snapshot": "2026.11.06",
           "level": "symbol",
+          "modified": "2026-10-27T21:16:18Z",
           "module": "golang.org/x/net",
+          "published": "2026-10-27T21:16:18Z",
           "summary": "Check all ancestor namespace transitions when rendering raw text in html in golang.org/x/net",
           "version": "v0.58.0"
         },
@@ -11035,11 +11291,16 @@
             "percentile": 0.50969,
             "score": 0.00641
           },
+          "epss_date": "2026-11-07T12:00:22Z",
           "fixed_version": "v1.83.2",
           "id": "GO-2026-6443",
           "kev": null,
+          "kev_cves": [],
+          "kev_snapshot": "2026.11.06",
           "level": "symbol",
+          "modified": "2026-10-06T21:18:54Z",
           "module": "google.golang.org/grpc",
+          "published": "2026-09-15T18:39:25Z",
           "summary": "Server panic via missing authority or Host headers in google.golang.org/grpc",
           "version": "v1.83.1"
         },
@@ -11053,19 +11314,71 @@
             "percentile": 0.18599,
             "score": 0.00266
           },
+          "epss_date": "2026-11-07T12:00:22Z",
           "fixed_version": "v1.45.0",
           "id": "GO-2026-6505",
           "kev": null,
+          "kev_cves": [],
+          "kev_snapshot": "2026.11.06",
           "level": "module",
+          "modified": "2026-10-01T20:23:56Z",
           "module": "go.opentelemetry.io/otel/exporters/otlp/otlptrace",
+          "published": "2026-10-01T20:23:56Z",
           "summary": "OpenTelemetry-Go: Exporter config logging may leak endpoint URLs in info logs in go.opentelemetry.io/otel/exporters/otlp/otlptrace",
           "version": "v1.44.0"
+        },
+        {
+          "aliases": [
+            "CVE-2026-81870",
+            "GHSA-8wmf-6v46-5gfg"
+          ],
+          "epss": {
+            "cve": "CVE-2026-81870",
+            "percentile": 0.18599,
+            "score": 0.00266
+          },
+          "epss_date": "2026-11-07T12:00:22Z",
+          "fixed_version": "v1.45.0",
+          "id": "GO-2026-6505",
+          "kev": null,
+          "kev_cves": [],
+          "kev_snapshot": "2026.11.06",
+          "level": "module",
+          "modified": "2026-10-01T20:23:56Z",
+          "module": "go.opentelemetry.io/otel/exporters/otlp/otlptrace/otlptracehttp",
+          "published": "2026-10-01T20:23:56Z",
+          "summary": "OpenTelemetry-Go: Exporter config logging may leak endpoint URLs in info logs in go.opentelemetry.io/otel/exporters/otlp/otlptrace",
+          "version": "v1.44.0"
+        },
+        {
+          "aliases": [
+            "CVE-2026-81870",
+            "GHSA-8wmf-6v46-5gfg"
+          ],
+          "epss": {
+            "cve": "CVE-2026-81870",
+            "percentile": 0.18599,
+            "score": 0.00266
+          },
+          "epss_date": "2026-11-07T12:00:22Z",
+          "fixed_version": "v1.45.0",
+          "id": "GO-2026-6505",
+          "kev": null,
+          "kev_cves": [],
+          "kev_snapshot": "2026.11.06",
+          "level": "module",
+          "modified": "2026-10-01T20:23:56Z",
+          "module": "go.opentelemetry.io/otel/sdk",
+          "published": "2026-10-01T20:23:56Z",
+          "summary": "OpenTelemetry-Go: Exporter config logging may leak endpoint URLs in info logs in go.opentelemetry.io/otel/exporters/otlp/otlptrace",
+          "version": "v1.43.0"
         }
       ],
       "go_version": "go1.26.6",
       "main_module": "github.com/kubestellar/console"
     },
     "id": "kubestellar__console",
+    "lock_aliases": {},
     "manifests": [
       ".github/ga4-scripts/package-lock.json",
       ".github/ga4-scripts/package.json",
@@ -11190,6 +11503,11 @@
       "osv_only": [],
       "warning": null
     },
+    "osv_api": {
+      "available": true,
+      "queried_at": "2026-11-09T01:36:33+00:00",
+      "states": {}
+    },
     "ref": "v0.3.42",
     "ref_kind": "release",
     "release_integrity": {
@@ -11224,15 +11542,58 @@
     },
     "released_at": "2026-09-20T08:15:03Z",
     "repository": "kubestellar/console",
+    "sbom_sha256": "ee3079bf6c6ad71ff6f6d7ffe503c1c16421b442185d166fdd1e7a8fbb5fb1f2",
     "sbomlyze_diff": {
       "added": 0,
+      "baseline": {
+        "attempt": "1",
+        "run_id": "41380955266"
+      },
       "changed": 0,
+      "contract": "sbomlyze-diff-0.7",
       "drift": {},
       "findings": [
-        "0 version changes among 1,445 shared packages \u2014 no actual upgrades",
+        "0 version changes among 1,347 shared packages \u2014 no actual upgrades",
+        "Integrity drift checked only 101 of 1347 same-version packages; the rest carry no comparable digest",
         "Core system packages stable: npm (940), github (249), golang (102), file (98), pypi (50) unchanged"
       ],
-      "removed": 0
+      "occurrences": {
+        "added": [],
+        "digest_coverage": {
+          "after_only": 0,
+          "before_only": 0,
+          "by_kind": {
+            "go-h1": 101
+          },
+          "comparable": 101,
+          "disjoint_kinds": 0,
+          "packages_total": 1347,
+          "same_version_pairs": 1347
+        },
+        "file_changes": [],
+        "file_coverage": {
+          "ambiguous_paths": 0,
+          "config_unknown": 0,
+          "files_compared": 98,
+          "files_unverified": 0,
+          "owned_files_after": 0,
+          "unowned_files_after": 0
+        },
+        "files_added": [],
+        "files_removed": [],
+        "integrity_changes": [],
+        "license_changes": [],
+        "metadata_changes": [],
+        "moved": [],
+        "owned_file_drift": [],
+        "removed": [],
+        "source_change": null,
+        "version_changes": [],
+        "version_set_changes": []
+      },
+      "previous_sbom_sha256": "4b9c1d3639245731cefbfb4bd7978de211eda690f8b6b0d268a8f2664ce1f3c1",
+      "removed": 0,
+      "sbom_sha256": "ee3079bf6c6ad71ff6f6d7ffe503c1c16421b442185d166fdd1e7a8fbb5fb1f2"
     },
     "scanned_at": "2026-11-08T05:54:13+00:00",
     "scorecard": null,
@@ -11242,15 +11603,24 @@
         "aliases": [],
         "ecosystem": "pypi",
         "epss": null,
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "2026.10.18"
         ],
         "id": "GHSA-6q48-6c7w-9gw2",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": ".github/requirements-nightly.txt",
+        "locations": [
+          ".github/requirements-nightly.txt"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-10-30T14:00:02.590922333Z",
+        "osv_published": "2026-10-20T19:35:05Z",
         "package": "certifi",
+        "purl": "pkg:pypi/certifi@2026.6.17",
         "severity": "Critical",
         "summary": "certifi bundles emSign root CAs with compromised intermediate CA keys",
         "url": "https://github.com/advisories/GHSA-6q48-6c7w-9gw2",
@@ -11260,15 +11630,24 @@
         "aliases": [],
         "ecosystem": "npm",
         "epss": null,
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "3.4.17"
         ],
         "id": "GHSA-cg2g-xh64-v4q7",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "web/package-lock.json",
+        "locations": [
+          "web/package-lock.json"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-10-27T10:56:08.031469803Z",
+        "osv_published": "2026-10-22T16:25:31Z",
         "package": "dompurify",
+        "purl": "pkg:npm/dompurify@3.4.15",
         "severity": "Critical",
         "summary": "DOMPurify SAFE_FOR_TEMPLATES bypass: split template expressions survive in attached shadow root content on DOM output modes",
         "url": "https://github.com/advisories/GHSA-cg2g-xh64-v4q7",
@@ -11284,6 +11663,7 @@
           "percentile": 0.58678,
           "score": 0.00858
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "0.60.0"
@@ -11291,9 +11671,17 @@
         "id": "GO-2026-6612",
         "in_binary": "vulnerable code in binary",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "go.mod",
+        "locations": [
+          "go.mod"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-10-16T09:55:54.129082194Z",
+        "osv_published": "2026-10-08T22:31:09Z",
         "package": "golang.org/x/net",
+        "purl": "pkg:golang/golang.org/x/net@v0.58.0",
         "severity": "Critical",
         "summary": "The HTTP/2 server can refund connection-level flow control twice for the same data: Once when a client resets a stream (refunding data for any sent-but-unread portion of the stream), and again when a request handler reads the buffered data. A malicious client can exploit this to bypass the configure",
         "url": "https://go.dev/cl/847187",
@@ -11309,15 +11697,24 @@
           "percentile": 0.14645,
           "score": 0.00236
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "2.14.0"
         ],
         "id": "GHSA-ffc3-869f-jxw9",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": ".github/requirements-smoke.txt",
+        "locations": [
+          ".github/requirements-smoke.txt"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-10-01T17:55:42.096970476Z",
+        "osv_published": "2026-09-29T23:17:33Z",
         "package": "pyjwt",
+        "purl": "pkg:pypi/pyjwt@2.13.0",
         "severity": "Critical",
         "summary": "PyJWT: Asymmetric-PEM detection bypass: whitespace/line-ending-mutated public keys skip the HS/asymmetric confusion guard",
         "url": "https://github.com/advisories/GHSA-ffc3-869f-jxw9",
@@ -11333,15 +11730,24 @@
           "percentile": 0.32786,
           "score": 0.00385
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "10.6.2"
         ],
         "id": "GHSA-f2ph-cmg5-wxc8",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "web/package-lock.json",
+        "locations": [
+          "web/package-lock.json"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-10-21T17:35:19.889160714Z",
+        "osv_published": "2026-10-21T17:23:29Z",
         "package": "storybook",
+        "purl": "pkg:npm/storybook@10.6.0",
         "severity": "Critical",
         "summary": "Storybook: Missing origin validation in Storybook preview allows code injection from malicious websites",
         "url": "https://github.com/advisories/GHSA-f2ph-cmg5-wxc8",
@@ -11357,15 +11763,24 @@
           "percentile": 0.42609,
           "score": 0.00493
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "3.2.1"
         ],
         "id": "GHSA-x8mw-p69m-v3mx",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "web/package-lock.json",
+        "locations": [
+          "web/package-lock.json"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-10-02T23:30:05.651087437Z",
+        "osv_published": "2026-10-02T23:16:36Z",
         "package": "@fastify/busboy",
+        "purl": "pkg:npm/%40fastify/busboy@3.2.0",
         "severity": "High",
         "summary": "@fastify/busboy vulnerable to Denial of Service via prototype-named multipart part header",
         "url": "https://github.com/advisories/GHSA-x8mw-p69m-v3mx",
@@ -11381,15 +11796,24 @@
           "percentile": 0.49693,
           "score": 0.00615
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "3.2.1"
         ],
         "id": "GHSA-xjh9-v7x6-24jw",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "web/package-lock.json",
+        "locations": [
+          "web/package-lock.json"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-10-02T23:30:05.674605566Z",
+        "osv_published": "2026-10-02T23:16:17Z",
         "package": "@fastify/busboy",
+        "purl": "pkg:npm/%40fastify/busboy@3.2.0",
         "severity": "High",
         "summary": "@fastify/busboy vulnerable to Denial of Service via oversized multipart boundary",
         "url": "https://github.com/advisories/GHSA-xjh9-v7x6-24jw",
@@ -11405,15 +11829,24 @@
           "percentile": 0.45985,
           "score": 0.00545
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "1.20.0"
         ],
         "id": "GHSA-3pq3-5fj3-cg6v",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "web/package-lock.json",
+        "locations": [
+          "web/package-lock.json"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-09-30T15:15:04.067807024Z",
+        "osv_published": "2026-09-30T15:02:14Z",
         "package": "axios",
+        "purl": "pkg:npm/axios@1.18.1",
         "severity": "High",
         "summary": "Axios: HTTP/2 adapter bypasses configured DNS lookup and proxy controls",
         "url": "https://github.com/advisories/GHSA-3pq3-5fj3-cg6v",
@@ -11429,15 +11862,24 @@
           "percentile": 0.45424,
           "score": 0.00536
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "1.20.0"
         ],
         "id": "GHSA-542g-h47m-68v8",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "web/package-lock.json",
+        "locations": [
+          "web/package-lock.json"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-09-30T15:15:04.061469672Z",
+        "osv_published": "2026-09-30T15:01:07Z",
         "package": "axios",
+        "purl": "pkg:npm/axios@1.18.1",
         "severity": "High",
         "summary": "Axios: Denial of Service via Unhandled 'error' Event in HTTP/2 ClientHttp2Session Initialization",
         "url": "https://github.com/advisories/GHSA-542g-h47m-68v8",
@@ -11453,15 +11895,24 @@
           "percentile": 0.38099,
           "score": 0.00436
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "1.20.0"
         ],
         "id": "GHSA-c29m-xwm3-cm6r",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "web/package-lock.json",
+        "locations": [
+          "web/package-lock.json"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-09-30T15:15:04.064301486Z",
+        "osv_published": "2026-09-30T15:03:21Z",
         "package": "axios",
+        "purl": "pkg:npm/axios@1.18.1",
         "severity": "High",
         "summary": "Axios: ReDoS in fromDataURI data: URL parser freezes the Node event loop (DoS)",
         "url": "https://github.com/advisories/GHSA-c29m-xwm3-cm6r",
@@ -11477,15 +11928,24 @@
           "percentile": 0.36352,
           "score": 0.00418
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "1.20.0"
         ],
         "id": "GHSA-m8m8-qj5v-23w3",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "web/package-lock.json",
+        "locations": [
+          "web/package-lock.json"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-09-30T15:46:18.253717573Z",
+        "osv_published": "2026-09-30T15:32:51Z",
         "package": "axios",
+        "purl": "pkg:npm/axios@1.18.1",
         "severity": "High",
         "summary": "Axios: Node HTTP adapter prototype-pollution gadget allows request socket hijack via inherited createConnection",
         "url": "https://github.com/advisories/GHSA-m8m8-qj5v-23w3",
@@ -11501,15 +11961,24 @@
           "percentile": 0.39893,
           "score": 0.00457
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "1.20.0"
         ],
         "id": "GHSA-mghh-pgcx-3jjj",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "web/package-lock.json",
+        "locations": [
+          "web/package-lock.json"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-09-30T15:15:04.048176303Z",
+        "osv_published": "2026-09-30T15:03:02Z",
         "package": "axios",
+        "purl": "pkg:npm/axios@1.18.1",
         "severity": "High",
         "summary": "Axios: ReDoS (O(N\u00b2)) in shouldBypassProxy host normalization, reachable via untrusted redirect Location",
         "url": "https://github.com/advisories/GHSA-mghh-pgcx-3jjj",
@@ -11525,15 +11994,24 @@
           "percentile": 0.41009,
           "score": 0.00471
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "1.20.0"
         ],
         "id": "GHSA-r4gj-5m52-g5wh",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "web/package-lock.json",
+        "locations": [
+          "web/package-lock.json"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-09-30T15:45:41.466464360Z",
+        "osv_published": "2026-09-30T15:31:58Z",
         "package": "axios",
+        "purl": "pkg:npm/axios@1.18.1",
         "severity": "High",
         "summary": "Axios: maxRedirects: 0 is not enforced by the fetch adapter, allowing redirect-based SSRF",
         "url": "https://github.com/advisories/GHSA-r4gj-5m52-g5wh",
@@ -11549,15 +12027,24 @@
           "percentile": 0.42881,
           "score": 0.00497
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "1.20.0"
         ],
         "id": "GHSA-x97p-jq2g-jp4f",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "web/package-lock.json",
+        "locations": [
+          "web/package-lock.json"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-09-30T15:15:04.052506341Z",
+        "osv_published": "2026-09-30T15:02:45Z",
         "package": "axios",
+        "purl": "pkg:npm/axios@1.18.1",
         "severity": "High",
         "summary": "Axios: Prototype Pollution Gadget in axios toFormData Options",
         "url": "https://github.com/advisories/GHSA-x97p-jq2g-jp4f",
@@ -11573,15 +12060,24 @@
           "percentile": 0.39728,
           "score": 0.00455
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "2.1.5"
         ],
         "id": "GHSA-6j4f-fj2g-mc7p",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": ".github/ga4-scripts/package-lock.json",
+        "locations": [
+          ".github/ga4-scripts/package-lock.json"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-09-30T00:00:03.836613572Z",
+        "osv_published": "2026-09-29T23:44:58Z",
         "package": "brace-expansion",
+        "purl": "pkg:npm/brace-expansion@2.1.4",
         "severity": "High",
         "summary": "brace-expansion: DoS via uncontrolled recursion in parseCommaParts causing stack exhaustion",
         "url": "https://github.com/advisories/GHSA-6j4f-fj2g-mc7p",
@@ -11597,15 +12093,24 @@
           "percentile": 0.39728,
           "score": 0.00455
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "5.0.10"
         ],
         "id": "GHSA-6j4f-fj2g-mc7p",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "web/package-lock.json",
+        "locations": [
+          "web/package-lock.json"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-09-30T00:00:03.836613572Z",
+        "osv_published": "2026-09-29T23:44:58Z",
         "package": "brace-expansion",
+        "purl": "pkg:npm/brace-expansion@5.0.9",
         "severity": "High",
         "summary": "brace-expansion: DoS via uncontrolled recursion in parseCommaParts causing stack exhaustion",
         "url": "https://github.com/advisories/GHSA-6j4f-fj2g-mc7p",
@@ -11621,15 +12126,24 @@
           "percentile": 0.42446,
           "score": 0.00491
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "2.1.6"
         ],
         "id": "GHSA-qhr7-859c-m2p7",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": ".github/ga4-scripts/package-lock.json",
+        "locations": [
+          ".github/ga4-scripts/package-lock.json"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-09-30T00:00:04.402763332Z",
+        "osv_published": "2026-09-29T23:45:17Z",
         "package": "brace-expansion",
+        "purl": "pkg:npm/brace-expansion@2.1.4",
         "severity": "High",
         "summary": "brace-expansion: DoS via uncontrolled recursion on nested brace groups causing stack exhaustion",
         "url": "https://github.com/advisories/GHSA-qhr7-859c-m2p7",
@@ -11645,15 +12159,24 @@
           "percentile": 0.42446,
           "score": 0.00491
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "5.0.11"
         ],
         "id": "GHSA-qhr7-859c-m2p7",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "web/package-lock.json",
+        "locations": [
+          "web/package-lock.json"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-09-30T00:00:04.402763332Z",
+        "osv_published": "2026-09-29T23:45:17Z",
         "package": "brace-expansion",
+        "purl": "pkg:npm/brace-expansion@5.0.9",
         "severity": "High",
         "summary": "brace-expansion: DoS via uncontrolled recursion on nested brace groups causing stack exhaustion",
         "url": "https://github.com/advisories/GHSA-qhr7-859c-m2p7",
@@ -11663,15 +12186,24 @@
         "aliases": [],
         "ecosystem": "npm",
         "epss": null,
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "3.4.17"
         ],
         "id": "GHSA-mrv2-3pqr-j5jr",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "web/package-lock.json",
+        "locations": [
+          "web/package-lock.json"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-10-27T10:56:05.613459690Z",
+        "osv_published": "2026-10-22T16:24:52Z",
         "package": "dompurify",
+        "purl": "pkg:npm/dompurify@3.4.15",
         "severity": "High",
         "summary": "DOMPurify IN_PLACE: hook that removes a parent or sibling leaves the detached subtree's event handlers armed (incomplete fix for GHSA-p98j-92pf-mc4p)",
         "url": "https://github.com/advisories/GHSA-mrv2-3pqr-j5jr",
@@ -11687,15 +12219,24 @@
           "percentile": 0.40982,
           "score": 0.00471
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "1.16.1"
         ],
         "id": "GHSA-8r9p-f939-6h3c",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "web/package-lock.json",
+        "locations": [
+          "web/package-lock.json"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-10-20T18:00:04.701467015Z",
+        "osv_published": "2026-10-20T17:53:05Z",
         "package": "follow-redirects",
+        "purl": "pkg:npm/follow-redirects@1.16.0",
         "severity": "High",
         "summary": "follow-redirects sensitiveHeaders regex escaping can expose credential headers",
         "url": "https://github.com/advisories/GHSA-8r9p-f939-6h3c",
@@ -11711,15 +12252,24 @@
           "percentile": 0.1885,
           "score": 0.00266
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "1.16.2"
         ],
         "id": "GHSA-mrwp-f3q8-3g9p",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "web/package-lock.json",
+        "locations": [
+          "web/package-lock.json"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-10-30T23:15:06.315251750Z",
+        "osv_published": "2026-10-30T22:59:33Z",
         "package": "follow-redirects",
+        "purl": "pkg:npm/follow-redirects@1.16.0",
         "severity": "High",
         "summary": "follow-redirects: Cross-realm sensitiveHeaders arrays are discarded and custom credentials can follow redirects",
         "url": "https://github.com/advisories/GHSA-mrwp-f3q8-3g9p",
@@ -11735,15 +12285,24 @@
           "percentile": 0.40983,
           "score": 0.00471
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "1.16.1"
         ],
         "id": "GHSA-q3jh-wrc6-jgq8",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "web/package-lock.json",
+        "locations": [
+          "web/package-lock.json"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-10-20T18:15:04.527852751Z",
+        "osv_published": "2026-10-20T17:58:04Z",
         "package": "follow-redirects",
+        "purl": "pkg:npm/follow-redirects@1.16.0",
         "severity": "High",
         "summary": "follow-redirects array-form headers bypass cross-origin credential stripping",
         "url": "https://github.com/advisories/GHSA-q3jh-wrc6-jgq8",
@@ -11760,6 +12319,7 @@
           "percentile": 0.26636,
           "score": 0.00333
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "1.20.2"
@@ -11767,9 +12327,17 @@
         "id": "GO-2026-6865",
         "in_binary": "vulnerable code in binary",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "go.mod",
+        "locations": [
+          "go.mod"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-11-05T23:15:14.472777299Z",
+        "osv_published": "2026-11-05T22:54:32Z",
         "package": "github.com/klauspost/compress",
+        "purl": "pkg:golang/github.com/klauspost/compress@v1.20.0",
         "severity": "High",
         "summary": "Panic on two-block frames in github.com/klauspost/compress",
         "url": "https://github.com/klauspost/compress/security/advisories/GHSA-fpmh-frq8-7rj8",
@@ -11785,6 +12353,7 @@
           "percentile": 0.58917,
           "score": 0.00866
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "0.60.0"
@@ -11792,9 +12361,17 @@
         "id": "GO-2026-6603",
         "in_binary": "vulnerable code in binary",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "go.mod",
+        "locations": [
+          "go.mod"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-10-16T09:55:47.068117441Z",
+        "osv_published": "2026-10-08T22:31:09Z",
         "package": "golang.org/x/net",
+        "purl": "pkg:golang/golang.org/x/net@v0.58.0",
         "severity": "High",
         "summary": "When \"Trailer\" headers are sent by a client, the HTTP server internally uses the header values to populate the Request.Trailer map passed to the server handler. Because Request.Trailer is a map, each entry incurs memory overhead. For HTTP/2 servers, a malicious client can exploit this by sending a \"",
         "url": "https://go.dev/cl/847185",
@@ -11810,6 +12387,7 @@
           "percentile": 0.45813,
           "score": 0.00542
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "0.60.0"
@@ -11817,9 +12395,17 @@
         "id": "GO-2026-6610",
         "in_binary": "vulnerable code in binary",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "go.mod",
+        "locations": [
+          "go.mod"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-10-16T09:56:04.364467528Z",
+        "osv_published": "2026-10-08T22:31:09Z",
         "package": "golang.org/x/net",
+        "purl": "pkg:golang/golang.org/x/net@v0.58.0",
         "severity": "High",
         "summary": "Historically, we have been rather lax about malformed framing-related headers in our HTTP/2 implementation, as they cannot interfere with HTTP/2 framing. However, this makes it possible for our HTTP/2 implementation to forward responses containing such headers to an HTTP/1 client when acting as a re",
         "url": "https://go.dev/cl/835145",
@@ -11835,6 +12421,7 @@
           "percentile": 0.58324,
           "score": 0.00847
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "0.60.0"
@@ -11842,9 +12429,17 @@
         "id": "GO-2026-6611",
         "in_binary": "vulnerable code in binary",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "go.mod",
+        "locations": [
+          "go.mod"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-10-16T09:55:38.952277866Z",
+        "osv_published": "2026-10-08T22:31:09Z",
         "package": "golang.org/x/net",
+        "purl": "pkg:golang/golang.org/x/net@v0.58.0",
         "severity": "High",
         "summary": "A malicious HTTP/2 peer can cause excessive CPU consumption in the client or server by opening a large number of streams and then sending many small SETTINGS frames containing SETTINGS_INITIAL_WINDOW_SIZE values.",
         "url": "https://go.dev/cl/847186",
@@ -11860,6 +12455,7 @@
           "percentile": 0.52481,
           "score": 0.00676
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "0.60.0"
@@ -11867,9 +12463,17 @@
         "id": "GO-2026-6617",
         "in_binary": "vulnerable code in binary",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "go.mod",
+        "locations": [
+          "go.mod"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-10-16T09:55:57.350751224Z",
+        "osv_published": "2026-10-08T22:31:09Z",
         "package": "golang.org/x/net",
+        "purl": "pkg:golang/golang.org/x/net@v0.58.0",
         "severity": "High",
         "summary": "HTTP/2 servers could end up crashing due to inadvertently modifying its HPACK encoder concurrently. This happens because the server modifies the HPACK encoder from two goroutines without synchronization: one uses the encoder to encode a HEADERS frame as part of a response sent to a client and the ot",
         "url": "https://go.dev/cl/847188",
@@ -11885,6 +12489,7 @@
           "percentile": 0.35396,
           "score": 0.00409
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "0.62.0"
@@ -11892,9 +12497,17 @@
         "id": "GO-2026-6860",
         "in_binary": "vulnerable code in binary",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "go.mod",
+        "locations": [
+          "go.mod"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-10-27T21:30:04.890809062Z",
+        "osv_published": "2026-10-27T21:16:18Z",
         "package": "golang.org/x/net",
+        "purl": "pkg:golang/golang.org/x/net@v0.58.0",
         "severity": "High",
         "summary": "When coalescing adjacent text nodes in addText and fosterParent, appending to an existing TextNode's Data via string concatenation (n.Data += text) reallocated and copied the accumulated string on every token. Inputs containing many short text runs separated by ignored end tags (such as \"a</x>\") cau",
         "url": "https://go.dev/cl/849365",
@@ -11910,6 +12523,7 @@
           "percentile": 0.50969,
           "score": 0.00641
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "1.83.2"
@@ -11917,9 +12531,17 @@
         "id": "GHSA-2v4p-qf9q-27wj",
         "in_binary": "vulnerable code in binary",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "go.mod",
+        "locations": [
+          "go.mod"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-10-07T17:45:12.223368677Z",
+        "osv_published": "2026-09-08T21:21:43Z",
         "package": "google.golang.org/grpc",
+        "purl": "pkg:golang/google.golang.org/grpc@v1.83.1",
         "severity": "High",
         "summary": "gRPC-Go xDS servers: Denial of Service (DoS) via crash due to missing `:authority` and `Host` headers",
         "url": "https://github.com/advisories/GHSA-2v4p-qf9q-27wj",
@@ -11935,15 +12557,24 @@
           "percentile": 0.40681,
           "score": 0.00467
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "18.3.1"
         ],
         "id": "GHSA-4528-x5fx-h6hg",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "web/package-lock.json",
+        "locations": [
+          "web/package-lock.json"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-10-30T23:15:07.273035332Z",
+        "osv_published": "2026-10-30T23:10:23Z",
         "package": "joi",
+        "purl": "pkg:npm/joi@18.2.8",
         "severity": "High",
         "summary": "joi: quadratic-time split in `string().email({ multiple: true })` allows denial of service",
         "url": "https://github.com/advisories/GHSA-4528-x5fx-h6hg",
@@ -11959,15 +12590,24 @@
           "percentile": 0.13206,
           "score": 0.00225
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "2.14.0"
         ],
         "id": "GHSA-9j54-fg26-wv3r",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": ".github/requirements-smoke.txt",
+        "locations": [
+          ".github/requirements-smoke.txt"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-10-01T17:56:01.035847258Z",
+        "osv_published": "2026-09-29T23:43:19Z",
         "package": "pyjwt",
+        "purl": "pkg:pypi/pyjwt@2.13.0",
         "severity": "High",
         "summary": "PyJWT: PyJWK accepts empty HMAC keys, bypassing PyJWT's empty-key validation",
         "url": "https://github.com/advisories/GHSA-9j54-fg26-wv3r",
@@ -11983,15 +12623,24 @@
           "percentile": 0.05053,
           "score": 0.00159
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "2.14.0"
         ],
         "id": "GHSA-9v7f-9g4p-ffgj",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": ".github/requirements-smoke.txt",
+        "locations": [
+          ".github/requirements-smoke.txt"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-10-01T17:56:19.395032954Z",
+        "osv_published": "2026-09-29T23:15:00Z",
         "package": "pyjwt",
+        "purl": "pkg:pypi/pyjwt@2.13.0",
         "severity": "High",
         "summary": "PyJWT: PyJWKClient follows redirects when fetching JWKS",
         "url": "https://github.com/advisories/GHSA-9v7f-9g4p-ffgj",
@@ -12007,15 +12656,24 @@
           "percentile": 0.11935,
           "score": 0.00215
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "2.14.0"
         ],
         "id": "GHSA-p4g4-x82p-q773",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": ".github/requirements-smoke.txt",
+        "locations": [
+          ".github/requirements-smoke.txt"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-10-01T17:55:49.051187883Z",
+        "osv_published": "2026-09-29T23:14:33Z",
         "package": "pyjwt",
+        "purl": "pkg:pypi/pyjwt@2.13.0",
         "severity": "High",
         "summary": "PyJWT: Public keys in DER form are accepted as HMAC secrets, bypassing the CVE-2022-29217 guard",
         "url": "https://github.com/advisories/GHSA-p4g4-x82p-q773",
@@ -12025,15 +12683,24 @@
         "aliases": [],
         "ecosystem": "pypi",
         "epss": null,
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "2.14.0"
         ],
         "id": "GHSA-pxh4-856f-4h89",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": ".github/requirements-smoke.txt",
+        "locations": [
+          ".github/requirements-smoke.txt"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-10-22T16:00:09.127222029Z",
+        "osv_published": "2026-10-22T15:48:04Z",
         "package": "pyjwt",
+        "purl": "pkg:pypi/pyjwt@2.13.0",
         "severity": "High",
         "summary": "PyJWT: HS256/384/512 verify accepts empty HMAC key via oct JWK (PyJWK/PyJWKClient) enabling token forgery",
         "url": "https://github.com/advisories/GHSA-pxh4-856f-4h89",
@@ -12049,15 +12716,24 @@
           "percentile": 0.12187,
           "score": 0.00216
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "2.14.0"
         ],
         "id": "GHSA-r6x4-923q-g947",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": ".github/requirements-smoke.txt",
+        "locations": [
+          ".github/requirements-smoke.txt"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-10-01T17:56:05.452379838Z",
+        "osv_published": "2026-09-29T23:14:00Z",
         "package": "pyjwt",
+        "purl": "pkg:pypi/pyjwt@2.13.0",
         "severity": "High",
         "summary": "PyJWT BOM Bypass",
         "url": "https://github.com/advisories/GHSA-r6x4-923q-g947",
@@ -12073,15 +12749,24 @@
           "percentile": 0.06987,
           "score": 0.00175
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "2.14.0"
         ],
         "id": "GHSA-w2cx-738m-mc7w",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": ".github/requirements-smoke.txt",
+        "locations": [
+          ".github/requirements-smoke.txt"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-10-01T17:56:17.439454528Z",
+        "osv_published": "2026-09-29T23:16:55Z",
         "package": "pyjwt",
+        "purl": "pkg:pypi/pyjwt@2.13.0",
         "severity": "High",
         "summary": "PyJWT accepts public JWK containers as HMAC secrets",
         "url": "https://github.com/advisories/GHSA-w2cx-738m-mc7w",
@@ -12097,15 +12782,24 @@
           "percentile": 0.39728,
           "score": 0.00455
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "1.2.2"
         ],
         "id": "GHSA-68fv-2mgg-jv7q",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "web/package-lock.json",
+        "locations": [
+          "web/package-lock.json"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-10-05T23:45:07.974936711Z",
+        "osv_published": "2026-09-18T18:31:44Z",
         "package": "source-map-js",
+        "purl": "pkg:npm/source-map-js@1.2.1",
         "severity": "High",
         "summary": "source-map-js allows event-loop denial of service through indexed source-map section offsets",
         "url": "https://github.com/advisories/GHSA-68fv-2mgg-jv7q",
@@ -12121,15 +12815,24 @@
           "percentile": 0.44998,
           "score": 0.00529
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "10.6.2"
         ],
         "id": "GHSA-px85-f4q5-jh77",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "web/package-lock.json",
+        "locations": [
+          "web/package-lock.json"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-10-22T16:45:03.723842082Z",
+        "osv_published": "2026-10-22T16:31:40Z",
         "package": "storybook",
+        "purl": "pkg:npm/storybook@10.6.0",
         "severity": "High",
         "summary": "Storybook dev server vulnerable to code injection from the local network",
         "url": "https://github.com/advisories/GHSA-px85-f4q5-jh77",
@@ -12145,15 +12848,24 @@
           "percentile": 0.08057,
           "score": 0.00184
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "8.12.2"
         ],
         "id": "GHSA-2m5v-pch6-74hx",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "web/package-lock.json",
+        "locations": [
+          "web/package-lock.json"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-10-27T19:15:22.407771210Z",
+        "osv_published": "2026-10-27T19:02:26Z",
         "package": "undici",
+        "purl": "pkg:npm/undici@8.9.0",
         "severity": "High",
         "summary": "undici vulnerable to TLS certificate validation bypass via dropped tls options in Agent",
         "url": "https://github.com/advisories/GHSA-2m5v-pch6-74hx",
@@ -12169,15 +12881,24 @@
           "percentile": 0.04109,
           "score": 0.00149
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "8.12.2"
         ],
         "id": "GHSA-4w7w-5xrc-9h26",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "web/package-lock.json",
+        "locations": [
+          "web/package-lock.json"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-10-27T19:15:22.403656345Z",
+        "osv_published": "2026-10-27T19:02:31Z",
         "package": "undici",
+        "purl": "pkg:npm/undici@8.9.0",
         "severity": "High",
         "summary": "undici vulnerable to cache poisoning and cross-user disclosure via cross-origin redirects",
         "url": "https://github.com/advisories/GHSA-4w7w-5xrc-9h26",
@@ -12193,15 +12914,24 @@
           "percentile": 0.08379,
           "score": 0.00187
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "8.12.2"
         ],
         "id": "GHSA-qrxm-fqhp-jwvm",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "web/package-lock.json",
+        "locations": [
+          "web/package-lock.json"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-10-27T19:15:22.403573595Z",
+        "osv_published": "2026-10-27T19:02:21Z",
         "package": "undici",
+        "purl": "pkg:npm/undici@8.9.0",
         "severity": "High",
         "summary": "undici vulnerable to Denial of Service via TLS 1.2 certificate-changing renegotiation",
         "url": "https://github.com/advisories/GHSA-qrxm-fqhp-jwvm",
@@ -12217,15 +12947,24 @@
           "percentile": 0.33821,
           "score": 0.00394
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "8.10.2"
         ],
         "id": "GHSA-rfgv-xxqx-mfg5",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "web/package-lock.json",
+        "locations": [
+          "web/package-lock.json"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-09-29T18:30:41.167602268Z",
+        "osv_published": "2026-09-29T18:21:33Z",
         "package": "undici",
+        "purl": "pkg:npm/undici@8.9.0",
         "severity": "High",
         "summary": "undici vulnerable to Denial of Service via unrequested WebSocket subprotocol",
         "url": "https://github.com/advisories/GHSA-rfgv-xxqx-mfg5",
@@ -12241,15 +12980,24 @@
           "percentile": 0.07427,
           "score": 0.00178
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "8.10.2"
         ],
         "id": "GHSA-w293-vg96-wgc3",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "web/package-lock.json",
+        "locations": [
+          "web/package-lock.json"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-09-29T18:28:14.915098573Z",
+        "osv_published": "2026-09-29T18:17:15Z",
         "package": "undici",
+        "purl": "pkg:npm/undici@8.9.0",
         "severity": "High",
         "summary": "undici vulnerable to TLS certificate validation bypass via dropped connect options in BalancedPool",
         "url": "https://github.com/advisories/GHSA-w293-vg96-wgc3",
@@ -12265,15 +13013,24 @@
           "percentile": 0.28084,
           "score": 0.00344
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "8.12.2"
         ],
         "id": "GHSA-xjj6-f33q-929c",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "web/package-lock.json",
+        "locations": [
+          "web/package-lock.json"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-10-23T22:30:05.007687918Z",
+        "osv_published": "2026-10-23T22:14:31Z",
         "package": "undici",
+        "purl": "pkg:npm/undici@8.9.0",
         "severity": "High",
         "summary": "undici vulnerable to Denial of Service via unhandled error on excessive content-encodings",
         "url": "https://github.com/advisories/GHSA-xjj6-f33q-929c",
@@ -12289,15 +13046,24 @@
           "percentile": 0.10707,
           "score": 0.00206
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "2.8.0"
         ],
         "id": "GHSA-8988-9cw3-xx77",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": ".github/requirements-nightly.txt",
+        "locations": [
+          ".github/requirements-nightly.txt"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-10-01T17:55:53.793608550Z",
+        "osv_published": "2026-09-30T14:46:04Z",
         "package": "urllib3",
+        "purl": "pkg:pypi/urllib3@2.7.0",
         "severity": "High",
         "summary": "urllib3: HTTPS proxy TLS configuration may be ignored or overridden",
         "url": "https://github.com/advisories/GHSA-8988-9cw3-xx77",
@@ -12313,15 +13079,24 @@
           "percentile": 0.26984,
           "score": 0.00335
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "2.8.0"
         ],
         "id": "GHSA-vxq7-64xx-v4gw",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": ".github/requirements-nightly.txt",
+        "locations": [
+          ".github/requirements-nightly.txt"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-10-01T17:55:57.514829071Z",
+        "osv_published": "2026-09-30T14:46:18Z",
         "package": "urllib3",
+        "purl": "pkg:pypi/urllib3@2.7.0",
         "severity": "High",
         "summary": "urllib3: HTTPResponse.stream()/read_chunked() buffers an unbounded chunk-size line into memory",
         "url": "https://github.com/advisories/GHSA-vxq7-64xx-v4gw",
@@ -12337,15 +13112,24 @@
           "percentile": 0.71564,
           "score": 0.01344
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "8.3.3"
         ],
         "id": "GHSA-587h-7wmj-h5pm",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "web/package-lock.json",
+        "locations": [
+          "web/package-lock.json"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-10-20T20:00:04.608979840Z",
+        "osv_published": "2026-10-20T19:48:25Z",
         "package": "vite",
+        "purl": "pkg:npm/vite@8.3.0",
         "severity": "High",
         "summary": "launch-editor: `fs.existsSync()` existence check can be bypassed on Windows",
         "url": "https://github.com/advisories/GHSA-587h-7wmj-h5pm",
@@ -12357,15 +13141,24 @@
         ],
         "ecosystem": "npm",
         "epss": null,
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "4.6.6"
         ],
         "id": "GHSA-mrhx-c7xc-m3w5",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "web/package-lock.json",
+        "locations": [
+          "web/package-lock.json"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-10-23T18:30:09.376405885Z",
+        "osv_published": "2026-10-01T18:32:46Z",
         "package": "zod",
+        "purl": "pkg:npm/zod@4.6.5",
         "severity": "High",
         "summary": "Zod can exhaust memory while validating oversized constrained collections",
         "url": "https://github.com/advisories/GHSA-mrhx-c7xc-m3w5",
@@ -12381,15 +13174,24 @@
           "percentile": 0.25856,
           "score": 0.00326
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "3.2.2"
         ],
         "id": "GHSA-gxm5-99cw-xjw9",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "web/package-lock.json",
+        "locations": [
+          "web/package-lock.json"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-10-05T22:45:04.558942837Z",
+        "osv_published": "2026-10-05T22:33:44Z",
         "package": "@fastify/busboy",
+        "purl": "pkg:npm/%40fastify/busboy@3.2.0",
         "severity": "Medium",
         "summary": "@fastify/busboy vulnerable to CRLF injection via multipart Content-Disposition filename and name",
         "url": "https://github.com/advisories/GHSA-gxm5-99cw-xjw9",
@@ -12405,15 +13207,24 @@
           "percentile": 0.27171,
           "score": 0.00336
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "5.0.3"
         ],
         "id": "GHSA-qxg6-89mg-rqv8",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "web/package-lock.json",
+        "locations": [
+          "web/package-lock.json"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-10-21T20:01:39.911013327Z",
+        "osv_published": "2026-10-21T19:54:26Z",
         "package": "@vitest/mocker",
+        "purl": "pkg:npm/%40vitest/mocker@5.0.1",
         "severity": "Medium",
         "summary": "Vitest: Code injection via unauthenticated manual mock registration",
         "url": "https://github.com/advisories/GHSA-qxg6-89mg-rqv8",
@@ -12429,15 +13240,24 @@
           "percentile": 0.45789,
           "score": 0.00542
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "5.0.3"
         ],
         "id": "GHSA-xp26-3454-mjgp",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "web/package-lock.json",
+        "locations": [
+          "web/package-lock.json"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-10-21T20:01:41.013649429Z",
+        "osv_published": "2026-10-21T19:48:38Z",
         "package": "@vitest/mocker",
+        "purl": "pkg:npm/%40vitest/mocker@5.0.1",
         "severity": "Medium",
         "summary": "Vitest: Windows backslash traversal bypasses the @vitest/mocker redirect allowlist fix",
         "url": "https://github.com/advisories/GHSA-xp26-3454-mjgp",
@@ -12453,15 +13273,24 @@
           "percentile": 0.34535,
           "score": 0.004
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "5.0.5"
         ],
         "id": "GHSA-p458-7748-mcp3",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "web/package-lock.json",
+        "locations": [
+          "web/package-lock.json"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-10-21T20:01:39.862679779Z",
+        "osv_published": "2026-10-21T19:57:00Z",
         "package": "@vitest/ui",
+        "purl": "pkg:npm/%40vitest/ui@5.0.0",
         "severity": "Medium",
         "summary": "Vitest: Servers misapply `server.fs.deny`, serving `.env`, private keys, `.git`, and the API token file",
         "url": "https://github.com/advisories/GHSA-p458-7748-mcp3",
@@ -12477,15 +13306,24 @@
           "percentile": 0.43917,
           "score": 0.00512
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "1.20.0"
         ],
         "id": "GHSA-44g4-m2mj-wpvx",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "web/package-lock.json",
+        "locations": [
+          "web/package-lock.json"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-09-30T15:45:41.069795706Z",
+        "osv_published": "2026-09-30T15:32:30Z",
         "package": "axios",
+        "purl": "pkg:npm/axios@1.18.1",
         "severity": "Medium",
         "summary": "Axios: CIDR-form NO_PROXY entries are ignored, causing proxy exclusion bypass for internal IP ranges",
         "url": "https://github.com/advisories/GHSA-44g4-m2mj-wpvx",
@@ -12501,15 +13339,24 @@
           "percentile": 0.46028,
           "score": 0.00546
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "1.20.0"
         ],
         "id": "GHSA-4hqw-qxg8-jxx2",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "web/package-lock.json",
+        "locations": [
+          "web/package-lock.json"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-09-30T15:46:17.701967512Z",
+        "osv_published": "2026-09-30T15:34:46Z",
         "package": "axios",
+        "purl": "pkg:npm/axios@1.18.1",
         "severity": "Medium",
         "summary": "Axios: Fetch Adapter Header Injection via Inherited FormData getHeaders",
         "url": "https://github.com/advisories/GHSA-4hqw-qxg8-jxx2",
@@ -12525,15 +13372,24 @@
           "percentile": 0.35911,
           "score": 0.00414
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "1.20.0"
         ],
         "id": "GHSA-9fr6-4gfg-395g",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "web/package-lock.json",
+        "locations": [
+          "web/package-lock.json"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-09-30T15:30:03.718390401Z",
+        "osv_published": "2026-09-30T15:12:49Z",
         "package": "axios",
+        "purl": "pkg:npm/axios@1.18.1",
         "severity": "Medium",
         "summary": "Axios: Prototype-Pollution Gadget in the Default Instance Allows Inherited Object.prototype.method to Override HTTP Method",
         "url": "https://github.com/advisories/GHSA-9fr6-4gfg-395g",
@@ -12549,15 +13405,24 @@
           "percentile": 0.42275,
           "score": 0.00488
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "1.20.0"
         ],
         "id": "GHSA-j8rh-479h-cp32",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "web/package-lock.json",
+        "locations": [
+          "web/package-lock.json"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-09-30T15:46:18.108444439Z",
+        "osv_published": "2026-09-30T15:35:14Z",
         "package": "axios",
+        "purl": "pkg:npm/axios@1.18.1",
         "severity": "Medium",
         "summary": "Axios: Header Injection via Inherited headers After Minimal Interceptor",
         "url": "https://github.com/advisories/GHSA-j8rh-479h-cp32",
@@ -12573,15 +13438,24 @@
           "percentile": 0.40939,
           "score": 0.00471
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "1.20.0"
         ],
         "id": "GHSA-vh66-26gq-q6x8",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "web/package-lock.json",
+        "locations": [
+          "web/package-lock.json"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-09-30T15:30:04.438497820Z",
+        "osv_published": "2026-09-30T15:13:16Z",
         "package": "axios",
+        "purl": "pkg:npm/axios@1.18.1",
         "severity": "Medium",
         "summary": "Axios: Prototype pollution gadget in fetch adapter can alter outbound requests",
         "url": "https://github.com/advisories/GHSA-vh66-26gq-q6x8",
@@ -12597,15 +13471,24 @@
           "percentile": 0.37326,
           "score": 0.00428
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "2.1.7"
         ],
         "id": "GHSA-q2hr-2g5m-vwhr",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": ".github/ga4-scripts/package-lock.json",
+        "locations": [
+          ".github/ga4-scripts/package-lock.json"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-09-30T00:00:03.849541183Z",
+        "osv_published": "2026-09-29T23:45:39Z",
         "package": "brace-expansion",
+        "purl": "pkg:npm/brace-expansion@2.1.4",
         "severity": "Medium",
         "summary": "brace-expansion: Quadratic-time expansion of the `{a},b}` rewrite causes CPU denial of service",
         "url": "https://github.com/advisories/GHSA-q2hr-2g5m-vwhr",
@@ -12621,15 +13504,24 @@
           "percentile": 0.37326,
           "score": 0.00428
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "5.0.12"
         ],
         "id": "GHSA-q2hr-2g5m-vwhr",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "web/package-lock.json",
+        "locations": [
+          "web/package-lock.json"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-09-30T00:00:03.849541183Z",
+        "osv_published": "2026-09-29T23:45:39Z",
         "package": "brace-expansion",
+        "purl": "pkg:npm/brace-expansion@5.0.9",
         "severity": "Medium",
         "summary": "brace-expansion: Quadratic-time expansion of the `{a},b}` rewrite causes CPU denial of service",
         "url": "https://github.com/advisories/GHSA-q2hr-2g5m-vwhr",
@@ -12645,15 +13537,24 @@
           "percentile": 0.16845,
           "score": 0.00253
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "4.1.5"
         ],
         "id": "GHSA-hrr3-gc8f-f4qj",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": ".github/kb-scripts/package-lock.json",
+        "locations": [
+          ".github/kb-scripts/package-lock.json"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-09-30T00:00:04.426165475Z",
+        "osv_published": "2026-09-29T23:54:25Z",
         "package": "fast-uri",
+        "purl": "pkg:npm/fast-uri@4.1.4",
         "severity": "Medium",
         "summary": "fast-uri vulnerable to inconsistent host case normalization via percent-encoded octets",
         "url": "https://github.com/advisories/GHSA-hrr3-gc8f-f4qj",
@@ -12669,15 +13570,24 @@
           "percentile": 0.16845,
           "score": 0.00253
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "4.1.5"
         ],
         "id": "GHSA-jvvf-x445-j334",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": ".github/kb-scripts/package-lock.json",
+        "locations": [
+          ".github/kb-scripts/package-lock.json"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-09-30T00:00:03.854518772Z",
+        "osv_published": "2026-09-29T23:51:16Z",
         "package": "fast-uri",
+        "purl": "pkg:npm/fast-uri@4.1.4",
         "severity": "Medium",
         "summary": "fast-uri vulnerable to mailto header injection via percent-encoded field-name desynchronization",
         "url": "https://github.com/advisories/GHSA-jvvf-x445-j334",
@@ -12693,15 +13603,24 @@
           "percentile": 0.16394,
           "score": 0.0025
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "4.2.3"
         ],
         "id": "GHSA-w74x-v6f9-j3xg",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": ".github/kb-scripts/package-lock.json",
+        "locations": [
+          ".github/kb-scripts/package-lock.json"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-10-23T21:45:04.896137439Z",
+        "osv_published": "2026-10-23T21:41:36Z",
         "package": "fast-uri",
+        "purl": "pkg:npm/fast-uri@4.1.4",
         "severity": "Medium",
         "summary": "fast-uri vulnerable to URI scheme spoofing via percent-encoded scheme decoding",
         "url": "https://github.com/advisories/GHSA-w74x-v6f9-j3xg",
@@ -12717,15 +13636,24 @@
           "percentile": 0.17172,
           "score": 0.00255
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "4.2.3"
         ],
         "id": "GHSA-wjr9-j795-jxcr",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": ".github/kb-scripts/package-lock.json",
+        "locations": [
+          ".github/kb-scripts/package-lock.json"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-10-23T21:45:04.892054666Z",
+        "osv_published": "2026-10-23T21:37:59Z",
         "package": "fast-uri",
+        "purl": "pkg:npm/fast-uri@4.1.4",
         "severity": "Medium",
         "summary": "fast-uri vulnerable to host confusion via unchecked WHATWG host canonicalization",
         "url": "https://github.com/advisories/GHSA-wjr9-j795-jxcr",
@@ -12741,15 +13669,24 @@
           "percentile": 0.28872,
           "score": 0.0035
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "14.0.2"
         ],
         "id": "GHSA-3g3m-2fjr-6pw4",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": ".github/ga4-scripts/package-lock.json",
+        "locations": [
+          ".github/ga4-scripts/package-lock.json"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-10-30T23:15:04.503965732Z",
+        "osv_published": "2026-10-30T23:09:11Z",
         "package": "glob",
+        "purl": "pkg:npm/glob@10.5.0",
         "severity": "Medium",
         "summary": "Glob: AbortSignal cancellation bypass allows post-timeout filesystem traversal",
         "url": "https://github.com/advisories/GHSA-3g3m-2fjr-6pw4",
@@ -12765,15 +13702,24 @@
           "percentile": 0.28872,
           "score": 0.0035
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "14.0.2"
         ],
         "id": "GHSA-3g3m-2fjr-6pw4",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "web/package-lock.json",
+        "locations": [
+          "web/package-lock.json"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-10-30T23:15:04.503965732Z",
+        "osv_published": "2026-10-30T23:09:11Z",
         "package": "glob",
+        "purl": "pkg:npm/glob@13.0.6",
         "severity": "Medium",
         "summary": "Glob: AbortSignal cancellation bypass allows post-timeout filesystem traversal",
         "url": "https://github.com/advisories/GHSA-3g3m-2fjr-6pw4",
@@ -12789,6 +13735,7 @@
           "percentile": 0.18952,
           "score": 0.00267
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "0.62.0"
@@ -12796,9 +13743,17 @@
         "id": "GO-2026-6866",
         "in_binary": "vulnerable code in binary",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "go.mod",
+        "locations": [
+          "go.mod"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-10-27T21:45:08.978077289Z",
+        "osv_published": "2026-10-27T21:16:18Z",
         "package": "golang.org/x/net",
+        "purl": "pkg:golang/golang.org/x/net@v0.58.0",
         "severity": "Medium",
         "summary": "In childTextNodesAreLiteral, walking up the tree previously stopped at the nearest foreign ancestor once an HTML integration point was found. However, that integration point may itself be a descendant of an element that was foster-parented into a foreign namespace (such as <mglyph> or <malignmark> f",
         "url": "https://go.dev/cl/855121",
@@ -12814,15 +13769,24 @@
           "percentile": 0.33246,
           "score": 0.00389
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "18.2.9"
         ],
         "id": "GHSA-wr44-6hxh-3jwq",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "web/package-lock.json",
+        "locations": [
+          "web/package-lock.json"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-10-05T23:45:08.228760837Z",
+        "osv_published": "2026-09-13T12:31:12Z",
         "package": "joi",
+        "purl": "pkg:npm/joi@18.2.8",
         "severity": "Medium",
         "summary": "joi messages compilation allows prototype replacement through __proto__ error codes",
         "url": "https://github.com/advisories/GHSA-wr44-6hxh-3jwq",
@@ -12838,15 +13802,24 @@
           "percentile": 0.23009,
           "score": 0.00301
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "11.0.1"
         ],
         "id": "GHSA-g3hv-75wg-m249",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "web/package-lock.json",
+        "locations": [
+          "web/package-lock.json"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-11-04T17:01:25.850114200Z",
+        "osv_published": "2026-10-30T23:09:55Z",
         "package": "minimatch",
+        "purl": "pkg:npm/minimatch@10.2.5",
         "severity": "Medium",
         "summary": "minimatch has potential denial of service via globparts amplification",
         "url": "https://github.com/advisories/GHSA-g3hv-75wg-m249",
@@ -12862,15 +13835,24 @@
           "percentile": 0.23009,
           "score": 0.00301
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "11.0.1"
         ],
         "id": "GHSA-g3hv-75wg-m249",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": ".github/ga4-scripts/package-lock.json",
+        "locations": [
+          ".github/ga4-scripts/package-lock.json"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-11-04T17:01:25.850114200Z",
+        "osv_published": "2026-10-30T23:09:55Z",
         "package": "minimatch",
+        "purl": "pkg:npm/minimatch@9.0.9",
         "severity": "Medium",
         "summary": "minimatch has potential denial of service via globparts amplification",
         "url": "https://github.com/advisories/GHSA-g3hv-75wg-m249",
@@ -12886,15 +13868,24 @@
           "percentile": 0.42187,
           "score": 0.00487
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "1.45.1"
         ],
         "id": "GHSA-xcq7-p3pf-p88h",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": ".github/requirements-nightly.txt",
+        "locations": [
+          ".github/requirements-nightly.txt"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-10-22T16:30:40.999595074Z",
+        "osv_published": "2026-10-22T16:22:07Z",
         "package": "opentelemetry-api",
+        "purl": "pkg:pypi/opentelemetry-api@1.44.0",
         "severity": "Medium",
         "summary": "OpenTelemetry Python: Unbounded tracestate parsing in opentelemetry-api",
         "url": "https://github.com/advisories/GHSA-xcq7-p3pf-p88h",
@@ -12910,15 +13901,24 @@
           "percentile": 0.37246,
           "score": 0.00428
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "2.14.0"
         ],
         "id": "GHSA-2gx3-rcp4-g85q",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": ".github/requirements-smoke.txt",
+        "locations": [
+          ".github/requirements-smoke.txt"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-10-01T17:56:20.150726241Z",
+        "osv_published": "2026-09-29T23:11:51Z",
         "package": "pyjwt",
+        "purl": "pkg:pypi/pyjwt@2.13.0",
         "severity": "Medium",
         "summary": "PyJWT: PyJWKClient still amplifies unauthenticated JWKS fetches on unknown kid values (incomplete fix of CVE-2026-48524)",
         "url": "https://github.com/advisories/GHSA-2gx3-rcp4-g85q",
@@ -12934,15 +13934,24 @@
           "percentile": 0.35834,
           "score": 0.00413
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "2.15.0"
         ],
         "id": "GHSA-42vr-xj54-vc7v",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": ".github/requirements-smoke.txt",
+        "locations": [
+          ".github/requirements-smoke.txt"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-10-01T17:56:09.538835697Z",
+        "osv_published": "2026-09-30T15:41:05Z",
         "package": "pyjwt",
+        "purl": "pkg:pypi/pyjwt@2.13.0",
         "severity": "Medium",
         "summary": "PyJWT: Unauthenticated RecursionError DoS in pre-verification payload parse (PyJWKClient.get_signing_key_from_jwt / verify_signature=False)",
         "url": "https://github.com/advisories/GHSA-42vr-xj54-vc7v",
@@ -12958,15 +13967,24 @@
           "percentile": 0.28003,
           "score": 0.00343
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "2.14.0"
         ],
         "id": "GHSA-8wjv-2p76-3863",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": ".github/requirements-smoke.txt",
+        "locations": [
+          ".github/requirements-smoke.txt"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-10-01T17:55:45.157085612Z",
+        "osv_published": "2026-09-29T23:43:06Z",
         "package": "pyjwt",
+        "purl": "pkg:pypi/pyjwt@2.13.0",
         "severity": "Medium",
         "summary": "PyJWT: Uncaught RecursionError in jwt.decode() on deeply nested token header",
         "url": "https://github.com/advisories/GHSA-8wjv-2p76-3863",
@@ -12982,13 +14000,22 @@
           "percentile": 0.17437,
           "score": 0.00257
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "not-fixed",
         "fixed_in": [],
         "id": "GHSA-gvp8-978c-rx2q",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": ".github/requirements-smoke.txt",
+        "locations": [
+          ".github/requirements-smoke.txt"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-10-01T17:55:53.001409325Z",
+        "osv_published": "2026-09-30T23:53:17Z",
         "package": "pyjwt",
+        "purl": "pkg:pypi/pyjwt@2.13.0",
         "severity": "Medium",
         "summary": "PyJWT.decode() reintroduces options-dict mutation, enabling silent claim-verification bypass on dict reuse",
         "url": "https://github.com/advisories/GHSA-gvp8-978c-rx2q",
@@ -13004,15 +14031,24 @@
           "percentile": 0.13054,
           "score": 0.00224
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "2.14.0"
         ],
         "id": "GHSA-hxm8-2xgr-2p9m",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": ".github/requirements-smoke.txt",
+        "locations": [
+          ".github/requirements-smoke.txt"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-10-01T17:55:59.204638768Z",
+        "osv_published": "2026-09-29T23:17:55Z",
         "package": "pyjwt",
+        "purl": "pkg:pypi/pyjwt@2.13.0",
         "severity": "Medium",
         "summary": "PyJWT: Non-canonical signature segments enable raw-token revocation bypass",
         "url": "https://github.com/advisories/GHSA-hxm8-2xgr-2p9m",
@@ -13028,15 +14064,24 @@
           "percentile": 0.15876,
           "score": 0.00246
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "2.14.0"
         ],
         "id": "GHSA-jwrc-g2q2-pq5p",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": ".github/requirements-smoke.txt",
+        "locations": [
+          ".github/requirements-smoke.txt"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-10-01T17:55:44.209063147Z",
+        "osv_published": "2026-09-30T14:40:25Z",
         "package": "pyjwt",
+        "purl": "pkg:pypi/pyjwt@2.13.0",
         "severity": "Medium",
         "summary": "PyJWT: ReDoS vulnerability when calling the `is_pem_format` function.",
         "url": "https://github.com/advisories/GHSA-jwrc-g2q2-pq5p",
@@ -13052,15 +14097,24 @@
           "percentile": 0.46202,
           "score": 0.00549
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "2.14.0"
         ],
         "id": "GHSA-w6j9-cwv2-h6wq",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": ".github/requirements-smoke.txt",
+        "locations": [
+          ".github/requirements-smoke.txt"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-10-01T17:55:45.889604470Z",
+        "osv_published": "2026-09-29T18:23:01Z",
         "package": "pyjwt",
+        "purl": "pkg:pypi/pyjwt@2.13.0",
         "severity": "Medium",
         "summary": "PyJWT: Malformed RSA JWK aborts parsing of an entire JWK Set",
         "url": "https://github.com/advisories/GHSA-w6j9-cwv2-h6wq",
@@ -13076,15 +14130,24 @@
           "percentile": 0.05984,
           "score": 0.00167
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "2.15.0"
         ],
         "id": "GHSA-x33g-cr3x-6449",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": ".github/requirements-smoke.txt",
+        "locations": [
+          ".github/requirements-smoke.txt"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-10-07T10:11:04.862065390Z",
+        "osv_published": "2026-09-28T21:17:15.857Z",
         "package": "pyjwt",
+        "purl": "pkg:pypi/pyjwt@2.13.0",
         "severity": "Medium",
         "summary": "PyJWT accepts inconsistent OKP x/d JWKs, causing public/private key identity confusion",
         "url": "https://github.com/advisories/GHSA-x33g-cr3x-6449",
@@ -13100,15 +14163,24 @@
           "percentile": 0.30881,
           "score": 0.00368
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "6.16.1"
         ],
         "id": "GHSA-6pq8-jhm2-2vcw",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": ".github/ga4-scripts/package-lock.json",
+        "locations": [
+          ".github/ga4-scripts/package-lock.json"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-10-27T16:15:05.324423680Z",
+        "osv_published": "2026-10-27T16:10:55Z",
         "package": "qs",
+        "purl": "pkg:npm/qs@6.16.0",
         "severity": "Medium",
         "summary": "qs : qs.stringify with arrayFormat 'comma' throws an uncaught TypeError on array elements carrying a non-callable own toString (DoS)",
         "url": "https://github.com/advisories/GHSA-6pq8-jhm2-2vcw",
@@ -13124,15 +14196,24 @@
           "percentile": 0.23184,
           "score": 0.00303
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "8.10.2"
         ],
         "id": "GHSA-2jfj-6hjv-fm6j",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "web/package-lock.json",
+        "locations": [
+          "web/package-lock.json"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-09-29T18:30:41.174435110Z",
+        "osv_published": "2026-09-29T18:19:58Z",
         "package": "undici",
+        "purl": "pkg:npm/undici@8.9.0",
         "severity": "Medium",
         "summary": "undici vulnerable to cross-user cookie disclosure via Set-Cookie caching in shared caches",
         "url": "https://github.com/advisories/GHSA-2jfj-6hjv-fm6j",
@@ -13148,15 +14229,24 @@
           "percentile": 0.3573,
           "score": 0.00412
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "8.10.2"
         ],
         "id": "GHSA-3wwx-pv8p-q78v",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "web/package-lock.json",
+        "locations": [
+          "web/package-lock.json"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-09-28T22:00:08.266327162Z",
+        "osv_published": "2026-09-28T21:42:37Z",
         "package": "undici",
+        "purl": "pkg:npm/undici@8.9.0",
         "severity": "Medium",
         "summary": "undici vulnerable to Denial of Service via unhandled error in WebSocket permessage-deflate decompression",
         "url": "https://github.com/advisories/GHSA-3wwx-pv8p-q78v",
@@ -13172,15 +14262,24 @@
           "percentile": 0.35732,
           "score": 0.00412
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "8.10.2"
         ],
         "id": "GHSA-3xpg-4rpp-hhhm",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "web/package-lock.json",
+        "locations": [
+          "web/package-lock.json"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-09-29T18:30:41.143057118Z",
+        "osv_published": "2026-09-29T18:20:37Z",
         "package": "undici",
+        "purl": "pkg:npm/undici@8.9.0",
         "severity": "Medium",
         "summary": "undici vulnerable to Denial of Service via unbounded decompression of compressed responses",
         "url": "https://github.com/advisories/GHSA-3xpg-4rpp-hhhm",
@@ -13196,15 +14295,24 @@
           "percentile": 0.25247,
           "score": 0.00321
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "8.12.2"
         ],
         "id": "GHSA-4qv8-2p9j-2685",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "web/package-lock.json",
+        "locations": [
+          "web/package-lock.json"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-10-23T22:30:04.104974737Z",
+        "osv_published": "2026-10-23T22:13:29Z",
         "package": "undici",
+        "purl": "pkg:npm/undici@8.9.0",
         "severity": "Medium",
         "summary": "undici vulnerable to Denial of Service via unbounded memory in the EventSource parser",
         "url": "https://github.com/advisories/GHSA-4qv8-2p9j-2685",
@@ -13220,15 +14328,24 @@
           "percentile": 0.17838,
           "score": 0.0026
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "8.12.2"
         ],
         "id": "GHSA-55wc-3pg8-jfw6",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "web/package-lock.json",
+        "locations": [
+          "web/package-lock.json"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-10-27T19:15:22.392692308Z",
+        "osv_published": "2026-10-27T19:02:10Z",
         "package": "undici",
+        "purl": "pkg:npm/undici@8.9.0",
         "severity": "Medium",
         "summary": "undici vulnerable to Denial of Service via unhandled exception in the decompress interceptor",
         "url": "https://github.com/advisories/GHSA-55wc-3pg8-jfw6",
@@ -13244,15 +14361,24 @@
           "percentile": 0.25247,
           "score": 0.00321
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "8.12.2"
         ],
         "id": "GHSA-9fm3-97px-rjf6",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "web/package-lock.json",
+        "locations": [
+          "web/package-lock.json"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-10-27T19:15:22.400702743Z",
+        "osv_published": "2026-10-27T19:02:15Z",
         "package": "undici",
+        "purl": "pkg:npm/undici@8.9.0",
         "severity": "Medium",
         "summary": "undici WebSocket client vulnerable to Denial of Service via unbounded automatic PONG buffering",
         "url": "https://github.com/advisories/GHSA-9fm3-97px-rjf6",
@@ -13268,15 +14394,24 @@
           "percentile": 0.16734,
           "score": 0.00252
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "8.12.2"
         ],
         "id": "GHSA-f72v-6w45-q472",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "web/package-lock.json",
+        "locations": [
+          "web/package-lock.json"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-10-23T22:30:04.094314933Z",
+        "osv_published": "2026-10-23T22:12:57Z",
         "package": "undici",
+        "purl": "pkg:npm/undici@8.9.0",
         "severity": "Medium",
         "summary": "undici vulnerable to Subresource Integrity bypass via non-lowercase algorithm tokens",
         "url": "https://github.com/advisories/GHSA-f72v-6w45-q472",
@@ -13292,15 +14427,24 @@
           "percentile": 0.41726,
           "score": 0.00481
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "8.10.2"
         ],
         "id": "GHSA-pmjh-fq2x-6v4x",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "web/package-lock.json",
+        "locations": [
+          "web/package-lock.json"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-09-29T18:30:41.164240105Z",
+        "osv_published": "2026-09-29T18:22:34Z",
         "package": "undici",
+        "purl": "pkg:npm/undici@8.9.0",
         "severity": "Medium",
         "summary": "undici vulnerable to Denial of Service via orphaned RetryHandler response body",
         "url": "https://github.com/advisories/GHSA-pmjh-fq2x-6v4x",
@@ -13316,15 +14460,24 @@
           "percentile": 0.30826,
           "score": 0.00368
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "8.10.2"
         ],
         "id": "GHSA-rx4f-c7p8-82vq",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "web/package-lock.json",
+        "locations": [
+          "web/package-lock.json"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-09-29T18:15:04.711653428Z",
+        "osv_published": "2026-09-29T18:10:32Z",
         "package": "undici",
+        "purl": "pkg:npm/undici@8.9.0",
         "severity": "Medium",
         "summary": "undici vulnerable to Denial of Service via WebSocketStream unclean close",
         "url": "https://github.com/advisories/GHSA-rx4f-c7p8-82vq",
@@ -13340,15 +14493,24 @@
           "percentile": 0.21874,
           "score": 0.00292
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "2.8.0"
         ],
         "id": "GHSA-gh4c-6fx4-qh6g",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": ".github/requirements-nightly.txt",
+        "locations": [
+          ".github/requirements-nightly.txt"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-10-01T17:55:40.608255720Z",
+        "osv_published": "2026-09-30T15:00:38Z",
         "package": "urllib3",
+        "purl": "pkg:pypi/urllib3@2.7.0",
         "severity": "Medium",
         "summary": "urllib3: Chunked Deflate streaming can enter an infinite loop",
         "url": "https://github.com/advisories/GHSA-gh4c-6fx4-qh6g",
@@ -13364,15 +14526,24 @@
           "percentile": 0.35982,
           "score": 0.00414
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "8.3.3"
         ],
         "id": "GHSA-698v-4r3x-3vcv",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "web/package-lock.json",
+        "locations": [
+          "web/package-lock.json"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-10-20T18:45:09.467993691Z",
+        "osv_published": "2026-10-20T18:30:24Z",
         "package": "vite",
+        "purl": "pkg:npm/vite@8.3.0",
         "severity": "Medium",
         "summary": "launch-editor: escapeCmdArgs() omits % escaping on Windows",
         "url": "https://github.com/advisories/GHSA-698v-4r3x-3vcv",
@@ -13388,15 +14559,24 @@
           "percentile": 0.536,
           "score": 0.00705
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "8.3.3"
         ],
         "id": "GHSA-r825-w8mm-5pxw",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "web/package-lock.json",
+        "locations": [
+          "web/package-lock.json"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-10-20T20:00:04.608907013Z",
+        "osv_published": "2026-10-20T19:51:52Z",
         "package": "vite",
+        "purl": "pkg:npm/vite@8.3.0",
         "severity": "Medium",
         "summary": "launch-editor: Editor CLI flag misinterpretation causing arbitrary command execution for some editors",
         "url": "https://github.com/advisories/GHSA-r825-w8mm-5pxw",
@@ -13412,15 +14592,24 @@
           "percentile": 0.58486,
           "score": 0.00852
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "8.3.3"
         ],
         "id": "GHSA-rq7h-c2jc-7f22",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "web/package-lock.json",
+        "locations": [
+          "web/package-lock.json"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-10-21T17:00:06.336868869Z",
+        "osv_published": "2026-10-21T16:47:42Z",
         "package": "vite",
+        "purl": "pkg:npm/vite@8.3.0",
         "severity": "Medium",
         "summary": "Vite: Files outside `server.fs.allow` could be served when project paths match system paths on non-Windows machine",
         "url": "https://github.com/advisories/GHSA-rq7h-c2jc-7f22",
@@ -13436,15 +14625,24 @@
           "percentile": 0.4322,
           "score": 0.00502
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "8.3.3"
         ],
         "id": "GHSA-vfpm-58rq-9qcg",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "web/package-lock.json",
+        "locations": [
+          "web/package-lock.json"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-10-21T17:00:07.443467820Z",
+        "osv_published": "2026-10-21T16:47:15Z",
         "package": "vite",
+        "purl": "pkg:npm/vite@8.3.0",
         "severity": "Medium",
         "summary": "Vite: First 4 bytes of files outside of `server.fs` setting is exposed by `?vite-wasm-instance`",
         "url": "https://github.com/advisories/GHSA-vfpm-58rq-9qcg",
@@ -13454,15 +14652,24 @@
         "aliases": [],
         "ecosystem": "npm",
         "epss": null,
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "3.4.16"
         ],
         "id": "GHSA-6688-9rhm-gjv2",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "web/package-lock.json",
+        "locations": [
+          "web/package-lock.json"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-10-13T02:56:32.032824370Z",
+        "osv_published": "2026-10-05T23:43:53Z",
         "package": "dompurify",
+        "purl": "pkg:npm/dompurify@3.4.15",
         "severity": "Low",
         "summary": "DOMPurify: IN_PLACE returns a force-removed rawtext root whose text carries attacker markup \u2014 pure HTML reparse executes",
         "url": "https://github.com/advisories/GHSA-6688-9rhm-gjv2",
@@ -13472,15 +14679,24 @@
         "aliases": [],
         "ecosystem": "npm",
         "epss": null,
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "3.4.17"
         ],
         "id": "GHSA-c6gr-qvv4-5v3f",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "web/package-lock.json",
+        "locations": [
+          "web/package-lock.json"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-10-27T10:56:08.682782458Z",
+        "osv_published": "2026-10-22T16:24:23Z",
         "package": "dompurify",
+        "purl": "pkg:npm/dompurify@3.4.15",
         "severity": "Low",
         "summary": "DOMPurify: SMIL attributeName=href guard is skipped when PARSER_MEDIA_TYPE is application/xhtml+xml",
         "url": "https://github.com/advisories/GHSA-c6gr-qvv4-5v3f",
@@ -13490,15 +14706,24 @@
         "aliases": [],
         "ecosystem": "npm",
         "epss": null,
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "3.4.16"
         ],
         "id": "GHSA-p98j-92pf-mc4p",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "web/package-lock.json",
+        "locations": [
+          "web/package-lock.json"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-10-13T02:56:22.039126210Z",
+        "osv_published": "2026-09-30T15:37:57Z",
         "package": "dompurify",
+        "purl": "pkg:npm/dompurify@3.4.15",
         "severity": "Low",
         "summary": "DOMPurify: IN_PLACE: node-removing afterSanitize hook leaves detached subtree event handlers armed, causing DOM XSS",
         "url": "https://github.com/advisories/GHSA-p98j-92pf-mc4p",
@@ -13514,15 +14739,24 @@
           "percentile": 0.23115,
           "score": 0.00302
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "4.2.3"
         ],
         "id": "GHSA-333x-w4r6-6crp",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": ".github/kb-scripts/package-lock.json",
+        "locations": [
+          ".github/kb-scripts/package-lock.json"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-10-23T21:45:04.900311356Z",
+        "osv_published": "2026-10-23T21:36:40Z",
         "package": "fast-uri",
+        "purl": "pkg:npm/fast-uri@4.1.4",
         "severity": "Low",
         "summary": "fast-uri vulnerable to scheme injection via an unescaped first-segment colon in suffix references",
         "url": "https://github.com/advisories/GHSA-333x-w4r6-6crp",
@@ -13538,15 +14772,24 @@
           "percentile": 0.21629,
           "score": 0.00289
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "4.2.3"
         ],
         "id": "GHSA-xhq7-xmqj-769h",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": ".github/kb-scripts/package-lock.json",
+        "locations": [
+          ".github/kb-scripts/package-lock.json"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-10-23T21:45:04.902389903Z",
+        "osv_published": "2026-10-23T21:39:34Z",
         "package": "fast-uri",
+        "purl": "pkg:npm/fast-uri@4.1.4",
         "severity": "Low",
         "summary": "fast-uri vulnerable to improper path equivalence in relative reference normalization",
         "url": "https://github.com/advisories/GHSA-xhq7-xmqj-769h",
@@ -13562,6 +14805,7 @@
           "percentile": 0.18599,
           "score": 0.00266
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "1.45.0"
@@ -13569,9 +14813,17 @@
         "id": "GHSA-8wmf-6v46-5gfg",
         "in_binary": "module in binary",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "go.mod",
+        "locations": [
+          "go.mod"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-10-01T20:55:52.479756803Z",
+        "osv_published": "2026-09-17T20:31:06Z",
         "package": "go.opentelemetry.io/otel/exporters/otlp/otlptrace",
+        "purl": "pkg:golang/go.opentelemetry.io/otel/exporters/otlp/otlptrace@v1.44.0",
         "severity": "Low",
         "summary": "OpenTelemetry-Go: Exporter config logging may leak endpoint URLs in info logs",
         "url": "https://github.com/advisories/GHSA-8wmf-6v46-5gfg",
@@ -13587,6 +14839,7 @@
           "percentile": 0.18599,
           "score": 0.00266
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "1.45.0"
@@ -13594,9 +14847,17 @@
         "id": "GHSA-8wmf-6v46-5gfg",
         "in_binary": "module in binary",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "go.mod",
+        "locations": [
+          "go.mod"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-10-01T20:55:52.479756803Z",
+        "osv_published": "2026-09-17T20:31:06Z",
         "package": "go.opentelemetry.io/otel/exporters/otlp/otlptrace/otlptracehttp",
+        "purl": "pkg:golang/go.opentelemetry.io/otel/exporters/otlp/otlptrace/otlptracehttp@v1.44.0",
         "severity": "Low",
         "summary": "OpenTelemetry-Go: Exporter config logging may leak endpoint URLs in info logs",
         "url": "https://github.com/advisories/GHSA-8wmf-6v46-5gfg",
@@ -13612,6 +14873,7 @@
           "percentile": 0.18599,
           "score": 0.00266
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "1.45.0"
@@ -13619,9 +14881,17 @@
         "id": "GHSA-8wmf-6v46-5gfg",
         "in_binary": "module in binary",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "go.mod",
+        "locations": [
+          "go.mod"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-10-01T20:55:52.479756803Z",
+        "osv_published": "2026-09-17T20:31:06Z",
         "package": "go.opentelemetry.io/otel/sdk",
+        "purl": "pkg:golang/go.opentelemetry.io/otel/sdk@v1.43.0",
         "severity": "Low",
         "summary": "OpenTelemetry-Go: Exporter config logging may leak endpoint URLs in info logs",
         "url": "https://github.com/advisories/GHSA-8wmf-6v46-5gfg",
@@ -13631,15 +14901,24 @@
         "aliases": [],
         "ecosystem": "pypi",
         "epss": null,
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "84.1.0"
         ],
         "id": "GHSA-xmj3-9gf7-h52w",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": ".github/requirements-nightly.txt",
+        "locations": [
+          ".github/requirements-nightly.txt"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-10-23T22:00:03.739009766Z",
+        "osv_published": "2026-10-23T21:44:11Z",
         "package": "setuptools",
+        "purl": "pkg:pypi/setuptools@84.0.0",
         "severity": "Low",
         "summary": "setuptools: Windows path escape via namespace_packages.txt during legacy wheel installation Description",
         "url": "https://github.com/advisories/GHSA-xmj3-9gf7-h52w",
@@ -13655,15 +14934,24 @@
           "percentile": 0.09408,
           "score": 0.00196
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "8.10.2"
         ],
         "id": "GHSA-2gqq-gqf2-x968",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "web/package-lock.json",
+        "locations": [
+          "web/package-lock.json"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-09-29T18:28:11.302166457Z",
+        "osv_published": "2026-09-29T18:18:51Z",
         "package": "undici",
+        "purl": "pkg:npm/undici@8.9.0",
         "severity": "Low",
         "summary": "undici vulnerable to response truncation via oversized chunked responses in the dump interceptor",
         "url": "https://github.com/advisories/GHSA-2gqq-gqf2-x968",
@@ -13679,15 +14967,24 @@
           "percentile": 0.01714,
           "score": 0.00118
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "8.10.2"
         ],
         "id": "GHSA-8436-99hf-9mmv",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "web/package-lock.json",
+        "locations": [
+          "web/package-lock.json"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-09-29T18:28:12.530229215Z",
+        "osv_published": "2026-09-29T18:16:28Z",
         "package": "undici",
+        "purl": "pkg:npm/undici@8.9.0",
         "severity": "Low",
         "summary": "undici vulnerable to caching and replay of unsafe HTTP method responses",
         "url": "https://github.com/advisories/GHSA-8436-99hf-9mmv",
@@ -13703,15 +15000,24 @@
           "percentile": 0.23903,
           "score": 0.00309
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "8.10.2"
         ],
         "id": "GHSA-r53p-7pc4-xj5r",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "web/package-lock.json",
+        "locations": [
+          "web/package-lock.json"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-09-29T18:30:41.154532067Z",
+        "osv_published": "2026-09-29T18:22:07Z",
         "package": "undici",
+        "purl": "pkg:npm/undici@8.9.0",
         "severity": "Low",
         "summary": "undici vulnerable to downstream response splitting via retry interceptor",
         "url": "https://github.com/advisories/GHSA-r53p-7pc4-xj5r",
@@ -13727,15 +15033,24 @@
           "percentile": 0.52304,
           "score": 0.00672
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "8.3.3"
         ],
         "id": "GHSA-9jrq-w75r-8gcw",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "web/package-lock.json",
+        "locations": [
+          "web/package-lock.json"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-10-21T17:00:26.569382874Z",
+        "osv_published": "2026-10-21T16:48:14Z",
         "package": "vite",
+        "purl": "pkg:npm/vite@8.3.0",
         "severity": "Low",
         "summary": "Vite: Cross origin script execution through Vite custom middleware",
         "url": "https://github.com/advisories/GHSA-9jrq-w75r-8gcw",

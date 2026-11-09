@@ -76,15 +76,26 @@
     },
     {
       "added": 0,
+      "advisory_state": "ok",
       "commit": "5038a50e21a2253cb5aed2e739d2c22ee28d2e17",
       "date": "2026-11-08",
       "dependencies": 133,
+      "dependency_state": "ok",
+      "downgraded": 0,
       "errors": [],
+      "file_changes": 1,
       "fixable": 85,
       "go_version": null,
       "in_binary": null,
+      "in_binary_new": 0,
+      "in_binary_resolved": 0,
       "kev": 0,
       "kev_new": 0,
+      "kev_new_match": 0,
+      "license_changes": 0,
+      "method": "sbomlyze-occurrence-v1",
+      "moved": 0,
+      "new_advisories": 0,
       "new_vulnerabilities": 0,
       "osv_confirmed": 49,
       "osv_only": 71,
@@ -92,11 +103,13 @@
       "release_changed": true,
       "release_integrity": "none",
       "removed": 0,
+      "resolved_advisories": 0,
       "resolved_vulnerabilities": 0,
       "scorecard": null,
       "scorecard_date": null,
       "scorecard_note": "the OpenSSF public dataset entry is 1441 days old (limit 30); the Scorecard CLI fallback was skipped because this shard's weekly budget was used",
       "scorecard_source": null,
+      "unknown_direction": 0,
       "upgraded": 1,
       "vulnerabilities": {
         "Critical": 2,
@@ -112,7 +125,9 @@
         "Low": 3,
         "Medium": 4,
         "files": 10
-      }
+      },
+      "workflow_new": 0,
+      "workflow_resolved": 0
     }
   ],
   "latest": {
@@ -120,24 +135,72 @@
     "category": "Infrastructure as Code Security",
     "changes": {
       "added": [],
+      "added_detail": [],
+      "advisory_state": "ok",
       "any": true,
       "baseline": false,
-      "integrity_drift": 1,
+      "dependency_baseline": {
+        "attempt": "1",
+        "run_id": "41380955266",
+        "sbom_sha256": "32571ffde300dde30988865b2fd6860254c1630b0ac3c4de0362658d751c27e8"
+      },
+      "dependency_state": "ok",
+      "digest_coverage": {
+        "after_only": 0,
+        "before_only": 0,
+        "by_kind": {},
+        "comparable": 0,
+        "disjoint_kinds": 0,
+        "packages_total": 156,
+        "same_version_pairs": 155
+      },
+      "distinct_version_changes": 1,
+      "downgraded": [],
+      "file_changes": [
+        "kubernetes/requirements.txt"
+      ],
+      "integrity_changes": [],
+      "integrity_drift": 0,
+      "kev_method": "snapshot difference",
       "kev_new": [],
+      "kev_new_match": [],
       "license_changes": [],
+      "metadata_changes": [],
+      "method": "sbomlyze-occurrence-v1",
+      "moved": [],
+      "new_advisories": 0,
       "new_vulnerabilities": [],
       "previous_ref": "3.4.0",
       "release_changed": true,
       "removed": [],
+      "removed_detail": [],
+      "resolved_advisories": 0,
       "resolved_vulnerabilities": [],
+      "still_affected_version_changed": [],
+      "unknown_direction": [],
       "upgraded": [
         {
+          "direction": "upgrade",
           "ecosystem": "pypi",
           "from": "3.4.0",
+          "level": "patch",
+          "location": "kubernetes/requirements.txt",
           "package": "checkov",
           "to": "3.4.3"
         }
       ],
+      "version_changes": [
+        {
+          "direction": "upgrade",
+          "ecosystem": "pypi",
+          "from": "3.4.0",
+          "level": "patch",
+          "location": "kubernetes/requirements.txt",
+          "name": "checkov",
+          "to": "3.4.3"
+        }
+      ],
+      "version_set_changes": [],
       "workflow_new": 0,
       "workflow_resolved": 0
     },
@@ -1252,6 +1315,7 @@
       "action reference to a moving tag or branch": 4
     },
     "id": "bridgecrewio__checkov",
+    "lock_aliases": {},
     "manifests": [
       ".github/workflows/build.yml",
       ".github/workflows/codeql-analysis.yml",
@@ -1282,7 +1346,10 @@
             "GHSA-qmgc-5h2g-mvrw",
             "PYSEC-2026-1374"
           ],
+          "modified": "2026-09-10T03:50:33.702580779Z",
           "package": "filelock",
+          "path": "Pipfile.lock",
+          "published": "2026-01-13T18:44:55Z",
           "score": "5.3",
           "severity": "Medium",
           "version": "3.19.1"
@@ -1294,7 +1361,10 @@
             "GHSA-w853-jp5j-5j7f",
             "PYSEC-2026-1375"
           ],
+          "modified": "2026-09-10T03:50:32.252960082Z",
           "package": "filelock",
+          "path": "Pipfile.lock",
+          "published": "2025-12-16T20:52:55Z",
           "score": "6.3",
           "severity": "Medium",
           "version": "3.19.1"
@@ -1305,7 +1375,10 @@
             "CVE-2026-112909",
             "GHSA-69hj-f68j-2879"
           ],
+          "modified": "2026-10-28T21:15:04.974667790Z",
           "package": "filelock",
+          "path": "Pipfile.lock",
+          "published": "2026-10-28T21:08:35Z",
           "score": "6.1",
           "severity": "Medium",
           "version": "3.19.1"
@@ -1316,7 +1389,10 @@
             "CVE-2026-112910",
             "GHSA-8mx5-7m5m-r77g"
           ],
+          "modified": "2026-10-28T21:15:05.688436299Z",
           "package": "filelock",
+          "path": "Pipfile.lock",
+          "published": "2026-10-28T21:08:55Z",
           "score": "5.3",
           "severity": "Medium",
           "version": "3.19.1"
@@ -1328,7 +1404,10 @@
             "GHSA-6w46-j5rx-g56g",
             "PYSEC-2026-1845"
           ],
+          "modified": "2026-09-10T03:50:32.768043789Z",
           "package": "pytest",
+          "path": "Pipfile.lock",
+          "published": "2026-01-22T06:30:29Z",
           "score": "6.8",
           "severity": "Medium",
           "version": "7.4.4"
@@ -1341,7 +1420,10 @@
             "GHSA-h35f-9h28-mq5c",
             "PYSEC-2026-3447"
           ],
+          "modified": "2026-09-10T03:50:52.323347787Z",
           "package": "setuptools",
+          "path": "Pipfile.lock",
+          "published": "2026-07-08T17:17:27.020Z",
           "score": "6.1",
           "severity": "Medium",
           "version": "78.1.1"
@@ -1351,7 +1433,10 @@
           "ids": [
             "GHSA-xmj3-9gf7-h52w"
           ],
+          "modified": "2026-10-23T22:00:03.739009766Z",
           "package": "setuptools",
+          "path": "Pipfile.lock",
+          "published": "2026-10-23T21:44:11Z",
           "score": "1.0",
           "severity": "Low",
           "version": "78.1.1"
@@ -1364,7 +1449,10 @@
             "GHSA-94p9-xgh2-xp45",
             "PYSEC-2026-4011"
           ],
+          "modified": "2026-10-06T15:26:06.490658879Z",
           "package": "virtualenv",
+          "path": "Pipfile.lock",
+          "published": "2026-09-18T01:41:45Z",
           "score": "7.7",
           "severity": "High",
           "version": "21.7.4"
@@ -1377,7 +1465,10 @@
             "GHSA-9h9j-4vrj-gf7g",
             "PYSEC-2026-4012"
           ],
+          "modified": "2026-10-06T15:25:56.172772842Z",
           "package": "virtualenv",
+          "path": "Pipfile.lock",
+          "published": "2026-09-17T16:42:47Z",
           "score": "5.8",
           "severity": "Medium",
           "version": "21.7.4"
@@ -1390,7 +1481,10 @@
             "GHSA-p58f-9548-mpm2",
             "PYSEC-2026-4013"
           ],
+          "modified": "2026-10-06T15:25:40.633713827Z",
           "package": "virtualenv",
+          "path": "Pipfile.lock",
+          "published": "2026-09-18T04:37:14Z",
           "score": "7.8",
           "severity": "High",
           "version": "21.7.4"
@@ -1403,7 +1497,10 @@
             "GHSA-x78j-v8h9-3j2q",
             "PYSEC-2026-4014"
           ],
+          "modified": "2026-10-06T15:26:00.196757436Z",
           "package": "virtualenv",
+          "path": "Pipfile.lock",
+          "published": "2026-09-18T01:41:45Z",
           "score": "7.3",
           "severity": "High",
           "version": "21.7.4"
@@ -1415,7 +1512,10 @@
             "CVE-2026-113718",
             "GHSA-394h-qwmc-48pf"
           ],
+          "modified": "2026-10-29T10:55:57.228294866Z",
           "package": "virtualenv",
+          "path": "Pipfile.lock",
+          "published": "2026-10-23T22:24:43Z",
           "score": "7.1",
           "severity": "High",
           "version": "21.7.4"
@@ -1427,7 +1527,10 @@
             "CVE-2026-113724",
             "GHSA-43mp-35q3-x3fq"
           ],
+          "modified": "2026-10-29T10:55:47.691444554Z",
           "package": "virtualenv",
+          "path": "Pipfile.lock",
+          "published": "2026-10-21T21:31:34Z",
           "score": "4.5",
           "severity": "Medium",
           "version": "21.7.4"
@@ -1439,7 +1542,10 @@
             "CVE-2026-113714",
             "GHSA-494p-63j8-28p3"
           ],
+          "modified": "2026-10-29T10:55:43.999222952Z",
           "package": "virtualenv",
+          "path": "Pipfile.lock",
+          "published": "2026-10-23T22:25:22Z",
           "score": "2.3",
           "severity": "Low",
           "version": "21.7.4"
@@ -1451,7 +1557,10 @@
             "CVE-2026-113721",
             "GHSA-558c-9hv2-4prj"
           ],
+          "modified": "2026-10-29T10:55:51.822936662Z",
           "package": "virtualenv",
+          "path": "Pipfile.lock",
+          "published": "2026-10-22T17:03:12Z",
           "score": "4.5",
           "severity": "Medium",
           "version": "21.7.4"
@@ -1463,7 +1572,10 @@
             "CVE-2026-113726",
             "GHSA-5vjq-rrrf-7h2q"
           ],
+          "modified": "2026-10-29T10:55:33.825448161Z",
           "package": "virtualenv",
+          "path": "Pipfile.lock",
+          "published": "2026-10-21T16:46:23Z",
           "score": "7.8",
           "severity": "High",
           "version": "21.7.4"
@@ -1475,7 +1587,10 @@
             "CVE-2026-113723",
             "GHSA-6w3r-xr62-4xcp"
           ],
+          "modified": "2026-10-29T10:55:32.039209236Z",
           "package": "virtualenv",
+          "path": "Pipfile.lock",
+          "published": "2026-10-23T22:21:57Z",
           "score": "7.1",
           "severity": "High",
           "version": "21.7.4"
@@ -1487,7 +1602,10 @@
             "CVE-2026-113776",
             "GHSA-8rjx-v5ww-45pp"
           ],
+          "modified": "2026-10-29T10:55:59.336337258Z",
           "package": "virtualenv",
+          "path": "Pipfile.lock",
+          "published": "2026-10-21T16:39:38Z",
           "score": "7.8",
           "severity": "High",
           "version": "21.7.4"
@@ -1499,7 +1617,10 @@
             "CVE-2026-113732",
             "GHSA-c947-3pg5-gm8q"
           ],
+          "modified": "2026-10-29T10:55:30.348006947Z",
           "package": "virtualenv",
+          "path": "Pipfile.lock",
+          "published": "2026-10-21T16:39:58Z",
           "score": "7.8",
           "severity": "High",
           "version": "21.7.4"
@@ -1511,7 +1632,10 @@
             "CVE-2026-113722",
             "GHSA-c978-59m8-c77v"
           ],
+          "modified": "2026-10-29T10:55:46.719521464Z",
           "package": "virtualenv",
+          "path": "Pipfile.lock",
+          "published": "2026-10-21T21:30:12Z",
           "score": "7.8",
           "severity": "High",
           "version": "21.7.4"
@@ -1523,7 +1647,10 @@
             "CVE-2026-113716",
             "GHSA-cw65-gx24-rc82"
           ],
+          "modified": "2026-10-29T10:55:59.838026441Z",
           "package": "virtualenv",
+          "path": "Pipfile.lock",
+          "published": "2026-10-21T21:35:56Z",
           "score": "4.5",
           "severity": "Medium",
           "version": "21.7.4"
@@ -1535,7 +1662,10 @@
             "CVE-2026-113717",
             "GHSA-cx28-75q4-x26q"
           ],
+          "modified": "2026-10-29T10:55:56.839709622Z",
           "package": "virtualenv",
+          "path": "Pipfile.lock",
+          "published": "2026-10-23T22:26:04Z",
           "score": "2.3",
           "severity": "Low",
           "version": "21.7.4"
@@ -1547,7 +1677,10 @@
             "CVE-2026-113720",
             "GHSA-fc2g-4w5p-6whm"
           ],
+          "modified": "2026-10-29T10:55:56.743073990Z",
           "package": "virtualenv",
+          "path": "Pipfile.lock",
+          "published": "2026-10-23T22:23:11Z",
           "score": "4.4",
           "severity": "Medium",
           "version": "21.7.4"
@@ -1559,7 +1692,10 @@
             "CVE-2026-113719",
             "GHSA-hhxq-47xx-j5xx"
           ],
+          "modified": "2026-10-29T10:56:02.747342068Z",
           "package": "virtualenv",
+          "path": "Pipfile.lock",
+          "published": "2026-10-23T22:19:15Z",
           "score": "4.5",
           "severity": "Medium",
           "version": "21.7.4"
@@ -1571,7 +1707,10 @@
             "CVE-2026-113715",
             "GHSA-qmx5-4p3x-wvqf"
           ],
+          "modified": "2026-10-29T10:55:39.718166145Z",
           "package": "virtualenv",
+          "path": "Pipfile.lock",
+          "published": "2026-10-23T22:20:43Z",
           "score": "2.0",
           "severity": "Low",
           "version": "21.7.4"
@@ -1583,7 +1722,10 @@
             "CVE-2026-113725",
             "GHSA-vxj4-q4g9-crj7"
           ],
+          "modified": "2026-10-29T10:55:53.696944055Z",
           "package": "virtualenv",
+          "path": "Pipfile.lock",
+          "published": "2026-10-21T16:49:01Z",
           "score": "7.8",
           "severity": "High",
           "version": "21.7.4"
@@ -1595,7 +1737,10 @@
             "GHSA-54jq-c3m8-4m76",
             "PYSEC-2026-1097"
           ],
+          "modified": "2026-09-10T03:50:32.751498447Z",
           "package": "aiohttp",
+          "path": "kubernetes/requirements.txt",
+          "published": "2026-01-05T23:09:51Z",
           "score": "2.7",
           "severity": "Low",
           "version": "3.9.5"
@@ -1607,7 +1752,10 @@
             "GHSA-69f9-5gxw-wvc2",
             "PYSEC-2026-1099"
           ],
+          "modified": "2026-09-10T03:49:54.440954011Z",
           "package": "aiohttp",
+          "path": "kubernetes/requirements.txt",
+          "published": "2026-01-05T22:58:57Z",
           "score": "2.7",
           "severity": "Low",
           "version": "3.9.5"
@@ -1619,7 +1767,10 @@
             "GHSA-6jhg-hg63-jvvf",
             "PYSEC-2026-1100"
           ],
+          "modified": "2026-09-10T03:50:32.839537992Z",
           "package": "aiohttp",
+          "path": "kubernetes/requirements.txt",
+          "published": "2026-01-05T23:13:14Z",
           "score": "6.6",
           "severity": "Medium",
           "version": "3.9.5"
@@ -1631,7 +1782,10 @@
             "GHSA-6mq8-rvhq-8wgg",
             "PYSEC-2026-1101"
           ],
+          "modified": "2026-09-10T03:50:32.830751052Z",
           "package": "aiohttp",
+          "path": "kubernetes/requirements.txt",
+          "published": "2026-01-05T22:58:41Z",
           "score": "7.5",
           "severity": "High",
           "version": "3.9.5"
@@ -1643,7 +1797,10 @@
             "GHSA-8495-4g3g-x7pr",
             "PYSEC-2026-1103"
           ],
+          "modified": "2026-09-10T03:50:20.487002605Z",
           "package": "aiohttp",
+          "path": "kubernetes/requirements.txt",
+          "published": "2024-11-18T21:02:32Z",
           "score": "6.3",
           "severity": "Medium",
           "version": "3.9.5"
@@ -1655,7 +1812,10 @@
             "GHSA-9548-qrrj-x5pj",
             "PYSEC-2026-1104"
           ],
+          "modified": "2026-09-10T03:50:26.231846188Z",
           "package": "aiohttp",
+          "path": "kubernetes/requirements.txt",
+          "published": "2025-07-14T19:33:31Z",
           "score": "1.7",
           "severity": "Low",
           "version": "3.9.5"
@@ -1667,7 +1827,10 @@
             "GHSA-fh55-r93g-j68g",
             "PYSEC-2026-1105"
           ],
+          "modified": "2026-09-10T03:50:33.047685052Z",
           "package": "aiohttp",
+          "path": "kubernetes/requirements.txt",
+          "published": "2026-01-05T23:13:46Z",
           "score": "2.7",
           "severity": "Low",
           "version": "3.9.5"
@@ -1679,7 +1842,10 @@
             "GHSA-g84x-mcqj-x9qq",
             "PYSEC-2026-1106"
           ],
+          "modified": "2026-09-10T03:50:33.073865205Z",
           "package": "aiohttp",
+          "path": "kubernetes/requirements.txt",
+          "published": "2026-01-05T23:13:29Z",
           "score": "6.6",
           "severity": "Medium",
           "version": "3.9.5"
@@ -1691,7 +1857,10 @@
             "GHSA-jj3x-wxrx-4x23",
             "PYSEC-2026-1107"
           ],
+          "modified": "2026-09-10T03:50:33.308966616Z",
           "package": "aiohttp",
+          "path": "kubernetes/requirements.txt",
+          "published": "2026-01-05T23:10:15Z",
           "score": "6.6",
           "severity": "Medium",
           "version": "3.9.5"
@@ -1703,7 +1872,10 @@
             "GHSA-mqqc-3gqh-h2x8",
             "PYSEC-2026-1109"
           ],
+          "modified": "2026-09-10T03:50:33.538693726Z",
           "package": "aiohttp",
+          "path": "kubernetes/requirements.txt",
+          "published": "2026-01-05T23:09:30Z",
           "score": "2.7",
           "severity": "Low",
           "version": "3.9.5"
@@ -1715,7 +1887,10 @@
             "GHSA-w2fm-2cpv-w7v5",
             "PYSEC-2026-2094"
           ],
+          "modified": "2026-09-10T03:51:03.588955358Z",
           "package": "aiohttp",
+          "path": "kubernetes/requirements.txt",
+          "published": "2026-04-01T19:45:17Z",
           "score": "6.9",
           "severity": "Medium",
           "version": "3.9.5"
@@ -1727,7 +1902,10 @@
             "GHSA-hcc4-c3v8-rx92",
             "PYSEC-2026-2095"
           ],
+          "modified": "2026-09-10T03:51:02.067006429Z",
           "package": "aiohttp",
+          "path": "kubernetes/requirements.txt",
+          "published": "2026-04-01T21:16:59.267Z",
           "score": "7.5",
           "severity": "High",
           "version": "3.9.5"
@@ -1739,7 +1917,10 @@
             "GHSA-2vrm-gr82-f7m5",
             "PYSEC-2026-2096"
           ],
+          "modified": "2026-09-10T03:50:42.288164171Z",
           "package": "aiohttp",
+          "path": "kubernetes/requirements.txt",
+          "published": "2026-04-01T21:16:59.417Z",
           "score": "5.3",
           "severity": "Medium",
           "version": "3.9.5"
@@ -1751,7 +1932,10 @@
             "GHSA-p998-jp59-783m",
             "PYSEC-2026-2097"
           ],
+          "modified": "2026-09-10T03:51:02.565661873Z",
           "package": "aiohttp",
+          "path": "kubernetes/requirements.txt",
+          "published": "2026-04-01T21:16:59.570Z",
           "score": "7.5",
           "severity": "High",
           "version": "3.9.5"
@@ -1763,7 +1947,10 @@
             "GHSA-m5qp-6w8w-w647",
             "PYSEC-2026-2098"
           ],
+          "modified": "2026-09-10T03:51:02.372876858Z",
           "package": "aiohttp",
+          "path": "kubernetes/requirements.txt",
+          "published": "2026-04-01T21:16:59.723Z",
           "score": "7.5",
           "severity": "High",
           "version": "3.9.5"
@@ -1775,7 +1962,10 @@
             "GHSA-3wq7-rqq7-wx6j",
             "PYSEC-2026-2099"
           ],
+          "modified": "2026-09-10T03:50:42.683852324Z",
           "package": "aiohttp",
+          "path": "kubernetes/requirements.txt",
+          "published": "2026-04-01T21:16:59.870Z",
           "score": "5.3",
           "severity": "Medium",
           "version": "3.9.5"
@@ -1787,7 +1977,10 @@
             "GHSA-966j-vmvw-g2g9",
             "PYSEC-2026-2100"
           ],
+          "modified": "2026-09-10T03:51:01.374434696Z",
           "package": "aiohttp",
+          "path": "kubernetes/requirements.txt",
+          "published": "2026-04-01T21:17:00.020Z",
           "score": "5.3",
           "severity": "Medium",
           "version": "3.9.5"
@@ -1799,7 +1992,10 @@
             "GHSA-mwh4-6h8g-pg8w",
             "PYSEC-2026-2101"
           ],
+          "modified": "2026-09-10T03:50:44.819886754Z",
           "package": "aiohttp",
+          "path": "kubernetes/requirements.txt",
+          "published": "2026-04-01T21:17:00.170Z",
           "score": "5.3",
           "severity": "Medium",
           "version": "3.9.5"
@@ -1811,7 +2007,10 @@
             "GHSA-63hf-3vf5-4wqf",
             "PYSEC-2026-2102"
           ],
+          "modified": "2026-09-10T03:50:43.255807027Z",
           "package": "aiohttp",
+          "path": "kubernetes/requirements.txt",
+          "published": "2026-04-01T21:17:00.333Z",
           "score": "9.1",
           "severity": "Critical",
           "version": "3.9.5"
@@ -1823,7 +2022,10 @@
             "GHSA-c427-h43c-vf67",
             "PYSEC-2026-2103"
           ],
+          "modified": "2026-09-10T03:51:01.505705751Z",
           "package": "aiohttp",
+          "path": "kubernetes/requirements.txt",
+          "published": "2026-04-01T21:17:00.490Z",
           "score": "6.3",
           "severity": "Medium",
           "version": "3.9.5"
@@ -1835,7 +2037,10 @@
             "GHSA-jg22-mg44-37j8",
             "PYSEC-2026-2104"
           ],
+          "modified": "2026-09-10T03:51:08.847676311Z",
           "package": "aiohttp",
+          "path": "kubernetes/requirements.txt",
+          "published": "2026-06-02T20:16:34.857Z",
           "score": "7.3",
           "severity": "High",
           "version": "3.9.5"
@@ -1847,7 +2052,10 @@
             "GHSA-hg6j-4rv6-33pg",
             "PYSEC-2026-2105"
           ],
+          "modified": "2026-09-10T03:50:49.888335735Z",
           "package": "aiohttp",
+          "path": "kubernetes/requirements.txt",
+          "published": "2026-06-02T20:16:37.903Z",
           "score": "7.5",
           "severity": "High",
           "version": "3.9.5"
@@ -1859,7 +2067,10 @@
             "GHSA-m6qw-4cw2-hm4m",
             "PYSEC-2026-2106"
           ],
+          "modified": "2026-09-10T03:51:09.078868018Z",
           "package": "aiohttp",
+          "path": "kubernetes/requirements.txt",
+          "published": "2026-06-15T20:07:26Z",
           "score": "7.5",
           "severity": "High",
           "version": "3.9.5"
@@ -1871,7 +2082,10 @@
             "GHSA-4fvr-rgm6-gqmc",
             "PYSEC-2026-2107"
           ],
+          "modified": "2026-09-10T03:51:07.881817751Z",
           "package": "aiohttp",
+          "path": "kubernetes/requirements.txt",
+          "published": "2026-06-15T20:10:32Z",
           "score": "7.5",
           "severity": "High",
           "version": "3.9.5"
@@ -1883,7 +2097,10 @@
             "GHSA-xcgm-r5h9-7989",
             "PYSEC-2026-2108"
           ],
+          "modified": "2026-09-10T03:50:12.346397944Z",
           "package": "aiohttp",
+          "path": "kubernetes/requirements.txt",
+          "published": "2026-06-15T20:11:22Z",
           "score": "7.5",
           "severity": "High",
           "version": "3.9.5"
@@ -1895,7 +2112,10 @@
             "GHSA-hpj7-wq8m-9hgp",
             "PYSEC-2026-2109"
           ],
+          "modified": "2026-09-10T03:50:49.899674354Z",
           "package": "aiohttp",
+          "path": "kubernetes/requirements.txt",
+          "published": "2026-06-15T20:09:06Z",
           "score": "6.3",
           "severity": "Medium",
           "version": "3.9.5"
@@ -1907,7 +2127,10 @@
             "GHSA-63hw-fmq6-xxg2",
             "PYSEC-2026-2110"
           ],
+          "modified": "2026-09-10T03:50:48.460120366Z",
           "package": "aiohttp",
+          "path": "kubernetes/requirements.txt",
+          "published": "2026-06-15T20:09:16Z",
           "score": "7.5",
           "severity": "High",
           "version": "3.9.5"
@@ -1919,7 +2142,10 @@
             "GHSA-g3cq-j2xw-wf74",
             "PYSEC-2026-2111"
           ],
+          "modified": "2026-09-10T03:51:08.751749295Z",
           "package": "aiohttp",
+          "path": "kubernetes/requirements.txt",
+          "published": "2026-06-15T20:09:51Z",
           "score": "7.5",
           "severity": "High",
           "version": "3.9.5"
@@ -1931,7 +2157,10 @@
             "GHSA-2fqr-mr3j-6wp8",
             "PYSEC-2026-2112"
           ],
+          "modified": "2026-11-03T16:45:04.163545105Z",
           "package": "aiohttp",
+          "path": "kubernetes/requirements.txt",
+          "published": "2026-06-15T20:08:51Z",
           "score": "7.5",
           "severity": "High",
           "version": "3.9.5"
@@ -1943,7 +2172,10 @@
             "GHSA-9x8q-7h8h-wcw9",
             "PYSEC-2026-2113"
           ],
+          "modified": "2026-09-10T03:50:55.382836820Z",
           "package": "aiohttp",
+          "path": "kubernetes/requirements.txt",
+          "published": "2026-06-15T20:10:44Z",
           "score": "7.5",
           "severity": "High",
           "version": "3.9.5"
@@ -1955,7 +2187,10 @@
             "GHSA-4m7w-qmgq-4wj5",
             "PYSEC-2026-237"
           ],
+          "modified": "2026-09-10T03:50:48.205198252Z",
           "package": "aiohttp",
+          "path": "kubernetes/requirements.txt",
+          "published": "2026-06-15T20:11:13Z",
           "score": "7.5",
           "severity": "High",
           "version": "3.9.5"
@@ -1967,7 +2202,10 @@
             "GHSA-cq5v-8q36-5273",
             "PYSEC-2026-3545"
           ],
+          "modified": "2026-09-10T03:51:13.983479281Z",
           "package": "aiohttp",
+          "path": "kubernetes/requirements.txt",
+          "published": "2026-08-03T20:51:13Z",
           "score": "7.1",
           "severity": "High",
           "version": "3.9.5"
@@ -1979,7 +2217,10 @@
             "GHSA-mfx4-hv73-q22v",
             "PYSEC-2026-3546"
           ],
+          "modified": "2026-09-10T03:51:14.385788837Z",
           "package": "aiohttp",
+          "path": "kubernetes/requirements.txt",
+          "published": "2026-08-03T20:46:10Z",
           "score": "6.3",
           "severity": "Medium",
           "version": "3.9.5"
@@ -1991,7 +2232,10 @@
             "GHSA-mq44-7p77-q5h7",
             "PYSEC-2026-3547"
           ],
+          "modified": "2026-09-10T03:51:14.489650589Z",
           "package": "aiohttp",
+          "path": "kubernetes/requirements.txt",
+          "published": "2026-08-03T20:40:55Z",
           "score": "6.9",
           "severity": "Medium",
           "version": "3.9.5"
@@ -2001,7 +2245,10 @@
           "ids": [
             "GHSA-2g87-pp6c-29x5"
           ],
+          "modified": "2026-10-19T17:15:04.113194208Z",
           "package": "aiohttp",
+          "path": "kubernetes/requirements.txt",
+          "published": "2026-10-19T17:07:23Z",
           "score": "8.7",
           "severity": "High",
           "version": "3.9.5"
@@ -2012,7 +2259,10 @@
             "CVE-2026-111063",
             "GHSA-494j-54xm-rwp3"
           ],
+          "modified": "2026-10-26T15:00:05.287728271Z",
           "package": "aiohttp",
+          "path": "kubernetes/requirements.txt",
+          "published": "2026-10-19T17:07:47Z",
           "score": "6.3",
           "severity": "Medium",
           "version": "3.9.5"
@@ -2023,7 +2273,10 @@
             "CVE-2026-111064",
             "GHSA-5wr8-gcqf-gqf3"
           ],
+          "modified": "2026-10-19T17:15:04.139404381Z",
           "package": "aiohttp",
+          "path": "kubernetes/requirements.txt",
+          "published": "2026-10-19T17:08:04Z",
           "score": "8.2",
           "severity": "High",
           "version": "3.9.5"
@@ -2034,7 +2287,10 @@
             "CVE-2026-111065",
             "GHSA-6cjc-53gc-5rqm"
           ],
+          "modified": "2026-10-20T20:15:05.286053785Z",
           "package": "aiohttp",
+          "path": "kubernetes/requirements.txt",
+          "published": "2026-10-20T19:57:24Z",
           "score": "6.9",
           "severity": "Medium",
           "version": "3.9.5"
@@ -2045,7 +2301,10 @@
             "CVE-2026-111066",
             "GHSA-9xw5-w5jj-pvcg"
           ],
+          "modified": "2026-10-20T20:00:04.692319554Z",
           "package": "aiohttp",
+          "path": "kubernetes/requirements.txt",
+          "published": "2026-10-20T19:52:09Z",
           "score": "8.2",
           "severity": "High",
           "version": "3.9.5"
@@ -2056,7 +2315,10 @@
             "CVE-2026-111748",
             "GHSA-f9xw-jh8m-3mwq"
           ],
+          "modified": "2026-10-20T20:15:05.218624757Z",
           "package": "aiohttp",
+          "path": "kubernetes/requirements.txt",
+          "published": "2026-10-20T20:01:40Z",
           "score": "6.3",
           "severity": "Medium",
           "version": "3.9.5"
@@ -2067,7 +2329,10 @@
             "CVE-2026-111749",
             "GHSA-gx76-c99x-2c96"
           ],
+          "modified": "2026-10-20T20:15:05.188135798Z",
           "package": "aiohttp",
+          "path": "kubernetes/requirements.txt",
+          "published": "2026-10-20T19:58:14Z",
           "score": "2.3",
           "severity": "Low",
           "version": "3.9.5"
@@ -2078,7 +2343,10 @@
             "CVE-2026-111750",
             "GHSA-pqxq-w44r-73xw"
           ],
+          "modified": "2026-10-20T20:00:04.694820004Z",
           "package": "aiohttp",
+          "path": "kubernetes/requirements.txt",
+          "published": "2026-10-20T19:52:21Z",
           "score": "6.3",
           "severity": "Medium",
           "version": "3.9.5"
@@ -2090,7 +2358,10 @@
             "GHSA-65pc-fj4g-8rjx",
             "PYSEC-2026-215"
           ],
+          "modified": "2026-09-10T03:50:45.700124422Z",
           "package": "idna",
+          "path": "kubernetes/requirements.txt",
+          "published": "2026-05-19T14:34:32Z",
           "score": "6.9",
           "severity": "Medium",
           "version": "3.9.0"
@@ -2102,7 +2373,10 @@
             "GHSA-pwr2-4v36-6qpr",
             "PYSEC-2024-40"
           ],
+          "modified": "2026-09-10T03:50:09.881449775Z",
           "package": "orjson",
+          "path": "kubernetes/requirements.txt",
+          "published": "2024-02-26T16:28:00Z",
           "score": "7.5",
           "severity": "High",
           "version": "3.9.9"
@@ -2114,13 +2388,23 @@
             "GHSA-hx9q-6w63-j58v",
             "PYSEC-2026-107"
           ],
+          "modified": "2026-09-10T03:50:33.258377926Z",
           "package": "orjson",
+          "path": "kubernetes/requirements.txt",
+          "published": "2026-01-22T17:16:01.433Z",
           "score": "7.7",
           "severity": "High",
           "version": "3.9.9"
         }
       ],
       "warning": null
+    },
+    "osv_api": {
+      "available": true,
+      "queried_at": "2026-11-09T01:36:16+00:00",
+      "states": {
+        "confirmed": 37
+      }
     },
     "ref": "3.4.3",
     "ref_kind": "release",
@@ -2141,21 +2425,91 @@
     },
     "released_at": "2026-11-02T23:01:58Z",
     "repository": "bridgecrewio/checkov",
+    "sbom_sha256": "5a04f830c37f69ec1e6b63d444c86d044a04d10912a5bd29dc4dbec0d4e013a6",
     "sbomlyze_diff": {
       "added": 0,
-      "changed": 2,
+      "baseline": {
+        "attempt": "1",
+        "run_id": "41380955266"
+      },
+      "changed": 1,
+      "contract": "sbomlyze-diff-0.7",
       "drift": {
-        "integrity_drift": 1,
+        "distinct_version_changes": 1,
+        "downgrades": 0,
+        "file_changes": 1,
+        "integrity_drift": 0,
+        "license_changes": 0,
         "metadata_drift": 0,
+        "owned_file_drift": 0,
+        "owned_files_changed": 0,
+        "unknown_direction": 0,
+        "upgrades": 1,
         "version_drift": 1
       },
       "findings": [
-        "1 version upgrades among 169 shared packages",
-        "Integrity drift (1 total): 1 unknown",
-        "Core system packages stable: pypi (106), github (48), file (13) unchanged"
+        "Scanned bridgecrewio/checkov changed: 3.4.0 \u2192 3.4.3",
+        "1 version upgrades among 156 shared packages",
+        "Integrity drift checked only 0 of 155 same-version packages; the rest carry no comparable digest",
+        "1 file entries changed content (not package integrity drift): /kubernetes/requirements.txt",
+        "Core system packages stable: github (48), file (13) unchanged",
+        "pypi: 106 packages before and after (1 version changes)"
       ],
       "html": "sbomlyze-diff.html",
-      "removed": 0
+      "occurrences": {
+        "added": [],
+        "digest_coverage": {
+          "after_only": 0,
+          "before_only": 0,
+          "by_kind": {},
+          "comparable": 0,
+          "disjoint_kinds": 0,
+          "packages_total": 156,
+          "same_version_pairs": 155
+        },
+        "file_changes": [
+          {
+            "owners": [],
+            "path": "kubernetes/requirements.txt"
+          }
+        ],
+        "file_coverage": {
+          "ambiguous_paths": 0,
+          "config_unknown": 0,
+          "files_compared": 13,
+          "files_unverified": 0,
+          "owned_files_after": 0,
+          "unowned_files_after": 0
+        },
+        "files_added": [],
+        "files_removed": [],
+        "integrity_changes": [],
+        "license_changes": [],
+        "metadata_changes": [],
+        "moved": [],
+        "owned_file_drift": [],
+        "removed": [],
+        "source_change": {
+          "from": "3.4.0",
+          "name": "bridgecrewio/checkov",
+          "to": "3.4.3"
+        },
+        "version_changes": [
+          {
+            "direction": "upgrade",
+            "ecosystem": "pypi",
+            "from": "3.4.0",
+            "level": "patch",
+            "location": "kubernetes/requirements.txt",
+            "name": "checkov",
+            "to": "3.4.3"
+          }
+        ],
+        "version_set_changes": []
+      },
+      "previous_sbom_sha256": "32571ffde300dde30988865b2fd6860254c1630b0ac3c4de0362658d751c27e8",
+      "removed": 0,
+      "sbom_sha256": "5a04f830c37f69ec1e6b63d444c86d044a04d10912a5bd29dc4dbec0d4e013a6"
     },
     "scanned_at": "2026-11-08T05:53:31+00:00",
     "scorecard": null,
@@ -2165,15 +2519,24 @@
         "aliases": [],
         "ecosystem": "pypi",
         "epss": null,
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "2026.10.18"
         ],
         "id": "GHSA-6q48-6c7w-9gw2",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "Pipfile.lock",
+        "locations": [
+          "Pipfile.lock"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-10-30T14:00:02.590922333Z",
+        "osv_published": "2026-10-20T19:35:05Z",
         "package": "certifi",
+        "purl": "pkg:pypi/certifi@2026.7.22",
         "severity": "Critical",
         "summary": "certifi bundles emSign root CAs with compromised intermediate CA keys",
         "url": "https://github.com/advisories/GHSA-6q48-6c7w-9gw2",
@@ -2189,15 +2552,28 @@
           "percentile": 0.466,
           "score": 0.00556
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "3.1.59"
         ],
         "id": "GHSA-284h-m62q-gf8w",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "setup.py",
+        "locations": [
+          "setup.py"
+        ],
+        "osv_api": {
+          "id": "GHSA-284h-m62q-gf8w",
+          "modified": "2026-09-08T19:00:06.885837Z",
+          "published": "",
+          "state": "confirmed"
+        },
         "osv_confirmed": false,
         "package": "gitpython",
+        "purl": "pkg:pypi/gitpython@3.1.41",
         "severity": "Critical",
         "summary": "GitPython: Dormant multi-line git-config values are corrupted into live injected directives (e.g. core.hooksPath) on any unrelated GitConfigParser write, enabling RCE",
         "url": "https://github.com/advisories/GHSA-284h-m62q-gf8w",
@@ -2207,15 +2583,24 @@
         "aliases": [],
         "ecosystem": "pypi",
         "epss": null,
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "3.14.4"
         ],
         "id": "GHSA-2g87-pp6c-29x5",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "Pipfile.lock",
+        "locations": [
+          "Pipfile.lock"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-10-19T17:15:04.113194208Z",
+        "osv_published": "2026-10-19T17:07:23Z",
         "package": "aiohttp",
+        "purl": "pkg:pypi/aiohttp@3.13.5",
         "severity": "High",
         "summary": "aiohttp: Multiple instances of excessive or unbounded memory/CPU use",
         "url": "https://github.com/advisories/GHSA-2g87-pp6c-29x5",
@@ -2231,15 +2616,24 @@
           "percentile": 0.34407,
           "score": 0.00399
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "3.14.4"
         ],
         "id": "GHSA-5wr8-gcqf-gqf3",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "Pipfile.lock",
+        "locations": [
+          "Pipfile.lock"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-10-19T17:15:04.139404381Z",
+        "osv_published": "2026-10-19T17:08:04Z",
         "package": "aiohttp",
+        "purl": "pkg:pypi/aiohttp@3.13.5",
         "severity": "High",
         "summary": "aiohttp server lacks an initial request/header timeout",
         "url": "https://github.com/advisories/GHSA-5wr8-gcqf-gqf3",
@@ -2255,15 +2649,24 @@
           "percentile": 0.35671,
           "score": 0.00412
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "3.14.4"
         ],
         "id": "GHSA-9xw5-w5jj-pvcg",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "Pipfile.lock",
+        "locations": [
+          "Pipfile.lock"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-10-20T20:00:04.692319554Z",
+        "osv_published": "2026-10-20T19:52:09Z",
         "package": "aiohttp",
+        "purl": "pkg:pypi/aiohttp@3.13.5",
         "severity": "High",
         "summary": "AIOHTTP: File descriptor exhaustion in multipart requests",
         "url": "https://github.com/advisories/GHSA-9xw5-w5jj-pvcg",
@@ -2279,15 +2682,24 @@
           "percentile": 0.44927,
           "score": 0.00528
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "3.14.3"
         ],
         "id": "GHSA-cq5v-8q36-5273",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "Pipfile.lock",
+        "locations": [
+          "Pipfile.lock"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-09-10T03:51:13.983479281Z",
+        "osv_published": "2026-08-03T20:51:13Z",
         "package": "aiohttp",
+        "purl": "pkg:pypi/aiohttp@3.13.5",
         "severity": "High",
         "summary": "AIOHTTP: Out-of-bounds heap read in C HTTP response parser error path (malformed chunked response)",
         "url": "https://github.com/advisories/GHSA-cq5v-8q36-5273",
@@ -2303,13 +2715,22 @@
           "percentile": 0.62585,
           "score": 0.00985
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "not-fixed",
         "fixed_in": [],
         "id": "GHSA-wj6h-64fc-37mp",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "Pipfile.lock",
+        "locations": [
+          "Pipfile.lock"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-09-10T03:50:09.447249599Z",
+        "osv_published": "2024-01-22T21:35:27Z",
         "package": "ecdsa",
+        "purl": "pkg:pypi/ecdsa@0.19.2",
         "severity": "High",
         "summary": "Minerva timing attack on P-256 in python-ecdsa",
         "url": "https://github.com/advisories/GHSA-wj6h-64fc-37mp",
@@ -2325,15 +2746,28 @@
           "percentile": 0.36479,
           "score": 0.00419
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "3.1.60"
         ],
         "id": "GHSA-239g-whfq-7xj9",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "setup.py",
+        "locations": [
+          "setup.py"
+        ],
+        "osv_api": {
+          "id": "GHSA-239g-whfq-7xj9",
+          "modified": "2026-09-30T23:45:04.022111Z",
+          "published": "",
+          "state": "confirmed"
+        },
         "osv_confirmed": false,
         "package": "gitpython",
+        "purl": "pkg:pypi/gitpython@3.1.41",
         "severity": "High",
         "summary": "GitPython: Repository content can impersonate the git directory, leading to arbitrary code execution",
         "url": "https://github.com/advisories/GHSA-239g-whfq-7xj9",
@@ -2349,15 +2783,24 @@
           "percentile": 0.36479,
           "score": 0.00419
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "3.1.60"
         ],
         "id": "GHSA-239g-whfq-7xj9",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "Pipfile.lock",
+        "locations": [
+          "Pipfile.lock"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-09-30T23:45:04.022111787Z",
+        "osv_published": "2026-09-09T12:17:16.830Z",
         "package": "gitpython",
+        "purl": "pkg:pypi/gitpython@3.1.59",
         "severity": "High",
         "summary": "GitPython: Repository content can impersonate the git directory, leading to arbitrary code execution",
         "url": "https://github.com/advisories/GHSA-239g-whfq-7xj9",
@@ -2367,15 +2810,28 @@
         "aliases": [],
         "ecosystem": "pypi",
         "epss": null,
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "3.2.0"
         ],
         "id": "GHSA-23mf-xhv8-69c2",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "setup.py",
+        "locations": [
+          "setup.py"
+        ],
+        "osv_api": {
+          "id": "GHSA-23mf-xhv8-69c2",
+          "modified": "2026-10-27T15:47:08.812491Z",
+          "published": "",
+          "state": "confirmed"
+        },
         "osv_confirmed": false,
         "package": "gitpython",
+        "purl": "pkg:pypi/gitpython@3.1.41",
         "severity": "High",
         "summary": "GitPython: arbitrary file read via attacker-controlled branch name in `Head.checkout()` (incomplete fix of CVE-2026-78679)",
         "url": "https://github.com/advisories/GHSA-23mf-xhv8-69c2",
@@ -2385,15 +2841,24 @@
         "aliases": [],
         "ecosystem": "pypi",
         "epss": null,
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "3.2.0"
         ],
         "id": "GHSA-23mf-xhv8-69c2",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "Pipfile.lock",
+        "locations": [
+          "Pipfile.lock"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-10-27T15:47:08.812491596Z",
+        "osv_published": "2026-10-27T15:28:03Z",
         "package": "gitpython",
+        "purl": "pkg:pypi/gitpython@3.1.59",
         "severity": "High",
         "summary": "GitPython: arbitrary file read via attacker-controlled branch name in `Head.checkout()` (incomplete fix of CVE-2026-78679)",
         "url": "https://github.com/advisories/GHSA-23mf-xhv8-69c2",
@@ -2409,15 +2874,28 @@
           "percentile": 0.82697,
           "score": 0.02209
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "3.1.51"
         ],
         "id": "GHSA-2f96-g7mh-g2hx",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "setup.py",
+        "locations": [
+          "setup.py"
+        ],
+        "osv_api": {
+          "id": "GHSA-2f96-g7mh-g2hx",
+          "modified": "2026-09-23T05:15:05.950374Z",
+          "published": "",
+          "state": "confirmed"
+        },
         "osv_confirmed": false,
         "package": "gitpython",
+        "purl": "pkg:pypi/gitpython@3.1.41",
         "severity": "High",
         "summary": "GitPython: Command Injection via git long-option prefix abbreviation bypass of CVE-2026-42215 blocklist",
         "url": "https://github.com/advisories/GHSA-2f96-g7mh-g2hx",
@@ -2427,15 +2905,28 @@
         "aliases": [],
         "ecosystem": "pypi",
         "epss": null,
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "3.1.57"
         ],
         "id": "GHSA-3f7w-8rr8-f37f",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "setup.py",
+        "locations": [
+          "setup.py"
+        ],
+        "osv_api": {
+          "id": "GHSA-3f7w-8rr8-f37f",
+          "modified": "2026-09-10T13:10:44.075529Z",
+          "published": "",
+          "state": "confirmed"
+        },
         "osv_confirmed": false,
         "package": "gitpython",
+        "purl": "pkg:pypi/gitpython@3.1.41",
         "severity": "High",
         "summary": "GitPython: Unguarded git option forwarding in IndexFile.checkout() and TagReference.create() enables arbitrary file overwrite and arbitrary file read",
         "url": "https://github.com/advisories/GHSA-3f7w-8rr8-f37f",
@@ -2451,15 +2942,28 @@
           "percentile": 0.19016,
           "score": 0.00268
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "3.1.53"
         ],
         "id": "GHSA-3rp5-jjmw-4wv2",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "setup.py",
+        "locations": [
+          "setup.py"
+        ],
+        "osv_api": {
+          "id": "GHSA-3rp5-jjmw-4wv2",
+          "modified": "2026-10-23T21:47:05Z",
+          "published": "",
+          "state": "confirmed"
+        },
         "osv_confirmed": false,
         "package": "gitpython",
+        "purl": "pkg:pypi/gitpython@3.1.41",
         "severity": "High",
         "summary": "GitPython: git-config section-name injection enables arbitrary config directives (core.sshCommand RCE)",
         "url": "https://github.com/advisories/GHSA-3rp5-jjmw-4wv2",
@@ -2475,15 +2979,28 @@
           "percentile": 0.45856,
           "score": 0.00543
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "3.1.58"
         ],
         "id": "GHSA-4gmw-gg2m-w46p",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "setup.py",
+        "locations": [
+          "setup.py"
+        ],
+        "osv_api": {
+          "id": "GHSA-4gmw-gg2m-w46p",
+          "modified": "2026-09-10T12:25:42.767166Z",
+          "published": "",
+          "state": "confirmed"
+        },
         "osv_confirmed": false,
         "package": "gitpython",
+        "purl": "pkg:pypi/gitpython@3.1.41",
         "severity": "High",
         "summary": "GitPython: Unguarded git read-tree option forwarding in IndexFile.from_tree/reset/merge_tree enables arbitrary file overwrite",
         "url": "https://github.com/advisories/GHSA-4gmw-gg2m-w46p",
@@ -2493,15 +3010,28 @@
         "aliases": [],
         "ecosystem": "pypi",
         "epss": null,
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "3.1.54"
         ],
         "id": "GHSA-6p8h-3wgx-97gf",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "setup.py",
+        "locations": [
+          "setup.py"
+        ],
+        "osv_api": {
+          "id": "GHSA-6p8h-3wgx-97gf",
+          "modified": "2026-09-10T13:11:03.995690Z",
+          "published": "",
+          "state": "confirmed"
+        },
         "osv_confirmed": false,
         "package": "gitpython",
+        "purl": "pkg:pypi/gitpython@3.1.41",
         "severity": "High",
         "summary": "GitPython: Incomplete unsafe_git_clone_options denylist omits --template enabling arbitrary command execution via clone hooks",
         "url": "https://github.com/advisories/GHSA-6p8h-3wgx-97gf",
@@ -2517,15 +3047,28 @@
           "percentile": 0.36493,
           "score": 0.00419
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "3.1.48"
         ],
         "id": "GHSA-7545-fcxq-7j24",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "setup.py",
+        "locations": [
+          "setup.py"
+        ],
+        "osv_api": {
+          "id": "GHSA-7545-fcxq-7j24",
+          "modified": "2026-09-10T03:50:45.903378Z",
+          "published": "",
+          "state": "confirmed"
+        },
         "osv_confirmed": false,
         "package": "gitpython",
+        "purl": "pkg:pypi/gitpython@3.1.41",
         "severity": "High",
         "summary": "GitPython reference APIs has a path traversal vulnerability that allows arbitrary file write and delete outside the repository",
         "url": "https://github.com/advisories/GHSA-7545-fcxq-7j24",
@@ -2541,15 +3084,28 @@
           "percentile": 0.07391,
           "score": 0.00178
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "3.1.59"
         ],
         "id": "GHSA-7833-fr7j-v32q",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "setup.py",
+        "locations": [
+          "setup.py"
+        ],
+        "osv_api": {
+          "id": "GHSA-7833-fr7j-v32q",
+          "modified": "2026-09-23T05:15:05.931147Z",
+          "published": "",
+          "state": "confirmed"
+        },
         "osv_confirmed": false,
         "package": "gitpython",
+        "purl": "pkg:pypi/gitpython@3.1.41",
         "severity": "High",
         "summary": "GitPython: Arbitrary local file content disclosure via [include] directive in untrusted .gitmodules (SubmoduleConfigParser never disables merge_includes)",
         "url": "https://github.com/advisories/GHSA-7833-fr7j-v32q",
@@ -2565,15 +3121,28 @@
           "percentile": 0.36894,
           "score": 0.00423
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "3.2.1"
         ],
         "id": "GHSA-83vg-56qc-22m7",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "setup.py",
+        "locations": [
+          "setup.py"
+        ],
+        "osv_api": {
+          "id": "GHSA-83vg-56qc-22m7",
+          "modified": "2026-10-22T16:45:04.297463Z",
+          "published": "",
+          "state": "confirmed"
+        },
         "osv_confirmed": false,
         "package": "gitpython",
+        "purl": "pkg:pypi/gitpython@3.1.41",
         "severity": "High",
         "summary": "GitPython validates a submodule's \".git\" path only after cloning into it (RCE)",
         "url": "https://github.com/advisories/GHSA-83vg-56qc-22m7",
@@ -2589,15 +3158,24 @@
           "percentile": 0.36894,
           "score": 0.00423
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "3.2.1"
         ],
         "id": "GHSA-83vg-56qc-22m7",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "Pipfile.lock",
+        "locations": [
+          "Pipfile.lock"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-10-22T16:45:04.297463159Z",
+        "osv_published": "2026-10-22T16:41:14Z",
         "package": "gitpython",
+        "purl": "pkg:pypi/gitpython@3.1.59",
         "severity": "High",
         "summary": "GitPython validates a submodule's \".git\" path only after cloning into it (RCE)",
         "url": "https://github.com/advisories/GHSA-83vg-56qc-22m7",
@@ -2613,15 +3191,28 @@
           "percentile": 0.51468,
           "score": 0.00651
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "3.1.59"
         ],
         "id": "GHSA-8mcc-hrx5-hvxc",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "setup.py",
+        "locations": [
+          "setup.py"
+        ],
+        "osv_api": {
+          "id": "GHSA-8mcc-hrx5-hvxc",
+          "modified": "2026-09-08T19:00:06.914140Z",
+          "published": "",
+          "state": "confirmed"
+        },
         "osv_confirmed": false,
         "package": "gitpython",
+        "purl": "pkg:pypi/gitpython@3.1.41",
         "severity": "High",
         "summary": "GitPython: clone_from()/clone() omit --separate-git-dir from unsafe_git_clone_options, enabling arbitrary git-directory creation outside the destination",
         "url": "https://github.com/advisories/GHSA-8mcc-hrx5-hvxc",
@@ -2631,15 +3222,28 @@
         "aliases": [],
         "ecosystem": "pypi",
         "epss": null,
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "3.1.55"
         ],
         "id": "GHSA-94p4-4cq8-9g67",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "setup.py",
+        "locations": [
+          "setup.py"
+        ],
+        "osv_api": {
+          "id": "GHSA-94p4-4cq8-9g67",
+          "modified": "2026-09-24T14:45:07.411775Z",
+          "published": "",
+          "state": "confirmed"
+        },
         "osv_confirmed": false,
         "package": "gitpython",
+        "purl": "pkg:pypi/gitpython@3.1.41",
         "severity": "High",
         "summary": "GitPython: Environment-variable exfiltration via Repo.create_remote() / Remote.add() URL (incomplete fix of GHSA-rwj8-pgh3-r573)",
         "url": "https://github.com/advisories/GHSA-94p4-4cq8-9g67",
@@ -2655,15 +3259,28 @@
           "percentile": 0.69586,
           "score": 0.01251
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "3.1.51"
         ],
         "id": "GHSA-956x-8gvw-wg5v",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "setup.py",
+        "locations": [
+          "setup.py"
+        ],
+        "osv_api": {
+          "id": "GHSA-956x-8gvw-wg5v",
+          "modified": "2026-09-10T12:25:39.217544Z",
+          "published": "",
+          "state": "confirmed"
+        },
         "osv_confirmed": false,
         "package": "gitpython",
+        "purl": "pkg:pypi/gitpython@3.1.41",
         "severity": "High",
         "summary": "GitPython: command injection via unguarded Git options in `Repo.archive()`, `git.ls_remote()`, and arbitrary file overwrite via `Repo.iter_commits()` / `Repo.blame()`",
         "url": "https://github.com/advisories/GHSA-956x-8gvw-wg5v",
@@ -2679,15 +3296,28 @@
           "percentile": 0.54158,
           "score": 0.0072
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "3.1.58"
         ],
         "id": "GHSA-9rj7-rf2p-w77r",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "setup.py",
+        "locations": [
+          "setup.py"
+        ],
+        "osv_api": {
+          "id": "GHSA-9rj7-rf2p-w77r",
+          "modified": "2026-09-10T12:25:55.324487Z",
+          "published": "",
+          "state": "confirmed"
+        },
         "osv_confirmed": false,
         "package": "gitpython",
+        "purl": "pkg:pypi/gitpython@3.1.41",
         "severity": "High",
         "summary": "GitPython: Unguarded git option forwarding in Repo.init enables arbitrary command execution via --template clone hooks",
         "url": "https://github.com/advisories/GHSA-9rj7-rf2p-w77r",
@@ -2697,15 +3327,28 @@
         "aliases": [],
         "ecosystem": "pypi",
         "epss": null,
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "3.2.0"
         ],
         "id": "GHSA-f9j4-qggq-h239",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "setup.py",
+        "locations": [
+          "setup.py"
+        ],
+        "osv_api": {
+          "id": "GHSA-f9j4-qggq-h239",
+          "modified": "2026-10-27T15:47:24.258288Z",
+          "published": "",
+          "state": "confirmed"
+        },
         "osv_confirmed": false,
         "package": "gitpython",
+        "purl": "pkg:pypi/gitpython@3.1.41",
         "severity": "High",
         "summary": "GitPython Remote.pull() refspec bypasses the --upload-pack unsafe-option guard, enabling arbitrary command execution",
         "url": "https://github.com/advisories/GHSA-f9j4-qggq-h239",
@@ -2715,15 +3358,24 @@
         "aliases": [],
         "ecosystem": "pypi",
         "epss": null,
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "3.2.0"
         ],
         "id": "GHSA-f9j4-qggq-h239",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "Pipfile.lock",
+        "locations": [
+          "Pipfile.lock"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-10-27T15:47:24.258288646Z",
+        "osv_published": "2026-10-27T15:26:50Z",
         "package": "gitpython",
+        "purl": "pkg:pypi/gitpython@3.1.59",
         "severity": "High",
         "summary": "GitPython Remote.pull() refspec bypasses the --upload-pack unsafe-option guard, enabling arbitrary command execution",
         "url": "https://github.com/advisories/GHSA-f9j4-qggq-h239",
@@ -2733,15 +3385,28 @@
         "aliases": [],
         "ecosystem": "pypi",
         "epss": null,
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "3.1.54"
         ],
         "id": "GHSA-fjr4-x663-mwxc",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "setup.py",
+        "locations": [
+          "setup.py"
+        ],
+        "osv_api": {
+          "id": "GHSA-fjr4-x663-mwxc",
+          "modified": "2026-09-29T09:10:55.738617Z",
+          "published": "",
+          "state": "confirmed"
+        },
         "osv_confirmed": false,
         "package": "gitpython",
+        "purl": "pkg:pypi/gitpython@3.1.41",
         "severity": "High",
         "summary": "GitPython: Arbitrary file overwrite via git diff --output argument injection in Diffable.diff (key- and value-controlled)",
         "url": "https://github.com/advisories/GHSA-fjr4-x663-mwxc",
@@ -2757,15 +3422,28 @@
           "percentile": 0.44485,
           "score": 0.00521
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "3.1.60"
         ],
         "id": "GHSA-g5vv-9gxw-82hx",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "setup.py",
+        "locations": [
+          "setup.py"
+        ],
+        "osv_api": {
+          "id": "GHSA-g5vv-9gxw-82hx",
+          "modified": "2026-09-30T23:45:04.037560Z",
+          "published": "",
+          "state": "confirmed"
+        },
         "osv_confirmed": false,
         "package": "gitpython",
+        "purl": "pkg:pypi/gitpython@3.1.41",
         "severity": "High",
         "summary": "GitPython: Denial of Service via catastrophic backtracking (ReDoS) in Actor.name_email_regex \u2014 commit author/committer field parsing",
         "url": "https://github.com/advisories/GHSA-g5vv-9gxw-82hx",
@@ -2781,15 +3459,24 @@
           "percentile": 0.44485,
           "score": 0.00521
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "3.1.60"
         ],
         "id": "GHSA-g5vv-9gxw-82hx",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "Pipfile.lock",
+        "locations": [
+          "Pipfile.lock"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-09-30T23:45:04.037560336Z",
+        "osv_published": "2026-09-09T12:17:17.120Z",
         "package": "gitpython",
+        "purl": "pkg:pypi/gitpython@3.1.59",
         "severity": "High",
         "summary": "GitPython: Denial of Service via catastrophic backtracking (ReDoS) in Actor.name_email_regex \u2014 commit author/committer field parsing",
         "url": "https://github.com/advisories/GHSA-g5vv-9gxw-82hx",
@@ -2805,15 +3492,28 @@
           "percentile": 0.36764,
           "score": 0.00422
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "3.1.58"
         ],
         "id": "GHSA-hmq2-w58f-27jc",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "setup.py",
+        "locations": [
+          "setup.py"
+        ],
+        "osv_api": {
+          "id": "GHSA-hmq2-w58f-27jc",
+          "modified": "2026-09-08T21:00:05.149418Z",
+          "published": "",
+          "state": "confirmed"
+        },
         "osv_confirmed": false,
         "package": "gitpython",
+        "purl": "pkg:pypi/gitpython@3.1.41",
         "severity": "High",
         "summary": "GitPython: Arbitrary Git Repository Creation Outside the Working Tree via Unvalidated .gitmodules Submodule Name in GitPython",
         "url": "https://github.com/advisories/GHSA-hmq2-w58f-27jc",
@@ -2823,15 +3523,28 @@
         "aliases": [],
         "ecosystem": "pypi",
         "epss": null,
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "3.1.58"
         ],
         "id": "GHSA-jm78-9fvv-mhgr",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "setup.py",
+        "locations": [
+          "setup.py"
+        ],
+        "osv_api": {
+          "id": "GHSA-jm78-9fvv-mhgr",
+          "modified": "2026-09-10T03:51:14.296736Z",
+          "published": "",
+          "state": "confirmed"
+        },
         "osv_confirmed": false,
         "package": "gitpython",
+        "purl": "pkg:pypi/gitpython@3.1.41",
         "severity": "High",
         "summary": "GitPython: git-config OPTION-name injection via =/#/whitespace bypasses name validator, enabling forged core.sshCommand/hooksPath (RCE)",
         "url": "https://github.com/advisories/GHSA-jm78-9fvv-mhgr",
@@ -2841,15 +3554,28 @@
         "aliases": [],
         "ecosystem": "pypi",
         "epss": null,
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "3.2.0"
         ],
         "id": "GHSA-m64x-33q8-m5h7",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "setup.py",
+        "locations": [
+          "setup.py"
+        ],
+        "osv_api": {
+          "id": "GHSA-m64x-33q8-m5h7",
+          "modified": "2026-10-27T15:47:24.576766Z",
+          "published": "",
+          "state": "confirmed"
+        },
         "osv_confirmed": false,
         "package": "gitpython",
+        "purl": "pkg:pypi/gitpython@3.1.41",
         "severity": "High",
         "summary": "GitPython parse_actor_and_date() is vulnerable to quadratic backtracking on malformed identity lines",
         "url": "https://github.com/advisories/GHSA-m64x-33q8-m5h7",
@@ -2859,15 +3585,24 @@
         "aliases": [],
         "ecosystem": "pypi",
         "epss": null,
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "3.2.0"
         ],
         "id": "GHSA-m64x-33q8-m5h7",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "Pipfile.lock",
+        "locations": [
+          "Pipfile.lock"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-10-27T15:47:24.576766638Z",
+        "osv_published": "2026-10-27T15:26:24Z",
         "package": "gitpython",
+        "purl": "pkg:pypi/gitpython@3.1.59",
         "severity": "High",
         "summary": "GitPython parse_actor_and_date() is vulnerable to quadratic backtracking on malformed identity lines",
         "url": "https://github.com/advisories/GHSA-m64x-33q8-m5h7",
@@ -2877,15 +3612,28 @@
         "aliases": [],
         "ecosystem": "pypi",
         "epss": null,
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "3.1.50"
         ],
         "id": "GHSA-mv93-w799-cj2w",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "setup.py",
+        "locations": [
+          "setup.py"
+        ],
+        "osv_api": {
+          "id": "GHSA-mv93-w799-cj2w",
+          "modified": "2026-09-17T09:10:55.928803Z",
+          "published": "",
+          "state": "confirmed"
+        },
         "osv_confirmed": false,
         "package": "gitpython",
+        "purl": "pkg:pypi/gitpython@3.1.41",
         "severity": "High",
         "summary": "GitPython: Newline injection in config_writer() section parameter bypasses CVE-2026-42215 patch, enabling RCE via core.hooksPath",
         "url": "https://github.com/advisories/GHSA-mv93-w799-cj2w",
@@ -2895,15 +3643,28 @@
         "aliases": [],
         "ecosystem": "pypi",
         "epss": null,
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "3.1.54"
         ],
         "id": "GHSA-r9mr-m37c-5fr3",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "setup.py",
+        "locations": [
+          "setup.py"
+        ],
+        "osv_api": {
+          "id": "GHSA-r9mr-m37c-5fr3",
+          "modified": "2026-09-10T13:10:47.448946Z",
+          "published": "",
+          "state": "confirmed"
+        },
         "osv_confirmed": false,
         "package": "gitpython",
+        "purl": "pkg:pypi/gitpython@3.1.41",
         "severity": "High",
         "summary": "GitPython: Unsafe git option guard bypass via single-character kwarg value token smuggling enables arbitrary command execution",
         "url": "https://github.com/advisories/GHSA-r9mr-m37c-5fr3",
@@ -2919,15 +3680,28 @@
           "percentile": 0.55154,
           "score": 0.00749
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "3.1.47"
         ],
         "id": "GHSA-rpm5-65cw-6hj4",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "setup.py",
+        "locations": [
+          "setup.py"
+        ],
+        "osv_api": {
+          "id": "GHSA-rpm5-65cw-6hj4",
+          "modified": "2026-09-10T03:51:03.167884Z",
+          "published": "",
+          "state": "confirmed"
+        },
         "osv_confirmed": false,
         "package": "gitpython",
+        "purl": "pkg:pypi/gitpython@3.1.41",
         "severity": "High",
         "summary": "GitPython has Command Injection via Git options bypass",
         "url": "https://github.com/advisories/GHSA-rpm5-65cw-6hj4",
@@ -2943,15 +3717,28 @@
           "percentile": 0.26043,
           "score": 0.00328
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "3.1.52"
         ],
         "id": "GHSA-rwj8-pgh3-r573",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "setup.py",
+        "locations": [
+          "setup.py"
+        ],
+        "osv_api": {
+          "id": "GHSA-rwj8-pgh3-r573",
+          "modified": "2026-09-24T18:28:17.149390Z",
+          "published": "",
+          "state": "confirmed"
+        },
         "osv_confirmed": false,
         "package": "gitpython",
+        "purl": "pkg:pypi/gitpython@3.1.41",
         "severity": "High",
         "summary": "GitPython: Environment-variable exfiltration via os.path.expandvars() on Repo.clone_from() URL",
         "url": "https://github.com/advisories/GHSA-rwj8-pgh3-r573",
@@ -2967,15 +3754,28 @@
           "percentile": 0.14787,
           "score": 0.00237
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "3.1.49"
         ],
         "id": "GHSA-v87r-6q3f-2j67",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "setup.py",
+        "locations": [
+          "setup.py"
+        ],
+        "osv_api": {
+          "id": "GHSA-v87r-6q3f-2j67",
+          "modified": "2026-09-10T03:50:47.691444Z",
+          "published": "",
+          "state": "confirmed"
+        },
         "osv_confirmed": false,
         "package": "gitpython",
+        "purl": "pkg:pypi/gitpython@3.1.41",
         "severity": "High",
         "summary": "GitPython: Newline injection in config_writer().set_value() enables RCE via core.hooksPath",
         "url": "https://github.com/advisories/GHSA-v87r-6q3f-2j67",
@@ -2985,15 +3785,28 @@
         "aliases": [],
         "ecosystem": "pypi",
         "epss": null,
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "3.2.0"
         ],
         "id": "GHSA-w8jc-g24h-crhw",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "setup.py",
+        "locations": [
+          "setup.py"
+        ],
+        "osv_api": {
+          "id": "GHSA-w8jc-g24h-crhw",
+          "modified": "2026-10-27T15:47:24.947223Z",
+          "published": "",
+          "state": "confirmed"
+        },
         "osv_confirmed": false,
         "package": "gitpython",
+        "purl": "pkg:pypi/gitpython@3.1.41",
         "severity": "High",
         "summary": "GitPython command wrappers omit unsafe protocol and option checks",
         "url": "https://github.com/advisories/GHSA-w8jc-g24h-crhw",
@@ -3003,15 +3816,24 @@
         "aliases": [],
         "ecosystem": "pypi",
         "epss": null,
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "3.2.0"
         ],
         "id": "GHSA-w8jc-g24h-crhw",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "Pipfile.lock",
+        "locations": [
+          "Pipfile.lock"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-10-27T15:47:24.947223105Z",
+        "osv_published": "2026-10-27T15:26:43Z",
         "package": "gitpython",
+        "purl": "pkg:pypi/gitpython@3.1.59",
         "severity": "High",
         "summary": "GitPython command wrappers omit unsafe protocol and option checks",
         "url": "https://github.com/advisories/GHSA-w8jc-g24h-crhw",
@@ -3027,15 +3849,28 @@
           "percentile": 0.48475,
           "score": 0.0059
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "3.1.58"
         ],
         "id": "GHSA-wvpp-8hx9-p66j",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "setup.py",
+        "locations": [
+          "setup.py"
+        ],
+        "osv_api": {
+          "id": "GHSA-wvpp-8hx9-p66j",
+          "modified": "2026-09-10T12:26:01.792035Z",
+          "published": "",
+          "state": "confirmed"
+        },
         "osv_confirmed": false,
         "package": "gitpython",
+        "purl": "pkg:pypi/gitpython@3.1.41",
         "severity": "High",
         "summary": "GitPython: Unsafe git option guard bypass via split_single_char_options=False short-option token smuggling enables command execution",
         "url": "https://github.com/advisories/GHSA-wvpp-8hx9-p66j",
@@ -3051,15 +3886,28 @@
           "percentile": 0.47493,
           "score": 0.00571
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "3.1.47"
         ],
         "id": "GHSA-x2qx-6953-8485",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "setup.py",
+        "locations": [
+          "setup.py"
+        ],
+        "osv_api": {
+          "id": "GHSA-x2qx-6953-8485",
+          "modified": "2026-09-10T03:51:03.787491Z",
+          "published": "",
+          "state": "confirmed"
+        },
         "osv_confirmed": false,
         "package": "gitpython",
+        "purl": "pkg:pypi/gitpython@3.1.41",
         "severity": "High",
         "summary": "GitPython: Unsafe option check validates multi_options before shlex.split transformation",
         "url": "https://github.com/advisories/GHSA-x2qx-6953-8485",
@@ -3075,15 +3923,24 @@
           "percentile": 0.50604,
           "score": 0.00633
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "3.11.6"
         ],
         "id": "GHSA-hx9q-6w63-j58v",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "Pipfile.lock",
+        "locations": [
+          "Pipfile.lock"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-09-10T03:50:33.258377926Z",
+        "osv_published": "2026-01-22T18:30:33Z",
         "package": "orjson",
+        "purl": "pkg:pypi/orjson@3.11.5",
         "severity": "High",
         "summary": "orjson does not limit recursion for deeply nested JSON documents",
         "url": "https://github.com/advisories/GHSA-hx9q-6w63-j58v",
@@ -3099,15 +3956,24 @@
           "percentile": 0.54527,
           "score": 0.00731
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "2.6.0"
         ],
         "id": "GHSA-2xpw-w6gg-jr37",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "Pipfile.lock",
+        "locations": [
+          "Pipfile.lock"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-09-25T17:15:05.968189421Z",
+        "osv_published": "2025-12-05T18:15:54Z",
         "package": "urllib3",
+        "purl": "pkg:pypi/urllib3@1.26.20",
         "severity": "High",
         "summary": "urllib3 streaming API improperly handles highly compressed data",
         "url": "https://github.com/advisories/GHSA-2xpw-w6gg-jr37",
@@ -3123,15 +3989,24 @@
           "percentile": 0.87123,
           "score": 0.02922
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "2.6.3"
         ],
         "id": "GHSA-38jv-5279-wg99",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "Pipfile.lock",
+        "locations": [
+          "Pipfile.lock"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-09-10T03:50:32.562010895Z",
+        "osv_published": "2026-01-07T19:18:14Z",
         "package": "urllib3",
+        "purl": "pkg:pypi/urllib3@1.26.20",
         "severity": "High",
         "summary": "Decompression-bomb safeguards bypassed when following HTTP redirects (streaming API)",
         "url": "https://github.com/advisories/GHSA-38jv-5279-wg99",
@@ -3147,15 +4022,24 @@
           "percentile": 0.10707,
           "score": 0.00206
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "2.8.0"
         ],
         "id": "GHSA-8988-9cw3-xx77",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "Pipfile.lock",
+        "locations": [
+          "Pipfile.lock"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-10-01T17:55:53.793608550Z",
+        "osv_published": "2026-09-30T14:46:04Z",
         "package": "urllib3",
+        "purl": "pkg:pypi/urllib3@1.26.20",
         "severity": "High",
         "summary": "urllib3: HTTPS proxy TLS configuration may be ignored or overridden",
         "url": "https://github.com/advisories/GHSA-8988-9cw3-xx77",
@@ -3171,15 +4055,24 @@
           "percentile": 0.54526,
           "score": 0.00731
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "2.6.0"
         ],
         "id": "GHSA-gm62-xv2j-4w53",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "Pipfile.lock",
+        "locations": [
+          "Pipfile.lock"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-09-10T03:50:58.741847479Z",
+        "osv_published": "2025-12-05T18:15:19Z",
         "package": "urllib3",
+        "purl": "pkg:pypi/urllib3@1.26.20",
         "severity": "High",
         "summary": "urllib3 allows an unbounded number of links in the decompression chain",
         "url": "https://github.com/advisories/GHSA-gm62-xv2j-4w53",
@@ -3195,15 +4088,24 @@
           "percentile": 0.26458,
           "score": 0.00331
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "2.7.0"
         ],
         "id": "GHSA-qccp-gfcp-xxvc",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "Pipfile.lock",
+        "locations": [
+          "Pipfile.lock"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-09-10T03:50:47.272765640Z",
+        "osv_published": "2026-05-11T14:51:20Z",
         "package": "urllib3",
+        "purl": "pkg:pypi/urllib3@1.26.20",
         "severity": "High",
         "summary": "urllib3: Sensitive headers forwarded across origins in proxied low-level redirects",
         "url": "https://github.com/advisories/GHSA-qccp-gfcp-xxvc",
@@ -3219,15 +4121,24 @@
           "percentile": 0.26984,
           "score": 0.00335
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "2.8.0"
         ],
         "id": "GHSA-vxq7-64xx-v4gw",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "Pipfile.lock",
+        "locations": [
+          "Pipfile.lock"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-10-01T17:55:57.514829071Z",
+        "osv_published": "2026-09-30T14:46:18Z",
         "package": "urllib3",
+        "purl": "pkg:pypi/urllib3@1.26.20",
         "severity": "High",
         "summary": "urllib3: HTTPResponse.stream()/read_chunked() buffers an unbounded chunk-size line into memory",
         "url": "https://github.com/advisories/GHSA-vxq7-64xx-v4gw",
@@ -3243,15 +4154,24 @@
           "percentile": 0.1423,
           "score": 0.00233
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "3.14.4"
         ],
         "id": "GHSA-494j-54xm-rwp3",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "Pipfile.lock",
+        "locations": [
+          "Pipfile.lock"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-10-26T15:00:05.287728271Z",
+        "osv_published": "2026-10-19T17:07:47Z",
         "package": "aiohttp",
+        "purl": "pkg:pypi/aiohttp@3.13.5",
         "severity": "Medium",
         "summary": "AIOHTTP: Secure attribute not enforced for shared cookie",
         "url": "https://github.com/advisories/GHSA-494j-54xm-rwp3",
@@ -3267,15 +4187,24 @@
           "percentile": 0.42604,
           "score": 0.00493
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "3.14.1"
         ],
         "id": "GHSA-4fvr-rgm6-gqmc",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "Pipfile.lock",
+        "locations": [
+          "Pipfile.lock"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-09-10T03:51:07.881817751Z",
+        "osv_published": "2026-06-15T20:10:32Z",
         "package": "aiohttp",
+        "purl": "pkg:pypi/aiohttp@3.13.5",
         "severity": "Medium",
         "summary": "aiohttp: HTTP/1 Pipelined Requests Queue Without Limit",
         "url": "https://github.com/advisories/GHSA-4fvr-rgm6-gqmc",
@@ -3291,15 +4220,24 @@
           "percentile": 0.47051,
           "score": 0.00563
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "3.14.1"
         ],
         "id": "GHSA-63hw-fmq6-xxg2",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "Pipfile.lock",
+        "locations": [
+          "Pipfile.lock"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-09-10T03:50:48.460120366Z",
+        "osv_published": "2026-06-15T20:09:16Z",
         "package": "aiohttp",
+        "purl": "pkg:pypi/aiohttp@3.13.5",
         "severity": "Medium",
         "summary": "aiohttp: C HTTP Parser Bypasses max_line_size for Fragmented Lines",
         "url": "https://github.com/advisories/GHSA-63hw-fmq6-xxg2",
@@ -3315,15 +4253,24 @@
           "percentile": 0.33995,
           "score": 0.00395
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "3.14.4"
         ],
         "id": "GHSA-6cjc-53gc-5rqm",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "Pipfile.lock",
+        "locations": [
+          "Pipfile.lock"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-10-20T20:15:05.286053785Z",
+        "osv_published": "2026-10-20T19:57:24Z",
         "package": "aiohttp",
+        "purl": "pkg:pypi/aiohttp@3.13.5",
         "severity": "Medium",
         "summary": "AIOHTTP: Connector pool exhaustion via Max-Age overflow",
         "url": "https://github.com/advisories/GHSA-6cjc-53gc-5rqm",
@@ -3339,15 +4286,24 @@
           "percentile": 0.32952,
           "score": 0.00386
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "3.14.4"
         ],
         "id": "GHSA-f9xw-jh8m-3mwq",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "Pipfile.lock",
+        "locations": [
+          "Pipfile.lock"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-10-20T20:15:05.218624757Z",
+        "osv_published": "2026-10-20T20:01:40Z",
         "package": "aiohttp",
+        "purl": "pkg:pypi/aiohttp@3.13.5",
         "severity": "Medium",
         "summary": "AIOHTTP: Absolute-form request targets can spoof Request.scheme",
         "url": "https://github.com/advisories/GHSA-f9xw-jh8m-3mwq",
@@ -3363,15 +4319,24 @@
           "percentile": 0.42607,
           "score": 0.00493
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "3.14.1"
         ],
         "id": "GHSA-g3cq-j2xw-wf74",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "Pipfile.lock",
+        "locations": [
+          "Pipfile.lock"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-09-10T03:51:08.751749295Z",
+        "osv_published": "2026-06-15T20:09:51Z",
         "package": "aiohttp",
+        "purl": "pkg:pypi/aiohttp@3.13.5",
         "severity": "Medium",
         "summary": "aiohttp: Unread Compressed Request Bodies Bypass client_max_size During Cleanup",
         "url": "https://github.com/advisories/GHSA-g3cq-j2xw-wf74",
@@ -3387,15 +4352,24 @@
           "percentile": 0.04208,
           "score": 0.0015
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "3.14.0"
         ],
         "id": "GHSA-hg6j-4rv6-33pg",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "Pipfile.lock",
+        "locations": [
+          "Pipfile.lock"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-09-10T03:50:49.888335735Z",
+        "osv_published": "2026-06-02T20:16:37.903Z",
         "package": "aiohttp",
+        "purl": "pkg:pypi/aiohttp@3.13.5",
         "severity": "Medium",
         "summary": "AIOHTTP is vulnerable to cross-origin redirect with per-request cookies",
         "url": "https://github.com/advisories/GHSA-hg6j-4rv6-33pg",
@@ -3411,15 +4385,24 @@
           "percentile": 0.23613,
           "score": 0.00307
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "3.14.1"
         ],
         "id": "GHSA-hpj7-wq8m-9hgp",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "Pipfile.lock",
+        "locations": [
+          "Pipfile.lock"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-09-10T03:50:49.899674354Z",
+        "osv_published": "2026-06-15T20:09:06Z",
         "package": "aiohttp",
+        "purl": "pkg:pypi/aiohttp@3.13.5",
         "severity": "Medium",
         "summary": "aiohttp: DigestAuthMiddleware Applies Credentials to Cross-Origin Redirect Challenges",
         "url": "https://github.com/advisories/GHSA-hpj7-wq8m-9hgp",
@@ -3435,15 +4418,24 @@
           "percentile": 0.07507,
           "score": 0.00179
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "3.14.0"
         ],
         "id": "GHSA-jg22-mg44-37j8",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "Pipfile.lock",
+        "locations": [
+          "Pipfile.lock"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-09-10T03:51:08.847676311Z",
+        "osv_published": "2026-06-02T20:16:34.857Z",
         "package": "aiohttp",
+        "purl": "pkg:pypi/aiohttp@3.13.5",
         "severity": "Medium",
         "summary": "AIOHTTP is Vulnerable to Deserialization of Untrusted Data",
         "url": "https://github.com/advisories/GHSA-jg22-mg44-37j8",
@@ -3459,15 +4451,24 @@
           "percentile": 0.38748,
           "score": 0.00443
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "3.14.2"
         ],
         "id": "GHSA-mfx4-hv73-q22v",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "Pipfile.lock",
+        "locations": [
+          "Pipfile.lock"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-09-10T03:51:14.385788837Z",
+        "osv_published": "2026-08-03T20:46:10Z",
         "package": "aiohttp",
+        "purl": "pkg:pypi/aiohttp@3.13.5",
         "severity": "Medium",
         "summary": "AIOHTTP: HTTP request smuggling via WebSocket upgrade",
         "url": "https://github.com/advisories/GHSA-mfx4-hv73-q22v",
@@ -3483,15 +4484,24 @@
           "percentile": 0.44669,
           "score": 0.00524
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "3.14.2"
         ],
         "id": "GHSA-mq44-7p77-q5h7",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "Pipfile.lock",
+        "locations": [
+          "Pipfile.lock"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-09-10T03:51:14.489650589Z",
+        "osv_published": "2026-08-03T20:40:55Z",
         "package": "aiohttp",
+        "purl": "pkg:pypi/aiohttp@3.13.5",
         "severity": "Medium",
         "summary": "AIOHTTP: WebSocket client accepts compressed frames without negotiated permessage-deflate",
         "url": "https://github.com/advisories/GHSA-mq44-7p77-q5h7",
@@ -3507,15 +4517,24 @@
           "percentile": 0.32402,
           "score": 0.00382
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "3.14.4"
         ],
         "id": "GHSA-pqxq-w44r-73xw",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "Pipfile.lock",
+        "locations": [
+          "Pipfile.lock"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-10-20T20:00:04.694820004Z",
+        "osv_published": "2026-10-20T19:52:21Z",
         "package": "aiohttp",
+        "purl": "pkg:pypi/aiohttp@3.13.5",
         "severity": "Medium",
         "summary": "AIOHTTP: Pure-Python parser request smuggling",
         "url": "https://github.com/advisories/GHSA-pqxq-w44r-73xw",
@@ -3531,15 +4550,24 @@
           "percentile": 0.45612,
           "score": 0.00539
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "3.14.1"
         ],
         "id": "GHSA-xcgm-r5h9-7989",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "Pipfile.lock",
+        "locations": [
+          "Pipfile.lock"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-09-10T03:50:12.346397944Z",
+        "osv_published": "2026-06-15T20:11:22Z",
         "package": "aiohttp",
+        "purl": "pkg:pypi/aiohttp@3.13.5",
         "severity": "Medium",
         "summary": "aiohttp: Incomplete websocket frame payloads bypass memory limits",
         "url": "https://github.com/advisories/GHSA-xcgm-r5h9-7989",
@@ -3555,15 +4583,25 @@
           "percentile": 0.07341,
           "score": 0.00177
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "1.0.9"
         ],
         "id": "GHSA-89v8-rhwq-hf77",
         "kev": null,
-        "location": "setup.py",
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
+        "location": "Pipfile.lock",
+        "locations": [
+          "Pipfile.lock",
+          "setup.py"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-09-10T12:25:42.196126429Z",
+        "osv_published": "2026-08-20T17:28:52Z",
         "package": "asteval",
+        "purl": "pkg:pypi/asteval@1.0.6",
         "severity": "Medium",
         "summary": "asteval has a Sandbox Escape via BaseException Subclasses",
         "url": "https://github.com/advisories/GHSA-89v8-rhwq-hf77",
@@ -3573,15 +4611,25 @@
         "aliases": [],
         "ecosystem": "pypi",
         "epss": null,
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "1.0.9"
         ],
         "id": "GHSA-9w56-46f6-3qhx",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "Pipfile.lock",
+        "locations": [
+          "Pipfile.lock",
+          "setup.py"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-10-14T02:56:19.430602789Z",
+        "osv_published": "2026-08-20T17:26:52Z",
         "package": "asteval",
+        "purl": "pkg:pypi/asteval@1.0.6",
         "severity": "Medium",
         "summary": "asteval Sandbox Escape: arbitrary native memory read/write via numpy ctypes in default asteval Interpreter",
         "url": "https://github.com/advisories/GHSA-9w56-46f6-3qhx",
@@ -3597,15 +4645,28 @@
           "percentile": 0.24691,
           "score": 0.00316
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "3.1.59"
         ],
         "id": "GHSA-3wxw-xv34-2frg",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "setup.py",
+        "locations": [
+          "setup.py"
+        ],
+        "osv_api": {
+          "id": "GHSA-3wxw-xv34-2frg",
+          "modified": "2026-09-23T05:15:05.925079Z",
+          "published": "",
+          "state": "confirmed"
+        },
         "osv_confirmed": false,
         "package": "gitpython",
+        "purl": "pkg:pypi/gitpython@3.1.41",
         "severity": "Medium",
         "summary": "GitPython: TagReference.create positional reference bypasses kwargs-only --file guard, enabling arbitrary file read (incomplete fix of 3af0c251)",
         "url": "https://github.com/advisories/GHSA-3wxw-xv34-2frg",
@@ -3615,15 +4676,28 @@
         "aliases": [],
         "ecosystem": "pypi",
         "epss": null,
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "3.1.57"
         ],
         "id": "GHSA-539m-9xh6-q6rr",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "setup.py",
+        "locations": [
+          "setup.py"
+        ],
+        "osv_api": {
+          "id": "GHSA-539m-9xh6-q6rr",
+          "modified": "2026-09-10T13:11:01.695990Z",
+          "published": "",
+          "state": "confirmed"
+        },
         "osv_confirmed": false,
         "package": "gitpython",
+        "purl": "pkg:pypi/gitpython@3.1.41",
         "severity": "Medium",
         "summary": "GitPython: Incomplete unsafe_git_archive_options denylist omits --add-file / --add-virtual-file, enabling arbitrary file read via Repo.archive()",
         "url": "https://github.com/advisories/GHSA-539m-9xh6-q6rr",
@@ -3633,15 +4707,28 @@
         "aliases": [],
         "ecosystem": "pypi",
         "epss": null,
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "3.1.62"
         ],
         "id": "GHSA-59cr-6r3x-644w",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "setup.py",
+        "locations": [
+          "setup.py"
+        ],
+        "osv_api": {
+          "id": "GHSA-59cr-6r3x-644w",
+          "modified": "2026-10-01T00:00:05.754996Z",
+          "published": "",
+          "state": "confirmed"
+        },
         "osv_confirmed": false,
         "package": "gitpython",
+        "purl": "pkg:pypi/gitpython@3.1.41",
         "severity": "Medium",
         "summary": "GitPython submodule update path traversal can write outside the repository",
         "url": "https://github.com/advisories/GHSA-59cr-6r3x-644w",
@@ -3651,15 +4738,24 @@
         "aliases": [],
         "ecosystem": "pypi",
         "epss": null,
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "3.1.62"
         ],
         "id": "GHSA-59cr-6r3x-644w",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "Pipfile.lock",
+        "locations": [
+          "Pipfile.lock"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-10-01T00:00:05.754996881Z",
+        "osv_published": "2026-09-30T23:47:12Z",
         "package": "gitpython",
+        "purl": "pkg:pypi/gitpython@3.1.59",
         "severity": "Medium",
         "summary": "GitPython submodule update path traversal can write outside the repository",
         "url": "https://github.com/advisories/GHSA-59cr-6r3x-644w",
@@ -3675,15 +4771,28 @@
           "percentile": 0.35698,
           "score": 0.00412
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "3.1.59"
         ],
         "id": "GHSA-5xxx-qhh7-9287",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "setup.py",
+        "locations": [
+          "setup.py"
+        ],
+        "osv_api": {
+          "id": "GHSA-5xxx-qhh7-9287",
+          "modified": "2026-09-08T19:00:06.904435Z",
+          "published": "",
+          "state": "confirmed"
+        },
         "osv_confirmed": false,
         "package": "gitpython",
+        "purl": "pkg:pypi/gitpython@3.1.41",
         "severity": "Medium",
         "summary": "GitPython: Incomplete unsafe_git_revision_options denylist omits --contents/-S, enabling arbitrary file read via Repo.blame()",
         "url": "https://github.com/advisories/GHSA-5xxx-qhh7-9287",
@@ -3693,15 +4802,28 @@
         "aliases": [],
         "ecosystem": "pypi",
         "epss": null,
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "3.2.0"
         ],
         "id": "GHSA-fx3j-rwgx-fr94",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "setup.py",
+        "locations": [
+          "setup.py"
+        ],
+        "osv_api": {
+          "id": "GHSA-fx3j-rwgx-fr94",
+          "modified": "2026-10-27T15:47:24.291028Z",
+          "published": "",
+          "state": "confirmed"
+        },
         "osv_confirmed": false,
         "package": "gitpython",
+        "purl": "pkg:pypi/gitpython@3.1.41",
         "severity": "Medium",
         "summary": "GitPython: separate_git_dir leaks env vars via crafted .gitmodules submodule name",
         "url": "https://github.com/advisories/GHSA-fx3j-rwgx-fr94",
@@ -3711,15 +4833,24 @@
         "aliases": [],
         "ecosystem": "pypi",
         "epss": null,
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "3.2.0"
         ],
         "id": "GHSA-fx3j-rwgx-fr94",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "Pipfile.lock",
+        "locations": [
+          "Pipfile.lock"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-10-27T15:47:24.291028301Z",
+        "osv_published": "2026-10-27T15:26:32Z",
         "package": "gitpython",
+        "purl": "pkg:pypi/gitpython@3.1.59",
         "severity": "Medium",
         "summary": "GitPython: separate_git_dir leaks env vars via crafted .gitmodules submodule name",
         "url": "https://github.com/advisories/GHSA-fx3j-rwgx-fr94",
@@ -3729,15 +4860,28 @@
         "aliases": [],
         "ecosystem": "pypi",
         "epss": null,
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "3.2.0"
         ],
         "id": "GHSA-gq48-pqfc-9p58",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "setup.py",
+        "locations": [
+          "setup.py"
+        ],
+        "osv_api": {
+          "id": "GHSA-gq48-pqfc-9p58",
+          "modified": "2026-10-27T15:47:24.379897Z",
+          "published": "",
+          "state": "confirmed"
+        },
         "osv_confirmed": false,
         "package": "gitpython",
+        "purl": "pkg:pypi/gitpython@3.1.41",
         "severity": "Medium",
         "summary": "GitPython: Submodule.move() follows an attacker-committed intermediate symlink outside the worktree",
         "url": "https://github.com/advisories/GHSA-gq48-pqfc-9p58",
@@ -3747,15 +4891,24 @@
         "aliases": [],
         "ecosystem": "pypi",
         "epss": null,
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "3.2.0"
         ],
         "id": "GHSA-gq48-pqfc-9p58",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "Pipfile.lock",
+        "locations": [
+          "Pipfile.lock"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-10-27T15:47:24.379897252Z",
+        "osv_published": "2026-10-27T15:26:57Z",
         "package": "gitpython",
+        "purl": "pkg:pypi/gitpython@3.1.59",
         "severity": "Medium",
         "summary": "GitPython: Submodule.move() follows an attacker-committed intermediate symlink outside the worktree",
         "url": "https://github.com/advisories/GHSA-gq48-pqfc-9p58",
@@ -3771,15 +4924,28 @@
           "percentile": 0.35699,
           "score": 0.00412
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "3.1.58"
         ],
         "id": "GHSA-hh9p-6wh2-4mfc",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "setup.py",
+        "locations": [
+          "setup.py"
+        ],
+        "osv_api": {
+          "id": "GHSA-hh9p-6wh2-4mfc",
+          "modified": "2026-09-10T12:26:07.095223Z",
+          "published": "",
+          "state": "confirmed"
+        },
         "osv_confirmed": false,
         "package": "gitpython",
+        "purl": "pkg:pypi/gitpython@3.1.41",
         "severity": "Medium",
         "summary": "GitPython: Arbitrary file read via --pathspec-from-file in IndexFile.remove() and Head.checkout()",
         "url": "https://github.com/advisories/GHSA-hh9p-6wh2-4mfc",
@@ -3789,15 +4955,28 @@
         "aliases": [],
         "ecosystem": "pypi",
         "epss": null,
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "3.1.56"
         ],
         "id": "GHSA-p538-c434-8v24",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "setup.py",
+        "locations": [
+          "setup.py"
+        ],
+        "osv_api": {
+          "id": "GHSA-p538-c434-8v24",
+          "modified": "2026-09-10T13:10:55.177009Z",
+          "published": "",
+          "state": "confirmed"
+        },
         "osv_confirmed": false,
         "package": "gitpython",
+        "purl": "pkg:pypi/gitpython@3.1.41",
         "severity": "Medium",
         "summary": "GitPython: Arbitrary file truncation via git rev-list --output argument injection in unguarded Commit.count",
         "url": "https://github.com/advisories/GHSA-p538-c434-8v24",
@@ -3807,15 +4986,24 @@
         "aliases": [],
         "ecosystem": "pypi",
         "epss": null,
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "3.1.60"
         ],
         "id": "GHSA-whh4-5q6c-9v3x",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "Pipfile.lock",
+        "locations": [
+          "Pipfile.lock"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-10-01T17:26:00.195974026Z",
+        "osv_published": "2026-09-30T23:28:40Z",
         "package": "gitpython",
+        "purl": "pkg:pypi/gitpython@3.1.59",
         "severity": "Medium",
         "summary": "GitPython: --no-index bypasses diff unsafe-option protections and enables a blind local-file content oracle",
         "url": "https://github.com/advisories/GHSA-whh4-5q6c-9v3x",
@@ -3831,15 +5019,24 @@
           "percentile": 0.39182,
           "score": 0.00448
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "6.9.1"
         ],
         "id": "GHSA-54p9-h82j-f925",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "Pipfile.lock",
+        "locations": [
+          "Pipfile.lock"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-10-15T14:56:05.601333622Z",
+        "osv_published": "2026-10-05T23:40:58Z",
         "package": "multidict",
+        "purl": "pkg:pypi/multidict@6.7.1",
         "severity": "Medium",
         "summary": "Multidict: Reference leak in CIMultiDict/MultiDict items-view union and subtraction",
         "url": "https://github.com/advisories/GHSA-54p9-h82j-f925",
@@ -3855,15 +5052,24 @@
           "percentile": 0.08624,
           "score": 0.00189
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "2.33.0"
         ],
         "id": "GHSA-gc5v-m9x4-r6x2",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "Pipfile.lock",
+        "locations": [
+          "Pipfile.lock"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-09-10T03:50:39.207922076Z",
+        "osv_published": "2026-03-25T16:56:28Z",
         "package": "requests",
+        "purl": "pkg:pypi/requests@2.32.5",
         "severity": "Medium",
         "summary": "Requests has Insecure Temp File Reuse in its extract_zipped_paths() utility function",
         "url": "https://github.com/advisories/GHSA-gc5v-m9x4-r6x2",
@@ -3879,15 +5085,24 @@
           "percentile": 0.49412,
           "score": 0.00609
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "2.9.0"
         ],
         "id": "GHSA-gjv8-xp57-g29c",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "Pipfile.lock",
+        "locations": [
+          "Pipfile.lock"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-10-01T17:56:08.291385035Z",
+        "osv_published": "2026-09-17T20:32:58Z",
         "package": "soupsieve",
+        "purl": "pkg:pypi/soupsieve@2.8.4",
         "severity": "Medium",
         "summary": "Soup Sieve: Polynomial-time ReDoS (O(n\u00b2)) in the `IDENTIFIER` / `VALUE` selector sub-patterns",
         "url": "https://github.com/advisories/GHSA-gjv8-xp57-g29c",
@@ -3903,15 +5118,24 @@
           "percentile": 0.49411,
           "score": 0.00609
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "2.9.0"
         ],
         "id": "GHSA-j934-xhv5-fg8f",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "Pipfile.lock",
+        "locations": [
+          "Pipfile.lock"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-10-01T17:56:03.541286563Z",
+        "osv_published": "2026-09-17T20:32:53Z",
         "package": "soupsieve",
+        "purl": "pkg:pypi/soupsieve@2.8.4",
         "severity": "Medium",
         "summary": "Soup Sieve: Polynomial-time ReDoS (O(n\u00b2)) in the whitespace/comment trimming regex `RE_WS_END` (triggers on VALID selectors)",
         "url": "https://github.com/advisories/GHSA-j934-xhv5-fg8f",
@@ -3927,15 +5151,24 @@
           "percentile": 0.41211,
           "score": 0.00474
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "2.5.0"
         ],
         "id": "GHSA-pq67-6m6q-mj2v",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "Pipfile.lock",
+        "locations": [
+          "Pipfile.lock"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-09-10T03:50:25.299291456Z",
+        "osv_published": "2025-06-18T17:50:00Z",
         "package": "urllib3",
+        "purl": "pkg:pypi/urllib3@1.26.20",
         "severity": "Medium",
         "summary": "urllib3 redirects are not disabled when retries are disabled on PoolManager instantiation",
         "url": "https://github.com/advisories/GHSA-pq67-6m6q-mj2v",
@@ -3951,15 +5184,24 @@
           "percentile": 0.4261,
           "score": 0.00493
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "3.14.1"
         ],
         "id": "GHSA-2fqr-mr3j-6wp8",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "Pipfile.lock",
+        "locations": [
+          "Pipfile.lock"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-11-03T16:45:04.163545105Z",
+        "osv_published": "2026-06-15T20:08:51Z",
         "package": "aiohttp",
+        "purl": "pkg:pypi/aiohttp@3.13.5",
         "severity": "Low",
         "summary": "aiohttp: Host-Only Cookies Become Domain Cookies After CookieJar Persistence",
         "url": "https://github.com/advisories/GHSA-2fqr-mr3j-6wp8",
@@ -3975,15 +5217,24 @@
           "percentile": 0.40928,
           "score": 0.0047
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "3.14.1"
         ],
         "id": "GHSA-4m7w-qmgq-4wj5",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "Pipfile.lock",
+        "locations": [
+          "Pipfile.lock"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-09-10T03:50:48.205198252Z",
+        "osv_published": "2026-06-15T20:11:13Z",
         "package": "aiohttp",
+        "purl": "pkg:pypi/aiohttp@3.13.5",
         "severity": "Low",
         "summary": "aiohttp: TLS Server Hostname Override Is Ignored When Reusing HTTPS Connections",
         "url": "https://github.com/advisories/GHSA-4m7w-qmgq-4wj5",
@@ -3999,15 +5250,24 @@
           "percentile": 0.40146,
           "score": 0.0046
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "3.14.1"
         ],
         "id": "GHSA-9x8q-7h8h-wcw9",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "Pipfile.lock",
+        "locations": [
+          "Pipfile.lock"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-09-10T03:50:55.382836820Z",
+        "osv_published": "2026-06-15T20:10:44Z",
         "package": "aiohttp",
+        "purl": "pkg:pypi/aiohttp@3.13.5",
         "severity": "Low",
         "summary": "aiohttp: Payload Response Resources Are Not Closed After Mid-Body Disconnect",
         "url": "https://github.com/advisories/GHSA-9x8q-7h8h-wcw9",
@@ -4023,15 +5283,24 @@
           "percentile": 0.32672,
           "score": 0.00384
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "3.14.4"
         ],
         "id": "GHSA-gx76-c99x-2c96",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "Pipfile.lock",
+        "locations": [
+          "Pipfile.lock"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-10-20T20:15:05.188135798Z",
+        "osv_published": "2026-10-20T19:58:14Z",
         "package": "aiohttp",
+        "purl": "pkg:pypi/aiohttp@3.13.5",
         "severity": "Low",
         "summary": "AIOHTTP: Cookie from subdomain can remove Host-Only Scope from existing cookies",
         "url": "https://github.com/advisories/GHSA-gx76-c99x-2c96",
@@ -4047,15 +5316,24 @@
           "percentile": 0.45269,
           "score": 0.00533
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "3.14.0"
         ],
         "id": "GHSA-m6qw-4cw2-hm4m",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "Pipfile.lock",
+        "locations": [
+          "Pipfile.lock"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-09-10T03:51:09.078868018Z",
+        "osv_published": "2026-06-15T20:07:26Z",
         "package": "aiohttp",
+        "purl": "pkg:pypi/aiohttp@3.13.5",
         "severity": "Low",
         "summary": "aiohttp: CRLF injection in multipart headers",
         "url": "https://github.com/advisories/GHSA-m6qw-4cw2-hm4m",

@@ -76,15 +76,26 @@
     },
     {
       "added": 0,
+      "advisory_state": "ok",
       "commit": "ea68ca03c865c5f324e86e849ced20ed3cf9dbbb",
       "date": "2026-11-08",
       "dependencies": 332,
+      "dependency_state": "ok",
+      "downgraded": 0,
       "errors": [],
+      "file_changes": 1,
       "fixable": 6,
       "go_version": null,
       "in_binary": null,
+      "in_binary_new": 0,
+      "in_binary_resolved": 0,
       "kev": 0,
       "kev_new": 0,
+      "kev_new_match": 0,
+      "license_changes": 0,
+      "method": "sbomlyze-occurrence-v1",
+      "moved": 0,
+      "new_advisories": 0,
       "new_vulnerabilities": 0,
       "osv_confirmed": 12,
       "osv_only": 0,
@@ -92,11 +103,13 @@
       "release_changed": true,
       "release_integrity": "verified",
       "removed": 3,
+      "resolved_advisories": 0,
       "resolved_vulnerabilities": 0,
       "scorecard": 7.6,
       "scorecard_date": "2026-11-02",
       "scorecard_note": null,
       "scorecard_source": "openssf-api",
+      "unknown_direction": 0,
       "upgraded": 5,
       "vulnerabilities": {
         "Critical": 0,
@@ -112,7 +125,9 @@
         "Low": 1,
         "Medium": 2,
         "files": 11
-      }
+      },
+      "workflow_new": 0,
+      "workflow_resolved": 0
     }
   ],
   "latest": {
@@ -120,11 +135,42 @@
     "category": "Pre-commit & Secrets Detection",
     "changes": {
       "added": [],
+      "added_detail": [],
+      "advisory_state": "ok",
       "any": true,
       "baseline": false,
-      "integrity_drift": 1,
+      "dependency_baseline": {
+        "attempt": "1",
+        "run_id": "41380955266",
+        "sbom_sha256": "f873565a2f1fddc12d98bd5dfc44964342c61eafde5d8223f51223f547be878e"
+      },
+      "dependency_state": "ok",
+      "digest_coverage": {
+        "after_only": 0,
+        "before_only": 0,
+        "by_kind": {
+          "go-h1": 305
+        },
+        "comparable": 305,
+        "disjoint_kinds": 0,
+        "packages_total": 349,
+        "same_version_pairs": 344
+      },
+      "distinct_version_changes": 5,
+      "downgraded": [],
+      "file_changes": [
+        "go.mod"
+      ],
+      "integrity_changes": [],
+      "integrity_drift": 0,
+      "kev_method": "snapshot difference",
       "kev_new": [],
+      "kev_new_match": [],
       "license_changes": [],
+      "metadata_changes": [],
+      "method": "sbomlyze-occurrence-v1",
+      "moved": [],
+      "new_advisories": 0,
       "new_vulnerabilities": [],
       "previous_ref": "v3.99.7",
       "release_changed": true,
@@ -133,43 +179,138 @@
         "github.com/hashicorp/go-multierror@v1.1.1",
         "github.com/klauspost/cpuid/v2@v2.3.0"
       ],
+      "removed_detail": [
+        {
+          "ecosystem": "golang",
+          "location": "go.mod",
+          "locations": [
+            "go.mod"
+          ],
+          "name": "github.com/hashicorp/errwrap",
+          "version": "v1.1.0"
+        },
+        {
+          "ecosystem": "golang",
+          "location": "go.mod",
+          "locations": [
+            "go.mod"
+          ],
+          "name": "github.com/hashicorp/go-multierror",
+          "version": "v1.1.1"
+        },
+        {
+          "ecosystem": "golang",
+          "location": "go.mod",
+          "locations": [
+            "go.mod"
+          ],
+          "name": "github.com/klauspost/cpuid/v2",
+          "version": "v2.3.0"
+        }
+      ],
+      "resolved_advisories": 0,
       "resolved_vulnerabilities": [],
       "scorecard": {
         "from": 7.9,
         "to": 7.6
       },
+      "still_affected_version_changed": [],
+      "unknown_direction": [],
       "upgraded": [
         {
+          "direction": "upgrade",
           "ecosystem": "golang",
           "from": "v5.9.0",
+          "level": "patch",
+          "location": "go.mod",
           "package": "github.com/go-git/go-billy/v5",
           "to": "v5.9.2"
         },
         {
+          "direction": "upgrade",
           "ecosystem": "golang",
           "from": "v5.19.2",
+          "level": "patch",
+          "location": "go.mod",
           "package": "github.com/go-git/go-git/v5",
           "to": "v5.19.3"
         },
         {
+          "direction": "upgrade",
           "ecosystem": "golang",
           "from": "v0.2.0",
+          "level": "patch",
+          "location": "go.mod",
           "package": "github.com/jlaffaye/ftp",
           "to": "v0.2.4"
         },
         {
+          "direction": "upgrade",
           "ecosystem": "golang",
           "from": "v0.0.20",
+          "level": "patch",
+          "location": "go.mod",
           "package": "github.com/mattn/go-isatty",
           "to": "v0.0.24"
         },
         {
+          "direction": "upgrade",
           "ecosystem": "golang",
           "from": "v0.6.0",
+          "level": "minor",
+          "location": "go.mod",
           "package": "github.com/pjbgf/sha1cd",
           "to": "v0.7.0"
         }
       ],
+      "version_changes": [
+        {
+          "direction": "upgrade",
+          "ecosystem": "golang",
+          "from": "v5.9.0",
+          "level": "patch",
+          "location": "go.mod",
+          "name": "github.com/go-git/go-billy/v5",
+          "to": "v5.9.2"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "golang",
+          "from": "v5.19.2",
+          "level": "patch",
+          "location": "go.mod",
+          "name": "github.com/go-git/go-git/v5",
+          "to": "v5.19.3"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "golang",
+          "from": "v0.2.0",
+          "level": "patch",
+          "location": "go.mod",
+          "name": "github.com/jlaffaye/ftp",
+          "to": "v0.2.4"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "golang",
+          "from": "v0.0.20",
+          "level": "patch",
+          "location": "go.mod",
+          "name": "github.com/mattn/go-isatty",
+          "to": "v0.0.24"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "golang",
+          "from": "v0.6.0",
+          "level": "minor",
+          "location": "go.mod",
+          "name": "github.com/pjbgf/sha1cd",
+          "to": "v0.7.0"
+        }
+      ],
+      "version_set_changes": [],
       "workflow_new": 0,
       "workflow_resolved": 0
     },
@@ -2874,6 +3015,7 @@
     "errors": [],
     "go_binary_note": "trufflehog_3.99.8_linux_amd64.tar.gz could not be analyzed: no Go build information (the binary may be compressed, for example with UPX, or not built with Go)",
     "id": "trufflesecurity__trufflehog",
+    "lock_aliases": {},
     "manifests": [
       ".github/workflows/codeql-analysis.yml",
       ".github/workflows/detector-corpora-test.yml",
@@ -2896,6 +3038,11 @@
       "confirmed": 12,
       "osv_only": [],
       "warning": null
+    },
+    "osv_api": {
+      "available": true,
+      "queried_at": "2026-11-09T01:36:24+00:00",
+      "states": {}
     },
     "ref": "v3.99.8",
     "ref_kind": "release",
@@ -2924,22 +3071,156 @@
     },
     "released_at": "2026-11-02T18:38:05Z",
     "repository": "trufflesecurity/trufflehog",
+    "sbom_sha256": "d492e2244e7d7c329bbb953843ece7fdf259a6899398eabaa75269221cea8224",
     "sbomlyze_diff": {
       "added": 0,
-      "changed": 6,
+      "baseline": {
+        "attempt": "1",
+        "run_id": "41380955266"
+      },
+      "changed": 5,
+      "contract": "sbomlyze-diff-0.7",
       "drift": {
-        "integrity_drift": 1,
+        "distinct_version_changes": 5,
+        "downgrades": 0,
+        "file_changes": 1,
+        "integrity_drift": 0,
+        "license_changes": 0,
         "metadata_drift": 0,
+        "owned_file_drift": 0,
+        "owned_files_changed": 0,
+        "unknown_direction": 0,
+        "upgrades": 5,
         "version_drift": 5
       },
       "findings": [
-        "Attack surface: -3 packages (-0.8%)",
-        "5 version upgrades (1 major, 4 minor) among 360 shared packages",
-        "Integrity drift (1 total): 1 unknown",
+        "Scanned trufflesecurity/trufflehog changed: v3.99.7 \u2192 v3.99.8",
+        "Inventory: -3 components (-0.8%)",
+        "5 version upgrades (1 minor, 4 patch) among 349 shared packages",
+        "1 file entries changed content (not package integrity drift): /go.mod",
         "Core system packages stable: github (37), file (11) unchanged"
       ],
       "html": "sbomlyze-diff.html",
-      "removed": 3
+      "occurrences": {
+        "added": [],
+        "digest_coverage": {
+          "after_only": 0,
+          "before_only": 0,
+          "by_kind": {
+            "go-h1": 305
+          },
+          "comparable": 305,
+          "disjoint_kinds": 0,
+          "packages_total": 349,
+          "same_version_pairs": 344
+        },
+        "file_changes": [
+          {
+            "owners": [],
+            "path": "go.mod"
+          }
+        ],
+        "file_coverage": {
+          "ambiguous_paths": 0,
+          "config_unknown": 0,
+          "files_compared": 11,
+          "files_unverified": 0,
+          "owned_files_after": 0,
+          "unowned_files_after": 0
+        },
+        "files_added": [],
+        "files_removed": [],
+        "integrity_changes": [],
+        "license_changes": [],
+        "metadata_changes": [],
+        "moved": [],
+        "owned_file_drift": [],
+        "removed": [
+          {
+            "ecosystem": "golang",
+            "location": "go.mod",
+            "locations": [
+              "go.mod"
+            ],
+            "name": "github.com/hashicorp/errwrap",
+            "version": "v1.1.0"
+          },
+          {
+            "ecosystem": "golang",
+            "location": "go.mod",
+            "locations": [
+              "go.mod"
+            ],
+            "name": "github.com/hashicorp/go-multierror",
+            "version": "v1.1.1"
+          },
+          {
+            "ecosystem": "golang",
+            "location": "go.mod",
+            "locations": [
+              "go.mod"
+            ],
+            "name": "github.com/klauspost/cpuid/v2",
+            "version": "v2.3.0"
+          }
+        ],
+        "source_change": {
+          "from": "v3.99.7",
+          "name": "trufflesecurity/trufflehog",
+          "to": "v3.99.8"
+        },
+        "version_changes": [
+          {
+            "direction": "upgrade",
+            "ecosystem": "golang",
+            "from": "v5.9.0",
+            "level": "patch",
+            "location": "go.mod",
+            "name": "github.com/go-git/go-billy/v5",
+            "to": "v5.9.2"
+          },
+          {
+            "direction": "upgrade",
+            "ecosystem": "golang",
+            "from": "v5.19.2",
+            "level": "patch",
+            "location": "go.mod",
+            "name": "github.com/go-git/go-git/v5",
+            "to": "v5.19.3"
+          },
+          {
+            "direction": "upgrade",
+            "ecosystem": "golang",
+            "from": "v0.2.0",
+            "level": "patch",
+            "location": "go.mod",
+            "name": "github.com/jlaffaye/ftp",
+            "to": "v0.2.4"
+          },
+          {
+            "direction": "upgrade",
+            "ecosystem": "golang",
+            "from": "v0.0.20",
+            "level": "patch",
+            "location": "go.mod",
+            "name": "github.com/mattn/go-isatty",
+            "to": "v0.0.24"
+          },
+          {
+            "direction": "upgrade",
+            "ecosystem": "golang",
+            "from": "v0.6.0",
+            "level": "minor",
+            "location": "go.mod",
+            "name": "github.com/pjbgf/sha1cd",
+            "to": "v0.7.0"
+          }
+        ],
+        "version_set_changes": []
+      },
+      "previous_sbom_sha256": "f873565a2f1fddc12d98bd5dfc44964342c61eafde5d8223f51223f547be878e",
+      "removed": 3,
+      "sbom_sha256": "d492e2244e7d7c329bbb953843ece7fdf259a6899398eabaa75269221cea8224"
     },
     "scanned_at": "2026-11-08T05:54:40+00:00",
     "scorecard": {
@@ -3031,13 +3312,22 @@
           "percentile": 0.01038,
           "score": 0.00104
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "not-fixed",
         "fixed_in": [],
         "id": "GHSA-rg2x-37c3-w2rh",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "go.mod",
+        "locations": [
+          "go.mod"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-09-10T03:50:47.528575532Z",
+        "osv_published": "2026-05-18T17:53:08Z",
         "package": "github.com/docker/docker",
+        "purl": "pkg:golang/github.com/docker/docker@v28.5.2%2Bincompatible",
         "severity": "High",
         "summary": "Docker: Race condition in docker cp allows bind mount redirection to host path",
         "url": "https://github.com/advisories/GHSA-rg2x-37c3-w2rh",
@@ -3053,13 +3343,22 @@
           "percentile": 0.04653,
           "score": 0.00155
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "not-fixed",
         "fixed_in": [],
         "id": "GHSA-x86f-5xw2-fm2r",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "go.mod",
+        "locations": [
+          "go.mod"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-09-10T03:50:47.998689316Z",
+        "osv_published": "2026-05-18T17:47:23Z",
         "package": "github.com/docker/docker",
+        "purl": "pkg:golang/github.com/docker/docker@v28.5.2%2Bincompatible",
         "severity": "High",
         "summary": "Docker: `PUT /containers/{id}/archive` executes container binary on the host",
         "url": "https://github.com/advisories/GHSA-x86f-5xw2-fm2r",
@@ -3076,13 +3375,22 @@
           "percentile": 0.95391,
           "score": 0.0927
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "unknown",
         "fixed_in": [],
         "id": "GO-2026-4887",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "go.mod",
+        "locations": [
+          "go.mod"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-04-03T20:59:19.226161232Z",
+        "osv_published": "2026-04-02T18:42:30Z",
         "package": "github.com/docker/docker",
+        "purl": "pkg:golang/github.com/docker/docker@v28.5.2%2Bincompatible",
         "severity": "High",
         "summary": "Moby has AuthZ plugin bypass when provided oversized request bodies in github.com/docker/docker",
         "url": "https://github.com/moby/moby/security/advisories/GHSA-x744-4wpc-v9h2",
@@ -3098,15 +3406,24 @@
           "percentile": 0.30652,
           "score": 0.00366
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "4.1.6"
         ],
         "id": "GHSA-mgcc-cww5-fp2q",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "go.mod",
+        "locations": [
+          "go.mod"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-10-27T19:15:23.147827328Z",
+        "osv_published": "2026-10-27T19:01:30Z",
         "package": "github.com/go-jose/go-jose/v4",
+        "purl": "pkg:golang/github.com/go-jose/go-jose/v4@v4.1.4",
         "severity": "High",
         "summary": "Go JOSE: DoS when parsing JWKs that contain RSA keys",
         "url": "https://github.com/advisories/GHSA-mgcc-cww5-fp2q",
@@ -3122,15 +3439,24 @@
           "percentile": 0.35396,
           "score": 0.00409
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "0.62.0"
         ],
         "id": "GO-2026-6860",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "go.mod",
+        "locations": [
+          "go.mod"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-10-27T21:30:04.890809062Z",
+        "osv_published": "2026-10-27T21:16:18Z",
         "package": "golang.org/x/net",
+        "purl": "pkg:golang/golang.org/x/net@v0.60.0",
         "severity": "High",
         "summary": "When coalescing adjacent text nodes in addText and fosterParent, appending to an existing TextNode's Data via string concatenation (n.Data += text) reallocated and copied the accumulated string on every token. Inputs containing many short text runs separated by ignored end tags (such as \"a</x>\") cau",
         "url": "https://go.dev/cl/849365",
@@ -3146,13 +3472,22 @@
           "percentile": 0.12318,
           "score": 0.00218
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "not-fixed",
         "fixed_in": [],
         "id": "GHSA-685w-q87j-wqw3",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "go.mod",
+        "locations": [
+          "go.mod"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-11-05T23:25:40.391377389Z",
+        "osv_published": "2026-10-15T20:22:02Z",
         "package": "github.com/docker/distribution",
+        "purl": "pkg:golang/github.com/docker/distribution@v2.8.3%2Bincompatible",
         "severity": "Medium",
         "summary": "Distribution: Client `manifests.Get()` does not verify returned content against requested digest",
         "url": "https://github.com/advisories/GHSA-685w-q87j-wqw3",
@@ -3168,13 +3503,22 @@
           "percentile": 0.34663,
           "score": 0.00402
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "not-fixed",
         "fixed_in": [],
         "id": "GHSA-pxq6-2prw-chj9",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "go.mod",
+        "locations": [
+          "go.mod"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-09-10T03:50:40.571293679Z",
+        "osv_published": "2026-03-27T17:38:09Z",
         "package": "github.com/docker/docker",
+        "purl": "pkg:golang/github.com/docker/docker@v28.5.2%2Bincompatible",
         "severity": "Medium",
         "summary": "Moby has an Off-by-one error in its plugin privilege validation",
         "url": "https://github.com/advisories/GHSA-pxq6-2prw-chj9",
@@ -3190,13 +3534,22 @@
           "percentile": 0.01204,
           "score": 0.00108
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "not-fixed",
         "fixed_in": [],
         "id": "GHSA-vp62-88p7-qqf5",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "go.mod",
+        "locations": [
+          "go.mod"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-09-10T03:51:07.017544565Z",
+        "osv_published": "2026-05-18T17:52:55Z",
         "package": "github.com/docker/docker",
+        "purl": "pkg:golang/github.com/docker/docker@v28.5.2%2Bincompatible",
         "severity": "Medium",
         "summary": "Docker: Race condition in docker cp allows creation of arbitrary empty files on the host via symlink swap",
         "url": "https://github.com/advisories/GHSA-vp62-88p7-qqf5",
@@ -3212,15 +3565,24 @@
           "percentile": 0.18412,
           "score": 0.00264
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "4.1.5"
         ],
         "id": "GHSA-4w3g-jfj2-cw2q",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "go.mod",
+        "locations": [
+          "go.mod"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-10-28T21:30:06.790863342Z",
+        "osv_published": "2026-10-28T21:14:00Z",
         "package": "github.com/go-jose/go-jose/v4",
+        "purl": "pkg:golang/github.com/go-jose/go-jose/v4@v4.1.4",
         "severity": "Medium",
         "summary": "Go JOSE: Panic during CBC-HMAC processing",
         "url": "https://github.com/advisories/GHSA-4w3g-jfj2-cw2q",
@@ -3236,15 +3598,24 @@
           "percentile": 0.21863,
           "score": 0.00292
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "4.1.5"
         ],
         "id": "GHSA-vvm8-gf78-28g4",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "go.mod",
+        "locations": [
+          "go.mod"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-10-28T21:30:05.801821772Z",
+        "osv_published": "2026-10-28T21:14:08Z",
         "package": "github.com/go-jose/go-jose/v4",
+        "purl": "pkg:golang/github.com/go-jose/go-jose/v4@v4.1.4",
         "severity": "Medium",
         "summary": "Go JOSE: Panics in JSON parsing",
         "url": "https://github.com/advisories/GHSA-vvm8-gf78-28g4",
@@ -3260,15 +3631,24 @@
           "percentile": 0.18952,
           "score": 0.00267
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "0.62.0"
         ],
         "id": "GO-2026-6866",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "go.mod",
+        "locations": [
+          "go.mod"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-10-27T21:45:08.978077289Z",
+        "osv_published": "2026-10-27T21:16:18Z",
         "package": "golang.org/x/net",
+        "purl": "pkg:golang/golang.org/x/net@v0.60.0",
         "severity": "Medium",
         "summary": "In childTextNodesAreLiteral, walking up the tree previously stopped at the nearest foreign ancestor once an HTML integration point was found. However, that integration point may itself be a descendant of an element that was foster-parented into a foreign namespace (such as <mglyph> or <malignmark> f",
         "url": "https://go.dev/cl/855121",
@@ -3278,15 +3658,24 @@
         "aliases": [],
         "ecosystem": "golang",
         "epss": null,
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "0.58.1-0.20261009181718-2f1f834330b2"
         ],
         "id": "GO-2026-5932",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "go.mod",
+        "locations": [
+          "go.mod"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-11-02T22:15:06.677088389Z",
+        "osv_published": "2026-07-07T22:15:29Z",
         "package": "golang.org/x/crypto",
+        "purl": "pkg:golang/golang.org/x/crypto@v0.57.0",
         "severity": "Unknown",
         "summary": "The golang.org/x/crypto/openpgp package is unsafe by design, has numerous known security issues, is not maintained, and should not be used. If you are required to interoperate with OpenPGP systems and need a maintained package, consider github.com/ProtonMail/go-crypto/openpgp which is a maintained f",
         "url": "https://go.dev/issue/44226",

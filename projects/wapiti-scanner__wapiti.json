@@ -76,27 +76,40 @@
     },
     {
       "added": 0,
+      "advisory_state": "ok",
       "commit": "594fa4908cfd9f9e46d3becdce0eb0b2a9d75bed",
       "date": "2026-11-08",
       "dependencies": 5,
+      "dependency_state": "ok",
+      "downgraded": 0,
       "errors": [],
+      "file_changes": 0,
       "fixable": 0,
       "go_version": null,
       "in_binary": null,
+      "in_binary_new": 0,
+      "in_binary_resolved": 0,
       "kev": null,
       "kev_new": 0,
+      "kev_new_match": 0,
+      "license_changes": 0,
+      "method": "sbomlyze-occurrence-v1",
+      "moved": 0,
+      "new_advisories": 0,
       "new_vulnerabilities": 0,
-      "osv_confirmed": 0,
-      "osv_only": 0,
+      "osv_confirmed": null,
+      "osv_only": null,
       "ref": "3.3.2",
       "release_changed": false,
       "release_integrity": "no-linux-binary",
       "removed": 0,
+      "resolved_advisories": 0,
       "resolved_vulnerabilities": 0,
       "scorecard": null,
       "scorecard_date": null,
       "scorecard_note": "the project is not in the OpenSSF public dataset; the Scorecard CLI fallback was skipped because this shard's weekly budget was used",
       "scorecard_source": null,
+      "unknown_direction": 0,
       "upgraded": 0,
       "vulnerabilities": {
         "Critical": 0,
@@ -112,7 +125,9 @@
         "Low": 0,
         "Medium": 5,
         "files": 1
-      }
+      },
+      "workflow_new": 0,
+      "workflow_resolved": 0
     }
   ],
   "latest": {
@@ -120,16 +135,47 @@
     "category": "API & Dynamic Testing (DAST)",
     "changes": {
       "added": [],
+      "added_detail": [],
+      "advisory_state": "ok",
       "any": false,
       "baseline": false,
+      "dependency_baseline": {
+        "attempt": "1",
+        "run_id": "41380955266",
+        "sbom_sha256": "c12b129a621daafee8000c80bdd4e58a01de44c3b25e7d7eafa195fa511f7066"
+      },
+      "dependency_state": "ok",
+      "digest_coverage": {
+        "after_only": 0,
+        "before_only": 0,
+        "by_kind": {},
+        "comparable": 0,
+        "disjoint_kinds": 0,
+        "packages_total": 5,
+        "same_version_pairs": 5
+      },
+      "distinct_version_changes": null,
+      "downgraded": [],
+      "file_changes": [],
+      "integrity_changes": [],
       "integrity_drift": 0,
       "license_changes": [],
+      "metadata_changes": [],
+      "method": "sbomlyze-occurrence-v1",
+      "moved": [],
+      "new_advisories": 0,
       "new_vulnerabilities": [],
       "previous_ref": "3.3.2",
       "release_changed": false,
       "removed": [],
+      "removed_detail": [],
+      "resolved_advisories": 0,
       "resolved_vulnerabilities": [],
+      "still_affected_version_changed": [],
+      "unknown_direction": [],
       "upgraded": [],
+      "version_changes": [],
+      "version_set_changes": [],
       "workflow_new": 0,
       "workflow_resolved": 0
     },
@@ -217,17 +263,19 @@
     "description": "Scan web applications for vulnerabilities with black-box testing",
     "errors": [],
     "id": "wapiti-scanner__wapiti",
+    "lock_aliases": {},
     "manifests": [
       ".github/workflows/main.yml",
       "pyproject.toml"
     ],
     "name": "wapiti",
     "osv": {
-      "advisories": 0,
+      "available": false
+    },
+    "osv_api": {
       "available": true,
-      "confirmed": 0,
-      "osv_only": [],
-      "warning": null
+      "queried_at": "2026-11-09T01:36:30+00:00",
+      "states": {}
     },
     "ref": "3.3.2",
     "ref_kind": "release",
@@ -242,14 +290,55 @@
     },
     "released_at": "2026-08-19T08:28:10Z",
     "repository": "wapiti-scanner/wapiti",
+    "sbom_sha256": "fba002c84d8944f0c8181e08a9746c19a43073a2d90c191c3e5e1ddd07018a1f",
     "sbomlyze_diff": {
       "added": 0,
+      "baseline": {
+        "attempt": "1",
+        "run_id": "41380955266"
+      },
       "changed": 0,
+      "contract": "sbomlyze-diff-0.7",
       "drift": {},
       "findings": [
-        "0 version changes among 6 shared packages \u2014 no actual upgrades"
+        "0 version changes among 5 shared packages \u2014 no actual upgrades",
+        "Integrity drift checked only 0 of 5 same-version packages; the rest carry no comparable digest"
       ],
-      "removed": 0
+      "occurrences": {
+        "added": [],
+        "digest_coverage": {
+          "after_only": 0,
+          "before_only": 0,
+          "by_kind": {},
+          "comparable": 0,
+          "disjoint_kinds": 0,
+          "packages_total": 5,
+          "same_version_pairs": 5
+        },
+        "file_changes": [],
+        "file_coverage": {
+          "ambiguous_paths": 0,
+          "config_unknown": 0,
+          "files_compared": 1,
+          "files_unverified": 0,
+          "owned_files_after": 0,
+          "unowned_files_after": 0
+        },
+        "files_added": [],
+        "files_removed": [],
+        "integrity_changes": [],
+        "license_changes": [],
+        "metadata_changes": [],
+        "moved": [],
+        "owned_file_drift": [],
+        "removed": [],
+        "source_change": null,
+        "version_changes": [],
+        "version_set_changes": []
+      },
+      "previous_sbom_sha256": "c12b129a621daafee8000c80bdd4e58a01de44c3b25e7d7eafa195fa511f7066",
+      "removed": 0,
+      "sbom_sha256": "fba002c84d8944f0c8181e08a9746c19a43073a2d90c191c3e5e1ddd07018a1f"
     },
     "scanned_at": "2026-11-08T05:55:31+00:00",
     "scorecard": null,

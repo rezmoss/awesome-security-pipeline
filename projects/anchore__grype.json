@@ -83,20 +83,32 @@
       }
     },
     {
-      "added": 3,
+      "added": 5,
+      "advisory_state": "ok",
       "commit": "82d7a0ea911946b99343c672056867d372f9b319",
       "date": "2026-11-08",
       "dependencies": 375,
+      "dependency_state": "ok",
+      "downgraded": 0,
       "errors": [],
+      "file_changes": 7,
       "fixable": 4,
       "go_version": "go1.27.3",
       "in_binary": {
         "dependencies": 10,
+        "records": 10,
         "stdlib": 0,
         "total": 10
       },
+      "in_binary_new": 2,
+      "in_binary_resolved": 13,
       "kev": 1,
-      "kev_new": 1,
+      "kev_new": 0,
+      "kev_new_match": 1,
+      "license_changes": 0,
+      "method": "sbomlyze-occurrence-v1",
+      "moved": 0,
+      "new_advisories": 2,
       "new_vulnerabilities": 2,
       "osv_confirmed": 10,
       "osv_only": 0,
@@ -104,12 +116,14 @@
       "release_changed": true,
       "release_integrity": "verified",
       "removed": 3,
+      "resolved_advisories": 1,
       "resolved_vulnerabilities": 1,
       "scorecard": 7.9,
       "scorecard_date": "2026-11-08",
       "scorecard_note": null,
       "scorecard_source": "scorecard-cli",
-      "upgraded": 43,
+      "unknown_direction": 0,
+      "upgraded": 47,
       "vulnerabilities": {
         "Critical": 1,
         "High": 4,
@@ -124,7 +138,9 @@
         "Low": 0,
         "Medium": 0,
         "files": 6
-      }
+      },
+      "workflow_new": 0,
+      "workflow_resolved": 2
     }
   ],
   "latest": {
@@ -133,11 +149,89 @@
     "changes": {
       "added": [
         "$/.github/actions/bootstrap@UNKNOWN",
+        "$/.github/actions/bootstrap@UNKNOWN",
+        "actions/cache/restore@v6.1.0",
         "actions/cache/save@v6.1.0",
         "github.com/varlink/go@v0.4.1-0.20261015173642-c935be0c53f7"
       ],
+      "added_detail": [
+        {
+          "ecosystem": "github",
+          "location": ".github/workflows/validations.yaml",
+          "locations": [
+            ".github/workflows/validations.yaml"
+          ],
+          "name": "$/.github/actions/bootstrap",
+          "version": "UNKNOWN"
+        },
+        {
+          "ecosystem": "github",
+          "location": ".github/workflows/release.yaml",
+          "locations": [
+            ".github/workflows/release.yaml"
+          ],
+          "name": "$/.github/actions/bootstrap",
+          "version": "UNKNOWN"
+        },
+        {
+          "ecosystem": "github",
+          "location": ".github/workflows/validations.yaml",
+          "locations": [
+            ".github/workflows/validations.yaml"
+          ],
+          "name": "actions/cache/restore",
+          "version": "v6.1.0"
+        },
+        {
+          "ecosystem": "github",
+          "location": ".github/workflows/validations.yaml",
+          "locations": [
+            ".github/workflows/validations.yaml"
+          ],
+          "name": "actions/cache/save",
+          "version": "v6.1.0"
+        },
+        {
+          "ecosystem": "golang",
+          "location": "go.mod",
+          "locations": [
+            "go.mod"
+          ],
+          "name": "github.com/varlink/go",
+          "version": "v0.4.1-0.20261015173642-c935be0c53f7"
+        }
+      ],
+      "advisory_state": "ok",
       "any": true,
       "baseline": false,
+      "dependency_baseline": {
+        "attempt": "1",
+        "run_id": "41380955266",
+        "sbom_sha256": "bd62d856d90dcaa41bfc70f3d54138b5af57a605c050b6cbd49169abf983cfb1"
+      },
+      "dependency_state": "ok",
+      "digest_coverage": {
+        "after_only": 0,
+        "before_only": 0,
+        "by_kind": {
+          "go-h1": 319
+        },
+        "comparable": 319,
+        "disjoint_kinds": 0,
+        "packages_total": 386,
+        "same_version_pairs": 334
+      },
+      "distinct_version_changes": 44,
+      "downgraded": [],
+      "file_changes": [
+        ".github/actions/bootstrap/action.yaml",
+        ".github/workflows/release.yaml",
+        ".github/workflows/scorecards.yaml",
+        ".github/workflows/validate-github-actions.yaml",
+        ".github/workflows/validations.yaml",
+        ".make/go.mod",
+        "go.mod"
+      ],
       "in_binary_new": [
         "GO-2026-6888",
         "GO-2026-6905"
@@ -157,8 +251,11 @@
         "GO-2026-6617",
         "GO-2026-6809"
       ],
-      "integrity_drift": 7,
-      "kev_new": [
+      "integrity_changes": [],
+      "integrity_drift": 0,
+      "kev_method": "snapshot difference",
+      "kev_new": [],
+      "kev_new_match": [
         {
           "aliases": [
             "CVE-2026-111497",
@@ -170,6 +267,7 @@
             "percentile": 0.99669,
             "score": 0.82641
           },
+          "epss_date": "2026-11-07T12:00:22Z",
           "fix_state": "fixed",
           "fixed_in": [
             "1.2.7"
@@ -180,9 +278,19 @@
             "cve": "CVE-2026-111497",
             "date_added": "2026-10-27"
           },
+          "kev_cves": [
+            "CVE-2026-111497"
+          ],
+          "kev_snapshot": "2026.11.06",
           "location": "go.mod",
+          "locations": [
+            "go.mod"
+          ],
           "osv_confirmed": true,
+          "osv_modified": "2026-11-05T23:25:49.434824566Z",
+          "osv_published": "2026-11-05T22:55:15Z",
           "package": "github.com/andybalholm/brotli",
+          "purl": "pkg:golang/github.com/andybalholm/brotli@v1.2.0",
           "severity": "Critical",
           "summary": "In github.com/andybalholm/brotli before v1.2.7, the decompressor allocates memory for Huffman tables and block-type trees on every meta-block header without bounding the cumulative allocations relative to the input size. A small crafted brotli stream containing many empty meta-blocks with new Huffma",
           "url": "https://github.com/andybalholm/brotli/security/advisories/GHSA-c9gr-gmg4-2vqv",
@@ -190,6 +298,10 @@
         }
       ],
       "license_changes": [],
+      "metadata_changes": [],
+      "method": "sbomlyze-occurrence-v1",
+      "moved": [],
+      "new_advisories": 2,
       "new_vulnerabilities": [
         {
           "aliases": [
@@ -202,6 +314,7 @@
             "percentile": 0.99669,
             "score": 0.82641
           },
+          "epss_date": "2026-11-07T12:00:22Z",
           "fix_state": "fixed",
           "fixed_in": [
             "1.2.7"
@@ -212,9 +325,25 @@
             "cve": "CVE-2026-111497",
             "date_added": "2026-10-27"
           },
+          "kev_cves": [
+            "CVE-2026-111497"
+          ],
+          "kev_snapshot": "2026.11.06",
           "location": "go.mod",
+          "locations": [
+            "go.mod"
+          ],
+          "new": {
+            "advisory": "published since last scan",
+            "modified": "2026-11-05T23:25:49.434824566Z",
+            "published": "2026-11-05T22:55:15Z",
+            "reason": "unchanged version"
+          },
           "osv_confirmed": true,
+          "osv_modified": "2026-11-05T23:25:49.434824566Z",
+          "osv_published": "2026-11-05T22:55:15Z",
           "package": "github.com/andybalholm/brotli",
+          "purl": "pkg:golang/github.com/andybalholm/brotli@v1.2.0",
           "severity": "Critical",
           "summary": "In github.com/andybalholm/brotli before v1.2.7, the decompressor allocates memory for Huffman tables and block-type trees on every meta-block header without bounding the cumulative allocations relative to the input size. A small crafted brotli stream containing many empty meta-blocks with new Huffma",
           "url": "https://github.com/andybalholm/brotli/security/advisories/GHSA-c9gr-gmg4-2vqv",
@@ -224,14 +353,29 @@
           "aliases": [],
           "ecosystem": "golang",
           "epss": null,
+          "epss_date": "2026-11-07T12:00:22Z",
           "fix_state": "unknown",
           "fixed_in": [],
           "id": "GO-2026-6905",
           "in_binary": "vulnerable code in binary",
           "kev": null,
+          "kev_cves": [],
+          "kev_snapshot": "2026.11.06",
           "location": "go.mod",
+          "locations": [
+            "go.mod"
+          ],
+          "new": {
+            "advisory": "published since last scan",
+            "modified": "2026-11-05T23:15:18.148866409Z",
+            "published": "2026-11-05T22:55:15Z",
+            "reason": "unchanged version"
+          },
           "osv_confirmed": true,
+          "osv_modified": "2026-11-05T23:15:18.148866409Z",
+          "osv_published": "2026-11-05T22:55:15Z",
           "package": "github.com/blakesmith/ar",
+          "purl": "pkg:golang/github.com/blakesmith/ar@v0.0.0-20190502131153-809d4375e1fb",
           "severity": "Unknown",
           "summary": "Reader.Next parses the 10-byte decimal size field of an archive member header with strconv.ParseInt without rejecting negative values. A header with a negative size leaves the reader with a negative remaining byte count, causing the subsequent call to Reader.Read to panic with a slice bounds out of ",
           "url": "https://github.com/golang/vulndb/issues/6905",
@@ -241,10 +385,40 @@
       "previous_ref": "v0.121.0",
       "release_changed": true,
       "removed": [
-        "github.com/becheran/wildmatch-go@v1.0.0",
-        "golang.org/x/sys@v0.48.0",
-        "./.github/actions/bootstrap@UNKNOWN"
+        "./.github/actions/bootstrap@UNKNOWN",
+        "./.github/actions/bootstrap@UNKNOWN",
+        "github.com/becheran/wildmatch-go@v1.0.0"
       ],
+      "removed_detail": [
+        {
+          "ecosystem": "unknown",
+          "location": ".github/workflows/validations.yaml",
+          "locations": [
+            ".github/workflows/validations.yaml"
+          ],
+          "name": "./.github/actions/bootstrap",
+          "version": "UNKNOWN"
+        },
+        {
+          "ecosystem": "unknown",
+          "location": ".github/workflows/release.yaml",
+          "locations": [
+            ".github/workflows/release.yaml"
+          ],
+          "name": "./.github/actions/bootstrap",
+          "version": "UNKNOWN"
+        },
+        {
+          "ecosystem": "golang",
+          "location": "go.mod",
+          "locations": [
+            "go.mod"
+          ],
+          "name": "github.com/becheran/wildmatch-go",
+          "version": "v1.0.0"
+        }
+      ],
+      "resolved_advisories": 1,
       "resolved_vulnerabilities": [
         {
           "aliases": [
@@ -272,266 +446,859 @@
           "version": "v4.1.5"
         }
       ],
+      "still_affected_version_changed": [],
+      "unknown_direction": [],
       "upgraded": [
         {
+          "direction": "upgrade",
           "ecosystem": "github",
           "from": "v7.0.0",
+          "level": "minor",
+          "location": ".github/actions/bootstrap/action.yaml",
           "package": "actions/setup-python",
           "to": "v7.1.0"
         },
         {
+          "direction": "upgrade",
           "ecosystem": "github",
           "from": "v0.9.3",
+          "level": "patch",
+          "location": ".github/actions/bootstrap/action.yaml",
           "package": "anchore/go-make/.github/actions/setup",
           "to": "v0.9.6"
         },
         {
+          "direction": "upgrade",
+          "ecosystem": "github",
+          "from": "v0.9.3",
+          "level": "patch",
+          "location": ".github/workflows/validations.yaml",
+          "package": "anchore/go-make/.github/actions/setup",
+          "to": "v0.9.6"
+        },
+        {
+          "direction": "upgrade",
           "ecosystem": "github",
           "from": "v4.6.0",
+          "level": "minor",
+          "location": ".github/workflows/release.yaml",
           "package": "docker/login-action",
           "to": "v4.7.0"
         },
         {
+          "direction": "upgrade",
           "ecosystem": "github",
           "from": "v4.38.3",
+          "level": "minor",
+          "location": ".github/workflows/scorecards.yaml",
           "package": "github/codeql-action/upload-sarif",
           "to": "v4.39.1"
         },
         {
+          "direction": "upgrade",
           "ecosystem": "github",
           "from": "v2.4.3",
+          "level": "minor",
+          "location": ".github/workflows/scorecards.yaml",
           "package": "ossf/scorecard-action",
           "to": "v2.5.0"
         },
         {
+          "direction": "upgrade",
           "ecosystem": "github",
           "from": "v0.6.4",
+          "level": "minor",
+          "location": ".github/workflows/validate-github-actions.yaml",
           "package": "zizmorcore/zizmor-action",
           "to": "v0.8.0"
         },
         {
-          "ecosystem": "golang",
-          "from": "v0.1.1",
-          "package": "github.com/anchore/clio",
-          "to": "v0.1.2"
-        },
-        {
-          "ecosystem": "golang",
-          "from": "v0.9.3",
-          "package": "github.com/anchore/go-make",
-          "to": "v0.9.6"
-        },
-        {
-          "ecosystem": "golang",
-          "from": "v0.3.4",
-          "package": "github.com/anchore/stereoscope",
-          "to": "v0.4.1"
-        },
-        {
-          "ecosystem": "golang",
-          "from": "v1.55.0",
-          "package": "github.com/anchore/syft",
-          "to": "v1.57.0"
-        },
-        {
-          "ecosystem": "golang",
-          "from": "v4.10.2",
-          "package": "github.com/bmatcuk/doublestar/v4",
-          "to": "v4.10.3"
-        },
-        {
-          "ecosystem": "golang",
-          "from": "v2.4.1",
-          "package": "github.com/containerd/containerd/v2",
-          "to": "v2.4.2"
-        },
-        {
-          "ecosystem": "golang",
-          "from": "v0.18.2",
-          "package": "github.com/containerd/stargz-snapshotter/estargz",
-          "to": "v0.19.0"
-        },
-        {
-          "ecosystem": "golang",
-          "from": "v0.0.0-20240306090643-c67ab88f10cb",
-          "package": "github.com/deitch/magic",
-          "to": "v1.0.0"
-        },
-        {
-          "ecosystem": "golang",
-          "from": "v29.8.2+incompatible",
-          "package": "github.com/docker/cli",
-          "to": "v29.9.2+incompatible"
-        },
-        {
-          "ecosystem": "golang",
-          "from": "v0.9.8",
-          "package": "github.com/docker/docker-credential-helpers",
-          "to": "v0.9.10"
-        },
-        {
-          "ecosystem": "golang",
-          "from": "v0.8.1",
-          "package": "github.com/docker/go-connections",
-          "to": "v0.8.2"
-        },
-        {
-          "ecosystem": "golang",
-          "from": "v1.4.15",
-          "package": "github.com/gabriel-vasile/mimetype",
-          "to": "v1.4.16"
-        },
-        {
-          "ecosystem": "golang",
-          "from": "v2.7.1",
-          "package": "github.com/github/go-spdx/v2",
-          "to": "v2.8.0"
-        },
-        {
-          "ecosystem": "golang",
-          "from": "v0.5.23",
-          "package": "github.com/gkampitakis/go-snaps",
-          "to": "v0.5.24"
-        },
-        {
-          "ecosystem": "golang",
-          "from": "v4.1.5",
-          "package": "github.com/go-jose/go-jose/v4",
-          "to": "v4.1.6"
-        },
-        {
-          "ecosystem": "golang",
-          "from": "v1.1.1",
-          "package": "github.com/go-test/deep",
-          "to": "v1.1.2"
-        },
-        {
-          "ecosystem": "golang",
-          "from": "v0.0.0-20260802141513-ef3492d7dac3",
-          "package": "github.com/google/pprof",
-          "to": "v0.0.0-20261016150608-1facf8f91b50"
-        },
-        {
-          "ecosystem": "golang",
-          "from": "v1.6.2",
-          "package": "github.com/gookit/color",
-          "to": "v1.6.3"
-        },
-        {
-          "ecosystem": "golang",
-          "from": "v0.26.4",
-          "package": "github.com/gpustack/gguf-parser-go",
-          "to": "v0.27.0"
-        },
-        {
-          "ecosystem": "golang",
-          "from": "v1.20.1",
-          "package": "github.com/klauspost/compress",
-          "to": "v1.20.3"
-        },
-        {
-          "ecosystem": "golang",
-          "from": "v1.2.6",
-          "package": "github.com/klauspost/pgzip",
-          "to": "v1.2.7"
-        },
-        {
-          "ecosystem": "golang",
-          "from": "v0.0.27",
-          "package": "github.com/mattn/go-runewidth",
-          "to": "v0.0.31"
-        },
-        {
-          "ecosystem": "golang",
-          "from": "v1.14.48",
-          "package": "github.com/mattn/go-sqlite3",
-          "to": "v1.14.52"
-        },
-        {
+          "direction": "upgrade",
           "ecosystem": "golang",
           "from": "v0.6.3-0.20251027160822-ad3df93bed29",
+          "level": "prerelease",
+          "location": "go.mod",
           "package": "github.com/Microsoft/go-winio",
           "to": "v0.6.3-0.20260930231756-f19d9717deb0"
         },
         {
-          "ecosystem": "golang",
-          "from": "v1.56.0",
-          "package": "github.com/moby/moby/api",
-          "to": "v1.56.1"
-        },
-        {
-          "ecosystem": "golang",
-          "from": "v0.6.0",
-          "package": "github.com/moby/moby/client",
-          "to": "v0.6.2"
-        },
-        {
-          "ecosystem": "golang",
-          "from": "v1.0.0",
-          "package": "github.com/ncruces/go-strftime",
-          "to": "v1.1.0"
-        },
-        {
+          "direction": "upgrade",
           "ecosystem": "golang",
           "from": "v1.4.1",
+          "level": "minor",
+          "location": "go.mod",
           "package": "github.com/ProtonMail/go-crypto",
           "to": "v1.5.2"
         },
         {
+          "direction": "upgrade",
+          "ecosystem": "golang",
+          "from": "v0.1.1",
+          "level": "patch",
+          "location": "go.mod",
+          "package": "github.com/anchore/clio",
+          "to": "v0.1.2"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "golang",
+          "from": "v0.9.3",
+          "level": "patch",
+          "location": ".make/go.mod",
+          "package": "github.com/anchore/go-make",
+          "to": "v0.9.6"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "golang",
+          "from": "v0.3.4",
+          "level": "minor",
+          "location": "go.mod",
+          "package": "github.com/anchore/stereoscope",
+          "to": "v0.4.1"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "golang",
+          "from": "v1.55.0",
+          "level": "minor",
+          "location": "go.mod",
+          "package": "github.com/anchore/syft",
+          "to": "v1.57.0"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "golang",
+          "from": "v4.10.2",
+          "level": "patch",
+          "location": ".make/go.mod",
+          "package": "github.com/bmatcuk/doublestar/v4",
+          "to": "v4.10.3"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "golang",
+          "from": "v4.10.2",
+          "level": "patch",
+          "location": "go.mod",
+          "package": "github.com/bmatcuk/doublestar/v4",
+          "to": "v4.10.3"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "golang",
+          "from": "v2.4.1",
+          "level": "patch",
+          "location": "go.mod",
+          "package": "github.com/containerd/containerd/v2",
+          "to": "v2.4.2"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "golang",
+          "from": "v0.18.2",
+          "level": "minor",
+          "location": "go.mod",
+          "package": "github.com/containerd/stargz-snapshotter/estargz",
+          "to": "v0.19.0"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "golang",
+          "from": "v0.0.0-20240306090643-c67ab88f10cb",
+          "level": "major",
+          "location": "go.mod",
+          "package": "github.com/deitch/magic",
+          "to": "v1.0.0"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "golang",
+          "from": "v29.8.2+incompatible",
+          "level": "minor",
+          "location": "go.mod",
+          "package": "github.com/docker/cli",
+          "to": "v29.9.2+incompatible"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "golang",
+          "from": "v0.9.8",
+          "level": "patch",
+          "location": "go.mod",
+          "package": "github.com/docker/docker-credential-helpers",
+          "to": "v0.9.10"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "golang",
+          "from": "v0.8.1",
+          "level": "patch",
+          "location": "go.mod",
+          "package": "github.com/docker/go-connections",
+          "to": "v0.8.2"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "golang",
+          "from": "v1.4.15",
+          "level": "patch",
+          "location": "go.mod",
+          "package": "github.com/gabriel-vasile/mimetype",
+          "to": "v1.4.16"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "golang",
+          "from": "v2.7.1",
+          "level": "minor",
+          "location": "go.mod",
+          "package": "github.com/github/go-spdx/v2",
+          "to": "v2.8.0"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "golang",
+          "from": "v0.5.23",
+          "level": "patch",
+          "location": "go.mod",
+          "package": "github.com/gkampitakis/go-snaps",
+          "to": "v0.5.24"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "golang",
+          "from": "v4.1.5",
+          "level": "patch",
+          "location": "go.mod",
+          "package": "github.com/go-jose/go-jose/v4",
+          "to": "v4.1.6"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "golang",
+          "from": "v1.1.1",
+          "level": "patch",
+          "location": "go.mod",
+          "package": "github.com/go-test/deep",
+          "to": "v1.1.2"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "golang",
+          "from": "v0.0.0-20260802141513-ef3492d7dac3",
+          "level": "prerelease",
+          "location": "go.mod",
+          "package": "github.com/google/pprof",
+          "to": "v0.0.0-20261016150608-1facf8f91b50"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "golang",
+          "from": "v1.6.2",
+          "level": "patch",
+          "location": "go.mod",
+          "package": "github.com/gookit/color",
+          "to": "v1.6.3"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "golang",
+          "from": "v0.26.4",
+          "level": "minor",
+          "location": "go.mod",
+          "package": "github.com/gpustack/gguf-parser-go",
+          "to": "v0.27.0"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "golang",
+          "from": "v1.20.1",
+          "level": "patch",
+          "location": "go.mod",
+          "package": "github.com/klauspost/compress",
+          "to": "v1.20.3"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "golang",
+          "from": "v1.2.6",
+          "level": "patch",
+          "location": "go.mod",
+          "package": "github.com/klauspost/pgzip",
+          "to": "v1.2.7"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "golang",
+          "from": "v0.0.27",
+          "level": "patch",
+          "location": "go.mod",
+          "package": "github.com/mattn/go-runewidth",
+          "to": "v0.0.31"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "golang",
+          "from": "v1.14.48",
+          "level": "patch",
+          "location": "go.mod",
+          "package": "github.com/mattn/go-sqlite3",
+          "to": "v1.14.52"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "golang",
+          "from": "v1.56.0",
+          "level": "patch",
+          "location": "go.mod",
+          "package": "github.com/moby/moby/api",
+          "to": "v1.56.1"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "golang",
+          "from": "v0.6.0",
+          "level": "patch",
+          "location": "go.mod",
+          "package": "github.com/moby/moby/client",
+          "to": "v0.6.2"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "golang",
+          "from": "v1.0.0",
+          "level": "minor",
+          "location": "go.mod",
+          "package": "github.com/ncruces/go-strftime",
+          "to": "v1.1.0"
+        },
+        {
+          "direction": "upgrade",
           "ecosystem": "golang",
           "from": "v1.8.7",
+          "level": "patch",
+          "location": "go.mod",
           "package": "github.com/sigstore/fulcio",
           "to": "v1.8.8"
         },
         {
+          "direction": "upgrade",
           "ecosystem": "golang",
           "from": "v0.0.4",
+          "level": "patch",
+          "location": "go.mod",
           "package": "github.com/vbauerster/cupwriter",
           "to": "v0.0.5"
         },
         {
+          "direction": "upgrade",
           "ecosystem": "golang",
           "from": "v8.14.0",
+          "level": "minor",
+          "location": "go.mod",
           "package": "github.com/vbauerster/mpb/v8",
           "to": "v8.16.2"
         },
         {
+          "direction": "upgrade",
           "ecosystem": "golang",
           "from": "v5.41.2",
+          "level": "minor",
+          "location": "go.mod",
           "package": "go.podman.io/image/v5",
           "to": "v5.42.0"
         },
         {
+          "direction": "upgrade",
           "ecosystem": "golang",
           "from": "v1.64.1",
+          "level": "minor",
+          "location": "go.mod",
           "package": "go.podman.io/storage",
           "to": "v1.65.0"
         },
         {
+          "direction": "upgrade",
           "ecosystem": "golang",
           "from": "v0.41.0",
+          "level": "minor",
+          "location": ".make/go.mod",
           "package": "golang.org/x/mod",
           "to": "v0.42.0"
         },
         {
+          "direction": "upgrade",
+          "ecosystem": "golang",
+          "from": "v0.41.0",
+          "level": "minor",
+          "location": "go.mod",
+          "package": "golang.org/x/mod",
+          "to": "v0.42.0"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "golang",
+          "from": "v0.48.0",
+          "level": "minor",
+          "location": ".make/go.mod",
+          "package": "golang.org/x/sys",
+          "to": "v0.49.0"
+        },
+        {
+          "direction": "upgrade",
           "ecosystem": "golang",
           "from": "v0.51.0",
+          "level": "minor",
+          "location": "go.mod",
           "package": "golang.org/x/tools",
           "to": "v0.52.0"
         },
         {
+          "direction": "upgrade",
           "ecosystem": "golang",
           "from": "v1.77.1",
+          "level": "minor",
+          "location": "go.mod",
           "package": "modernc.org/libc",
           "to": "v1.79.0"
         },
         {
+          "direction": "upgrade",
           "ecosystem": "golang",
           "from": "v1.60.1",
+          "level": "minor",
+          "location": "go.mod",
           "package": "modernc.org/sqlite",
           "to": "v1.61.0"
         }
       ],
+      "version_changes": [
+        {
+          "direction": "upgrade",
+          "ecosystem": "github",
+          "from": "v7.0.0",
+          "level": "minor",
+          "location": ".github/actions/bootstrap/action.yaml",
+          "name": "actions/setup-python",
+          "to": "v7.1.0"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "github",
+          "from": "v0.9.3",
+          "level": "patch",
+          "location": ".github/actions/bootstrap/action.yaml",
+          "name": "anchore/go-make/.github/actions/setup",
+          "to": "v0.9.6"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "github",
+          "from": "v0.9.3",
+          "level": "patch",
+          "location": ".github/workflows/validations.yaml",
+          "name": "anchore/go-make/.github/actions/setup",
+          "to": "v0.9.6"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "github",
+          "from": "v4.6.0",
+          "level": "minor",
+          "location": ".github/workflows/release.yaml",
+          "name": "docker/login-action",
+          "to": "v4.7.0"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "github",
+          "from": "v4.38.3",
+          "level": "minor",
+          "location": ".github/workflows/scorecards.yaml",
+          "name": "github/codeql-action/upload-sarif",
+          "to": "v4.39.1"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "github",
+          "from": "v2.4.3",
+          "level": "minor",
+          "location": ".github/workflows/scorecards.yaml",
+          "name": "ossf/scorecard-action",
+          "to": "v2.5.0"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "github",
+          "from": "v0.6.4",
+          "level": "minor",
+          "location": ".github/workflows/validate-github-actions.yaml",
+          "name": "zizmorcore/zizmor-action",
+          "to": "v0.8.0"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "golang",
+          "from": "v0.6.3-0.20251027160822-ad3df93bed29",
+          "level": "prerelease",
+          "location": "go.mod",
+          "name": "github.com/Microsoft/go-winio",
+          "to": "v0.6.3-0.20260930231756-f19d9717deb0"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "golang",
+          "from": "v1.4.1",
+          "level": "minor",
+          "location": "go.mod",
+          "name": "github.com/ProtonMail/go-crypto",
+          "to": "v1.5.2"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "golang",
+          "from": "v0.1.1",
+          "level": "patch",
+          "location": "go.mod",
+          "name": "github.com/anchore/clio",
+          "to": "v0.1.2"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "golang",
+          "from": "v0.9.3",
+          "level": "patch",
+          "location": ".make/go.mod",
+          "name": "github.com/anchore/go-make",
+          "to": "v0.9.6"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "golang",
+          "from": "v0.3.4",
+          "level": "minor",
+          "location": "go.mod",
+          "name": "github.com/anchore/stereoscope",
+          "to": "v0.4.1"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "golang",
+          "from": "v1.55.0",
+          "level": "minor",
+          "location": "go.mod",
+          "name": "github.com/anchore/syft",
+          "to": "v1.57.0"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "golang",
+          "from": "v4.10.2",
+          "level": "patch",
+          "location": ".make/go.mod",
+          "name": "github.com/bmatcuk/doublestar/v4",
+          "to": "v4.10.3"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "golang",
+          "from": "v4.10.2",
+          "level": "patch",
+          "location": "go.mod",
+          "name": "github.com/bmatcuk/doublestar/v4",
+          "to": "v4.10.3"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "golang",
+          "from": "v2.4.1",
+          "level": "patch",
+          "location": "go.mod",
+          "name": "github.com/containerd/containerd/v2",
+          "to": "v2.4.2"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "golang",
+          "from": "v0.18.2",
+          "level": "minor",
+          "location": "go.mod",
+          "name": "github.com/containerd/stargz-snapshotter/estargz",
+          "to": "v0.19.0"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "golang",
+          "from": "v0.0.0-20240306090643-c67ab88f10cb",
+          "level": "major",
+          "location": "go.mod",
+          "name": "github.com/deitch/magic",
+          "to": "v1.0.0"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "golang",
+          "from": "v29.8.2+incompatible",
+          "level": "minor",
+          "location": "go.mod",
+          "name": "github.com/docker/cli",
+          "to": "v29.9.2+incompatible"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "golang",
+          "from": "v0.9.8",
+          "level": "patch",
+          "location": "go.mod",
+          "name": "github.com/docker/docker-credential-helpers",
+          "to": "v0.9.10"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "golang",
+          "from": "v0.8.1",
+          "level": "patch",
+          "location": "go.mod",
+          "name": "github.com/docker/go-connections",
+          "to": "v0.8.2"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "golang",
+          "from": "v1.4.15",
+          "level": "patch",
+          "location": "go.mod",
+          "name": "github.com/gabriel-vasile/mimetype",
+          "to": "v1.4.16"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "golang",
+          "from": "v2.7.1",
+          "level": "minor",
+          "location": "go.mod",
+          "name": "github.com/github/go-spdx/v2",
+          "to": "v2.8.0"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "golang",
+          "from": "v0.5.23",
+          "level": "patch",
+          "location": "go.mod",
+          "name": "github.com/gkampitakis/go-snaps",
+          "to": "v0.5.24"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "golang",
+          "from": "v4.1.5",
+          "level": "patch",
+          "location": "go.mod",
+          "name": "github.com/go-jose/go-jose/v4",
+          "to": "v4.1.6"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "golang",
+          "from": "v1.1.1",
+          "level": "patch",
+          "location": "go.mod",
+          "name": "github.com/go-test/deep",
+          "to": "v1.1.2"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "golang",
+          "from": "v0.0.0-20260802141513-ef3492d7dac3",
+          "level": "prerelease",
+          "location": "go.mod",
+          "name": "github.com/google/pprof",
+          "to": "v0.0.0-20261016150608-1facf8f91b50"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "golang",
+          "from": "v1.6.2",
+          "level": "patch",
+          "location": "go.mod",
+          "name": "github.com/gookit/color",
+          "to": "v1.6.3"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "golang",
+          "from": "v0.26.4",
+          "level": "minor",
+          "location": "go.mod",
+          "name": "github.com/gpustack/gguf-parser-go",
+          "to": "v0.27.0"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "golang",
+          "from": "v1.20.1",
+          "level": "patch",
+          "location": "go.mod",
+          "name": "github.com/klauspost/compress",
+          "to": "v1.20.3"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "golang",
+          "from": "v1.2.6",
+          "level": "patch",
+          "location": "go.mod",
+          "name": "github.com/klauspost/pgzip",
+          "to": "v1.2.7"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "golang",
+          "from": "v0.0.27",
+          "level": "patch",
+          "location": "go.mod",
+          "name": "github.com/mattn/go-runewidth",
+          "to": "v0.0.31"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "golang",
+          "from": "v1.14.48",
+          "level": "patch",
+          "location": "go.mod",
+          "name": "github.com/mattn/go-sqlite3",
+          "to": "v1.14.52"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "golang",
+          "from": "v1.56.0",
+          "level": "patch",
+          "location": "go.mod",
+          "name": "github.com/moby/moby/api",
+          "to": "v1.56.1"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "golang",
+          "from": "v0.6.0",
+          "level": "patch",
+          "location": "go.mod",
+          "name": "github.com/moby/moby/client",
+          "to": "v0.6.2"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "golang",
+          "from": "v1.0.0",
+          "level": "minor",
+          "location": "go.mod",
+          "name": "github.com/ncruces/go-strftime",
+          "to": "v1.1.0"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "golang",
+          "from": "v1.8.7",
+          "level": "patch",
+          "location": "go.mod",
+          "name": "github.com/sigstore/fulcio",
+          "to": "v1.8.8"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "golang",
+          "from": "v0.0.4",
+          "level": "patch",
+          "location": "go.mod",
+          "name": "github.com/vbauerster/cupwriter",
+          "to": "v0.0.5"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "golang",
+          "from": "v8.14.0",
+          "level": "minor",
+          "location": "go.mod",
+          "name": "github.com/vbauerster/mpb/v8",
+          "to": "v8.16.2"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "golang",
+          "from": "v5.41.2",
+          "level": "minor",
+          "location": "go.mod",
+          "name": "go.podman.io/image/v5",
+          "to": "v5.42.0"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "golang",
+          "from": "v1.64.1",
+          "level": "minor",
+          "location": "go.mod",
+          "name": "go.podman.io/storage",
+          "to": "v1.65.0"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "golang",
+          "from": "v0.41.0",
+          "level": "minor",
+          "location": ".make/go.mod",
+          "name": "golang.org/x/mod",
+          "to": "v0.42.0"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "golang",
+          "from": "v0.41.0",
+          "level": "minor",
+          "location": "go.mod",
+          "name": "golang.org/x/mod",
+          "to": "v0.42.0"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "golang",
+          "from": "v0.48.0",
+          "level": "minor",
+          "location": ".make/go.mod",
+          "name": "golang.org/x/sys",
+          "to": "v0.49.0"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "golang",
+          "from": "v0.51.0",
+          "level": "minor",
+          "location": "go.mod",
+          "name": "golang.org/x/tools",
+          "to": "v0.52.0"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "golang",
+          "from": "v1.77.1",
+          "level": "minor",
+          "location": "go.mod",
+          "name": "modernc.org/libc",
+          "to": "v1.79.0"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "golang",
+          "from": "v1.60.1",
+          "level": "minor",
+          "location": "go.mod",
+          "name": "modernc.org/sqlite",
+          "to": "v1.61.0"
+        }
+      ],
+      "version_set_changes": [],
       "workflow_new": 0,
       "workflow_resolved": 2
     },
@@ -3594,25 +4361,37 @@
             "percentile": 0.99669,
             "score": 0.82641
           },
+          "epss_date": "2026-11-07T12:00:22Z",
           "fixed_version": "v1.2.7",
           "id": "GO-2026-6888",
           "kev": {
             "cve": "CVE-2026-111497",
             "date_added": "2026-10-27"
           },
+          "kev_cves": [
+            "CVE-2026-111497"
+          ],
+          "kev_snapshot": "2026.11.06",
           "level": "symbol",
+          "modified": "2026-11-05T22:55:15Z",
           "module": "github.com/andybalholm/brotli",
+          "published": "2026-11-05T22:55:15Z",
           "summary": "Excessive memory allocation when decompressing crafted streams in github.com/andybalholm/brotli",
           "version": "v1.2.0"
         },
         {
           "aliases": [],
           "epss": null,
+          "epss_date": "2026-11-07T12:00:22Z",
           "fixed_version": "",
           "id": "GO-2026-6905",
           "kev": null,
+          "kev_cves": [],
+          "kev_snapshot": "2026.11.06",
           "level": "symbol",
+          "modified": "2026-11-05T22:55:15Z",
           "module": "github.com/blakesmith/ar",
+          "published": "2026-11-05T22:55:15Z",
           "summary": "Panic on negative member size in Reader.Read in github.com/blakesmith/ar",
           "version": "v0.0.0-20190502131153-809d4375e1fb"
         },
@@ -3626,11 +4405,16 @@
             "percentile": 0.34663,
             "score": 0.00402
           },
+          "epss_date": "2026-11-07T12:00:22Z",
           "fixed_version": "",
           "id": "GO-2026-4883",
           "kev": null,
+          "kev_cves": [],
+          "kev_snapshot": "2026.11.06",
           "level": "symbol",
+          "modified": "2026-04-02T18:42:30Z",
           "module": "github.com/docker/docker",
+          "published": "2026-04-02T18:42:30Z",
           "summary": "Moby has an Off-by-one error in its plugin privilege validation in github.com/docker/docker",
           "version": "v28.5.2+incompatible"
         },
@@ -3644,11 +4428,16 @@
             "percentile": 0.95391,
             "score": 0.0927
           },
+          "epss_date": "2026-11-07T12:00:22Z",
           "fixed_version": "",
           "id": "GO-2026-4887",
           "kev": null,
+          "kev_cves": [],
+          "kev_snapshot": "2026.11.06",
           "level": "symbol",
+          "modified": "2026-04-02T18:42:30Z",
           "module": "github.com/docker/docker",
+          "published": "2026-04-02T18:42:30Z",
           "summary": "Moby has AuthZ plugin bypass when provided oversized request bodies in github.com/docker/docker",
           "version": "v28.5.2+incompatible"
         },
@@ -3662,11 +4451,16 @@
             "percentile": 0.01038,
             "score": 0.00104
           },
+          "epss_date": "2026-11-07T12:00:22Z",
           "fixed_version": "",
           "id": "GO-2026-5617",
           "kev": null,
+          "kev_cves": [],
+          "kev_snapshot": "2026.11.06",
           "level": "symbol",
+          "modified": "2026-07-27T20:14:16Z",
           "module": "github.com/docker/docker",
+          "published": "2026-06-25T22:34:34Z",
           "summary": "Race condition in 'docker cp' in github.com/docker/docker allows bind mount redirection",
           "version": "v28.5.2+incompatible"
         },
@@ -3680,11 +4474,16 @@
             "percentile": 0.01204,
             "score": 0.00108
           },
+          "epss_date": "2026-11-07T12:00:22Z",
           "fixed_version": "",
           "id": "GO-2026-5668",
           "kev": null,
+          "kev_cves": [],
+          "kev_snapshot": "2026.11.06",
           "level": "symbol",
+          "modified": "2026-08-11T23:21:33Z",
           "module": "github.com/docker/docker",
+          "published": "2026-06-25T22:34:38Z",
           "summary": "Race condition in 'docker cp' in github.com/docker/docker allows creation of arbitrary files",
           "version": "v28.5.2+incompatible"
         },
@@ -3698,22 +4497,32 @@
             "percentile": 0.04653,
             "score": 0.00155
           },
+          "epss_date": "2026-11-07T12:00:22Z",
           "fixed_version": "",
           "id": "GO-2026-5746",
           "kev": null,
+          "kev_cves": [],
+          "kev_snapshot": "2026.11.06",
           "level": "symbol",
+          "modified": "2026-07-23T17:09:44Z",
           "module": "github.com/docker/docker",
+          "published": "2026-06-25T22:34:38Z",
           "summary": "Docker: 'PUT /containers/{id}/archive' executes container binary on the host in github.com/docker/docker",
           "version": "v28.5.2+incompatible"
         },
         {
           "aliases": [],
           "epss": null,
+          "epss_date": "2026-11-07T12:00:22Z",
           "fixed_version": "v0.58.1-0.20261009181718-2f1f834330b2",
           "id": "GO-2026-5932",
           "kev": null,
+          "kev_cves": [],
+          "kev_snapshot": "2026.11.06",
           "level": "symbol",
+          "modified": "2026-11-02T22:01:43Z",
           "module": "golang.org/x/crypto",
+          "published": "2026-07-07T22:15:29Z",
           "summary": "The golang.org/x/crypto/openpgp package is unmaintained, unsafe by design, and has known security issues",
           "version": "v0.58.0"
         },
@@ -3726,11 +4535,16 @@
             "percentile": 0.35396,
             "score": 0.00409
           },
+          "epss_date": "2026-11-07T12:00:22Z",
           "fixed_version": "v0.62.0",
           "id": "GO-2026-6860",
           "kev": null,
+          "kev_cves": [],
+          "kev_snapshot": "2026.11.06",
           "level": "symbol",
+          "modified": "2026-10-27T21:16:18Z",
           "module": "golang.org/x/net",
+          "published": "2026-10-27T21:16:18Z",
           "summary": "Avoid quadratic complexity when coalescing text nodes in html in golang.org/x/net",
           "version": "v0.61.0"
         },
@@ -3743,11 +4557,16 @@
             "percentile": 0.18952,
             "score": 0.00267
           },
+          "epss_date": "2026-11-07T12:00:22Z",
           "fixed_version": "v0.62.0",
           "id": "GO-2026-6866",
           "kev": null,
+          "kev_cves": [],
+          "kev_snapshot": "2026.11.06",
           "level": "symbol",
+          "modified": "2026-10-27T21:16:18Z",
           "module": "golang.org/x/net",
+          "published": "2026-10-27T21:16:18Z",
           "summary": "Check all ancestor namespace transitions when rendering raw text in html in golang.org/x/net",
           "version": "v0.61.0"
         }
@@ -3756,6 +4575,7 @@
       "main_module": "github.com/anchore/grype"
     },
     "id": "anchore__grype",
+    "lock_aliases": {},
     "manifests": [
       ".github/actions/bootstrap/action.yaml",
       ".github/workflows/codeql.yaml",
@@ -3775,6 +4595,11 @@
       "confirmed": 10,
       "osv_only": [],
       "warning": null
+    },
+    "osv_api": {
+      "available": true,
+      "queried_at": "2026-11-09T01:36:28+00:00",
+      "states": {}
     },
     "ref": "v0.121.2",
     "ref_kind": "release",
@@ -3808,24 +4633,605 @@
     },
     "released_at": "2026-11-05T21:22:53Z",
     "repository": "anchore/grype",
+    "sbom_sha256": "4743bd82b4b3cd34987bec01f085bd1c35cf35a6d2e5d037b328cd1ee80c4024",
     "sbomlyze_diff": {
-      "added": 2,
-      "changed": 51,
+      "added": 5,
+      "baseline": {
+        "attempt": "1",
+        "run_id": "41380955266"
+      },
+      "changed": 47,
+      "contract": "sbomlyze-diff-0.7",
       "drift": {
-        "integrity_drift": 7,
+        "distinct_version_changes": 44,
+        "downgrades": 0,
+        "file_changes": 7,
+        "integrity_drift": 0,
+        "license_changes": 0,
         "metadata_drift": 0,
-        "version_drift": 44
+        "owned_file_drift": 0,
+        "owned_files_changed": 0,
+        "unknown_direction": 0,
+        "upgrades": 47,
+        "version_drift": 47
       },
       "findings": [
-        "Attack surface: +2 packages (0.5%)",
+        "Scanned anchore/grype changed: v0.121.0 \u2192 v0.121.2",
+        "Inventory: +2 components (0.5%)",
         "library ecosystem entirely removed (2 \u2192 0 packages)",
-        "1 version downgrades detected: github.com/deitch/magic v0.0.0-20240306090643-c67ab88f10cb\u2192v1.0.0",
-        "43 version upgrades (21 major, 20 minor, 2 patch) among 390 shared packages",
-        "Integrity drift (7 total): 7 unknown",
-        "Core system packages stable: golang (360) unchanged"
+        "44 version upgrades (1 major, 21 minor, 20 patch, 2 prerelease) across 47 occurrences among 381 shared packages",
+        "7 file entries changed content (not package integrity drift): /.github/actions/bootstrap/action.yaml, /.github/workflows/release.yaml, /.github/workflows/scorecards.yaml, /.github/workflows/validate-github-actions.yaml, /.github/workflows/validations.yaml + 2 more",
+        "golang: 360 packages before and after (40 version changes, 2 added/removed/moved)"
       ],
       "html": "sbomlyze-diff.html",
-      "removed": 2
+      "occurrences": {
+        "added": [
+          {
+            "ecosystem": "github",
+            "location": ".github/workflows/validations.yaml",
+            "locations": [
+              ".github/workflows/validations.yaml"
+            ],
+            "name": "$/.github/actions/bootstrap",
+            "version": "UNKNOWN"
+          },
+          {
+            "ecosystem": "github",
+            "location": ".github/workflows/release.yaml",
+            "locations": [
+              ".github/workflows/release.yaml"
+            ],
+            "name": "$/.github/actions/bootstrap",
+            "version": "UNKNOWN"
+          },
+          {
+            "ecosystem": "github",
+            "location": ".github/workflows/validations.yaml",
+            "locations": [
+              ".github/workflows/validations.yaml"
+            ],
+            "name": "actions/cache/restore",
+            "version": "v6.1.0"
+          },
+          {
+            "ecosystem": "github",
+            "location": ".github/workflows/validations.yaml",
+            "locations": [
+              ".github/workflows/validations.yaml"
+            ],
+            "name": "actions/cache/save",
+            "version": "v6.1.0"
+          },
+          {
+            "ecosystem": "golang",
+            "location": "go.mod",
+            "locations": [
+              "go.mod"
+            ],
+            "name": "github.com/varlink/go",
+            "version": "v0.4.1-0.20261015173642-c935be0c53f7"
+          }
+        ],
+        "digest_coverage": {
+          "after_only": 0,
+          "before_only": 0,
+          "by_kind": {
+            "go-h1": 319
+          },
+          "comparable": 319,
+          "disjoint_kinds": 0,
+          "packages_total": 386,
+          "same_version_pairs": 334
+        },
+        "file_changes": [
+          {
+            "owners": [],
+            "path": ".github/actions/bootstrap/action.yaml"
+          },
+          {
+            "owners": [],
+            "path": ".github/workflows/release.yaml"
+          },
+          {
+            "owners": [],
+            "path": ".github/workflows/scorecards.yaml"
+          },
+          {
+            "owners": [],
+            "path": ".github/workflows/validate-github-actions.yaml"
+          },
+          {
+            "owners": [],
+            "path": ".github/workflows/validations.yaml"
+          },
+          {
+            "owners": [],
+            "path": ".make/go.mod"
+          },
+          {
+            "owners": [],
+            "path": "go.mod"
+          }
+        ],
+        "file_coverage": {
+          "ambiguous_paths": 0,
+          "config_unknown": 0,
+          "files_compared": 8,
+          "files_unverified": 0,
+          "owned_files_after": 0,
+          "unowned_files_after": 0
+        },
+        "files_added": [],
+        "files_removed": [],
+        "integrity_changes": [],
+        "license_changes": [],
+        "metadata_changes": [],
+        "moved": [],
+        "owned_file_drift": [],
+        "removed": [
+          {
+            "ecosystem": "unknown",
+            "location": ".github/workflows/validations.yaml",
+            "locations": [
+              ".github/workflows/validations.yaml"
+            ],
+            "name": "./.github/actions/bootstrap",
+            "version": "UNKNOWN"
+          },
+          {
+            "ecosystem": "unknown",
+            "location": ".github/workflows/release.yaml",
+            "locations": [
+              ".github/workflows/release.yaml"
+            ],
+            "name": "./.github/actions/bootstrap",
+            "version": "UNKNOWN"
+          },
+          {
+            "ecosystem": "golang",
+            "location": "go.mod",
+            "locations": [
+              "go.mod"
+            ],
+            "name": "github.com/becheran/wildmatch-go",
+            "version": "v1.0.0"
+          }
+        ],
+        "source_change": {
+          "from": "v0.121.0",
+          "name": "anchore/grype",
+          "to": "v0.121.2"
+        },
+        "version_changes": [
+          {
+            "direction": "upgrade",
+            "ecosystem": "github",
+            "from": "v7.0.0",
+            "level": "minor",
+            "location": ".github/actions/bootstrap/action.yaml",
+            "name": "actions/setup-python",
+            "to": "v7.1.0"
+          },
+          {
+            "direction": "upgrade",
+            "ecosystem": "github",
+            "from": "v0.9.3",
+            "level": "patch",
+            "location": ".github/actions/bootstrap/action.yaml",
+            "name": "anchore/go-make/.github/actions/setup",
+            "to": "v0.9.6"
+          },
+          {
+            "direction": "upgrade",
+            "ecosystem": "github",
+            "from": "v0.9.3",
+            "level": "patch",
+            "location": ".github/workflows/validations.yaml",
+            "name": "anchore/go-make/.github/actions/setup",
+            "to": "v0.9.6"
+          },
+          {
+            "direction": "upgrade",
+            "ecosystem": "github",
+            "from": "v4.6.0",
+            "level": "minor",
+            "location": ".github/workflows/release.yaml",
+            "name": "docker/login-action",
+            "to": "v4.7.0"
+          },
+          {
+            "direction": "upgrade",
+            "ecosystem": "github",
+            "from": "v4.38.3",
+            "level": "minor",
+            "location": ".github/workflows/scorecards.yaml",
+            "name": "github/codeql-action/upload-sarif",
+            "to": "v4.39.1"
+          },
+          {
+            "direction": "upgrade",
+            "ecosystem": "github",
+            "from": "v2.4.3",
+            "level": "minor",
+            "location": ".github/workflows/scorecards.yaml",
+            "name": "ossf/scorecard-action",
+            "to": "v2.5.0"
+          },
+          {
+            "direction": "upgrade",
+            "ecosystem": "github",
+            "from": "v0.6.4",
+            "level": "minor",
+            "location": ".github/workflows/validate-github-actions.yaml",
+            "name": "zizmorcore/zizmor-action",
+            "to": "v0.8.0"
+          },
+          {
+            "direction": "upgrade",
+            "ecosystem": "golang",
+            "from": "v0.6.3-0.20251027160822-ad3df93bed29",
+            "level": "prerelease",
+            "location": "go.mod",
+            "name": "github.com/Microsoft/go-winio",
+            "to": "v0.6.3-0.20260930231756-f19d9717deb0"
+          },
+          {
+            "direction": "upgrade",
+            "ecosystem": "golang",
+            "from": "v1.4.1",
+            "level": "minor",
+            "location": "go.mod",
+            "name": "github.com/ProtonMail/go-crypto",
+            "to": "v1.5.2"
+          },
+          {
+            "direction": "upgrade",
+            "ecosystem": "golang",
+            "from": "v0.1.1",
+            "level": "patch",
+            "location": "go.mod",
+            "name": "github.com/anchore/clio",
+            "to": "v0.1.2"
+          },
+          {
+            "direction": "upgrade",
+            "ecosystem": "golang",
+            "from": "v0.9.3",
+            "level": "patch",
+            "location": ".make/go.mod",
+            "name": "github.com/anchore/go-make",
+            "to": "v0.9.6"
+          },
+          {
+            "direction": "upgrade",
+            "ecosystem": "golang",
+            "from": "v0.3.4",
+            "level": "minor",
+            "location": "go.mod",
+            "name": "github.com/anchore/stereoscope",
+            "to": "v0.4.1"
+          },
+          {
+            "direction": "upgrade",
+            "ecosystem": "golang",
+            "from": "v1.55.0",
+            "level": "minor",
+            "location": "go.mod",
+            "name": "github.com/anchore/syft",
+            "to": "v1.57.0"
+          },
+          {
+            "direction": "upgrade",
+            "ecosystem": "golang",
+            "from": "v4.10.2",
+            "level": "patch",
+            "location": ".make/go.mod",
+            "name": "github.com/bmatcuk/doublestar/v4",
+            "to": "v4.10.3"
+          },
+          {
+            "direction": "upgrade",
+            "ecosystem": "golang",
+            "from": "v4.10.2",
+            "level": "patch",
+            "location": "go.mod",
+            "name": "github.com/bmatcuk/doublestar/v4",
+            "to": "v4.10.3"
+          },
+          {
+            "direction": "upgrade",
+            "ecosystem": "golang",
+            "from": "v2.4.1",
+            "level": "patch",
+            "location": "go.mod",
+            "name": "github.com/containerd/containerd/v2",
+            "to": "v2.4.2"
+          },
+          {
+            "direction": "upgrade",
+            "ecosystem": "golang",
+            "from": "v0.18.2",
+            "level": "minor",
+            "location": "go.mod",
+            "name": "github.com/containerd/stargz-snapshotter/estargz",
+            "to": "v0.19.0"
+          },
+          {
+            "direction": "upgrade",
+            "ecosystem": "golang",
+            "from": "v0.0.0-20240306090643-c67ab88f10cb",
+            "level": "major",
+            "location": "go.mod",
+            "name": "github.com/deitch/magic",
+            "to": "v1.0.0"
+          },
+          {
+            "direction": "upgrade",
+            "ecosystem": "golang",
+            "from": "v29.8.2+incompatible",
+            "level": "minor",
+            "location": "go.mod",
+            "name": "github.com/docker/cli",
+            "to": "v29.9.2+incompatible"
+          },
+          {
+            "direction": "upgrade",
+            "ecosystem": "golang",
+            "from": "v0.9.8",
+            "level": "patch",
+            "location": "go.mod",
+            "name": "github.com/docker/docker-credential-helpers",
+            "to": "v0.9.10"
+          },
+          {
+            "direction": "upgrade",
+            "ecosystem": "golang",
+            "from": "v0.8.1",
+            "level": "patch",
+            "location": "go.mod",
+            "name": "github.com/docker/go-connections",
+            "to": "v0.8.2"
+          },
+          {
+            "direction": "upgrade",
+            "ecosystem": "golang",
+            "from": "v1.4.15",
+            "level": "patch",
+            "location": "go.mod",
+            "name": "github.com/gabriel-vasile/mimetype",
+            "to": "v1.4.16"
+          },
+          {
+            "direction": "upgrade",
+            "ecosystem": "golang",
+            "from": "v2.7.1",
+            "level": "minor",
+            "location": "go.mod",
+            "name": "github.com/github/go-spdx/v2",
+            "to": "v2.8.0"
+          },
+          {
+            "direction": "upgrade",
+            "ecosystem": "golang",
+            "from": "v0.5.23",
+            "level": "patch",
+            "location": "go.mod",
+            "name": "github.com/gkampitakis/go-snaps",
+            "to": "v0.5.24"
+          },
+          {
+            "direction": "upgrade",
+            "ecosystem": "golang",
+            "from": "v4.1.5",
+            "level": "patch",
+            "location": "go.mod",
+            "name": "github.com/go-jose/go-jose/v4",
+            "to": "v4.1.6"
+          },
+          {
+            "direction": "upgrade",
+            "ecosystem": "golang",
+            "from": "v1.1.1",
+            "level": "patch",
+            "location": "go.mod",
+            "name": "github.com/go-test/deep",
+            "to": "v1.1.2"
+          },
+          {
+            "direction": "upgrade",
+            "ecosystem": "golang",
+            "from": "v0.0.0-20260802141513-ef3492d7dac3",
+            "level": "prerelease",
+            "location": "go.mod",
+            "name": "github.com/google/pprof",
+            "to": "v0.0.0-20261016150608-1facf8f91b50"
+          },
+          {
+            "direction": "upgrade",
+            "ecosystem": "golang",
+            "from": "v1.6.2",
+            "level": "patch",
+            "location": "go.mod",
+            "name": "github.com/gookit/color",
+            "to": "v1.6.3"
+          },
+          {
+            "direction": "upgrade",
+            "ecosystem": "golang",
+            "from": "v0.26.4",
+            "level": "minor",
+            "location": "go.mod",
+            "name": "github.com/gpustack/gguf-parser-go",
+            "to": "v0.27.0"
+          },
+          {
+            "direction": "upgrade",
+            "ecosystem": "golang",
+            "from": "v1.20.1",
+            "level": "patch",
+            "location": "go.mod",
+            "name": "github.com/klauspost/compress",
+            "to": "v1.20.3"
+          },
+          {
+            "direction": "upgrade",
+            "ecosystem": "golang",
+            "from": "v1.2.6",
+            "level": "patch",
+            "location": "go.mod",
+            "name": "github.com/klauspost/pgzip",
+            "to": "v1.2.7"
+          },
+          {
+            "direction": "upgrade",
+            "ecosystem": "golang",
+            "from": "v0.0.27",
+            "level": "patch",
+            "location": "go.mod",
+            "name": "github.com/mattn/go-runewidth",
+            "to": "v0.0.31"
+          },
+          {
+            "direction": "upgrade",
+            "ecosystem": "golang",
+            "from": "v1.14.48",
+            "level": "patch",
+            "location": "go.mod",
+            "name": "github.com/mattn/go-sqlite3",
+            "to": "v1.14.52"
+          },
+          {
+            "direction": "upgrade",
+            "ecosystem": "golang",
+            "from": "v1.56.0",
+            "level": "patch",
+            "location": "go.mod",
+            "name": "github.com/moby/moby/api",
+            "to": "v1.56.1"
+          },
+          {
+            "direction": "upgrade",
+            "ecosystem": "golang",
+            "from": "v0.6.0",
+            "level": "patch",
+            "location": "go.mod",
+            "name": "github.com/moby/moby/client",
+            "to": "v0.6.2"
+          },
+          {
+            "direction": "upgrade",
+            "ecosystem": "golang",
+            "from": "v1.0.0",
+            "level": "minor",
+            "location": "go.mod",
+            "name": "github.com/ncruces/go-strftime",
+            "to": "v1.1.0"
+          },
+          {
+            "direction": "upgrade",
+            "ecosystem": "golang",
+            "from": "v1.8.7",
+            "level": "patch",
+            "location": "go.mod",
+            "name": "github.com/sigstore/fulcio",
+            "to": "v1.8.8"
+          },
+          {
+            "direction": "upgrade",
+            "ecosystem": "golang",
+            "from": "v0.0.4",
+            "level": "patch",
+            "location": "go.mod",
+            "name": "github.com/vbauerster/cupwriter",
+            "to": "v0.0.5"
+          },
+          {
+            "direction": "upgrade",
+            "ecosystem": "golang",
+            "from": "v8.14.0",
+            "level": "minor",
+            "location": "go.mod",
+            "name": "github.com/vbauerster/mpb/v8",
+            "to": "v8.16.2"
+          },
+          {
+            "direction": "upgrade",
+            "ecosystem": "golang",
+            "from": "v5.41.2",
+            "level": "minor",
+            "location": "go.mod",
+            "name": "go.podman.io/image/v5",
+            "to": "v5.42.0"
+          },
+          {
+            "direction": "upgrade",
+            "ecosystem": "golang",
+            "from": "v1.64.1",
+            "level": "minor",
+            "location": "go.mod",
+            "name": "go.podman.io/storage",
+            "to": "v1.65.0"
+          },
+          {
+            "direction": "upgrade",
+            "ecosystem": "golang",
+            "from": "v0.41.0",
+            "level": "minor",
+            "location": ".make/go.mod",
+            "name": "golang.org/x/mod",
+            "to": "v0.42.0"
+          },
+          {
+            "direction": "upgrade",
+            "ecosystem": "golang",
+            "from": "v0.41.0",
+            "level": "minor",
+            "location": "go.mod",
+            "name": "golang.org/x/mod",
+            "to": "v0.42.0"
+          },
+          {
+            "direction": "upgrade",
+            "ecosystem": "golang",
+            "from": "v0.48.0",
+            "level": "minor",
+            "location": ".make/go.mod",
+            "name": "golang.org/x/sys",
+            "to": "v0.49.0"
+          },
+          {
+            "direction": "upgrade",
+            "ecosystem": "golang",
+            "from": "v0.51.0",
+            "level": "minor",
+            "location": "go.mod",
+            "name": "golang.org/x/tools",
+            "to": "v0.52.0"
+          },
+          {
+            "direction": "upgrade",
+            "ecosystem": "golang",
+            "from": "v1.77.1",
+            "level": "minor",
+            "location": "go.mod",
+            "name": "modernc.org/libc",
+            "to": "v1.79.0"
+          },
+          {
+            "direction": "upgrade",
+            "ecosystem": "golang",
+            "from": "v1.60.1",
+            "level": "minor",
+            "location": "go.mod",
+            "name": "modernc.org/sqlite",
+            "to": "v1.61.0"
+          }
+        ],
+        "version_set_changes": []
+      },
+      "previous_sbom_sha256": "bd62d856d90dcaa41bfc70f3d54138b5af57a605c050b6cbd49169abf983cfb1",
+      "removed": 3,
+      "sbom_sha256": "4743bd82b4b3cd34987bec01f085bd1c35cf35a6d2e5d037b328cd1ee80c4024"
     },
     "scanned_at": "2026-11-08T05:53:30+00:00",
     "scorecard": {
@@ -3938,6 +5344,7 @@
           "percentile": 0.99669,
           "score": 0.82641
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "1.2.7"
@@ -3948,9 +5355,19 @@
           "cve": "CVE-2026-111497",
           "date_added": "2026-10-27"
         },
+        "kev_cves": [
+          "CVE-2026-111497"
+        ],
+        "kev_snapshot": "2026.11.06",
         "location": "go.mod",
+        "locations": [
+          "go.mod"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-11-05T23:25:49.434824566Z",
+        "osv_published": "2026-11-05T22:55:15Z",
         "package": "github.com/andybalholm/brotli",
+        "purl": "pkg:golang/github.com/andybalholm/brotli@v1.2.0",
         "severity": "Critical",
         "summary": "In github.com/andybalholm/brotli before v1.2.7, the decompressor allocates memory for Huffman tables and block-type trees on every meta-block header without bounding the cumulative allocations relative to the input size. A small crafted brotli stream containing many empty meta-blocks with new Huffma",
         "url": "https://github.com/andybalholm/brotli/security/advisories/GHSA-c9gr-gmg4-2vqv",
@@ -3966,14 +5383,23 @@
           "percentile": 0.01038,
           "score": 0.00104
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "not-fixed",
         "fixed_in": [],
         "id": "GHSA-rg2x-37c3-w2rh",
         "in_binary": "vulnerable code in binary",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "go.mod",
+        "locations": [
+          "go.mod"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-09-10T03:50:47.528575532Z",
+        "osv_published": "2026-05-18T17:53:08Z",
         "package": "github.com/docker/docker",
+        "purl": "pkg:golang/github.com/docker/docker@v28.5.2%2Bincompatible",
         "severity": "High",
         "summary": "Docker: Race condition in docker cp allows bind mount redirection to host path",
         "url": "https://github.com/advisories/GHSA-rg2x-37c3-w2rh",
@@ -3989,14 +5415,23 @@
           "percentile": 0.04653,
           "score": 0.00155
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "not-fixed",
         "fixed_in": [],
         "id": "GHSA-x86f-5xw2-fm2r",
         "in_binary": "vulnerable code in binary",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "go.mod",
+        "locations": [
+          "go.mod"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-09-10T03:50:47.998689316Z",
+        "osv_published": "2026-05-18T17:47:23Z",
         "package": "github.com/docker/docker",
+        "purl": "pkg:golang/github.com/docker/docker@v28.5.2%2Bincompatible",
         "severity": "High",
         "summary": "Docker: `PUT /containers/{id}/archive` executes container binary on the host",
         "url": "https://github.com/advisories/GHSA-x86f-5xw2-fm2r",
@@ -4013,14 +5448,23 @@
           "percentile": 0.95391,
           "score": 0.0927
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "unknown",
         "fixed_in": [],
         "id": "GO-2026-4887",
         "in_binary": "vulnerable code in binary",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "go.mod",
+        "locations": [
+          "go.mod"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-04-03T20:59:19.226161232Z",
+        "osv_published": "2026-04-02T18:42:30Z",
         "package": "github.com/docker/docker",
+        "purl": "pkg:golang/github.com/docker/docker@v28.5.2%2Bincompatible",
         "severity": "High",
         "summary": "Moby has AuthZ plugin bypass when provided oversized request bodies in github.com/docker/docker",
         "url": "https://github.com/moby/moby/security/advisories/GHSA-x744-4wpc-v9h2",
@@ -4036,6 +5480,7 @@
           "percentile": 0.35396,
           "score": 0.00409
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "0.62.0"
@@ -4043,9 +5488,17 @@
         "id": "GO-2026-6860",
         "in_binary": "vulnerable code in binary",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "go.mod",
+        "locations": [
+          "go.mod"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-10-27T21:30:04.890809062Z",
+        "osv_published": "2026-10-27T21:16:18Z",
         "package": "golang.org/x/net",
+        "purl": "pkg:golang/golang.org/x/net@v0.61.0",
         "severity": "High",
         "summary": "When coalescing adjacent text nodes in addText and fosterParent, appending to an existing TextNode's Data via string concatenation (n.Data += text) reallocated and copied the accumulated string on every token. Inputs containing many short text runs separated by ignored end tags (such as \"a</x>\") cau",
         "url": "https://go.dev/cl/849365",
@@ -4061,14 +5514,23 @@
           "percentile": 0.34663,
           "score": 0.00402
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "not-fixed",
         "fixed_in": [],
         "id": "GHSA-pxq6-2prw-chj9",
         "in_binary": "vulnerable code in binary",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "go.mod",
+        "locations": [
+          "go.mod"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-09-10T03:50:40.571293679Z",
+        "osv_published": "2026-03-27T17:38:09Z",
         "package": "github.com/docker/docker",
+        "purl": "pkg:golang/github.com/docker/docker@v28.5.2%2Bincompatible",
         "severity": "Medium",
         "summary": "Moby has an Off-by-one error in its plugin privilege validation",
         "url": "https://github.com/advisories/GHSA-pxq6-2prw-chj9",
@@ -4084,14 +5546,23 @@
           "percentile": 0.01204,
           "score": 0.00108
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "not-fixed",
         "fixed_in": [],
         "id": "GHSA-vp62-88p7-qqf5",
         "in_binary": "vulnerable code in binary",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "go.mod",
+        "locations": [
+          "go.mod"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-09-10T03:51:07.017544565Z",
+        "osv_published": "2026-05-18T17:52:55Z",
         "package": "github.com/docker/docker",
+        "purl": "pkg:golang/github.com/docker/docker@v28.5.2%2Bincompatible",
         "severity": "Medium",
         "summary": "Docker: Race condition in docker cp allows creation of arbitrary empty files on the host via symlink swap",
         "url": "https://github.com/advisories/GHSA-vp62-88p7-qqf5",
@@ -4107,6 +5578,7 @@
           "percentile": 0.18952,
           "score": 0.00267
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "0.62.0"
@@ -4114,9 +5586,17 @@
         "id": "GO-2026-6866",
         "in_binary": "vulnerable code in binary",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "go.mod",
+        "locations": [
+          "go.mod"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-10-27T21:45:08.978077289Z",
+        "osv_published": "2026-10-27T21:16:18Z",
         "package": "golang.org/x/net",
+        "purl": "pkg:golang/golang.org/x/net@v0.61.0",
         "severity": "Medium",
         "summary": "In childTextNodesAreLiteral, walking up the tree previously stopped at the nearest foreign ancestor once an HTML integration point was found. However, that integration point may itself be a descendant of an element that was foster-parented into a foreign namespace (such as <mglyph> or <malignmark> f",
         "url": "https://go.dev/cl/855121",
@@ -4126,14 +5606,23 @@
         "aliases": [],
         "ecosystem": "golang",
         "epss": null,
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "unknown",
         "fixed_in": [],
         "id": "GO-2026-6905",
         "in_binary": "vulnerable code in binary",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "go.mod",
+        "locations": [
+          "go.mod"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-11-05T23:15:18.148866409Z",
+        "osv_published": "2026-11-05T22:55:15Z",
         "package": "github.com/blakesmith/ar",
+        "purl": "pkg:golang/github.com/blakesmith/ar@v0.0.0-20190502131153-809d4375e1fb",
         "severity": "Unknown",
         "summary": "Reader.Next parses the 10-byte decimal size field of an archive member header with strconv.ParseInt without rejecting negative values. A header with a negative size leaves the reader with a negative remaining byte count, causing the subsequent call to Reader.Read to panic with a slice bounds out of ",
         "url": "https://github.com/golang/vulndb/issues/6905",
@@ -4143,6 +5632,7 @@
         "aliases": [],
         "ecosystem": "golang",
         "epss": null,
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "0.58.1-0.20261009181718-2f1f834330b2"
@@ -4150,9 +5640,17 @@
         "id": "GO-2026-5932",
         "in_binary": "vulnerable code in binary",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "go.mod",
+        "locations": [
+          "go.mod"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-11-02T22:15:06.677088389Z",
+        "osv_published": "2026-07-07T22:15:29Z",
         "package": "golang.org/x/crypto",
+        "purl": "pkg:golang/golang.org/x/crypto@v0.58.0",
         "severity": "Unknown",
         "summary": "The golang.org/x/crypto/openpgp package is unsafe by design, has numerous known security issues, is not maintained, and should not be used. If you are required to interoperate with OpenPGP systems and need a maintained package, consider github.com/ProtonMail/go-crypto/openpgp which is a maintained f",
         "url": "https://go.dev/issue/44226",

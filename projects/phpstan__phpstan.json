@@ -76,27 +76,40 @@
     },
     {
       "added": 6,
+      "advisory_state": "ok",
       "commit": "645a1bd6bead15fc1b8474137467961d0fa30a79",
       "date": "2026-11-08",
       "dependencies": 973,
+      "dependency_state": "ok",
+      "downgraded": 0,
       "errors": [],
+      "file_changes": 5,
       "fixable": 4,
       "go_version": null,
       "in_binary": null,
+      "in_binary_new": 0,
+      "in_binary_resolved": 0,
       "kev": 0,
       "kev_new": 0,
+      "kev_new_match": 0,
+      "license_changes": 0,
+      "method": "sbomlyze-occurrence-v1",
+      "moved": 0,
+      "new_advisories": 0,
       "new_vulnerabilities": 0,
       "osv_confirmed": 4,
       "osv_only": 0,
       "ref": "2.3.5",
       "release_changed": true,
       "release_integrity": "no-linux-binary",
-      "removed": 3,
+      "removed": 4,
+      "resolved_advisories": 0,
       "resolved_vulnerabilities": 0,
       "scorecard": 4.8,
       "scorecard_date": "2026-10-26",
       "scorecard_note": null,
       "scorecard_source": "openssf-api",
+      "unknown_direction": 0,
       "upgraded": 1,
       "vulnerabilities": {
         "Critical": 0,
@@ -112,7 +125,9 @@
         "Low": 3,
         "Medium": 19,
         "files": 29
-      }
+      },
+      "workflow_new": 0,
+      "workflow_resolved": 0
     }
   ],
   "latest": {
@@ -127,28 +142,186 @@
         "eslint-visitor-keys@4.2.1",
         "espree@10.4.0"
       ],
+      "added_detail": [
+        {
+          "ecosystem": "npm",
+          "location": "website/package-lock.json",
+          "locations": [
+            "website/package-lock.json"
+          ],
+          "name": "@codemirror/merge",
+          "version": "6.12.3"
+        },
+        {
+          "ecosystem": "npm",
+          "location": "website/package-lock.json",
+          "locations": [
+            "website/package-lock.json"
+          ],
+          "name": "@stylistic/eslint-plugin",
+          "version": "5.10.0"
+        },
+        {
+          "ecosystem": "npm",
+          "location": "website/package-lock.json",
+          "locations": [
+            "website/package-lock.json"
+          ],
+          "name": "@tko/build.reference",
+          "version": "4.2.0"
+        },
+        {
+          "ecosystem": "npm",
+          "location": "website/package-lock.json",
+          "locations": [
+            "website/package-lock.json"
+          ],
+          "name": "@tko/provider.mustache",
+          "version": "4.2.0"
+        },
+        {
+          "ecosystem": "npm",
+          "location": "website/package-lock.json",
+          "locations": [
+            "website/package-lock.json"
+          ],
+          "name": "eslint-visitor-keys",
+          "version": "4.2.1"
+        },
+        {
+          "ecosystem": "npm",
+          "location": "website/package-lock.json",
+          "locations": [
+            "website/package-lock.json"
+          ],
+          "name": "espree",
+          "version": "10.4.0"
+        }
+      ],
+      "advisory_state": "ok",
       "any": true,
       "baseline": false,
-      "integrity_drift": 5,
+      "dependency_baseline": {
+        "attempt": "1",
+        "run_id": "41380955266",
+        "sbom_sha256": "c933fcca0f0919fddf631fee970de55006fd1b7f449f25af012918286eb7ded0"
+      },
+      "dependency_state": "ok",
+      "digest_coverage": {
+        "after_only": 0,
+        "before_only": 0,
+        "by_kind": {},
+        "comparable": 0,
+        "disjoint_kinds": 0,
+        "packages_total": 1445,
+        "same_version_pairs": 1438
+      },
+      "distinct_version_changes": 1,
+      "downgraded": [],
+      "file_changes": [
+        ".github/workflows/integration-tests-run.yml",
+        ".github/workflows/integration-tests.yml",
+        ".github/workflows/website.yml",
+        "playground-runner/composer.lock",
+        "website/package-lock.json"
+      ],
+      "integrity_changes": [],
+      "integrity_drift": 0,
+      "kev_method": "snapshot difference",
       "kev_new": [],
+      "kev_new_match": [],
       "license_changes": [],
+      "metadata_changes": [],
+      "method": "sbomlyze-occurrence-v1",
+      "moved": [],
+      "new_advisories": 0,
       "new_vulnerabilities": [],
       "previous_ref": "2.3.4",
       "release_changed": true,
       "removed": [
+        "peter-evans/create-pull-request@v8.1.1",
         "@tko/build.knockout@4.2.0",
         "@tko/utils.functionrewrite@4.2.0",
         "knockout@3.5.3"
       ],
+      "removed_detail": [
+        {
+          "ecosystem": "github",
+          "location": ".github/workflows/integration-tests.yml",
+          "locations": [
+            ".github/workflows/integration-tests.yml"
+          ],
+          "name": "peter-evans/create-pull-request",
+          "version": "v8.1.1"
+        },
+        {
+          "ecosystem": "npm",
+          "location": "website/package-lock.json",
+          "locations": [
+            "website/package-lock.json"
+          ],
+          "name": "@tko/build.knockout",
+          "version": "4.2.0"
+        },
+        {
+          "ecosystem": "npm",
+          "location": "website/package-lock.json",
+          "locations": [
+            "website/package-lock.json"
+          ],
+          "name": "@tko/utils.functionrewrite",
+          "version": "4.2.0"
+        },
+        {
+          "ecosystem": "npm",
+          "location": "website/package-lock.json",
+          "locations": [
+            "website/package-lock.json"
+          ],
+          "name": "knockout",
+          "version": "3.5.3"
+        }
+      ],
+      "resolved_advisories": 0,
       "resolved_vulnerabilities": [],
+      "still_affected_version_changed": [
+        {
+          "ecosystem": "npm",
+          "from": [
+            "10.2.6",
+            "3.1.5"
+          ],
+          "id": "GHSA-g3hv-75wg-m249",
+          "package": "minimatch",
+          "to": [
+            "10.2.6"
+          ]
+        }
+      ],
+      "unknown_direction": [],
       "upgraded": [
         {
+          "direction": "upgrade",
           "ecosystem": "composer",
           "from": "2.1.0",
+          "level": "patch",
+          "location": "playground-runner/composer.lock",
           "package": "phpstan/phpstan-strict-rules",
           "to": "2.1.1"
         }
       ],
+      "version_changes": [
+        {
+          "direction": "upgrade",
+          "ecosystem": "composer",
+          "from": "2.1.0",
+          "level": "patch",
+          "location": "playground-runner/composer.lock",
+          "name": "phpstan/phpstan-strict-rules",
+          "to": "2.1.1"
+        }
+      ],
+      "version_set_changes": [],
       "workflow_new": 0,
       "workflow_resolved": 0
     },
@@ -9870,6 +10043,7 @@
     "description": "Analyze PHP code without running it",
     "errors": [],
     "id": "phpstan__phpstan",
+    "lock_aliases": {},
     "manifests": [
       ".github/workflows/algolia-crawler-config.yml",
       ".github/workflows/build-identifier-extractor.yml",
@@ -9924,6 +10098,11 @@
       "osv_only": [],
       "warning": null
     },
+    "osv_api": {
+      "available": true,
+      "queried_at": "2026-11-09T01:36:23+00:00",
+      "states": {}
+    },
     "ref": "2.3.5",
     "ref_kind": "release",
     "release_integrity": {
@@ -9937,24 +10116,201 @@
     },
     "released_at": "2026-11-03T12:17:04Z",
     "repository": "phpstan/phpstan",
+    "sbom_sha256": "edb367aec6b840f9b66ca165551842b0279f48f8e897a57e3dbd397e07a2314a",
     "sbomlyze_diff": {
-      "added": 4,
-      "changed": 7,
+      "added": 6,
+      "baseline": {
+        "attempt": "1",
+        "run_id": "41380955266"
+      },
+      "changed": 1,
+      "contract": "sbomlyze-diff-0.7",
       "drift": {
-        "integrity_drift": 5,
+        "distinct_version_changes": 1,
+        "downgrades": 0,
+        "file_changes": 5,
+        "integrity_drift": 0,
+        "license_changes": 0,
         "metadata_drift": 0,
-        "version_drift": 2
+        "owned_file_drift": 0,
+        "owned_files_changed": 0,
+        "unknown_direction": 0,
+        "upgrades": 1,
+        "version_drift": 1
       },
       "findings": [
-        "Attack surface: +2 packages (0.1%)",
-        "1 version downgrades detected: espree 11.2.0\u219210.4.0",
-        "1 version upgrades among 1,476 shared packages",
-        "Integrity drift (5 total): 5 unknown",
-        "Core system packages stable: composer (44), file (36) unchanged",
+        "Scanned phpstan/phpstan changed: 2.3.4 \u2192 2.3.5",
+        "Inventory: +2 components (0.1%)",
+        "1 version upgrades among 1,439 shared packages",
+        "Integrity drift checked only 0 of 1438 same-version packages; the rest carry no comparable digest",
+        "5 file entries changed content (not package integrity drift): /.github/workflows/integration-tests-run.yml, /.github/workflows/integration-tests.yml, /.github/workflows/website.yml, /playground-runner/composer.lock, /website/package-lock.json",
+        "Core system packages stable: file (36) unchanged",
+        "composer: 44 packages before and after (1 version changes)",
         "License shift: permissive +3"
       ],
       "html": "sbomlyze-diff.html",
-      "removed": 3
+      "occurrences": {
+        "added": [
+          {
+            "ecosystem": "npm",
+            "location": "website/package-lock.json",
+            "locations": [
+              "website/package-lock.json"
+            ],
+            "name": "@codemirror/merge",
+            "version": "6.12.3"
+          },
+          {
+            "ecosystem": "npm",
+            "location": "website/package-lock.json",
+            "locations": [
+              "website/package-lock.json"
+            ],
+            "name": "@stylistic/eslint-plugin",
+            "version": "5.10.0"
+          },
+          {
+            "ecosystem": "npm",
+            "location": "website/package-lock.json",
+            "locations": [
+              "website/package-lock.json"
+            ],
+            "name": "@tko/build.reference",
+            "version": "4.2.0"
+          },
+          {
+            "ecosystem": "npm",
+            "location": "website/package-lock.json",
+            "locations": [
+              "website/package-lock.json"
+            ],
+            "name": "@tko/provider.mustache",
+            "version": "4.2.0"
+          },
+          {
+            "ecosystem": "npm",
+            "location": "website/package-lock.json",
+            "locations": [
+              "website/package-lock.json"
+            ],
+            "name": "eslint-visitor-keys",
+            "version": "4.2.1"
+          },
+          {
+            "ecosystem": "npm",
+            "location": "website/package-lock.json",
+            "locations": [
+              "website/package-lock.json"
+            ],
+            "name": "espree",
+            "version": "10.4.0"
+          }
+        ],
+        "digest_coverage": {
+          "after_only": 0,
+          "before_only": 0,
+          "by_kind": {},
+          "comparable": 0,
+          "disjoint_kinds": 0,
+          "packages_total": 1445,
+          "same_version_pairs": 1438
+        },
+        "file_changes": [
+          {
+            "owners": [],
+            "path": ".github/workflows/integration-tests-run.yml"
+          },
+          {
+            "owners": [],
+            "path": ".github/workflows/integration-tests.yml"
+          },
+          {
+            "owners": [],
+            "path": ".github/workflows/website.yml"
+          },
+          {
+            "owners": [],
+            "path": "playground-runner/composer.lock"
+          },
+          {
+            "owners": [],
+            "path": "website/package-lock.json"
+          }
+        ],
+        "file_coverage": {
+          "ambiguous_paths": 0,
+          "config_unknown": 0,
+          "files_compared": 36,
+          "files_unverified": 0,
+          "owned_files_after": 0,
+          "unowned_files_after": 0
+        },
+        "files_added": [],
+        "files_removed": [],
+        "integrity_changes": [],
+        "license_changes": [],
+        "metadata_changes": [],
+        "moved": [],
+        "owned_file_drift": [],
+        "removed": [
+          {
+            "ecosystem": "github",
+            "location": ".github/workflows/integration-tests.yml",
+            "locations": [
+              ".github/workflows/integration-tests.yml"
+            ],
+            "name": "peter-evans/create-pull-request",
+            "version": "v8.1.1"
+          },
+          {
+            "ecosystem": "npm",
+            "location": "website/package-lock.json",
+            "locations": [
+              "website/package-lock.json"
+            ],
+            "name": "@tko/build.knockout",
+            "version": "4.2.0"
+          },
+          {
+            "ecosystem": "npm",
+            "location": "website/package-lock.json",
+            "locations": [
+              "website/package-lock.json"
+            ],
+            "name": "@tko/utils.functionrewrite",
+            "version": "4.2.0"
+          },
+          {
+            "ecosystem": "npm",
+            "location": "website/package-lock.json",
+            "locations": [
+              "website/package-lock.json"
+            ],
+            "name": "knockout",
+            "version": "3.5.3"
+          }
+        ],
+        "source_change": {
+          "from": "2.3.4",
+          "name": "phpstan/phpstan",
+          "to": "2.3.5"
+        },
+        "version_changes": [
+          {
+            "direction": "upgrade",
+            "ecosystem": "composer",
+            "from": "2.1.0",
+            "level": "patch",
+            "location": "playground-runner/composer.lock",
+            "name": "phpstan/phpstan-strict-rules",
+            "to": "2.1.1"
+          }
+        ],
+        "version_set_changes": []
+      },
+      "previous_sbom_sha256": "c933fcca0f0919fddf631fee970de55006fd1b7f449f25af012918286eb7ded0",
+      "removed": 4,
+      "sbom_sha256": "edb367aec6b840f9b66ca165551842b0279f48f8e897a57e3dbd397e07a2314a"
     },
     "scanned_at": "2026-11-08T05:54:11+00:00",
     "scorecard": {
@@ -10046,15 +10402,24 @@
           "percentile": 0.41469,
           "score": 0.00477
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "1.8.2"
         ],
         "id": "GHSA-vc2v-76pw-4v95",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "website/package-lock.json",
+        "locations": [
+          "website/package-lock.json"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-10-05T23:45:07.378615963Z",
+        "osv_published": "2026-10-05T23:28:01Z",
         "package": "compression",
+        "purl": "pkg:npm/compression@1.8.1",
         "severity": "High",
         "summary": "compression vulnerable to Denial of Service via memory leak on premature response close",
         "url": "https://github.com/advisories/GHSA-vc2v-76pw-4v95",
@@ -10070,15 +10435,24 @@
           "percentile": 0.28872,
           "score": 0.0035
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "14.0.2"
         ],
         "id": "GHSA-3g3m-2fjr-6pw4",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "website/package-lock.json",
+        "locations": [
+          "website/package-lock.json"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-10-30T23:15:04.503965732Z",
+        "osv_published": "2026-10-30T23:09:11Z",
         "package": "glob",
+        "purl": "pkg:npm/glob@13.0.6",
         "severity": "Medium",
         "summary": "Glob: AbortSignal cancellation bypass allows post-timeout filesystem traversal",
         "url": "https://github.com/advisories/GHSA-3g3m-2fjr-6pw4",
@@ -10094,15 +10468,26 @@
           "percentile": 0.23009,
           "score": 0.00301
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "11.0.1"
         ],
         "id": "GHSA-g3hv-75wg-m249",
         "kev": null,
-        "location": "website/package-lock.json",
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
+        "location": "playground-api/package-lock.json",
+        "locations": [
+          "playground-api/package-lock.json",
+          "website/infra/package-lock.json",
+          "website/package-lock.json"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-11-04T17:01:25.850114200Z",
+        "osv_published": "2026-10-30T23:09:55Z",
         "package": "minimatch",
+        "purl": "pkg:npm/minimatch@10.2.6",
         "severity": "Medium",
         "summary": "minimatch has potential denial of service via globparts amplification",
         "url": "https://github.com/advisories/GHSA-g3hv-75wg-m249",
@@ -10118,15 +10503,24 @@
           "percentile": 0.33213,
           "score": 0.00389
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "6.1.5"
         ],
         "id": "GHSA-rj75-hqrm-r3gf",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "website/package-lock.json",
+        "locations": [
+          "website/package-lock.json"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-10-26T14:16:59.921540799Z",
+        "osv_published": "2026-10-05T22:53:54Z",
         "package": "postcss-selector-parser",
+        "purl": "pkg:npm/postcss-selector-parser@6.0.10",
         "severity": "Medium",
         "summary": "PostCSS: Quadratic complexity in flat selector parsing allows CPU exhaustion",
         "url": "https://github.com/advisories/GHSA-rj75-hqrm-r3gf",

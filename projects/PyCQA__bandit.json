@@ -76,15 +76,26 @@
     },
     {
       "added": 0,
+      "advisory_state": "ok",
       "commit": "92ae8b82fb422a639f0ed8d99e96cea769594e08",
       "date": "2026-11-08",
       "dependencies": 8,
+      "dependency_state": "ok",
+      "downgraded": 0,
       "errors": [],
+      "file_changes": 0,
       "fixable": 0,
       "go_version": null,
       "in_binary": null,
+      "in_binary_new": 0,
+      "in_binary_resolved": 0,
       "kev": null,
       "kev_new": 0,
+      "kev_new_match": 0,
+      "license_changes": 0,
+      "method": "sbomlyze-occurrence-v1",
+      "moved": 0,
+      "new_advisories": 0,
       "new_vulnerabilities": 0,
       "osv_confirmed": 0,
       "osv_only": 1,
@@ -92,11 +103,13 @@
       "release_changed": false,
       "release_integrity": "no-assets",
       "removed": 0,
+      "resolved_advisories": 0,
       "resolved_vulnerabilities": 0,
       "scorecard": 5.8,
       "scorecard_date": "2026-11-02",
       "scorecard_note": null,
       "scorecard_source": "openssf-api",
+      "unknown_direction": 0,
       "upgraded": 0,
       "vulnerabilities": {
         "Critical": 0,
@@ -112,7 +125,9 @@
         "Low": 0,
         "Medium": 4,
         "files": 5
-      }
+      },
+      "workflow_new": 0,
+      "workflow_resolved": 0
     }
   ],
   "latest": {
@@ -120,16 +135,47 @@
     "category": "Static Application Security Testing (SAST) \u203a Language-specific \u203a Python",
     "changes": {
       "added": [],
+      "added_detail": [],
+      "advisory_state": "ok",
       "any": false,
       "baseline": false,
+      "dependency_baseline": {
+        "attempt": "1",
+        "run_id": "41380955266",
+        "sbom_sha256": "55df45e46f73f67b52695c9fc6445f26dcd98b92b4dcb38a9ea06ab8b1ec2e1f"
+      },
+      "dependency_state": "ok",
+      "digest_coverage": {
+        "after_only": 0,
+        "before_only": 0,
+        "by_kind": {},
+        "comparable": 0,
+        "disjoint_kinds": 0,
+        "packages_total": 15,
+        "same_version_pairs": 15
+      },
+      "distinct_version_changes": null,
+      "downgraded": [],
+      "file_changes": [],
+      "integrity_changes": [],
       "integrity_drift": 0,
       "license_changes": [],
+      "metadata_changes": [],
+      "method": "sbomlyze-occurrence-v1",
+      "moved": [],
+      "new_advisories": 0,
       "new_vulnerabilities": [],
       "previous_ref": "1.9.4",
       "release_changed": false,
       "removed": [],
+      "removed_detail": [],
+      "resolved_advisories": 0,
       "resolved_vulnerabilities": [],
+      "still_affected_version_changed": [],
+      "unknown_direction": [],
       "upgraded": [],
+      "version_changes": [],
+      "version_set_changes": [],
       "workflow_new": 0,
       "workflow_resolved": 0
     },
@@ -244,6 +290,7 @@
       "action reference to a moving tag or branch": 2
     },
     "id": "PyCQA__bandit",
+    "lock_aliases": {},
     "manifests": [
       ".github/workflows/build-publish-image.yml",
       ".github/workflows/dependency-review.yml",
@@ -267,13 +314,21 @@
             "GHSA-8q59-q68h-6hv4",
             "PYSEC-2021-142"
           ],
+          "modified": "2026-02-04T03:33:10.792778Z",
           "package": "pyyaml",
+          "path": "requirements.txt",
+          "published": "2021-02-09T21:15:00Z",
           "score": "9.8",
           "severity": "Critical",
           "version": "5.3.1"
         }
       ],
       "warning": null
+    },
+    "osv_api": {
+      "available": true,
+      "queried_at": "2026-11-09T01:36:23+00:00",
+      "states": {}
     },
     "ref": "1.9.4",
     "ref_kind": "release",
@@ -288,15 +343,56 @@
     },
     "released_at": "2026-02-25T06:37:44Z",
     "repository": "PyCQA/bandit",
+    "sbom_sha256": "10102aa78558fc2687db7abc37c97f3d5f2866322babc0143cacfbd44199e09d",
     "sbomlyze_diff": {
       "added": 0,
+      "baseline": {
+        "attempt": "1",
+        "run_id": "41380955266"
+      },
       "changed": 0,
+      "contract": "sbomlyze-diff-0.7",
       "drift": {},
       "findings": [
-        "0 version changes among 20 shared packages \u2014 no actual upgrades",
+        "0 version changes among 15 shared packages \u2014 no actual upgrades",
+        "Integrity drift checked only 0 of 15 same-version packages; the rest carry no comparable digest",
         "Core system packages stable: github (15) unchanged"
       ],
-      "removed": 0
+      "occurrences": {
+        "added": [],
+        "digest_coverage": {
+          "after_only": 0,
+          "before_only": 0,
+          "by_kind": {},
+          "comparable": 0,
+          "disjoint_kinds": 0,
+          "packages_total": 15,
+          "same_version_pairs": 15
+        },
+        "file_changes": [],
+        "file_coverage": {
+          "ambiguous_paths": 0,
+          "config_unknown": 0,
+          "files_compared": 5,
+          "files_unverified": 0,
+          "owned_files_after": 0,
+          "unowned_files_after": 0
+        },
+        "files_added": [],
+        "files_removed": [],
+        "integrity_changes": [],
+        "license_changes": [],
+        "metadata_changes": [],
+        "moved": [],
+        "owned_file_drift": [],
+        "removed": [],
+        "source_change": null,
+        "version_changes": [],
+        "version_set_changes": []
+      },
+      "previous_sbom_sha256": "55df45e46f73f67b52695c9fc6445f26dcd98b92b4dcb38a9ea06ab8b1ec2e1f",
+      "removed": 0,
+      "sbom_sha256": "10102aa78558fc2687db7abc37c97f3d5f2866322babc0143cacfbd44199e09d"
     },
     "scanned_at": "2026-11-08T05:55:52+00:00",
     "scorecard": {

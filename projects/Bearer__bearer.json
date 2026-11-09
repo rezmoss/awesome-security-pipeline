@@ -84,19 +84,31 @@
     },
     {
       "added": 0,
+      "advisory_state": "ok",
       "commit": "668f5df05042088125d83d197252b5a8e78422df",
       "date": "2026-11-08",
       "dependencies": 146,
+      "dependency_state": "ok",
+      "downgraded": 0,
       "errors": [],
+      "file_changes": 0,
       "fixable": 6,
       "go_version": "go1.26.9",
       "in_binary": {
         "dependencies": 3,
+        "records": 4,
         "stdlib": 1,
         "total": 4
       },
+      "in_binary_new": 2,
+      "in_binary_resolved": 0,
       "kev": 1,
-      "kev_new": 1,
+      "kev_new": 0,
+      "kev_new_match": 1,
+      "license_changes": 0,
+      "method": "sbomlyze-occurrence-v1",
+      "moved": 0,
+      "new_advisories": 2,
       "new_vulnerabilities": 2,
       "osv_confirmed": 6,
       "osv_only": 1,
@@ -104,11 +116,13 @@
       "release_changed": false,
       "release_integrity": "checksums-only",
       "removed": 0,
+      "resolved_advisories": 0,
       "resolved_vulnerabilities": 0,
       "scorecard": 6.3,
       "scorecard_date": "2026-10-19",
       "scorecard_note": null,
       "scorecard_source": "openssf-api",
+      "unknown_direction": 0,
       "upgraded": 0,
       "vulnerabilities": {
         "Critical": 1,
@@ -124,7 +138,9 @@
         "Low": 2,
         "Medium": 4,
         "files": 10
-      }
+      },
+      "workflow_new": 0,
+      "workflow_resolved": 0
     }
   ],
   "latest": {
@@ -132,15 +148,40 @@
     "category": "Static Application Security Testing (SAST) \u203a Multi-language",
     "changes": {
       "added": [],
+      "added_detail": [],
+      "advisory_state": "ok",
       "any": true,
       "baseline": false,
+      "dependency_baseline": {
+        "attempt": "1",
+        "run_id": "41380955266",
+        "sbom_sha256": "fa1bfb221609764423bdedf2a8c790b38b4d68668fa8c8e2803b54189ec1467c"
+      },
+      "dependency_state": "ok",
+      "digest_coverage": {
+        "after_only": 0,
+        "before_only": 0,
+        "by_kind": {
+          "go-h1": 131
+        },
+        "comparable": 131,
+        "disjoint_kinds": 0,
+        "packages_total": 170,
+        "same_version_pairs": 170
+      },
+      "distinct_version_changes": null,
+      "downgraded": [],
+      "file_changes": [],
       "in_binary_new": [
         "GO-2026-6865",
         "GO-2026-6888"
       ],
       "in_binary_resolved": [],
+      "integrity_changes": [],
       "integrity_drift": 0,
-      "kev_new": [
+      "kev_method": "snapshot difference",
+      "kev_new": [],
+      "kev_new_match": [
         {
           "aliases": [
             "CVE-2026-111497",
@@ -152,6 +193,7 @@
             "percentile": 0.99669,
             "score": 0.82641
           },
+          "epss_date": "2026-11-07T12:00:22Z",
           "fix_state": "fixed",
           "fixed_in": [
             "1.2.7"
@@ -162,9 +204,19 @@
             "cve": "CVE-2026-111497",
             "date_added": "2026-10-27"
           },
+          "kev_cves": [
+            "CVE-2026-111497"
+          ],
+          "kev_snapshot": "2026.11.06",
           "location": "go.mod",
+          "locations": [
+            "go.mod"
+          ],
           "osv_confirmed": true,
+          "osv_modified": "2026-11-05T23:25:49.434824566Z",
+          "osv_published": "2026-11-05T22:55:15Z",
           "package": "github.com/andybalholm/brotli",
+          "purl": "pkg:golang/github.com/andybalholm/brotli@v1.1.2-0.20250424173009-453214e765f3",
           "severity": "Critical",
           "summary": "In github.com/andybalholm/brotli before v1.2.7, the decompressor allocates memory for Huffman tables and block-type trees on every meta-block header without bounding the cumulative allocations relative to the input size. A small crafted brotli stream containing many empty meta-blocks with new Huffma",
           "url": "https://github.com/andybalholm/brotli/security/advisories/GHSA-c9gr-gmg4-2vqv",
@@ -172,7 +224,57 @@
         }
       ],
       "license_changes": [],
+      "metadata_changes": [],
+      "method": "sbomlyze-occurrence-v1",
+      "moved": [],
+      "new_advisories": 2,
       "new_vulnerabilities": [
+        {
+          "aliases": [
+            "CVE-2026-111497",
+            "GHSA-c9gr-gmg4-2vqv"
+          ],
+          "ecosystem": "golang",
+          "epss": {
+            "cve": "CVE-2026-111497",
+            "percentile": 0.99669,
+            "score": 0.82641
+          },
+          "epss_date": "2026-11-07T12:00:22Z",
+          "fix_state": "fixed",
+          "fixed_in": [
+            "1.2.7"
+          ],
+          "id": "GO-2026-6888",
+          "in_binary": "vulnerable code in binary",
+          "kev": {
+            "cve": "CVE-2026-111497",
+            "date_added": "2026-10-27"
+          },
+          "kev_cves": [
+            "CVE-2026-111497"
+          ],
+          "kev_snapshot": "2026.11.06",
+          "location": "go.mod",
+          "locations": [
+            "go.mod"
+          ],
+          "new": {
+            "advisory": "published since last scan",
+            "modified": "2026-11-05T23:25:49.434824566Z",
+            "published": "2026-11-05T22:55:15Z",
+            "reason": "unchanged version"
+          },
+          "osv_confirmed": true,
+          "osv_modified": "2026-11-05T23:25:49.434824566Z",
+          "osv_published": "2026-11-05T22:55:15Z",
+          "package": "github.com/andybalholm/brotli",
+          "purl": "pkg:golang/github.com/andybalholm/brotli@v1.1.2-0.20250424173009-453214e765f3",
+          "severity": "Critical",
+          "summary": "In github.com/andybalholm/brotli before v1.2.7, the decompressor allocates memory for Huffman tables and block-type trees on every meta-block header without bounding the cumulative allocations relative to the input size. A small crafted brotli stream containing many empty meta-blocks with new Huffma",
+          "url": "https://github.com/andybalholm/brotli/security/advisories/GHSA-c9gr-gmg4-2vqv",
+          "version": "v1.1.2-0.20250424173009-453214e765f3"
+        },
         {
           "aliases": [
             "CVE-2026-116591",
@@ -184,6 +286,7 @@
             "percentile": 0.26636,
             "score": 0.00333
           },
+          "epss_date": "2026-11-07T12:00:22Z",
           "fix_state": "fixed",
           "fixed_in": [
             "1.20.2"
@@ -191,49 +294,40 @@
           "id": "GO-2026-6865",
           "in_binary": "vulnerable code in binary",
           "kev": null,
+          "kev_cves": [],
+          "kev_snapshot": "2026.11.06",
           "location": "go.mod",
+          "locations": [
+            "go.mod"
+          ],
+          "new": {
+            "advisory": "published since last scan",
+            "modified": "2026-11-05T23:15:14.472777299Z",
+            "published": "2026-11-05T22:54:32Z",
+            "reason": "unchanged version"
+          },
           "osv_confirmed": true,
+          "osv_modified": "2026-11-05T23:15:14.472777299Z",
+          "osv_published": "2026-11-05T22:54:32Z",
           "package": "github.com/klauspost/compress",
+          "purl": "pkg:golang/github.com/klauspost/compress@v1.20.0",
           "severity": "High",
           "summary": "Panic on two-block frames in github.com/klauspost/compress",
           "url": "https://github.com/klauspost/compress/security/advisories/GHSA-fpmh-frq8-7rj8",
           "version": "v1.20.0"
-        },
-        {
-          "aliases": [
-            "CVE-2026-111497",
-            "GHSA-c9gr-gmg4-2vqv"
-          ],
-          "ecosystem": "golang",
-          "epss": {
-            "cve": "CVE-2026-111497",
-            "percentile": 0.99669,
-            "score": 0.82641
-          },
-          "fix_state": "fixed",
-          "fixed_in": [
-            "1.2.7"
-          ],
-          "id": "GO-2026-6888",
-          "in_binary": "vulnerable code in binary",
-          "kev": {
-            "cve": "CVE-2026-111497",
-            "date_added": "2026-10-27"
-          },
-          "location": "go.mod",
-          "osv_confirmed": true,
-          "package": "github.com/andybalholm/brotli",
-          "severity": "Critical",
-          "summary": "In github.com/andybalholm/brotli before v1.2.7, the decompressor allocates memory for Huffman tables and block-type trees on every meta-block header without bounding the cumulative allocations relative to the input size. A small crafted brotli stream containing many empty meta-blocks with new Huffma",
-          "url": "https://github.com/andybalholm/brotli/security/advisories/GHSA-c9gr-gmg4-2vqv",
-          "version": "v1.1.2-0.20250424173009-453214e765f3"
         }
       ],
       "previous_ref": "v2.1.3",
       "release_changed": false,
       "removed": [],
+      "removed_detail": [],
+      "resolved_advisories": 0,
       "resolved_vulnerabilities": [],
+      "still_affected_version_changed": [],
+      "unknown_direction": [],
       "upgraded": [],
+      "version_changes": [],
+      "version_set_changes": [],
       "workflow_new": 0,
       "workflow_resolved": 0
     },
@@ -1463,11 +1557,16 @@
             "percentile": 0.34015,
             "score": 0.00396
           },
+          "epss_date": "2026-11-07T12:00:22Z",
           "fixed_version": "v1.26.10",
           "id": "GO-2026-6809",
           "kev": null,
+          "kev_cves": [],
+          "kev_snapshot": "2026.11.06",
           "level": "symbol",
+          "modified": "2026-10-21T00:27:29Z",
           "module": "stdlib",
+          "published": "2026-10-21T00:27:29Z",
           "summary": "Distrust compromised intermediate certificates in crypto/x509",
           "version": "v1.26.9"
         },
@@ -1481,14 +1580,21 @@
             "percentile": 0.99669,
             "score": 0.82641
           },
+          "epss_date": "2026-11-07T12:00:22Z",
           "fixed_version": "v1.2.7",
           "id": "GO-2026-6888",
           "kev": {
             "cve": "CVE-2026-111497",
             "date_added": "2026-10-27"
           },
+          "kev_cves": [
+            "CVE-2026-111497"
+          ],
+          "kev_snapshot": "2026.11.06",
           "level": "symbol",
+          "modified": "2026-11-05T22:55:15Z",
           "module": "github.com/andybalholm/brotli",
+          "published": "2026-11-05T22:55:15Z",
           "summary": "Excessive memory allocation when decompressing crafted streams in github.com/andybalholm/brotli",
           "version": "v1.1.2-0.20250424173009-453214e765f3"
         },
@@ -1502,11 +1608,16 @@
             "percentile": 0.26636,
             "score": 0.00333
           },
+          "epss_date": "2026-11-07T12:00:22Z",
           "fixed_version": "v1.20.2",
           "id": "GO-2026-6865",
           "kev": null,
+          "kev_cves": [],
+          "kev_snapshot": "2026.11.06",
           "level": "symbol",
+          "modified": "2026-11-05T22:54:32Z",
           "module": "github.com/klauspost/compress",
+          "published": "2026-11-05T22:54:32Z",
           "summary": "Panic on two-block frames in github.com/klauspost/compress",
           "version": "v1.20.0"
         },
@@ -1520,11 +1631,16 @@
             "percentile": 0.37791,
             "score": 0.00433
           },
+          "epss_date": "2026-11-07T12:00:22Z",
           "fixed_version": "v0.5.15",
           "id": "GO-2025-3922",
           "kev": null,
+          "kev_cves": [],
+          "kev_snapshot": "2026.11.06",
           "level": "symbol",
+          "modified": "2025-09-17T17:03:38Z",
           "module": "github.com/ulikunitz/xz",
+          "published": "2025-09-17T17:03:38Z",
           "summary": "Memory leaks when decoding a corrupted multiple LZMA archives in github.com/ulikunitz/xz",
           "version": "v0.5.14"
         },
@@ -1538,22 +1654,32 @@
             "percentile": 0.316,
             "score": 0.00374
           },
+          "epss_date": "2026-11-07T12:00:22Z",
           "fixed_version": "v2.2.0",
           "id": "GO-2025-4020",
           "kev": null,
+          "kev_cves": [],
+          "kev_snapshot": "2026.11.06",
           "level": "package",
+          "modified": "2025-11-05T18:41:15Z",
           "module": "github.com/nwaples/rardecode/v2",
+          "published": "2025-11-05T18:41:15Z",
           "summary": "DoS risk due to unrestricted RAR dictionary sizes in github.com/nwaples/rardecode",
           "version": "v2.1.0"
         },
         {
           "aliases": [],
           "epss": null,
+          "epss_date": "2026-11-07T12:00:22Z",
           "fixed_version": "v0.58.1-0.20261009181718-2f1f834330b2",
           "id": "GO-2026-5932",
           "kev": null,
+          "kev_cves": [],
+          "kev_snapshot": "2026.11.06",
           "level": "module",
+          "modified": "2026-11-02T22:01:43Z",
           "module": "golang.org/x/crypto",
+          "published": "2026-07-07T22:15:29Z",
           "summary": "The golang.org/x/crypto/openpgp package is unmaintained, unsafe by design, and has known security issues",
           "version": "v0.58.0"
         },
@@ -1566,11 +1692,16 @@
             "percentile": 0.35396,
             "score": 0.00409
           },
+          "epss_date": "2026-11-07T12:00:22Z",
           "fixed_version": "v0.62.0",
           "id": "GO-2026-6860",
           "kev": null,
+          "kev_cves": [],
+          "kev_snapshot": "2026.11.06",
           "level": "module",
+          "modified": "2026-10-27T21:16:18Z",
           "module": "golang.org/x/net",
+          "published": "2026-10-27T21:16:18Z",
           "summary": "Avoid quadratic complexity when coalescing text nodes in html in golang.org/x/net",
           "version": "v0.61.0"
         },
@@ -1583,11 +1714,16 @@
             "percentile": 0.18952,
             "score": 0.00267
           },
+          "epss_date": "2026-11-07T12:00:22Z",
           "fixed_version": "v0.62.0",
           "id": "GO-2026-6866",
           "kev": null,
+          "kev_cves": [],
+          "kev_snapshot": "2026.11.06",
           "level": "module",
+          "modified": "2026-10-27T21:16:18Z",
           "module": "golang.org/x/net",
+          "published": "2026-10-27T21:16:18Z",
           "summary": "Check all ancestor namespace transitions when rendering raw text in html in golang.org/x/net",
           "version": "v0.61.0"
         }
@@ -1596,6 +1732,7 @@
       "main_module": "github.com/bearer/bearer"
     },
     "id": "Bearer__bearer",
+    "lock_aliases": {},
     "manifests": [
       ".github/workflows/canary.yml",
       ".github/workflows/command_doc_check.yml",
@@ -1624,13 +1761,21 @@
             "GHSA-jc7w-c686-c4v9",
             "GO-2025-3922"
           ],
+          "modified": "2026-09-10T03:50:27.157647943Z",
           "package": "github.com/ulikunitz/xz",
+          "path": "go.mod",
+          "published": "2025-08-28T19:36:22Z",
           "score": "5.3",
           "severity": "Medium",
           "version": "0.5.14"
         }
       ],
       "warning": null
+    },
+    "osv_api": {
+      "available": true,
+      "queried_at": "2026-11-09T01:36:28+00:00",
+      "states": {}
     },
     "ref": "v2.1.3",
     "ref_kind": "release",
@@ -1651,15 +1796,57 @@
     },
     "released_at": "2026-10-28T14:31:00Z",
     "repository": "Bearer/bearer",
+    "sbom_sha256": "5939bac603ef3ec3232c1ee5af85f63707a3a9347d29bc00bf5afadd456081fc",
     "sbomlyze_diff": {
       "added": 0,
+      "baseline": {
+        "attempt": "1",
+        "run_id": "41380955266"
+      },
       "changed": 0,
+      "contract": "sbomlyze-diff-0.7",
       "drift": {},
       "findings": [
-        "0 version changes among 181 shared packages \u2014 no actual upgrades",
+        "0 version changes among 170 shared packages \u2014 no actual upgrades",
         "Core system packages stable: golang (131), github (37), file (11) unchanged"
       ],
-      "removed": 0
+      "occurrences": {
+        "added": [],
+        "digest_coverage": {
+          "after_only": 0,
+          "before_only": 0,
+          "by_kind": {
+            "go-h1": 131
+          },
+          "comparable": 131,
+          "disjoint_kinds": 0,
+          "packages_total": 170,
+          "same_version_pairs": 170
+        },
+        "file_changes": [],
+        "file_coverage": {
+          "ambiguous_paths": 0,
+          "config_unknown": 0,
+          "files_compared": 11,
+          "files_unverified": 0,
+          "owned_files_after": 0,
+          "unowned_files_after": 0
+        },
+        "files_added": [],
+        "files_removed": [],
+        "integrity_changes": [],
+        "license_changes": [],
+        "metadata_changes": [],
+        "moved": [],
+        "owned_file_drift": [],
+        "removed": [],
+        "source_change": null,
+        "version_changes": [],
+        "version_set_changes": []
+      },
+      "previous_sbom_sha256": "fa1bfb221609764423bdedf2a8c790b38b4d68668fa8c8e2803b54189ec1467c",
+      "removed": 0,
+      "sbom_sha256": "5939bac603ef3ec3232c1ee5af85f63707a3a9347d29bc00bf5afadd456081fc"
     },
     "scanned_at": "2026-11-08T05:54:06+00:00",
     "scorecard": {
@@ -1752,6 +1939,7 @@
           "percentile": 0.99669,
           "score": 0.82641
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "1.2.7"
@@ -1762,9 +1950,19 @@
           "cve": "CVE-2026-111497",
           "date_added": "2026-10-27"
         },
+        "kev_cves": [
+          "CVE-2026-111497"
+        ],
+        "kev_snapshot": "2026.11.06",
         "location": "go.mod",
+        "locations": [
+          "go.mod"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-11-05T23:25:49.434824566Z",
+        "osv_published": "2026-11-05T22:55:15Z",
         "package": "github.com/andybalholm/brotli",
+        "purl": "pkg:golang/github.com/andybalholm/brotli@v1.1.2-0.20250424173009-453214e765f3",
         "severity": "Critical",
         "summary": "In github.com/andybalholm/brotli before v1.2.7, the decompressor allocates memory for Huffman tables and block-type trees on every meta-block header without bounding the cumulative allocations relative to the input size. A small crafted brotli stream containing many empty meta-blocks with new Huffma",
         "url": "https://github.com/andybalholm/brotli/security/advisories/GHSA-c9gr-gmg4-2vqv",
@@ -1781,6 +1979,7 @@
           "percentile": 0.26636,
           "score": 0.00333
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "1.20.2"
@@ -1788,9 +1987,17 @@
         "id": "GO-2026-6865",
         "in_binary": "vulnerable code in binary",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "go.mod",
+        "locations": [
+          "go.mod"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-11-05T23:15:14.472777299Z",
+        "osv_published": "2026-11-05T22:54:32Z",
         "package": "github.com/klauspost/compress",
+        "purl": "pkg:golang/github.com/klauspost/compress@v1.20.0",
         "severity": "High",
         "summary": "Panic on two-block frames in github.com/klauspost/compress",
         "url": "https://github.com/klauspost/compress/security/advisories/GHSA-fpmh-frq8-7rj8",
@@ -1806,6 +2013,7 @@
           "percentile": 0.35396,
           "score": 0.00409
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "0.62.0"
@@ -1813,9 +2021,17 @@
         "id": "GO-2026-6860",
         "in_binary": "module in binary",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "go.mod",
+        "locations": [
+          "go.mod"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-10-27T21:30:04.890809062Z",
+        "osv_published": "2026-10-27T21:16:18Z",
         "package": "golang.org/x/net",
+        "purl": "pkg:golang/golang.org/x/net@v0.61.0",
         "severity": "High",
         "summary": "When coalescing adjacent text nodes in addText and fosterParent, appending to an existing TextNode's Data via string concatenation (n.Data += text) reallocated and copied the accumulated string on every token. Inputs containing many short text runs separated by ignored end tags (such as \"a</x>\") cau",
         "url": "https://go.dev/cl/849365",
@@ -1831,6 +2047,7 @@
           "percentile": 0.316,
           "score": 0.00374
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "2.2.0"
@@ -1838,9 +2055,17 @@
         "id": "GHSA-rwvp-r38j-9rgg",
         "in_binary": "package in binary",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "go.mod",
+        "locations": [
+          "go.mod"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-09-10T03:50:58.307699283Z",
+        "osv_published": "2025-10-10T12:30:57Z",
         "package": "github.com/nwaples/rardecode/v2",
+        "purl": "pkg:golang/github.com/nwaples/rardecode/v2@v2.1.0",
         "severity": "Medium",
         "summary": "rardecode: DoS risk due to unrestricted RAR dictionary sizes",
         "url": "https://github.com/advisories/GHSA-rwvp-r38j-9rgg",
@@ -1856,6 +2081,7 @@
           "percentile": 0.18952,
           "score": 0.00267
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "0.62.0"
@@ -1863,9 +2089,17 @@
         "id": "GO-2026-6866",
         "in_binary": "module in binary",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "go.mod",
+        "locations": [
+          "go.mod"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-10-27T21:45:08.978077289Z",
+        "osv_published": "2026-10-27T21:16:18Z",
         "package": "golang.org/x/net",
+        "purl": "pkg:golang/golang.org/x/net@v0.61.0",
         "severity": "Medium",
         "summary": "In childTextNodesAreLiteral, walking up the tree previously stopped at the nearest foreign ancestor once an HTML integration point was found. However, that integration point may itself be a descendant of an element that was foster-parented into a foreign namespace (such as <mglyph> or <malignmark> f",
         "url": "https://go.dev/cl/855121",
@@ -1875,6 +2109,7 @@
         "aliases": [],
         "ecosystem": "golang",
         "epss": null,
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "0.58.1-0.20261009181718-2f1f834330b2"
@@ -1882,9 +2117,17 @@
         "id": "GO-2026-5932",
         "in_binary": "module in binary",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "go.mod",
+        "locations": [
+          "go.mod"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-11-02T22:15:06.677088389Z",
+        "osv_published": "2026-07-07T22:15:29Z",
         "package": "golang.org/x/crypto",
+        "purl": "pkg:golang/golang.org/x/crypto@v0.58.0",
         "severity": "Unknown",
         "summary": "The golang.org/x/crypto/openpgp package is unsafe by design, has numerous known security issues, is not maintained, and should not be used. If you are required to interoperate with OpenPGP systems and need a maintained package, consider github.com/ProtonMail/go-crypto/openpgp which is a maintained f",
         "url": "https://go.dev/issue/44226",

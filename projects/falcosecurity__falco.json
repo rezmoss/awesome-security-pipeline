@@ -76,27 +76,40 @@
     },
     {
       "added": 0,
+      "advisory_state": "ok",
       "commit": "7625e203c17c88c91fa1b1b8e2937907f22a1523",
       "date": "2026-11-08",
       "dependencies": 41,
+      "dependency_state": "ok",
+      "downgraded": 0,
       "errors": [],
+      "file_changes": 0,
       "fixable": 0,
       "go_version": null,
       "in_binary": null,
+      "in_binary_new": 0,
+      "in_binary_resolved": 0,
       "kev": null,
       "kev_new": 0,
+      "kev_new_match": 0,
+      "license_changes": 0,
+      "method": "sbomlyze-occurrence-v1",
+      "moved": 0,
+      "new_advisories": 0,
       "new_vulnerabilities": 0,
-      "osv_confirmed": 0,
-      "osv_only": 0,
+      "osv_confirmed": null,
+      "osv_only": null,
       "ref": "0.45.2",
       "release_changed": false,
       "release_integrity": "none",
       "removed": 0,
+      "resolved_advisories": 0,
       "resolved_vulnerabilities": 0,
       "scorecard": 7.5,
       "scorecard_date": "2026-11-06",
       "scorecard_note": null,
       "scorecard_source": "openssf-api",
+      "unknown_direction": 0,
       "upgraded": 0,
       "vulnerabilities": {
         "Critical": 0,
@@ -112,7 +125,9 @@
         "Low": 34,
         "Medium": 13,
         "files": 21
-      }
+      },
+      "workflow_new": 0,
+      "workflow_resolved": 0
     }
   ],
   "latest": {
@@ -120,16 +135,47 @@
     "category": "Container Security \u203a Runtime Security",
     "changes": {
       "added": [],
+      "added_detail": [],
+      "advisory_state": "ok",
       "any": false,
       "baseline": false,
+      "dependency_baseline": {
+        "attempt": "1",
+        "run_id": "41380955266",
+        "sbom_sha256": "fb456dfa45f7f27eb3eb577803318abe8f9e6795660e1550e5e4be9fda7d2e6f"
+      },
+      "dependency_state": "ok",
+      "digest_coverage": {
+        "after_only": 0,
+        "before_only": 0,
+        "by_kind": {},
+        "comparable": 0,
+        "disjoint_kinds": 0,
+        "packages_total": 77,
+        "same_version_pairs": 77
+      },
+      "distinct_version_changes": null,
+      "downgraded": [],
+      "file_changes": [],
+      "integrity_changes": [],
       "integrity_drift": 0,
       "license_changes": [],
+      "metadata_changes": [],
+      "method": "sbomlyze-occurrence-v1",
+      "moved": [],
+      "new_advisories": 0,
       "new_vulnerabilities": [],
       "previous_ref": "0.45.2",
       "release_changed": false,
       "removed": [],
+      "removed_detail": [],
+      "resolved_advisories": 0,
       "resolved_vulnerabilities": [],
+      "still_affected_version_changed": [],
+      "unknown_direction": [],
       "upgraded": [],
+      "version_changes": [],
+      "version_set_changes": [],
       "workflow_new": 0,
       "workflow_resolved": 0
     },
@@ -505,6 +551,7 @@
     "description": "Detect runtime threats in cloud-native environments",
     "errors": [],
     "id": "falcosecurity__falco",
+    "lock_aliases": {},
     "manifests": [
       ".github/workflows/bump-libs.yaml",
       ".github/workflows/ci.yml",
@@ -530,11 +577,12 @@
     ],
     "name": "falco",
     "osv": {
-      "advisories": 0,
+      "available": false
+    },
+    "osv_api": {
       "available": true,
-      "confirmed": 0,
-      "osv_only": [],
-      "warning": null
+      "queried_at": "2026-11-09T01:36:28+00:00",
+      "states": {}
     },
     "ref": "0.45.2",
     "ref_kind": "release",
@@ -555,15 +603,56 @@
     },
     "released_at": "2026-10-29T16:48:27Z",
     "repository": "falcosecurity/falco",
+    "sbom_sha256": "b321b7f794bd6d889a8299bd2c0c47f510cb0b905d6de6fd060a3c39c3d9e6b6",
     "sbomlyze_diff": {
       "added": 0,
+      "baseline": {
+        "attempt": "1",
+        "run_id": "41380955266"
+      },
       "changed": 0,
+      "contract": "sbomlyze-diff-0.7",
       "drift": {},
       "findings": [
-        "0 version changes among 98 shared packages \u2014 no actual upgrades",
+        "0 version changes among 77 shared packages \u2014 no actual upgrades",
+        "Integrity drift checked only 0 of 77 same-version packages; the rest carry no comparable digest",
         "Core system packages stable: github (57), file (21), library (20) unchanged"
       ],
-      "removed": 0
+      "occurrences": {
+        "added": [],
+        "digest_coverage": {
+          "after_only": 0,
+          "before_only": 0,
+          "by_kind": {},
+          "comparable": 0,
+          "disjoint_kinds": 0,
+          "packages_total": 77,
+          "same_version_pairs": 77
+        },
+        "file_changes": [],
+        "file_coverage": {
+          "ambiguous_paths": 0,
+          "config_unknown": 0,
+          "files_compared": 21,
+          "files_unverified": 0,
+          "owned_files_after": 0,
+          "unowned_files_after": 0
+        },
+        "files_added": [],
+        "files_removed": [],
+        "integrity_changes": [],
+        "license_changes": [],
+        "metadata_changes": [],
+        "moved": [],
+        "owned_file_drift": [],
+        "removed": [],
+        "source_change": null,
+        "version_changes": [],
+        "version_set_changes": []
+      },
+      "previous_sbom_sha256": "fb456dfa45f7f27eb3eb577803318abe8f9e6795660e1550e5e4be9fda7d2e6f",
+      "removed": 0,
+      "sbom_sha256": "b321b7f794bd6d889a8299bd2c0c47f510cb0b905d6de6fd060a3c39c3d9e6b6"
     },
     "scanned_at": "2026-11-08T05:53:24+00:00",
     "scorecard": {

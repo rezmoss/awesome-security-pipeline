@@ -76,15 +76,26 @@
     },
     {
       "added": 1,
+      "advisory_state": "ok",
       "commit": "ac37d1f6e47b17648b8f854d6e2f2d72fade2567",
       "date": "2026-11-08",
       "dependencies": 216,
+      "dependency_state": "ok",
+      "downgraded": 0,
       "errors": [],
+      "file_changes": 2,
       "fixable": 71,
       "go_version": null,
       "in_binary": null,
+      "in_binary_new": 0,
+      "in_binary_resolved": 0,
       "kev": 1,
       "kev_new": 0,
+      "kev_new_match": 0,
+      "license_changes": 0,
+      "method": "sbomlyze-occurrence-v1",
+      "moved": 0,
+      "new_advisories": 0,
       "new_vulnerabilities": 0,
       "osv_confirmed": 71,
       "osv_only": 0,
@@ -92,12 +103,14 @@
       "release_changed": true,
       "release_integrity": "no-assets",
       "removed": 0,
+      "resolved_advisories": 0,
       "resolved_vulnerabilities": 0,
       "scorecard": null,
       "scorecard_date": null,
       "scorecard_note": "the project is not in the OpenSSF public dataset; the Scorecard CLI fallback was skipped because this shard's weekly budget was used",
       "scorecard_source": null,
-      "upgraded": 1,
+      "unknown_direction": 0,
+      "upgraded": 2,
       "vulnerabilities": {
         "Critical": 1,
         "High": 26,
@@ -112,7 +125,9 @@
         "Low": 4,
         "Medium": 27,
         "files": 13
-      }
+      },
+      "workflow_new": 0,
+      "workflow_resolved": 0
     }
   ],
   "latest": {
@@ -122,24 +137,101 @@
       "added": [
         "structlog@26.1.0"
       ],
+      "added_detail": [
+        {
+          "ecosystem": "pypi",
+          "location": "cli/uv.lock",
+          "locations": [
+            "cli/uv.lock"
+          ],
+          "name": "structlog",
+          "version": "26.1.0"
+        }
+      ],
+      "advisory_state": "ok",
       "any": true,
       "baseline": false,
-      "integrity_drift": 2,
+      "dependency_baseline": {
+        "attempt": "1",
+        "run_id": "41380955266",
+        "sbom_sha256": "7f8070c8e6e0fb2efaf59130b6ee0fff65e8f08f7eb853e7ecbfc2ad8c6f91be"
+      },
+      "dependency_state": "ok",
+      "digest_coverage": {
+        "after_only": 0,
+        "before_only": 0,
+        "by_kind": {},
+        "comparable": 0,
+        "disjoint_kinds": 0,
+        "packages_total": 242,
+        "same_version_pairs": 239
+      },
+      "distinct_version_changes": 1,
+      "downgraded": [],
+      "file_changes": [
+        "cli/uv.lock",
+        "setup.py"
+      ],
+      "integrity_changes": [],
+      "integrity_drift": 0,
+      "kev_method": "snapshot difference",
       "kev_new": [],
+      "kev_new_match": [],
       "license_changes": [],
+      "metadata_changes": [],
+      "method": "sbomlyze-occurrence-v1",
+      "moved": [],
+      "new_advisories": 0,
       "new_vulnerabilities": [],
       "previous_ref": "v1.183.0",
       "release_changed": true,
       "removed": [],
+      "removed_detail": [],
+      "resolved_advisories": 0,
       "resolved_vulnerabilities": [],
+      "still_affected_version_changed": [],
+      "unknown_direction": [],
       "upgraded": [
         {
+          "direction": "upgrade",
           "ecosystem": "pypi",
           "from": "1.183.0",
+          "level": "minor",
+          "location": "cli/uv.lock",
+          "package": "semgrep",
+          "to": "1.184.0"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "pypi",
+          "from": "1.183.0",
+          "level": "minor",
+          "location": "setup.py",
           "package": "semgrep",
           "to": "1.184.0"
         }
       ],
+      "version_changes": [
+        {
+          "direction": "upgrade",
+          "ecosystem": "pypi",
+          "from": "1.183.0",
+          "level": "minor",
+          "location": "cli/uv.lock",
+          "name": "semgrep",
+          "to": "1.184.0"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "pypi",
+          "from": "1.183.0",
+          "level": "minor",
+          "location": "setup.py",
+          "name": "semgrep",
+          "to": "1.184.0"
+        }
+      ],
+      "version_set_changes": [],
       "workflow_new": 0,
       "workflow_resolved": 0
     },
@@ -1926,6 +2018,7 @@
       "package defined in the repository itself": 1
     },
     "id": "semgrep__semgrep",
+    "lock_aliases": {},
     "manifests": [
       ".github/workflows/build-test-core-x86.yml",
       ".github/workflows/build-test-docker.yml",
@@ -1962,6 +2055,11 @@
       "osv_only": [],
       "warning": null
     },
+    "osv_api": {
+      "available": true,
+      "queried_at": "2026-11-09T01:36:23+00:00",
+      "states": {}
+    },
     "ref": "v1.184.0",
     "ref_kind": "release",
     "release_integrity": {
@@ -1975,22 +2073,114 @@
     },
     "released_at": "2026-11-05T19:17:04Z",
     "repository": "semgrep/semgrep",
+    "sbom_sha256": "75edafc714d7ecf516ace90f2003661a3167dd8b991a8338b8e0ba22a20b859e",
     "sbomlyze_diff": {
       "added": 1,
-      "changed": 3,
+      "baseline": {
+        "attempt": "1",
+        "run_id": "41380955266"
+      },
+      "changed": 2,
+      "contract": "sbomlyze-diff-0.7",
       "drift": {
-        "integrity_drift": 2,
+        "distinct_version_changes": 1,
+        "downgrades": 0,
+        "file_changes": 2,
+        "integrity_drift": 0,
+        "license_changes": 0,
         "metadata_drift": 0,
-        "version_drift": 1
+        "owned_file_drift": 0,
+        "owned_files_changed": 0,
+        "unknown_direction": 0,
+        "upgrades": 2,
+        "version_drift": 2
       },
       "findings": [
-        "Attack surface: +1 packages (0.4%)",
-        "1 version upgrades (1 minor) among 263 shared packages",
-        "Integrity drift (2 total): 2 unknown",
+        "Scanned semgrep/semgrep changed: v1.183.0 \u2192 v1.184.0",
+        "Inventory: +1 components (0.4%)",
+        "1 version upgrades (1 minor) across 2 occurrences among 241 shared packages",
+        "Integrity drift checked only 0 of 239 same-version packages; the rest carry no comparable digest",
+        "2 file entries changed content (not package integrity drift): /cli/uv.lock, /setup.py",
         "Core system packages stable: npm (69), github (39), file (22) unchanged"
       ],
       "html": "sbomlyze-diff.html",
-      "removed": 0
+      "occurrences": {
+        "added": [
+          {
+            "ecosystem": "pypi",
+            "location": "cli/uv.lock",
+            "locations": [
+              "cli/uv.lock"
+            ],
+            "name": "structlog",
+            "version": "26.1.0"
+          }
+        ],
+        "digest_coverage": {
+          "after_only": 0,
+          "before_only": 0,
+          "by_kind": {},
+          "comparable": 0,
+          "disjoint_kinds": 0,
+          "packages_total": 242,
+          "same_version_pairs": 239
+        },
+        "file_changes": [
+          {
+            "owners": [],
+            "path": "cli/uv.lock"
+          },
+          {
+            "owners": [],
+            "path": "setup.py"
+          }
+        ],
+        "file_coverage": {
+          "ambiguous_paths": 0,
+          "config_unknown": 0,
+          "files_compared": 22,
+          "files_unverified": 0,
+          "owned_files_after": 0,
+          "unowned_files_after": 0
+        },
+        "files_added": [],
+        "files_removed": [],
+        "integrity_changes": [],
+        "license_changes": [],
+        "metadata_changes": [],
+        "moved": [],
+        "owned_file_drift": [],
+        "removed": [],
+        "source_change": {
+          "from": "v1.183.0",
+          "name": "semgrep/semgrep",
+          "to": "v1.184.0"
+        },
+        "version_changes": [
+          {
+            "direction": "upgrade",
+            "ecosystem": "pypi",
+            "from": "1.183.0",
+            "level": "minor",
+            "location": "cli/uv.lock",
+            "name": "semgrep",
+            "to": "1.184.0"
+          },
+          {
+            "direction": "upgrade",
+            "ecosystem": "pypi",
+            "from": "1.183.0",
+            "level": "minor",
+            "location": "setup.py",
+            "name": "semgrep",
+            "to": "1.184.0"
+          }
+        ],
+        "version_set_changes": []
+      },
+      "previous_sbom_sha256": "7f8070c8e6e0fb2efaf59130b6ee0fff65e8f08f7eb853e7ecbfc2ad8c6f91be",
+      "removed": 0,
+      "sbom_sha256": "75edafc714d7ecf516ace90f2003661a3167dd8b991a8338b8e0ba22a20b859e"
     },
     "scanned_at": "2026-11-08T05:55:56+00:00",
     "scorecard": null,
@@ -2006,15 +2196,24 @@
           "percentile": 0.91686,
           "score": 0.04581
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "1.2.6"
         ],
         "id": "GHSA-xvch-5gv4-984h",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "libs/ocaml-tree-sitter-semgrep/lang/semgrep-grammars/package-lock.json",
+        "locations": [
+          "libs/ocaml-tree-sitter-semgrep/lang/semgrep-grammars/package-lock.json"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-03-13T22:11:59.523514Z",
+        "osv_published": "2022-03-18T00:01:09Z",
         "package": "minimist",
+        "purl": "pkg:npm/minimist@1.2.5",
         "severity": "Critical",
         "summary": "Prototype Pollution in minimist",
         "url": "https://github.com/advisories/GHSA-xvch-5gv4-984h",
@@ -2024,15 +2223,24 @@
         "aliases": [],
         "ecosystem": "pypi",
         "epss": null,
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "48.0.1"
         ],
         "id": "GHSA-537c-gmf6-5ccf",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "cli/uv.lock",
+        "locations": [
+          "cli/uv.lock"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-09-10T03:50:48.298936410Z",
+        "osv_published": "2026-06-15T20:12:27Z",
         "package": "cryptography",
+        "purl": "pkg:pypi/cryptography@46.0.3",
         "severity": "High",
         "summary": "Vulnerable OpenSSL included in cryptography wheels",
         "url": "https://github.com/advisories/GHSA-537c-gmf6-5ccf",
@@ -2048,15 +2256,24 @@
           "percentile": 0.19944,
           "score": 0.00274
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "50.0.0"
         ],
         "id": "GHSA-g6cj-pr64-35w5",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "cli/uv.lock",
+        "locations": [
+          "cli/uv.lock"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-09-10T03:50:53.610446769Z",
+        "osv_published": "2026-08-03T21:17:00Z",
         "package": "cryptography",
+        "purl": "pkg:pypi/cryptography@46.0.3",
         "severity": "High",
         "summary": "cryptography: PKCS#7 EnvelopedData decryption exposes a Bleichenbacher oracle through distinguishable errors and timing",
         "url": "https://github.com/advisories/GHSA-g6cj-pr64-35w5",
@@ -2072,15 +2289,24 @@
           "percentile": 0.18041,
           "score": 0.00262
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "49.0.0"
         ],
         "id": "GHSA-jwv3-5hgf-82ww",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "cli/uv.lock",
+        "locations": [
+          "cli/uv.lock"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-09-24T14:45:10.238420831Z",
+        "osv_published": "2026-08-03T21:26:50Z",
         "package": "cryptography",
+        "purl": "pkg:pypi/cryptography@46.0.3",
         "severity": "High",
         "summary": "python-cryptography: Duplicate self-signed intermediates can cause exponential path-building",
         "url": "https://github.com/advisories/GHSA-jwv3-5hgf-82ww",
@@ -2096,15 +2322,24 @@
           "percentile": 0.32677,
           "score": 0.00384
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "46.0.5"
         ],
         "id": "GHSA-r6ph-v2qm-q3c2",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "cli/uv.lock",
+        "locations": [
+          "cli/uv.lock"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-09-10T03:50:59.750965345Z",
+        "osv_published": "2026-02-10T21:27:06Z",
         "package": "cryptography",
+        "purl": "pkg:pypi/cryptography@46.0.3",
         "severity": "High",
         "summary": "cryptography Vulnerable to a Subgroup Attack Due to Missing Subgroup Validation for SECT Curves",
         "url": "https://github.com/advisories/GHSA-r6ph-v2qm-q3c2",
@@ -2120,15 +2355,24 @@
           "percentile": 0.4073,
           "score": 0.00468
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "4.15.6"
         ],
         "id": "GHSA-3633-r77q-h3v3",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "cli/uv.lock",
+        "locations": [
+          "cli/uv.lock"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-10-27T15:47:10.169941751Z",
+        "osv_published": "2026-10-27T15:37:31Z",
         "package": "ddtrace",
+        "purl": "pkg:pypi/ddtrace@4.2.1",
         "severity": "High",
         "summary": "Datadog dd-trace-py: ReDoS in URL query string obfuscation",
         "url": "https://github.com/advisories/GHSA-3633-r77q-h3v3",
@@ -2144,15 +2388,24 @@
           "percentile": 0.56582,
           "score": 0.00793
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "4.8.2"
         ],
         "id": "GHSA-mw54-j2v2-42hr",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "cli/uv.lock",
+        "locations": [
+          "cli/uv.lock"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-09-10T03:50:12.623722840Z",
+        "osv_published": "2026-07-15T22:55:24Z",
         "package": "ddtrace",
+        "purl": "pkg:pypi/ddtrace@4.2.1",
         "severity": "High",
         "summary": "dd-trace-py: Improper parsing of W3C baggage headers may lead to DoS",
         "url": "https://github.com/advisories/GHSA-mw54-j2v2-42hr",
@@ -2168,15 +2421,24 @@
           "percentile": 0.26025,
           "score": 0.00328
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "4.15.5"
         ],
         "id": "GHSA-p3m5-h5v9-vqj6",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "cli/uv.lock",
+        "locations": [
+          "cli/uv.lock"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-10-27T15:47:24.739372721Z",
+        "osv_published": "2026-10-27T15:37:24Z",
         "package": "ddtrace",
+        "purl": "pkg:pypi/ddtrace@4.2.1",
         "severity": "High",
         "summary": "Datadog dd-trace-py: IAST instrumentation can lead to application DOS",
         "url": "https://github.com/advisories/GHSA-p3m5-h5v9-vqj6",
@@ -2192,15 +2454,24 @@
           "percentile": 0.08759,
           "score": 0.0019
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "4.2.1"
         ],
         "id": "GHSA-v4x8-3wr5-3wq8",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "scripts/release/uv.lock",
+        "locations": [
+          "scripts/release/uv.lock"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-10-23T22:15:04.432475030Z",
+        "osv_published": "2026-10-23T21:59:08Z",
         "package": "filelock",
+        "purl": "pkg:pypi/filelock@4.0.6",
         "severity": "High",
         "summary": "filelock ReadWriteLock: SQLite reopens the lock database by name, so a planted symlink or journal file makes the lock user's process overwrite or unlink its own files",
         "url": "https://github.com/advisories/GHSA-v4x8-3wr5-3wq8",
@@ -2216,15 +2487,24 @@
           "percentile": 0.53829,
           "score": 0.00712
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "6.33.5"
         ],
         "id": "GHSA-7gcm-g887-7qv7",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "cli/uv.lock",
+        "locations": [
+          "cli/uv.lock"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-09-10T03:50:32.795512159Z",
+        "osv_published": "2026-01-23T15:31:35Z",
         "package": "protobuf",
+        "purl": "pkg:pypi/protobuf@6.33.4",
         "severity": "High",
         "summary": "protobuf affected by a JSON recursion depth bypass",
         "url": "https://github.com/advisories/GHSA-7gcm-g887-7qv7",
@@ -2240,15 +2520,24 @@
           "percentile": 0.40092,
           "score": 0.0046
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "0.0.30"
         ],
         "id": "GHSA-5rvq-cxj2-64vf",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "cli/uv.lock",
+        "locations": [
+          "cli/uv.lock"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-09-10T03:50:48.426087467Z",
+        "osv_published": "2026-06-15T20:24:09Z",
         "package": "python-multipart",
+        "purl": "pkg:pypi/python-multipart@0.0.21",
         "severity": "High",
         "summary": "python-multipart: Quadratic-time querystring parsing with semicolon separators causes CPU denial of service",
         "url": "https://github.com/advisories/GHSA-5rvq-cxj2-64vf",
@@ -2264,15 +2553,24 @@
           "percentile": 0.54863,
           "score": 0.0074
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "0.0.27"
         ],
         "id": "GHSA-pp6c-gr5w-3c5g",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "cli/uv.lock",
+        "locations": [
+          "cli/uv.lock"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-09-10T03:50:47.215892833Z",
+        "osv_published": "2026-05-06T21:56:14Z",
         "package": "python-multipart",
+        "purl": "pkg:pypi/python-multipart@0.0.21",
         "severity": "High",
         "summary": "python-multipart has Denial of Service via unbounded multipart part headers",
         "url": "https://github.com/advisories/GHSA-pp6c-gr5w-3c5g",
@@ -2288,15 +2586,24 @@
           "percentile": 0.82671,
           "score": 0.02206
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "0.0.22"
         ],
         "id": "GHSA-wp53-j4wj-2cfg",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "cli/uv.lock",
+        "locations": [
+          "cli/uv.lock"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-09-10T03:50:59.359593372Z",
+        "osv_published": "2026-01-26T23:28:05Z",
         "package": "python-multipart",
+        "purl": "pkg:pypi/python-multipart@0.0.21",
         "severity": "High",
         "summary": "Python-Multipart has Arbitrary File Write via Non-Default Configuration",
         "url": "https://github.com/advisories/GHSA-wp53-j4wj-2cfg",
@@ -2312,15 +2619,24 @@
           "percentile": 0.86355,
           "score": 0.02761
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "5.7.2"
         ],
         "id": "GHSA-c2qf-rxjj-qqgw",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "libs/ocaml-tree-sitter-semgrep/lang/semgrep-grammars/package-lock.json",
+        "locations": [
+          "libs/ocaml-tree-sitter-semgrep/lang/semgrep-grammars/package-lock.json"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-09-10T03:50:02.224637541Z",
+        "osv_published": "2023-06-21T06:30:28Z",
         "package": "semver",
+        "purl": "pkg:npm/semver@5.7.1",
         "severity": "High",
         "summary": "semver vulnerable to Regular Expression Denial of Service",
         "url": "https://github.com/advisories/GHSA-c2qf-rxjj-qqgw",
@@ -2336,15 +2652,24 @@
           "percentile": 0.81112,
           "score": 0.02024
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "3.1.1"
         ],
         "id": "GHSA-wpg7-2c88-r8xv",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "libs/ocaml-tree-sitter-semgrep/lang/semgrep-grammars/package-lock.json",
+        "locations": [
+          "libs/ocaml-tree-sitter-semgrep/lang/semgrep-grammars/package-lock.json"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-09-10T03:49:11.488315452Z",
+        "osv_published": "2022-01-28T22:54:16Z",
         "package": "simple-get",
+        "purl": "pkg:npm/simple-get@3.1.0",
         "severity": "High",
         "summary": "Exposure of Sensitive Information in simple-get",
         "url": "https://github.com/advisories/GHSA-wpg7-2c88-r8xv",
@@ -2360,15 +2685,24 @@
           "percentile": 0.41705,
           "score": 0.00481
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "1.3.1"
         ],
         "id": "GHSA-82w8-qh3p-5jfq",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "cli/uv.lock",
+        "locations": [
+          "cli/uv.lock"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-09-10T03:51:08.156199030Z",
+        "osv_published": "2026-06-15T20:39:53Z",
         "package": "starlette",
+        "purl": "pkg:pypi/starlette@0.52.1",
         "severity": "High",
         "summary": "Starlette: request.form() limits silently ignored for application/x-www-form-urlencoded enable DoS",
         "url": "https://github.com/advisories/GHSA-82w8-qh3p-5jfq",
@@ -2384,15 +2718,24 @@
           "percentile": 0.30842,
           "score": 0.00368
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "1.1.0"
         ],
         "id": "GHSA-wqp7-x3pw-xc5r",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "cli/uv.lock",
+        "locations": [
+          "cli/uv.lock"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-09-10T03:50:51.079936646Z",
+        "osv_published": "2026-06-15T20:16:30Z",
         "package": "starlette",
+        "purl": "pkg:pypi/starlette@0.52.1",
         "severity": "High",
         "summary": "Starlette: SSRF and NTLM credential theft via UNC paths in StaticFiles on Windows",
         "url": "https://github.com/advisories/GHSA-wqp7-x3pw-xc5r",
@@ -2408,15 +2751,24 @@
           "percentile": 0.47891,
           "score": 0.00579
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "2.1.3"
         ],
         "id": "GHSA-8cj5-5rvv-wf4v",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "libs/ocaml-tree-sitter-semgrep/lang/semgrep-grammars/package-lock.json",
+        "locations": [
+          "libs/ocaml-tree-sitter-semgrep/lang/semgrep-grammars/package-lock.json"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-09-10T03:50:24.933003874Z",
+        "osv_published": "2025-06-03T06:14:25Z",
         "package": "tar-fs",
+        "purl": "pkg:npm/tar-fs@2.1.1",
         "severity": "High",
         "summary": "tar-fs can extract outside the specified dir with a specific tarball",
         "url": "https://github.com/advisories/GHSA-8cj5-5rvv-wf4v",
@@ -2432,15 +2784,24 @@
           "percentile": 0.83399,
           "score": 0.02299
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "2.1.2"
         ],
         "id": "GHSA-pq67-2wwv-3xjx",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "libs/ocaml-tree-sitter-semgrep/lang/semgrep-grammars/package-lock.json",
+        "locations": [
+          "libs/ocaml-tree-sitter-semgrep/lang/semgrep-grammars/package-lock.json"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-09-10T03:50:23.170767408Z",
+        "osv_published": "2025-03-27T18:31:28Z",
         "package": "tar-fs",
+        "purl": "pkg:npm/tar-fs@2.1.1",
         "severity": "High",
         "summary": "tar-fs Vulnerable to Link Following and Path Traversal via Extracting a Crafted tar File",
         "url": "https://github.com/advisories/GHSA-pq67-2wwv-3xjx",
@@ -2456,15 +2817,24 @@
           "percentile": 0.47951,
           "score": 0.0058
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "2.1.4"
         ],
         "id": "GHSA-vj76-c3g6-qr5v",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "libs/ocaml-tree-sitter-semgrep/lang/semgrep-grammars/package-lock.json",
+        "locations": [
+          "libs/ocaml-tree-sitter-semgrep/lang/semgrep-grammars/package-lock.json"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-09-10T03:50:28.767326235Z",
+        "osv_published": "2025-09-24T18:57:04Z",
         "package": "tar-fs",
+        "purl": "pkg:npm/tar-fs@2.1.1",
         "severity": "High",
         "summary": "tar-fs has a symlink validation bypass if destination directory is predictable with a specific tarball",
         "url": "https://github.com/advisories/GHSA-vj76-c3g6-qr5v",
@@ -2480,15 +2850,24 @@
           "percentile": 0.15489,
           "score": 0.00242
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "21.14.9"
         ],
         "id": "GHSA-394h-qwmc-48pf",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "scripts/release/uv.lock",
+        "locations": [
+          "scripts/release/uv.lock"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-10-29T10:55:57.228294866Z",
+        "osv_published": "2026-10-23T22:24:43Z",
         "package": "virtualenv",
+        "purl": "pkg:pypi/virtualenv@21.13.0",
         "severity": "High",
         "summary": "virtualenv: Xonsh activation literals depend on the script decoding codec",
         "url": "https://github.com/advisories/GHSA-394h-qwmc-48pf",
@@ -2504,15 +2883,24 @@
           "percentile": 0.2819,
           "score": 0.00345
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "21.14.4"
         ],
         "id": "GHSA-5vjq-rrrf-7h2q",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "scripts/release/uv.lock",
+        "locations": [
+          "scripts/release/uv.lock"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-10-29T10:55:33.825448161Z",
+        "osv_published": "2026-10-21T16:46:23Z",
         "package": "virtualenv",
+        "purl": "pkg:pypi/virtualenv@21.13.0",
         "severity": "High",
         "summary": "virtualenv activate runs commands from the environment name in zsh with PROMPT_SUBST",
         "url": "https://github.com/advisories/GHSA-5vjq-rrrf-7h2q",
@@ -2528,15 +2916,24 @@
           "percentile": 0.15489,
           "score": 0.00242
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "21.14.9"
         ],
         "id": "GHSA-6w3r-xr62-4xcp",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "scripts/release/uv.lock",
+        "locations": [
+          "scripts/release/uv.lock"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-10-29T10:55:32.039209236Z",
+        "osv_published": "2026-10-23T22:21:57Z",
         "package": "virtualenv",
+        "purl": "pkg:pypi/virtualenv@21.13.0",
         "severity": "High",
         "summary": "virtualenv: Bash prompt values can change meaning under older compatibility modes",
         "url": "https://github.com/advisories/GHSA-6w3r-xr62-4xcp",
@@ -2552,15 +2949,24 @@
           "percentile": 0.19152,
           "score": 0.00269
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "21.14.2"
         ],
         "id": "GHSA-8rjx-v5ww-45pp",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "scripts/release/uv.lock",
+        "locations": [
+          "scripts/release/uv.lock"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-10-29T10:55:59.336337258Z",
+        "osv_published": "2026-10-21T16:39:38Z",
         "package": "virtualenv",
+        "purl": "pkg:pypi/virtualenv@21.13.0",
         "severity": "High",
         "summary": "virtualenv activation scripts run code from a path that contains a placeholder name",
         "url": "https://github.com/advisories/GHSA-8rjx-v5ww-45pp",
@@ -2576,15 +2982,24 @@
           "percentile": 0.14736,
           "score": 0.00236
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "21.14.2"
         ],
         "id": "GHSA-c947-3pg5-gm8q",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "scripts/release/uv.lock",
+        "locations": [
+          "scripts/release/uv.lock"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-10-29T10:55:30.348006947Z",
+        "osv_published": "2026-10-21T16:39:58Z",
         "package": "virtualenv",
+        "purl": "pkg:pypi/virtualenv@21.13.0",
         "severity": "High",
         "summary": "virtualenv activate.fish runs commands from a path or prompt with a backslash before a quote",
         "url": "https://github.com/advisories/GHSA-c947-3pg5-gm8q",
@@ -2600,15 +3015,24 @@
           "percentile": 0.21173,
           "score": 0.00285
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "21.14.9"
         ],
         "id": "GHSA-c978-59m8-c77v",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "scripts/release/uv.lock",
+        "locations": [
+          "scripts/release/uv.lock"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-10-29T10:55:46.719521464Z",
+        "osv_published": "2026-10-21T21:30:12Z",
         "package": "virtualenv",
+        "purl": "pkg:pypi/virtualenv@21.13.0",
         "severity": "High",
         "summary": "virtualenv: Generated POSIX console launchers interpret destination paths as shell syntax",
         "url": "https://github.com/advisories/GHSA-c978-59m8-c77v",
@@ -2624,15 +3048,24 @@
           "percentile": 0.18285,
           "score": 0.00263
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "21.14.7"
         ],
         "id": "GHSA-vxj4-q4g9-crj7",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "scripts/release/uv.lock",
+        "locations": [
+          "scripts/release/uv.lock"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-10-29T10:55:53.696944055Z",
+        "osv_published": "2026-10-21T16:49:01Z",
         "package": "virtualenv",
+        "purl": "pkg:pypi/virtualenv@21.13.0",
         "severity": "High",
         "summary": "virtualenv bash activate runs commands from an environment name with a backslash before $",
         "url": "https://github.com/advisories/GHSA-vxj4-q4g9-crj7",
@@ -2648,15 +3081,24 @@
           "percentile": 0.15644,
           "score": 0.00244
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "49.0.0"
         ],
         "id": "GHSA-m2h6-j472-rp4c",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "cli/uv.lock",
+        "locations": [
+          "cli/uv.lock"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-09-24T15:00:04.719975807Z",
+        "osv_published": "2026-08-03T21:26:57Z",
         "package": "cryptography",
+        "purl": "pkg:pypi/cryptography@46.0.3",
         "severity": "Medium",
         "summary": "python-cryptography verifier accepts wildcard DNS names allowing escape from permittedSubtrees",
         "url": "https://github.com/advisories/GHSA-m2h6-j472-rp4c",
@@ -2672,15 +3114,24 @@
           "percentile": 0.52537,
           "score": 0.00677
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "46.0.7"
         ],
         "id": "GHSA-p423-j2cm-9vmq",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "cli/uv.lock",
+        "locations": [
+          "cli/uv.lock"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-11-04T03:30:50.401534783Z",
+        "osv_published": "2026-04-08T19:23:08Z",
         "package": "cryptography",
+        "purl": "pkg:pypi/cryptography@46.0.3",
         "severity": "Medium",
         "summary": "Cryptography vulnerable to buffer overflow if non-contiguous buffers were passed to APIs",
         "url": "https://github.com/advisories/GHSA-p423-j2cm-9vmq",
@@ -2696,15 +3147,24 @@
           "percentile": 0.01911,
           "score": 0.00121
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "4.2.1"
         ],
         "id": "GHSA-6627-m3xw-93mp",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "scripts/release/uv.lock",
+        "locations": [
+          "scripts/release/uv.lock"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-10-28T21:15:05.690884904Z",
+        "osv_published": "2026-10-28T21:09:04Z",
         "package": "filelock",
+        "purl": "pkg:pypi/filelock@4.0.6",
         "severity": "Medium",
         "summary": "filelock: StrictSoftFileLock creates its claim directories without the lock mode, so another local user with a write bit on them can end a live hold",
         "url": "https://github.com/advisories/GHSA-6627-m3xw-93mp",
@@ -2720,15 +3180,24 @@
           "percentile": 0.12668,
           "score": 0.0022
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "4.2.1"
         ],
         "id": "GHSA-69hj-f68j-2879",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "scripts/release/uv.lock",
+        "locations": [
+          "scripts/release/uv.lock"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-10-28T21:15:04.974667790Z",
+        "osv_published": "2026-10-28T21:08:35Z",
         "package": "filelock",
+        "purl": "pkg:pypi/filelock@4.0.6",
         "severity": "Medium",
         "summary": "filelock: UnixFileLock truncates and chmods any regular file another user renames or hard-links onto the lock path",
         "url": "https://github.com/advisories/GHSA-69hj-f68j-2879",
@@ -2744,15 +3213,24 @@
           "percentile": 0.05321,
           "score": 0.00161
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "4.2.1"
         ],
         "id": "GHSA-8mx5-7m5m-r77g",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "scripts/release/uv.lock",
+        "locations": [
+          "scripts/release/uv.lock"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-10-28T21:15:05.688436299Z",
+        "osv_published": "2026-10-28T21:08:55Z",
         "package": "filelock",
+        "purl": "pkg:pypi/filelock@4.0.6",
         "severity": "Medium",
         "summary": "filelock: WindowsFileLock ignores mode: a 0o600 lock file and the ReadWriteLock database inherit the directory ACL",
         "url": "https://github.com/advisories/GHSA-8mx5-7m5m-r77g",
@@ -2768,15 +3246,24 @@
           "percentile": 0.04004,
           "score": 0.00148
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "4.2.1"
         ],
         "id": "GHSA-9c4x-gm8v-wgc4",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "scripts/release/uv.lock",
+        "locations": [
+          "scripts/release/uv.lock"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-10-28T21:15:05.681708010Z",
+        "osv_published": "2026-10-28T21:08:59Z",
         "package": "filelock",
+        "purl": "pkg:pypi/filelock@4.0.6",
         "severity": "Medium",
         "summary": "filelock: StrictSoftFileLock and SoftReadWriteLock adopt a protocol directory another user created first, losing mutual exclusion",
         "url": "https://github.com/advisories/GHSA-9c4x-gm8v-wgc4",
@@ -2792,15 +3279,24 @@
           "percentile": 0.12303,
           "score": 0.00218
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "4.2.1"
         ],
         "id": "GHSA-cwqr-hh33-gh44",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "scripts/release/uv.lock",
+        "locations": [
+          "scripts/release/uv.lock"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-10-28T21:15:04.923553251Z",
+        "osv_published": "2026-10-28T21:08:49Z",
         "package": "filelock",
+        "purl": "pkg:pypi/filelock@4.0.6",
         "severity": "Medium",
         "summary": "filelock ReadWriteLock: a crafted lock database makes every acquire stall or hang regardless of timeout",
         "url": "https://github.com/advisories/GHSA-cwqr-hh33-gh44",
@@ -2816,15 +3312,24 @@
           "percentile": 0.14224,
           "score": 0.00233
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "4.2.1"
         ],
         "id": "GHSA-fj95-fr6c-h845",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "scripts/release/uv.lock",
+        "locations": [
+          "scripts/release/uv.lock"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-10-28T21:15:04.925561437Z",
+        "osv_published": "2026-10-28T21:08:13Z",
         "package": "filelock",
+        "purl": "pkg:pypi/filelock@4.0.6",
         "severity": "Medium",
         "summary": "filelock: SoftReadWriteLock holder refresh writes through a hard link and hangs on a named pipe that another local user renames over its record",
         "url": "https://github.com/advisories/GHSA-fj95-fr6c-h845",
@@ -2840,15 +3345,24 @@
           "percentile": 0.02797,
           "score": 0.00132
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "4.2.1"
         ],
         "id": "GHSA-fq56-3cx3-fjxp",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "scripts/release/uv.lock",
+        "locations": [
+          "scripts/release/uv.lock"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-10-28T21:15:04.933315565Z",
+        "osv_published": "2026-10-28T21:08:08Z",
         "package": "filelock",
+        "purl": "pkg:pypi/filelock@4.0.6",
         "severity": "Medium",
         "summary": "filelock: SoftFileLock stale-lock break removes a live lock file on a reused inode number and admits two holders",
         "url": "https://github.com/advisories/GHSA-fq56-3cx3-fjxp",
@@ -2864,15 +3378,24 @@
           "percentile": 0.14157,
           "score": 0.00232
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "4.0.9"
         ],
         "id": "GHSA-j8f7-rjxc-mr56",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "scripts/release/uv.lock",
+        "locations": [
+          "scripts/release/uv.lock"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-10-28T21:15:04.169983430Z",
+        "osv_published": "2026-10-28T21:08:30Z",
         "package": "filelock",
+        "purl": "pkg:pypi/filelock@4.0.6",
         "severity": "Medium",
         "summary": "filelock: ReadWriteLock follows a symlink at the lock path into SQLite",
         "url": "https://github.com/advisories/GHSA-j8f7-rjxc-mr56",
@@ -2888,15 +3411,24 @@
           "percentile": 0.01139,
           "score": 0.00107
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "4.2.1"
         ],
         "id": "GHSA-m462-7rxw-wvpg",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "scripts/release/uv.lock",
+        "locations": [
+          "scripts/release/uv.lock"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-10-28T21:15:04.165555871Z",
+        "osv_published": "2026-10-28T21:08:23Z",
         "package": "filelock",
+        "purl": "pkg:pypi/filelock@4.0.6",
         "severity": "Medium",
         "summary": "filelock: StrictSoftFileLock follows a symbolic link swapped in at <path>.filelock and creates claim files in a directory another local user chooses",
         "url": "https://github.com/advisories/GHSA-m462-7rxw-wvpg",
@@ -2912,15 +3444,24 @@
           "percentile": 0.03346,
           "score": 0.0014
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "4.2.1"
         ],
         "id": "GHSA-rfpc-qcw5-3pc4",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "scripts/release/uv.lock",
+        "locations": [
+          "scripts/release/uv.lock"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-10-28T21:15:05.584943666Z",
+        "osv_published": "2026-10-28T21:08:45Z",
         "package": "filelock",
+        "purl": "pkg:pypi/filelock@4.0.6",
         "severity": "Medium",
         "summary": "filelock: SoftFileLock removes a live holder's marker when another user forges the PID in a writable marker",
         "url": "https://github.com/advisories/GHSA-rfpc-qcw5-3pc4",
@@ -2936,15 +3477,24 @@
           "percentile": 0.3533,
           "score": 0.00408
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "3.15"
         ],
         "id": "GHSA-65pc-fj4g-8rjx",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "cli/uv.lock",
+        "locations": [
+          "cli/uv.lock"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-09-10T03:50:45.700124422Z",
+        "osv_published": "2026-05-19T14:34:32Z",
         "package": "idna",
+        "purl": "pkg:pypi/idna@3.11",
         "severity": "Medium",
         "summary": "Internationalized Domain Names in Applications (IDNA): Specially crafted inputs to idna.encode() can bypass CVE-2024-3651 fix",
         "url": "https://github.com/advisories/GHSA-65pc-fj4g-8rjx",
@@ -2960,15 +3510,24 @@
           "percentile": 0.34399,
           "score": 0.00399
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "1.30.0"
         ],
         "id": "GHSA-5h93-6whr-6q8j",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "cli/uv.lock",
+        "locations": [
+          "cli/uv.lock"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-10-27T21:15:03.819223133Z",
+        "osv_published": "2026-10-27T21:05:34Z",
         "package": "mcp",
+        "purl": "pkg:pypi/mcp@1.29.0",
         "severity": "Medium",
         "summary": "Model Context Protocol Python SDK: HTTP client transports followed cross-origin redirects carrying custom headers and bodies",
         "url": "https://github.com/advisories/GHSA-5h93-6whr-6q8j",
@@ -2984,15 +3543,24 @@
           "percentile": 0.39938,
           "score": 0.00458
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "1.30.0"
         ],
         "id": "GHSA-84m7-p3x7-pcfv",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "cli/uv.lock",
+        "locations": [
+          "cli/uv.lock"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-10-15T20:30:08.565001293Z",
+        "osv_published": "2026-10-15T20:13:13Z",
         "package": "mcp",
+        "purl": "pkg:pypi/mcp@1.29.0",
         "severity": "Medium",
         "summary": "MCP Python SDK: Unbounded Session Accumulation in StreamableHTTP Transport Enables Resource Exhaustion",
         "url": "https://github.com/advisories/GHSA-84m7-p3x7-pcfv",
@@ -3008,15 +3576,24 @@
           "percentile": 0.27241,
           "score": 0.00337
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "1.30.0"
         ],
         "id": "GHSA-rwrf-2pqf-9j8j",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "cli/uv.lock",
+        "locations": [
+          "cli/uv.lock"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-10-27T21:15:03.830660129Z",
+        "osv_published": "2026-10-27T21:05:29Z",
         "package": "mcp",
+        "purl": "pkg:pypi/mcp@1.29.0",
         "severity": "Medium",
         "summary": "Model Context Protocol Python SDK: Client fetched server-chosen $ref URLs while validating tool results against output schemas",
         "url": "https://github.com/advisories/GHSA-rwrf-2pqf-9j8j",
@@ -3032,15 +3609,24 @@
           "percentile": 0.30544,
           "score": 0.00365
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "1.30.0"
         ],
         "id": "GHSA-w4fh-qvv9-3v23",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "cli/uv.lock",
+        "locations": [
+          "cli/uv.lock"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-10-27T21:15:03.825987077Z",
+        "osv_published": "2026-10-27T21:06:59Z",
         "package": "mcp",
+        "purl": "pkg:pypi/mcp@1.29.0",
         "severity": "Medium",
         "summary": "Model Context Protocol Python SDK: Server bearer-token authentication accepts tokens issued for a different resource server",
         "url": "https://github.com/advisories/GHSA-w4fh-qvv9-3v23",
@@ -3056,15 +3642,24 @@
           "percentile": 0.42187,
           "score": 0.00487
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "1.45.1"
         ],
         "id": "GHSA-xcq7-p3pf-p88h",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "cli/uv.lock",
+        "locations": [
+          "cli/uv.lock"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-10-22T16:30:40.999595074Z",
+        "osv_published": "2026-10-22T16:22:07Z",
         "package": "opentelemetry-api",
+        "purl": "pkg:pypi/opentelemetry-api@1.37.0",
         "severity": "Medium",
         "summary": "OpenTelemetry Python: Unbounded tracestate parsing in opentelemetry-api",
         "url": "https://github.com/advisories/GHSA-xcq7-p3pf-p88h",
@@ -3074,15 +3669,24 @@
         "aliases": [],
         "ecosystem": "pypi",
         "epss": null,
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "2.14.2"
         ],
         "id": "GHSA-4xgf-cpjx-pc3j",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "cli/uv.lock",
+        "locations": [
+          "cli/uv.lock"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-09-10T03:50:48.282428168Z",
+        "osv_published": "2026-06-19T22:10:42Z",
         "package": "pydantic-settings",
+        "purl": "pkg:pypi/pydantic-settings@2.12.0",
         "severity": "Medium",
         "summary": "pydantic-settings: NestedSecretsSettingsSource follows symlinks outside secrets_dir, enabling local file read and bypassing secrets_dir_max_size",
         "url": "https://github.com/advisories/GHSA-4xgf-cpjx-pc3j",
@@ -3098,15 +3702,24 @@
           "percentile": 0.04526,
           "score": 0.00154
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "9.0.3"
         ],
         "id": "GHSA-6w46-j5rx-g56g",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "cli/uv.lock",
+        "locations": [
+          "cli/uv.lock"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-09-10T03:50:32.768043789Z",
+        "osv_published": "2026-01-22T06:30:29Z",
         "package": "pytest",
+        "purl": "pkg:pypi/pytest@8.4.2",
         "severity": "Medium",
         "summary": "pytest has vulnerable tmpdir handling",
         "url": "https://github.com/advisories/GHSA-6w46-j5rx-g56g",
@@ -3122,15 +3735,24 @@
           "percentile": 0.16814,
           "score": 0.00252
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "1.2.2"
         ],
         "id": "GHSA-mf9w-mj56-hr94",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "cli/uv.lock",
+        "locations": [
+          "cli/uv.lock"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-09-10T03:51:02.363430883Z",
+        "osv_published": "2026-04-20T17:16:33.087Z",
         "package": "python-dotenv",
+        "purl": "pkg:pypi/python-dotenv@1.2.1",
         "severity": "Medium",
         "summary": "python-dotenv: Symlink following in set_key allows arbitrary file overwrite via cross-device rename fallback",
         "url": "https://github.com/advisories/GHSA-mf9w-mj56-hr94",
@@ -3146,15 +3768,24 @@
           "percentile": 0.28906,
           "score": 0.00351
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "0.0.26"
         ],
         "id": "GHSA-mj87-hwqh-73pj",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "cli/uv.lock",
+        "locations": [
+          "cli/uv.lock"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-09-10T03:51:02.322677211Z",
+        "osv_published": "2026-04-15T19:45:44Z",
         "package": "python-multipart",
+        "purl": "pkg:pypi/python-multipart@0.0.21",
         "severity": "Medium",
         "summary": "python-multipart affected by Denial of Service via large multipart preamble or epilogue data",
         "url": "https://github.com/advisories/GHSA-mj87-hwqh-73pj",
@@ -3170,15 +3801,24 @@
           "percentile": 0.08624,
           "score": 0.00189
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "2.33.0"
         ],
         "id": "GHSA-gc5v-m9x4-r6x2",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "cli/uv.lock",
+        "locations": [
+          "cli/uv.lock"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-09-10T03:50:39.207922076Z",
+        "osv_published": "2026-03-25T16:56:28Z",
         "package": "requests",
+        "purl": "pkg:pypi/requests@2.32.5",
         "severity": "Medium",
         "summary": "Requests has Insecure Temp File Reuse in its extract_zipped_paths() utility function",
         "url": "https://github.com/advisories/GHSA-gc5v-m9x4-r6x2",
@@ -3194,15 +3834,24 @@
           "percentile": 0.4507,
           "score": 0.0053
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "83.0.0"
         ],
         "id": "GHSA-h35f-9h28-mq5c",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "cli/uv.lock",
+        "locations": [
+          "cli/uv.lock"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-09-10T03:50:52.323347787Z",
+        "osv_published": "2026-07-08T17:17:27.020Z",
         "package": "setuptools",
+        "purl": "pkg:pypi/setuptools@80.10.2",
         "severity": "Medium",
         "summary": "setuptools: MANIFEST.in exclusion bypass in sdist via Unicode normalization collision (NFC/NFD) on macOS APFS/HFS+",
         "url": "https://github.com/advisories/GHSA-h35f-9h28-mq5c",
@@ -3218,6 +3867,7 @@
           "percentile": 0.99388,
           "score": 0.70288
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "1.0.1"
@@ -3227,9 +3877,19 @@
           "cve": "CVE-2026-48710",
           "date_added": "2026-09-02"
         },
+        "kev_cves": [
+          "CVE-2026-48710"
+        ],
+        "kev_snapshot": "2026.11.06",
         "location": "cli/uv.lock",
+        "locations": [
+          "cli/uv.lock"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-09-10T03:51:08.121685407Z",
+        "osv_published": "2026-05-22T13:10:03Z",
         "package": "starlette",
+        "purl": "pkg:pypi/starlette@0.52.1",
         "severity": "Medium",
         "summary": "Starlette has missing Host header validation that poisons request.url.path, bypassing path-based security checks",
         "url": "https://github.com/advisories/GHSA-86qp-5c8j-p5mr",
@@ -3245,15 +3905,24 @@
           "percentile": 0.11648,
           "score": 0.00213
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "1.1.0"
         ],
         "id": "GHSA-x746-7m8f-x49c",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "cli/uv.lock",
+        "locations": [
+          "cli/uv.lock"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-09-10T03:50:12.272722043Z",
+        "osv_published": "2026-06-15T20:16:05Z",
         "package": "starlette",
+        "purl": "pkg:pypi/starlette@0.52.1",
         "severity": "Medium",
         "summary": "Starlette: Arbitrary HTTP method dispatched to `HTTPEndpoint` attributes via `getattr`",
         "url": "https://github.com/advisories/GHSA-x746-7m8f-x49c",
@@ -3269,15 +3938,24 @@
           "percentile": 0.10384,
           "score": 0.00203
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "21.14.9"
         ],
         "id": "GHSA-43mp-35q3-x3fq",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "scripts/release/uv.lock",
+        "locations": [
+          "scripts/release/uv.lock"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-10-29T10:55:47.691444554Z",
+        "osv_published": "2026-10-21T21:31:34Z",
         "package": "virtualenv",
+        "purl": "pkg:pypi/virtualenv@21.13.0",
         "severity": "Medium",
         "summary": "virtualenv: Deletion recovery can change a symlink target's mode",
         "url": "https://github.com/advisories/GHSA-43mp-35q3-x3fq",
@@ -3293,15 +3971,24 @@
           "percentile": 0.03703,
           "score": 0.00144
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "21.14.9"
         ],
         "id": "GHSA-558c-9hv2-4prj",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "scripts/release/uv.lock",
+        "locations": [
+          "scripts/release/uv.lock"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-10-29T10:55:51.822936662Z",
+        "osv_published": "2026-10-22T17:03:12Z",
         "package": "virtualenv",
+        "purl": "pkg:pypi/virtualenv@21.13.0",
         "severity": "Medium",
         "summary": "virtualenv: Generated files can follow existing destination links",
         "url": "https://github.com/advisories/GHSA-558c-9hv2-4prj",
@@ -3317,15 +4004,24 @@
           "percentile": 0.03702,
           "score": 0.00144
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "21.14.9"
         ],
         "id": "GHSA-cw65-gx24-rc82",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "scripts/release/uv.lock",
+        "locations": [
+          "scripts/release/uv.lock"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-10-29T10:55:59.838026441Z",
+        "osv_published": "2026-10-21T21:35:56Z",
         "package": "virtualenv",
+        "purl": "pkg:pypi/virtualenv@21.13.0",
         "severity": "Medium",
         "summary": "virtualenv: Builtin creation follows linked environment directories",
         "url": "https://github.com/advisories/GHSA-cw65-gx24-rc82",
@@ -3341,15 +4037,24 @@
           "percentile": 0.02897,
           "score": 0.00134
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "21.14.9"
         ],
         "id": "GHSA-fc2g-4w5p-6whm",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "scripts/release/uv.lock",
+        "locations": [
+          "scripts/release/uv.lock"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-10-29T10:55:56.743073990Z",
+        "osv_published": "2026-10-23T22:23:11Z",
         "package": "virtualenv",
+        "purl": "pkg:pypi/virtualenv@21.13.0",
         "severity": "Medium",
         "summary": "virtualenv: Seeded files retain permissions from an older cache",
         "url": "https://github.com/advisories/GHSA-fc2g-4w5p-6whm",
@@ -3365,15 +4070,24 @@
           "percentile": 0.10385,
           "score": 0.00203
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "21.14.9"
         ],
         "id": "GHSA-hhxq-47xx-j5xx",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "scripts/release/uv.lock",
+        "locations": [
+          "scripts/release/uv.lock"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-10-29T10:56:02.747342068Z",
+        "osv_published": "2026-10-23T22:19:15Z",
         "package": "virtualenv",
+        "purl": "pkg:pypi/virtualenv@21.13.0",
         "severity": "Medium",
         "summary": "virtualenv: Seed replacement does not contain metadata deletion paths",
         "url": "https://github.com/advisories/GHSA-hhxq-47xx-j5xx",
@@ -3389,15 +4103,24 @@
           "percentile": 0.13538,
           "score": 0.00227
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "46.0.6"
         ],
         "id": "GHSA-m959-cc7f-wv43",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "cli/uv.lock",
+        "locations": [
+          "cli/uv.lock"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-09-10T03:51:00.592317622Z",
+        "osv_published": "2026-03-27T19:56:21Z",
         "package": "cryptography",
+        "purl": "pkg:pypi/cryptography@46.0.3",
         "severity": "Low",
         "summary": "cryptography has incomplete DNS name constraint enforcement on peer names",
         "url": "https://github.com/advisories/GHSA-m959-cc7f-wv43",
@@ -3413,15 +4136,24 @@
           "percentile": 0.0103,
           "score": 0.00104
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "4.2.1"
         ],
         "id": "GHSA-567q-5qvw-pf92",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "scripts/release/uv.lock",
+        "locations": [
+          "scripts/release/uv.lock"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-10-23T22:45:03.452878321Z",
+        "osv_published": "2026-10-23T22:27:32Z",
         "package": "filelock",
+        "purl": "pkg:pypi/filelock@4.0.6",
         "severity": "Low",
         "summary": "filelock: On Windows an oplock on a soft lock's marker holds SoftFileLock.acquire() past its timeout and blocks the stale break",
         "url": "https://github.com/advisories/GHSA-567q-5qvw-pf92",
@@ -3437,15 +4169,24 @@
           "percentile": 0.11721,
           "score": 0.00213
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "4.2.1"
         ],
         "id": "GHSA-9j6q-wvj5-jgjg",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "scripts/release/uv.lock",
+        "locations": [
+          "scripts/release/uv.lock"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-10-28T21:15:05.577927941Z",
+        "osv_published": "2026-10-28T21:08:40Z",
         "package": "filelock",
+        "purl": "pkg:pypi/filelock@4.0.6",
         "severity": "Low",
         "summary": "filelock: Symlink swap during SoftFileLock's writability check leaks whether a path exists and is writable by the lock taker",
         "url": "https://github.com/advisories/GHSA-9j6q-wvj5-jgjg",
@@ -3461,15 +4202,24 @@
           "percentile": 0.01713,
           "score": 0.00118
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "4.2.1"
         ],
         "id": "GHSA-9vhv-jxww-xfm5",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "scripts/release/uv.lock",
+        "locations": [
+          "scripts/release/uv.lock"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-10-23T22:45:03.439584635Z",
+        "osv_published": "2026-10-23T22:28:19Z",
         "package": "filelock",
+        "purl": "pkg:pypi/filelock@4.0.6",
         "severity": "Low",
         "summary": "filelock: ReadWriteLock on Windows acts on SQLite side files another local user places beside its database",
         "url": "https://github.com/advisories/GHSA-9vhv-jxww-xfm5",
@@ -3485,15 +4235,24 @@
           "percentile": 0.05068,
           "score": 0.00159
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "2.20.0"
         ],
         "id": "GHSA-5239-wwwm-4pmq",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "cli/uv.lock",
+        "locations": [
+          "cli/uv.lock"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-09-10T03:50:59.780634752Z",
+        "osv_published": "2026-03-22T06:30:15Z",
         "package": "pygments",
+        "purl": "pkg:pypi/pygments@2.19.2",
         "severity": "Low",
         "summary": "Pygments has Regular Expression Denial of Service (ReDoS) due to Inefficient Regex for GUID Matching",
         "url": "https://github.com/advisories/GHSA-5239-wwwm-4pmq",
@@ -3509,15 +4268,24 @@
           "percentile": 0.17257,
           "score": 0.00256
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "0.0.30"
         ],
         "id": "GHSA-6jv3-5f52-599m",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "cli/uv.lock",
+        "locations": [
+          "cli/uv.lock"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-09-10T03:51:07.925895532Z",
+        "osv_published": "2026-06-15T20:22:25Z",
         "package": "python-multipart",
+        "purl": "pkg:pypi/python-multipart@0.0.21",
         "severity": "Low",
         "summary": "python-multipart: Semicolon treated as querystring field separator enables parameter smuggling",
         "url": "https://github.com/advisories/GHSA-6jv3-5f52-599m",
@@ -3533,15 +4301,24 @@
           "percentile": 0.27902,
           "score": 0.00342
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "0.0.31"
         ],
         "id": "GHSA-v9pg-7xvm-68hf",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "cli/uv.lock",
+        "locations": [
+          "cli/uv.lock"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-09-10T03:50:50.590441047Z",
+        "osv_published": "2026-06-15T20:23:45Z",
         "package": "python-multipart",
+        "purl": "pkg:pypi/python-multipart@0.0.21",
         "severity": "Low",
         "summary": "python-multipart: Negative Content-Length in parse_form buffers the entire body in memory",
         "url": "https://github.com/advisories/GHSA-v9pg-7xvm-68hf",
@@ -3557,15 +4334,24 @@
           "percentile": 0.21851,
           "score": 0.00291
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "0.0.30"
         ],
         "id": "GHSA-vffw-93wf-4j4q",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "cli/uv.lock",
+        "locations": [
+          "cli/uv.lock"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-09-10T03:50:50.585695996Z",
+        "osv_published": "2026-06-15T20:20:51Z",
         "package": "python-multipart",
+        "purl": "pkg:pypi/python-multipart@0.0.21",
         "severity": "Low",
         "summary": "python-multipart: Content-Disposition parameter smuggling via RFC 2231/5987 extended parameters",
         "url": "https://github.com/advisories/GHSA-vffw-93wf-4j4q",
@@ -3575,15 +4361,24 @@
         "aliases": [],
         "ecosystem": "pypi",
         "epss": null,
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "84.1.0"
         ],
         "id": "GHSA-xmj3-9gf7-h52w",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "cli/uv.lock",
+        "locations": [
+          "cli/uv.lock"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-10-23T22:00:03.739009766Z",
+        "osv_published": "2026-10-23T21:44:11Z",
         "package": "setuptools",
+        "purl": "pkg:pypi/setuptools@80.10.2",
         "severity": "Low",
         "summary": "setuptools: Windows path escape via namespace_packages.txt during legacy wheel installation Description",
         "url": "https://github.com/advisories/GHSA-xmj3-9gf7-h52w",
@@ -3599,15 +4394,24 @@
           "percentile": 0.19795,
           "score": 0.00273
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "1.3.0"
         ],
         "id": "GHSA-jp82-jpqv-5vv3",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "cli/uv.lock",
+        "locations": [
+          "cli/uv.lock"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-09-10T03:50:50.050800090Z",
+        "osv_published": "2026-06-15T20:38:08Z",
         "package": "starlette",
+        "purl": "pkg:pypi/starlette@0.52.1",
         "severity": "Low",
         "summary": "Starlette: Unvalidated request path concatenated into authority poisons request.url.hostname",
         "url": "https://github.com/advisories/GHSA-jp82-jpqv-5vv3",
@@ -3623,15 +4427,24 @@
           "percentile": 0.16366,
           "score": 0.00249
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "21.14.9"
         ],
         "id": "GHSA-494p-63j8-28p3",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "scripts/release/uv.lock",
+        "locations": [
+          "scripts/release/uv.lock"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-10-29T10:55:43.999222952Z",
+        "osv_published": "2026-10-23T22:25:22Z",
         "package": "virtualenv",
+        "purl": "pkg:pypi/virtualenv@21.13.0",
         "severity": "Low",
         "summary": "virtualenv: Downloaded wheel selection and caching precede verification",
         "url": "https://github.com/advisories/GHSA-494p-63j8-28p3",
@@ -3647,15 +4460,24 @@
           "percentile": 0.22015,
           "score": 0.00293
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "21.14.9"
         ],
         "id": "GHSA-cx28-75q4-x26q",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "scripts/release/uv.lock",
+        "locations": [
+          "scripts/release/uv.lock"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-10-29T10:55:56.839709622Z",
+        "osv_published": "2026-10-23T22:26:04Z",
         "package": "virtualenv",
+        "purl": "pkg:pypi/virtualenv@21.13.0",
         "severity": "Low",
         "summary": "virtualenv: Pip seeding with download omits wheel digest verification",
         "url": "https://github.com/advisories/GHSA-cx28-75q4-x26q",
@@ -3671,15 +4493,24 @@
           "percentile": 0.15489,
           "score": 0.00242
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "21.14.9"
         ],
         "id": "GHSA-qmx5-4p3x-wvqf",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "scripts/release/uv.lock",
+        "locations": [
+          "scripts/release/uv.lock"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-10-29T10:55:39.718166145Z",
+        "osv_published": "2026-10-23T22:20:43Z",
         "package": "virtualenv",
+        "purl": "pkg:pypi/virtualenv@21.13.0",
         "severity": "Low",
         "summary": "virtualenv: Venv configuration readback can reinterpret path boundaries",
         "url": "https://github.com/advisories/GHSA-qmx5-4p3x-wvqf",

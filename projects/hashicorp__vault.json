@@ -76,15 +76,26 @@
     },
     {
       "added": 0,
+      "advisory_state": "ok",
       "commit": "0e7c41b936218bd2401ab0f891c93bec10e2e8e4",
       "date": "2026-11-08",
       "dependencies": 650,
+      "dependency_state": "ok",
+      "downgraded": 0,
       "errors": [],
+      "file_changes": 0,
       "fixable": 23,
       "go_version": null,
       "in_binary": null,
+      "in_binary_new": 0,
+      "in_binary_resolved": 0,
       "kev": 1,
-      "kev_new": 1,
+      "kev_new": 0,
+      "kev_new_match": 1,
+      "license_changes": 0,
+      "method": "sbomlyze-occurrence-v1",
+      "moved": 0,
+      "new_advisories": 2,
       "new_vulnerabilities": 2,
       "osv_confirmed": 26,
       "osv_only": 116,
@@ -92,11 +103,13 @@
       "release_changed": false,
       "release_integrity": "no-assets",
       "removed": 0,
+      "resolved_advisories": 0,
       "resolved_vulnerabilities": 0,
       "scorecard": 6.5,
       "scorecard_date": "2026-11-02",
       "scorecard_note": null,
       "scorecard_source": "openssf-api",
+      "unknown_direction": 0,
       "upgraded": 0,
       "vulnerabilities": {
         "Critical": 1,
@@ -112,7 +125,9 @@
         "Low": 97,
         "Medium": 39,
         "files": 50
-      }
+      },
+      "workflow_new": 0,
+      "workflow_resolved": 0
     }
   ],
   "latest": {
@@ -120,10 +135,35 @@
     "category": "Secret Management",
     "changes": {
       "added": [],
+      "added_detail": [],
+      "advisory_state": "ok",
       "any": true,
       "baseline": false,
+      "dependency_baseline": {
+        "attempt": "1",
+        "run_id": "41380955266",
+        "sbom_sha256": "0827864e1db1c8651e675b4d4a384d46ea71695f59f284839f836f1ad645768f"
+      },
+      "dependency_state": "ok",
+      "digest_coverage": {
+        "after_only": 0,
+        "before_only": 0,
+        "by_kind": {
+          "go-h1": 1718
+        },
+        "comparable": 1718,
+        "disjoint_kinds": 0,
+        "packages_total": 1939,
+        "same_version_pairs": 1939
+      },
+      "distinct_version_changes": null,
+      "downgraded": [],
+      "file_changes": [],
+      "integrity_changes": [],
       "integrity_drift": 0,
-      "kev_new": [
+      "kev_method": "snapshot difference",
+      "kev_new": [],
+      "kev_new_match": [
         {
           "aliases": [
             "CVE-2026-111497",
@@ -135,6 +175,7 @@
             "percentile": 0.99669,
             "score": 0.82641
           },
+          "epss_date": "2026-11-07T12:00:22Z",
           "fix_state": "fixed",
           "fixed_in": [
             "1.2.7"
@@ -144,9 +185,19 @@
             "cve": "CVE-2026-111497",
             "date_added": "2026-10-27"
           },
+          "kev_cves": [
+            "CVE-2026-111497"
+          ],
+          "kev_snapshot": "2026.11.06",
           "location": "go.mod",
+          "locations": [
+            "go.mod"
+          ],
           "osv_confirmed": true,
+          "osv_modified": "2026-11-05T23:25:49.434824566Z",
+          "osv_published": "2026-11-05T22:55:15Z",
           "package": "github.com/andybalholm/brotli",
+          "purl": "pkg:golang/github.com/andybalholm/brotli@v1.2.0",
           "severity": "Critical",
           "summary": "In github.com/andybalholm/brotli before v1.2.7, the decompressor allocates memory for Huffman tables and block-type trees on every meta-block header without bounding the cumulative allocations relative to the input size. A small crafted brotli stream containing many empty meta-blocks with new Huffma",
           "url": "https://github.com/andybalholm/brotli/security/advisories/GHSA-c9gr-gmg4-2vqv",
@@ -154,7 +205,56 @@
         }
       ],
       "license_changes": [],
+      "metadata_changes": [],
+      "method": "sbomlyze-occurrence-v1",
+      "moved": [],
+      "new_advisories": 2,
       "new_vulnerabilities": [
+        {
+          "aliases": [
+            "CVE-2026-111497",
+            "GHSA-c9gr-gmg4-2vqv"
+          ],
+          "ecosystem": "golang",
+          "epss": {
+            "cve": "CVE-2026-111497",
+            "percentile": 0.99669,
+            "score": 0.82641
+          },
+          "epss_date": "2026-11-07T12:00:22Z",
+          "fix_state": "fixed",
+          "fixed_in": [
+            "1.2.7"
+          ],
+          "id": "GO-2026-6888",
+          "kev": {
+            "cve": "CVE-2026-111497",
+            "date_added": "2026-10-27"
+          },
+          "kev_cves": [
+            "CVE-2026-111497"
+          ],
+          "kev_snapshot": "2026.11.06",
+          "location": "go.mod",
+          "locations": [
+            "go.mod"
+          ],
+          "new": {
+            "advisory": "published since last scan",
+            "modified": "2026-11-05T23:25:49.434824566Z",
+            "published": "2026-11-05T22:55:15Z",
+            "reason": "unchanged version"
+          },
+          "osv_confirmed": true,
+          "osv_modified": "2026-11-05T23:25:49.434824566Z",
+          "osv_published": "2026-11-05T22:55:15Z",
+          "package": "github.com/andybalholm/brotli",
+          "purl": "pkg:golang/github.com/andybalholm/brotli@v1.2.0",
+          "severity": "Critical",
+          "summary": "In github.com/andybalholm/brotli before v1.2.7, the decompressor allocates memory for Huffman tables and block-type trees on every meta-block header without bounding the cumulative allocations relative to the input size. A small crafted brotli stream containing many empty meta-blocks with new Huffma",
+          "url": "https://github.com/andybalholm/brotli/security/advisories/GHSA-c9gr-gmg4-2vqv",
+          "version": "v1.2.0"
+        },
         {
           "aliases": [
             "CVE-2026-116591",
@@ -166,54 +266,49 @@
             "percentile": 0.26636,
             "score": 0.00333
           },
+          "epss_date": "2026-11-07T12:00:22Z",
           "fix_state": "fixed",
           "fixed_in": [
             "1.20.2"
           ],
           "id": "GO-2026-6865",
           "kev": null,
-          "location": "tools/pipeline/go.mod",
+          "kev_cves": [],
+          "kev_snapshot": "2026.11.06",
+          "location": "go.mod",
+          "locations": [
+            "go.mod",
+            "sdk/go.mod",
+            "tools/pipeline/go.mod"
+          ],
+          "new": {
+            "advisory": "published since last scan",
+            "modified": "2026-11-05T23:15:14.472777299Z",
+            "published": "2026-11-05T22:54:32Z",
+            "reason": "unchanged version"
+          },
           "osv_confirmed": true,
+          "osv_modified": "2026-11-05T23:15:14.472777299Z",
+          "osv_published": "2026-11-05T22:54:32Z",
           "package": "github.com/klauspost/compress",
+          "purl": "pkg:golang/github.com/klauspost/compress@v1.19.1",
           "severity": "High",
           "summary": "Panic on two-block frames in github.com/klauspost/compress",
           "url": "https://github.com/klauspost/compress/security/advisories/GHSA-fpmh-frq8-7rj8",
           "version": "v1.19.1"
-        },
-        {
-          "aliases": [
-            "CVE-2026-111497",
-            "GHSA-c9gr-gmg4-2vqv"
-          ],
-          "ecosystem": "golang",
-          "epss": {
-            "cve": "CVE-2026-111497",
-            "percentile": 0.99669,
-            "score": 0.82641
-          },
-          "fix_state": "fixed",
-          "fixed_in": [
-            "1.2.7"
-          ],
-          "id": "GO-2026-6888",
-          "kev": {
-            "cve": "CVE-2026-111497",
-            "date_added": "2026-10-27"
-          },
-          "location": "go.mod",
-          "osv_confirmed": true,
-          "package": "github.com/andybalholm/brotli",
-          "severity": "Critical",
-          "summary": "In github.com/andybalholm/brotli before v1.2.7, the decompressor allocates memory for Huffman tables and block-type trees on every meta-block header without bounding the cumulative allocations relative to the input size. A small crafted brotli stream containing many empty meta-blocks with new Huffma",
-          "url": "https://github.com/andybalholm/brotli/security/advisories/GHSA-c9gr-gmg4-2vqv",
-          "version": "v1.2.0"
         }
       ],
       "previous_ref": "v2.2.1",
       "release_changed": false,
       "removed": [],
+      "removed_detail": [],
+      "resolved_advisories": 0,
       "resolved_vulnerabilities": [],
+      "still_affected_version_changed": [],
+      "unknown_direction": [],
       "upgraded": [],
+      "version_changes": [],
+      "version_set_changes": [],
       "workflow_new": 0,
       "workflow_resolved": 0
     },
@@ -5461,6 +5556,7 @@
     "description": "Manage secrets, encryption, and privileged access",
     "errors": [],
     "id": "hashicorp__vault",
+    "lock_aliases": {},
     "manifests": [
       ".github/actions/build-ui/action.yml",
       ".github/actions/build-vault/action.yml",
@@ -5572,7 +5668,10 @@
             "GHSA-9r4w-jg96-92mv",
             "GO-2026-5298"
           ],
+          "modified": "2026-08-30T02:10:50.604598602Z",
           "package": "github.com/google/go-attestation",
+          "path": "command/client/go.mod",
+          "published": "2026-06-25T18:43:19Z",
           "score": "",
           "severity": "Unknown",
           "version": "0.6.4"
@@ -5584,7 +5683,10 @@
             "GHSA-9r4w-jg96-92mv",
             "GO-2026-5298"
           ],
+          "modified": "2026-08-30T02:10:50.604598602Z",
           "package": "github.com/google/go-attestation",
+          "path": "go.mod",
+          "published": "2026-06-25T18:43:19Z",
           "score": "",
           "severity": "Unknown",
           "version": "0.6.4"
@@ -5596,7 +5698,10 @@
             "GHSA-9r4w-jg96-92mv",
             "GO-2026-5298"
           ],
+          "modified": "2026-08-30T02:10:50.604598602Z",
           "package": "github.com/google/go-attestation",
+          "path": "sdk/go.mod",
+          "published": "2026-06-25T18:43:19Z",
           "score": "",
           "severity": "Unknown",
           "version": "0.6.4"
@@ -5607,7 +5712,10 @@
             "CVE-2026-49356",
             "GHSA-4x5r-pxfx-6jf8"
           ],
+          "modified": "2026-09-10T03:50:48.280629201Z",
           "package": "@babel/core",
+          "path": "ui/pnpm-lock.yaml",
+          "published": "2026-06-15T17:14:14Z",
           "score": "3.2",
           "severity": "Low",
           "version": "7.26.10"
@@ -5618,7 +5726,10 @@
             "CVE-2026-83608",
             "GHSA-27p8-2357-5qqv"
           ],
+          "modified": "2026-09-08T21:15:03.913503797Z",
           "package": "@xmldom/xmldom",
+          "path": "ui/pnpm-lock.yaml",
+          "published": "2026-09-08T21:02:51Z",
           "score": "8.7",
           "severity": "High",
           "version": "0.9.10"
@@ -5629,7 +5740,10 @@
             "CVE-2026-83609",
             "GHSA-3px3-54cx-rmw9"
           ],
+          "modified": "2026-09-08T21:15:03.928359851Z",
           "package": "@xmldom/xmldom",
+          "path": "ui/pnpm-lock.yaml",
+          "published": "2026-09-08T21:02:33Z",
           "score": "8.7",
           "severity": "High",
           "version": "0.9.10"
@@ -5640,7 +5754,10 @@
             "CVE-2026-83605",
             "GHSA-4w3w-2rp5-g8jm"
           ],
+          "modified": "2026-09-08T20:45:04.329504975Z",
           "package": "@xmldom/xmldom",
+          "path": "ui/pnpm-lock.yaml",
+          "published": "2026-09-08T20:30:51Z",
           "score": "8.7",
           "severity": "High",
           "version": "0.9.10"
@@ -5651,7 +5768,10 @@
             "CVE-2026-83610",
             "GHSA-6gmq-8vp8-gcm6"
           ],
+          "modified": "2026-09-10T03:51:15.231037753Z",
           "package": "@xmldom/xmldom",
+          "path": "ui/pnpm-lock.yaml",
+          "published": "2026-09-02T15:18:20Z",
           "score": "6.3",
           "severity": "Medium",
           "version": "0.9.10"
@@ -5662,7 +5782,10 @@
             "CVE-2026-83611",
             "GHSA-6h8r-xr42-gp59"
           ],
+          "modified": "2026-09-08T21:15:03.934672343Z",
           "package": "@xmldom/xmldom",
+          "path": "ui/pnpm-lock.yaml",
+          "published": "2026-09-08T21:02:13Z",
           "score": "6.9",
           "severity": "Medium",
           "version": "0.9.10"
@@ -5673,7 +5796,10 @@
             "CVE-2026-83612",
             "GHSA-6mj3-qw4j-hgrw"
           ],
+          "modified": "2026-09-08T21:15:03.941065869Z",
           "package": "@xmldom/xmldom",
+          "path": "ui/pnpm-lock.yaml",
+          "published": "2026-09-08T20:59:54Z",
           "score": "8.7",
           "severity": "High",
           "version": "0.9.10"
@@ -5684,7 +5810,10 @@
             "CVE-2026-83613",
             "GHSA-8344-3jmq-59r6"
           ],
+          "modified": "2026-09-08T21:25:58.513143Z",
           "package": "@xmldom/xmldom",
+          "path": "ui/pnpm-lock.yaml",
+          "published": "2026-09-08T21:01:31Z",
           "score": "8.7",
           "severity": "High",
           "version": "0.9.10"
@@ -5695,7 +5824,10 @@
             "CVE-2026-83614",
             "GHSA-93r5-fhx6-vmg9"
           ],
+          "modified": "2026-09-08T21:15:04.187745360Z",
           "package": "@xmldom/xmldom",
+          "path": "ui/pnpm-lock.yaml",
+          "published": "2026-09-08T21:00:41Z",
           "score": "8.7",
           "severity": "High",
           "version": "0.9.10"
@@ -5706,7 +5838,10 @@
             "CVE-2026-83615",
             "GHSA-965w-775f-mr7g"
           ],
+          "modified": "2026-09-08T21:15:04.889305067Z",
           "package": "@xmldom/xmldom",
+          "path": "ui/pnpm-lock.yaml",
+          "published": "2026-09-08T21:00:52Z",
           "score": "8.7",
           "severity": "High",
           "version": "0.9.10"
@@ -5717,7 +5852,10 @@
             "CVE-2026-83616",
             "GHSA-c7q8-3ch8-vqpv"
           ],
+          "modified": "2026-09-08T21:15:04.899638684Z",
           "package": "@xmldom/xmldom",
+          "path": "ui/pnpm-lock.yaml",
+          "published": "2026-09-08T21:03:28Z",
           "score": "8.7",
           "severity": "High",
           "version": "0.9.10"
@@ -5728,7 +5866,10 @@
             "CVE-2026-83606",
             "GHSA-g53g-w8rj-fmg7"
           ],
+          "modified": "2026-09-08T20:45:04.316950373Z",
           "package": "@xmldom/xmldom",
+          "path": "ui/pnpm-lock.yaml",
+          "published": "2026-09-08T20:31:50Z",
           "score": "8.7",
           "severity": "High",
           "version": "0.9.10"
@@ -5739,7 +5880,10 @@
             "CVE-2026-83618",
             "GHSA-vr34-hp96-76pp"
           ],
+          "modified": "2026-09-08T21:15:04.901097321Z",
           "package": "@xmldom/xmldom",
+          "path": "ui/pnpm-lock.yaml",
+          "published": "2026-09-08T21:02:25Z",
           "score": "8.7",
           "severity": "High",
           "version": "0.9.10"
@@ -5750,7 +5894,10 @@
             "CVE-2026-83607",
             "GHSA-w2rr-34g9-rvrj"
           ],
+          "modified": "2026-09-08T20:45:05.335320315Z",
           "package": "@xmldom/xmldom",
+          "path": "ui/pnpm-lock.yaml",
+          "published": "2026-09-08T20:31:08Z",
           "score": "8.7",
           "severity": "High",
           "version": "0.9.10"
@@ -5761,7 +5908,10 @@
             "CVE-2026-45819",
             "GHSA-w5vr-8v7q-w6rv"
           ],
+          "modified": "2026-09-08T21:10:57.707771Z",
           "package": "baseline-browser-mapping",
+          "path": "ui/pnpm-lock.yaml",
+          "published": "2026-08-13T12:31:09Z",
           "score": "6.6",
           "severity": "Medium",
           "version": "2.10.32"
@@ -5772,7 +5922,10 @@
             "CVE-2026-111181",
             "GHSA-27r3-jxmh-p828"
           ],
+          "modified": "2026-10-23T21:00:06.131613693Z",
           "package": "body-parser",
+          "path": "ui/pnpm-lock.yaml",
+          "published": "2026-10-23T20:53:11Z",
           "score": "7.5",
           "severity": "High",
           "version": "1.20.5"
@@ -5783,7 +5936,10 @@
             "CVE-2026-12590",
             "GHSA-v422-hmwv-36x6"
           ],
+          "modified": "2026-09-10T03:50:53.014509971Z",
           "package": "body-parser",
+          "path": "ui/pnpm-lock.yaml",
+          "published": "2026-07-20T23:23:26Z",
           "score": "3.7",
           "severity": "Low",
           "version": "1.20.5"
@@ -5794,7 +5950,10 @@
             "CVE-2026-111181",
             "GHSA-27r3-jxmh-p828"
           ],
+          "modified": "2026-10-23T21:00:06.131613693Z",
           "package": "body-parser",
+          "path": "ui/pnpm-lock.yaml",
+          "published": "2026-10-23T20:53:11Z",
           "score": "7.5",
           "severity": "High",
           "version": "2.2.2"
@@ -5805,7 +5964,10 @@
             "CVE-2026-12590",
             "GHSA-v422-hmwv-36x6"
           ],
+          "modified": "2026-09-10T03:50:53.014509971Z",
           "package": "body-parser",
+          "path": "ui/pnpm-lock.yaml",
+          "published": "2026-07-20T23:23:26Z",
           "score": "3.7",
           "severity": "Low",
           "version": "2.2.2"
@@ -5816,7 +5978,10 @@
             "CVE-2026-13149",
             "GHSA-3jxr-9vmj-r5cp"
           ],
+          "modified": "2026-09-10T03:51:10.092354944Z",
           "package": "brace-expansion",
+          "path": "ui/pnpm-lock.yaml",
+          "published": "2026-07-20T20:51:09Z",
           "score": "7.7",
           "severity": "High",
           "version": "1.1.15"
@@ -5827,7 +5992,10 @@
             "CVE-2026-102276",
             "GHSA-6j4f-fj2g-mc7p"
           ],
+          "modified": "2026-09-30T00:00:03.836613572Z",
           "package": "brace-expansion",
+          "path": "ui/pnpm-lock.yaml",
+          "published": "2026-09-29T23:44:58Z",
           "score": "7.5",
           "severity": "High",
           "version": "1.1.15"
@@ -5838,7 +6006,10 @@
             "CVE-2026-14257",
             "GHSA-mh99-v99m-4gvg"
           ],
+          "modified": "2026-09-10T03:50:12.282849322Z",
           "package": "brace-expansion",
+          "path": "ui/pnpm-lock.yaml",
+          "published": "2026-07-24T21:53:14Z",
           "score": "7.5",
           "severity": "High",
           "version": "1.1.15"
@@ -5849,7 +6020,10 @@
             "CVE-2026-102277",
             "GHSA-q2hr-2g5m-vwhr"
           ],
+          "modified": "2026-09-30T00:00:03.849541183Z",
           "package": "brace-expansion",
+          "path": "ui/pnpm-lock.yaml",
+          "published": "2026-09-29T23:45:39Z",
           "score": "5.3",
           "severity": "Medium",
           "version": "1.1.15"
@@ -5860,7 +6034,10 @@
             "CVE-2026-102278",
             "GHSA-qhr7-859c-m2p7"
           ],
+          "modified": "2026-09-30T00:00:04.402763332Z",
           "package": "brace-expansion",
+          "path": "ui/pnpm-lock.yaml",
+          "published": "2026-09-29T23:45:17Z",
           "score": "7.5",
           "severity": "High",
           "version": "1.1.15"
@@ -5871,7 +6048,10 @@
             "CVE-2026-69152",
             "GHSA-rgw5-rvv9-x895"
           ],
+          "modified": "2026-09-10T03:51:14.535270857Z",
           "package": "brace-expansion",
+          "path": "ui/pnpm-lock.yaml",
+          "published": "2026-08-03T16:35:32Z",
           "score": "7.5",
           "severity": "High",
           "version": "1.1.15"
@@ -5882,7 +6062,10 @@
             "CVE-2026-13149",
             "GHSA-3jxr-9vmj-r5cp"
           ],
+          "modified": "2026-09-10T03:51:10.092354944Z",
           "package": "brace-expansion",
+          "path": "ui/pnpm-lock.yaml",
+          "published": "2026-07-20T20:51:09Z",
           "score": "7.7",
           "severity": "High",
           "version": "2.1.1"
@@ -5893,7 +6076,10 @@
             "CVE-2026-102276",
             "GHSA-6j4f-fj2g-mc7p"
           ],
+          "modified": "2026-09-30T00:00:03.836613572Z",
           "package": "brace-expansion",
+          "path": "ui/pnpm-lock.yaml",
+          "published": "2026-09-29T23:44:58Z",
           "score": "7.5",
           "severity": "High",
           "version": "2.1.1"
@@ -5904,7 +6090,10 @@
             "CVE-2026-14257",
             "GHSA-mh99-v99m-4gvg"
           ],
+          "modified": "2026-09-10T03:50:12.282849322Z",
           "package": "brace-expansion",
+          "path": "ui/pnpm-lock.yaml",
+          "published": "2026-07-24T21:53:14Z",
           "score": "7.5",
           "severity": "High",
           "version": "2.1.1"
@@ -5915,7 +6104,10 @@
             "CVE-2026-102277",
             "GHSA-q2hr-2g5m-vwhr"
           ],
+          "modified": "2026-09-30T00:00:03.849541183Z",
           "package": "brace-expansion",
+          "path": "ui/pnpm-lock.yaml",
+          "published": "2026-09-29T23:45:39Z",
           "score": "5.3",
           "severity": "Medium",
           "version": "2.1.1"
@@ -5926,7 +6118,10 @@
             "CVE-2026-102278",
             "GHSA-qhr7-859c-m2p7"
           ],
+          "modified": "2026-09-30T00:00:04.402763332Z",
           "package": "brace-expansion",
+          "path": "ui/pnpm-lock.yaml",
+          "published": "2026-09-29T23:45:17Z",
           "score": "7.5",
           "severity": "High",
           "version": "2.1.1"
@@ -5937,7 +6132,10 @@
             "CVE-2026-69152",
             "GHSA-rgw5-rvv9-x895"
           ],
+          "modified": "2026-09-10T03:51:14.535270857Z",
           "package": "brace-expansion",
+          "path": "ui/pnpm-lock.yaml",
+          "published": "2026-08-03T16:35:32Z",
           "score": "7.5",
           "severity": "High",
           "version": "2.1.1"
@@ -5948,7 +6146,10 @@
             "CVE-2026-13149",
             "GHSA-3jxr-9vmj-r5cp"
           ],
+          "modified": "2026-09-10T03:51:10.092354944Z",
           "package": "brace-expansion",
+          "path": "ui/pnpm-lock.yaml",
+          "published": "2026-07-20T20:51:09Z",
           "score": "7.7",
           "severity": "High",
           "version": "5.0.6"
@@ -5959,7 +6160,10 @@
             "CVE-2026-102276",
             "GHSA-6j4f-fj2g-mc7p"
           ],
+          "modified": "2026-09-30T00:00:03.836613572Z",
           "package": "brace-expansion",
+          "path": "ui/pnpm-lock.yaml",
+          "published": "2026-09-29T23:44:58Z",
           "score": "7.5",
           "severity": "High",
           "version": "5.0.6"
@@ -5970,7 +6174,10 @@
             "CVE-2026-14257",
             "GHSA-mh99-v99m-4gvg"
           ],
+          "modified": "2026-09-10T03:50:12.282849322Z",
           "package": "brace-expansion",
+          "path": "ui/pnpm-lock.yaml",
+          "published": "2026-07-24T21:53:14Z",
           "score": "7.5",
           "severity": "High",
           "version": "5.0.6"
@@ -5981,7 +6188,10 @@
             "CVE-2026-102277",
             "GHSA-q2hr-2g5m-vwhr"
           ],
+          "modified": "2026-09-30T00:00:03.849541183Z",
           "package": "brace-expansion",
+          "path": "ui/pnpm-lock.yaml",
+          "published": "2026-09-29T23:45:39Z",
           "score": "5.3",
           "severity": "Medium",
           "version": "5.0.6"
@@ -5992,7 +6202,10 @@
             "CVE-2026-102278",
             "GHSA-qhr7-859c-m2p7"
           ],
+          "modified": "2026-09-30T00:00:04.402763332Z",
           "package": "brace-expansion",
+          "path": "ui/pnpm-lock.yaml",
+          "published": "2026-09-29T23:45:17Z",
           "score": "7.5",
           "severity": "High",
           "version": "5.0.6"
@@ -6003,7 +6216,10 @@
             "CVE-2026-69152",
             "GHSA-rgw5-rvv9-x895"
           ],
+          "modified": "2026-09-10T03:51:14.535270857Z",
           "package": "brace-expansion",
+          "path": "ui/pnpm-lock.yaml",
+          "published": "2026-08-03T16:35:32Z",
           "score": "7.5",
           "severity": "High",
           "version": "5.0.6"
@@ -6014,7 +6230,10 @@
             "CVE-2026-73088",
             "GHSA-73wf-gq98-2v4g"
           ],
+          "modified": "2026-09-10T03:51:15.295037659Z",
           "package": "browserslist",
+          "path": "ui/pnpm-lock.yaml",
+          "published": "2026-09-01T16:41:54Z",
           "score": "7.5",
           "severity": "High",
           "version": "4.28.2"
@@ -6025,7 +6244,10 @@
             "CVE-2026-73089",
             "GHSA-c83g-rgw3-j3cx"
           ],
+          "modified": "2026-09-10T03:50:54.622936829Z",
           "package": "browserslist",
+          "path": "ui/pnpm-lock.yaml",
+          "published": "2026-09-01T16:42:13Z",
           "score": "7.5",
           "severity": "High",
           "version": "4.28.2"
@@ -6036,7 +6258,10 @@
             "CVE-2026-85062",
             "GHSA-2wm5-q62r-hmrv"
           ],
+          "modified": "2026-09-08T21:00:06.239800217Z",
           "package": "colord",
+          "path": "ui/pnpm-lock.yaml",
+          "published": "2026-09-08T20:51:57Z",
           "score": "6.9",
           "severity": "Medium",
           "version": "2.9.3"
@@ -6047,7 +6272,10 @@
             "CVE-2026-87776",
             "GHSA-vc2v-76pw-4v95"
           ],
+          "modified": "2026-10-05T23:45:07.378615963Z",
           "package": "compression",
+          "path": "ui/pnpm-lock.yaml",
+          "published": "2026-10-05T23:28:01Z",
           "score": "7.5",
           "severity": "High",
           "version": "1.8.1"
@@ -6058,7 +6286,10 @@
             "CVE-2026-24001",
             "GHSA-73rr-hh4g-fpgx"
           ],
+          "modified": "2026-09-10T03:50:32.703687207Z",
           "package": "diff",
+          "path": "ui/pnpm-lock.yaml",
+          "published": "2026-01-14T21:34:12Z",
           "score": "2.7",
           "severity": "Low",
           "version": "7.0.0"
@@ -6069,7 +6300,10 @@
             "CVE-2026-109345",
             "GHSA-6688-9rhm-gjv2"
           ],
+          "modified": "2026-10-13T02:56:32.032824370Z",
           "package": "dompurify",
+          "path": "ui/pnpm-lock.yaml",
+          "published": "2026-10-05T23:43:53Z",
           "score": "",
           "severity": "Unknown",
           "version": "3.4.15"
@@ -6080,7 +6314,10 @@
             "CVE-2026-116802",
             "GHSA-c6gr-qvv4-5v3f"
           ],
+          "modified": "2026-10-27T10:56:08.682782458Z",
           "package": "dompurify",
+          "path": "ui/pnpm-lock.yaml",
+          "published": "2026-10-22T16:24:23Z",
           "score": "",
           "severity": "Unknown",
           "version": "3.4.15"
@@ -6091,7 +6328,10 @@
             "CVE-2026-116804",
             "GHSA-cg2g-xh64-v4q7"
           ],
+          "modified": "2026-10-27T10:56:08.031469803Z",
           "package": "dompurify",
+          "path": "ui/pnpm-lock.yaml",
+          "published": "2026-10-22T16:25:31Z",
           "score": "9.2",
           "severity": "Critical",
           "version": "3.4.15"
@@ -6102,7 +6342,10 @@
             "CVE-2026-116803",
             "GHSA-mrv2-3pqr-j5jr"
           ],
+          "modified": "2026-10-27T10:56:05.613459690Z",
           "package": "dompurify",
+          "path": "ui/pnpm-lock.yaml",
+          "published": "2026-10-22T16:24:52Z",
           "score": "7.6",
           "severity": "High",
           "version": "3.4.15"
@@ -6113,7 +6356,10 @@
             "CVE-2026-109344",
             "GHSA-p98j-92pf-mc4p"
           ],
+          "modified": "2026-10-13T02:56:22.039126210Z",
           "package": "dompurify",
+          "path": "ui/pnpm-lock.yaml",
+          "published": "2026-09-30T15:37:57Z",
           "score": "2.3",
           "severity": "Low",
           "version": "3.4.15"
@@ -6124,7 +6370,10 @@
             "CVE-2026-102599",
             "GHSA-2gc4-cqfq-p2gv"
           ],
+          "modified": "2026-09-30T00:00:03.845828732Z",
           "package": "engine.io",
+          "path": "ui/pnpm-lock.yaml",
+          "published": "2026-09-29T23:44:33Z",
           "score": "7.5",
           "severity": "High",
           "version": "6.6.8"
@@ -6135,7 +6384,10 @@
             "CVE-2026-110725",
             "GHSA-333x-w4r6-6crp"
           ],
+          "modified": "2026-10-23T21:45:04.900311356Z",
           "package": "fast-uri",
+          "path": "ui/pnpm-lock.yaml",
+          "published": "2026-10-23T21:36:40Z",
           "score": "3.7",
           "severity": "Low",
           "version": "3.1.2"
@@ -6146,7 +6398,10 @@
             "CVE-2026-13676",
             "GHSA-4c8g-83qw-93j6"
           ],
+          "modified": "2026-09-11T15:45:36.494239136Z",
           "package": "fast-uri",
+          "path": "ui/pnpm-lock.yaml",
+          "published": "2026-07-21T19:03:11Z",
           "score": "7.5",
           "severity": "High",
           "version": "3.1.2"
@@ -6157,7 +6412,10 @@
             "CVE-2026-18446",
             "GHSA-7p8r-x3mc-p8w7"
           ],
+          "modified": "2026-09-10T03:50:53.468438344Z",
           "package": "fast-uri",
+          "path": "ui/pnpm-lock.yaml",
+          "published": "2026-08-03T19:16:43Z",
           "score": "7.5",
           "severity": "High",
           "version": "3.1.2"
@@ -6168,7 +6426,10 @@
             "CVE-2026-75975",
             "GHSA-f65p-4m7j-42xc"
           ],
+          "modified": "2026-09-10T03:51:15.292437844Z",
           "package": "fast-uri",
+          "path": "ui/pnpm-lock.yaml",
+          "published": "2026-09-02T15:43:30Z",
           "score": "7.5",
           "severity": "High",
           "version": "3.1.2"
@@ -6179,7 +6440,10 @@
             "CVE-2026-75899",
             "GHSA-fph4-wmhf-6fwf"
           ],
+          "modified": "2026-09-10T03:50:54.420840001Z",
           "package": "fast-uri",
+          "path": "ui/pnpm-lock.yaml",
+          "published": "2026-09-02T15:42:39Z",
           "score": "7.5",
           "severity": "High",
           "version": "3.1.2"
@@ -6190,7 +6454,10 @@
             "CVE-2026-86472",
             "GHSA-hrr3-gc8f-f4qj"
           ],
+          "modified": "2026-09-30T00:00:04.426165475Z",
           "package": "fast-uri",
+          "path": "ui/pnpm-lock.yaml",
+          "published": "2026-09-29T23:54:25Z",
           "score": "4.8",
           "severity": "Medium",
           "version": "3.1.2"
@@ -6201,7 +6468,10 @@
             "CVE-2026-76172",
             "GHSA-jqff-g426-hqxp"
           ],
+          "modified": "2026-09-10T03:50:54.467662526Z",
           "package": "fast-uri",
+          "path": "ui/pnpm-lock.yaml",
+          "published": "2026-09-02T15:41:53Z",
           "score": "7.5",
           "severity": "High",
           "version": "3.1.2"
@@ -6212,7 +6482,10 @@
             "CVE-2026-84292",
             "GHSA-qw65-cvwx-89v3"
           ],
+          "modified": "2026-09-28T21:45:03.859117836Z",
           "package": "fast-uri",
+          "path": "ui/pnpm-lock.yaml",
+          "published": "2026-09-28T21:24:39Z",
           "score": "7.5",
           "severity": "High",
           "version": "3.1.2"
@@ -6223,7 +6496,10 @@
             "CVE-2026-16221",
             "GHSA-v2hh-gcrm-f6hx"
           ],
+          "modified": "2026-09-10T03:51:12.051886648Z",
           "package": "fast-uri",
+          "path": "ui/pnpm-lock.yaml",
+          "published": "2026-07-21T22:08:28Z",
           "score": "7.5",
           "severity": "High",
           "version": "3.1.2"
@@ -6234,7 +6510,10 @@
             "CVE-2026-110306",
             "GHSA-w74x-v6f9-j3xg"
           ],
+          "modified": "2026-10-23T21:45:04.896137439Z",
           "package": "fast-uri",
+          "path": "ui/pnpm-lock.yaml",
+          "published": "2026-10-23T21:41:36Z",
           "score": "6.1",
           "severity": "Medium",
           "version": "3.1.2"
@@ -6245,7 +6524,10 @@
             "CVE-2026-110095",
             "GHSA-xhq7-xmqj-769h"
           ],
+          "modified": "2026-10-23T21:45:04.902389903Z",
           "package": "fast-uri",
+          "path": "ui/pnpm-lock.yaml",
+          "published": "2026-10-23T21:39:34Z",
           "score": "3.7",
           "severity": "Low",
           "version": "3.1.2"
@@ -6256,7 +6538,10 @@
             "CVE-2026-45820",
             "GHSA-px8p-9vwx-vf98"
           ],
+          "modified": "2026-09-10T03:50:52.758792289Z",
           "package": "fflate",
+          "path": "ui/pnpm-lock.yaml",
+          "published": "2026-07-22T09:32:13Z",
           "score": "7.5",
           "severity": "High",
           "version": "0.4.8"
@@ -6267,7 +6552,10 @@
             "CVE-2026-111755",
             "GHSA-8r9p-f939-6h3c"
           ],
+          "modified": "2026-10-20T18:00:04.701467015Z",
           "package": "follow-redirects",
+          "path": "ui/pnpm-lock.yaml",
+          "published": "2026-10-20T17:53:05Z",
           "score": "8.2",
           "severity": "High",
           "version": "1.16.0"
@@ -6278,7 +6566,10 @@
             "CVE-2026-116689",
             "GHSA-mrwp-f3q8-3g9p"
           ],
+          "modified": "2026-10-30T23:15:06.315251750Z",
           "package": "follow-redirects",
+          "path": "ui/pnpm-lock.yaml",
+          "published": "2026-10-30T22:59:33Z",
           "score": "8.2",
           "severity": "High",
           "version": "1.16.0"
@@ -6289,7 +6580,10 @@
             "CVE-2026-111756",
             "GHSA-q3jh-wrc6-jgq8"
           ],
+          "modified": "2026-10-20T18:15:04.527852751Z",
           "package": "follow-redirects",
+          "path": "ui/pnpm-lock.yaml",
+          "published": "2026-10-20T17:58:04Z",
           "score": "8.2",
           "severity": "High",
           "version": "1.16.0"
@@ -6300,7 +6594,10 @@
             "CVE-2026-118773",
             "GHSA-3g3m-2fjr-6pw4"
           ],
+          "modified": "2026-10-30T23:15:04.503965732Z",
           "package": "glob",
+          "path": "ui/pnpm-lock.yaml",
+          "published": "2026-10-30T23:09:11Z",
           "score": "6.3",
           "severity": "Medium",
           "version": "10.5.0"
@@ -6311,7 +6608,10 @@
             "CVE-2026-118773",
             "GHSA-3g3m-2fjr-6pw4"
           ],
+          "modified": "2026-10-30T23:15:04.503965732Z",
           "package": "glob",
+          "path": "ui/pnpm-lock.yaml",
+          "published": "2026-10-30T23:09:11Z",
           "score": "6.3",
           "severity": "Medium",
           "version": "13.0.6"
@@ -6322,7 +6622,10 @@
             "CVE-2026-118773",
             "GHSA-3g3m-2fjr-6pw4"
           ],
+          "modified": "2026-10-30T23:15:04.503965732Z",
           "package": "glob",
+          "path": "ui/pnpm-lock.yaml",
+          "published": "2026-10-30T23:09:11Z",
           "score": "6.3",
           "severity": "Medium",
           "version": "9.3.5"
@@ -6333,7 +6636,10 @@
             "CVE-2026-106446",
             "GHSA-8r5x-fm3f-whwj"
           ],
+          "modified": "2026-10-08T18:00:08.902906060Z",
           "package": "handlebars",
+          "path": "ui/pnpm-lock.yaml",
+          "published": "2026-10-08T17:52:32Z",
           "score": "9.8",
           "severity": "Critical",
           "version": "4.7.9"
@@ -6344,7 +6650,10 @@
             "CVE-2026-106445",
             "GHSA-p8wg-vrv2-v86f"
           ],
+          "modified": "2026-10-12T14:45:06.527043960Z",
           "package": "handlebars",
+          "path": "ui/pnpm-lock.yaml",
+          "published": "2026-10-08T17:52:26Z",
           "score": "9.2",
           "severity": "Critical",
           "version": "4.7.9"
@@ -6355,7 +6664,10 @@
             "CVE-2026-106444",
             "GHSA-xw65-4hp5-5hc7"
           ],
+          "modified": "2026-10-08T18:00:09.713255773Z",
           "package": "handlebars",
+          "path": "ui/pnpm-lock.yaml",
+          "published": "2026-10-08T17:52:37Z",
           "score": "4.7",
           "severity": "Medium",
           "version": "4.7.9"
@@ -6366,7 +6678,10 @@
             "CVE-2026-59879",
             "GHSA-v56q-mh7h-f735"
           ],
+          "modified": "2026-09-16T19:00:05.205190333Z",
           "package": "immutable",
+          "path": "ui/pnpm-lock.yaml",
+          "published": "2026-07-21T18:36:27Z",
           "score": "8.7",
           "severity": "High",
           "version": "5.1.5"
@@ -6377,7 +6692,10 @@
             "CVE-2026-59880",
             "GHSA-xvcm-6775-5m9r"
           ],
+          "modified": "2026-09-10T03:51:12.758661308Z",
           "package": "immutable",
+          "path": "ui/pnpm-lock.yaml",
+          "published": "2026-07-21T19:02:33Z",
           "score": "8.7",
           "severity": "High",
           "version": "5.1.5"
@@ -6388,7 +6706,10 @@
             "CVE-2026-84375",
             "GHSA-2883-xcg3-v3hh"
           ],
+          "modified": "2026-09-08T21:30:05.575808098Z",
           "package": "js-yaml",
+          "path": "ui/pnpm-lock.yaml",
+          "published": "2026-09-08T21:24:51Z",
           "score": "7.5",
           "severity": "High",
           "version": "4.1.1"
@@ -6399,7 +6720,10 @@
             "CVE-2026-59869",
             "GHSA-52cp-r559-cp3m"
           ],
+          "modified": "2026-09-10T03:50:12.263307536Z",
           "package": "js-yaml",
+          "path": "ui/pnpm-lock.yaml",
+          "published": "2026-07-20T21:19:09Z",
           "score": "7.5",
           "severity": "High",
           "version": "4.1.1"
@@ -6409,7 +6733,10 @@
           "ids": [
             "GHSA-5p4m-2wfm-xmqj"
           ],
+          "modified": "2026-09-10T03:50:53.407436483Z",
           "package": "js-yaml",
+          "path": "ui/pnpm-lock.yaml",
+          "published": "2026-08-06T20:27:32Z",
           "score": "7.5",
           "severity": "High",
           "version": "4.1.1"
@@ -6420,7 +6747,10 @@
             "CVE-2026-53550",
             "GHSA-h67p-54hq-rp68"
           ],
+          "modified": "2026-09-10T03:50:49.729923880Z",
           "package": "js-yaml",
+          "path": "ui/pnpm-lock.yaml",
+          "published": "2026-06-15T17:15:07Z",
           "score": "5.3",
           "severity": "Medium",
           "version": "4.1.1"
@@ -6431,7 +6761,10 @@
             "CVE-2026-8657",
             "GHSA-j4fx-xxwh-2485"
           ],
+          "modified": "2026-09-10T03:51:05.988087881Z",
           "package": "jsondiffpatch",
+          "path": "ui/pnpm-lock.yaml",
+          "published": "2026-05-16T06:30:29Z",
           "score": "8.2",
           "severity": "High",
           "version": "0.7.3"
@@ -6442,7 +6775,10 @@
             "CVE-2026-59887",
             "GHSA-v245-v573-v5vm"
           ],
+          "modified": "2026-09-10T03:51:12.054179363Z",
           "package": "linkify-it",
+          "path": "ui/pnpm-lock.yaml",
+          "published": "2026-07-21T19:06:09Z",
           "score": "7.5",
           "severity": "High",
           "version": "5.0.1"
@@ -6453,7 +6789,10 @@
             "CVE-2026-2950",
             "GHSA-f23m-r3pf-42rh"
           ],
+          "modified": "2026-11-03T15:45:08.465610798Z",
           "package": "lodash",
+          "path": "ui/pnpm-lock.yaml",
+          "published": "2026-04-01T23:50:27Z",
           "score": "6.5",
           "severity": "Medium",
           "version": "4.18.0"
@@ -6464,7 +6803,10 @@
             "CVE-2026-2950",
             "GHSA-f23m-r3pf-42rh"
           ],
+          "modified": "2026-11-03T15:45:08.465610798Z",
           "package": "lodash-es",
+          "path": "ui/pnpm-lock.yaml",
+          "published": "2026-04-01T23:50:27Z",
           "score": "6.5",
           "severity": "Medium",
           "version": "4.18.0"
@@ -6474,7 +6816,10 @@
           "ids": [
             "GHSA-253c-mchw-3w2r"
           ],
+          "modified": "2026-09-29T18:15:04.692324591Z",
           "package": "markdown-it",
+          "path": "ui/pnpm-lock.yaml",
+          "published": "2026-09-29T17:57:56Z",
           "score": "6.3",
           "severity": "Medium",
           "version": "14.1.1"
@@ -6485,7 +6830,10 @@
             "CVE-2026-48988",
             "GHSA-6v5v-wf23-fmfq"
           ],
+          "modified": "2026-09-10T03:51:08.074107342Z",
           "package": "markdown-it",
+          "path": "ui/pnpm-lock.yaml",
+          "published": "2026-06-15T20:41:06Z",
           "score": "5.3",
           "severity": "Medium",
           "version": "14.1.1"
@@ -6496,7 +6844,10 @@
             "CVE-2026-111758",
             "GHSA-gfr2-rv44-r23c"
           ],
+          "modified": "2026-10-20T20:45:05.953469039Z",
           "package": "markdown-it",
+          "path": "ui/pnpm-lock.yaml",
+          "published": "2026-10-20T20:28:44Z",
           "score": "7.5",
           "severity": "High",
           "version": "14.1.1"
@@ -6507,7 +6858,10 @@
             "CVE-2026-111759",
             "GHSA-r7fv-28h4-cvq7"
           ],
+          "modified": "2026-10-20T14:45:03.780912898Z",
           "package": "markdown-it",
+          "path": "ui/pnpm-lock.yaml",
+          "published": "2026-10-20T14:34:50Z",
           "score": "7.5",
           "severity": "High",
           "version": "14.1.1"
@@ -6518,7 +6872,10 @@
             "CVE-2026-111766",
             "GHSA-vfgh-jcmw-g37q"
           ],
+          "modified": "2026-10-20T20:15:05.220039200Z",
           "package": "markdown-it",
+          "path": "ui/pnpm-lock.yaml",
+          "published": "2026-10-20T20:08:19Z",
           "score": "3.7",
           "severity": "Low",
           "version": "14.1.1"
@@ -6529,7 +6886,10 @@
             "CVE-2026-118764",
             "GHSA-g3hv-75wg-m249"
           ],
+          "modified": "2026-11-04T17:01:25.850114200Z",
           "package": "minimatch",
+          "path": "ui/pnpm-lock.yaml",
+          "published": "2026-10-30T23:09:55Z",
           "score": "6.9",
           "severity": "Medium",
           "version": "10.2.5"
@@ -6540,7 +6900,10 @@
             "CVE-2026-118764",
             "GHSA-g3hv-75wg-m249"
           ],
+          "modified": "2026-11-04T17:01:25.850114200Z",
           "package": "minimatch",
+          "path": "ui/pnpm-lock.yaml",
+          "published": "2026-10-30T23:09:55Z",
           "score": "6.9",
           "severity": "Medium",
           "version": "7.4.9"
@@ -6551,7 +6914,10 @@
             "CVE-2026-118764",
             "GHSA-g3hv-75wg-m249"
           ],
+          "modified": "2026-11-04T17:01:25.850114200Z",
           "package": "minimatch",
+          "path": "ui/pnpm-lock.yaml",
+          "published": "2026-10-30T23:09:55Z",
           "score": "6.9",
           "severity": "Medium",
           "version": "8.0.7"
@@ -6562,7 +6928,10 @@
             "CVE-2026-118764",
             "GHSA-g3hv-75wg-m249"
           ],
+          "modified": "2026-11-04T17:01:25.850114200Z",
           "package": "minimatch",
+          "path": "ui/pnpm-lock.yaml",
+          "published": "2026-10-30T23:09:55Z",
           "score": "6.9",
           "severity": "Medium",
           "version": "9.0.9"
@@ -6573,7 +6942,10 @@
             "CVE-2026-5078",
             "GHSA-4vj7-5mj6-jm8m"
           ],
+          "modified": "2026-09-10T03:51:10.338435570Z",
           "package": "morgan",
+          "path": "ui/pnpm-lock.yaml",
+          "published": "2026-07-10T14:32:15Z",
           "score": "5.3",
           "severity": "Medium",
           "version": "1.10.1"
@@ -6584,7 +6956,10 @@
             "CVE-2026-87859",
             "GHSA-9f6g-j8ch-79g4"
           ],
+          "modified": "2026-09-28T21:45:03.858040877Z",
           "package": "morgan",
+          "path": "ui/pnpm-lock.yaml",
+          "published": "2026-09-28T21:33:08Z",
           "score": "5.3",
           "severity": "Medium",
           "version": "1.10.1"
@@ -6595,7 +6970,10 @@
             "CVE-2026-15603",
             "GHSA-jxfw-x594-9x9m"
           ],
+          "modified": "2026-09-08T21:45:04.626840405Z",
           "package": "morgan",
+          "path": "ui/pnpm-lock.yaml",
+          "published": "2026-09-08T21:28:26Z",
           "score": "5.3",
           "severity": "Medium",
           "version": "1.10.1"
@@ -6606,7 +6984,10 @@
             "CVE-2026-67214",
             "GHSA-28wg-ghj8-5hjv"
           ],
+          "modified": "2026-09-10T03:50:51.191256883Z",
           "package": "nanoid",
+          "path": "ui/pnpm-lock.yaml",
+          "published": "2026-07-29T15:31:12Z",
           "score": "8.2",
           "severity": "High",
           "version": "3.3.12"
@@ -6617,7 +6998,10 @@
             "CVE-2026-67213",
             "GHSA-2v37-7h3g-55p8"
           ],
+          "modified": "2026-09-10T03:50:51.243328986Z",
           "package": "nanoid",
+          "path": "ui/pnpm-lock.yaml",
+          "published": "2026-07-29T15:31:12Z",
           "score": "8.2",
           "severity": "High",
           "version": "3.3.12"
@@ -6628,7 +7012,10 @@
             "CVE-2026-69153",
             "GHSA-fxqj-rqcc-2cmp"
           ],
+          "modified": "2026-09-10T03:50:53.572374167Z",
           "package": "postcss",
+          "path": "ui/pnpm-lock.yaml",
+          "published": "2026-08-03T17:11:39Z",
           "score": "6.3",
           "severity": "Medium",
           "version": "8.5.15"
@@ -6639,7 +7026,10 @@
             "CVE-2026-73646",
             "GHSA-r28c-9q8g-f849"
           ],
+          "modified": "2026-09-10T03:50:52.854537677Z",
           "package": "postcss",
+          "path": "ui/pnpm-lock.yaml",
+          "published": "2026-07-24T16:24:55Z",
           "score": "7.5",
           "severity": "High",
           "version": "8.5.15"
@@ -6650,7 +7040,10 @@
             "CVE-2026-104844",
             "GHSA-rj75-hqrm-r3gf"
           ],
+          "modified": "2026-10-26T14:16:59.921540799Z",
           "package": "postcss-selector-parser",
+          "path": "ui/pnpm-lock.yaml",
+          "published": "2026-10-05T22:53:54Z",
           "score": "5.9",
           "severity": "Medium",
           "version": "7.1.1"
@@ -6661,7 +7054,10 @@
             "CVE-2026-9358",
             "GHSA-w9m9-85wc-3x92"
           ],
+          "modified": "2026-09-10T03:50:47.767644603Z",
           "package": "postcss-selector-parser",
+          "path": "ui/pnpm-lock.yaml",
+          "published": "2026-05-26T13:30:30Z",
           "score": "4.3",
           "severity": "Medium",
           "version": "7.1.1"
@@ -6672,7 +7068,10 @@
             "CVE-2026-90711",
             "GHSA-jqcg-44mw-7w3h"
           ],
+          "modified": "2026-10-05T23:45:07.322157228Z",
           "package": "proxy-addr",
+          "path": "ui/pnpm-lock.yaml",
+          "published": "2026-10-05T23:30:26Z",
           "score": "9.1",
           "severity": "Critical",
           "version": "2.0.7"
@@ -6683,7 +7082,10 @@
             "CVE-2026-82417",
             "GHSA-4mjr-xmp4-gh2g"
           ],
+          "modified": "2026-09-10T03:51:14.991984096Z",
           "package": "qs",
+          "path": "ui/pnpm-lock.yaml",
+          "published": "2026-09-02T14:45:13Z",
           "score": "6.3",
           "severity": "Medium",
           "version": "6.14.1"
@@ -6694,7 +7096,10 @@
             "CVE-2026-110816",
             "GHSA-6pq8-jhm2-2vcw"
           ],
+          "modified": "2026-10-27T16:15:05.324423680Z",
           "package": "qs",
+          "path": "ui/pnpm-lock.yaml",
+          "published": "2026-10-27T16:10:55Z",
           "score": "6.3",
           "severity": "Medium",
           "version": "6.14.1"
@@ -6705,7 +7110,10 @@
             "CVE-2026-8723",
             "GHSA-q8mj-m7cp-5q26"
           ],
+          "modified": "2026-09-10T03:50:55.285123128Z",
           "package": "qs",
+          "path": "ui/pnpm-lock.yaml",
+          "published": "2026-05-22T17:27:19Z",
           "score": "6.3",
           "severity": "Medium",
           "version": "6.14.1"
@@ -6716,7 +7124,10 @@
             "CVE-2026-2391",
             "GHSA-w7fw-mjwx-w883"
           ],
+          "modified": "2026-09-10T03:50:35.973235487Z",
           "package": "qs",
+          "path": "ui/pnpm-lock.yaml",
+          "published": "2026-02-12T17:04:39Z",
           "score": "3.7",
           "severity": "Low",
           "version": "6.14.1"
@@ -6727,7 +7138,10 @@
             "CVE-2026-82417",
             "GHSA-4mjr-xmp4-gh2g"
           ],
+          "modified": "2026-09-10T03:51:14.991984096Z",
           "package": "qs",
+          "path": "ui/pnpm-lock.yaml",
+          "published": "2026-09-02T14:45:13Z",
           "score": "6.3",
           "severity": "Medium",
           "version": "6.15.2"
@@ -6738,7 +7152,10 @@
             "CVE-2026-110816",
             "GHSA-6pq8-jhm2-2vcw"
           ],
+          "modified": "2026-10-27T16:15:05.324423680Z",
           "package": "qs",
+          "path": "ui/pnpm-lock.yaml",
+          "published": "2026-10-27T16:10:55Z",
           "score": "6.3",
           "severity": "Medium",
           "version": "6.15.2"
@@ -6749,7 +7166,10 @@
             "CVE-2026-82562",
             "GHSA-x5fp-wj9c-mxmx"
           ],
+          "modified": "2026-09-10T03:50:54.569331980Z",
           "package": "qs",
+          "path": "ui/pnpm-lock.yaml",
+          "published": "2026-09-02T14:46:57Z",
           "score": "6.3",
           "severity": "Medium",
           "version": "6.15.2"
@@ -6760,7 +7180,10 @@
             "CVE-2026-13311",
             "GHSA-395f-4hp3-45gv"
           ],
+          "modified": "2026-09-10T03:51:10.090834688Z",
           "package": "shell-quote",
+          "path": "ui/pnpm-lock.yaml",
+          "published": "2026-07-20T21:49:34Z",
           "score": "8.7",
           "severity": "High",
           "version": "1.8.4"
@@ -6771,7 +7194,10 @@
             "CVE-2026-102422",
             "GHSA-pqg4-j6r4-53mv"
           ],
+          "modified": "2026-10-06T13:45:06.393196831Z",
           "package": "shell-quote",
+          "path": "ui/pnpm-lock.yaml",
+          "published": "2026-10-06T13:40:36Z",
           "score": "9.2",
           "severity": "Critical",
           "version": "1.8.4"
@@ -6782,7 +7208,10 @@
             "CVE-2026-69185",
             "GHSA-2m8v-j782-fhvr"
           ],
+          "modified": "2026-09-10T03:50:53.268104584Z",
           "package": "socket.io-parser",
+          "path": "ui/pnpm-lock.yaml",
+          "published": "2026-08-03T19:09:44Z",
           "score": "7.5",
           "severity": "High",
           "version": "4.2.6"
@@ -6793,7 +7222,10 @@
             "CVE-2026-93749",
             "GHSA-68fv-2mgg-jv7q"
           ],
+          "modified": "2026-10-05T23:45:07.974936711Z",
           "package": "source-map-js",
+          "path": "ui/pnpm-lock.yaml",
+          "published": "2026-09-18T18:31:44Z",
           "score": "8.7",
           "severity": "High",
           "version": "1.2.1"
@@ -6805,7 +7237,10 @@
             "CVE-2026-41988",
             "GHSA-w5hq-g745-h8pq"
           ],
+          "modified": "2026-09-10T03:51:03.663336650Z",
           "package": "uuid",
+          "path": "ui/pnpm-lock.yaml",
+          "published": "2026-04-22T20:53:24Z",
           "score": "7.5",
           "severity": "High",
           "version": "8.3.2"
@@ -6817,7 +7252,10 @@
             "CVE-2026-41988",
             "GHSA-w5hq-g745-h8pq"
           ],
+          "modified": "2026-09-10T03:51:03.663336650Z",
           "package": "uuid",
+          "path": "ui/pnpm-lock.yaml",
+          "published": "2026-04-22T20:53:24Z",
           "score": "7.5",
           "severity": "High",
           "version": "9.0.1"
@@ -6828,7 +7266,10 @@
             "CVE-2026-54490",
             "GHSA-mp7j-qc5w-4988"
           ],
+          "modified": "2026-09-10T03:50:52.769661814Z",
           "package": "websocket-driver",
+          "path": "ui/pnpm-lock.yaml",
+          "published": "2026-07-15T22:08:17Z",
           "score": "6.3",
           "severity": "Medium",
           "version": "0.7.4"
@@ -6839,13 +7280,23 @@
             "CVE-2026-54466",
             "GHSA-xv26-6w52-cph6"
           ],
+          "modified": "2026-09-10T03:51:12.671093404Z",
           "package": "websocket-driver",
+          "path": "ui/pnpm-lock.yaml",
+          "published": "2026-07-15T22:07:24Z",
           "score": "9.2",
           "severity": "Critical",
           "version": "0.7.4"
         }
       ],
       "warning": null
+    },
+    "osv_api": {
+      "available": true,
+      "queried_at": "2026-11-09T01:36:28+00:00",
+      "states": {
+        "confirmed": 1
+      }
     },
     "ref": "v2.2.1",
     "ref_kind": "release",
@@ -6860,15 +7311,57 @@
     },
     "released_at": "2026-10-22T21:59:36Z",
     "repository": "hashicorp/vault",
+    "sbom_sha256": "0e4c6b8e61a9dd6183ca41a1990247e179603e66fed4e8b8cf09e7b7a0784f8e",
     "sbomlyze_diff": {
       "added": 0,
+      "baseline": {
+        "attempt": "1",
+        "run_id": "41380955266"
+      },
       "changed": 0,
+      "contract": "sbomlyze-diff-0.7",
       "drift": {},
       "findings": [
-        "0 version changes among 1,999 shared packages \u2014 no actual upgrades",
+        "0 version changes among 1,939 shared packages \u2014 no actual upgrades",
         "Core system packages stable: golang (1,743), github (125), library (71), file (60) unchanged"
       ],
-      "removed": 0
+      "occurrences": {
+        "added": [],
+        "digest_coverage": {
+          "after_only": 0,
+          "before_only": 0,
+          "by_kind": {
+            "go-h1": 1718
+          },
+          "comparable": 1718,
+          "disjoint_kinds": 0,
+          "packages_total": 1939,
+          "same_version_pairs": 1939
+        },
+        "file_changes": [],
+        "file_coverage": {
+          "ambiguous_paths": 0,
+          "config_unknown": 0,
+          "files_compared": 60,
+          "files_unverified": 0,
+          "owned_files_after": 0,
+          "unowned_files_after": 0
+        },
+        "files_added": [],
+        "files_removed": [],
+        "integrity_changes": [],
+        "license_changes": [],
+        "metadata_changes": [],
+        "moved": [],
+        "owned_file_drift": [],
+        "removed": [],
+        "source_change": null,
+        "version_changes": [],
+        "version_set_changes": []
+      },
+      "previous_sbom_sha256": "0827864e1db1c8651e675b4d4a384d46ea71695f59f284839f836f1ad645768f",
+      "removed": 0,
+      "sbom_sha256": "0e4c6b8e61a9dd6183ca41a1990247e179603e66fed4e8b8cf09e7b7a0784f8e"
     },
     "scanned_at": "2026-11-08T05:53:30+00:00",
     "scorecard": {
@@ -6961,6 +7454,7 @@
           "percentile": 0.99669,
           "score": 0.82641
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "1.2.7"
@@ -6970,9 +7464,19 @@
           "cve": "CVE-2026-111497",
           "date_added": "2026-10-27"
         },
+        "kev_cves": [
+          "CVE-2026-111497"
+        ],
+        "kev_snapshot": "2026.11.06",
         "location": "go.mod",
+        "locations": [
+          "go.mod"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-11-05T23:25:49.434824566Z",
+        "osv_published": "2026-11-05T22:55:15Z",
         "package": "github.com/andybalholm/brotli",
+        "purl": "pkg:golang/github.com/andybalholm/brotli@v1.2.0",
         "severity": "Critical",
         "summary": "In github.com/andybalholm/brotli before v1.2.7, the decompressor allocates memory for Huffman tables and block-type trees on every meta-block header without bounding the cumulative allocations relative to the input size. A small crafted brotli stream containing many empty meta-blocks with new Huffma",
         "url": "https://github.com/andybalholm/brotli/security/advisories/GHSA-c9gr-gmg4-2vqv",
@@ -6988,13 +7492,23 @@
           "percentile": 0.30652,
           "score": 0.00366
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "not-fixed",
         "fixed_in": [],
         "id": "GHSA-mgcc-cww5-fp2q",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "command/client/go.mod",
+        "locations": [
+          "command/client/go.mod",
+          "go.mod"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-10-27T19:15:23.147827328Z",
+        "osv_published": "2026-10-27T19:01:30Z",
         "package": "github.com/go-jose/go-jose/v3",
+        "purl": "pkg:golang/github.com/go-jose/go-jose/v3@v3.0.5",
         "severity": "High",
         "summary": "Go JOSE: DoS when parsing JWKs that contain RSA keys",
         "url": "https://github.com/advisories/GHSA-mgcc-cww5-fp2q",
@@ -7010,15 +7524,37 @@
           "percentile": 0.30652,
           "score": 0.00366
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "4.1.6"
         ],
         "id": "GHSA-mgcc-cww5-fp2q",
         "kev": null,
-        "location": "api/auth/kubernetes/go.mod",
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
+        "location": "api/auth/approle/go.mod",
+        "locations": [
+          "api/auth/approle/go.mod",
+          "api/auth/aws/go.mod",
+          "api/auth/azure/go.mod",
+          "api/auth/cert/go.mod",
+          "api/auth/gcp/go.mod",
+          "api/auth/kubernetes/go.mod",
+          "api/auth/ldap/go.mod",
+          "api/auth/userpass/go.mod",
+          "api/go.mod",
+          "command/base/go.mod",
+          "command/client/go.mod",
+          "go.mod",
+          "internalshared/go.mod",
+          "sdk/go.mod"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-10-27T19:15:23.147827328Z",
+        "osv_published": "2026-10-27T19:01:30Z",
         "package": "github.com/go-jose/go-jose/v4",
+        "purl": "pkg:golang/github.com/go-jose/go-jose/v4@v4.1.5",
         "severity": "High",
         "summary": "Go JOSE: DoS when parsing JWKs that contain RSA keys",
         "url": "https://github.com/advisories/GHSA-mgcc-cww5-fp2q",
@@ -7035,15 +7571,26 @@
           "percentile": 0.26636,
           "score": 0.00333
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "1.20.2"
         ],
         "id": "GO-2026-6865",
         "kev": null,
-        "location": "tools/pipeline/go.mod",
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
+        "location": "go.mod",
+        "locations": [
+          "go.mod",
+          "sdk/go.mod",
+          "tools/pipeline/go.mod"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-11-05T23:15:14.472777299Z",
+        "osv_published": "2026-11-05T22:54:32Z",
         "package": "github.com/klauspost/compress",
+        "purl": "pkg:golang/github.com/klauspost/compress@v1.19.1",
         "severity": "High",
         "summary": "Panic on two-block frames in github.com/klauspost/compress",
         "url": "https://github.com/klauspost/compress/security/advisories/GHSA-fpmh-frq8-7rj8",
@@ -7059,15 +7606,29 @@
           "percentile": 0.39992,
           "score": 0.00459
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "1.4.1"
         ],
         "id": "GHSA-5588-rp99-5fjh",
         "kev": null,
-        "location": "go.mod",
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
+        "location": "command/client/go.mod",
+        "locations": [
+          "command/client/go.mod",
+          "go.mod"
+        ],
+        "osv_api": {
+          "id": "GHSA-5588-rp99-5fjh",
+          "modified": "2026-11-05T23:25:46.027465281Z",
+          "published": "2026-10-21T16:27:55Z",
+          "state": "confirmed"
+        },
         "osv_confirmed": false,
         "package": "github.com/moov-io/signedxml",
+        "purl": "pkg:golang/github.com/moov-io/signedxml@v1.1.1",
         "severity": "High",
         "summary": "Moov signedxml: Unauthenticated denial of service in exclusive XML canonicalization",
         "url": "https://github.com/advisories/GHSA-5588-rp99-5fjh",
@@ -7083,15 +7644,24 @@
           "percentile": 0.15237,
           "score": 0.0024
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "2.11.1-0.20260915055537-22f76f9acb94"
         ],
         "id": "GHSA-2j4c-ffch-9f23",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "tools/pipeline/go.mod",
+        "locations": [
+          "tools/pipeline/go.mod"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-10-19T21:40:56.735377549Z",
+        "osv_published": "2026-10-08T16:31:32Z",
         "package": "github.com/xuri/excelize/v2",
+        "purl": "pkg:golang/github.com/xuri/excelize/v2@v2.11.0",
         "severity": "High",
         "summary": "Excelize Decrypt: unrecoverable panics on malformed OLE/CFB encrypted workbooks",
         "url": "https://github.com/advisories/GHSA-2j4c-ffch-9f23",
@@ -7107,15 +7677,24 @@
           "percentile": 0.30289,
           "score": 0.00363
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "2.11.1-0.20260910071107-696050fbf14e"
         ],
         "id": "GHSA-c85p-xxjj-2r75",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "tools/pipeline/go.mod",
+        "locations": [
+          "tools/pipeline/go.mod"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-11-05T23:25:41.328813788Z",
+        "osv_published": "2026-10-07T20:23:31Z",
         "package": "github.com/xuri/excelize/v2",
+        "purl": "pkg:golang/github.com/xuri/excelize/v2@v2.11.0",
         "severity": "High",
         "summary": "Excelize ColumnNameToNumber: int64 overflow yields an out-of-domain coordinate with nil error, causing negative slice index panic on r=\"0\" rows",
         "url": "https://github.com/advisories/GHSA-c85p-xxjj-2r75",
@@ -7131,15 +7710,24 @@
           "percentile": 0.31143,
           "score": 0.0037
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "2.11.1-0.20260807015645-a54c578af309"
         ],
         "id": "GHSA-fq3v-74gv-27gm",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "tools/pipeline/go.mod",
+        "locations": [
+          "tools/pipeline/go.mod"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-11-05T23:26:15.089309048Z",
+        "osv_published": "2026-10-07T20:22:49Z",
         "package": "github.com/xuri/excelize/v2",
+        "purl": "pkg:golang/github.com/xuri/excelize/v2@v2.11.0",
         "severity": "High",
         "summary": "Excelize: Unbounded <col max> attribute is loaded with no MaxColumns check and expanded per-column by flatCols(), so any column mutator hangs or OOMs the process",
         "url": "https://github.com/advisories/GHSA-fq3v-74gv-27gm",
@@ -7155,15 +7743,24 @@
           "percentile": 0.3029,
           "score": 0.00363
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "2.11.1-0.20260906004932-2badfcd5841d"
         ],
         "id": "GHSA-jrfj-fhj2-jjvm",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "tools/pipeline/go.mod",
+        "locations": [
+          "tools/pipeline/go.mod"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-11-05T23:25:50.587459144Z",
+        "osv_published": "2026-10-07T20:23:22Z",
         "package": "github.com/xuri/excelize/v2",
+        "purl": "pkg:golang/github.com/xuri/excelize/v2@v2.11.0",
         "severity": "High",
         "summary": "Excelize: Unbounded spinCount in agile decryption burns CPU during OpenFile",
         "url": "https://github.com/advisories/GHSA-jrfj-fhj2-jjvm",
@@ -7179,15 +7776,24 @@
           "percentile": 0.30289,
           "score": 0.00363
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "2.11.1-0.20260930021559-01a9ff32fb3c"
         ],
         "id": "GHSA-jw42-f3rr-4cc3",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "tools/pipeline/go.mod",
+        "locations": [
+          "tools/pipeline/go.mod"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-10-19T21:40:42.350043538Z",
+        "osv_published": "2026-10-08T16:50:13Z",
         "package": "github.com/xuri/excelize/v2",
+        "purl": "pkg:golang/github.com/xuri/excelize/v2@v2.11.0",
         "severity": "High",
         "summary": "Excelize: Unbounded row number in Rows.Columns makes GetRows and the Rows iterator loop for days",
         "url": "https://github.com/advisories/GHSA-jw42-f3rr-4cc3",
@@ -7203,15 +7809,24 @@
           "percentile": 0.14373,
           "score": 0.00234
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "2.11.1-0.20261003002531-6258dcebc4e2"
         ],
         "id": "GHSA-mx22-3794-2vpv",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "tools/pipeline/go.mod",
+        "locations": [
+          "tools/pipeline/go.mod"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-10-19T21:41:17.333023394Z",
+        "osv_published": "2026-10-08T17:52:17Z",
         "package": "github.com/xuri/excelize/v2",
+        "purl": "pkg:golang/github.com/xuri/excelize/v2@v2.11.0",
         "severity": "High",
         "summary": "Excelize: Unchecked pivot-cache field index in extractPivotTableFields causes unrecoverable panic",
         "url": "https://github.com/advisories/GHSA-mx22-3794-2vpv",
@@ -7227,15 +7842,24 @@
           "percentile": 0.14372,
           "score": 0.00234
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "2.11.1-0.20260929015830-8ffeb07ec9a3"
         ],
         "id": "GHSA-r7x5-4969-99p7",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "tools/pipeline/go.mod",
+        "locations": [
+          "tools/pipeline/go.mod"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-10-19T21:41:00.604164450Z",
+        "osv_published": "2026-10-08T16:50:08Z",
         "package": "github.com/xuri/excelize/v2",
+        "purl": "pkg:golang/github.com/xuri/excelize/v2@v2.11.0",
         "severity": "High",
         "summary": "Excelize: Nil-pointer dereference in GetSlicers when a worksheet has extLst present but no drawing element",
         "url": "https://github.com/advisories/GHSA-r7x5-4969-99p7",
@@ -7251,15 +7875,24 @@
           "percentile": 0.31703,
           "score": 0.00375
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "2.11.1-0.20260911060113-ea12859e43c6"
         ],
         "id": "GHSA-wp2g-vpjj-g53r",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "tools/pipeline/go.mod",
+        "locations": [
+          "tools/pipeline/go.mod"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-10-19T21:41:18.715896320Z",
+        "osv_published": "2026-10-08T16:31:21Z",
         "package": "github.com/xuri/excelize/v2",
+        "purl": "pkg:golang/github.com/xuri/excelize/v2@v2.11.0",
         "severity": "High",
         "summary": "Excelize ANCHORARRAY: mutually-referencing array formulas recurse unboundedly via re-entrant CalcCellValue, causing a fatal stack overflow",
         "url": "https://github.com/advisories/GHSA-wp2g-vpjj-g53r",
@@ -7275,15 +7908,24 @@
           "percentile": 0.15238,
           "score": 0.0024
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "2.11.1-0.20260912113515-5f636f9dcde5"
         ],
         "id": "GHSA-x2q3-8cjh-766f",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "tools/pipeline/go.mod",
+        "locations": [
+          "tools/pipeline/go.mod"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-10-19T21:41:17.838565606Z",
+        "osv_published": "2026-10-08T16:31:26Z",
         "package": "github.com/xuri/excelize/v2",
+        "purl": "pkg:golang/github.com/xuri/excelize/v2@v2.11.0",
         "severity": "High",
         "summary": "Excelize: extractPart allocates attacker-controlled, unbounded and negative-sized buffers from CFB directory entries: remote panic / OOM DoS",
         "url": "https://github.com/advisories/GHSA-x2q3-8cjh-766f",
@@ -7299,15 +7941,38 @@
           "percentile": 0.35396,
           "score": 0.00409
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "0.62.0"
         ],
         "id": "GO-2026-6860",
         "kev": null,
-        "location": "api/auth/cert/go.mod",
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
+        "location": "api/auth/approle/go.mod",
+        "locations": [
+          "api/auth/approle/go.mod",
+          "api/auth/aws/go.mod",
+          "api/auth/azure/go.mod",
+          "api/auth/cert/go.mod",
+          "api/auth/gcp/go.mod",
+          "api/auth/kubernetes/go.mod",
+          "api/auth/ldap/go.mod",
+          "api/auth/userpass/go.mod",
+          "api/go.mod",
+          "command/base/go.mod",
+          "command/client/go.mod",
+          "go.mod",
+          "internalshared/go.mod",
+          "sdk/go.mod",
+          "tools/pipeline/go.mod"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-10-27T21:30:04.890809062Z",
+        "osv_published": "2026-10-27T21:16:18Z",
         "package": "golang.org/x/net",
+        "purl": "pkg:golang/golang.org/x/net@v0.60.0",
         "severity": "High",
         "summary": "When coalescing adjacent text nodes in addText and fosterParent, appending to an existing TextNode's Data via string concatenation (n.Data += text) reallocated and copied the accumulated string on every token. Inputs containing many short text runs separated by ignored end tags (such as \"a</x>\") cau",
         "url": "https://go.dev/cl/849365",
@@ -7323,13 +7988,23 @@
           "percentile": 0.18412,
           "score": 0.00264
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "not-fixed",
         "fixed_in": [],
         "id": "GHSA-4w3g-jfj2-cw2q",
         "kev": null,
-        "location": "go.mod",
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
+        "location": "command/client/go.mod",
+        "locations": [
+          "command/client/go.mod",
+          "go.mod"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-10-28T21:30:06.790863342Z",
+        "osv_published": "2026-10-28T21:14:00Z",
         "package": "github.com/go-jose/go-jose/v3",
+        "purl": "pkg:golang/github.com/go-jose/go-jose/v3@v3.0.5",
         "severity": "Medium",
         "summary": "Go JOSE: Panic during CBC-HMAC processing",
         "url": "https://github.com/advisories/GHSA-4w3g-jfj2-cw2q",
@@ -7345,13 +8020,23 @@
           "percentile": 0.21863,
           "score": 0.00292
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "not-fixed",
         "fixed_in": [],
         "id": "GHSA-vvm8-gf78-28g4",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "command/client/go.mod",
+        "locations": [
+          "command/client/go.mod",
+          "go.mod"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-10-28T21:30:05.801821772Z",
+        "osv_published": "2026-10-28T21:14:08Z",
         "package": "github.com/go-jose/go-jose/v3",
+        "purl": "pkg:golang/github.com/go-jose/go-jose/v3@v3.0.5",
         "severity": "Medium",
         "summary": "Go JOSE: Panics in JSON parsing",
         "url": "https://github.com/advisories/GHSA-vvm8-gf78-28g4",
@@ -7367,13 +8052,22 @@
           "percentile": 0.004,
           "score": 0.00089
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "not-fixed",
         "fixed_in": [],
         "id": "GHSA-qqj6-54q6-cxv6",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "go.mod",
+        "locations": [
+          "go.mod"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-10-15T14:55:36.220385453Z",
+        "osv_published": "2026-10-05T22:55:47Z",
         "package": "github.com/snowflakedb/gosnowflake",
+        "purl": "pkg:golang/github.com/snowflakedb/gosnowflake@v1.19.0",
         "severity": "Medium",
         "summary": "Snowflake drivers writes sensitive information to logs",
         "url": "https://github.com/advisories/GHSA-qqj6-54q6-cxv6",
@@ -7389,15 +8083,24 @@
           "percentile": 0.19269,
           "score": 0.0027
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "2.11.1-0.20260731010303-ae2113b410e5"
         ],
         "id": "GHSA-5h23-36rv-pm65",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "tools/pipeline/go.mod",
+        "locations": [
+          "tools/pipeline/go.mod"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-11-05T23:26:03.346693360Z",
+        "osv_published": "2026-10-07T20:22:39Z",
         "package": "github.com/xuri/excelize/v2",
+        "purl": "pkg:golang/github.com/xuri/excelize/v2@v2.11.0",
         "severity": "Medium",
         "summary": "Excelize: GetStyle panics on a negative fillId, borderId or fontId in styles.xml",
         "url": "https://github.com/advisories/GHSA-5h23-36rv-pm65",
@@ -7413,15 +8116,24 @@
           "percentile": 0.23892,
           "score": 0.00309
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "2.11.1-0.20260908032718-ecd99d761fe0"
         ],
         "id": "GHSA-8jjq-8j9w-m2v6",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "tools/pipeline/go.mod",
+        "locations": [
+          "tools/pipeline/go.mod"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-11-05T23:26:05.817251679Z",
+        "osv_published": "2026-10-07T20:23:26Z",
         "package": "github.com/xuri/excelize/v2",
+        "purl": "pkg:golang/github.com/xuri/excelize/v2@v2.11.0",
         "severity": "Medium",
         "summary": "Excelize: RIGHT() on supplementary-plane text slices with a negative index and panics",
         "url": "https://github.com/advisories/GHSA-8jjq-8j9w-m2v6",
@@ -7437,15 +8149,24 @@
           "percentile": 0.19269,
           "score": 0.0027
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "2.11.1-0.20260816084418-46a5eb289448"
         ],
         "id": "GHSA-8mcq-6wmr-jrjv",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "tools/pipeline/go.mod",
+        "locations": [
+          "tools/pipeline/go.mod"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-11-05T23:26:01.625712866Z",
+        "osv_published": "2026-10-07T20:23:08Z",
         "package": "github.com/xuri/excelize/v2",
+        "purl": "pkg:golang/github.com/xuri/excelize/v2@v2.11.0",
         "severity": "Medium",
         "summary": "Excelize: a row whose earlier cell has a higher column reference than its last cell panics index out of range on almost every worksheet read API",
         "url": "https://github.com/advisories/GHSA-8mcq-6wmr-jrjv",
@@ -7461,15 +8182,24 @@
           "percentile": 0.23594,
           "score": 0.00306
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "2.11.1-0.20260805032953-db93f8d89de7"
         ],
         "id": "GHSA-fw94-4wwp-w8pw",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "tools/pipeline/go.mod",
+        "locations": [
+          "tools/pipeline/go.mod"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-11-05T23:25:35.445581236Z",
+        "osv_published": "2026-10-07T20:22:45Z",
         "package": "github.com/xuri/excelize/v2",
+        "purl": "pkg:golang/github.com/xuri/excelize/v2@v2.11.0",
         "severity": "Medium",
         "summary": "Excelize: A Zip64 uncompressed-size of 2^63 panics OpenFile/OpenReader",
         "url": "https://github.com/advisories/GHSA-fw94-4wwp-w8pw",
@@ -7485,15 +8215,24 @@
           "percentile": 0.18424,
           "score": 0.00264
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "2.11.1-0.20260820023833-99903a3240e5"
         ],
         "id": "GHSA-g27h-8qhm-6pff",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "tools/pipeline/go.mod",
+        "locations": [
+          "tools/pipeline/go.mod"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-11-05T23:26:10.486510397Z",
+        "osv_published": "2026-10-07T20:23:17Z",
         "package": "github.com/xuri/excelize/v2",
+        "purl": "pkg:golang/github.com/xuri/excelize/v2@v2.11.0",
         "severity": "Medium",
         "summary": "Excelize: Panic in cellInRange on a worksheet with an empty mergeCell ref",
         "url": "https://github.com/advisories/GHSA-g27h-8qhm-6pff",
@@ -7509,15 +8248,24 @@
           "percentile": 0.19269,
           "score": 0.0027
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "2.11.1-0.20260812075026-be7a16390fa6"
         ],
         "id": "GHSA-rxcj-4pj5-74gr",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "tools/pipeline/go.mod",
+        "locations": [
+          "tools/pipeline/go.mod"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-11-05T23:25:39.218614790Z",
+        "osv_published": "2026-10-07T20:22:54Z",
         "package": "github.com/xuri/excelize/v2",
+        "purl": "pkg:golang/github.com/xuri/excelize/v2@v2.11.0",
         "severity": "Medium",
         "summary": "Excelize: GetConditionalFormats indexes conditional-formatting rule sub-elements with no length or nil check",
         "url": "https://github.com/advisories/GHSA-rxcj-4pj5-74gr",
@@ -7533,15 +8281,38 @@
           "percentile": 0.18952,
           "score": 0.00267
         },
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "0.62.0"
         ],
         "id": "GO-2026-6866",
         "kev": null,
-        "location": "api/auth/userpass/go.mod",
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
+        "location": "api/auth/approle/go.mod",
+        "locations": [
+          "api/auth/approle/go.mod",
+          "api/auth/aws/go.mod",
+          "api/auth/azure/go.mod",
+          "api/auth/cert/go.mod",
+          "api/auth/gcp/go.mod",
+          "api/auth/kubernetes/go.mod",
+          "api/auth/ldap/go.mod",
+          "api/auth/userpass/go.mod",
+          "api/go.mod",
+          "command/base/go.mod",
+          "command/client/go.mod",
+          "go.mod",
+          "internalshared/go.mod",
+          "sdk/go.mod",
+          "tools/pipeline/go.mod"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-10-27T21:45:08.978077289Z",
+        "osv_published": "2026-10-27T21:16:18Z",
         "package": "golang.org/x/net",
+        "purl": "pkg:golang/golang.org/x/net@v0.60.0",
         "severity": "Medium",
         "summary": "In childTextNodesAreLiteral, walking up the tree previously stopped at the nearest foreign ancestor once an HTML integration point was found. However, that integration point may itself be a descendant of an element that was foster-parented into a foreign namespace (such as <mglyph> or <malignmark> f",
         "url": "https://go.dev/cl/855121",
@@ -7551,15 +8322,29 @@
         "aliases": [],
         "ecosystem": "golang",
         "epss": null,
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "0.58.1-0.20261009181718-2f1f834330b2"
         ],
         "id": "GO-2026-5932",
         "kev": null,
-        "location": "tools/pipeline/go.mod",
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
+        "location": "api/auth/gcp/go.mod",
+        "locations": [
+          "api/auth/gcp/go.mod",
+          "command/base/go.mod",
+          "command/client/go.mod",
+          "internalshared/go.mod",
+          "sdk/go.mod",
+          "tools/pipeline/go.mod"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-11-02T22:15:06.677088389Z",
+        "osv_published": "2026-07-07T22:15:29Z",
         "package": "golang.org/x/crypto",
+        "purl": "pkg:golang/golang.org/x/crypto@v0.57.0",
         "severity": "Unknown",
         "summary": "The golang.org/x/crypto/openpgp package is unsafe by design, has numerous known security issues, is not maintained, and should not be used. If you are required to interoperate with OpenPGP systems and need a maintained package, consider github.com/ProtonMail/go-crypto/openpgp which is a maintained f",
         "url": "https://go.dev/issue/44226",
@@ -7569,15 +8354,24 @@
         "aliases": [],
         "ecosystem": "golang",
         "epss": null,
+        "epss_date": "2026-11-07T12:00:22Z",
         "fix_state": "fixed",
         "fixed_in": [
           "0.58.1-0.20261009181718-2f1f834330b2"
         ],
         "id": "GO-2026-5932",
         "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.06",
         "location": "go.mod",
+        "locations": [
+          "go.mod"
+        ],
         "osv_confirmed": true,
+        "osv_modified": "2026-11-02T22:15:06.677088389Z",
+        "osv_published": "2026-07-07T22:15:29Z",
         "package": "golang.org/x/crypto",
+        "purl": "pkg:golang/golang.org/x/crypto@v0.58.0",
         "severity": "Unknown",
         "summary": "The golang.org/x/crypto/openpgp package is unsafe by design, has numerous known security issues, is not maintained, and should not be used. If you are required to interoperate with OpenPGP systems and need a maintained package, consider github.com/ProtonMail/go-crypto/openpgp which is a maintained f",
         "url": "https://go.dev/issue/44226",

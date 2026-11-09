@@ -76,27 +76,40 @@
     },
     {
       "added": 0,
+      "advisory_state": "ok",
       "commit": "ec3368a4f8239249088b77794d414526112e6aac",
       "date": "2026-11-08",
       "dependencies": 17,
+      "dependency_state": "ok",
+      "downgraded": 0,
       "errors": [],
+      "file_changes": 0,
       "fixable": 0,
       "go_version": null,
       "in_binary": null,
+      "in_binary_new": 0,
+      "in_binary_resolved": 0,
       "kev": null,
       "kev_new": 0,
+      "kev_new_match": 0,
+      "license_changes": 0,
+      "method": "sbomlyze-occurrence-v1",
+      "moved": 0,
+      "new_advisories": 0,
       "new_vulnerabilities": 0,
-      "osv_confirmed": 0,
-      "osv_only": 0,
+      "osv_confirmed": null,
+      "osv_only": null,
       "ref": "3.8.1",
       "release_changed": false,
       "release_integrity": "none",
       "removed": 0,
+      "resolved_advisories": 0,
       "resolved_vulnerabilities": 0,
       "scorecard": 4.7,
       "scorecard_date": "2026-10-26",
       "scorecard_note": null,
       "scorecard_source": "openssf-api",
+      "unknown_direction": 0,
       "upgraded": 0,
       "vulnerabilities": {
         "Critical": 0,
@@ -112,7 +125,9 @@
         "Low": 13,
         "Medium": 29,
         "files": 9
-      }
+      },
+      "workflow_new": 0,
+      "workflow_resolved": 0
     }
   ],
   "latest": {
@@ -120,16 +135,47 @@
     "category": "Static Application Security Testing (SAST) \u203a Language-specific \u203a Python",
     "changes": {
       "added": [],
+      "added_detail": [],
+      "advisory_state": "ok",
       "any": false,
       "baseline": false,
+      "dependency_baseline": {
+        "attempt": "1",
+        "run_id": "41380955266",
+        "sbom_sha256": "902c55b41059a4ae6b1345b286bb26f6685acc5210757581eeb02071c67aab11"
+      },
+      "dependency_state": "ok",
+      "digest_coverage": {
+        "after_only": 0,
+        "before_only": 0,
+        "by_kind": {},
+        "comparable": 0,
+        "disjoint_kinds": 0,
+        "packages_total": 26,
+        "same_version_pairs": 26
+      },
+      "distinct_version_changes": null,
+      "downgraded": [],
+      "file_changes": [],
+      "integrity_changes": [],
       "integrity_drift": 0,
       "license_changes": [],
+      "metadata_changes": [],
+      "method": "sbomlyze-occurrence-v1",
+      "moved": [],
+      "new_advisories": 0,
       "new_vulnerabilities": [],
       "previous_ref": "3.8.1",
       "release_changed": false,
       "removed": [],
+      "removed_detail": [],
+      "resolved_advisories": 0,
       "resolved_vulnerabilities": [],
+      "still_affected_version_changed": [],
+      "unknown_direction": [],
       "upgraded": [],
+      "version_changes": [],
+      "version_set_changes": [],
       "workflow_new": 0,
       "workflow_resolved": 0
     },
@@ -316,6 +362,7 @@
       "action reference to a moving tag or branch": 3
     },
     "id": "pyupio__safety",
+    "lock_aliases": {},
     "manifests": [
       ".github/workflows/build.yml",
       ".github/workflows/bump.yml",
@@ -330,11 +377,12 @@
     ],
     "name": "safety",
     "osv": {
-      "advisories": 0,
+      "available": false
+    },
+    "osv_api": {
       "available": true,
-      "confirmed": 0,
-      "osv_only": [],
-      "warning": null
+      "queried_at": "2026-11-09T01:36:17+00:00",
+      "states": {}
     },
     "ref": "3.8.1",
     "ref_kind": "release",
@@ -355,15 +403,56 @@
     },
     "released_at": "2026-05-29T14:09:06Z",
     "repository": "pyupio/safety",
+    "sbom_sha256": "3787bfedf4886f47695e139dde4017323952486c0446d55bfa39911aeb025f5c",
     "sbomlyze_diff": {
       "added": 0,
+      "baseline": {
+        "attempt": "1",
+        "run_id": "41380955266"
+      },
       "changed": 0,
+      "contract": "sbomlyze-diff-0.7",
       "drift": {},
       "findings": [
-        "0 version changes among 34 shared packages \u2014 no actual upgrades",
+        "0 version changes among 26 shared packages \u2014 no actual upgrades",
+        "Integrity drift checked only 0 of 26 same-version packages; the rest carry no comparable digest",
         "Core system packages stable: github (23) unchanged"
       ],
-      "removed": 0
+      "occurrences": {
+        "added": [],
+        "digest_coverage": {
+          "after_only": 0,
+          "before_only": 0,
+          "by_kind": {},
+          "comparable": 0,
+          "disjoint_kinds": 0,
+          "packages_total": 26,
+          "same_version_pairs": 26
+        },
+        "file_changes": [],
+        "file_coverage": {
+          "ambiguous_paths": 0,
+          "config_unknown": 0,
+          "files_compared": 8,
+          "files_unverified": 0,
+          "owned_files_after": 0,
+          "unowned_files_after": 0
+        },
+        "files_added": [],
+        "files_removed": [],
+        "integrity_changes": [],
+        "license_changes": [],
+        "metadata_changes": [],
+        "moved": [],
+        "owned_file_drift": [],
+        "removed": [],
+        "source_change": null,
+        "version_changes": [],
+        "version_set_changes": []
+      },
+      "previous_sbom_sha256": "902c55b41059a4ae6b1345b286bb26f6685acc5210757581eeb02071c67aab11",
+      "removed": 0,
+      "sbom_sha256": "3787bfedf4886f47695e139dde4017323952486c0446d55bfa39911aeb025f5c"
     },
     "scanned_at": "2026-11-08T05:54:20+00:00",
     "scorecard": {
