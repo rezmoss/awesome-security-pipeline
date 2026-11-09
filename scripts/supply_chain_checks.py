@@ -19,6 +19,7 @@ import re
 import subprocess
 import tarfile
 import urllib.error
+import urllib.parse
 import urllib.request
 import zipfile
 from typing import Any
@@ -39,6 +40,10 @@ NOT_AMD64 = re.compile(r"arm|aarch|386|i686|x32|ppc|s390|riscv|mips|loong", re.I
 ARCHIVE = re.compile(r"\.(tar\.gz|tgz|tar\.xz|txz|zip)$", re.IGNORECASE)
 CHECKSUMS = re.compile(r"checksums?|sha256sums|\.sha256$", re.IGNORECASE)
 SBOM_ASSET = re.compile(r"\.sbom|spdx|cyclonedx|\.cdx|sbom\.json", re.IGNORECASE)
+
+
+def utc_now() -> str:
+    return dt.datetime.now(dt.timezone.utc).replace(microsecond=0).isoformat()
 
 
 def run(command: list[str], cwd: pathlib.Path | None = None, timeout: int = TIMEOUT, env: dict[str, str] | None = None) -> subprocess.CompletedProcess:
@@ -84,13 +89,18 @@ def strip_paths(text: str, paths: list[str]) -> str:
 
 
 def osv_scan(source: pathlib.Path, raw: pathlib.Path | None = None) -> dict[str, Any]:
-    completed = run(["osv-scanner", "scan", "source", "-r", str(source), "--format", "json", "--no-call-analysis=all"])
+    # --all-packages lists every package OSV-Scanner read, with or without advisories, so a match it did not
+    # report can be told apart from a package it did not check.
+    completed = run(["osv-scanner", "scan", "source", "-r", str(source), "--format", "json", "--all-packages",
+                     "--no-call-analysis=all"])
     output = completed.stdout.strip()
     if raw is not None and output:
         # Kept as evidence; runner-local paths are removed so the file is reproducible to read.
         raw.write_text(strip_paths(output, [str(source.resolve()) + "/", str(source) + "/"]) + "\n", encoding="utf-8")
     if not output.startswith("{"):
-        if completed.returncode in (0, 128):  # 128: no supported packages found
+        if completed.returncode == 128:  # no supported packages found: nothing was checked
+            return {"groups": [], "packages": []}
+        if completed.returncode == 0:
             return {"groups": []}
         return {"error": f"osv-scanner exited with {completed.returncode}: {completed.stderr.strip()[-300:]}"}
     report = json.loads(output)
@@ -101,18 +111,28 @@ def osv_scan(source: pathlib.Path, raw: pathlib.Path | None = None) -> dict[str,
         for path in (str(source.resolve()), str(source)):
             detail = detail.replace(path + "/", "").replace(path, "").replace(path.lstrip("/") + "/", "")
         warning = f"osv-scanner could not resolve every manifest: {detail[:200]}"
-    groups = []
+    return parse_osv_report(report, [str(source.resolve()) + "/", str(source) + "/"], warning)
+
+
+def parse_osv_report(report: dict[str, Any], roots: list[str], warning: str | None = None) -> dict[str, Any]:
+    """Advisory groups and, for reports made with --all-packages, every package OSV-Scanner read. A report without
+    a package lacking advisories was made without --all-packages: its package list says nothing about coverage."""
+    groups, packages = [], []
     for result in report.get("results") or []:
+        path = strip_paths(str((result.get("source") or {}).get("path", "")), roots).lstrip("/")
         for package in result.get("packages") or []:
             info = package.get("package") or {}
-            aliases_by_id = {
-                vuln.get("id"): set(vuln.get("aliases") or []) for vuln in package.get("vulnerabilities") or []
-            }
+            vulns = {vuln.get("id"): vuln for vuln in package.get("vulnerabilities") or []}
+            packages.append({"path": path, "ecosystem": str(info.get("ecosystem", "")), "name": str(info.get("name", "")),
+                             "version": str(info.get("version", "")),
+                             # A lockfile entry without a registry URL is treated as a local package and not queried.
+                             "local": "source=LOCAL" in str(info.get("purl", ""))})
             for group in package.get("groups") or []:
                 ids = set(group.get("ids") or [])
                 for identifier in list(ids):
-                    ids |= aliases_by_id.get(identifier, set())
+                    ids |= set((vulns.get(identifier) or {}).get("aliases") or [])
                 ids |= set(group.get("aliases") or [])
+                records = [vulns[identifier] for identifier in group.get("ids") or [] if identifier in vulns]
                 groups.append({
                     "ids": sorted(ids),
                     "package": str(info.get("name", "")),
@@ -120,8 +140,15 @@ def osv_scan(source: pathlib.Path, raw: pathlib.Path | None = None) -> dict[str,
                     "ecosystem": str(info.get("ecosystem", "")),
                     "severity": cvss_bucket(group.get("max_severity")),
                     "score": group.get("max_severity") or "",
+                    "path": path,
+                    "published": min((str(item.get("published")) for item in records if item.get("published")), default=""),
+                    "modified": max((str(item.get("modified")) for item in records if item.get("modified")), default=""),
                 })
-    return {"groups": groups, "warning": warning} if warning else {"groups": groups}
+    complete = any(not item.get("groups") for result in report.get("results") or [] for item in result.get("packages") or [])
+    result = {"groups": groups, "packages": packages if complete or not packages else None}
+    if warning:
+        result["warning"] = warning
+    return result
 
 
 # Grype's package types (from the purl) and the OSV ecosystem names OSV-Scanner reports.
@@ -154,6 +181,12 @@ def cross_reference(grype: list[dict[str, Any]] | None, osv: dict[str, Any]) -> 
     matched_groups = set()
     identities_by_group = [package_identity(group.get("ecosystem", ""), group["package"], group.get("version", ""))
                            for group in groups]
+    packages = osv.get("packages")
+    read_paths = {item["path"] for item in packages or []}
+    listed: dict[tuple[str, tuple[str, str, str]], bool] = {}
+    for item in packages or []:
+        key = (item["path"], package_identity(item["ecosystem"], item["name"], item["version"]))
+        listed[key] = listed.get(key, False) or not item["local"]
     for finding in grype:
         identities = {finding["id"], *finding.get("aliases", [])}
         package = package_identity(finding.get("ecosystem", ""), finding["package"], finding.get("version", ""))
@@ -162,14 +195,139 @@ def cross_reference(grype: list[dict[str, Any]] | None, osv: dict[str, Any]) -> 
             if identities & set(group["ids"]) and identities_by_group[index] == package:
                 finding["osv_confirmed"] = True
                 matched_groups.add(index)
+                if group.get("modified"):
+                    finding["osv_published"] = group.get("published", "")
+                    finding["osv_modified"] = group["modified"]
+        if packages is not None:
+            finding["osv_coverage"] = osv_coverage(finding, package, read_paths, listed)
     only = [group for index, group in enumerate(groups) if index not in matched_groups]
-    return {
+    result = {
         "available": True,
         "warning": osv.get("warning"),
         "advisories": len(groups),
         "confirmed": sum(1 for finding in grype if finding.get("osv_confirmed")),
         "osv_only": only,
     }
+    if packages is not None:
+        states: dict[str, int] = {}
+        for finding in grype:
+            state = finding["osv_coverage"]["state"]
+            states[state] = states.get(state, 0) + 1
+        result["coverage"] = states
+    return result
+
+
+COVERAGE_ORDER = ("confirmed", "not reported", "not checked")
+
+
+def osv_coverage(finding: dict[str, Any], package: tuple[str, str, str], read_paths: set[str],
+                 listed: dict[tuple[str, tuple[str, str, str]], bool]) -> dict[str, Any]:
+    """Whether OSV-Scanner checked this match: confirmed it, checked the package without reporting this advisory, or
+    did not check it (the file is not one it reads, or the lockfile entry has no registry source)."""
+    if finding.get("osv_confirmed"):
+        return {"state": "confirmed"}
+    reasons = []
+    for path in finding.get("locations") or [finding.get("location", "")]:
+        if path not in read_paths:
+            reasons.append(f"{path}: not read by OSV-Scanner")
+        elif (path, package) not in listed:
+            reasons.append(f"{path}: package not listed by OSV-Scanner")
+        elif not listed[(path, package)]:
+            reasons.append(f"{path}: entry has no registry source, so OSV-Scanner did not query it")
+        else:
+            return {"state": "not reported", "path": path}
+    return {"state": "not checked", "reasons": reasons}
+
+
+OSV_API = "https://api.osv.dev/v1"
+
+
+def osv_api_query(name: str, ecosystem: str, purl: str) -> tuple[str, str] | None:
+    """(OSV ecosystem, package name) for the OSV API, or None for an ecosystem OSV does not cover."""
+    osv_ecosystem = OSV_ECOSYSTEMS.get(ecosystem)
+    if not osv_ecosystem:
+        return None
+    if osv_ecosystem == "Maven" and purl.startswith("pkg:maven/"):
+        group, _, artifact = purl[len("pkg:maven/"):].split("@", 1)[0].partition("/")
+        name = f"{urllib.parse.unquote(group)}:{urllib.parse.unquote(artifact)}" if artifact else name
+    return osv_ecosystem, name
+
+
+def post_json(url: str, body: Any, timeout: int = 60) -> Any:
+    request = urllib.request.Request(url, data=json.dumps(body).encode(), headers={"Content-Type": "application/json"})
+    with urllib.request.urlopen(request, timeout=timeout) as response:  # noqa: S310 - fixed https endpoint
+        return json.load(response)
+
+
+def osv_api_lookup(grype: list[dict[str, Any]] | None, raw: pathlib.Path | None = None, since: str = "",
+                   batch: int = 500) -> dict[str, Any]:
+    """Ask the OSV API about every Grype match OSV-Scanner did not confirm: an extra, separately labelled source.
+    Records modified since `since` (the previous scan) are fetched in full for their dates. Requests and responses
+    are written to `raw` so the result can be replayed without the network."""
+    findings = [item for item in grype or [] if not item.get("osv_confirmed")]
+    queries, owners = [], []
+    for item in findings:
+        target = osv_api_query(item["package"], item.get("ecosystem", ""), item.get("purl", ""))
+        if target is None:
+            item["osv_api"] = {"state": "unsupported ecosystem"}
+            continue
+        query = {"package": {"ecosystem": target[0], "name": target[1]}, "version": item["version"]}
+        if query not in queries:
+            queries.append(query)
+        owners.append((item, queries.index(query)))
+    evidence: dict[str, Any] = {"url": f"{OSV_API}/querybatch", "queried_at": utc_now(), "queries": queries,
+                                "results": [], "records": {}}
+    try:
+        for start in range(0, len(queries), batch):
+            evidence["results"] += post_json(f"{OSV_API}/querybatch", {"queries": queries[start:start + batch]})["results"]
+        for index, result in enumerate(evidence["results"]):
+            token = result.get("next_page_token")
+            while token:  # more than one page of advisories for one package version
+                page = post_json(f"{OSV_API}/querybatch", {"queries": [{**queries[index], "page_token": token}]})["results"][0]
+                result["vulns"] = (result.get("vulns") or []) + (page.get("vulns") or [])
+                token = page.get("next_page_token")
+            result.pop("next_page_token", None)
+        recent = sorted({vuln["id"] for result in evidence["results"] for vuln in result.get("vulns") or []
+                         if since and str(vuln.get("modified", "")) >= since})
+        for identifier in recent:
+            record = fetch_json(f"{OSV_API}/vulns/{urllib.parse.quote(identifier)}")
+            evidence["records"][identifier] = {key: record.get(key) for key in ("id", "aliases", "published", "modified")}
+    except Exception as exc:  # noqa: BLE001 - the API is an optional extra source
+        evidence["error"] = str(exc)[:300]
+    if raw is not None:
+        raw.write_text(json.dumps(evidence, indent=1, sort_keys=True) + "\n", encoding="utf-8")
+    return apply_osv_api(grype, evidence)
+
+
+def apply_osv_api(grype: list[dict[str, Any]] | None, evidence: dict[str, Any]) -> dict[str, Any]:
+    """Mark matches from recorded OSV API responses (also used to replay them)."""
+    results = evidence.get("results") or []
+    states: dict[str, int] = {}
+    for item in grype or []:
+        if item.get("osv_confirmed") or (item.get("osv_api") or {}).get("state") == "unsupported ecosystem":
+            continue
+        target = osv_api_query(item["package"], item.get("ecosystem", ""), item.get("purl", ""))
+        query = {"package": {"ecosystem": target[0], "name": target[1]}, "version": item["version"]} if target else None
+        if query is None:
+            item["osv_api"] = {"state": "unsupported ecosystem"}
+        elif evidence.get("error") or query not in evidence.get("queries", []) or len(results) <= evidence["queries"].index(query):
+            item["osv_api"] = {"state": "error"}
+        else:
+            vulns = results[evidence["queries"].index(query)].get("vulns") or []
+            identities = {item["id"], *item.get("aliases", [])}
+            hits = [vuln for vuln in vulns if vuln.get("id") in identities]
+            hits += [vuln for vuln in vulns if vuln not in hits
+                     and identities & set((evidence["records"].get(vuln.get("id")) or {}).get("aliases") or [])]
+            if hits:
+                record = evidence["records"].get(hits[0]["id"]) or {}
+                item["osv_api"] = {"state": "confirmed", "id": hits[0]["id"],
+                                   "modified": record.get("modified") or hits[0].get("modified", ""),
+                                   "published": record.get("published") or ""}
+            else:
+                item["osv_api"] = {"state": "not reported", "advisories": len(vulns)}
+        states[item["osv_api"]["state"]] = states.get(item["osv_api"]["state"], 0) + 1
+    return {"available": not evidence.get("error"), "queried_at": evidence.get("queried_at"), "states": states,
+            **({"error": evidence["error"]} if evidence.get("error") else {})}
 
 
 # ----- zizmor -------------------------------------------------------------------------
@@ -296,59 +454,86 @@ def govulncheck_binary(binary: pathlib.Path, raw: pathlib.Path | None = None) ->
     if raw is not None:
         raw.write_text(strip_paths(completed.stdout, [str(binary.parent.resolve()) + "/", str(binary.parent) + "/"]), encoding="utf-8")
     config = next((item["config"] for item in objects if "config" in item), {})
+    return {
+        "binary": binary.name,
+        "go_version": sbom.get("go_version"),
+        "main_module": (sbom.get("roots") or [""])[0] if sbom.get("roots") else "",
+        "modules": [module.get("path") for module in sbom.get("modules") or []],
+        "module_versions": {module.get("path"): module.get("version") or "" for module in sbom.get("modules") or []
+                            if module.get("path")},
+        "findings": govulncheck_findings(objects),
+        "db": config.get("db", ""),
+        "db_last_modified": config.get("db_last_modified", ""),
+    }
+
+
+def govulncheck_findings(objects: list[dict[str, Any]]) -> list[dict[str, Any]]:
+    """One record per advisory, module, and version at the highest level govulncheck reached for it: an advisory can
+    affect several modules in one binary (for example the standard library and golang.org/x/net)."""
     advisories = {item["osv"]["id"]: item["osv"] for item in objects if "osv" in item}
-    levels: dict[str, dict[str, Any]] = {}
+    levels: dict[tuple[str, str, str], dict[str, Any]] = {}
     for item in objects:
         finding = item.get("finding")
         if not finding:
             continue
         frame = (finding.get("trace") or [{}])[0]
         level = "symbol" if frame.get("function") else "package" if frame.get("package") else "module"
-        current = levels.get(finding["osv"])
+        key = (finding["osv"], frame.get("module", ""), frame.get("version", ""))
+        current = levels.get(key)
         if current is None or LEVELS[level] > LEVELS[current["level"]]:
-            levels[finding["osv"]] = {
-                "level": level, "module": frame.get("module", ""), "version": frame.get("version", ""),
-                "fixed_version": finding.get("fixed_version", ""),
-            }
+            levels[key] = {"level": level, "module": key[1], "version": key[2], "fixed_version": finding.get("fixed_version", "")}
     findings = []
-    for identifier, detail in levels.items():
+    for (identifier, _, _), detail in levels.items():
         advisory = advisories.get(identifier, {})
         findings.append({
             "id": identifier,
             "aliases": sorted(advisory.get("aliases") or []),
             "summary": advisory.get("summary", ""),
             **detail,
+            "published": advisory.get("published", ""),
+            "modified": advisory.get("modified", ""),
         })
-    findings.sort(key=lambda item: (-LEVELS[item["level"]], item["module"] != "stdlib", item["module"], item["id"]))
-    return {
-        "binary": binary.name,
-        "go_version": sbom.get("go_version"),
-        "main_module": (sbom.get("roots") or [""])[0] if sbom.get("roots") else "",
-        "modules": [module.get("path") for module in sbom.get("modules") or []],
-        "findings": findings,
-        "db": config.get("db", ""),
-        "db_last_modified": config.get("db_last_modified", ""),
-    }
+    findings.sort(key=lambda item: (-LEVELS[item["level"]], item["module"] != "stdlib", item["module"], item["id"], item["version"]))
+    return findings
+
+
+IN_BINARY = {"symbol": "vulnerable code in binary", "package": "package in binary", "module": "module in binary"}
+
+
+def go_version(version: str) -> str:
+    """v1.2.3 (modules) and go1.26.5 (the standard library in Grype) compare as 1.2.3 and 1.26.5."""
+    return version.removeprefix("v").removeprefix("go")
 
 
 def annotate_reachability(grype: list[dict[str, Any]] | None, go: dict[str, Any] | None) -> None:
-    """Tell each Go Grype match whether its vulnerable code is in the released binary."""
+    """Tell each Go Grype match whether its vulnerable code is in the released binary. govulncheck evidence counts
+    only for the same advisory, module, and version; a module built at another version is reported as such."""
     if not grype or not go:
         return
-    modules = set(go.get("modules") or [])
-    by_identity: dict[str, dict[str, Any]] = {}
+    versions = go.get("module_versions")
+    if versions is None:  # recorded before module versions were kept
+        versions = {path: None for path in go.get("modules") or []}
+    by_identity: dict[tuple[str, str, str], dict[str, Any]] = {}
     for finding in go["findings"]:
         for identity in (finding["id"], *finding["aliases"]):
-            by_identity[identity] = finding
+            key = (identity, finding["module"], go_version(finding.get("version", "")))
+            current = by_identity.get(key)
+            if current is None or LEVELS[finding["level"]] > LEVELS[current["level"]]:
+                by_identity[key] = finding
     for finding in grype:
         if finding.get("ecosystem") != "golang":
             continue
-        hit = next((by_identity[i] for i in (finding["id"], *finding.get("aliases", [])) if i in by_identity), None)
-        if hit:
-            finding["in_binary"] = {"symbol": "vulnerable code in binary", "package": "package in binary",
-                                    "module": "module in binary"}[hit["level"]]
-        elif finding["package"] not in modules:
+        finding.pop("binary_version", None)
+        version = go_version(finding.get("version", ""))
+        hits = [by_identity[key] for key in ((i, finding["package"], version) for i in (finding["id"], *finding.get("aliases", [])))
+                if key in by_identity]
+        if hits:
+            finding["in_binary"] = IN_BINARY[max(hits, key=lambda hit: LEVELS[hit["level"]])["level"]]
+        elif finding["package"] not in versions:
             finding["in_binary"] = "not in released binary"
+        elif versions[finding["package"]] is not None and go_version(versions[finding["package"]]) != version:
+            finding["in_binary"] = "different version in binary"
+            finding["binary_version"] = versions[finding["package"]]
         else:
             finding["in_binary"] = "vulnerable code not in binary"
 

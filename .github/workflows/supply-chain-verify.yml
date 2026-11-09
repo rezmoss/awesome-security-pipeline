@@ -5,7 +5,9 @@ name: Supply-chain Data Verification
 # still in its history, and the newest data carries a valid attestation from the report workflow.
 # A push to supply-chain-data cannot trigger this (that branch holds no workflows), so it runs the
 # day after each weekly report and on changes to the verifier; the report's publish job runs the
-# same checks on every commit before pushing it.
+# same checks on every commit before pushing it. It also re-derives the latest week from its evidence release
+# and checks the published data against it (inventories, matches and their locations, govulncheck records, OSV
+# states, and sbomlyze's dependency changes).
 
 on:
   schedule:
@@ -27,7 +29,7 @@ jobs:
   verify:
     name: Verify the data branch
     runs-on: ubuntu-latest
-    timeout-minutes: 15
+    timeout-minutes: 30
     permissions:
       contents: read
       attestations: read
@@ -55,3 +57,40 @@ jobs:
           status=${PIPESTATUS[0]}
           { echo '### Supply-chain data verification'; echo '```'; cat verify.txt; echo '```'; } >> "$GITHUB_STEP_SUMMARY"
           exit "$status"
+
+      - name: Install sbomlyze (checksum and attestation verified)
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: bash
+        run: |
+          bash scripts/install-supply-chain-tools.sh "$RUNNER_TEMP/tools" "$RUNNER_TEMP/tool-metadata.json" sbomlyze
+          echo "$RUNNER_TEMP/tools" >> "$GITHUB_PATH"
+
+      - name: Re-derive the latest week from its evidence release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          data="$RUNNER_TEMP/data"
+          date=$(jq -r '.latest' "$data/index.json")
+          release=$(jq -r '.evidence_release // empty' "$data/runs/$date.json")
+          baseline=$(python3 scripts/supply_chain_scan.py baseline --data-dir "$data" --date "$date")
+          previous_release=$(jq -r '.evidence_release // empty' <<<"$baseline")
+          mkdir -p "$RUNNER_TEMP/evidence" "$RUNNER_TEMP/previous-evidence" "$RUNNER_TEMP/previous"
+          if [[ -z "$release" ]]; then
+            echo "No evidence release recorded for $date" | tee audit.txt
+          else
+            gh release download "$release" --repo "$GITHUB_REPOSITORY" --pattern "supply-chain-evidence-*.tar.gz" --dir "$RUNNER_TEMP/release"
+            tar -xzf "$RUNNER_TEMP"/release/supply-chain-evidence-*.tar.gz -C "$RUNNER_TEMP/evidence"
+            if [[ -n "$previous_release" ]]; then
+              gh release download "$previous_release" --repo "$GITHUB_REPOSITORY" --pattern "supply-chain-evidence-*.tar.gz" --dir "$RUNNER_TEMP/previous-release"
+              tar -xzf "$RUNNER_TEMP"/previous-release/supply-chain-evidence-*.tar.gz -C "$RUNNER_TEMP/previous-evidence"
+              find "$RUNNER_TEMP/previous-evidence" -mindepth 2 -maxdepth 2 -type d -name '*__*' -exec cp -R {} "$RUNNER_TEMP/previous/" \;
+            fi
+            python3 scripts/supply_chain_scan.py audit --shards-dir "$RUNNER_TEMP/evidence" --previous-dir "$RUNNER_TEMP/previous" \
+              --sbomlyze sbomlyze --data-dir "$data" --date "$date" | tee audit.txt
+            status=${PIPESTATUS[0]}
+          fi
+          { echo '### Accuracy audit of the latest week'; echo '```'; tail -n 60 audit.txt; echo '```'; } >> "$GITHUB_STEP_SUMMARY"
+          exit "${status:-0}"

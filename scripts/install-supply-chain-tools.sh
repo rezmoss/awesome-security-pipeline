@@ -27,6 +27,7 @@ mkdir -p "$install_dir" "$(dirname "$metadata_file")"
 work_dir=$(mktemp -d)
 trap 'rm -rf "$work_dir"' EXIT
 records="$work_dir/records.jsonl"
+sbomlyze_minimum=0.7.1
 : > "$records"
 
 release_json() {
@@ -161,6 +162,12 @@ install_sbomlyze() {
   version=${tag#v}
   published_at=$(jq -r '.published_at // ""' <<<"$release")
   release_lookup=$(jq -r '._release_source' <<<"$release")
+  # 0.7.1 is the first release whose diff matches components per lockfile, orders versions per
+  # ecosystem, and counts only package hashes as integrity drift; the report reads those fields.
+  if [[ $(printf '%s\n%s\n' "$sbomlyze_minimum" "$version" | sort -V | head -n 1) != "$sbomlyze_minimum" ]]; then
+    echo "sbomlyze $version is older than the supported minimum $sbomlyze_minimum" >&2
+    return 1
+  fi
   archive="sbomlyze_${version}_Linux_x86_64.tar.gz"
   checksums="checksums.txt"
 

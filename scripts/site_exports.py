@@ -31,15 +31,30 @@ def canonical_id(ids: set[str]) -> str:
 GOVULNCHECK = "govulncheck"
 
 
+def go_version(version: str) -> str:
+    return version.removeprefix("v").removeprefix("go")
+
+
+def binary_advisories(go: dict[str, Any] | None, module: str | None = None) -> set[str]:
+    """Distinct advisories with vulnerable code in the binary; one advisory can affect several modules."""
+    return {item["id"] for item in (go or {}).get("findings") or [] if item.get("level") == "symbol"
+            and (module is None or (item.get("module") == "stdlib") == (module == "stdlib"))}
+
+
 def binary_matches(project: dict[str, Any]) -> list[dict[str, Any]]:
     """govulncheck findings with the vulnerable function compiled into the shipped binary that no Grype match
     covers (mostly the Go standard library, which source manifests do not declare), shaped like Grype matches."""
     binary = project.get("go_binary") or {}
-    covered = {value for item in project.get("vulnerabilities") or [] for value in (item["id"], *(item.get("aliases") or []))}
+    # A Grype match covers a binary finding only for the same advisory, module, and version.
+    covered = {(value, item["package"], go_version(item.get("version") or ""))
+               for item in project.get("vulnerabilities") or [] if item.get("ecosystem") == "golang"
+               for value in (item["id"], *(item.get("aliases") or []))}
     result, seen = [], set()
     for finding in binary.get("findings") or []:
-        key = (finding["id"], finding.get("module"))
-        if finding.get("level") != "symbol" or key in seen or {finding["id"], *(finding.get("aliases") or [])} & covered:
+        version = go_version(finding.get("version") or "")
+        key = (finding["id"], finding.get("module"), version)
+        if finding.get("level") != "symbol" or key in seen or any(
+                (value, finding.get("module"), version) in covered for value in (finding["id"], *(finding.get("aliases") or []))):
             continue
         seen.add(key)
         item = {
@@ -54,6 +69,26 @@ def binary_matches(project: dict[str, Any]) -> list[dict[str, Any]]:
         item.update({name: finding[name] for name in ("kev", "epss") if name in finding})
         result.append(item)
     return result
+
+
+def match_locations(item: dict[str, Any]) -> list[str]:
+    """Every lockfile or manifest that declares the matched version (records before schema 5 kept one)."""
+    return item.get("locations") or ([item["location"]] if item.get("location") else [])
+
+
+OSV_SCANNER = "osv-scanner"
+
+
+def osv_only_matches(project: dict[str, Any]) -> list[dict[str, Any]]:
+    """Advisories only OSV-Scanner reported, shaped like matches for the CSV export (they are not in the advisory
+    pivot: their ids are OSV's, not matched against Grype's)."""
+    osv = project.get("osv") or {}
+    if not osv.get("available"):
+        return []
+    return [{"id": canonical_id(set(group["ids"])) if group.get("ids") else "", "aliases": sorted(set(group.get("ids") or []) - {canonical_id(set(group["ids"]))}) if group.get("ids") else [],
+             "severity": group.get("severity") or "Unknown", "ecosystem": group.get("ecosystem"), "package": group.get("package"),
+             "version": group.get("version"), "fixed_in": [], "location": group.get("path") or "", "source": OSV_SCANNER}
+            for group in osv.get("osv_only") or []]
 
 
 def all_matches(project: dict[str, Any]) -> list[dict[str, Any]]:
@@ -194,17 +229,17 @@ def projects_csv(entries: list[dict[str, Any]]) -> str:
 
 def matches_csv(projects: list[dict[str, Any]], aliases: dict[str, str]) -> str:
     header = ["repository", "ref", "source", "advisory", "canonical_advisory", "aliases", "severity", "ecosystem", "package", "version",
-              "fixed_in", "location", "osv_confirmed", "in_binary", "kev", "kev_date_added", "epss", "epss_percentile"]
+              "fixed_in", "location", "osv_confirmed", "in_binary", "kev", "kev_date_added", "epss", "epss_percentile", "locations"]
     rows = []
     for project in projects:
-        for item in all_matches(project):
+        for item in [*all_matches(project), *osv_only_matches(project)]:
             kev, epss = item.get("kev"), item.get("epss")
             rows.append([
                 project["repository"], project.get("ref"), item.get("source", "grype"), item["id"], aliases.get(item["id"], item["id"]),
                 " ".join(item.get("aliases") or []), item["severity"], item.get("ecosystem"), item["package"], item["version"],
                 " ".join(item.get("fixed_in") or []), item.get("location"), item.get("osv_confirmed"), item.get("in_binary"),
                 (bool(kev) if "kev" in item else None), (kev or {}).get("date_added"),
-                (epss or {}).get("score"), (epss or {}).get("percentile"),
+                (epss or {}).get("score"), (epss or {}).get("percentile"), " ".join(match_locations(item)),
             ])
     return to_csv(header, rows)
 
@@ -269,17 +304,19 @@ def badge_json(label: str, message: str, color: str) -> str:
     return json.dumps({"schemaVersion": 1, "label": label, "message": message, "color": color}, sort_keys=True) + "\n"
 
 
-def release_badge(verdict: str | None) -> str | None:
+def release_badge(verdict: str | None, signature: str | None = None) -> str | None:
     if not verdict or verdict not in RELEASE_BADGES:
         return None
     message, color = RELEASE_BADGES[verdict]
+    if verdict == "signed" and signature == "key-unchecked":
+        message = "signed, key not checked"
     return badge_json("release verification", message, color)
 
 
 def in_binary_badge(go: dict[str, Any] | None) -> str | None:
     if not go:
         return None
-    count = sum(1 for item in go.get("findings") or [] if item.get("level") == "symbol")
+    count = len(binary_advisories(go))
     return badge_json("vulnerable code in binary", str(count), "red" if count else "brightgreen")
 
 

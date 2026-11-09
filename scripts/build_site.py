@@ -61,13 +61,16 @@ CONTEXT_NOTE = (
     "exploitation in the next 30 days. Both describe the vulnerability in general, not its exploitability through "
     "this tool; a match in a workflow file refers to a GitHub Action, not to shipped code."
 )
-CHANGE_COUNTS = ("added", "removed", "upgraded", "new_vulnerabilities", "resolved_vulnerabilities", "kev_new", "integrity_drift")
+CHANGE_COUNTS = ("added", "removed", "upgraded", "downgraded", "unknown_direction", "file_changes", "license_changes", "moved",
+                 "new_vulnerabilities", "resolved_vulnerabilities", "kev_new", "kev_new_match", "integrity_drift",
+                 "in_binary_new", "in_binary_resolved")
 NO_FIX = '<span class="small">no fix listed</span>'
 ZERO = '<span class="zero">0</span>'
 SCOPE_NOTE = (
     "Each project is scanned at its latest GitHub release tag (or its default branch when it publishes no "
-    "releases). Only dependency manifests and lockfiles are fetched; test, fixture, example, documentation, "
-    "and vendored directories are excluded because security tools ship deliberately vulnerable fixtures."
+    "releases). Only dependency manifests, lockfiles, and GitHub Actions workflow and action files are fetched; test, "
+    "fixture, example, documentation, and vendored directories are excluded because security tools ship deliberately "
+    "vulnerable fixtures."
 )
 EXTRA_STYLE = """
 .sev-Critical{color:#fff;background:#a40e26}.sev-High{color:#fff;background:#cf222e}.sev-Medium{color:#1f2328;background:#f2cc60}.sev-Low{color:#1f2328;background:#d1d9e0}
@@ -79,6 +82,14 @@ header,main,footer{max-width:1600px}
 
 def esc(value: Any) -> str:
     return html.escape(str(value), quote=True)
+
+
+def locations_cell(item: dict[str, Any], suffix: str = "") -> str:
+    paths = exports.match_locations(item)
+    if len(paths) <= 1:
+        return f"<code>{esc(paths[0] if paths else '')}</code>{esc(suffix)}"
+    rest = "<br>".join(f"<code>{esc(path)}</code>" for path in paths[1:])
+    return f"<details><summary><code>{esc(paths[0])}</code>{esc(suffix)} +{len(paths) - 1}</summary>{rest}</details>"
 
 
 def ordered_standards(standards: dict[str, Any]) -> list[tuple[str, Any]]:
@@ -135,13 +146,34 @@ def count_cells(counts: dict[str, int]) -> str:
     return "".join(f"<td class=\"num\">{pill(level, value)}</td>" for level, value in shown_counts(counts).items())
 
 
+def osv_cell(item: dict[str, Any]) -> str:
+    """OSV-Scanner's view of one Grype match, then the separate OSV API lookup."""
+    if item.get("osv_confirmed"):
+        return '<span class="ok" title="Also reported by OSV-Scanner">✓</span>'
+    coverage = item.get("osv_coverage") or {}
+    why = "; ".join(coverage.get("reasons") or [])
+    scanner = {
+        "not reported": '<span class="zero" title="OSV-Scanner checked this package version and did not report this advisory">✗</span>',
+        "not checked": f'<span class="zero" title="OSV-Scanner did not check this package: {esc(why)}">?</span>',
+    }.get(coverage.get("state"), '<span class="zero">—</span>')
+    api = (item.get("osv_api") or {}).get("state")
+    if api == "confirmed":
+        return f'{scanner} <span class="ok" title="The OSV API lists this advisory for this package version">API ✓</span>'
+    if api == "not reported":
+        return f'{scanner} <span class="zero" title="The OSV API does not list this advisory for this package version">API ✗</span>'
+    return scanner
+
+
 def kev_cell(item: dict[str, Any]) -> str:
     if "kev" not in item:
         return '<span class="zero" title="not checked this week">—</span>'
     kev = item["kev"]
+    catalog = f" (KEV catalog {item['kev_snapshot']})" if item.get("kev_snapshot") else ""
     if not kev:
-        return '<span class="zero">no</span>'
-    return f'<span class="pill kev" title="{esc(kev.get("cve"))} added to CISA KEV {esc(kev.get("date_added"))}">KEV</span>'
+        return f'<span class="zero" title="not listed{esc(catalog)}">no</span>'
+    others = [cve for cve in item.get("kev_cves") or [] if cve != kev.get("cve")]
+    return (f'<span class="pill kev" title="{esc(kev.get("cve"))} added to CISA KEV {esc(kev.get("date_added"))}'
+            f'{esc("; also listed: " + ", ".join(others)) if others else ""}{esc(catalog)}">KEV</span>')
 
 
 def epss_text(epss: dict[str, Any] | None) -> str:
@@ -166,29 +198,43 @@ def change_summary(change: dict[str, Any]) -> str:
     parts = []
     if change.get("release_changed"):
         parts.append(f"new release (was {change.get('previous_ref')})")
-    for key, label in (("added", "added"), ("removed", "removed"), ("upgraded", "upgraded")):
+    if change.get("dependency_state") == "unavailable":
+        parts.append("dependency changes unavailable")
+    for key, label in (("added", "added"), ("removed", "removed"), ("upgraded", "upgraded"), ("downgraded", "downgraded"),
+                       ("unknown_direction", "changed version (order unknown)")):
         if change.get(key):
             parts.append(f"{len(change[key])} {label}")
-    if change.get("new_vulnerabilities"):
-        parts.append(f"{len(change['new_vulnerabilities'])} new advisories")
-    if change.get("resolved_vulnerabilities"):
-        parts.append(f"{len(change['resolved_vulnerabilities'])} resolved")
+    if change.get("file_changes"):
+        parts.append(f"{len(change['file_changes'])} manifest or workflow files changed")
+    if change.get("advisory_state") == "unavailable":
+        parts.append("advisory changes unavailable")
+    for key, distinct, one, many in (("new_vulnerabilities", "new_advisories", "new advisory", "new advisories"),
+                                     ("resolved_vulnerabilities", "resolved_advisories", "resolved", "resolved")):
+        rows = len(change.get(key) or [])
+        if rows:
+            count = change.get(distinct) or rows
+            parts.append(f"{count} {one if count == 1 else many}" + (f" ({rows} package versions)" if count != rows else ""))
     if change.get("license_changes"):
         parts.append(f"{len(change['license_changes'])} license changes")
     if change.get("integrity_drift"):
-        parts.append(f"{change['integrity_drift']} hash changes without a version change")
+        parts.append(f"{change['integrity_drift']} package hash changes without a version change")
     if change.get("in_binary_new"):
-        parts.append(f"{len(change['in_binary_new'])} new vulnerable functions in binary")
+        parts.append(f"{len(change['in_binary_new'])} new advisories with vulnerable code in binary")
     if change.get("in_binary_resolved"):
         parts.append(f"{len(change['in_binary_resolved'])} removed from binary")
     if change.get("workflow_new"):
         parts.append(f"{change['workflow_new']} new workflow findings")
+    if change.get("workflow_resolved"):
+        parts.append(f"{change['workflow_resolved']} workflow findings resolved")
     if change.get("scorecard"):
         parts.append(f"Scorecard {change['scorecard']['from']} → {change['scorecard']['to']}")
     if change.get("release_integrity"):
         parts.append(f"release {change['release_integrity']['from']} → {change['release_integrity']['to']}")
     if change.get("kev_new"):
         parts.append(f"{len(change['kev_new'])} newly in CISA KEV")
+    if change.get("kev_new_match"):
+        count = len(change["kev_new_match"])
+        parts.append(f"{count} new match{'es' if count != 1 else ''} for CVEs already in CISA KEV")
     return "; ".join(parts) or "no change"
 
 
@@ -464,9 +510,17 @@ class ReportSite:
         parts = []
         if entry.get("release_changed"):
             parts.append("new release")
-        for key, label in (("added", "added"), ("removed", "removed"), ("upgraded", "upgraded"),
+        if entry.get("dependency_state") == "unavailable":
+            parts.append("dependency changes unavailable")
+        if entry.get("advisory_state") == "unavailable":
+            parts.append("advisory changes unavailable")
+        for key, label in (("added", "added"), ("removed", "removed"), ("upgraded", "upgraded"), ("downgraded", "downgraded"),
+                           ("unknown_direction", "changed version (order unknown)"),
+                           ("file_changes", "manifest or workflow files changed"),
                            ("new_vulnerabilities", "new advisories"), ("resolved_vulnerabilities", "resolved"),
-                           ("kev_new", "newly in CISA KEV")):
+                           ("kev_new", "newly in CISA KEV"), ("in_binary_new", "new advisories with vulnerable code in binary"),
+                           ("in_binary_resolved", "removed from binary"), ("workflow_new", "new workflow findings"),
+                           ("workflow_resolved", "workflow findings resolved")):
             if entry.get(key):
                 parts.append(f"{entry[key]} {label}")
         return "; ".join(parts) or "no change"
@@ -474,7 +528,7 @@ class ReportSite:
     def this_week(self) -> str:
         latest = [stored["latest"] for stored in self.projects.values()]
         releases, new_vulns, resolved, deps, drift, failed = [], [], [], [], [], []
-        binary, workflows, scores, integrity, kev = [], [], [], [], []
+        binary, workflows, scores, integrity, kev, kev_match, files, unavailable = [], [], [], [], [], [], [], []
         for project in sorted(latest, key=lambda item: item["repository"].lower()):
             change = project.get("changes") or {}
             page = f'{project_path(project["repository"])}index.html'
@@ -491,14 +545,24 @@ class ReportSite:
                                   f"{link}: {badge(item['severity'], item['severity'][0])} "
                                   f"{self.advisory_link(item, 0)} "
                                   f"in <code>{esc(item['package'])}@{esc(item['version'])}</code>"))
+            for state, label in (("dependency_state", "dependency"), ("advisory_state", "advisory")):
+                if change.get(state) == "unavailable" and not change.get("scan_failed"):
+                    reason = change.get(label + "_reason") or change.get("unavailable") or "not available"
+                    unavailable.append(f"{link}: {label} changes ({esc(reason)})")
+            for item in change.get("kev_new_match") or []:
+                kev_match.append(f"{link}: {self.advisory_link(item, 0)} ({esc((item.get('kev') or {}).get('cve'))}, listed "
+                                 f"{esc((item.get('kev') or {}).get('date_added'))}) in <code>{esc(item['package'])}@{esc(item['version'])}</code>")
+            if change.get("file_changes"):
+                files.append(f"{link}: {len(change['file_changes'])}")
             for item in change.get("kev_new") or []:
                 kev.append(f"{link}: {self.advisory_link(item, 0)} ({esc((item.get('kev') or {}).get('cve'))}, added "
                            f"{esc((item.get('kev') or {}).get('date_added'))}) in <code>{esc(item['package'])}@{esc(item['version'])}</code>")
             if change.get("resolved_vulnerabilities"):
                 resolved.append(f"{link}: {len(change['resolved_vulnerabilities'])}")
-            count = len(change.get("added") or []) + len(change.get("removed") or []) + len(change.get("upgraded") or [])
-            if count:
-                deps.append(f"{link}: +{len(change.get('added') or [])} / −{len(change.get('removed') or [])} / ↑{len(change.get('upgraded') or [])}")
+            counts = [len(change.get(key) or []) for key in ("added", "removed", "upgraded", "downgraded", "unknown_direction")]
+            if any(counts):
+                deps.append(f"{link}: +{counts[0]} / −{counts[1]} / ↑{counts[2]}"
+                            + (f" / ↓{counts[3]}" if counts[3] else "") + (f" / ?{counts[4]}" if counts[4] else ""))
             if change.get("integrity_drift"):
                 drift.append(f"{link}: {change['integrity_drift']}")
             if change.get("in_binary_new") or change.get("in_binary_resolved"):
@@ -516,13 +580,15 @@ class ReportSite:
                     + (f"<h3>Scan problems</h3><ul>{''.join(f'<li>{item}</li>' for item in failed)}</ul>" if failed else ""))
         new_vulns.sort(key=lambda pair: pair[0])
         groups = [
-            ("Newly listed in CISA KEV", kev),
+            ("Newly listed in CISA KEV", kev), ("New matches for CVEs already in CISA KEV", kev_match),
             ("New releases", releases), ("New advisories", [text for _, text in new_vulns]),
-            ("Resolved advisories", resolved), ("Dependency changes (+added / −removed / ↑upgraded)", deps),
+            ("Resolved advisories", resolved), ("Dependency changes per lockfile (+added / −removed / ↑upgraded / ↓downgraded / ?order unknown)", deps),
             ("Vulnerable functions in released binaries (+new / −removed)", binary),
             ("Release verification changed", integrity), ("OpenSSF Scorecard changed", scores),
             ("Workflow findings (+new / −resolved)", workflows),
-            ("Hash changed without a version change (sbomlyze integrity drift)", drift), ("Scan problems", failed),
+            ("Package hash changed without a version change (sbomlyze integrity drift)", drift),
+            ("Manifest or workflow files changed (file content, not package integrity)", files),
+            ("Comparison not available", unavailable), ("Scan problems", failed),
         ]
         parts = ['<h2 id="this-week">This week</h2>', self.method_change_notice(self.latest and self.latest["date"], "")]
         for title, items in groups:
@@ -619,7 +685,9 @@ class ReportSite:
             f"scanned {ref_link}"
             + (f" (released {esc(str(project.get('released_at'))[:10])})" if project.get("released_at") else "")
             + (f" · commit <code>{esc(str(project.get('commit'))[:12])}</code>" if project.get("commit") else "")
-            + f" · last scan {esc(str(project.get('scanned_at') or '')[:10])}</p>",
+            + (f" · last successful scan {esc(str(project.get('last_success_at') or '')[:10])}, attempted "
+               f"{esc(str(project.get('scanned_at') or '')[:10])}</p>" if project.get("stale")
+               else f" · last scan {esc(str(project.get('scanned_at') or '')[:10])}</p>"),
         ]
         if retired:
             parts.append(f'<div class="banner"><strong>No longer scanned.</strong> This project left the active catalog after its scan of '
@@ -636,19 +704,19 @@ class ReportSite:
         ]
         go = project.get("go_binary")
         if go:
-            symbols = sum(1 for item in go["findings"] if item["level"] == "symbol")
+            symbols = len(exports.binary_advisories(go))
             cards.append(f'<div class="card"><div class="big">{symbols}</div><div class="small">advisories with vulnerable code in the {esc(go["go_version"])} binary</div></div>')
         card = project.get("scorecard") or {}
         source = ("carried forward from " + str(card.get("date") or "an earlier week") if card.get("carried_forward")
                   else SCORECARD_SOURCES.get(card.get("source") or "", ("", ""))[1]) if card else "no result this week"
         cards.append(f'<div class="card"><div class="big">{esc(card.get("score", "—"))}</div><div class="small">OpenSSF Scorecard (of 10); {esc(source)}</div></div>')
-        cards.append(f'<div class="card"><div class="big">{sections.verdict_cell((project.get("release_integrity") or {}).get("verdict"))}</div><div class="small">release verification</div></div>')
+        cards.append(f'<div class="card"><div class="big">{sections.verdict_cell((project.get("release_integrity") or {}).get("verdict"), (project.get("release_integrity") or {}).get("signature"))}</div><div class="small">release verification</div></div>')
         parts.append(f'<div class="cards">{"".join(cards)}</div>')
         if change and not change.get("baseline"):
             parts.append(self.method_change_notice(self.latest and self.latest["date"], "../../../"))
         parts.append(self.project_changes(change))
         parts.append(self.project_vulnerabilities(project))
-        parts.append(sections.osv_section(project.get("osv")))
+        parts.append(sections.osv_section(project.get("osv"), project.get("osv_api")))
         binary_only = {(item["id"], item["package"]): item for item in exports.binary_matches(project)}
 
         def binary_link(finding: dict[str, Any]) -> tuple[str | None, str]:
@@ -705,27 +773,95 @@ class ReportSite:
         if change.get("scan_failed"):
             return '<h2 id="changes">Changes since last week</h2><p>The scan failed this week, so no comparison was made.</p>'
         parts = ['<h2 id="changes">Changes since last week</h2>', f"<p>{esc(change_summary(change))}.</p>"]
-        if change.get("upgraded"):
+        if change.get("dependency_state") == "unavailable":
+            parts.append(f'<p class="warn">Dependency changes are not shown: {esc(change.get("dependency_reason") or change.get("unavailable") or "")}.</p>')
+        elif change.get("method"):
+            coverage = change.get("digest_coverage") or {}
+            kinds = ", ".join(sorted(coverage.get("by_kind") or {})) or "none"
+            parts.append('<p class="small">Compared by <a href="https://github.com/rezmoss/sbomlyze">sbomlyze</a> per lockfile: a package '
+                         "declared in two lockfiles counts twice. "
+                         + (f"Package hashes were compared for {coverage.get('comparable', 0)} of {coverage.get('same_version_pairs', 0)} "
+                            f"unchanged entries (hash kinds: {esc(kinds)}); the others carry no package hash in the SBOM.</p>"
+                            if coverage else "</p>"))
+        if change.get("advisory_state") == "unavailable":
+            parts.append(f'<p class="warn">Advisory changes are not shown: {esc(change.get("advisory_reason") or change.get("unavailable") or "")}.</p>')
+        versions = [*(change.get("downgraded") or []), *(change.get("unknown_direction") or []), *(change.get("upgraded") or [])]
+        if versions:
+            def direction(item: dict[str, Any]) -> str:
+                value = item.get("direction")
+                if value == "downgrade":
+                    return '<span class="bad">downgrade</span>'
+                if value == "upgrade":
+                    return f"upgrade ({esc(item.get('level'))})" if item.get("level") not in (None, "unknown") else "upgrade"
+                return '<span class="zero">order unknown</span>' if value else "—"
             rows = "".join(
-                f"<tr><td><code>{esc(item['package'])}</code></td><td>{esc(item['ecosystem'])}</td><td><code>{esc(item['from'])}</code></td><td><code>{esc(item['to'])}</code></td></tr>"
-                for item in change["upgraded"]
+                f"<tr><td><code>{esc(item['package'])}</code></td><td>{esc(item['ecosystem'])}</td><td><code>{esc(item['from'])}</code></td>"
+                f"<td><code>{esc(item['to'])}</code></td><td>{direction(item)}</td><td class=\"small\"><code>{esc(item.get('location') or '')}</code></td></tr>"
+                for item in versions
             )
-            parts.append(f"<h3>Version changes ({len(change['upgraded'])})</h3><div class=\"scroll\"><table><thead><tr><th>Package</th><th>Ecosystem</th><th>From</th><th>To</th></tr></thead><tbody>{rows}</tbody></table></div>")
+            distinct = change.get("distinct_version_changes")
+            parts.append(f"<h3>Version changes ({len(versions)}"
+                         + (f"; {distinct} distinct" if distinct and distinct != len(versions) else "") + ")</h3>"
+                         '<div class="scroll"><table><thead><tr><th>Package</th><th>Ecosystem</th><th>From</th><th>To</th><th>Direction</th>'
+                         f"<th>Lockfile</th></tr></thead><tbody>{rows}</tbody></table></div>")
         for key, title in (("added", "Added"), ("removed", "Removed")):
-            if change.get(key):
+            detail = change.get(f"{key}_detail")
+            if detail:
+                parts.append(f"<h3>{title} ({len(detail)})</h3><p>" + ", ".join(
+                    f"<code>{esc(item['name'])}@{esc(item['version'])}</code> <span class=\"small\">{esc(item.get('location') or '')}</span>"
+                    for item in detail) + "</p>")
+            elif change.get(key):
                 parts.append(f"<h3>{title} ({len(change[key])})</h3><p>" + ", ".join(f"<code>{esc(item)}</code>" for item in change[key]) + "</p>")
+        if change.get("moved"):
+            parts.append(f"<h3>Moved to another lockfile ({len(change['moved'])})</h3><ul>" + "".join(
+                f"<li><code>{esc(item['name'])}@{esc(item['version'])}</code>: {esc(item['from'])} → {esc(item['to'])}</li>"
+                for item in change["moved"]) + "</ul>")
+        if change.get("version_set_changes"):
+            parts.append('<p class="small">Several versions changed together in one lockfile (listed above as added and removed): ' + "; ".join(
+                f"<code>{esc(item['name'])}</code> in {esc(item['location'])}: {esc(', '.join(item['removed_versions']))} → "
+                f"{esc(', '.join(item['added_versions']))}" for item in change["version_set_changes"]) + ".</p>")
+        reasons = {"unchanged version": "on a version present last week", "changed version": "on a version that changed this week",
+                   "new package": "in a package added this week"}
+
+        def note(item: dict[str, Any]) -> str:
+            detail = item.get("new") or {}
+            text = reasons.get(detail.get("reason"), "")
+            if detail.get("advisory"):
+                date = detail.get("published") if detail["advisory"].startswith("published") else detail.get("modified")
+                text += f"; advisory {detail['advisory'].split(' since')[0]} {str(date)[:10]}"
+            return f' <span class="small">({esc(text)})</span>' if text else ""
+
         for key, title in (("new_vulnerabilities", "New advisories"), ("resolved_vulnerabilities", "Resolved advisories")):
             if change.get(key):
                 parts.append(f"<h3>{title} ({len(change[key])})</h3><ul>" + "".join(
-                    f"<li>{badge(item['severity'], item['severity'][0])} <code>{esc(item['id'])}</code> in <code>{esc(item['package'])}@{esc(item['version'])}</code></li>"
+                    f"<li>{badge(item['severity'], item['severity'][0])} <code>{esc(item['id'])}</code> in <code>{esc(item['package'])}@{esc(item['version'])}</code>{note(item)}</li>"
                     for item in change[key]) + "</ul>")
+        if any((item.get("new") or {}).get("reason") == "unchanged version" for item in change.get("new_vulnerabilities") or []):
+            parts.append('<p class="small">An advisory that is new on a version present last week comes from new or updated advisory '
+                         "data, not from a change in this project.</p>")
+        if change.get("still_affected_version_changed"):
+            parts.append("<h3>Still affected after a version change</h3><ul>" + "".join(
+                f"<li><code>{esc(item['id'])}</code> in <code>{esc(item['package'])}</code>: {esc(', '.join(item['from']))} → {esc(', '.join(item['to']))}</li>"
+                for item in change["still_affected_version_changed"]) + "</ul>")
         if change.get("license_changes"):
+            def versions_text(item: dict[str, Any]) -> str:
+                if item.get("version_from") and item.get("version_from") != item.get("version_to"):
+                    return f" ({esc(item['version_from'])} → {esc(item['version_to'])})"
+                return ""
             parts.append("<h3>License changes</h3><ul>" + "".join(
-                f"<li><code>{esc(item['package'])}</code>: {esc(', '.join(item['from']) or 'none')} → {esc(', '.join(item['to']) or 'none')}</li>"
+                f"<li><code>{esc(item['package'])}</code>{versions_text(item)}: {esc(', '.join(item['from']) or 'none')} → {esc(', '.join(item['to']) or 'none')}</li>"
                 for item in change["license_changes"]) + "</ul>")
+        if change.get("file_changes"):
+            parts.append(f"<h3>Manifest and workflow files changed ({len(change['file_changes'])})</h3>"
+                         '<p class="small">The content of these files differs from last week. This is expected with a new release and is not '
+                         "a package integrity problem; workflow edits can still matter for security.</p><p>"
+                         + ", ".join(f"<code>{esc(path)}</code>" for path in change["file_changes"]) + "</p>")
         if change.get("integrity_drift"):
-            parts.append(f'<p class="warn">sbomlyze found {change["integrity_drift"]} component(s) whose hash changed without a version change. '
-                         "Review the sbomlyze diff below.</p>")
+            details = change.get("integrity_changes") or []
+            parts.append(f'<p class="warn">sbomlyze found {change["integrity_drift"]} package(s) whose hash changed without a version change'
+                         + (": " + ", ".join(f"<code>{esc(item['name'])}@{esc(item.get('version') or '')}</code> ({esc(', '.join(item.get('kinds') or []))})"
+                                            for item in details) if details else "")
+                         + ". The same version should always have the same content; review the sbomlyze diff below.</p>")
         return "\n".join(parts)
 
     def advisory_link(self, item: dict[str, Any], depth: int) -> str:
@@ -771,7 +907,10 @@ class ReportSite:
                                                        for reason, count in sorted(excluded.items()))
             + ". Neither identifies a version installed from a registry.</p>") if excluded else ""
         if not vulns:
-            return ('<h2 id="vulnerabilities">Known vulnerabilities</h2><p class="ok">No known advisories matched the declared dependencies.</p>'
+            only = len((project.get("osv") or {}).get("osv_only") or [])
+            return ('<h2 id="vulnerabilities">Known vulnerabilities</h2><p class="ok">Grype matched no known advisories in the declared dependencies.</p>'
+                    + (f'<p class="warn">OSV-Scanner reported {only} advisor{"y" if only == 1 else "ies"} that Grype did not; see its section below.</p>'
+                       if only else "")
                     + excluded_note)
         rows = []
         order = {name: index for index, name in enumerate(SEVERITIES)}
@@ -779,7 +918,7 @@ class ReportSite:
             source = f' <a class="small" href="{esc(item["url"])}" title="Upstream advisory">source</a>' if item.get("url") else ""
             aliases = f'<div class="small">{esc(", ".join(item["aliases"]))}</div>' if item.get("aliases") else ""
             fixed = esc(", ".join(item.get("fixed_in") or [])) or '<span class="small">no fix listed</span>'
-            osv = '<span class="ok" title="Also reported by OSV-Scanner">✓</span>' if item.get("osv_confirmed") else '<span class="zero">—</span>'
+            osv = osv_cell(item)
             shipped = item.get("in_binary")
             shipped_cell = (f'<span class="{"bad" if shipped in ("vulnerable code in binary", "package in binary") else "zero"}">{esc(shipped)}</span>'
                             if shipped else '<span class="zero">—</span>')
@@ -789,11 +928,13 @@ class ReportSite:
                 f"<td><code>{esc(item['package'])}</code><div class=\"small\">{esc(item['ecosystem'])}</div></td><td><code>{esc(item['version'])}</code></td>"
                 f"<td>{fixed}</td><td class=\"num\">{osv}</td><td class=\"small\">{shipped_cell}</td>"
                 f"<td class=\"num\">{kev_cell(item)}</td>{epss_cell(item)}"
-                f"<td class=\"small\"><code>{esc(item.get('location') or '')}</code></td>{self.dispute_cell(project, item, depth)}</tr>"
+                f"<td class=\"small\">{locations_cell(item)}</td>{self.dispute_cell(project, item, depth)}</tr>"
             )
         return (
             f'<h2 id="vulnerabilities">Known vulnerabilities ({len(vulns)})</h2>'
-            f'<p class="small">{esc(VULNERABILITY_NOTE)} <strong>OSV</strong>: also reported by OSV-Scanner. '
+            f'<p class="small">{esc(VULNERABILITY_NOTE)} <strong>OSV</strong>: ✓ also reported by OSV-Scanner; ✗ OSV-Scanner checked '
+            "the package and did not report this advisory; ? OSV-Scanner did not check the package (hover for why); "
+            "<strong>API ✓</strong> a separate OSV API lookup lists this advisory for the package version. "
             "<strong>Released binary</strong>: for Go tools, whether govulncheck found the vulnerable code in the shipped Linux binary. "
             f"{esc(CONTEXT_NOTE)} Select an advisory for every catalog tool it matches. If a match is wrong or does not apply, "
             "use <strong>Dispute</strong>; accepted disputes are annotated here and listed on the corrections page, and the match stays visible.</p>"
@@ -819,6 +960,8 @@ class ReportSite:
                 licenses[name] = licenses.get(name, 0) + 1
         parts = [
             f'<h2 id="dependencies">Dependencies ({len(components)})</h2>',
+            '<p class="small">Each package version is listed once, even when several lockfiles declare it (the "Declared in" '
+            "column shows the first); the SBOM also lists the manifest files themselves, so its entry count is higher.</p>",
             "<p>By ecosystem: " + ", ".join(f"{esc(name)} {len(items)}" for name, items in sorted(groups.items(), key=lambda kv: -len(kv[1]))) + ".</p>",
             '<p class="small">Licenses (as declared in the SBOM): ' + ", ".join(
                 f"{esc(name)} {count}" for name, count in sorted(licenses.items(), key=lambda kv: -kv[1])[:15]) + ".</p>",
@@ -837,6 +980,9 @@ class ReportSite:
 
     @staticmethod
     def project_history(history: list[dict[str, Any]], pid: str = "", members: dict[str, set[str]] | None = None) -> str:
+        def first_week(item: dict[str, Any]) -> bool:
+            return bool(history) and item is history[0]
+
         """`members`: project ids in each week's run; a week the project is not listed in links without an anchor."""
         rows = []
         for item in reversed(history):
@@ -845,7 +991,9 @@ class ReportSite:
             changes = []
             if item.get("release_changed"):
                 changes.append("new release")
-            for key, label in (("added", "+"), ("removed", "−"), ("upgraded", "↑")):
+            if item.get("dependency_state") == "unavailable":
+                changes.append("dependencies n/a")
+            for key, label in (("added", "+"), ("removed", "−"), ("upgraded", "↑"), ("downgraded", "↓"), ("unknown_direction", "?")):
                 if item.get(key):
                     changes.append(f"{label}{item[key]}")
             if item.get("new_vulnerabilities"):
@@ -856,6 +1004,9 @@ class ReportSite:
                 changes.append(f"{item['kev_new']} newly in KEV")
             if item.get("errors"):
                 changes.append("scan error")
+            if changes and not item.get("method") and not first_week(item):
+                # Recorded before changes came from sbomlyze per lockfile and advisories were matched across aliases.
+                changes.append("old method")
             rows.append(
                 f"<tr id=\"{esc(anchor('week', item['date']))}\"><td><a href=\"../../../history/{esc(item['date'])}/index.html{'#' + esc(anchor(pid)) if members is None or pid in members.get(item['date'], set()) else ''}\">{esc(item['date'])}</a></td><td>{esc(item.get('ref') or '—')}</td>"
                 f"<td class=\"num\">{item['dependencies'] if item.get('dependencies') is not None else '—'}</td>{counts}<td>{esc(' · '.join(changes) or '—')}</td></tr>"
@@ -865,6 +1016,9 @@ class ReportSite:
             '<div class="scroll"><table><thead><tr><th>Week</th><th>Version</th><th class="num">Dependencies</th><th class="num">Critical</th>'
             '<th class="num">High</th><th class="num">Medium</th><th class="num">Low</th><th class="num">Unknown</th><th>Changes</th></tr></thead><tbody>'
             + "".join(rows) + "</tbody></table></div>"
+            + ('<p class="small">"old method": that week\'s changes were computed before 2026-11-08, when dependency changes did not '
+               "yet come from sbomlyze per lockfile and an advisory renamed to an alias counted as new and resolved; its counts "
+               "are kept as recorded.</p>" if any(not item.get("method") for item in history[1:]) else "")
         )
 
     @staticmethod
@@ -889,7 +1043,7 @@ class ReportSite:
         snippets = []
         page = f"{self.site_url}{project_path(repository)}index.html"
         for name, label, content in (
-            ("release", "release verification", exports.release_badge((project.get("release_integrity") or {}).get("verdict"))),
+            ("release", "release verification", exports.release_badge((project.get("release_integrity") or {}).get("verdict"), (project.get("release_integrity") or {}).get("signature"))),
             ("in-binary", "vulnerable code in binary", exports.in_binary_badge(project.get("go_binary"))),
         ):
             if not content:
@@ -927,8 +1081,9 @@ class ReportSite:
             summary = (("First scan. " if first else f"Changes: {text}. ")
                        + (f"Scan errors: {'; '.join(item['errors'])}. " if item.get("errors") else "")
                        + f"Version {item.get('ref') or '—'}: {item.get('dependencies') if item.get('dependencies') is not None else '—'} dependencies, "
-                       + ", ".join(f"{value} {level.lower()}" for level, value in counts.items()) + " advisory matches"
-                       + (f", {item['in_binary']['total']} with vulnerable code in the binary" if item.get("in_binary") else "") + ".")
+                       + ", ".join(f"{value} {level.lower()}" for level, value in counts.items()) + " Grype matches in the declared dependencies"
+                       + (f"; govulncheck: {item['in_binary']['total']} advisories with vulnerable code in the released binary"
+                          if item.get("in_binary") else "") + ".")
             entries.append({
                 "id": self.feed_entry_id("project", repository, item["date"]),
                 "title": f"{name}, week of {item['date']}: {'first scan' if first else text}",
@@ -983,7 +1138,6 @@ class ReportSite:
                 status = '<span class="zero">—</span>'
             else:
                 status = '<span class="zero" title="Only Go release binaries are analyzed for shipped code">not analyzed</span>'
-            location = item.get("location") or ""
             kind = (" (workflow)" if item.get("ecosystem") == "github"
                     else " (release binary; govulncheck only)" if item.get("source") == exports.GOVULNCHECK else "")
             rows.append(
@@ -992,7 +1146,7 @@ class ReportSite:
                 f"<div class=\"small\">{esc(project.get('category') or '')}</div></td><td>{esc(project.get('ref') or '—')}</td>"
                 f"<td><code>{esc(item['package'])}@{esc(item['version'])}</code><div class=\"small\">{esc(item.get('ecosystem'))}</div></td>"
                 f"<td>{esc(', '.join(item.get('fixed_in') or [])) or NO_FIX}</td>"
-                f"<td class=\"small\">{status}</td><td class=\"small\"><code>{esc(location)}</code>{esc(kind)}</td>"
+                f"<td class=\"small\">{status}</td><td class=\"small\">{locations_cell(item, kind)}</td>"
                 f"{self.dispute_cell(project, item, depth)}</tr>"
             )
         kev = record["kev"]
@@ -1066,7 +1220,9 @@ class ReportSite:
         shipped = sum(1 for record in records if record["shipped"])
         body = (
             "<h1>Advisories matched in open-source security tools</h1>"
-            f'<p class="lede">{len(records)} distinct advisories match the declared dependencies of the catalog\'s tools this week. '
+            f'<p class="lede">{len(records)} distinct advisories match the catalog\'s tools this week: Grype matches in their declared '
+            "dependencies and govulncheck findings in their released Go binaries (advisories only OSV-Scanner reported are in "
+            "matches.csv and on each project page). "
             f"{sum(1 for record in records if len(record['tools']) > 1)} affect more than one tool, and {shipped} have vulnerable code "
             "compiled into at least one tool's release binary. Advisory ids that alias each other (GHSA, Go, CVE) are merged.</p>"
             '<p class="meta"><a href="../data/advisories.csv">CSV</a> · <a href="../data/matches.csv">every match (CSV)</a></p>'
@@ -1105,7 +1261,8 @@ class ReportSite:
             ("projects/<owner>__<repo>.json", "Per project: latest inventory, every advisory match, checks, and weekly history."),
             (CHECKSUMS_FILE, "SHA-256 of every data file; attested by the workflow."),
             ("projects.csv", "Derived: this week's project table."),
-            ("matches.csv", "Derived: one row per project and advisory match, with KEV and EPSS."),
+            ("matches.csv", "Derived: one row per project and advisory match (Grype, govulncheck-only, and OSV-Scanner-only, "
+                            "told apart by the source column), with KEV, EPSS, and every lockfile location."),
             ("advisories.csv", "Derived: one row per distinct advisory, with the tools it matches."),
         )
         data = self.args.supply_chain_data
@@ -1202,7 +1359,11 @@ class ReportSite:
             "named in the attestation. The commit is public, so the code that produced the data can be read.</li>"
             "<li>The files were not changed after that run: any edit changes the digest and the check fails.</li>"
             "<li><code>verify --history</code> shows the data branch was only appended to: earlier weeks were never rewritten, "
-            "and a replaced run for the same week is kept under <code>runs/superseded/</code>.</li></ul>"
+            "and a replaced run for the same week is kept under <code>runs/superseded/</code>.</li>"
+            "<li><code>audit</code> (run in every scan job, after publishing, and weekly against the latest evidence release) re-derives "
+            "each project from its raw SBOM, Grype, OSV-Scanner, and govulncheck files and recorded OSV API responses, re-runs sbomlyze "
+            "on the two SBOMs, and fails if the published inventory, matches and their locations, binary findings, OSV states, or "
+            "dependency changes differ.</li></ul>"
             '<h2 id="limits">What it does not prove</h2><ul class="tight">'
             "<li>That the scanners are right. Results are what Syft, Grype, OSV-Scanner, govulncheck, zizmor, and Scorecard "
             "reported; their databases and the OpenSSF dataset are outside this repository's control.</li>"
@@ -1292,9 +1453,12 @@ class ReportSite:
                 new_run = (run.get("provenance") or {}).get("run") or {}
                 replaced = (f'<a href="{esc(old_run["url"])}">run #{esc(old_run["id"])}</a>' if old_run.get("url")
                             else f"unrecorded run, generated {esc(str(old.get('generated_at') or '?')[:16])}")
+                why = new_run.get("reason") or "not recorded"
+                if run.get("derivation"):
+                    why = f"{why} — {run['derivation']}" if new_run.get("reason") else run["derivation"]
                 superseded_rows.append(
                     f"<tr><td>{esc(run['date'])}</td><td>{replaced} · <a href=\"../data/{esc(name)}\">JSON</a></td>"
-                    f"<td>{esc(new_run.get('reason') or 'not recorded')}</td></tr>")
+                    f"<td>{esc(why)}</td></tr>")
         other_rows = "".join(
             f"<tr><td>{esc(entry.get('date', ''))}</td><td>{esc(entry.get('scope', ''))}</td><td>{esc(entry.get('summary', ''))}</td>"
             f"<td>{source(entry)}</td></tr>"
@@ -1354,7 +1518,7 @@ class ReportSite:
             for sub in ("runs", "projects"):
                 if (data / sub).is_dir():
                     shutil.copytree(data / sub, self.out / "data" / sub, dirs_exist_ok=True)
-            for name in ("index.json", CHECKSUMS_FILE):
+            for name in ("index.json", "README.md", CHECKSUMS_FILE):
                 if (data / name).is_file():
                     shutil.copyfile(data / name, self.out / "data" / name)
         artifacts = self.args.supply_chain_artifacts

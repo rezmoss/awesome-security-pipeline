@@ -152,10 +152,12 @@ def method_detail(item: dict[str, Any]) -> str:
     return "; ".join(part for part in parts if part)
 
 
-def verdict_cell(verdict: str | None) -> str:
+def verdict_cell(verdict: str | None, signature: str | None = None) -> str:
     if not verdict:
         return "—"
     klass, text = VERDICTS.get(verdict, ("zero", verdict))
+    if verdict == "signed" and signature == "key-unchecked":
+        text = "signed with a key that is not checked"
     return f'<span class="{klass}">{esc(text)}</span>'
 
 
@@ -165,10 +167,12 @@ def reachability_section(go: dict[str, Any] | None, vulns: list[dict[str, Any]] 
     if not go:
         return (f'<h2 id="in-binary">Vulnerable code in the released binary</h2><p class="small">{esc(note)}</p>' if note else "")
     symbols = [item for item in go["findings"] if item["level"] == "symbol"]
-    stdlib = [item for item in symbols if item["module"] == "stdlib"]
-    dependencies = [item for item in symbols if item["module"] != "stdlib"]
+    advisories = {item["id"] for item in symbols}
+    stdlib = {item["id"] for item in symbols if item["module"] == "stdlib"}
+    dependencies = {item["id"] for item in symbols if item["module"] != "stdlib"}
     go_matches = [item for item in vulns or [] if item.get("ecosystem") == "golang"]
     not_shipped = sum(1 for item in go_matches if item.get("in_binary") in ("not in released binary", "vulnerable code not in binary"))
+    other_version = sum(1 for item in go_matches if item.get("in_binary") == "different version in binary")
     def cell(item: dict[str, Any]) -> tuple[str | None, str]:
         return link(item) if link else (None, f"<code>{esc(item['id'])}</code>")
 
@@ -182,10 +186,13 @@ def reachability_section(go: dict[str, Any] | None, vulns: list[dict[str, Any]] 
     return (
         '<h2 id="in-binary">Vulnerable code in the released binary</h2>'
         f"<p>govulncheck analyzed <code>{esc(go['binary'])}</code> from <code>{esc(go['asset'])}</code>, built with "
-        f"<strong>{esc(go['go_version'])}</strong>. <strong>{plural(len(symbols), 'advisory', 'advisories')}</strong> {'has' if len(symbols) == 1 else 'have'} vulnerable functions compiled into it: "
-        f"{len(stdlib)} in the Go standard library and {len(dependencies)} in dependencies.</p>"
+        f"<strong>{esc(go['go_version'])}</strong>. <strong>{plural(len(advisories), 'advisory', 'advisories')}</strong> {'has' if len(advisories) == 1 else 'have'} vulnerable functions compiled into it: "
+        f"{len(stdlib)} in the Go standard library and {len(dependencies)} in dependencies"
+        + (f" ({len(symbols)} module versions in all)" if len(symbols) != len(advisories) else "") + ".</p>"
         + (f"<p>Of the {len(go_matches)} Go advisories Grype matched in the source, {not_shipped} are in modules or code paths "
-           "that are not in the shipped binary.</p>" if go_matches else "")
+           "that are not in the shipped binary"
+           + (f", and {other_version} are in modules the binary was built with at a different version" if other_version else "")
+           + ".</p>" if go_matches else "")
         + ('<p class="small">The Go linker removes unreachable functions, so a vulnerable function in the binary is likely reachable. '
            "Standard-library advisories are fixed by rebuilding with a newer Go release.</p>")
         + (f'<div class="scroll"><table><thead><tr><th>Advisory</th><th>Module</th><th>Version</th><th>Fixed in</th><th>Summary</th></tr></thead>'
@@ -193,7 +200,7 @@ def reachability_section(go: dict[str, Any] | None, vulns: list[dict[str, Any]] 
     )
 
 
-def osv_section(osv: dict[str, Any] | None) -> str:
+def osv_section(osv: dict[str, Any] | None, api: dict[str, Any] | None = None) -> str:
     if not osv or not osv.get("available"):
         return ""
     only = osv.get("osv_only") or []
@@ -202,10 +209,18 @@ def osv_section(osv: dict[str, Any] | None) -> str:
         f"<td><code>{esc(item['version'])}</code></td><td>{esc(item['severity'])}</td></tr>"
         for item in only
     )
+    coverage = osv.get("coverage") or {}
+    api = api or {}
+    coverage_text = (f" Of Grype's other matches, OSV-Scanner checked the package of {coverage.get('not reported', 0)} without reporting "
+                     f"the advisory and did not check {coverage.get('not checked', 0)} (marked ? above, with the reason)." if coverage else "")
+    states = api.get("states") or {}
+    api_text = (f" A separate OSV API lookup of the matches OSV-Scanner did not confirm lists {states.get('confirmed', 0)} of them "
+                f"for the same package version (marked API ✓)." if api.get("available") and states else
+                " The OSV API lookup failed this week." if api.get("error") else "")
     return (
         '<h3 id="osv">Second opinion: OSV-Scanner</h3>'
         f"<p>OSV-Scanner found {osv['advisories']} advisories in the same files; {osv['confirmed']} of Grype's matches are confirmed by it "
-        f"(marked ✓ above). {len(only)} advisories were reported only by OSV-Scanner.</p>"
+        f"(marked ✓ above). {len(only)} advisories were reported only by OSV-Scanner.{coverage_text}{api_text}</p>"
         + (f'<p class="small warn">{esc(osv["warning"])}</p>' if osv.get("warning") else "")
         + (f"<details><summary>Reported only by OSV-Scanner ({len(only)})</summary><div class=\"scroll\"><table><thead><tr><th>Advisory</th>"
            f"<th>Package</th><th>Version</th><th>Severity</th></tr></thead><tbody>{rows}</tbody></table></div></details>" if rows else "")
@@ -247,7 +262,7 @@ def release_section(integrity: dict[str, Any] | None, repository: str) -> str:
                 f"<li>Immutable release (the file has not changed since it was published; says nothing about how it was built): {immutable}</li>")
     return (
         '<h2 id="release">Release integrity</h2>'
-        f"<p>Verdict: <strong>{verdict_cell(integrity.get('verdict'))}</strong>"
+        f"<p>Verdict: <strong>{verdict_cell(integrity.get('verdict'), integrity.get('signature'))}</strong>"
         + (f" for <code>{esc(integrity['asset'])}</code>" if integrity.get("asset") else "")
         + (". The download matches GitHub's recorded digest." if integrity.get("digest_matches_github") else ".")
         + "</p>"

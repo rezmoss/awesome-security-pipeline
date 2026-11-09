@@ -37,7 +37,7 @@ from scripts import enrichment  # noqa: E402
 from scripts import site_exports  # noqa: E402
 from scripts import supply_chain_checks as checks  # noqa: E402
 
-SCHEMA_VERSION = 4
+SCHEMA_VERSION = 5
 WORKFLOW_PATH = ".github/workflows/supply-chain-report.yml"
 GO_VULN_INDEX = "https://vuln.go.dev/index/db.json"
 CHECKSUMS_FILE = "SHA256SUMS"
@@ -320,23 +320,33 @@ def normalize_grype(report: dict[str, Any], local_packages: set[str] | None = No
             "package": str(artifact.get("name", "")),
             "version": str(artifact.get("version", "")),
             "ecosystem": ecosystem(str(artifact.get("purl") or "")),
+            "purl": str(artifact.get("purl") or "").split("?", 1)[0],
             "fixed_in": list(fix.get("versions") or []),
             "fix_state": str(fix.get("state") or "unknown"),
             "url": str(vulnerability.get("dataSource") or ""),
             "summary": " ".join(str(vulnerability.get("description") or "").split())[:300],
-            "location": str(((artifact.get("locations") or [{}])[0]).get("path", "")).lstrip("/"),
+            "locations": sorted({str(item.get("path", "")).lstrip("/") for item in artifact.get("locations") or []} - {""}),
         }
-        key = (entry["id"], entry["package"], entry["version"])
+        key = (entry["id"], entry["ecosystem"], entry["package"], entry["version"])
         reason = excluded_match(entry, local_packages or set())
         if reason:
             skipped[key] = reason
             continue
+        existing = findings.get(key)
+        if existing:
+            # Grype reports one match per lockfile that declares the version; keep every location so the
+            # result does not depend on the order of the matches.
+            entry["aliases"] = sorted(set(existing["aliases"]) | set(entry["aliases"]))
+            entry["locations"] = sorted(set(existing["locations"]) | set(entry["locations"]))
         findings[key] = entry
     if excluded is not None:
         for reason in skipped.values():
             excluded[reason] = excluded.get(reason, 0) + 1
+    for entry in findings.values():
+        entry["location"] = entry["locations"][0] if entry["locations"] else ""
     order = {name: index for index, name in enumerate(SEVERITIES)}
-    return sorted(findings.values(), key=lambda item: (order.get(item["severity"], 99), item["package"], item["id"]))
+    return sorted(findings.values(), key=lambda item: (order.get(item["severity"], 99), item["package"], item["id"],
+                                                      item["ecosystem"], item["version"]))
 
 
 def severity_counts(findings: list[dict[str, Any]]) -> dict[str, int]:
@@ -371,7 +381,73 @@ def compliance_summary(report: dict[str, Any]) -> dict[str, Any]:
     return result
 
 
-def sbomlyze_diff(binary: str, previous: pathlib.Path, current: pathlib.Path, html_target: pathlib.Path) -> dict[str, Any] | None:
+def sbomlyze_occurrences(diff: dict[str, Any], aliases_before: dict[str, str], aliases_after: dict[str, str]) -> dict[str, Any]:
+    """The parts of sbomlyze's diff the report shows, per occurrence (package × lockfile). sbomlyze does the
+    matching, version ordering, and hash comparison; this only reshapes its output and maps lockfile aliases back."""
+    def place(path: str, aliases: dict[str, str]) -> str:
+        path = str(path or "").lstrip("/")
+        return aliases.get(path, path)
+
+    def package(item: dict[str, Any], aliases: dict[str, str]) -> dict[str, Any]:
+        return {"name": str(item.get("name") or ""), "ecosystem": ecosystem(str(item.get("purl") or "")),
+                "version": str(item.get("version") or ""),
+                "location": place((item.get("locations") or [""])[0], aliases),
+                "locations": sorted(place(path, aliases) for path in item.get("locations") or [])}
+
+    result: dict[str, Any] = {
+        "added": [package(item, aliases_after) for item in diff.get("added") or [] if item.get("type") != "file"],
+        "removed": [package(item, aliases_before) for item in diff.get("removed") or [] if item.get("type") != "file"],
+        "version_changes": [], "integrity_changes": [], "metadata_changes": [], "license_changes": [],
+        "moved": [{"name": item.get("name"), "version": item.get("version"),
+                   "from": place(item.get("from"), aliases_before), "to": place(item.get("to"), aliases_after)}
+                  for item in diff.get("moved") or []],
+        "version_set_changes": [{"name": item.get("name"), "location": place(item.get("location"), aliases_after),
+                                 "removed_versions": item.get("removed_versions") or [],
+                                 "added_versions": item.get("added_versions") or []}
+                                for item in diff.get("version_set_changes") or []],
+        "file_changes": [{"path": place(item.get("path"), aliases_after), "owners": item.get("owners") or []}
+                         for item in diff.get("file_changes") or []],
+        "files_added": [place(item.get("path"), aliases_after) for item in diff.get("files_added") or []],
+        "files_removed": [place(item.get("path"), aliases_before) for item in diff.get("files_removed") or []],
+        "owned_file_drift": [{"name": item.get("name"), "version": item.get("version"),
+                              "location": place(item.get("location"), aliases_after),
+                              "files": [entry.get("path") for entry in item.get("files") or []]}
+                             for item in diff.get("owned_file_drift") or []],
+        "source_change": diff.get("source_change"),
+        "digest_coverage": diff.get("digest_coverage"),
+        "file_coverage": diff.get("file_coverage"),
+    }
+    for item in diff.get("changed") or []:
+        before, after, drift = item.get("before") or {}, item.get("after") or {}, item.get("drift") or {}
+        common = {"name": str(item.get("name") or after.get("name") or ""),
+                  "ecosystem": ecosystem(str(after.get("purl") or before.get("purl") or "")),
+                  "location": place(item.get("location"), aliases_after)}
+        if drift.get("type") == "version":
+            result["version_changes"].append({**common, "from": drift.get("version_from"), "to": drift.get("version_to"),
+                                              "direction": drift.get("direction") or "unknown",
+                                              "level": drift.get("level") or "unknown"})
+        elif drift.get("type") == "integrity":
+            changes = (drift.get("hash_changes") or {}).get("changed") or {}
+            result["integrity_changes"].append({**common, "version": after.get("version"), "kinds": sorted(changes),
+                                                "hashes": changes})
+        else:
+            result["metadata_changes"].append({**common, "version": after.get("version"), "changes": item.get("changes") or []})
+        if drift.get("licenses_diff"):
+            result["license_changes"].append({**common, "version_from": before.get("version"), "version_to": after.get("version"),
+                                              "from": sorted(before.get("licenses") or []), "to": sorted(after.get("licenses") or []),
+                                              "diff": drift["licenses_diff"]})
+    return result
+
+
+def sbomlyze_change(diff: dict[str, Any]) -> bool:
+    """Whether sbomlyze reports any difference, including file-only and source-only changes."""
+    return any(diff.get(key) for key in ("added", "removed", "changed", "moved", "file_changes", "files_added",
+                                         "files_removed", "owned_file_drift", "source_change"))
+
+
+def sbomlyze_diff(binary: str, previous: pathlib.Path, current: pathlib.Path, html_target: pathlib.Path,
+                  raw_target: pathlib.Path | None = None, aliases_before: dict[str, str] | None = None,
+                  aliases_after: dict[str, str] | None = None, baseline: dict[str, Any] | None = None) -> dict[str, Any] | None:
     with tempfile.TemporaryDirectory() as temporary:
         work = pathlib.Path(temporary)
         shutil.copyfile(previous, work / "previous.cdx.json")
@@ -379,6 +455,8 @@ def sbomlyze_diff(binary: str, previous: pathlib.Path, current: pathlib.Path, ht
         completed = run([binary, "previous.cdx.json", "current.cdx.json", "--json", "--no-pager"], cwd=work)
         if completed.returncode not in (0, 1) or not completed.stdout.strip():
             return None
+        if raw_target is not None:
+            raw_target.write_text(completed.stdout.strip() + "\n", encoding="utf-8")
         report = json.loads(completed.stdout)
         diff = report.get("diff") or {}
         summary = {
@@ -387,13 +465,23 @@ def sbomlyze_diff(binary: str, previous: pathlib.Path, current: pathlib.Path, ht
             "changed": len(diff.get("changed") or []),
             "drift": diff.get("drift_summary") or {},
             "findings": [item.get("message", "") for item in (report.get("findings") or {}).get("findings") or []],
+            "previous_sbom_sha256": checks.sha256(previous),
+            "sbom_sha256": checks.sha256(current),
+            "baseline": baseline or {},
         }
-        if summary["added"] or summary["removed"] or summary["changed"]:
+        # 0.7.1+ always reports digest coverage for a pair with packages; without it the fields below mean
+        # something else (0.6.x counted file entries as integrity drift).
+        summary["contract"] = "sbomlyze-diff-0.7" if "digest_coverage" in diff or not sbomlyze_change(diff) else "unsupported"
+        if summary["contract"] != "unsupported":
+            summary["occurrences"] = sbomlyze_occurrences(diff, aliases_before or {}, aliases_after or {})
+        if sbomlyze_change(diff):
             page = run([binary, "previous.cdx.json", "current.cdx.json", "--format", "html", "--no-pager"], cwd=work)
             if page.returncode in (0, 1) and page.stdout.strip():
                 html_target.parent.mkdir(parents=True, exist_ok=True)
                 html_target.write_text(page.stdout, encoding="utf-8")
                 summary["html"] = html_target.name
+            else:
+                summary["html_error"] = f"sbomlyze --format html exited with {page.returncode}"
         return summary
 
 
@@ -436,7 +524,7 @@ def release_checks(target: dict[str, Any], summary: dict[str, Any], work: pathli
 
 
 def scan_target(target: dict[str, Any], output: pathlib.Path, previous_dir: pathlib.Path | None, sbomlyze: str,
-                scorecard_cli: bool = False) -> dict[str, Any]:
+                scorecard_cli: bool = False, baseline_run: dict[str, Any] | None = None) -> dict[str, Any]:
     pid = project_id(target["repository"])
     directory = output / pid
     directory.mkdir(parents=True, exist_ok=True)
@@ -458,6 +546,7 @@ def scan_target(target: dict[str, Any], output: pathlib.Path, previous_dir: path
         summary["manifests"] = paths
         source_paths = {str(source.resolve()): "", str(source): ""}
         local_packages = local_npm_packages(source)
+        summary["local_packages"] = sorted(local_packages)
         osv = check(summary, "osv-scanner", checks.osv_scan, source, directory / "osv-scanner.json") or {}
         if osv.get("error"):
             summary["errors"].append(osv["error"])
@@ -491,17 +580,25 @@ def scan_target(target: dict[str, Any], output: pathlib.Path, previous_dir: path
         excluded: dict[str, int] = {}
         summary["vulnerabilities"] = normalize_grype(load_json(grype_report), local_packages, excluded)
         for item in summary["vulnerabilities"]:
-            item["location"] = lock_aliases.get(item["location"], item["location"])
+            item["locations"] = sorted(lock_aliases.get(path, path) for path in item["locations"])
+            item["location"] = item["locations"][0] if item["locations"] else ""
         if excluded:
             summary["excluded_matches"] = excluded
 
     summary["osv"] = checks.cross_reference(summary["vulnerabilities"], osv)
+    if summary["vulnerabilities"] is not None:
+        earlier = previous_dir / pid / "summary.json" if previous_dir else None
+        since = str(load_json(earlier).get("scanned_at") or "") if earlier and earlier.is_file() else ""
+        summary["osv_api"] = check(summary, "OSV API lookup", checks.osv_api_lookup, summary["vulnerabilities"],
+                                   directory / "osv-api.json", since)
     if target.get("ref_kind") == "release":
         with tempfile.TemporaryDirectory() as temporary:
             check(summary, "release checks", release_checks, target, summary, pathlib.Path(temporary), directory)
     checks.annotate_reachability(summary["vulnerabilities"], summary.get("go_binary"))
     if summary.get("go_binary"):
+        # The module list is in govulncheck.json; the project file keeps only the findings.
         summary["go_binary"].pop("modules", None)
+        summary["go_binary"].pop("module_versions", None)
     scorecard = check(summary, "scorecard", checks.scorecard, target["repository"], scorecard_cli)
     summary["scorecard"] = scorecard if scorecard and not scorecard.get("error") else None
     if scorecard and scorecard.get("error"):
@@ -510,11 +607,247 @@ def scan_target(target: dict[str, Any], output: pathlib.Path, previous_dir: path
     compliance = run([sbomlyze, str(sbom), "--compliance", "--json", "--no-pager"])
     if compliance.returncode == 0 and compliance.stdout.strip():
         summary["compliance"] = compliance_summary(json.loads(compliance.stdout))
+    summary["sbom_sha256"] = checks.sha256(sbom)
+    summary["lock_aliases"] = lock_aliases
     previous = previous_dir / pid / "sbom.cdx.json" if previous_dir else None
     if previous and previous.is_file():
-        summary["sbomlyze_diff"] = sbomlyze_diff(sbomlyze, previous, sbom, directory / "sbomlyze-diff.html")
+        earlier = previous.with_name("summary.json")
+        aliases_before = (load_json(earlier).get("lock_aliases") if earlier.is_file() else None) or lock_aliases
+        summary["sbomlyze_diff"] = sbomlyze_diff(sbomlyze, previous, sbom, directory / "sbomlyze-diff.html",
+                                                 directory / "sbomlyze-diff.json", aliases_before, lock_aliases,
+                                                 baseline_run)
     write_json(directory / "summary.json", summary)
     return summary
+
+
+# ----- replay ----------------------------------------------------------------------------
+
+RAW_FILES = ("sbom.cdx.json", "grype.json", "osv-scanner.json", "govulncheck.json", "osv-api.json")
+
+
+def inferred_aliases(summary: dict[str, Any]) -> dict[str, str]:
+    """Lockfile aliases of a scan recorded before they were kept: an npm-shrinkwrap.json without a
+    package-lock.json beside it was read as package-lock.json."""
+    manifests = set(summary.get("manifests") or [])
+    aliases = {}
+    for path in manifests:
+        if path.rsplit("/", 1)[-1] == "npm-shrinkwrap.json":
+            lock = path[: -len("npm-shrinkwrap.json")] + "package-lock.json"
+            if lock not in manifests:
+                aliases[lock] = path
+    return aliases
+
+
+def replay_project(summary: dict[str, Any], evidence: pathlib.Path, output: pathlib.Path, previous_dir: pathlib.Path | None,
+                   sbomlyze: str, baseline_run: dict[str, Any] | None, osv_api_live: bool = False) -> dict[str, Any]:
+    """Re-derive one project's summary from its raw evidence files, without the network (except an OSV API lookup
+    when asked for one, which is recorded with its own time). Release verification, Scorecard, and workflow results
+    are taken from the original summary: they come from upstream services, not from these files."""
+    result = json.loads(json.dumps(summary))
+    directory = output / summary["id"]
+    directory.mkdir(parents=True, exist_ok=True)
+    for name in RAW_FILES:
+        if (evidence / name).is_file():
+            shutil.copyfile(evidence / name, directory / name)
+    sbom = directory / "sbom.cdx.json"
+    if summary.get("components") is None or not sbom.is_file():
+        write_json(directory / "summary.json", result)
+        return result
+    aliases = summary.get("lock_aliases") if summary.get("lock_aliases") is not None else inferred_aliases(summary)
+    result["lock_aliases"] = aliases
+    result["components"] = normalize_sbom(load_json(sbom))
+    for item in result["components"]:
+        item["location"] = aliases.get(item["location"], item["location"])
+    result["sbom_sha256"] = checks.sha256(sbom)
+
+    grype = directory / "grype.json"
+    if summary.get("vulnerabilities") is not None and grype.is_file():
+        excluded: dict[str, int] = {}
+        rows = normalize_grype(load_json(grype), set(summary.get("local_packages") or []), excluded)
+        if "local_packages" not in summary:
+            # Scans before the local package names were kept: those exclusions are the npm rows it did not record.
+            kept = {(item["id"], item["package"], item["version"]) for item in summary["vulnerabilities"]}
+            rows = [item for item in rows if item["ecosystem"] != "npm" or (item["id"], item["package"], item["version"]) in kept]
+            excluded = dict(summary.get("excluded_matches") or {})
+        for item in rows:
+            item["locations"] = sorted(aliases.get(path, path) for path in item["locations"])
+            item["location"] = item["locations"][0] if item["locations"] else ""
+        result["vulnerabilities"] = rows
+        result.pop("excluded_matches", None)
+        if excluded:
+            result["excluded_matches"] = excluded
+    osv_file = directory / "osv-scanner.json"
+    osv = (checks.parse_osv_report(load_json(osv_file), [], (summary.get("osv") or {}).get("warning"))
+           if osv_file.is_file() and (summary.get("osv") or {}).get("available") else {})
+    result["osv"] = checks.cross_reference(result.get("vulnerabilities"), osv)
+    if (directory / "osv-api.json").is_file():
+        result["osv_api"] = checks.apply_osv_api(result.get("vulnerabilities"), load_json(directory / "osv-api.json"))
+    elif osv_api_live and result.get("vulnerabilities") is not None:
+        earlier = previous_dir / summary["id"] / "summary.json" if previous_dir else None
+        since = str(load_json(earlier).get("scanned_at") or "") if earlier and earlier.is_file() else ""
+        result["osv_api"] = checks.osv_api_lookup(result["vulnerabilities"], directory / "osv-api.json", since)
+
+    stream = directory / "govulncheck.json"
+    if summary.get("go_binary") and stream.is_file():
+        objects = checks.json_stream(stream.read_text(encoding="utf-8"))
+        modules = next((item["SBOM"] for item in objects if "SBOM" in item), {}).get("modules") or []
+        go = {**summary["go_binary"], "findings": checks.govulncheck_findings(objects),
+              "modules": [module.get("path") for module in modules],
+              "module_versions": {module.get("path"): module.get("version") or "" for module in modules if module.get("path")}}
+        checks.annotate_reachability(result.get("vulnerabilities"), go)
+        go.pop("modules", None)
+        go.pop("module_versions", None)
+        result["go_binary"] = go
+    else:
+        checks.annotate_reachability(result.get("vulnerabilities"), result.get("go_binary"))
+
+    compliance = run([sbomlyze, str(sbom), "--compliance", "--json", "--no-pager"])
+    if compliance.returncode == 0 and compliance.stdout.strip():
+        result["compliance"] = compliance_summary(json.loads(compliance.stdout))
+    result.pop("sbomlyze_diff", None)
+    previous = previous_dir / summary["id"] / "sbom.cdx.json" if previous_dir else None
+    if previous and previous.is_file():
+        earlier = previous.with_name("summary.json")
+        before = load_json(earlier) if earlier.is_file() else {}
+        aliases_before = before.get("lock_aliases") if before.get("lock_aliases") is not None else inferred_aliases(before) if before else aliases
+        result["sbomlyze_diff"] = sbomlyze_diff(sbomlyze, previous, sbom, directory / "sbomlyze-diff.html",
+                                                directory / "sbomlyze-diff.json", aliases_before, aliases, baseline_run)
+    write_json(directory / "summary.json", result)
+    return result
+
+
+def command_replay(args: argparse.Namespace) -> int:
+    """Rebuild shard results from an evidence bundle (one shard, or all), for a corrected publication of a recorded
+    week and for the accuracy check."""
+    shard_files = sorted(args.evidence_dir.glob("supply-chain-shard-*/shard-*.json"))
+    if args.shard is not None:
+        shard_files = [path for path in shard_files if path.stem == f"shard-{args.shard}"]
+    if not shard_files:
+        raise ValueError(f"no shard results in {args.evidence_dir}")
+    baseline_run = ({"run_id": str(args.previous_run_id), "attempt": str(args.previous_run_attempt or "")}
+                    if args.previous_run_id else None)
+    for shard_file in shard_files:
+        shard = load_json(shard_file)
+        # One shard (a workflow job) writes straight into its output directory, like `scan`.
+        output = args.output_dir if args.shard is not None else args.output_dir / shard_file.parent.name
+        projects = [replay_project(summary, shard_file.parent / summary["id"], output, args.previous_dir, args.sbomlyze,
+                                   baseline_run, args.osv_api) for summary in shard["projects"]]
+        tools = {**(shard.get("tools") or {}), "sbomlyze": tool_version(args.sbomlyze, ["--version"])}
+        environment = {**(shard.get("environment") or {}),
+                       "replay": {"at": utc_now(), "from": args.source or str(args.evidence_dir), "osv_api": bool(args.osv_api)}}
+        write_json(output / shard_file.name, {"tools": tools, "environment": environment, "projects": projects}, indent=None)
+        print(f"replayed {shard_file.parent.name}: {len(projects)} projects", flush=True)
+    return 0
+
+
+# ----- accuracy audit ----------------------------------------------------------------------
+
+DERIVED_KEYS = ("components", "vulnerabilities", "go_binary", "osv", "osv_api", "sbom_sha256")
+# Added at publish from the KEV/EPSS snapshots, not derived from the scan files.
+ENRICHMENT_KEYS = ("kev", "kev_cves", "kev_snapshot", "epss", "epss_date")
+
+
+def without_enrichment(value: Any) -> Any:
+    if isinstance(value, list):
+        return [without_enrichment(item) for item in value]
+    if isinstance(value, dict):
+        return {key: without_enrichment(item) for key, item in value.items() if key not in ENRICHMENT_KEYS}
+    return value
+
+
+def first_difference(expected: Any, actual: Any, path: str = "") -> str:
+    if isinstance(expected, dict) and isinstance(actual, dict):
+        for key in sorted(set(expected) | set(actual)):
+            if expected.get(key) != actual.get(key):
+                return first_difference(expected.get(key), actual.get(key), f"{path}.{key}")
+    if isinstance(expected, list) and isinstance(actual, list):
+        if len(expected) != len(actual):
+            return f"{path}: {len(expected)} entries expected, {len(actual)} recorded"
+        for index, (left, right) in enumerate(zip(expected, actual)):
+            if left != right:
+                return first_difference(left, right, f"{path}[{index}]")
+    return f"{path}: expected {json.dumps(expected)[:160]}, recorded {json.dumps(actual)[:160]}"
+
+
+def audit_shards(shards_dir: pathlib.Path, previous_dir: pathlib.Path | None, sbomlyze: str) -> list[str]:
+    """Re-derive every project from its raw files and compare with the recorded summary: a lossy or
+    order-dependent normalization, or a summary that does not match its evidence, is reported."""
+    problems = []
+    with tempfile.TemporaryDirectory() as temporary:
+        for shard_file in sorted(shards_dir.glob("**/shard-*.json")):
+            for summary in load_json(shard_file)["projects"]:
+                if summary.get("components") is None:
+                    continue
+                baseline = (summary.get("sbomlyze_diff") or {}).get("baseline") or None
+                replayed = replay_project(summary, shard_file.parent / summary["id"], pathlib.Path(temporary), previous_dir,
+                                          sbomlyze, baseline)
+                for key in DERIVED_KEYS:
+                    if without_enrichment(replayed.get(key)) != without_enrichment(summary.get(key)):
+                        problems.append(f"{summary['id']} {key} does not match its raw evidence: "
+                                        + first_difference(without_enrichment(replayed.get(key)), without_enrichment(summary.get(key)), key))
+                expected = (replayed.get("sbomlyze_diff") or {}).get("occurrences")
+                if expected != (summary.get("sbomlyze_diff") or {}).get("occurrences"):
+                    problems.append(f"{summary['id']} sbomlyze occurrences differ from a re-run of sbomlyze: "
+                                    + first_difference(expected, (summary.get("sbomlyze_diff") or {}).get("occurrences"), "occurrences"))
+    return problems
+
+
+def audit_publication(data_dir: pathlib.Path, shards_dir: pathlib.Path, date: str) -> list[str]:
+    """Check the published week against the shard results it was built from: inventories and findings carried
+    over unchanged, dependency changes equal to sbomlyze's occurrences, and history counts equal to the lists."""
+    problems = []
+    for shard_file in sorted(shards_dir.glob("**/shard-*.json")):
+        for summary in load_json(shard_file)["projects"]:
+            path = data_dir / "projects" / f"{summary['id']}.json"
+            if not path.is_file():
+                problems.append(f"{summary['id']} has no project file")
+                continue
+            stored = load_json(path)
+            latest, entry = stored["latest"], next((item for item in stored.get("history") or [] if item["date"] == date), None)
+            if entry is None:
+                problems.append(f"{summary['id']} has no history entry for {date}")
+                continue
+            if summary.get("components") is None:
+                continue
+            for key in DERIVED_KEYS:
+                if without_enrichment(latest.get(key)) != without_enrichment(summary.get(key)):
+                    problems.append(f"{summary['id']} published {key} differs from the scan: "
+                                    + first_difference(without_enrichment(summary.get(key)), without_enrichment(latest.get(key)), key))
+            change = latest.get("changes") or {}
+            if change.get("dependency_state") == "ok":
+                found = summary["sbomlyze_diff"]["occurrences"]
+                if change.get("version_changes") != found["version_changes"]:
+                    problems.append(f"{summary['id']} version changes differ from sbomlyze's")
+                directions = len(change.get("upgraded") or []) + len(change.get("downgraded") or []) + len(change.get("unknown_direction") or [])
+                if directions != len(found["version_changes"]):
+                    problems.append(f"{summary['id']} upgrades + downgrades + unknown ({directions}) != version changes ({len(found['version_changes'])})")
+                for key in ("added", "removed"):
+                    if len(change.get(key) or []) != len(found[key]):
+                        problems.append(f"{summary['id']} {key}: {len(change.get(key) or [])} published, sbomlyze reports {len(found[key])}")
+            for key, state in (("added", "dependency_state"), ("removed", "dependency_state"), ("upgraded", "dependency_state"),
+                               ("downgraded", "dependency_state"), ("new_vulnerabilities", "advisory_state"),
+                               ("resolved_vulnerabilities", "advisory_state")):
+                if key in entry and change.get("method") and entry[key] != count(change, key, state):
+                    problems.append(f"{summary['id']} history {key} = {entry[key]}, change lists give {count(change, key, state)}")
+    return problems
+
+
+def command_audit(args: argparse.Namespace) -> int:
+    if args.data_dir and args.date:
+        recorded = load_json(args.data_dir / "runs" / f"{args.date}.json").get("schema_version") or 0
+        if recorded < SCHEMA_VERSION:
+            # Weeks recorded by an earlier method keep their record; the audit applies from schema 5.
+            print(f"audit: {args.date} was recorded with schema {recorded} (before {SCHEMA_VERSION}); not applicable")
+            return 0
+    problems = []
+    if args.sbomlyze:
+        problems += audit_shards(args.shards_dir, args.previous_dir, args.sbomlyze)
+    if args.data_dir:
+        problems += audit_publication(args.data_dir, args.shards_dir, args.date)
+    for problem in problems:
+        print(problem)
+    print(f"audit: {len(problems)} problem(s)")
+    return 1 if problems else 0
 
 
 def command_scan(args: argparse.Namespace) -> int:
@@ -534,13 +867,15 @@ def command_scan(args: argparse.Namespace) -> int:
     }
     environment = scan_environment(args.shard)
     tools["grype_db_built"] = (environment.get("grype_db") or {}).get("built")
+    baseline_run = ({"run_id": str(args.previous_run_id), "attempt": str(args.previous_run_attempt or "")}
+                    if args.previous_run_id else None)
     results = []
     budget = args.scorecard_cli_limit
     for target in shard:
         print(f"scanning {target['repository']} @ {target.get('ref')}", flush=True)
         allow_cli = budget > 0
         try:
-            results.append(scan_target(target, args.output_dir, args.previous_dir, args.sbomlyze, allow_cli))
+            results.append(scan_target(target, args.output_dir, args.previous_dir, args.sbomlyze, allow_cli, baseline_run))
             if allow_cli and (results[-1].get("scorecard") or {}).get("source") == "scorecard-cli":
                 budget -= 1
         except Exception as exc:  # one project must not stop the shard
@@ -590,54 +925,157 @@ def scan_environment(shard: int) -> dict[str, Any]:
 
 # ----- publish ---------------------------------------------------------------------------
 
-def package_key(item: dict[str, Any]) -> str:
-    return f"{item['ecosystem']}:{item['name']}".lower()
-
-
 def finding_key(item: dict[str, Any]) -> str:
     return f"{item['id']}|{item['package']}".lower()
 
 
-def changes(previous: dict[str, Any] | None, current: dict[str, Any]) -> dict[str, Any]:
-    if not previous or previous.get("components") is None or current.get("components") is None:
-        return {"baseline": True}
-    def versions(components: list[dict[str, Any]]) -> dict[str, dict[str, dict[str, Any]]]:
-        grouped: dict[str, dict[str, dict[str, Any]]] = {}
-        for item in components:
-            grouped.setdefault(package_key(item), {})[item["version"]] = item
-        return grouped
+CHANGE_METHOD = "sbomlyze-occurrence-v1"
 
-    before, after = versions(previous["components"]), versions(current["components"])
-    added, removed, upgraded, licensed = [], [], [], []
-    for key in sorted(set(before) | set(after)):
-        old, new = before.get(key, {}), after.get(key, {})
-        if len(old) == 1 and len(new) == 1 and set(old) != set(new):
-            (old_item,), (new_item,) = old.values(), new.values()
-            upgraded.append({"package": new_item["name"], "ecosystem": new_item["ecosystem"],
-                             "from": old_item["version"], "to": new_item["version"]})
-            continue
-        added.extend(f"{item['name']}@{version}" for version, item in sorted(new.items()) if version not in old)
-        removed.extend(f"{item['name']}@{version}" for version, item in sorted(old.items()) if version not in new)
-        for version in sorted(set(old) & set(new)):
-            if old[version].get("licenses") != new[version].get("licenses"):
-                licensed.append({"package": new[version]["name"], "from": old[version]["licenses"],
-                                 "to": new[version]["licenses"]})
+
+def dependency_baseline(previous: dict[str, Any], current: dict[str, Any], context: dict[str, Any]) -> str | None:
+    """Why sbomlyze's diff cannot be used as this week's dependency changes, or None when it compares the same
+    SBOM that the stored previous week was built from."""
+    diff = current.get("sbomlyze_diff")
+    if previous.get("stale"):
+        return "last week's scan failed, so there is no SBOM from last week to compare with"
+    if not diff:
+        return "last week's SBOM was not available to compare with"
+    if diff.get("contract") != "sbomlyze-diff-0.7" or "occurrences" not in diff:
+        return "the SBOM comparison was made with an sbomlyze version the report does not support"
+    if previous.get("sbom_sha256"):
+        if previous["sbom_sha256"] != diff.get("previous_sbom_sha256"):
+            return "the SBOM compared with is not the one last week's report was built from"
+        return None
+    # Weeks recorded before SBOM digests: the SBOMs must come from the run that recorded last week.
+    run_id = str((diff.get("baseline") or {}).get("run_id") or "")
+    if not run_id or run_id != str(context.get("previous_run_id") or ""):
+        return "the SBOM compared with does not come from the run that recorded last week"
+    return None
+
+
+def advisory_keys(previous: dict[str, Any], current: dict[str, Any]) -> tuple[dict[str, list[dict[str, Any]]], dict[str, list[dict[str, Any]]]]:
+    """Source matches of both weeks grouped by (advisory, ecosystem, package), with advisory ids that are aliases of
+    each other (in either week) treated as one advisory."""
+    parent: dict[str, str] = {}
+
+    def find(value: str) -> str:
+        parent.setdefault(value, value)
+        while parent[value] != value:
+            parent[value] = parent[parent[value]]
+            value = parent[value]
+        return value
+
+    items = [*(previous.get("vulnerabilities") or []), *(current.get("vulnerabilities") or [])]
+    for item in items:
+        for alias in item.get("aliases") or []:
+            parent[find(alias)] = find(item["id"])
+    groups: dict[str, set[str]] = {}
+    for value in list(parent) + [item["id"] for item in items]:
+        groups.setdefault(find(value), set()).add(value)
+    canonical = {root: site_exports.canonical_id(members) for root, members in groups.items()}
+
+    def grouped(project: dict[str, Any]) -> dict[str, list[dict[str, Any]]]:
+        result: dict[str, list[dict[str, Any]]] = {}
+        for item in project.get("vulnerabilities") or []:
+            key = f"{canonical[find(item['id'])]}|{item.get('ecosystem', '')}|{item['package']}".lower()
+            result.setdefault(key, []).append(item)
+        return result
+
+    return grouped(previous), grouped(current)
+
+
+def advisory_dates(item: dict[str, Any]) -> dict[str, str]:
+    api = item.get("osv_api") or {}
+    published = item.get("osv_published") or (api.get("published") if api.get("state") == "confirmed" else "") or ""
+    modified = item.get("osv_modified") or (api.get("modified") if api.get("state") == "confirmed" else "") or ""
+    return {key: value for key, value in (("published", published), ("modified", modified)) if value}
+
+
+def new_advisory(item: dict[str, Any], previous: dict[str, Any]) -> dict[str, Any]:
+    """A new match with why it is new: the package version was already there (so the advisory, or its data, is
+    what changed), the package changed version, or the package is new."""
+    inventory = {(component["ecosystem"], component["name"].lower()): set() for component in previous.get("components") or []}
+    for component in previous.get("components") or []:
+        inventory[(component["ecosystem"], component["name"].lower())].add(component["version"])
+    versions = inventory.get((item.get("ecosystem", ""), item["package"].lower()))
+    reason = ("unchanged version" if versions and item["version"] in versions
+              else "changed version" if versions else "new package")
+    since = str(previous.get("scanned_at") or "")
+    dates = advisory_dates(item)
+    detail = {"reason": reason, **dates}
+    if since and dates.get("published", "") >= since:
+        detail["advisory"] = "published since last scan"
+    elif since and dates.get("modified", "") >= since:
+        detail["advisory"] = "updated since last scan"
+    return {**item, "new": detail}
+
+
+def kev_listed(item: dict[str, Any]) -> set[str]:
+    return set(item.get("kev_cves") or ([item["kev"]["cve"]] if item.get("kev") else []))
+
+
+def changes(previous: dict[str, Any] | None, current: dict[str, Any], context: dict[str, Any] | None = None) -> dict[str, Any]:
+    """This week compared with the previous recorded week. `context` holds run-level facts from publish:
+    `previous_run_id`, `kev_previous` and `kev_current` (CVE id sets of the two KEV snapshots)."""
+    context = context or {}
+    if not previous or previous.get("components") is None or current.get("components") is None:
+        if context.get("previous_unavailable"):
+            return {"baseline": False, "any": False, "unavailable": context["previous_unavailable"],
+                    "dependency_state": "unavailable", "advisory_state": "unavailable"}
+        return {"baseline": True}
     result: dict[str, Any] = {
         "baseline": False,
+        "method": CHANGE_METHOD,
         "release_changed": previous.get("ref") != current.get("ref"),
         "previous_ref": previous.get("ref"),
-        "added": added,
-        "removed": removed,
-        "upgraded": upgraded,
-        "license_changes": licensed,
+        "added": [], "removed": [], "upgraded": [], "downgraded": [], "unknown_direction": [], "license_changes": [],
     }
+    reason = dependency_baseline(previous, current, context)
+    diff = current.get("sbomlyze_diff") or {}
+    if reason:
+        result.update(dependency_state="unavailable", dependency_reason=reason, integrity_drift=None)
+    else:
+        found = diff["occurrences"]
+        result.update(
+            dependency_state="ok",
+            dependency_baseline={"sbom_sha256": diff.get("previous_sbom_sha256"), **(diff.get("baseline") or {})},
+            added=[f"{item['name']}@{item['version']}" for item in found["added"]],
+            removed=[f"{item['name']}@{item['version']}" for item in found["removed"]],
+            added_detail=found["added"], removed_detail=found["removed"],
+            version_changes=found["version_changes"],
+            moved=found["moved"], version_set_changes=found["version_set_changes"],
+            file_changes=[item["path"] for item in found["file_changes"]],
+            integrity_changes=found["integrity_changes"], metadata_changes=found["metadata_changes"],
+            integrity_drift=len(found["integrity_changes"]),
+            digest_coverage=found.get("digest_coverage"),
+            distinct_version_changes=(diff.get("drift") or {}).get("distinct_version_changes"),
+        )
+        for item in found["version_changes"]:
+            entry = {"package": item["name"], "ecosystem": item["ecosystem"], "from": item["from"], "to": item["to"],
+                     "location": item["location"], "direction": item["direction"], "level": item["level"]}
+            key = {"upgrade": "upgraded", "downgrade": "downgraded"}.get(item["direction"], "unknown_direction")
+            result[key].append(entry)
+        result["license_changes"] = [{"package": item["name"], "ecosystem": item["ecosystem"], "location": item["location"],
+                                      "version_from": item["version_from"], "version_to": item["version_to"],
+                                      "from": item["from"], "to": item["to"], "diff": item["diff"]}
+                                     for item in found["license_changes"]]
     if previous.get("vulnerabilities") is not None and current.get("vulnerabilities") is not None:
-        old = {finding_key(item): item for item in previous["vulnerabilities"]}
-        new = {finding_key(item): item for item in current["vulnerabilities"]}
-        result["new_vulnerabilities"] = [new[key] for key in sorted(set(new) - set(old))]
-        result["resolved_vulnerabilities"] = [old[key] for key in sorted(set(old) - set(new))]
-    drift = (current.get("sbomlyze_diff") or {}).get("drift") or {}
-    result["integrity_drift"] = int(drift.get("integrity_drift") or 0)
+        old, new = advisory_keys(previous, current)
+        result["advisory_state"] = "ok"
+        result["new_vulnerabilities"] = [new_advisory(item, previous) for key in sorted(set(new) - set(old)) for item in new[key]]
+        result["resolved_vulnerabilities"] = [item for key in sorted(set(old) - set(new)) for item in old[key]]
+        # Distinct (advisory, package); the lists above have one entry per affected package version.
+        result["new_advisories"] = len(set(new) - set(old))
+        result["resolved_advisories"] = len(set(old) - set(new))
+        result["still_affected_version_changed"] = [
+            {"id": new[key][0]["id"], "package": new[key][0]["package"], "ecosystem": new[key][0].get("ecosystem"),
+             "from": sorted({item["version"] for item in old[key]}), "to": sorted({item["version"] for item in new[key]})}
+            for key in sorted(set(old) & set(new))
+            if {item["version"] for item in old[key]} != {item["version"] for item in new[key]}]
+    else:
+        result["advisory_state"] = "unavailable"
+        result["advisory_reason"] = ("this week's vulnerability scan failed" if current.get("vulnerabilities") is None
+                                     else "last week's vulnerability scan failed")
     before_score = (previous.get("scorecard") or {}).get("score")
     after_score = (current.get("scorecard") or {}).get("score")
     if isinstance(before_score, (int, float)) and isinstance(after_score, (int, float)) and abs(before_score - after_score) >= 0.1:
@@ -660,17 +1098,37 @@ def changes(previous: dict[str, Any] | None, current: dict[str, Any]) -> dict[st
         # Only once last week was checked against KEV too; otherwise every listed match would look new.
         # Includes govulncheck-only findings in the shipped binary.
         earlier = {finding_key(item): item for item in site_exports.all_matches(previous)}
-        result["kev_new"] = [
-            item for item in site_exports.all_matches(current)
-            if item.get("kev") and not (earlier.get(finding_key(item)) or {}).get("kev")
-        ]
+        before_ids, after_ids = context.get("kev_previous"), context.get("kev_current")
+        if before_ids is not None and after_ids is not None:
+            # CVEs CISA added between the two snapshots; a new match for a CVE that was already listed is a new
+            # vulnerability, not a KEV status change, and is listed separately.
+            added = set(after_ids) - set(before_ids)
+            result["kev_method"] = "snapshot difference"
+            result["kev_new"] = [item for item in site_exports.all_matches(current) if kev_listed(item) & added]
+            result["kev_new_match"] = [item for item in site_exports.all_matches(current)
+                                       if kev_listed(item) and not kev_listed(item) & added and finding_key(item) not in earlier]
+        else:
+            # Without last week's snapshot: a match counts if CISA listed it since last week's scan.
+            since = (previous.get("scanned_at") or "")[:10]
+            result["kev_method"] = "date added since last scan"
+            result["kev_new"] = [
+                item for item in site_exports.all_matches(current)
+                if item.get("kev") and not (earlier.get(finding_key(item)) or {}).get("kev")
+                and (finding_key(item) in earlier or (item["kev"].get("date_added") or "") >= since)
+            ]
     result["any"] = bool(
-        result["release_changed"] or result["added"] or result["removed"] or result["upgraded"]
-        or result["license_changes"] or result.get("new_vulnerabilities") or result.get("resolved_vulnerabilities")
-        or result["integrity_drift"] or result.get("scorecard") or result.get("release_integrity")
-        or result.get("workflow_new") or result.get("in_binary_new") or result.get("kev_new")
+        result["release_changed"] or result["added"] or result["removed"] or result["upgraded"] or result["downgraded"]
+        or result["unknown_direction"] or result["license_changes"] or result.get("file_changes") or result.get("moved")
+        or result.get("integrity_drift") or result.get("new_vulnerabilities") or result.get("resolved_vulnerabilities")
+        or result.get("scorecard") or result.get("release_integrity") or result.get("workflow_new")
+        or result.get("workflow_resolved") or result.get("in_binary_new") or result.get("in_binary_resolved")
+        or result.get("kev_new") or result.get("kev_new_match")
     )
     return result
+
+
+def count(change: dict[str, Any], key: str, state: str) -> int | None:
+    return None if change.get(state) == "unavailable" else len(change.get(key) or [])
 
 
 def history_entry(date: str, project: dict[str, Any]) -> dict[str, Any]:
@@ -687,11 +1145,27 @@ def history_entry(date: str, project: dict[str, Any]) -> dict[str, Any]:
         "vulnerable_packages": len({(item["package"], item["version"]) for item in vulns or []}) if vulns is not None else None,
         "kev": sum(1 for item in vulns or [] if item.get("kev")) if vulns is not None and any("kev" in item for item in vulns) else None,
         "kev_new": len(change.get("kev_new") or []),
-        "added": len(change.get("added") or []),
-        "removed": len(change.get("removed") or []),
-        "upgraded": len(change.get("upgraded") or []),
-        "new_vulnerabilities": len(change.get("new_vulnerabilities") or []),
-        "resolved_vulnerabilities": len(change.get("resolved_vulnerabilities") or []),
+        "kev_new_match": len(change.get("kev_new_match") or []),
+        # An unavailable comparison is null, never 0.
+        "added": count(change, "added", "dependency_state"),
+        "removed": count(change, "removed", "dependency_state"),
+        "upgraded": count(change, "upgraded", "dependency_state"),
+        "downgraded": count(change, "downgraded", "dependency_state"),
+        "unknown_direction": count(change, "unknown_direction", "dependency_state"),
+        "license_changes": count(change, "license_changes", "dependency_state"),
+        "file_changes": count(change, "file_changes", "dependency_state"),
+        "moved": count(change, "moved", "dependency_state"),
+        "new_vulnerabilities": count(change, "new_vulnerabilities", "advisory_state"),
+        "new_advisories": change.get("new_advisories"),
+        "resolved_advisories": change.get("resolved_advisories"),
+        "resolved_vulnerabilities": count(change, "resolved_vulnerabilities", "advisory_state"),
+        "in_binary_new": len(change.get("in_binary_new") or []),
+        "in_binary_resolved": len(change.get("in_binary_resolved") or []),
+        "workflow_new": change.get("workflow_new"),
+        "workflow_resolved": change.get("workflow_resolved"),
+        "dependency_state": change.get("dependency_state"),
+        "advisory_state": change.get("advisory_state"),
+        "method": change.get("method"),
         "release_changed": bool(change.get("release_changed")),
         "osv_confirmed": (project.get("osv") or {}).get("confirmed"),
         "osv_only": len((project.get("osv") or {}).get("osv_only") or []) if (project.get("osv") or {}).get("available") else None,
@@ -716,6 +1190,7 @@ def run_row(project: dict[str, Any], entry: dict[str, Any]) -> dict[str, Any]:
         "compliance": (project.get("compliance") or {}).get("standards"),
         "change_any": bool((project.get("changes") or {}).get("any")),
         "integrity_drift": (project.get("changes") or {}).get("integrity_drift", 0),
+        "last_success_at": project.get("last_success_at") or project.get("scanned_at"),
     }
 
 
@@ -724,9 +1199,11 @@ def in_binary_counts(go: dict[str, Any] | None) -> dict[str, int] | None:
         return None
     symbols = [item for item in go["findings"] if item["level"] == "symbol"]
     return {
-        "total": len(symbols),
-        "stdlib": sum(1 for item in symbols if item["module"] == "stdlib"),
-        "dependencies": sum(1 for item in symbols if item["module"] != "stdlib"),
+        # Distinct advisories; `records` counts advisory × module × version.
+        "total": len(site_exports.binary_advisories(go)),
+        "stdlib": len(site_exports.binary_advisories(go, "stdlib")),
+        "dependencies": len(site_exports.binary_advisories(go, "dependencies")),
+        "records": len(symbols),
     }
 
 
@@ -866,6 +1343,17 @@ def command_publish(args: argparse.Namespace) -> int:
         shutil.copyfile(run_file, superseded)
     baseline_commit = previous_week_commit(args.data_dir, args.date) if superseded else None
     context = enrichment.load(args.enrichment_dir)
+    previous_dates = sorted(path.stem for path in runs_dir.glob("*.json") if path.stem < args.date)
+    previous_run = load_json(runs_dir / f"{previous_dates[-1]}.json") if previous_dates else {}
+    kev_previous = ((previous_run.get("provenance") or {}).get("enrichment") or {}).get("kev") or {}
+    comparison = {
+        "previous_run_id": ((previous_run.get("provenance") or {}).get("run") or {}).get("id"),
+        # Weeks recorded before the CVE list was kept: read last week's snapshot from its evidence bundle.
+        "kev_previous": (set(kev_previous["cve_ids"]) if kev_previous.get("cve_ids") is not None
+                         else set(enrichment.snapshot_ids(args.previous_enrichment_dir) or []) or None
+                         if args.previous_enrichment_dir else None),
+        "kev_current": set(context["kev"]) if context and context.get("kev") is not None else None,
+    }
     tools: dict[str, Any] = {}
     environments = []
     week = []
@@ -878,14 +1366,19 @@ def command_publish(args: argparse.Namespace) -> int:
             path = projects_dir / f"{project['id']}.json"
             stored = load_json(path) if path.is_file() else {}
             previous = stored.get("latest")
+            project_context = dict(comparison)
             if stored.get("updated") == args.date:
-                # Same-week re-run: compare with the previous week, not with the run being replaced.
+                # Same-week re-run: compare with the previous week, never with the run being replaced.
                 prior = show_json(args.data_dir, baseline_commit, f"projects/{project['id']}.json") if baseline_commit else None
-                previous = (prior or {}).get("latest") if baseline_commit else previous
+                previous = (prior or {}).get("latest")
+                if previous is None and any(item["date"] < args.date for item in stored.get("history") or []):
+                    project_context["previous_unavailable"] = "last week's record is not in this copy of the data (no Git history)"
             if project.get("components") is None and previous:
                 # A failed scan keeps last week's inventory visible and is marked as failed.
-                project = {**previous, "errors": project.get("errors"), "scanned_at": project.get("scanned_at"), "stale": True}
-                project["changes"] = {"baseline": False, "any": False, "scan_failed": True}
+                project = {**previous, "errors": project.get("errors"), "scanned_at": project.get("scanned_at"), "stale": True,
+                           "last_success_at": previous.get("last_success_at") or previous.get("scanned_at")}
+                project["changes"] = {"baseline": False, "any": False, "scan_failed": True,
+                                      "dependency_state": "unavailable", "advisory_state": "unavailable"}
                 enrichment.annotate(project.get("vulnerabilities"), context)
                 enrichment.annotate((project.get("go_binary") or {}).get("findings"), context)
             else:
@@ -894,7 +1387,7 @@ def command_publish(args: argparse.Namespace) -> int:
                 if not project.get("scorecard") and previous and previous.get("scorecard"):
                     # Scorecard CLI runs are rate limited; keep the last result until it is refreshed.
                     project["scorecard"] = {**previous["scorecard"], "carried_forward": True}
-                project["changes"] = changes(previous, project)
+                project["changes"] = changes(previous, project, project_context)
             history = [item for item in stored.get("history") or [] if item["date"] != args.date]
             history.append(history_entry(args.date, project))
             history.sort(key=lambda item: item["date"])
@@ -907,6 +1400,7 @@ def command_publish(args: argparse.Namespace) -> int:
         "commit": args.commit, "tools": tools, "projects": week,
         "provenance": {"run": provenance, "shards": environments, "enrichment": enrichment.provenance(context)},
         "evidence_release": args.evidence_release,
+        "derivation": args.derivation,
         "supersedes": superseded.relative_to(args.data_dir).as_posix() if superseded else None,
     }, indent=None)
     dates = sorted(path.stem for path in runs_dir.glob("*.json"))
@@ -945,14 +1439,15 @@ def command_enrich(args: argparse.Namespace) -> int:
 
 def command_baseline(args: argparse.Namespace) -> int:
     """Print the previous week's canonical run, for downloading its SBOMs."""
-    result: dict[str, Any] = {"date": None, "run_id": None, "generated_at": None}
+    result: dict[str, Any] = {"date": None, "run_id": None, "generated_at": None, "attempt": None, "evidence_release": None}
     index_path = args.data_dir / "index.json"
     if index_path.is_file():
         earlier = [date for date in load_json(index_path).get("runs") or [] if date < args.date]
         if earlier:
             previous = load_json(args.data_dir / "runs" / f"{earlier[0]}.json")
-            result.update(date=earlier[0], generated_at=previous.get("generated_at"),
-                          run_id=((previous.get("provenance") or {}).get("run") or {}).get("id"))
+            run_info = (previous.get("provenance") or {}).get("run") or {}
+            result.update(date=earlier[0], generated_at=previous.get("generated_at"), run_id=run_info.get("id"),
+                          attempt=run_info.get("attempt"), evidence_release=previous.get("evidence_release"))
     print(json.dumps(result))
     return 0
 
@@ -960,7 +1455,8 @@ def command_baseline(args: argparse.Namespace) -> int:
 # ----- verify ----------------------------------------------------------------------------
 
 HISTORY_KEYS = ("ref", "commit", "dependencies", "vulnerabilities", "fixable", "added", "removed", "upgraded",
-                "new_vulnerabilities", "resolved_vulnerabilities", "release_changed", "scorecard", "errors")
+                "downgraded", "unknown_direction", "file_changes", "new_vulnerabilities", "resolved_vulnerabilities",
+                "dependency_state", "advisory_state", "method", "release_changed", "scorecard", "errors")
 
 
 def verify_tree(data_dir: pathlib.Path) -> list[str]:
@@ -984,6 +1480,9 @@ def verify_tree(data_dir: pathlib.Path) -> list[str]:
                 continue
             if date == dates[-1] and stored.get("updated") == date:
                 expected = run_row(stored["latest"], entry)
+                if (run_data.get("schema_version") or 0) < 5:
+                    # Rows recorded before schema 5 have no last-success time.
+                    expected.pop("last_success_at", None)
                 if row != expected:
                     keys = sorted(key for key in set(row) | set(expected) if row.get(key) != expected.get(key))
                     problems.append(f"runs/{date}.json row for {row['id']} differs from the project file: {', '.join(keys)}")
@@ -1107,6 +1606,8 @@ def parse_args() -> argparse.Namespace:
     scan.add_argument("--shard", type=int, required=True)
     scan.add_argument("--output-dir", type=pathlib.Path, required=True)
     scan.add_argument("--previous-dir", type=pathlib.Path)
+    scan.add_argument("--previous-run-id", help="workflow run the previous SBOMs were downloaded from")
+    scan.add_argument("--previous-run-attempt", help="attempt of that run")
     scan.add_argument("--sbomlyze", default="sbomlyze")
     scan.add_argument("--scorecard-cli-limit", type=int, default=1,
                       help="projects per shard that may fall back to the Scorecard CLI (API-rate bound)")
@@ -1117,9 +1618,28 @@ def parse_args() -> argparse.Namespace:
     publish.add_argument("--commit", default=os.environ.get("GITHUB_SHA", "local"))
     publish.add_argument("--reason", default="", help="why this run was started, recorded with its provenance")
     publish.add_argument("--evidence-release", default=None, help="tag of the release holding this run's raw evidence")
+    publish.add_argument("--previous-enrichment-dir", type=pathlib.Path, default=None,
+                         help="last week's KEV/EPSS snapshot, when its run record predates the stored CVE list")
+    publish.add_argument("--derivation", default=None, help="why this week is published again, e.g. a replay from evidence")
     publish.add_argument("--enrichment-dir", type=pathlib.Path, help="output of `enrich` (CISA KEV and EPSS snapshots)")
     publish.add_argument("--targets", type=pathlib.Path,
                          help="output of `targets`; publishing fails unless every planned target has exactly one result")
+    replay = commands.add_parser("replay", help="rebuild shard results offline from an evidence bundle")
+    replay.add_argument("--evidence-dir", type=pathlib.Path, required=True, help="an extracted evidence bundle")
+    replay.add_argument("--output-dir", type=pathlib.Path, required=True)
+    replay.add_argument("--shard", type=int, default=None)
+    replay.add_argument("--previous-dir", type=pathlib.Path, help="last week's project directories (for the SBOM diff)")
+    replay.add_argument("--previous-run-id")
+    replay.add_argument("--previous-run-attempt")
+    replay.add_argument("--sbomlyze", default="sbomlyze")
+    replay.add_argument("--osv-api", action="store_true", help="also query the OSV API (recorded with its own time)")
+    replay.add_argument("--source", help="where the evidence came from, recorded with the replay")
+    audit = commands.add_parser("audit", help="check results against their raw evidence and the published data")
+    audit.add_argument("--shards-dir", type=pathlib.Path, required=True)
+    audit.add_argument("--previous-dir", type=pathlib.Path)
+    audit.add_argument("--sbomlyze", help="re-derive from raw files (needs the scanners' sbomlyze); omit to check publication only")
+    audit.add_argument("--data-dir", type=pathlib.Path)
+    audit.add_argument("--date")
     enrich = commands.add_parser("enrich")
     enrich.add_argument("--output-dir", type=pathlib.Path, required=True)
     baseline = commands.add_parser("baseline")
@@ -1136,7 +1656,8 @@ def parse_args() -> argparse.Namespace:
 def main() -> int:
     args = parse_args()
     return {"targets": command_targets, "scan": command_scan, "publish": command_publish, "enrich": command_enrich,
-            "baseline": command_baseline, "verify": command_verify}[args.command](args)
+            "baseline": command_baseline, "verify": command_verify, "replay": command_replay,
+            "audit": command_audit}[args.command](args)
 
 
 if __name__ == "__main__":
