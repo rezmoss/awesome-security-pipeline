@@ -677,8 +677,14 @@ def replay_project(summary: dict[str, Any], evidence: pathlib.Path, output: path
         if excluded:
             result["excluded_matches"] = excluded
     osv_file = directory / "osv-scanner.json"
-    osv = (checks.parse_osv_report(load_json(osv_file), [], (summary.get("osv") or {}).get("warning"))
-           if osv_file.is_file() and (summary.get("osv") or {}).get("available") else {})
+    recorded_osv = summary.get("osv") or {}
+    if not recorded_osv.get("available"):
+        osv = {}
+    elif osv_file.is_file():
+        osv = checks.parse_osv_report(load_json(osv_file), [], recorded_osv.get("warning"))
+    else:
+        # OSV-Scanner printed no report (no supported manifests, or nothing to report): it ran and found nothing.
+        osv = {"groups": [], "packages": [] if "coverage" in recorded_osv else None}
     result["osv"] = checks.cross_reference(result.get("vulnerabilities"), osv)
     if (directory / "osv-api.json").is_file():
         result["osv_api"] = checks.apply_osv_api(result.get("vulnerabilities"), load_json(directory / "osv-api.json"))
