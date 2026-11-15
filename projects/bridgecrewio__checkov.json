@@ -128,6 +128,61 @@
       },
       "workflow_new": 0,
       "workflow_resolved": 0
+    },
+    {
+      "added": 0,
+      "advisory_state": "ok",
+      "commit": "af20f73b3f9ef72c04c8a524ed41f6c5f39a3490",
+      "date": "2026-11-15",
+      "dependencies": 133,
+      "dependency_state": "ok",
+      "downgraded": 0,
+      "errors": [],
+      "file_changes": 8,
+      "fixable": 81,
+      "go_version": null,
+      "in_binary": null,
+      "in_binary_new": 0,
+      "in_binary_resolved": 0,
+      "kev": 0,
+      "kev_new": 0,
+      "kev_new_match": 0,
+      "license_changes": 0,
+      "method": "sbomlyze-occurrence-v1",
+      "moved": 0,
+      "new_advisories": 4,
+      "new_vulnerabilities": 4,
+      "osv_confirmed": 45,
+      "osv_only": 91,
+      "ref": "3.4.5",
+      "release_changed": true,
+      "release_integrity": "none",
+      "removed": 0,
+      "resolved_advisories": 8,
+      "resolved_vulnerabilities": 8,
+      "scorecard": null,
+      "scorecard_date": null,
+      "scorecard_note": "the OpenSSF public dataset entry is 1448 days old (limit 30); the Scorecard CLI fallback was skipped because this shard's weekly budget was used",
+      "scorecard_source": null,
+      "unknown_direction": 0,
+      "upgraded": 7,
+      "vulnerabilities": {
+        "Critical": 2,
+        "High": 43,
+        "Low": 5,
+        "Medium": 32,
+        "Negligible": 0,
+        "Unknown": 0
+      },
+      "vulnerable_packages": 9,
+      "workflow": {
+        "High": 10,
+        "Low": 3,
+        "Medium": 4,
+        "files": 10
+      },
+      "workflow_new": 0,
+      "workflow_resolved": 0
     }
   ],
   "latest": {
@@ -141,8 +196,8 @@
       "baseline": false,
       "dependency_baseline": {
         "attempt": "1",
-        "run_id": "41380955266",
-        "sbom_sha256": "32571ffde300dde30988865b2fd6860254c1630b0ac3c4de0362658d751c27e8"
+        "run_id": "42546359860",
+        "sbom_sha256": "5a04f830c37f69ec1e6b63d444c86d044a04d10912a5bd29dc4dbec0d4e013a6"
       },
       "dependency_state": "ok",
       "digest_coverage": {
@@ -152,12 +207,19 @@
         "comparable": 0,
         "disjoint_kinds": 0,
         "packages_total": 156,
-        "same_version_pairs": 155
+        "same_version_pairs": 149
       },
-      "distinct_version_changes": 1,
+      "distinct_version_changes": 7,
       "downgraded": [],
       "file_changes": [
-        "kubernetes/requirements.txt"
+        ".github/workflows/build.yml",
+        ".github/workflows/coverage.yaml",
+        ".github/workflows/nightly.yml",
+        ".github/workflows/pipenv-update.yml",
+        ".github/workflows/pr-test.yml",
+        "Pipfile.lock",
+        "kubernetes/requirements.txt",
+        "setup.py"
       ],
       "integrity_changes": [],
       "integrity_drift": 0,
@@ -168,43 +230,585 @@
       "metadata_changes": [],
       "method": "sbomlyze-occurrence-v1",
       "moved": [],
-      "new_advisories": 0,
-      "new_vulnerabilities": [],
-      "previous_ref": "3.4.0",
+      "new_advisories": 4,
+      "new_vulnerabilities": [
+        {
+          "aliases": [
+            "CVE-2026-126192"
+          ],
+          "ecosystem": "pypi",
+          "epss": {
+            "cve": "CVE-2026-126192",
+            "percentile": 0.41757,
+            "score": 0.00477
+          },
+          "epss_date": "2026-11-15T12:03:04Z",
+          "fix_state": "fixed",
+          "fixed_in": [
+            "2.10.0"
+          ],
+          "id": "GHSA-4j63-6c4x-wfg4",
+          "kev": null,
+          "kev_cves": [],
+          "kev_snapshot": "2026.11.13",
+          "location": "Pipfile.lock",
+          "locations": [
+            "Pipfile.lock"
+          ],
+          "new": {
+            "advisory": "published since last scan",
+            "modified": "2026-11-13T01:00:06.040402597Z",
+            "published": "2026-11-13T00:45:18Z",
+            "reason": "unchanged version"
+          },
+          "osv_confirmed": true,
+          "osv_coverage": {
+            "state": "confirmed"
+          },
+          "osv_modified": "2026-11-13T01:00:06.040402597Z",
+          "osv_published": "2026-11-13T00:45:18Z",
+          "package": "soupsieve",
+          "purl": "pkg:pypi/soupsieve@2.8.4",
+          "severity": "Medium",
+          "summary": "Soup Sieve: General sibling combinator inside :has() matches untrusted HTML in quadratic time",
+          "url": "https://github.com/advisories/GHSA-4j63-6c4x-wfg4",
+          "version": "2.8.4"
+        },
+        {
+          "aliases": [
+            "CVE-2026-126191"
+          ],
+          "ecosystem": "pypi",
+          "epss": {
+            "cve": "CVE-2026-126191",
+            "percentile": 0.38232,
+            "score": 0.00434
+          },
+          "epss_date": "2026-11-15T12:03:04Z",
+          "fix_state": "fixed",
+          "fixed_in": [
+            "3.0.2"
+          ],
+          "id": "GHSA-6655-6qjp-jx7x",
+          "kev": null,
+          "kev_cves": [],
+          "kev_snapshot": "2026.11.13",
+          "location": "Pipfile.lock",
+          "locations": [
+            "Pipfile.lock"
+          ],
+          "new": {
+            "advisory": "published since last scan",
+            "modified": "2026-11-13T16:45:03.387641194Z",
+            "published": "2026-11-13T16:39:43Z",
+            "reason": "unchanged version"
+          },
+          "osv_confirmed": true,
+          "osv_coverage": {
+            "state": "confirmed"
+          },
+          "osv_modified": "2026-11-13T16:45:03.387641194Z",
+          "osv_published": "2026-11-13T16:39:43Z",
+          "package": "soupsieve",
+          "purl": "pkg:pypi/soupsieve@2.8.4",
+          "severity": "High",
+          "summary": "Soup Sieve: Exponential ReDoS in selector compilation via \\9-run in CSS_ESCAPES/IDENTIFIER",
+          "url": "https://github.com/advisories/GHSA-6655-6qjp-jx7x",
+          "version": "2.8.4"
+        },
+        {
+          "aliases": [
+            "CVE-2026-126193"
+          ],
+          "ecosystem": "pypi",
+          "epss": {
+            "cve": "CVE-2026-126193",
+            "percentile": 0.23894,
+            "score": 0.00308
+          },
+          "epss_date": "2026-11-15T12:03:04Z",
+          "fix_state": "fixed",
+          "fixed_in": [
+            "3.0.2"
+          ],
+          "id": "GHSA-7g44-g9rc-x53w",
+          "kev": null,
+          "kev_cves": [],
+          "kev_snapshot": "2026.11.13",
+          "location": "Pipfile.lock",
+          "locations": [
+            "Pipfile.lock"
+          ],
+          "new": {
+            "advisory": "published since last scan",
+            "modified": "2026-11-13T16:45:03.468864320Z",
+            "published": "2026-11-13T16:34:59Z",
+            "reason": "unchanged version"
+          },
+          "osv_confirmed": true,
+          "osv_coverage": {
+            "state": "confirmed"
+          },
+          "osv_modified": "2026-11-13T16:45:03.468864320Z",
+          "osv_published": "2026-11-13T16:34:59Z",
+          "package": "soupsieve",
+          "purl": "pkg:pypi/soupsieve@2.8.4",
+          "severity": "Medium",
+          "summary": "Soup Sieve: Uncontrolled recursion in CSS parser lets nested pseudo-class selectors exhaust the Python call stack",
+          "url": "https://github.com/advisories/GHSA-7g44-g9rc-x53w",
+          "version": "2.8.4"
+        },
+        {
+          "aliases": [
+            "CVE-2026-126190"
+          ],
+          "ecosystem": "pypi",
+          "epss": {
+            "cve": "CVE-2026-126190",
+            "percentile": 0.45862,
+            "score": 0.00538
+          },
+          "epss_date": "2026-11-15T12:03:04Z",
+          "fix_state": "fixed",
+          "fixed_in": [
+            "4.0.0"
+          ],
+          "id": "GHSA-mmhr-3c5m-f64f",
+          "kev": null,
+          "kev_cves": [],
+          "kev_snapshot": "2026.11.13",
+          "location": "Pipfile.lock",
+          "locations": [
+            "Pipfile.lock"
+          ],
+          "new": {
+            "advisory": "published since last scan",
+            "modified": "2026-11-13T01:00:06.052455117Z",
+            "published": "2026-11-13T00:49:46Z",
+            "reason": "unchanged version"
+          },
+          "osv_confirmed": true,
+          "osv_coverage": {
+            "state": "confirmed"
+          },
+          "osv_modified": "2026-11-13T01:00:06.052455117Z",
+          "osv_published": "2026-11-13T00:49:46Z",
+          "package": "soupsieve",
+          "purl": "pkg:pypi/soupsieve@2.8.4",
+          "severity": "High",
+          "summary": "Soup Sieve: Polynomial-time denial of service in the descendant combinator",
+          "url": "https://github.com/advisories/GHSA-mmhr-3c5m-f64f",
+          "version": "2.8.4"
+        }
+      ],
+      "previous_ref": "3.4.3",
       "release_changed": true,
       "removed": [],
       "removed_detail": [],
-      "resolved_advisories": 0,
-      "resolved_vulnerabilities": [],
+      "resolved_advisories": 8,
+      "resolved_vulnerabilities": [
+        {
+          "aliases": [
+            "CVE-2025-66471"
+          ],
+          "ecosystem": "pypi",
+          "epss": {
+            "cve": "CVE-2025-66471",
+            "percentile": 0.54527,
+            "score": 0.00731
+          },
+          "epss_date": "2026-11-07T12:00:22Z",
+          "fix_state": "fixed",
+          "fixed_in": [
+            "2.6.0"
+          ],
+          "id": "GHSA-2xpw-w6gg-jr37",
+          "kev": null,
+          "kev_cves": [],
+          "kev_snapshot": "2026.11.06",
+          "location": "Pipfile.lock",
+          "locations": [
+            "Pipfile.lock"
+          ],
+          "osv_confirmed": true,
+          "osv_modified": "2026-09-25T17:15:05.968189421Z",
+          "osv_published": "2025-12-05T18:15:54Z",
+          "package": "urllib3",
+          "purl": "pkg:pypi/urllib3@1.26.20",
+          "severity": "High",
+          "summary": "urllib3 streaming API improperly handles highly compressed data",
+          "url": "https://github.com/advisories/GHSA-2xpw-w6gg-jr37",
+          "version": "1.26.20"
+        },
+        {
+          "aliases": [
+            "CVE-2026-21441"
+          ],
+          "ecosystem": "pypi",
+          "epss": {
+            "cve": "CVE-2026-21441",
+            "percentile": 0.87123,
+            "score": 0.02922
+          },
+          "epss_date": "2026-11-07T12:00:22Z",
+          "fix_state": "fixed",
+          "fixed_in": [
+            "2.6.3"
+          ],
+          "id": "GHSA-38jv-5279-wg99",
+          "kev": null,
+          "kev_cves": [],
+          "kev_snapshot": "2026.11.06",
+          "location": "Pipfile.lock",
+          "locations": [
+            "Pipfile.lock"
+          ],
+          "osv_confirmed": true,
+          "osv_modified": "2026-09-10T03:50:32.562010895Z",
+          "osv_published": "2026-01-07T19:18:14Z",
+          "package": "urllib3",
+          "purl": "pkg:pypi/urllib3@1.26.20",
+          "severity": "High",
+          "summary": "Decompression-bomb safeguards bypassed when following HTTP redirects (streaming API)",
+          "url": "https://github.com/advisories/GHSA-38jv-5279-wg99",
+          "version": "1.26.20"
+        },
+        {
+          "aliases": [
+            "CVE-2026-97687"
+          ],
+          "ecosystem": "pypi",
+          "epss": {
+            "cve": "CVE-2026-97687",
+            "percentile": 0.10707,
+            "score": 0.00206
+          },
+          "epss_date": "2026-11-07T12:00:22Z",
+          "fix_state": "fixed",
+          "fixed_in": [
+            "2.8.0"
+          ],
+          "id": "GHSA-8988-9cw3-xx77",
+          "kev": null,
+          "kev_cves": [],
+          "kev_snapshot": "2026.11.06",
+          "location": "Pipfile.lock",
+          "locations": [
+            "Pipfile.lock"
+          ],
+          "osv_confirmed": true,
+          "osv_modified": "2026-10-01T17:55:53.793608550Z",
+          "osv_published": "2026-09-30T14:46:04Z",
+          "package": "urllib3",
+          "purl": "pkg:pypi/urllib3@1.26.20",
+          "severity": "High",
+          "summary": "urllib3: HTTPS proxy TLS configuration may be ignored or overridden",
+          "url": "https://github.com/advisories/GHSA-8988-9cw3-xx77",
+          "version": "1.26.20"
+        },
+        {
+          "aliases": [
+            "CVE-2026-25645"
+          ],
+          "ecosystem": "pypi",
+          "epss": {
+            "cve": "CVE-2026-25645",
+            "percentile": 0.08624,
+            "score": 0.00189
+          },
+          "epss_date": "2026-11-07T12:00:22Z",
+          "fix_state": "fixed",
+          "fixed_in": [
+            "2.33.0"
+          ],
+          "id": "GHSA-gc5v-m9x4-r6x2",
+          "kev": null,
+          "kev_cves": [],
+          "kev_snapshot": "2026.11.06",
+          "location": "Pipfile.lock",
+          "locations": [
+            "Pipfile.lock"
+          ],
+          "osv_confirmed": true,
+          "osv_modified": "2026-09-10T03:50:39.207922076Z",
+          "osv_published": "2026-03-25T16:56:28Z",
+          "package": "requests",
+          "purl": "pkg:pypi/requests@2.32.5",
+          "severity": "Medium",
+          "summary": "Requests has Insecure Temp File Reuse in its extract_zipped_paths() utility function",
+          "url": "https://github.com/advisories/GHSA-gc5v-m9x4-r6x2",
+          "version": "2.32.5"
+        },
+        {
+          "aliases": [
+            "CVE-2025-66418"
+          ],
+          "ecosystem": "pypi",
+          "epss": {
+            "cve": "CVE-2025-66418",
+            "percentile": 0.54526,
+            "score": 0.00731
+          },
+          "epss_date": "2026-11-07T12:00:22Z",
+          "fix_state": "fixed",
+          "fixed_in": [
+            "2.6.0"
+          ],
+          "id": "GHSA-gm62-xv2j-4w53",
+          "kev": null,
+          "kev_cves": [],
+          "kev_snapshot": "2026.11.06",
+          "location": "Pipfile.lock",
+          "locations": [
+            "Pipfile.lock"
+          ],
+          "osv_confirmed": true,
+          "osv_modified": "2026-09-10T03:50:58.741847479Z",
+          "osv_published": "2025-12-05T18:15:19Z",
+          "package": "urllib3",
+          "purl": "pkg:pypi/urllib3@1.26.20",
+          "severity": "High",
+          "summary": "urllib3 allows an unbounded number of links in the decompression chain",
+          "url": "https://github.com/advisories/GHSA-gm62-xv2j-4w53",
+          "version": "1.26.20"
+        },
+        {
+          "aliases": [
+            "CVE-2025-50181"
+          ],
+          "ecosystem": "pypi",
+          "epss": {
+            "cve": "CVE-2025-50181",
+            "percentile": 0.41211,
+            "score": 0.00474
+          },
+          "epss_date": "2026-11-07T12:00:22Z",
+          "fix_state": "fixed",
+          "fixed_in": [
+            "2.5.0"
+          ],
+          "id": "GHSA-pq67-6m6q-mj2v",
+          "kev": null,
+          "kev_cves": [],
+          "kev_snapshot": "2026.11.06",
+          "location": "Pipfile.lock",
+          "locations": [
+            "Pipfile.lock"
+          ],
+          "osv_confirmed": true,
+          "osv_modified": "2026-09-10T03:50:25.299291456Z",
+          "osv_published": "2025-06-18T17:50:00Z",
+          "package": "urllib3",
+          "purl": "pkg:pypi/urllib3@1.26.20",
+          "severity": "Medium",
+          "summary": "urllib3 redirects are not disabled when retries are disabled on PoolManager instantiation",
+          "url": "https://github.com/advisories/GHSA-pq67-6m6q-mj2v",
+          "version": "1.26.20"
+        },
+        {
+          "aliases": [
+            "CVE-2026-44431"
+          ],
+          "ecosystem": "pypi",
+          "epss": {
+            "cve": "CVE-2026-44431",
+            "percentile": 0.26458,
+            "score": 0.00331
+          },
+          "epss_date": "2026-11-07T12:00:22Z",
+          "fix_state": "fixed",
+          "fixed_in": [
+            "2.7.0"
+          ],
+          "id": "GHSA-qccp-gfcp-xxvc",
+          "kev": null,
+          "kev_cves": [],
+          "kev_snapshot": "2026.11.06",
+          "location": "Pipfile.lock",
+          "locations": [
+            "Pipfile.lock"
+          ],
+          "osv_confirmed": true,
+          "osv_modified": "2026-09-10T03:50:47.272765640Z",
+          "osv_published": "2026-05-11T14:51:20Z",
+          "package": "urllib3",
+          "purl": "pkg:pypi/urllib3@1.26.20",
+          "severity": "High",
+          "summary": "urllib3: Sensitive headers forwarded across origins in proxied low-level redirects",
+          "url": "https://github.com/advisories/GHSA-qccp-gfcp-xxvc",
+          "version": "1.26.20"
+        },
+        {
+          "aliases": [
+            "CVE-2026-97689"
+          ],
+          "ecosystem": "pypi",
+          "epss": {
+            "cve": "CVE-2026-97689",
+            "percentile": 0.26984,
+            "score": 0.00335
+          },
+          "epss_date": "2026-11-07T12:00:22Z",
+          "fix_state": "fixed",
+          "fixed_in": [
+            "2.8.0"
+          ],
+          "id": "GHSA-vxq7-64xx-v4gw",
+          "kev": null,
+          "kev_cves": [],
+          "kev_snapshot": "2026.11.06",
+          "location": "Pipfile.lock",
+          "locations": [
+            "Pipfile.lock"
+          ],
+          "osv_confirmed": true,
+          "osv_modified": "2026-10-01T17:55:57.514829071Z",
+          "osv_published": "2026-09-30T14:46:18Z",
+          "package": "urllib3",
+          "purl": "pkg:pypi/urllib3@1.26.20",
+          "severity": "High",
+          "summary": "urllib3: HTTPResponse.stream()/read_chunked() buffers an unbounded chunk-size line into memory",
+          "url": "https://github.com/advisories/GHSA-vxq7-64xx-v4gw",
+          "version": "1.26.20"
+        }
+      ],
       "still_affected_version_changed": [],
       "unknown_direction": [],
       "upgraded": [
         {
           "direction": "upgrade",
           "ecosystem": "pypi",
-          "from": "3.4.0",
+          "from": "1.5.50",
+          "level": "patch",
+          "location": "Pipfile.lock",
+          "package": "bc-detect-secrets",
+          "to": "1.5.52"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "pypi",
+          "from": "3.5.1",
+          "level": "patch",
+          "location": "Pipfile.lock",
+          "package": "charset-normalizer",
+          "to": "3.5.2"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "pypi",
+          "from": "3.4.3",
           "level": "patch",
           "location": "kubernetes/requirements.txt",
           "package": "checkov",
-          "to": "3.4.3"
+          "to": "3.4.5"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "pypi",
+          "from": "3.19",
+          "level": "minor",
+          "location": "Pipfile.lock",
+          "package": "idna",
+          "to": "3.20"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "pypi",
+          "from": "2.32.5",
+          "level": "minor",
+          "location": "Pipfile.lock",
+          "package": "requests",
+          "to": "2.34.2"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "pypi",
+          "from": "1.0.0",
+          "level": "patch",
+          "location": "Pipfile.lock",
+          "package": "unidiff",
+          "to": "1.0.1"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "pypi",
+          "from": "1.26.20",
+          "level": "major",
+          "location": "Pipfile.lock",
+          "package": "urllib3",
+          "to": "2.8.0"
         }
       ],
       "version_changes": [
         {
           "direction": "upgrade",
           "ecosystem": "pypi",
-          "from": "3.4.0",
+          "from": "1.5.50",
+          "level": "patch",
+          "location": "Pipfile.lock",
+          "name": "bc-detect-secrets",
+          "to": "1.5.52"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "pypi",
+          "from": "3.5.1",
+          "level": "patch",
+          "location": "Pipfile.lock",
+          "name": "charset-normalizer",
+          "to": "3.5.2"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "pypi",
+          "from": "3.4.3",
           "level": "patch",
           "location": "kubernetes/requirements.txt",
           "name": "checkov",
-          "to": "3.4.3"
+          "to": "3.4.5"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "pypi",
+          "from": "3.19",
+          "level": "minor",
+          "location": "Pipfile.lock",
+          "name": "idna",
+          "to": "3.20"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "pypi",
+          "from": "2.32.5",
+          "level": "minor",
+          "location": "Pipfile.lock",
+          "name": "requests",
+          "to": "2.34.2"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "pypi",
+          "from": "1.0.0",
+          "level": "patch",
+          "location": "Pipfile.lock",
+          "name": "unidiff",
+          "to": "1.0.1"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "pypi",
+          "from": "1.26.20",
+          "level": "major",
+          "location": "Pipfile.lock",
+          "name": "urllib3",
+          "to": "2.8.0"
         }
       ],
       "version_set_changes": [],
       "workflow_new": 0,
       "workflow_resolved": 0
     },
-    "commit": "5038a50e21a2253cb5aed2e739d2c22ee28d2e17",
+    "commit": "af20f73b3f9ef72c04c8a524ed41f6c5f39a3490",
     "compliance": {
       "overall_score": 55,
       "standards": {
@@ -569,8 +1173,8 @@
         "licenses": [],
         "location": "Pipfile.lock",
         "name": "bc-detect-secrets",
-        "purl": "pkg:pypi/bc-detect-secrets@1.5.50",
-        "version": "1.5.50"
+        "purl": "pkg:pypi/bc-detect-secrets@1.5.52",
+        "version": "1.5.52"
       },
       {
         "ecosystem": "pypi",
@@ -665,16 +1269,16 @@
         "licenses": [],
         "location": "Pipfile.lock",
         "name": "charset-normalizer",
-        "purl": "pkg:pypi/charset-normalizer@3.5.1",
-        "version": "3.5.1"
+        "purl": "pkg:pypi/charset-normalizer@3.5.2",
+        "version": "3.5.2"
       },
       {
         "ecosystem": "pypi",
         "licenses": [],
         "location": "kubernetes/requirements.txt",
         "name": "checkov",
-        "purl": "pkg:pypi/checkov@3.4.3",
-        "version": "3.4.3"
+        "purl": "pkg:pypi/checkov@3.4.5",
+        "version": "3.4.5"
       },
       {
         "ecosystem": "pypi",
@@ -825,8 +1429,8 @@
         "licenses": [],
         "location": "Pipfile.lock",
         "name": "idna",
-        "purl": "pkg:pypi/idna@3.19",
-        "version": "3.19"
+        "purl": "pkg:pypi/idna@3.20",
+        "version": "3.20"
       },
       {
         "ecosystem": "pypi",
@@ -1121,8 +1725,8 @@
         "licenses": [],
         "location": "Pipfile.lock",
         "name": "requests",
-        "purl": "pkg:pypi/requests@2.32.5",
-        "version": "2.32.5"
+        "purl": "pkg:pypi/requests@2.34.2",
+        "version": "2.34.2"
       },
       {
         "ecosystem": "pypi",
@@ -1249,8 +1853,8 @@
         "licenses": [],
         "location": "Pipfile.lock",
         "name": "unidiff",
-        "purl": "pkg:pypi/unidiff@1.0.0",
-        "version": "1.0.0"
+        "purl": "pkg:pypi/unidiff@1.0.1",
+        "version": "1.0.1"
       },
       {
         "ecosystem": "pypi",
@@ -1265,8 +1869,8 @@
         "licenses": [],
         "location": "Pipfile.lock",
         "name": "urllib3",
-        "purl": "pkg:pypi/urllib3@1.26.20",
-        "version": "1.26.20"
+        "purl": "pkg:pypi/urllib3@2.8.0",
+        "version": "2.8.0"
       },
       {
         "ecosystem": "pypi",
@@ -1315,6 +1919,7 @@
       "action reference to a moving tag or branch": 4
     },
     "id": "bridgecrewio__checkov",
+    "local_packages": [],
     "lock_aliases": {},
     "manifests": [
       ".github/workflows/build.yml",
@@ -1335,39 +1940,55 @@
     ],
     "name": "checkov",
     "osv": {
-      "advisories": 131,
+      "advisories": 140,
       "available": true,
-      "confirmed": 49,
+      "confirmed": 45,
+      "coverage": {
+        "confirmed": 45,
+        "not checked": 37
+      },
       "osv_only": [
         {
           "ecosystem": "PyPI",
           "ids": [
-            "CVE-2026-22701",
-            "GHSA-qmgc-5h2g-mvrw",
-            "PYSEC-2026-1374"
+            "CVE-2026-112906",
+            "GHSA-2g95-wg33-c5x2"
           ],
-          "modified": "2026-09-10T03:50:33.702580779Z",
+          "modified": "2026-10-23T22:15:03.540155022Z",
           "package": "filelock",
           "path": "Pipfile.lock",
-          "published": "2026-01-13T18:44:55Z",
-          "score": "5.3",
+          "published": "2026-10-23T22:00:33Z",
+          "score": "4.7",
           "severity": "Medium",
-          "version": "3.19.1"
+          "version": "4.1.0"
         },
         {
           "ecosystem": "PyPI",
           "ids": [
-            "CVE-2025-68146",
-            "GHSA-w853-jp5j-5j7f",
-            "PYSEC-2026-1375"
+            "CVE-2026-112907",
+            "GHSA-567q-5qvw-pf92"
           ],
-          "modified": "2026-09-10T03:50:32.252960082Z",
+          "modified": "2026-10-23T22:45:03.452878321Z",
           "package": "filelock",
           "path": "Pipfile.lock",
-          "published": "2025-12-16T20:52:55Z",
-          "score": "6.3",
+          "published": "2026-10-23T22:27:32Z",
+          "score": "2.5",
+          "severity": "Low",
+          "version": "4.1.0"
+        },
+        {
+          "ecosystem": "PyPI",
+          "ids": [
+            "CVE-2026-112908",
+            "GHSA-6627-m3xw-93mp"
+          ],
+          "modified": "2026-10-28T21:15:05.690884904Z",
+          "package": "filelock",
+          "path": "Pipfile.lock",
+          "published": "2026-10-28T21:09:04Z",
+          "score": "5.3",
           "severity": "Medium",
-          "version": "3.19.1"
+          "version": "4.1.0"
         },
         {
           "ecosystem": "PyPI",
@@ -1381,7 +2002,7 @@
           "published": "2026-10-28T21:08:35Z",
           "score": "6.1",
           "severity": "Medium",
-          "version": "3.19.1"
+          "version": "4.1.0"
         },
         {
           "ecosystem": "PyPI",
@@ -1395,7 +2016,175 @@
           "published": "2026-10-28T21:08:55Z",
           "score": "5.3",
           "severity": "Medium",
-          "version": "3.19.1"
+          "version": "4.1.0"
+        },
+        {
+          "ecosystem": "PyPI",
+          "ids": [
+            "CVE-2026-112911",
+            "GHSA-9c4x-gm8v-wgc4"
+          ],
+          "modified": "2026-10-28T21:15:05.681708010Z",
+          "package": "filelock",
+          "path": "Pipfile.lock",
+          "published": "2026-10-28T21:08:59Z",
+          "score": "6.3",
+          "severity": "Medium",
+          "version": "4.1.0"
+        },
+        {
+          "ecosystem": "PyPI",
+          "ids": [
+            "CVE-2026-112912",
+            "GHSA-9j6q-wvj5-jgjg"
+          ],
+          "modified": "2026-10-28T21:15:05.577927941Z",
+          "package": "filelock",
+          "path": "Pipfile.lock",
+          "published": "2026-10-28T21:08:40Z",
+          "score": "2.5",
+          "severity": "Low",
+          "version": "4.1.0"
+        },
+        {
+          "ecosystem": "PyPI",
+          "ids": [
+            "CVE-2026-112913",
+            "GHSA-9vhv-jxww-xfm5"
+          ],
+          "modified": "2026-10-23T22:45:03.439584635Z",
+          "package": "filelock",
+          "path": "Pipfile.lock",
+          "published": "2026-10-23T22:28:19Z",
+          "score": "3.3",
+          "severity": "Low",
+          "version": "4.1.0"
+        },
+        {
+          "ecosystem": "PyPI",
+          "ids": [
+            "CVE-2026-112914",
+            "GHSA-crv4-6mhj-j5jh"
+          ],
+          "modified": "2026-10-23T22:15:05.387500982Z",
+          "package": "filelock",
+          "path": "Pipfile.lock",
+          "published": "2026-10-23T22:00:11Z",
+          "score": "5.3",
+          "severity": "Medium",
+          "version": "4.1.0"
+        },
+        {
+          "ecosystem": "PyPI",
+          "ids": [
+            "CVE-2026-112915",
+            "GHSA-cwqr-hh33-gh44"
+          ],
+          "modified": "2026-10-28T21:15:04.923553251Z",
+          "package": "filelock",
+          "path": "Pipfile.lock",
+          "published": "2026-10-28T21:08:49Z",
+          "score": "5.5",
+          "severity": "Medium",
+          "version": "4.1.0"
+        },
+        {
+          "ecosystem": "PyPI",
+          "ids": [
+            "CVE-2026-112934",
+            "GHSA-fj95-fr6c-h845"
+          ],
+          "modified": "2026-10-28T21:15:04.925561437Z",
+          "package": "filelock",
+          "path": "Pipfile.lock",
+          "published": "2026-10-28T21:08:13Z",
+          "score": "6.1",
+          "severity": "Medium",
+          "version": "4.1.0"
+        },
+        {
+          "ecosystem": "PyPI",
+          "ids": [
+            "CVE-2026-112935",
+            "GHSA-fq56-3cx3-fjxp"
+          ],
+          "modified": "2026-10-28T21:15:04.933315565Z",
+          "package": "filelock",
+          "path": "Pipfile.lock",
+          "published": "2026-10-28T21:08:08Z",
+          "score": "4.7",
+          "severity": "Medium",
+          "version": "4.1.0"
+        },
+        {
+          "ecosystem": "PyPI",
+          "ids": [
+            "CVE-2026-112937",
+            "GHSA-jqc4-5cvw-7w85"
+          ],
+          "modified": "2026-10-23T22:45:03.444470915Z",
+          "package": "filelock",
+          "path": "Pipfile.lock",
+          "published": "2026-10-23T22:28:41Z",
+          "score": "6.1",
+          "severity": "Medium",
+          "version": "4.1.0"
+        },
+        {
+          "ecosystem": "PyPI",
+          "ids": [
+            "CVE-2026-112938",
+            "GHSA-m462-7rxw-wvpg"
+          ],
+          "modified": "2026-10-28T21:15:04.165555871Z",
+          "package": "filelock",
+          "path": "Pipfile.lock",
+          "published": "2026-10-28T21:08:23Z",
+          "score": "5.8",
+          "severity": "Medium",
+          "version": "4.1.0"
+        },
+        {
+          "ecosystem": "PyPI",
+          "ids": [
+            "CVE-2026-112939",
+            "GHSA-rfpc-qcw5-3pc4"
+          ],
+          "modified": "2026-10-28T21:15:05.584943666Z",
+          "package": "filelock",
+          "path": "Pipfile.lock",
+          "published": "2026-10-28T21:08:45Z",
+          "score": "4.7",
+          "severity": "Medium",
+          "version": "4.1.0"
+        },
+        {
+          "ecosystem": "PyPI",
+          "ids": [
+            "CVE-2026-112940",
+            "GHSA-v4x8-3wr5-3wq8"
+          ],
+          "modified": "2026-10-23T22:15:04.432475030Z",
+          "package": "filelock",
+          "path": "Pipfile.lock",
+          "published": "2026-10-23T21:59:08Z",
+          "score": "7.1",
+          "severity": "High",
+          "version": "4.1.0"
+        },
+        {
+          "ecosystem": "PyPI",
+          "ids": [
+            "CVE-2026-112941",
+            "GHSA-wfhq-q4j2-c37m"
+          ],
+          "modified": "2026-10-28T21:30:05.900572228Z",
+          "package": "filelock",
+          "path": "Pipfile.lock",
+          "published": "2026-10-28T21:09:09Z",
+          "score": "3.3",
+          "severity": "Low",
+          "version": "4.1.0"
         },
         {
           "ecosystem": "PyPI",
@@ -2243,9 +3032,10 @@
         {
           "ecosystem": "PyPI",
           "ids": [
+            "CVE-2026-123817",
             "GHSA-2g87-pp6c-29x5"
           ],
-          "modified": "2026-10-19T17:15:04.113194208Z",
+          "modified": "2026-11-09T21:30:07.738926065Z",
           "package": "aiohttp",
           "path": "kubernetes/requirements.txt",
           "published": "2026-10-19T17:07:23Z",
@@ -2395,18 +3185,123 @@
           "score": "7.7",
           "severity": "High",
           "version": "3.9.9"
+        },
+        {
+          "ecosystem": "PyPI",
+          "ids": [
+            "CVE-2026-44431",
+            "GHSA-qccp-gfcp-xxvc",
+            "PYSEC-2026-141"
+          ],
+          "modified": "2026-09-10T03:50:47.272765640Z",
+          "package": "urllib3",
+          "path": "kubernetes/requirements.txt",
+          "published": "2026-05-11T14:51:20Z",
+          "score": "8.2",
+          "severity": "High",
+          "version": "1.26.20"
+        },
+        {
+          "ecosystem": "PyPI",
+          "ids": [
+            "CVE-2025-66471",
+            "GHSA-2xpw-w6gg-jr37",
+            "PYSEC-2026-1994"
+          ],
+          "modified": "2026-09-25T17:15:05.968189421Z",
+          "package": "urllib3",
+          "path": "kubernetes/requirements.txt",
+          "published": "2025-12-05T18:15:54Z",
+          "score": "8.9",
+          "severity": "High",
+          "version": "1.26.20"
+        },
+        {
+          "ecosystem": "PyPI",
+          "ids": [
+            "CVE-2026-21441",
+            "GHSA-38jv-5279-wg99",
+            "PYSEC-2026-1996"
+          ],
+          "modified": "2026-09-10T03:50:32.562010895Z",
+          "package": "urllib3",
+          "path": "kubernetes/requirements.txt",
+          "published": "2026-01-07T19:18:14Z",
+          "score": "8.9",
+          "severity": "High",
+          "version": "1.26.20"
+        },
+        {
+          "ecosystem": "PyPI",
+          "ids": [
+            "CVE-2025-66418",
+            "GHSA-gm62-xv2j-4w53",
+            "PYSEC-2026-1998"
+          ],
+          "modified": "2026-09-10T03:50:58.741847479Z",
+          "package": "urllib3",
+          "path": "kubernetes/requirements.txt",
+          "published": "2025-12-05T18:15:19Z",
+          "score": "8.9",
+          "severity": "High",
+          "version": "1.26.20"
+        },
+        {
+          "ecosystem": "PyPI",
+          "ids": [
+            "CVE-2025-50181",
+            "GHSA-pq67-6m6q-mj2v",
+            "PYSEC-2026-1999"
+          ],
+          "modified": "2026-09-10T03:50:25.299291456Z",
+          "package": "urllib3",
+          "path": "kubernetes/requirements.txt",
+          "published": "2025-06-18T17:50:00Z",
+          "score": "5.3",
+          "severity": "Medium",
+          "version": "1.26.20"
+        },
+        {
+          "ecosystem": "PyPI",
+          "ids": [
+            "CVE-2026-97687",
+            "GHSA-8988-9cw3-xx77",
+            "PYSEC-2026-4175"
+          ],
+          "modified": "2026-10-01T17:55:53.793608550Z",
+          "package": "urllib3",
+          "path": "kubernetes/requirements.txt",
+          "published": "2026-09-30T14:46:04Z",
+          "score": "7.6",
+          "severity": "High",
+          "version": "1.26.20"
+        },
+        {
+          "ecosystem": "PyPI",
+          "ids": [
+            "CVE-2026-97689",
+            "GHSA-vxq7-64xx-v4gw",
+            "PYSEC-2026-4177"
+          ],
+          "modified": "2026-10-01T17:55:57.514829071Z",
+          "package": "urllib3",
+          "path": "kubernetes/requirements.txt",
+          "published": "2026-09-30T14:46:18Z",
+          "score": "8.9",
+          "severity": "High",
+          "version": "1.26.20"
         }
       ],
       "warning": null
     },
     "osv_api": {
       "available": true,
-      "queried_at": "2026-11-09T01:36:16+00:00",
+      "queried_at": "2026-11-15T23:31:57+00:00",
       "states": {
         "confirmed": 37
       }
     },
-    "ref": "3.4.3",
+    "ref": "3.4.5",
     "ref_kind": "release",
     "release_integrity": {
       "asset": "checkov_linux_X86_64.zip",
@@ -2423,37 +3318,37 @@
       "signer": null,
       "verdict": "none"
     },
-    "released_at": "2026-11-02T23:01:58Z",
+    "released_at": "2026-11-12T23:01:44Z",
     "repository": "bridgecrewio/checkov",
-    "sbom_sha256": "5a04f830c37f69ec1e6b63d444c86d044a04d10912a5bd29dc4dbec0d4e013a6",
+    "sbom_sha256": "e7d76e8da1cc43282913131b34cf823aefc745a3a4c6d8aba8dfc0f961a95a2a",
     "sbomlyze_diff": {
       "added": 0,
       "baseline": {
         "attempt": "1",
-        "run_id": "41380955266"
+        "run_id": "42546359860"
       },
-      "changed": 1,
+      "changed": 7,
       "contract": "sbomlyze-diff-0.7",
       "drift": {
-        "distinct_version_changes": 1,
+        "distinct_version_changes": 7,
         "downgrades": 0,
-        "file_changes": 1,
+        "file_changes": 8,
         "integrity_drift": 0,
         "license_changes": 0,
         "metadata_drift": 0,
         "owned_file_drift": 0,
         "owned_files_changed": 0,
         "unknown_direction": 0,
-        "upgrades": 1,
-        "version_drift": 1
+        "upgrades": 7,
+        "version_drift": 7
       },
       "findings": [
-        "Scanned bridgecrewio/checkov changed: 3.4.0 \u2192 3.4.3",
-        "1 version upgrades among 156 shared packages",
-        "Integrity drift checked only 0 of 155 same-version packages; the rest carry no comparable digest",
-        "1 file entries changed content (not package integrity drift): /kubernetes/requirements.txt",
-        "Core system packages stable: github (48), file (13) unchanged",
-        "pypi: 106 packages before and after (1 version changes)"
+        "Scanned bridgecrewio/checkov changed: 3.4.3 \u2192 3.4.5",
+        "7 version upgrades (1 major, 2 minor, 4 patch) among 156 shared packages",
+        "Integrity drift checked only 0 of 149 same-version packages; the rest carry no comparable digest",
+        "8 file entries changed content (not package integrity drift): /.github/workflows/build.yml, /.github/workflows/coverage.yaml, /.github/workflows/nightly.yml, /.github/workflows/pipenv-update.yml, /.github/workflows/pr-test.yml + 3 more",
+        "Core system packages stable: github (48) unchanged",
+        "pypi: 106 packages before and after (7 version changes)"
       ],
       "html": "sbomlyze-diff.html",
       "occurrences": {
@@ -2465,12 +3360,40 @@
           "comparable": 0,
           "disjoint_kinds": 0,
           "packages_total": 156,
-          "same_version_pairs": 155
+          "same_version_pairs": 149
         },
         "file_changes": [
           {
             "owners": [],
+            "path": ".github/workflows/build.yml"
+          },
+          {
+            "owners": [],
+            "path": ".github/workflows/coverage.yaml"
+          },
+          {
+            "owners": [],
+            "path": ".github/workflows/nightly.yml"
+          },
+          {
+            "owners": [],
+            "path": ".github/workflows/pipenv-update.yml"
+          },
+          {
+            "owners": [],
+            "path": ".github/workflows/pr-test.yml"
+          },
+          {
+            "owners": [],
+            "path": "Pipfile.lock"
+          },
+          {
+            "owners": [],
             "path": "kubernetes/requirements.txt"
+          },
+          {
+            "owners": [],
+            "path": "setup.py"
           }
         ],
         "file_coverage": {
@@ -2479,7 +3402,7 @@
           "files_compared": 13,
           "files_unverified": 0,
           "owned_files_after": 0,
-          "unowned_files_after": 0
+          "unowned_files_after": 13
         },
         "files_added": [],
         "files_removed": [],
@@ -2490,36 +3413,90 @@
         "owned_file_drift": [],
         "removed": [],
         "source_change": {
-          "from": "3.4.0",
+          "from": "3.4.3",
           "name": "bridgecrewio/checkov",
-          "to": "3.4.3"
+          "to": "3.4.5"
         },
         "version_changes": [
           {
             "direction": "upgrade",
             "ecosystem": "pypi",
-            "from": "3.4.0",
+            "from": "1.5.50",
+            "level": "patch",
+            "location": "Pipfile.lock",
+            "name": "bc-detect-secrets",
+            "to": "1.5.52"
+          },
+          {
+            "direction": "upgrade",
+            "ecosystem": "pypi",
+            "from": "3.5.1",
+            "level": "patch",
+            "location": "Pipfile.lock",
+            "name": "charset-normalizer",
+            "to": "3.5.2"
+          },
+          {
+            "direction": "upgrade",
+            "ecosystem": "pypi",
+            "from": "3.4.3",
             "level": "patch",
             "location": "kubernetes/requirements.txt",
             "name": "checkov",
-            "to": "3.4.3"
+            "to": "3.4.5"
+          },
+          {
+            "direction": "upgrade",
+            "ecosystem": "pypi",
+            "from": "3.19",
+            "level": "minor",
+            "location": "Pipfile.lock",
+            "name": "idna",
+            "to": "3.20"
+          },
+          {
+            "direction": "upgrade",
+            "ecosystem": "pypi",
+            "from": "2.32.5",
+            "level": "minor",
+            "location": "Pipfile.lock",
+            "name": "requests",
+            "to": "2.34.2"
+          },
+          {
+            "direction": "upgrade",
+            "ecosystem": "pypi",
+            "from": "1.0.0",
+            "level": "patch",
+            "location": "Pipfile.lock",
+            "name": "unidiff",
+            "to": "1.0.1"
+          },
+          {
+            "direction": "upgrade",
+            "ecosystem": "pypi",
+            "from": "1.26.20",
+            "level": "major",
+            "location": "Pipfile.lock",
+            "name": "urllib3",
+            "to": "2.8.0"
           }
         ],
         "version_set_changes": []
       },
-      "previous_sbom_sha256": "32571ffde300dde30988865b2fd6860254c1630b0ac3c4de0362658d751c27e8",
+      "previous_sbom_sha256": "5a04f830c37f69ec1e6b63d444c86d044a04d10912a5bd29dc4dbec0d4e013a6",
       "removed": 0,
-      "sbom_sha256": "5a04f830c37f69ec1e6b63d444c86d044a04d10912a5bd29dc4dbec0d4e013a6"
+      "sbom_sha256": "e7d76e8da1cc43282913131b34cf823aefc745a3a4c6d8aba8dfc0f961a95a2a"
     },
-    "scanned_at": "2026-11-08T05:53:31+00:00",
+    "scanned_at": "2026-11-15T23:31:26+00:00",
     "scorecard": null,
-    "scorecard_note": "the OpenSSF public dataset entry is 1441 days old (limit 30); the Scorecard CLI fallback was skipped because this shard's weekly budget was used",
+    "scorecard_note": "the OpenSSF public dataset entry is 1448 days old (limit 30); the Scorecard CLI fallback was skipped because this shard's weekly budget was used",
     "vulnerabilities": [
       {
         "aliases": [],
         "ecosystem": "pypi",
         "epss": null,
-        "epss_date": "2026-11-07T12:00:22Z",
+        "epss_date": "2026-11-15T12:03:04Z",
         "fix_state": "fixed",
         "fixed_in": [
           "2026.10.18"
@@ -2527,12 +3504,15 @@
         "id": "GHSA-6q48-6c7w-9gw2",
         "kev": null,
         "kev_cves": [],
-        "kev_snapshot": "2026.11.06",
+        "kev_snapshot": "2026.11.13",
         "location": "Pipfile.lock",
         "locations": [
           "Pipfile.lock"
         ],
         "osv_confirmed": true,
+        "osv_coverage": {
+          "state": "confirmed"
+        },
         "osv_modified": "2026-10-30T14:00:02.590922333Z",
         "osv_published": "2026-10-20T19:35:05Z",
         "package": "certifi",
@@ -2549,10 +3529,10 @@
         "ecosystem": "pypi",
         "epss": {
           "cve": "CVE-2026-78676",
-          "percentile": 0.466,
+          "percentile": 0.46933,
           "score": 0.00556
         },
-        "epss_date": "2026-11-07T12:00:22Z",
+        "epss_date": "2026-11-15T12:03:04Z",
         "fix_state": "fixed",
         "fixed_in": [
           "3.1.59"
@@ -2560,7 +3540,7 @@
         "id": "GHSA-284h-m62q-gf8w",
         "kev": null,
         "kev_cves": [],
-        "kev_snapshot": "2026.11.06",
+        "kev_snapshot": "2026.11.13",
         "location": "setup.py",
         "locations": [
           "setup.py"
@@ -2572,6 +3552,12 @@
           "state": "confirmed"
         },
         "osv_confirmed": false,
+        "osv_coverage": {
+          "reasons": [
+            "setup.py: not read by OSV-Scanner"
+          ],
+          "state": "not checked"
+        },
         "package": "gitpython",
         "purl": "pkg:pypi/gitpython@3.1.41",
         "severity": "Critical",
@@ -2580,10 +3566,16 @@
         "version": "3.1.41"
       },
       {
-        "aliases": [],
+        "aliases": [
+          "CVE-2026-123817"
+        ],
         "ecosystem": "pypi",
-        "epss": null,
-        "epss_date": "2026-11-07T12:00:22Z",
+        "epss": {
+          "cve": "CVE-2026-123817",
+          "percentile": 0.26221,
+          "score": 0.00328
+        },
+        "epss_date": "2026-11-15T12:03:04Z",
         "fix_state": "fixed",
         "fixed_in": [
           "3.14.4"
@@ -2591,13 +3583,16 @@
         "id": "GHSA-2g87-pp6c-29x5",
         "kev": null,
         "kev_cves": [],
-        "kev_snapshot": "2026.11.06",
+        "kev_snapshot": "2026.11.13",
         "location": "Pipfile.lock",
         "locations": [
           "Pipfile.lock"
         ],
         "osv_confirmed": true,
-        "osv_modified": "2026-10-19T17:15:04.113194208Z",
+        "osv_coverage": {
+          "state": "confirmed"
+        },
+        "osv_modified": "2026-11-09T21:30:07.738926065Z",
         "osv_published": "2026-10-19T17:07:23Z",
         "package": "aiohttp",
         "purl": "pkg:pypi/aiohttp@3.13.5",
@@ -2613,10 +3608,10 @@
         "ecosystem": "pypi",
         "epss": {
           "cve": "CVE-2026-111064",
-          "percentile": 0.34407,
+          "percentile": 0.34692,
           "score": 0.00399
         },
-        "epss_date": "2026-11-07T12:00:22Z",
+        "epss_date": "2026-11-15T12:03:04Z",
         "fix_state": "fixed",
         "fixed_in": [
           "3.14.4"
@@ -2624,12 +3619,15 @@
         "id": "GHSA-5wr8-gcqf-gqf3",
         "kev": null,
         "kev_cves": [],
-        "kev_snapshot": "2026.11.06",
+        "kev_snapshot": "2026.11.13",
         "location": "Pipfile.lock",
         "locations": [
           "Pipfile.lock"
         ],
         "osv_confirmed": true,
+        "osv_coverage": {
+          "state": "confirmed"
+        },
         "osv_modified": "2026-10-19T17:15:04.139404381Z",
         "osv_published": "2026-10-19T17:08:04Z",
         "package": "aiohttp",
@@ -2646,10 +3644,10 @@
         "ecosystem": "pypi",
         "epss": {
           "cve": "CVE-2026-111066",
-          "percentile": 0.35671,
+          "percentile": 0.35964,
           "score": 0.00412
         },
-        "epss_date": "2026-11-07T12:00:22Z",
+        "epss_date": "2026-11-15T12:03:04Z",
         "fix_state": "fixed",
         "fixed_in": [
           "3.14.4"
@@ -2657,12 +3655,15 @@
         "id": "GHSA-9xw5-w5jj-pvcg",
         "kev": null,
         "kev_cves": [],
-        "kev_snapshot": "2026.11.06",
+        "kev_snapshot": "2026.11.13",
         "location": "Pipfile.lock",
         "locations": [
           "Pipfile.lock"
         ],
         "osv_confirmed": true,
+        "osv_coverage": {
+          "state": "confirmed"
+        },
         "osv_modified": "2026-10-20T20:00:04.692319554Z",
         "osv_published": "2026-10-20T19:52:09Z",
         "package": "aiohttp",
@@ -2679,10 +3680,10 @@
         "ecosystem": "pypi",
         "epss": {
           "cve": "CVE-2026-69244",
-          "percentile": 0.44927,
+          "percentile": 0.45256,
           "score": 0.00528
         },
-        "epss_date": "2026-11-07T12:00:22Z",
+        "epss_date": "2026-11-15T12:03:04Z",
         "fix_state": "fixed",
         "fixed_in": [
           "3.14.3"
@@ -2690,12 +3691,15 @@
         "id": "GHSA-cq5v-8q36-5273",
         "kev": null,
         "kev_cves": [],
-        "kev_snapshot": "2026.11.06",
+        "kev_snapshot": "2026.11.13",
         "location": "Pipfile.lock",
         "locations": [
           "Pipfile.lock"
         ],
         "osv_confirmed": true,
+        "osv_coverage": {
+          "state": "confirmed"
+        },
         "osv_modified": "2026-09-10T03:51:13.983479281Z",
         "osv_published": "2026-08-03T20:51:13Z",
         "package": "aiohttp",
@@ -2712,21 +3716,24 @@
         "ecosystem": "pypi",
         "epss": {
           "cve": "CVE-2024-23342",
-          "percentile": 0.62585,
+          "percentile": 0.62924,
           "score": 0.00985
         },
-        "epss_date": "2026-11-07T12:00:22Z",
+        "epss_date": "2026-11-15T12:03:04Z",
         "fix_state": "not-fixed",
         "fixed_in": [],
         "id": "GHSA-wj6h-64fc-37mp",
         "kev": null,
         "kev_cves": [],
-        "kev_snapshot": "2026.11.06",
+        "kev_snapshot": "2026.11.13",
         "location": "Pipfile.lock",
         "locations": [
           "Pipfile.lock"
         ],
         "osv_confirmed": true,
+        "osv_coverage": {
+          "state": "confirmed"
+        },
         "osv_modified": "2026-09-10T03:50:09.447249599Z",
         "osv_published": "2024-01-22T21:35:27Z",
         "package": "ecdsa",
@@ -2743,10 +3750,10 @@
         "ecosystem": "pypi",
         "epss": {
           "cve": "CVE-2026-87817",
-          "percentile": 0.36479,
+          "percentile": 0.36752,
           "score": 0.00419
         },
-        "epss_date": "2026-11-07T12:00:22Z",
+        "epss_date": "2026-11-15T12:03:04Z",
         "fix_state": "fixed",
         "fixed_in": [
           "3.1.60"
@@ -2754,7 +3761,7 @@
         "id": "GHSA-239g-whfq-7xj9",
         "kev": null,
         "kev_cves": [],
-        "kev_snapshot": "2026.11.06",
+        "kev_snapshot": "2026.11.13",
         "location": "setup.py",
         "locations": [
           "setup.py"
@@ -2766,6 +3773,12 @@
           "state": "confirmed"
         },
         "osv_confirmed": false,
+        "osv_coverage": {
+          "reasons": [
+            "setup.py: not read by OSV-Scanner"
+          ],
+          "state": "not checked"
+        },
         "package": "gitpython",
         "purl": "pkg:pypi/gitpython@3.1.41",
         "severity": "High",
@@ -2780,10 +3793,10 @@
         "ecosystem": "pypi",
         "epss": {
           "cve": "CVE-2026-87817",
-          "percentile": 0.36479,
+          "percentile": 0.36752,
           "score": 0.00419
         },
-        "epss_date": "2026-11-07T12:00:22Z",
+        "epss_date": "2026-11-15T12:03:04Z",
         "fix_state": "fixed",
         "fixed_in": [
           "3.1.60"
@@ -2791,12 +3804,15 @@
         "id": "GHSA-239g-whfq-7xj9",
         "kev": null,
         "kev_cves": [],
-        "kev_snapshot": "2026.11.06",
+        "kev_snapshot": "2026.11.13",
         "location": "Pipfile.lock",
         "locations": [
           "Pipfile.lock"
         ],
         "osv_confirmed": true,
+        "osv_coverage": {
+          "state": "confirmed"
+        },
         "osv_modified": "2026-09-30T23:45:04.022111787Z",
         "osv_published": "2026-09-09T12:17:16.830Z",
         "package": "gitpython",
@@ -2810,7 +3826,7 @@
         "aliases": [],
         "ecosystem": "pypi",
         "epss": null,
-        "epss_date": "2026-11-07T12:00:22Z",
+        "epss_date": "2026-11-15T12:03:04Z",
         "fix_state": "fixed",
         "fixed_in": [
           "3.2.0"
@@ -2818,7 +3834,7 @@
         "id": "GHSA-23mf-xhv8-69c2",
         "kev": null,
         "kev_cves": [],
-        "kev_snapshot": "2026.11.06",
+        "kev_snapshot": "2026.11.13",
         "location": "setup.py",
         "locations": [
           "setup.py"
@@ -2830,6 +3846,12 @@
           "state": "confirmed"
         },
         "osv_confirmed": false,
+        "osv_coverage": {
+          "reasons": [
+            "setup.py: not read by OSV-Scanner"
+          ],
+          "state": "not checked"
+        },
         "package": "gitpython",
         "purl": "pkg:pypi/gitpython@3.1.41",
         "severity": "High",
@@ -2841,7 +3863,7 @@
         "aliases": [],
         "ecosystem": "pypi",
         "epss": null,
-        "epss_date": "2026-11-07T12:00:22Z",
+        "epss_date": "2026-11-15T12:03:04Z",
         "fix_state": "fixed",
         "fixed_in": [
           "3.2.0"
@@ -2849,12 +3871,15 @@
         "id": "GHSA-23mf-xhv8-69c2",
         "kev": null,
         "kev_cves": [],
-        "kev_snapshot": "2026.11.06",
+        "kev_snapshot": "2026.11.13",
         "location": "Pipfile.lock",
         "locations": [
           "Pipfile.lock"
         ],
         "osv_confirmed": true,
+        "osv_coverage": {
+          "state": "confirmed"
+        },
         "osv_modified": "2026-10-27T15:47:08.812491596Z",
         "osv_published": "2026-10-27T15:28:03Z",
         "package": "gitpython",
@@ -2871,10 +3896,10 @@
         "ecosystem": "pypi",
         "epss": {
           "cve": "CVE-2026-67325",
-          "percentile": 0.82697,
+          "percentile": 0.82881,
           "score": 0.02209
         },
-        "epss_date": "2026-11-07T12:00:22Z",
+        "epss_date": "2026-11-15T12:03:04Z",
         "fix_state": "fixed",
         "fixed_in": [
           "3.1.51"
@@ -2882,7 +3907,7 @@
         "id": "GHSA-2f96-g7mh-g2hx",
         "kev": null,
         "kev_cves": [],
-        "kev_snapshot": "2026.11.06",
+        "kev_snapshot": "2026.11.13",
         "location": "setup.py",
         "locations": [
           "setup.py"
@@ -2894,6 +3919,12 @@
           "state": "confirmed"
         },
         "osv_confirmed": false,
+        "osv_coverage": {
+          "reasons": [
+            "setup.py: not read by OSV-Scanner"
+          ],
+          "state": "not checked"
+        },
         "package": "gitpython",
         "purl": "pkg:pypi/gitpython@3.1.41",
         "severity": "High",
@@ -2905,7 +3936,7 @@
         "aliases": [],
         "ecosystem": "pypi",
         "epss": null,
-        "epss_date": "2026-11-07T12:00:22Z",
+        "epss_date": "2026-11-15T12:03:04Z",
         "fix_state": "fixed",
         "fixed_in": [
           "3.1.57"
@@ -2913,7 +3944,7 @@
         "id": "GHSA-3f7w-8rr8-f37f",
         "kev": null,
         "kev_cves": [],
-        "kev_snapshot": "2026.11.06",
+        "kev_snapshot": "2026.11.13",
         "location": "setup.py",
         "locations": [
           "setup.py"
@@ -2925,6 +3956,12 @@
           "state": "confirmed"
         },
         "osv_confirmed": false,
+        "osv_coverage": {
+          "reasons": [
+            "setup.py: not read by OSV-Scanner"
+          ],
+          "state": "not checked"
+        },
         "package": "gitpython",
         "purl": "pkg:pypi/gitpython@3.1.41",
         "severity": "High",
@@ -2939,10 +3976,10 @@
         "ecosystem": "pypi",
         "epss": {
           "cve": "CVE-2026-69097",
-          "percentile": 0.19016,
+          "percentile": 0.19087,
           "score": 0.00268
         },
-        "epss_date": "2026-11-07T12:00:22Z",
+        "epss_date": "2026-11-15T12:03:04Z",
         "fix_state": "fixed",
         "fixed_in": [
           "3.1.53"
@@ -2950,7 +3987,7 @@
         "id": "GHSA-3rp5-jjmw-4wv2",
         "kev": null,
         "kev_cves": [],
-        "kev_snapshot": "2026.11.06",
+        "kev_snapshot": "2026.11.13",
         "location": "setup.py",
         "locations": [
           "setup.py"
@@ -2962,6 +3999,12 @@
           "state": "confirmed"
         },
         "osv_confirmed": false,
+        "osv_coverage": {
+          "reasons": [
+            "setup.py: not read by OSV-Scanner"
+          ],
+          "state": "not checked"
+        },
         "package": "gitpython",
         "purl": "pkg:pypi/gitpython@3.1.41",
         "severity": "High",
@@ -2976,10 +4019,10 @@
         "ecosystem": "pypi",
         "epss": {
           "cve": "CVE-2026-76219",
-          "percentile": 0.45856,
+          "percentile": 0.46186,
           "score": 0.00543
         },
-        "epss_date": "2026-11-07T12:00:22Z",
+        "epss_date": "2026-11-15T12:03:04Z",
         "fix_state": "fixed",
         "fixed_in": [
           "3.1.58"
@@ -2987,7 +4030,7 @@
         "id": "GHSA-4gmw-gg2m-w46p",
         "kev": null,
         "kev_cves": [],
-        "kev_snapshot": "2026.11.06",
+        "kev_snapshot": "2026.11.13",
         "location": "setup.py",
         "locations": [
           "setup.py"
@@ -2999,6 +4042,12 @@
           "state": "confirmed"
         },
         "osv_confirmed": false,
+        "osv_coverage": {
+          "reasons": [
+            "setup.py: not read by OSV-Scanner"
+          ],
+          "state": "not checked"
+        },
         "package": "gitpython",
         "purl": "pkg:pypi/gitpython@3.1.41",
         "severity": "High",
@@ -3010,7 +4059,7 @@
         "aliases": [],
         "ecosystem": "pypi",
         "epss": null,
-        "epss_date": "2026-11-07T12:00:22Z",
+        "epss_date": "2026-11-15T12:03:04Z",
         "fix_state": "fixed",
         "fixed_in": [
           "3.1.54"
@@ -3018,7 +4067,7 @@
         "id": "GHSA-6p8h-3wgx-97gf",
         "kev": null,
         "kev_cves": [],
-        "kev_snapshot": "2026.11.06",
+        "kev_snapshot": "2026.11.13",
         "location": "setup.py",
         "locations": [
           "setup.py"
@@ -3030,6 +4079,12 @@
           "state": "confirmed"
         },
         "osv_confirmed": false,
+        "osv_coverage": {
+          "reasons": [
+            "setup.py: not read by OSV-Scanner"
+          ],
+          "state": "not checked"
+        },
         "package": "gitpython",
         "purl": "pkg:pypi/gitpython@3.1.41",
         "severity": "High",
@@ -3044,10 +4099,10 @@
         "ecosystem": "pypi",
         "epss": {
           "cve": "CVE-2026-44243",
-          "percentile": 0.36493,
+          "percentile": 0.36766,
           "score": 0.00419
         },
-        "epss_date": "2026-11-07T12:00:22Z",
+        "epss_date": "2026-11-15T12:03:04Z",
         "fix_state": "fixed",
         "fixed_in": [
           "3.1.48"
@@ -3055,7 +4110,7 @@
         "id": "GHSA-7545-fcxq-7j24",
         "kev": null,
         "kev_cves": [],
-        "kev_snapshot": "2026.11.06",
+        "kev_snapshot": "2026.11.13",
         "location": "setup.py",
         "locations": [
           "setup.py"
@@ -3067,6 +4122,12 @@
           "state": "confirmed"
         },
         "osv_confirmed": false,
+        "osv_coverage": {
+          "reasons": [
+            "setup.py: not read by OSV-Scanner"
+          ],
+          "state": "not checked"
+        },
         "package": "gitpython",
         "purl": "pkg:pypi/gitpython@3.1.41",
         "severity": "High",
@@ -3081,10 +4142,10 @@
         "ecosystem": "pypi",
         "epss": {
           "cve": "CVE-2026-78675",
-          "percentile": 0.07391,
+          "percentile": 0.07412,
           "score": 0.00178
         },
-        "epss_date": "2026-11-07T12:00:22Z",
+        "epss_date": "2026-11-15T12:03:04Z",
         "fix_state": "fixed",
         "fixed_in": [
           "3.1.59"
@@ -3092,7 +4153,7 @@
         "id": "GHSA-7833-fr7j-v32q",
         "kev": null,
         "kev_cves": [],
-        "kev_snapshot": "2026.11.06",
+        "kev_snapshot": "2026.11.13",
         "location": "setup.py",
         "locations": [
           "setup.py"
@@ -3104,6 +4165,12 @@
           "state": "confirmed"
         },
         "osv_confirmed": false,
+        "osv_coverage": {
+          "reasons": [
+            "setup.py: not read by OSV-Scanner"
+          ],
+          "state": "not checked"
+        },
         "package": "gitpython",
         "purl": "pkg:pypi/gitpython@3.1.41",
         "severity": "High",
@@ -3118,10 +4185,10 @@
         "ecosystem": "pypi",
         "epss": {
           "cve": "CVE-2026-114145",
-          "percentile": 0.36894,
+          "percentile": 0.37184,
           "score": 0.00423
         },
-        "epss_date": "2026-11-07T12:00:22Z",
+        "epss_date": "2026-11-15T12:03:04Z",
         "fix_state": "fixed",
         "fixed_in": [
           "3.2.1"
@@ -3129,7 +4196,7 @@
         "id": "GHSA-83vg-56qc-22m7",
         "kev": null,
         "kev_cves": [],
-        "kev_snapshot": "2026.11.06",
+        "kev_snapshot": "2026.11.13",
         "location": "setup.py",
         "locations": [
           "setup.py"
@@ -3141,6 +4208,12 @@
           "state": "confirmed"
         },
         "osv_confirmed": false,
+        "osv_coverage": {
+          "reasons": [
+            "setup.py: not read by OSV-Scanner"
+          ],
+          "state": "not checked"
+        },
         "package": "gitpython",
         "purl": "pkg:pypi/gitpython@3.1.41",
         "severity": "High",
@@ -3155,10 +4228,10 @@
         "ecosystem": "pypi",
         "epss": {
           "cve": "CVE-2026-114145",
-          "percentile": 0.36894,
+          "percentile": 0.37184,
           "score": 0.00423
         },
-        "epss_date": "2026-11-07T12:00:22Z",
+        "epss_date": "2026-11-15T12:03:04Z",
         "fix_state": "fixed",
         "fixed_in": [
           "3.2.1"
@@ -3166,12 +4239,15 @@
         "id": "GHSA-83vg-56qc-22m7",
         "kev": null,
         "kev_cves": [],
-        "kev_snapshot": "2026.11.06",
+        "kev_snapshot": "2026.11.13",
         "location": "Pipfile.lock",
         "locations": [
           "Pipfile.lock"
         ],
         "osv_confirmed": true,
+        "osv_coverage": {
+          "state": "confirmed"
+        },
         "osv_modified": "2026-10-22T16:45:04.297463159Z",
         "osv_published": "2026-10-22T16:41:14Z",
         "package": "gitpython",
@@ -3188,10 +4264,10 @@
         "ecosystem": "pypi",
         "epss": {
           "cve": "CVE-2026-78677",
-          "percentile": 0.51468,
+          "percentile": 0.51798,
           "score": 0.00651
         },
-        "epss_date": "2026-11-07T12:00:22Z",
+        "epss_date": "2026-11-15T12:03:04Z",
         "fix_state": "fixed",
         "fixed_in": [
           "3.1.59"
@@ -3199,7 +4275,7 @@
         "id": "GHSA-8mcc-hrx5-hvxc",
         "kev": null,
         "kev_cves": [],
-        "kev_snapshot": "2026.11.06",
+        "kev_snapshot": "2026.11.13",
         "location": "setup.py",
         "locations": [
           "setup.py"
@@ -3211,6 +4287,12 @@
           "state": "confirmed"
         },
         "osv_confirmed": false,
+        "osv_coverage": {
+          "reasons": [
+            "setup.py: not read by OSV-Scanner"
+          ],
+          "state": "not checked"
+        },
         "package": "gitpython",
         "purl": "pkg:pypi/gitpython@3.1.41",
         "severity": "High",
@@ -3222,7 +4304,7 @@
         "aliases": [],
         "ecosystem": "pypi",
         "epss": null,
-        "epss_date": "2026-11-07T12:00:22Z",
+        "epss_date": "2026-11-15T12:03:04Z",
         "fix_state": "fixed",
         "fixed_in": [
           "3.1.55"
@@ -3230,7 +4312,7 @@
         "id": "GHSA-94p4-4cq8-9g67",
         "kev": null,
         "kev_cves": [],
-        "kev_snapshot": "2026.11.06",
+        "kev_snapshot": "2026.11.13",
         "location": "setup.py",
         "locations": [
           "setup.py"
@@ -3242,6 +4324,12 @@
           "state": "confirmed"
         },
         "osv_confirmed": false,
+        "osv_coverage": {
+          "reasons": [
+            "setup.py: not read by OSV-Scanner"
+          ],
+          "state": "not checked"
+        },
         "package": "gitpython",
         "purl": "pkg:pypi/gitpython@3.1.41",
         "severity": "High",
@@ -3256,10 +4344,10 @@
         "ecosystem": "pypi",
         "epss": {
           "cve": "CVE-2026-67323",
-          "percentile": 0.69586,
+          "percentile": 0.69897,
           "score": 0.01251
         },
-        "epss_date": "2026-11-07T12:00:22Z",
+        "epss_date": "2026-11-15T12:03:04Z",
         "fix_state": "fixed",
         "fixed_in": [
           "3.1.51"
@@ -3267,7 +4355,7 @@
         "id": "GHSA-956x-8gvw-wg5v",
         "kev": null,
         "kev_cves": [],
-        "kev_snapshot": "2026.11.06",
+        "kev_snapshot": "2026.11.13",
         "location": "setup.py",
         "locations": [
           "setup.py"
@@ -3279,6 +4367,12 @@
           "state": "confirmed"
         },
         "osv_confirmed": false,
+        "osv_coverage": {
+          "reasons": [
+            "setup.py: not read by OSV-Scanner"
+          ],
+          "state": "not checked"
+        },
         "package": "gitpython",
         "purl": "pkg:pypi/gitpython@3.1.41",
         "severity": "High",
@@ -3293,10 +4387,10 @@
         "ecosystem": "pypi",
         "epss": {
           "cve": "CVE-2026-76218",
-          "percentile": 0.54158,
+          "percentile": 0.54484,
           "score": 0.0072
         },
-        "epss_date": "2026-11-07T12:00:22Z",
+        "epss_date": "2026-11-15T12:03:04Z",
         "fix_state": "fixed",
         "fixed_in": [
           "3.1.58"
@@ -3304,7 +4398,7 @@
         "id": "GHSA-9rj7-rf2p-w77r",
         "kev": null,
         "kev_cves": [],
-        "kev_snapshot": "2026.11.06",
+        "kev_snapshot": "2026.11.13",
         "location": "setup.py",
         "locations": [
           "setup.py"
@@ -3316,6 +4410,12 @@
           "state": "confirmed"
         },
         "osv_confirmed": false,
+        "osv_coverage": {
+          "reasons": [
+            "setup.py: not read by OSV-Scanner"
+          ],
+          "state": "not checked"
+        },
         "package": "gitpython",
         "purl": "pkg:pypi/gitpython@3.1.41",
         "severity": "High",
@@ -3327,7 +4427,7 @@
         "aliases": [],
         "ecosystem": "pypi",
         "epss": null,
-        "epss_date": "2026-11-07T12:00:22Z",
+        "epss_date": "2026-11-15T12:03:04Z",
         "fix_state": "fixed",
         "fixed_in": [
           "3.2.0"
@@ -3335,7 +4435,7 @@
         "id": "GHSA-f9j4-qggq-h239",
         "kev": null,
         "kev_cves": [],
-        "kev_snapshot": "2026.11.06",
+        "kev_snapshot": "2026.11.13",
         "location": "setup.py",
         "locations": [
           "setup.py"
@@ -3347,6 +4447,12 @@
           "state": "confirmed"
         },
         "osv_confirmed": false,
+        "osv_coverage": {
+          "reasons": [
+            "setup.py: not read by OSV-Scanner"
+          ],
+          "state": "not checked"
+        },
         "package": "gitpython",
         "purl": "pkg:pypi/gitpython@3.1.41",
         "severity": "High",
@@ -3358,7 +4464,7 @@
         "aliases": [],
         "ecosystem": "pypi",
         "epss": null,
-        "epss_date": "2026-11-07T12:00:22Z",
+        "epss_date": "2026-11-15T12:03:04Z",
         "fix_state": "fixed",
         "fixed_in": [
           "3.2.0"
@@ -3366,12 +4472,15 @@
         "id": "GHSA-f9j4-qggq-h239",
         "kev": null,
         "kev_cves": [],
-        "kev_snapshot": "2026.11.06",
+        "kev_snapshot": "2026.11.13",
         "location": "Pipfile.lock",
         "locations": [
           "Pipfile.lock"
         ],
         "osv_confirmed": true,
+        "osv_coverage": {
+          "state": "confirmed"
+        },
         "osv_modified": "2026-10-27T15:47:24.258288646Z",
         "osv_published": "2026-10-27T15:26:50Z",
         "package": "gitpython",
@@ -3385,7 +4494,7 @@
         "aliases": [],
         "ecosystem": "pypi",
         "epss": null,
-        "epss_date": "2026-11-07T12:00:22Z",
+        "epss_date": "2026-11-15T12:03:04Z",
         "fix_state": "fixed",
         "fixed_in": [
           "3.1.54"
@@ -3393,7 +4502,7 @@
         "id": "GHSA-fjr4-x663-mwxc",
         "kev": null,
         "kev_cves": [],
-        "kev_snapshot": "2026.11.06",
+        "kev_snapshot": "2026.11.13",
         "location": "setup.py",
         "locations": [
           "setup.py"
@@ -3405,6 +4514,12 @@
           "state": "confirmed"
         },
         "osv_confirmed": false,
+        "osv_coverage": {
+          "reasons": [
+            "setup.py: not read by OSV-Scanner"
+          ],
+          "state": "not checked"
+        },
         "package": "gitpython",
         "purl": "pkg:pypi/gitpython@3.1.41",
         "severity": "High",
@@ -3419,10 +4534,10 @@
         "ecosystem": "pypi",
         "epss": {
           "cve": "CVE-2026-87819",
-          "percentile": 0.44485,
+          "percentile": 0.44816,
           "score": 0.00521
         },
-        "epss_date": "2026-11-07T12:00:22Z",
+        "epss_date": "2026-11-15T12:03:04Z",
         "fix_state": "fixed",
         "fixed_in": [
           "3.1.60"
@@ -3430,7 +4545,7 @@
         "id": "GHSA-g5vv-9gxw-82hx",
         "kev": null,
         "kev_cves": [],
-        "kev_snapshot": "2026.11.06",
+        "kev_snapshot": "2026.11.13",
         "location": "setup.py",
         "locations": [
           "setup.py"
@@ -3442,6 +4557,12 @@
           "state": "confirmed"
         },
         "osv_confirmed": false,
+        "osv_coverage": {
+          "reasons": [
+            "setup.py: not read by OSV-Scanner"
+          ],
+          "state": "not checked"
+        },
         "package": "gitpython",
         "purl": "pkg:pypi/gitpython@3.1.41",
         "severity": "High",
@@ -3456,10 +4577,10 @@
         "ecosystem": "pypi",
         "epss": {
           "cve": "CVE-2026-87819",
-          "percentile": 0.44485,
+          "percentile": 0.44816,
           "score": 0.00521
         },
-        "epss_date": "2026-11-07T12:00:22Z",
+        "epss_date": "2026-11-15T12:03:04Z",
         "fix_state": "fixed",
         "fixed_in": [
           "3.1.60"
@@ -3467,12 +4588,15 @@
         "id": "GHSA-g5vv-9gxw-82hx",
         "kev": null,
         "kev_cves": [],
-        "kev_snapshot": "2026.11.06",
+        "kev_snapshot": "2026.11.13",
         "location": "Pipfile.lock",
         "locations": [
           "Pipfile.lock"
         ],
         "osv_confirmed": true,
+        "osv_coverage": {
+          "state": "confirmed"
+        },
         "osv_modified": "2026-09-30T23:45:04.037560336Z",
         "osv_published": "2026-09-09T12:17:17.120Z",
         "package": "gitpython",
@@ -3489,10 +4613,10 @@
         "ecosystem": "pypi",
         "epss": {
           "cve": "CVE-2026-76222",
-          "percentile": 0.36764,
+          "percentile": 0.37048,
           "score": 0.00422
         },
-        "epss_date": "2026-11-07T12:00:22Z",
+        "epss_date": "2026-11-15T12:03:04Z",
         "fix_state": "fixed",
         "fixed_in": [
           "3.1.58"
@@ -3500,7 +4624,7 @@
         "id": "GHSA-hmq2-w58f-27jc",
         "kev": null,
         "kev_cves": [],
-        "kev_snapshot": "2026.11.06",
+        "kev_snapshot": "2026.11.13",
         "location": "setup.py",
         "locations": [
           "setup.py"
@@ -3512,6 +4636,12 @@
           "state": "confirmed"
         },
         "osv_confirmed": false,
+        "osv_coverage": {
+          "reasons": [
+            "setup.py: not read by OSV-Scanner"
+          ],
+          "state": "not checked"
+        },
         "package": "gitpython",
         "purl": "pkg:pypi/gitpython@3.1.41",
         "severity": "High",
@@ -3523,7 +4653,7 @@
         "aliases": [],
         "ecosystem": "pypi",
         "epss": null,
-        "epss_date": "2026-11-07T12:00:22Z",
+        "epss_date": "2026-11-15T12:03:04Z",
         "fix_state": "fixed",
         "fixed_in": [
           "3.1.58"
@@ -3531,7 +4661,7 @@
         "id": "GHSA-jm78-9fvv-mhgr",
         "kev": null,
         "kev_cves": [],
-        "kev_snapshot": "2026.11.06",
+        "kev_snapshot": "2026.11.13",
         "location": "setup.py",
         "locations": [
           "setup.py"
@@ -3543,6 +4673,12 @@
           "state": "confirmed"
         },
         "osv_confirmed": false,
+        "osv_coverage": {
+          "reasons": [
+            "setup.py: not read by OSV-Scanner"
+          ],
+          "state": "not checked"
+        },
         "package": "gitpython",
         "purl": "pkg:pypi/gitpython@3.1.41",
         "severity": "High",
@@ -3554,7 +4690,7 @@
         "aliases": [],
         "ecosystem": "pypi",
         "epss": null,
-        "epss_date": "2026-11-07T12:00:22Z",
+        "epss_date": "2026-11-15T12:03:04Z",
         "fix_state": "fixed",
         "fixed_in": [
           "3.2.0"
@@ -3562,7 +4698,7 @@
         "id": "GHSA-m64x-33q8-m5h7",
         "kev": null,
         "kev_cves": [],
-        "kev_snapshot": "2026.11.06",
+        "kev_snapshot": "2026.11.13",
         "location": "setup.py",
         "locations": [
           "setup.py"
@@ -3574,6 +4710,12 @@
           "state": "confirmed"
         },
         "osv_confirmed": false,
+        "osv_coverage": {
+          "reasons": [
+            "setup.py: not read by OSV-Scanner"
+          ],
+          "state": "not checked"
+        },
         "package": "gitpython",
         "purl": "pkg:pypi/gitpython@3.1.41",
         "severity": "High",
@@ -3585,7 +4727,7 @@
         "aliases": [],
         "ecosystem": "pypi",
         "epss": null,
-        "epss_date": "2026-11-07T12:00:22Z",
+        "epss_date": "2026-11-15T12:03:04Z",
         "fix_state": "fixed",
         "fixed_in": [
           "3.2.0"
@@ -3593,12 +4735,15 @@
         "id": "GHSA-m64x-33q8-m5h7",
         "kev": null,
         "kev_cves": [],
-        "kev_snapshot": "2026.11.06",
+        "kev_snapshot": "2026.11.13",
         "location": "Pipfile.lock",
         "locations": [
           "Pipfile.lock"
         ],
         "osv_confirmed": true,
+        "osv_coverage": {
+          "state": "confirmed"
+        },
         "osv_modified": "2026-10-27T15:47:24.576766638Z",
         "osv_published": "2026-10-27T15:26:24Z",
         "package": "gitpython",
@@ -3612,7 +4757,7 @@
         "aliases": [],
         "ecosystem": "pypi",
         "epss": null,
-        "epss_date": "2026-11-07T12:00:22Z",
+        "epss_date": "2026-11-15T12:03:04Z",
         "fix_state": "fixed",
         "fixed_in": [
           "3.1.50"
@@ -3620,7 +4765,7 @@
         "id": "GHSA-mv93-w799-cj2w",
         "kev": null,
         "kev_cves": [],
-        "kev_snapshot": "2026.11.06",
+        "kev_snapshot": "2026.11.13",
         "location": "setup.py",
         "locations": [
           "setup.py"
@@ -3632,6 +4777,12 @@
           "state": "confirmed"
         },
         "osv_confirmed": false,
+        "osv_coverage": {
+          "reasons": [
+            "setup.py: not read by OSV-Scanner"
+          ],
+          "state": "not checked"
+        },
         "package": "gitpython",
         "purl": "pkg:pypi/gitpython@3.1.41",
         "severity": "High",
@@ -3643,7 +4794,7 @@
         "aliases": [],
         "ecosystem": "pypi",
         "epss": null,
-        "epss_date": "2026-11-07T12:00:22Z",
+        "epss_date": "2026-11-15T12:03:04Z",
         "fix_state": "fixed",
         "fixed_in": [
           "3.1.54"
@@ -3651,7 +4802,7 @@
         "id": "GHSA-r9mr-m37c-5fr3",
         "kev": null,
         "kev_cves": [],
-        "kev_snapshot": "2026.11.06",
+        "kev_snapshot": "2026.11.13",
         "location": "setup.py",
         "locations": [
           "setup.py"
@@ -3663,6 +4814,12 @@
           "state": "confirmed"
         },
         "osv_confirmed": false,
+        "osv_coverage": {
+          "reasons": [
+            "setup.py: not read by OSV-Scanner"
+          ],
+          "state": "not checked"
+        },
         "package": "gitpython",
         "purl": "pkg:pypi/gitpython@3.1.41",
         "severity": "High",
@@ -3677,10 +4834,10 @@
         "ecosystem": "pypi",
         "epss": {
           "cve": "CVE-2026-42215",
-          "percentile": 0.55154,
+          "percentile": 0.55484,
           "score": 0.00749
         },
-        "epss_date": "2026-11-07T12:00:22Z",
+        "epss_date": "2026-11-15T12:03:04Z",
         "fix_state": "fixed",
         "fixed_in": [
           "3.1.47"
@@ -3688,7 +4845,7 @@
         "id": "GHSA-rpm5-65cw-6hj4",
         "kev": null,
         "kev_cves": [],
-        "kev_snapshot": "2026.11.06",
+        "kev_snapshot": "2026.11.13",
         "location": "setup.py",
         "locations": [
           "setup.py"
@@ -3700,6 +4857,12 @@
           "state": "confirmed"
         },
         "osv_confirmed": false,
+        "osv_coverage": {
+          "reasons": [
+            "setup.py: not read by OSV-Scanner"
+          ],
+          "state": "not checked"
+        },
         "package": "gitpython",
         "purl": "pkg:pypi/gitpython@3.1.41",
         "severity": "High",
@@ -3714,10 +4877,10 @@
         "ecosystem": "pypi",
         "epss": {
           "cve": "CVE-2026-67322",
-          "percentile": 0.26043,
+          "percentile": 0.26239,
           "score": 0.00328
         },
-        "epss_date": "2026-11-07T12:00:22Z",
+        "epss_date": "2026-11-15T12:03:04Z",
         "fix_state": "fixed",
         "fixed_in": [
           "3.1.52"
@@ -3725,7 +4888,7 @@
         "id": "GHSA-rwj8-pgh3-r573",
         "kev": null,
         "kev_cves": [],
-        "kev_snapshot": "2026.11.06",
+        "kev_snapshot": "2026.11.13",
         "location": "setup.py",
         "locations": [
           "setup.py"
@@ -3737,6 +4900,12 @@
           "state": "confirmed"
         },
         "osv_confirmed": false,
+        "osv_coverage": {
+          "reasons": [
+            "setup.py: not read by OSV-Scanner"
+          ],
+          "state": "not checked"
+        },
         "package": "gitpython",
         "purl": "pkg:pypi/gitpython@3.1.41",
         "severity": "High",
@@ -3751,10 +4920,10 @@
         "ecosystem": "pypi",
         "epss": {
           "cve": "CVE-2026-44244",
-          "percentile": 0.14787,
+          "percentile": 0.14826,
           "score": 0.00237
         },
-        "epss_date": "2026-11-07T12:00:22Z",
+        "epss_date": "2026-11-15T12:03:04Z",
         "fix_state": "fixed",
         "fixed_in": [
           "3.1.49"
@@ -3762,7 +4931,7 @@
         "id": "GHSA-v87r-6q3f-2j67",
         "kev": null,
         "kev_cves": [],
-        "kev_snapshot": "2026.11.06",
+        "kev_snapshot": "2026.11.13",
         "location": "setup.py",
         "locations": [
           "setup.py"
@@ -3774,6 +4943,12 @@
           "state": "confirmed"
         },
         "osv_confirmed": false,
+        "osv_coverage": {
+          "reasons": [
+            "setup.py: not read by OSV-Scanner"
+          ],
+          "state": "not checked"
+        },
         "package": "gitpython",
         "purl": "pkg:pypi/gitpython@3.1.41",
         "severity": "High",
@@ -3785,7 +4960,7 @@
         "aliases": [],
         "ecosystem": "pypi",
         "epss": null,
-        "epss_date": "2026-11-07T12:00:22Z",
+        "epss_date": "2026-11-15T12:03:04Z",
         "fix_state": "fixed",
         "fixed_in": [
           "3.2.0"
@@ -3793,7 +4968,7 @@
         "id": "GHSA-w8jc-g24h-crhw",
         "kev": null,
         "kev_cves": [],
-        "kev_snapshot": "2026.11.06",
+        "kev_snapshot": "2026.11.13",
         "location": "setup.py",
         "locations": [
           "setup.py"
@@ -3805,6 +4980,12 @@
           "state": "confirmed"
         },
         "osv_confirmed": false,
+        "osv_coverage": {
+          "reasons": [
+            "setup.py: not read by OSV-Scanner"
+          ],
+          "state": "not checked"
+        },
         "package": "gitpython",
         "purl": "pkg:pypi/gitpython@3.1.41",
         "severity": "High",
@@ -3816,7 +4997,7 @@
         "aliases": [],
         "ecosystem": "pypi",
         "epss": null,
-        "epss_date": "2026-11-07T12:00:22Z",
+        "epss_date": "2026-11-15T12:03:04Z",
         "fix_state": "fixed",
         "fixed_in": [
           "3.2.0"
@@ -3824,12 +5005,15 @@
         "id": "GHSA-w8jc-g24h-crhw",
         "kev": null,
         "kev_cves": [],
-        "kev_snapshot": "2026.11.06",
+        "kev_snapshot": "2026.11.13",
         "location": "Pipfile.lock",
         "locations": [
           "Pipfile.lock"
         ],
         "osv_confirmed": true,
+        "osv_coverage": {
+          "state": "confirmed"
+        },
         "osv_modified": "2026-10-27T15:47:24.947223105Z",
         "osv_published": "2026-10-27T15:26:43Z",
         "package": "gitpython",
@@ -3846,10 +5030,10 @@
         "ecosystem": "pypi",
         "epss": {
           "cve": "CVE-2026-76220",
-          "percentile": 0.48475,
+          "percentile": 0.48797,
           "score": 0.0059
         },
-        "epss_date": "2026-11-07T12:00:22Z",
+        "epss_date": "2026-11-15T12:03:04Z",
         "fix_state": "fixed",
         "fixed_in": [
           "3.1.58"
@@ -3857,7 +5041,7 @@
         "id": "GHSA-wvpp-8hx9-p66j",
         "kev": null,
         "kev_cves": [],
-        "kev_snapshot": "2026.11.06",
+        "kev_snapshot": "2026.11.13",
         "location": "setup.py",
         "locations": [
           "setup.py"
@@ -3869,6 +5053,12 @@
           "state": "confirmed"
         },
         "osv_confirmed": false,
+        "osv_coverage": {
+          "reasons": [
+            "setup.py: not read by OSV-Scanner"
+          ],
+          "state": "not checked"
+        },
         "package": "gitpython",
         "purl": "pkg:pypi/gitpython@3.1.41",
         "severity": "High",
@@ -3883,10 +5073,10 @@
         "ecosystem": "pypi",
         "epss": {
           "cve": "CVE-2026-42284",
-          "percentile": 0.47493,
+          "percentile": 0.47817,
           "score": 0.00571
         },
-        "epss_date": "2026-11-07T12:00:22Z",
+        "epss_date": "2026-11-15T12:03:04Z",
         "fix_state": "fixed",
         "fixed_in": [
           "3.1.47"
@@ -3894,7 +5084,7 @@
         "id": "GHSA-x2qx-6953-8485",
         "kev": null,
         "kev_cves": [],
-        "kev_snapshot": "2026.11.06",
+        "kev_snapshot": "2026.11.13",
         "location": "setup.py",
         "locations": [
           "setup.py"
@@ -3906,6 +5096,12 @@
           "state": "confirmed"
         },
         "osv_confirmed": false,
+        "osv_coverage": {
+          "reasons": [
+            "setup.py: not read by OSV-Scanner"
+          ],
+          "state": "not checked"
+        },
         "package": "gitpython",
         "purl": "pkg:pypi/gitpython@3.1.41",
         "severity": "High",
@@ -3920,10 +5116,10 @@
         "ecosystem": "pypi",
         "epss": {
           "cve": "CVE-2025-67221",
-          "percentile": 0.50604,
+          "percentile": 0.50925,
           "score": 0.00633
         },
-        "epss_date": "2026-11-07T12:00:22Z",
+        "epss_date": "2026-11-15T12:03:04Z",
         "fix_state": "fixed",
         "fixed_in": [
           "3.11.6"
@@ -3931,12 +5127,15 @@
         "id": "GHSA-hx9q-6w63-j58v",
         "kev": null,
         "kev_cves": [],
-        "kev_snapshot": "2026.11.06",
+        "kev_snapshot": "2026.11.13",
         "location": "Pipfile.lock",
         "locations": [
           "Pipfile.lock"
         ],
         "osv_confirmed": true,
+        "osv_coverage": {
+          "state": "confirmed"
+        },
         "osv_modified": "2026-09-10T03:50:33.258377926Z",
         "osv_published": "2026-01-22T18:30:33Z",
         "package": "orjson",
@@ -3948,201 +5147,75 @@
       },
       {
         "aliases": [
-          "CVE-2025-66471"
+          "CVE-2026-126191"
         ],
         "ecosystem": "pypi",
         "epss": {
-          "cve": "CVE-2025-66471",
-          "percentile": 0.54527,
-          "score": 0.00731
+          "cve": "CVE-2026-126191",
+          "percentile": 0.38232,
+          "score": 0.00434
         },
-        "epss_date": "2026-11-07T12:00:22Z",
+        "epss_date": "2026-11-15T12:03:04Z",
         "fix_state": "fixed",
         "fixed_in": [
-          "2.6.0"
+          "3.0.2"
         ],
-        "id": "GHSA-2xpw-w6gg-jr37",
+        "id": "GHSA-6655-6qjp-jx7x",
         "kev": null,
         "kev_cves": [],
-        "kev_snapshot": "2026.11.06",
+        "kev_snapshot": "2026.11.13",
         "location": "Pipfile.lock",
         "locations": [
           "Pipfile.lock"
         ],
         "osv_confirmed": true,
-        "osv_modified": "2026-09-25T17:15:05.968189421Z",
-        "osv_published": "2025-12-05T18:15:54Z",
-        "package": "urllib3",
-        "purl": "pkg:pypi/urllib3@1.26.20",
+        "osv_coverage": {
+          "state": "confirmed"
+        },
+        "osv_modified": "2026-11-13T16:45:03.387641194Z",
+        "osv_published": "2026-11-13T16:39:43Z",
+        "package": "soupsieve",
+        "purl": "pkg:pypi/soupsieve@2.8.4",
         "severity": "High",
-        "summary": "urllib3 streaming API improperly handles highly compressed data",
-        "url": "https://github.com/advisories/GHSA-2xpw-w6gg-jr37",
-        "version": "1.26.20"
+        "summary": "Soup Sieve: Exponential ReDoS in selector compilation via \\9-run in CSS_ESCAPES/IDENTIFIER",
+        "url": "https://github.com/advisories/GHSA-6655-6qjp-jx7x",
+        "version": "2.8.4"
       },
       {
         "aliases": [
-          "CVE-2026-21441"
+          "CVE-2026-126190"
         ],
         "ecosystem": "pypi",
         "epss": {
-          "cve": "CVE-2026-21441",
-          "percentile": 0.87123,
-          "score": 0.02922
+          "cve": "CVE-2026-126190",
+          "percentile": 0.45862,
+          "score": 0.00538
         },
-        "epss_date": "2026-11-07T12:00:22Z",
+        "epss_date": "2026-11-15T12:03:04Z",
         "fix_state": "fixed",
         "fixed_in": [
-          "2.6.3"
+          "4.0.0"
         ],
-        "id": "GHSA-38jv-5279-wg99",
+        "id": "GHSA-mmhr-3c5m-f64f",
         "kev": null,
         "kev_cves": [],
-        "kev_snapshot": "2026.11.06",
+        "kev_snapshot": "2026.11.13",
         "location": "Pipfile.lock",
         "locations": [
           "Pipfile.lock"
         ],
         "osv_confirmed": true,
-        "osv_modified": "2026-09-10T03:50:32.562010895Z",
-        "osv_published": "2026-01-07T19:18:14Z",
-        "package": "urllib3",
-        "purl": "pkg:pypi/urllib3@1.26.20",
-        "severity": "High",
-        "summary": "Decompression-bomb safeguards bypassed when following HTTP redirects (streaming API)",
-        "url": "https://github.com/advisories/GHSA-38jv-5279-wg99",
-        "version": "1.26.20"
-      },
-      {
-        "aliases": [
-          "CVE-2026-97687"
-        ],
-        "ecosystem": "pypi",
-        "epss": {
-          "cve": "CVE-2026-97687",
-          "percentile": 0.10707,
-          "score": 0.00206
+        "osv_coverage": {
+          "state": "confirmed"
         },
-        "epss_date": "2026-11-07T12:00:22Z",
-        "fix_state": "fixed",
-        "fixed_in": [
-          "2.8.0"
-        ],
-        "id": "GHSA-8988-9cw3-xx77",
-        "kev": null,
-        "kev_cves": [],
-        "kev_snapshot": "2026.11.06",
-        "location": "Pipfile.lock",
-        "locations": [
-          "Pipfile.lock"
-        ],
-        "osv_confirmed": true,
-        "osv_modified": "2026-10-01T17:55:53.793608550Z",
-        "osv_published": "2026-09-30T14:46:04Z",
-        "package": "urllib3",
-        "purl": "pkg:pypi/urllib3@1.26.20",
+        "osv_modified": "2026-11-13T01:00:06.052455117Z",
+        "osv_published": "2026-11-13T00:49:46Z",
+        "package": "soupsieve",
+        "purl": "pkg:pypi/soupsieve@2.8.4",
         "severity": "High",
-        "summary": "urllib3: HTTPS proxy TLS configuration may be ignored or overridden",
-        "url": "https://github.com/advisories/GHSA-8988-9cw3-xx77",
-        "version": "1.26.20"
-      },
-      {
-        "aliases": [
-          "CVE-2025-66418"
-        ],
-        "ecosystem": "pypi",
-        "epss": {
-          "cve": "CVE-2025-66418",
-          "percentile": 0.54526,
-          "score": 0.00731
-        },
-        "epss_date": "2026-11-07T12:00:22Z",
-        "fix_state": "fixed",
-        "fixed_in": [
-          "2.6.0"
-        ],
-        "id": "GHSA-gm62-xv2j-4w53",
-        "kev": null,
-        "kev_cves": [],
-        "kev_snapshot": "2026.11.06",
-        "location": "Pipfile.lock",
-        "locations": [
-          "Pipfile.lock"
-        ],
-        "osv_confirmed": true,
-        "osv_modified": "2026-09-10T03:50:58.741847479Z",
-        "osv_published": "2025-12-05T18:15:19Z",
-        "package": "urllib3",
-        "purl": "pkg:pypi/urllib3@1.26.20",
-        "severity": "High",
-        "summary": "urllib3 allows an unbounded number of links in the decompression chain",
-        "url": "https://github.com/advisories/GHSA-gm62-xv2j-4w53",
-        "version": "1.26.20"
-      },
-      {
-        "aliases": [
-          "CVE-2026-44431"
-        ],
-        "ecosystem": "pypi",
-        "epss": {
-          "cve": "CVE-2026-44431",
-          "percentile": 0.26458,
-          "score": 0.00331
-        },
-        "epss_date": "2026-11-07T12:00:22Z",
-        "fix_state": "fixed",
-        "fixed_in": [
-          "2.7.0"
-        ],
-        "id": "GHSA-qccp-gfcp-xxvc",
-        "kev": null,
-        "kev_cves": [],
-        "kev_snapshot": "2026.11.06",
-        "location": "Pipfile.lock",
-        "locations": [
-          "Pipfile.lock"
-        ],
-        "osv_confirmed": true,
-        "osv_modified": "2026-09-10T03:50:47.272765640Z",
-        "osv_published": "2026-05-11T14:51:20Z",
-        "package": "urllib3",
-        "purl": "pkg:pypi/urllib3@1.26.20",
-        "severity": "High",
-        "summary": "urllib3: Sensitive headers forwarded across origins in proxied low-level redirects",
-        "url": "https://github.com/advisories/GHSA-qccp-gfcp-xxvc",
-        "version": "1.26.20"
-      },
-      {
-        "aliases": [
-          "CVE-2026-97689"
-        ],
-        "ecosystem": "pypi",
-        "epss": {
-          "cve": "CVE-2026-97689",
-          "percentile": 0.26984,
-          "score": 0.00335
-        },
-        "epss_date": "2026-11-07T12:00:22Z",
-        "fix_state": "fixed",
-        "fixed_in": [
-          "2.8.0"
-        ],
-        "id": "GHSA-vxq7-64xx-v4gw",
-        "kev": null,
-        "kev_cves": [],
-        "kev_snapshot": "2026.11.06",
-        "location": "Pipfile.lock",
-        "locations": [
-          "Pipfile.lock"
-        ],
-        "osv_confirmed": true,
-        "osv_modified": "2026-10-01T17:55:57.514829071Z",
-        "osv_published": "2026-09-30T14:46:18Z",
-        "package": "urllib3",
-        "purl": "pkg:pypi/urllib3@1.26.20",
-        "severity": "High",
-        "summary": "urllib3: HTTPResponse.stream()/read_chunked() buffers an unbounded chunk-size line into memory",
-        "url": "https://github.com/advisories/GHSA-vxq7-64xx-v4gw",
-        "version": "1.26.20"
+        "summary": "Soup Sieve: Polynomial-time denial of service in the descendant combinator",
+        "url": "https://github.com/advisories/GHSA-mmhr-3c5m-f64f",
+        "version": "2.8.4"
       },
       {
         "aliases": [
@@ -4151,10 +5224,10 @@
         "ecosystem": "pypi",
         "epss": {
           "cve": "CVE-2026-111063",
-          "percentile": 0.1423,
+          "percentile": 0.14259,
           "score": 0.00233
         },
-        "epss_date": "2026-11-07T12:00:22Z",
+        "epss_date": "2026-11-15T12:03:04Z",
         "fix_state": "fixed",
         "fixed_in": [
           "3.14.4"
@@ -4162,12 +5235,15 @@
         "id": "GHSA-494j-54xm-rwp3",
         "kev": null,
         "kev_cves": [],
-        "kev_snapshot": "2026.11.06",
+        "kev_snapshot": "2026.11.13",
         "location": "Pipfile.lock",
         "locations": [
           "Pipfile.lock"
         ],
         "osv_confirmed": true,
+        "osv_coverage": {
+          "state": "confirmed"
+        },
         "osv_modified": "2026-10-26T15:00:05.287728271Z",
         "osv_published": "2026-10-19T17:07:47Z",
         "package": "aiohttp",
@@ -4184,10 +5260,10 @@
         "ecosystem": "pypi",
         "epss": {
           "cve": "CVE-2026-54273",
-          "percentile": 0.42604,
+          "percentile": 0.42925,
           "score": 0.00493
         },
-        "epss_date": "2026-11-07T12:00:22Z",
+        "epss_date": "2026-11-15T12:03:04Z",
         "fix_state": "fixed",
         "fixed_in": [
           "3.14.1"
@@ -4195,12 +5271,15 @@
         "id": "GHSA-4fvr-rgm6-gqmc",
         "kev": null,
         "kev_cves": [],
-        "kev_snapshot": "2026.11.06",
+        "kev_snapshot": "2026.11.13",
         "location": "Pipfile.lock",
         "locations": [
           "Pipfile.lock"
         ],
         "osv_confirmed": true,
+        "osv_coverage": {
+          "state": "confirmed"
+        },
         "osv_modified": "2026-09-10T03:51:07.881817751Z",
         "osv_published": "2026-06-15T20:10:32Z",
         "package": "aiohttp",
@@ -4217,10 +5296,10 @@
         "ecosystem": "pypi",
         "epss": {
           "cve": "CVE-2026-54277",
-          "percentile": 0.47051,
+          "percentile": 0.47384,
           "score": 0.00563
         },
-        "epss_date": "2026-11-07T12:00:22Z",
+        "epss_date": "2026-11-15T12:03:04Z",
         "fix_state": "fixed",
         "fixed_in": [
           "3.14.1"
@@ -4228,12 +5307,15 @@
         "id": "GHSA-63hw-fmq6-xxg2",
         "kev": null,
         "kev_cves": [],
-        "kev_snapshot": "2026.11.06",
+        "kev_snapshot": "2026.11.13",
         "location": "Pipfile.lock",
         "locations": [
           "Pipfile.lock"
         ],
         "osv_confirmed": true,
+        "osv_coverage": {
+          "state": "confirmed"
+        },
         "osv_modified": "2026-09-10T03:50:48.460120366Z",
         "osv_published": "2026-06-15T20:09:16Z",
         "package": "aiohttp",
@@ -4250,10 +5332,10 @@
         "ecosystem": "pypi",
         "epss": {
           "cve": "CVE-2026-111065",
-          "percentile": 0.33995,
+          "percentile": 0.34284,
           "score": 0.00395
         },
-        "epss_date": "2026-11-07T12:00:22Z",
+        "epss_date": "2026-11-15T12:03:04Z",
         "fix_state": "fixed",
         "fixed_in": [
           "3.14.4"
@@ -4261,12 +5343,15 @@
         "id": "GHSA-6cjc-53gc-5rqm",
         "kev": null,
         "kev_cves": [],
-        "kev_snapshot": "2026.11.06",
+        "kev_snapshot": "2026.11.13",
         "location": "Pipfile.lock",
         "locations": [
           "Pipfile.lock"
         ],
         "osv_confirmed": true,
+        "osv_coverage": {
+          "state": "confirmed"
+        },
         "osv_modified": "2026-10-20T20:15:05.286053785Z",
         "osv_published": "2026-10-20T19:57:24Z",
         "package": "aiohttp",
@@ -4283,10 +5368,10 @@
         "ecosystem": "pypi",
         "epss": {
           "cve": "CVE-2026-111748",
-          "percentile": 0.32952,
+          "percentile": 0.33242,
           "score": 0.00386
         },
-        "epss_date": "2026-11-07T12:00:22Z",
+        "epss_date": "2026-11-15T12:03:04Z",
         "fix_state": "fixed",
         "fixed_in": [
           "3.14.4"
@@ -4294,12 +5379,15 @@
         "id": "GHSA-f9xw-jh8m-3mwq",
         "kev": null,
         "kev_cves": [],
-        "kev_snapshot": "2026.11.06",
+        "kev_snapshot": "2026.11.13",
         "location": "Pipfile.lock",
         "locations": [
           "Pipfile.lock"
         ],
         "osv_confirmed": true,
+        "osv_coverage": {
+          "state": "confirmed"
+        },
         "osv_modified": "2026-10-20T20:15:05.218624757Z",
         "osv_published": "2026-10-20T20:01:40Z",
         "package": "aiohttp",
@@ -4316,10 +5404,10 @@
         "ecosystem": "pypi",
         "epss": {
           "cve": "CVE-2026-54278",
-          "percentile": 0.42607,
+          "percentile": 0.42923,
           "score": 0.00493
         },
-        "epss_date": "2026-11-07T12:00:22Z",
+        "epss_date": "2026-11-15T12:03:04Z",
         "fix_state": "fixed",
         "fixed_in": [
           "3.14.1"
@@ -4327,12 +5415,15 @@
         "id": "GHSA-g3cq-j2xw-wf74",
         "kev": null,
         "kev_cves": [],
-        "kev_snapshot": "2026.11.06",
+        "kev_snapshot": "2026.11.13",
         "location": "Pipfile.lock",
         "locations": [
           "Pipfile.lock"
         ],
         "osv_confirmed": true,
+        "osv_coverage": {
+          "state": "confirmed"
+        },
         "osv_modified": "2026-09-10T03:51:08.751749295Z",
         "osv_published": "2026-06-15T20:09:51Z",
         "package": "aiohttp",
@@ -4349,10 +5440,10 @@
         "ecosystem": "pypi",
         "epss": {
           "cve": "CVE-2026-47265",
-          "percentile": 0.04208,
+          "percentile": 0.04245,
           "score": 0.0015
         },
-        "epss_date": "2026-11-07T12:00:22Z",
+        "epss_date": "2026-11-15T12:03:04Z",
         "fix_state": "fixed",
         "fixed_in": [
           "3.14.0"
@@ -4360,12 +5451,15 @@
         "id": "GHSA-hg6j-4rv6-33pg",
         "kev": null,
         "kev_cves": [],
-        "kev_snapshot": "2026.11.06",
+        "kev_snapshot": "2026.11.13",
         "location": "Pipfile.lock",
         "locations": [
           "Pipfile.lock"
         ],
         "osv_confirmed": true,
+        "osv_coverage": {
+          "state": "confirmed"
+        },
         "osv_modified": "2026-09-10T03:50:49.888335735Z",
         "osv_published": "2026-06-02T20:16:37.903Z",
         "package": "aiohttp",
@@ -4382,10 +5476,10 @@
         "ecosystem": "pypi",
         "epss": {
           "cve": "CVE-2026-54276",
-          "percentile": 0.23613,
+          "percentile": 0.23776,
           "score": 0.00307
         },
-        "epss_date": "2026-11-07T12:00:22Z",
+        "epss_date": "2026-11-15T12:03:04Z",
         "fix_state": "fixed",
         "fixed_in": [
           "3.14.1"
@@ -4393,12 +5487,15 @@
         "id": "GHSA-hpj7-wq8m-9hgp",
         "kev": null,
         "kev_cves": [],
-        "kev_snapshot": "2026.11.06",
+        "kev_snapshot": "2026.11.13",
         "location": "Pipfile.lock",
         "locations": [
           "Pipfile.lock"
         ],
         "osv_confirmed": true,
+        "osv_coverage": {
+          "state": "confirmed"
+        },
         "osv_modified": "2026-09-10T03:50:49.899674354Z",
         "osv_published": "2026-06-15T20:09:06Z",
         "package": "aiohttp",
@@ -4415,10 +5512,10 @@
         "ecosystem": "pypi",
         "epss": {
           "cve": "CVE-2026-34993",
-          "percentile": 0.07507,
+          "percentile": 0.07527,
           "score": 0.00179
         },
-        "epss_date": "2026-11-07T12:00:22Z",
+        "epss_date": "2026-11-15T12:03:04Z",
         "fix_state": "fixed",
         "fixed_in": [
           "3.14.0"
@@ -4426,12 +5523,15 @@
         "id": "GHSA-jg22-mg44-37j8",
         "kev": null,
         "kev_cves": [],
-        "kev_snapshot": "2026.11.06",
+        "kev_snapshot": "2026.11.13",
         "location": "Pipfile.lock",
         "locations": [
           "Pipfile.lock"
         ],
         "osv_confirmed": true,
+        "osv_coverage": {
+          "state": "confirmed"
+        },
         "osv_modified": "2026-09-10T03:51:08.847676311Z",
         "osv_published": "2026-06-02T20:16:34.857Z",
         "package": "aiohttp",
@@ -4448,10 +5548,10 @@
         "ecosystem": "pypi",
         "epss": {
           "cve": "CVE-2026-69243",
-          "percentile": 0.38748,
+          "percentile": 0.39043,
           "score": 0.00443
         },
-        "epss_date": "2026-11-07T12:00:22Z",
+        "epss_date": "2026-11-15T12:03:04Z",
         "fix_state": "fixed",
         "fixed_in": [
           "3.14.2"
@@ -4459,12 +5559,15 @@
         "id": "GHSA-mfx4-hv73-q22v",
         "kev": null,
         "kev_cves": [],
-        "kev_snapshot": "2026.11.06",
+        "kev_snapshot": "2026.11.13",
         "location": "Pipfile.lock",
         "locations": [
           "Pipfile.lock"
         ],
         "osv_confirmed": true,
+        "osv_coverage": {
+          "state": "confirmed"
+        },
         "osv_modified": "2026-09-10T03:51:14.385788837Z",
         "osv_published": "2026-08-03T20:46:10Z",
         "package": "aiohttp",
@@ -4481,10 +5584,10 @@
         "ecosystem": "pypi",
         "epss": {
           "cve": "CVE-2026-59881",
-          "percentile": 0.44669,
+          "percentile": 0.45001,
           "score": 0.00524
         },
-        "epss_date": "2026-11-07T12:00:22Z",
+        "epss_date": "2026-11-15T12:03:04Z",
         "fix_state": "fixed",
         "fixed_in": [
           "3.14.2"
@@ -4492,12 +5595,15 @@
         "id": "GHSA-mq44-7p77-q5h7",
         "kev": null,
         "kev_cves": [],
-        "kev_snapshot": "2026.11.06",
+        "kev_snapshot": "2026.11.13",
         "location": "Pipfile.lock",
         "locations": [
           "Pipfile.lock"
         ],
         "osv_confirmed": true,
+        "osv_coverage": {
+          "state": "confirmed"
+        },
         "osv_modified": "2026-09-10T03:51:14.489650589Z",
         "osv_published": "2026-08-03T20:40:55Z",
         "package": "aiohttp",
@@ -4514,10 +5620,10 @@
         "ecosystem": "pypi",
         "epss": {
           "cve": "CVE-2026-111750",
-          "percentile": 0.32402,
+          "percentile": 0.32696,
           "score": 0.00382
         },
-        "epss_date": "2026-11-07T12:00:22Z",
+        "epss_date": "2026-11-15T12:03:04Z",
         "fix_state": "fixed",
         "fixed_in": [
           "3.14.4"
@@ -4525,12 +5631,15 @@
         "id": "GHSA-pqxq-w44r-73xw",
         "kev": null,
         "kev_cves": [],
-        "kev_snapshot": "2026.11.06",
+        "kev_snapshot": "2026.11.13",
         "location": "Pipfile.lock",
         "locations": [
           "Pipfile.lock"
         ],
         "osv_confirmed": true,
+        "osv_coverage": {
+          "state": "confirmed"
+        },
         "osv_modified": "2026-10-20T20:00:04.694820004Z",
         "osv_published": "2026-10-20T19:52:21Z",
         "package": "aiohttp",
@@ -4547,10 +5656,10 @@
         "ecosystem": "pypi",
         "epss": {
           "cve": "CVE-2026-54274",
-          "percentile": 0.45612,
+          "percentile": 0.4594,
           "score": 0.00539
         },
-        "epss_date": "2026-11-07T12:00:22Z",
+        "epss_date": "2026-11-15T12:03:04Z",
         "fix_state": "fixed",
         "fixed_in": [
           "3.14.1"
@@ -4558,12 +5667,15 @@
         "id": "GHSA-xcgm-r5h9-7989",
         "kev": null,
         "kev_cves": [],
-        "kev_snapshot": "2026.11.06",
+        "kev_snapshot": "2026.11.13",
         "location": "Pipfile.lock",
         "locations": [
           "Pipfile.lock"
         ],
         "osv_confirmed": true,
+        "osv_coverage": {
+          "state": "confirmed"
+        },
         "osv_modified": "2026-09-10T03:50:12.346397944Z",
         "osv_published": "2026-06-15T20:11:22Z",
         "package": "aiohttp",
@@ -4580,10 +5692,10 @@
         "ecosystem": "pypi",
         "epss": {
           "cve": "CVE-2026-55244",
-          "percentile": 0.07341,
+          "percentile": 0.07367,
           "score": 0.00177
         },
-        "epss_date": "2026-11-07T12:00:22Z",
+        "epss_date": "2026-11-15T12:03:04Z",
         "fix_state": "fixed",
         "fixed_in": [
           "1.0.9"
@@ -4591,13 +5703,16 @@
         "id": "GHSA-89v8-rhwq-hf77",
         "kev": null,
         "kev_cves": [],
-        "kev_snapshot": "2026.11.06",
+        "kev_snapshot": "2026.11.13",
         "location": "Pipfile.lock",
         "locations": [
           "Pipfile.lock",
           "setup.py"
         ],
         "osv_confirmed": true,
+        "osv_coverage": {
+          "state": "confirmed"
+        },
         "osv_modified": "2026-09-10T12:25:42.196126429Z",
         "osv_published": "2026-08-20T17:28:52Z",
         "package": "asteval",
@@ -4611,7 +5726,7 @@
         "aliases": [],
         "ecosystem": "pypi",
         "epss": null,
-        "epss_date": "2026-11-07T12:00:22Z",
+        "epss_date": "2026-11-15T12:03:04Z",
         "fix_state": "fixed",
         "fixed_in": [
           "1.0.9"
@@ -4619,13 +5734,16 @@
         "id": "GHSA-9w56-46f6-3qhx",
         "kev": null,
         "kev_cves": [],
-        "kev_snapshot": "2026.11.06",
+        "kev_snapshot": "2026.11.13",
         "location": "Pipfile.lock",
         "locations": [
           "Pipfile.lock",
           "setup.py"
         ],
         "osv_confirmed": true,
+        "osv_coverage": {
+          "state": "confirmed"
+        },
         "osv_modified": "2026-10-14T02:56:19.430602789Z",
         "osv_published": "2026-08-20T17:26:52Z",
         "package": "asteval",
@@ -4642,10 +5760,10 @@
         "ecosystem": "pypi",
         "epss": {
           "cve": "CVE-2026-78679",
-          "percentile": 0.24691,
+          "percentile": 0.24896,
           "score": 0.00316
         },
-        "epss_date": "2026-11-07T12:00:22Z",
+        "epss_date": "2026-11-15T12:03:04Z",
         "fix_state": "fixed",
         "fixed_in": [
           "3.1.59"
@@ -4653,7 +5771,7 @@
         "id": "GHSA-3wxw-xv34-2frg",
         "kev": null,
         "kev_cves": [],
-        "kev_snapshot": "2026.11.06",
+        "kev_snapshot": "2026.11.13",
         "location": "setup.py",
         "locations": [
           "setup.py"
@@ -4665,6 +5783,12 @@
           "state": "confirmed"
         },
         "osv_confirmed": false,
+        "osv_coverage": {
+          "reasons": [
+            "setup.py: not read by OSV-Scanner"
+          ],
+          "state": "not checked"
+        },
         "package": "gitpython",
         "purl": "pkg:pypi/gitpython@3.1.41",
         "severity": "Medium",
@@ -4676,7 +5800,7 @@
         "aliases": [],
         "ecosystem": "pypi",
         "epss": null,
-        "epss_date": "2026-11-07T12:00:22Z",
+        "epss_date": "2026-11-15T12:03:04Z",
         "fix_state": "fixed",
         "fixed_in": [
           "3.1.57"
@@ -4684,7 +5808,7 @@
         "id": "GHSA-539m-9xh6-q6rr",
         "kev": null,
         "kev_cves": [],
-        "kev_snapshot": "2026.11.06",
+        "kev_snapshot": "2026.11.13",
         "location": "setup.py",
         "locations": [
           "setup.py"
@@ -4696,6 +5820,12 @@
           "state": "confirmed"
         },
         "osv_confirmed": false,
+        "osv_coverage": {
+          "reasons": [
+            "setup.py: not read by OSV-Scanner"
+          ],
+          "state": "not checked"
+        },
         "package": "gitpython",
         "purl": "pkg:pypi/gitpython@3.1.41",
         "severity": "Medium",
@@ -4707,7 +5837,7 @@
         "aliases": [],
         "ecosystem": "pypi",
         "epss": null,
-        "epss_date": "2026-11-07T12:00:22Z",
+        "epss_date": "2026-11-15T12:03:04Z",
         "fix_state": "fixed",
         "fixed_in": [
           "3.1.62"
@@ -4715,7 +5845,7 @@
         "id": "GHSA-59cr-6r3x-644w",
         "kev": null,
         "kev_cves": [],
-        "kev_snapshot": "2026.11.06",
+        "kev_snapshot": "2026.11.13",
         "location": "setup.py",
         "locations": [
           "setup.py"
@@ -4727,6 +5857,12 @@
           "state": "confirmed"
         },
         "osv_confirmed": false,
+        "osv_coverage": {
+          "reasons": [
+            "setup.py: not read by OSV-Scanner"
+          ],
+          "state": "not checked"
+        },
         "package": "gitpython",
         "purl": "pkg:pypi/gitpython@3.1.41",
         "severity": "Medium",
@@ -4738,7 +5874,7 @@
         "aliases": [],
         "ecosystem": "pypi",
         "epss": null,
-        "epss_date": "2026-11-07T12:00:22Z",
+        "epss_date": "2026-11-15T12:03:04Z",
         "fix_state": "fixed",
         "fixed_in": [
           "3.1.62"
@@ -4746,12 +5882,15 @@
         "id": "GHSA-59cr-6r3x-644w",
         "kev": null,
         "kev_cves": [],
-        "kev_snapshot": "2026.11.06",
+        "kev_snapshot": "2026.11.13",
         "location": "Pipfile.lock",
         "locations": [
           "Pipfile.lock"
         ],
         "osv_confirmed": true,
+        "osv_coverage": {
+          "state": "confirmed"
+        },
         "osv_modified": "2026-10-01T00:00:05.754996881Z",
         "osv_published": "2026-09-30T23:47:12Z",
         "package": "gitpython",
@@ -4768,10 +5907,10 @@
         "ecosystem": "pypi",
         "epss": {
           "cve": "CVE-2026-78678",
-          "percentile": 0.35698,
+          "percentile": 0.35989,
           "score": 0.00412
         },
-        "epss_date": "2026-11-07T12:00:22Z",
+        "epss_date": "2026-11-15T12:03:04Z",
         "fix_state": "fixed",
         "fixed_in": [
           "3.1.59"
@@ -4779,7 +5918,7 @@
         "id": "GHSA-5xxx-qhh7-9287",
         "kev": null,
         "kev_cves": [],
-        "kev_snapshot": "2026.11.06",
+        "kev_snapshot": "2026.11.13",
         "location": "setup.py",
         "locations": [
           "setup.py"
@@ -4791,6 +5930,12 @@
           "state": "confirmed"
         },
         "osv_confirmed": false,
+        "osv_coverage": {
+          "reasons": [
+            "setup.py: not read by OSV-Scanner"
+          ],
+          "state": "not checked"
+        },
         "package": "gitpython",
         "purl": "pkg:pypi/gitpython@3.1.41",
         "severity": "Medium",
@@ -4802,7 +5947,7 @@
         "aliases": [],
         "ecosystem": "pypi",
         "epss": null,
-        "epss_date": "2026-11-07T12:00:22Z",
+        "epss_date": "2026-11-15T12:03:04Z",
         "fix_state": "fixed",
         "fixed_in": [
           "3.2.0"
@@ -4810,7 +5955,7 @@
         "id": "GHSA-fx3j-rwgx-fr94",
         "kev": null,
         "kev_cves": [],
-        "kev_snapshot": "2026.11.06",
+        "kev_snapshot": "2026.11.13",
         "location": "setup.py",
         "locations": [
           "setup.py"
@@ -4822,6 +5967,12 @@
           "state": "confirmed"
         },
         "osv_confirmed": false,
+        "osv_coverage": {
+          "reasons": [
+            "setup.py: not read by OSV-Scanner"
+          ],
+          "state": "not checked"
+        },
         "package": "gitpython",
         "purl": "pkg:pypi/gitpython@3.1.41",
         "severity": "Medium",
@@ -4833,7 +5984,7 @@
         "aliases": [],
         "ecosystem": "pypi",
         "epss": null,
-        "epss_date": "2026-11-07T12:00:22Z",
+        "epss_date": "2026-11-15T12:03:04Z",
         "fix_state": "fixed",
         "fixed_in": [
           "3.2.0"
@@ -4841,12 +5992,15 @@
         "id": "GHSA-fx3j-rwgx-fr94",
         "kev": null,
         "kev_cves": [],
-        "kev_snapshot": "2026.11.06",
+        "kev_snapshot": "2026.11.13",
         "location": "Pipfile.lock",
         "locations": [
           "Pipfile.lock"
         ],
         "osv_confirmed": true,
+        "osv_coverage": {
+          "state": "confirmed"
+        },
         "osv_modified": "2026-10-27T15:47:24.291028301Z",
         "osv_published": "2026-10-27T15:26:32Z",
         "package": "gitpython",
@@ -4860,7 +6014,7 @@
         "aliases": [],
         "ecosystem": "pypi",
         "epss": null,
-        "epss_date": "2026-11-07T12:00:22Z",
+        "epss_date": "2026-11-15T12:03:04Z",
         "fix_state": "fixed",
         "fixed_in": [
           "3.2.0"
@@ -4868,7 +6022,7 @@
         "id": "GHSA-gq48-pqfc-9p58",
         "kev": null,
         "kev_cves": [],
-        "kev_snapshot": "2026.11.06",
+        "kev_snapshot": "2026.11.13",
         "location": "setup.py",
         "locations": [
           "setup.py"
@@ -4880,6 +6034,12 @@
           "state": "confirmed"
         },
         "osv_confirmed": false,
+        "osv_coverage": {
+          "reasons": [
+            "setup.py: not read by OSV-Scanner"
+          ],
+          "state": "not checked"
+        },
         "package": "gitpython",
         "purl": "pkg:pypi/gitpython@3.1.41",
         "severity": "Medium",
@@ -4891,7 +6051,7 @@
         "aliases": [],
         "ecosystem": "pypi",
         "epss": null,
-        "epss_date": "2026-11-07T12:00:22Z",
+        "epss_date": "2026-11-15T12:03:04Z",
         "fix_state": "fixed",
         "fixed_in": [
           "3.2.0"
@@ -4899,12 +6059,15 @@
         "id": "GHSA-gq48-pqfc-9p58",
         "kev": null,
         "kev_cves": [],
-        "kev_snapshot": "2026.11.06",
+        "kev_snapshot": "2026.11.13",
         "location": "Pipfile.lock",
         "locations": [
           "Pipfile.lock"
         ],
         "osv_confirmed": true,
+        "osv_coverage": {
+          "state": "confirmed"
+        },
         "osv_modified": "2026-10-27T15:47:24.379897252Z",
         "osv_published": "2026-10-27T15:26:57Z",
         "package": "gitpython",
@@ -4921,10 +6084,10 @@
         "ecosystem": "pypi",
         "epss": {
           "cve": "CVE-2026-76217",
-          "percentile": 0.35699,
+          "percentile": 0.35989,
           "score": 0.00412
         },
-        "epss_date": "2026-11-07T12:00:22Z",
+        "epss_date": "2026-11-15T12:03:04Z",
         "fix_state": "fixed",
         "fixed_in": [
           "3.1.58"
@@ -4932,7 +6095,7 @@
         "id": "GHSA-hh9p-6wh2-4mfc",
         "kev": null,
         "kev_cves": [],
-        "kev_snapshot": "2026.11.06",
+        "kev_snapshot": "2026.11.13",
         "location": "setup.py",
         "locations": [
           "setup.py"
@@ -4944,6 +6107,12 @@
           "state": "confirmed"
         },
         "osv_confirmed": false,
+        "osv_coverage": {
+          "reasons": [
+            "setup.py: not read by OSV-Scanner"
+          ],
+          "state": "not checked"
+        },
         "package": "gitpython",
         "purl": "pkg:pypi/gitpython@3.1.41",
         "severity": "Medium",
@@ -4955,7 +6124,7 @@
         "aliases": [],
         "ecosystem": "pypi",
         "epss": null,
-        "epss_date": "2026-11-07T12:00:22Z",
+        "epss_date": "2026-11-15T12:03:04Z",
         "fix_state": "fixed",
         "fixed_in": [
           "3.1.56"
@@ -4963,7 +6132,7 @@
         "id": "GHSA-p538-c434-8v24",
         "kev": null,
         "kev_cves": [],
-        "kev_snapshot": "2026.11.06",
+        "kev_snapshot": "2026.11.13",
         "location": "setup.py",
         "locations": [
           "setup.py"
@@ -4975,6 +6144,12 @@
           "state": "confirmed"
         },
         "osv_confirmed": false,
+        "osv_coverage": {
+          "reasons": [
+            "setup.py: not read by OSV-Scanner"
+          ],
+          "state": "not checked"
+        },
         "package": "gitpython",
         "purl": "pkg:pypi/gitpython@3.1.41",
         "severity": "Medium",
@@ -4986,7 +6161,7 @@
         "aliases": [],
         "ecosystem": "pypi",
         "epss": null,
-        "epss_date": "2026-11-07T12:00:22Z",
+        "epss_date": "2026-11-15T12:03:04Z",
         "fix_state": "fixed",
         "fixed_in": [
           "3.1.60"
@@ -4994,12 +6169,15 @@
         "id": "GHSA-whh4-5q6c-9v3x",
         "kev": null,
         "kev_cves": [],
-        "kev_snapshot": "2026.11.06",
+        "kev_snapshot": "2026.11.13",
         "location": "Pipfile.lock",
         "locations": [
           "Pipfile.lock"
         ],
         "osv_confirmed": true,
+        "osv_coverage": {
+          "state": "confirmed"
+        },
         "osv_modified": "2026-10-01T17:26:00.195974026Z",
         "osv_published": "2026-09-30T23:28:40Z",
         "package": "gitpython",
@@ -5016,10 +6194,10 @@
         "ecosystem": "pypi",
         "epss": {
           "cve": "CVE-2026-104874",
-          "percentile": 0.39182,
+          "percentile": 0.39475,
           "score": 0.00448
         },
-        "epss_date": "2026-11-07T12:00:22Z",
+        "epss_date": "2026-11-15T12:03:04Z",
         "fix_state": "fixed",
         "fixed_in": [
           "6.9.1"
@@ -5027,12 +6205,15 @@
         "id": "GHSA-54p9-h82j-f925",
         "kev": null,
         "kev_cves": [],
-        "kev_snapshot": "2026.11.06",
+        "kev_snapshot": "2026.11.13",
         "location": "Pipfile.lock",
         "locations": [
           "Pipfile.lock"
         ],
         "osv_confirmed": true,
+        "osv_coverage": {
+          "state": "confirmed"
+        },
         "osv_modified": "2026-10-15T14:56:05.601333622Z",
         "osv_published": "2026-10-05T23:40:58Z",
         "package": "multidict",
@@ -5044,36 +6225,75 @@
       },
       {
         "aliases": [
-          "CVE-2026-25645"
+          "CVE-2026-126192"
         ],
         "ecosystem": "pypi",
         "epss": {
-          "cve": "CVE-2026-25645",
-          "percentile": 0.08624,
-          "score": 0.00189
+          "cve": "CVE-2026-126192",
+          "percentile": 0.41757,
+          "score": 0.00477
         },
-        "epss_date": "2026-11-07T12:00:22Z",
+        "epss_date": "2026-11-15T12:03:04Z",
         "fix_state": "fixed",
         "fixed_in": [
-          "2.33.0"
+          "2.10.0"
         ],
-        "id": "GHSA-gc5v-m9x4-r6x2",
+        "id": "GHSA-4j63-6c4x-wfg4",
         "kev": null,
         "kev_cves": [],
-        "kev_snapshot": "2026.11.06",
+        "kev_snapshot": "2026.11.13",
         "location": "Pipfile.lock",
         "locations": [
           "Pipfile.lock"
         ],
         "osv_confirmed": true,
-        "osv_modified": "2026-09-10T03:50:39.207922076Z",
-        "osv_published": "2026-03-25T16:56:28Z",
-        "package": "requests",
-        "purl": "pkg:pypi/requests@2.32.5",
+        "osv_coverage": {
+          "state": "confirmed"
+        },
+        "osv_modified": "2026-11-13T01:00:06.040402597Z",
+        "osv_published": "2026-11-13T00:45:18Z",
+        "package": "soupsieve",
+        "purl": "pkg:pypi/soupsieve@2.8.4",
         "severity": "Medium",
-        "summary": "Requests has Insecure Temp File Reuse in its extract_zipped_paths() utility function",
-        "url": "https://github.com/advisories/GHSA-gc5v-m9x4-r6x2",
-        "version": "2.32.5"
+        "summary": "Soup Sieve: General sibling combinator inside :has() matches untrusted HTML in quadratic time",
+        "url": "https://github.com/advisories/GHSA-4j63-6c4x-wfg4",
+        "version": "2.8.4"
+      },
+      {
+        "aliases": [
+          "CVE-2026-126193"
+        ],
+        "ecosystem": "pypi",
+        "epss": {
+          "cve": "CVE-2026-126193",
+          "percentile": 0.23894,
+          "score": 0.00308
+        },
+        "epss_date": "2026-11-15T12:03:04Z",
+        "fix_state": "fixed",
+        "fixed_in": [
+          "3.0.2"
+        ],
+        "id": "GHSA-7g44-g9rc-x53w",
+        "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.13",
+        "location": "Pipfile.lock",
+        "locations": [
+          "Pipfile.lock"
+        ],
+        "osv_confirmed": true,
+        "osv_coverage": {
+          "state": "confirmed"
+        },
+        "osv_modified": "2026-11-13T16:45:03.468864320Z",
+        "osv_published": "2026-11-13T16:34:59Z",
+        "package": "soupsieve",
+        "purl": "pkg:pypi/soupsieve@2.8.4",
+        "severity": "Medium",
+        "summary": "Soup Sieve: Uncontrolled recursion in CSS parser lets nested pseudo-class selectors exhaust the Python call stack",
+        "url": "https://github.com/advisories/GHSA-7g44-g9rc-x53w",
+        "version": "2.8.4"
       },
       {
         "aliases": [
@@ -5082,10 +6302,10 @@
         "ecosystem": "pypi",
         "epss": {
           "cve": "CVE-2026-86000",
-          "percentile": 0.49412,
+          "percentile": 0.49748,
           "score": 0.00609
         },
-        "epss_date": "2026-11-07T12:00:22Z",
+        "epss_date": "2026-11-15T12:03:04Z",
         "fix_state": "fixed",
         "fixed_in": [
           "2.9.0"
@@ -5093,12 +6313,15 @@
         "id": "GHSA-gjv8-xp57-g29c",
         "kev": null,
         "kev_cves": [],
-        "kev_snapshot": "2026.11.06",
+        "kev_snapshot": "2026.11.13",
         "location": "Pipfile.lock",
         "locations": [
           "Pipfile.lock"
         ],
         "osv_confirmed": true,
+        "osv_coverage": {
+          "state": "confirmed"
+        },
         "osv_modified": "2026-10-01T17:56:08.291385035Z",
         "osv_published": "2026-09-17T20:32:58Z",
         "package": "soupsieve",
@@ -5115,10 +6338,10 @@
         "ecosystem": "pypi",
         "epss": {
           "cve": "CVE-2026-85999",
-          "percentile": 0.49411,
+          "percentile": 0.49749,
           "score": 0.00609
         },
-        "epss_date": "2026-11-07T12:00:22Z",
+        "epss_date": "2026-11-15T12:03:04Z",
         "fix_state": "fixed",
         "fixed_in": [
           "2.9.0"
@@ -5126,12 +6349,15 @@
         "id": "GHSA-j934-xhv5-fg8f",
         "kev": null,
         "kev_cves": [],
-        "kev_snapshot": "2026.11.06",
+        "kev_snapshot": "2026.11.13",
         "location": "Pipfile.lock",
         "locations": [
           "Pipfile.lock"
         ],
         "osv_confirmed": true,
+        "osv_coverage": {
+          "state": "confirmed"
+        },
         "osv_modified": "2026-10-01T17:56:03.541286563Z",
         "osv_published": "2026-09-17T20:32:53Z",
         "package": "soupsieve",
@@ -5143,48 +6369,15 @@
       },
       {
         "aliases": [
-          "CVE-2025-50181"
-        ],
-        "ecosystem": "pypi",
-        "epss": {
-          "cve": "CVE-2025-50181",
-          "percentile": 0.41211,
-          "score": 0.00474
-        },
-        "epss_date": "2026-11-07T12:00:22Z",
-        "fix_state": "fixed",
-        "fixed_in": [
-          "2.5.0"
-        ],
-        "id": "GHSA-pq67-6m6q-mj2v",
-        "kev": null,
-        "kev_cves": [],
-        "kev_snapshot": "2026.11.06",
-        "location": "Pipfile.lock",
-        "locations": [
-          "Pipfile.lock"
-        ],
-        "osv_confirmed": true,
-        "osv_modified": "2026-09-10T03:50:25.299291456Z",
-        "osv_published": "2025-06-18T17:50:00Z",
-        "package": "urllib3",
-        "purl": "pkg:pypi/urllib3@1.26.20",
-        "severity": "Medium",
-        "summary": "urllib3 redirects are not disabled when retries are disabled on PoolManager instantiation",
-        "url": "https://github.com/advisories/GHSA-pq67-6m6q-mj2v",
-        "version": "1.26.20"
-      },
-      {
-        "aliases": [
           "CVE-2026-54279"
         ],
         "ecosystem": "pypi",
         "epss": {
           "cve": "CVE-2026-54279",
-          "percentile": 0.4261,
+          "percentile": 0.42925,
           "score": 0.00493
         },
-        "epss_date": "2026-11-07T12:00:22Z",
+        "epss_date": "2026-11-15T12:03:04Z",
         "fix_state": "fixed",
         "fixed_in": [
           "3.14.1"
@@ -5192,12 +6385,15 @@
         "id": "GHSA-2fqr-mr3j-6wp8",
         "kev": null,
         "kev_cves": [],
-        "kev_snapshot": "2026.11.06",
+        "kev_snapshot": "2026.11.13",
         "location": "Pipfile.lock",
         "locations": [
           "Pipfile.lock"
         ],
         "osv_confirmed": true,
+        "osv_coverage": {
+          "state": "confirmed"
+        },
         "osv_modified": "2026-11-03T16:45:04.163545105Z",
         "osv_published": "2026-06-15T20:08:51Z",
         "package": "aiohttp",
@@ -5214,10 +6410,10 @@
         "ecosystem": "pypi",
         "epss": {
           "cve": "CVE-2026-54275",
-          "percentile": 0.40928,
+          "percentile": 0.41241,
           "score": 0.0047
         },
-        "epss_date": "2026-11-07T12:00:22Z",
+        "epss_date": "2026-11-15T12:03:04Z",
         "fix_state": "fixed",
         "fixed_in": [
           "3.14.1"
@@ -5225,12 +6421,15 @@
         "id": "GHSA-4m7w-qmgq-4wj5",
         "kev": null,
         "kev_cves": [],
-        "kev_snapshot": "2026.11.06",
+        "kev_snapshot": "2026.11.13",
         "location": "Pipfile.lock",
         "locations": [
           "Pipfile.lock"
         ],
         "osv_confirmed": true,
+        "osv_coverage": {
+          "state": "confirmed"
+        },
         "osv_modified": "2026-09-10T03:50:48.205198252Z",
         "osv_published": "2026-06-15T20:11:13Z",
         "package": "aiohttp",
@@ -5247,10 +6446,10 @@
         "ecosystem": "pypi",
         "epss": {
           "cve": "CVE-2026-54280",
-          "percentile": 0.40146,
+          "percentile": 0.40449,
           "score": 0.0046
         },
-        "epss_date": "2026-11-07T12:00:22Z",
+        "epss_date": "2026-11-15T12:03:04Z",
         "fix_state": "fixed",
         "fixed_in": [
           "3.14.1"
@@ -5258,12 +6457,15 @@
         "id": "GHSA-9x8q-7h8h-wcw9",
         "kev": null,
         "kev_cves": [],
-        "kev_snapshot": "2026.11.06",
+        "kev_snapshot": "2026.11.13",
         "location": "Pipfile.lock",
         "locations": [
           "Pipfile.lock"
         ],
         "osv_confirmed": true,
+        "osv_coverage": {
+          "state": "confirmed"
+        },
         "osv_modified": "2026-09-10T03:50:55.382836820Z",
         "osv_published": "2026-06-15T20:10:44Z",
         "package": "aiohttp",
@@ -5280,10 +6482,10 @@
         "ecosystem": "pypi",
         "epss": {
           "cve": "CVE-2026-111749",
-          "percentile": 0.32672,
+          "percentile": 0.32961,
           "score": 0.00384
         },
-        "epss_date": "2026-11-07T12:00:22Z",
+        "epss_date": "2026-11-15T12:03:04Z",
         "fix_state": "fixed",
         "fixed_in": [
           "3.14.4"
@@ -5291,12 +6493,15 @@
         "id": "GHSA-gx76-c99x-2c96",
         "kev": null,
         "kev_cves": [],
-        "kev_snapshot": "2026.11.06",
+        "kev_snapshot": "2026.11.13",
         "location": "Pipfile.lock",
         "locations": [
           "Pipfile.lock"
         ],
         "osv_confirmed": true,
+        "osv_coverage": {
+          "state": "confirmed"
+        },
         "osv_modified": "2026-10-20T20:15:05.188135798Z",
         "osv_published": "2026-10-20T19:58:14Z",
         "package": "aiohttp",
@@ -5313,10 +6518,10 @@
         "ecosystem": "pypi",
         "epss": {
           "cve": "CVE-2026-50269",
-          "percentile": 0.45269,
+          "percentile": 0.45592,
           "score": 0.00533
         },
-        "epss_date": "2026-11-07T12:00:22Z",
+        "epss_date": "2026-11-15T12:03:04Z",
         "fix_state": "fixed",
         "fixed_in": [
           "3.14.0"
@@ -5324,12 +6529,15 @@
         "id": "GHSA-m6qw-4cw2-hm4m",
         "kev": null,
         "kev_cves": [],
-        "kev_snapshot": "2026.11.06",
+        "kev_snapshot": "2026.11.13",
         "location": "Pipfile.lock",
         "locations": [
           "Pipfile.lock"
         ],
         "osv_confirmed": true,
+        "osv_coverage": {
+          "state": "confirmed"
+        },
         "osv_modified": "2026-09-10T03:51:09.078868018Z",
         "osv_published": "2026-06-15T20:07:26Z",
         "package": "aiohttp",
@@ -5347,7 +6555,7 @@
           "confidence": "High",
           "description": "unpinned action reference",
           "file": ".github/workflows/build.yml",
-          "line": 410,
+          "line": 316,
           "note": "this job",
           "rule": "unpinned-uses",
           "severity": "High",
@@ -5357,7 +6565,7 @@
           "confidence": "High",
           "description": "unpinned action reference",
           "file": ".github/workflows/build.yml",
-          "line": 428,
+          "line": 334,
           "note": "this job",
           "rule": "unpinned-uses",
           "severity": "High",
@@ -5526,5 +6734,5 @@
       ]
     }
   },
-  "updated": "2026-11-08"
+  "updated": "2026-11-15"
 }

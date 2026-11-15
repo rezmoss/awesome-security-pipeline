@@ -128,6 +128,61 @@
       },
       "workflow_new": 0,
       "workflow_resolved": 0
+    },
+    {
+      "added": 1,
+      "advisory_state": "ok",
+      "commit": "00cedebb76cc82c1592414fa4f616cefdccda16f",
+      "date": "2026-11-15",
+      "dependencies": 973,
+      "dependency_state": "ok",
+      "downgraded": 0,
+      "errors": [],
+      "file_changes": 29,
+      "fixable": 4,
+      "go_version": null,
+      "in_binary": null,
+      "in_binary_new": 0,
+      "in_binary_resolved": 0,
+      "kev": 0,
+      "kev_new": 0,
+      "kev_new_match": 0,
+      "license_changes": 0,
+      "method": "sbomlyze-occurrence-v1",
+      "moved": 0,
+      "new_advisories": 0,
+      "new_vulnerabilities": 0,
+      "osv_confirmed": 4,
+      "osv_only": 0,
+      "ref": "2.3.6",
+      "release_changed": true,
+      "release_integrity": "no-linux-binary",
+      "removed": 1,
+      "resolved_advisories": 0,
+      "resolved_vulnerabilities": 0,
+      "scorecard": 4.8,
+      "scorecard_date": "2026-10-26",
+      "scorecard_note": null,
+      "scorecard_source": "openssf-api",
+      "unknown_direction": 0,
+      "upgraded": 0,
+      "vulnerabilities": {
+        "Critical": 0,
+        "High": 1,
+        "Low": 0,
+        "Medium": 3,
+        "Negligible": 0,
+        "Unknown": 0
+      },
+      "vulnerable_packages": 4,
+      "workflow": {
+        "High": 0,
+        "Low": 3,
+        "Medium": 0,
+        "files": 29
+      },
+      "workflow_new": 0,
+      "workflow_resolved": 17
     }
   ],
   "latest": {
@@ -135,67 +190,17 @@
     "category": "Static Application Security Testing (SAST) \u203a Language-specific \u203a PHP",
     "changes": {
       "added": [
-        "@codemirror/merge@6.12.3",
-        "@stylistic/eslint-plugin@5.10.0",
-        "@tko/build.reference@4.2.0",
-        "@tko/provider.mustache@4.2.0",
-        "eslint-visitor-keys@4.2.1",
-        "espree@10.4.0"
+        "actions/github-script@v9.0.0"
       ],
       "added_detail": [
         {
-          "ecosystem": "npm",
-          "location": "website/package-lock.json",
+          "ecosystem": "github",
+          "location": ".github/workflows/claude-react-on-review.yml",
           "locations": [
-            "website/package-lock.json"
+            ".github/workflows/claude-react-on-review.yml"
           ],
-          "name": "@codemirror/merge",
-          "version": "6.12.3"
-        },
-        {
-          "ecosystem": "npm",
-          "location": "website/package-lock.json",
-          "locations": [
-            "website/package-lock.json"
-          ],
-          "name": "@stylistic/eslint-plugin",
-          "version": "5.10.0"
-        },
-        {
-          "ecosystem": "npm",
-          "location": "website/package-lock.json",
-          "locations": [
-            "website/package-lock.json"
-          ],
-          "name": "@tko/build.reference",
-          "version": "4.2.0"
-        },
-        {
-          "ecosystem": "npm",
-          "location": "website/package-lock.json",
-          "locations": [
-            "website/package-lock.json"
-          ],
-          "name": "@tko/provider.mustache",
-          "version": "4.2.0"
-        },
-        {
-          "ecosystem": "npm",
-          "location": "website/package-lock.json",
-          "locations": [
-            "website/package-lock.json"
-          ],
-          "name": "eslint-visitor-keys",
-          "version": "4.2.1"
-        },
-        {
-          "ecosystem": "npm",
-          "location": "website/package-lock.json",
-          "locations": [
-            "website/package-lock.json"
-          ],
-          "name": "espree",
-          "version": "10.4.0"
+          "name": "actions/github-script",
+          "version": "v9.0.0"
         }
       ],
       "advisory_state": "ok",
@@ -203,8 +208,8 @@
       "baseline": false,
       "dependency_baseline": {
         "attempt": "1",
-        "run_id": "41380955266",
-        "sbom_sha256": "c933fcca0f0919fddf631fee970de55006fd1b7f449f25af012918286eb7ded0"
+        "run_id": "42546359860",
+        "sbom_sha256": "edb367aec6b840f9b66ca165551842b0279f48f8e897a57e3dbd397e07a2314a"
       },
       "dependency_state": "ok",
       "digest_coverage": {
@@ -214,16 +219,40 @@
         "comparable": 0,
         "disjoint_kinds": 0,
         "packages_total": 1445,
-        "same_version_pairs": 1438
+        "same_version_pairs": 1444
       },
-      "distinct_version_changes": 1,
+      "distinct_version_changes": 0,
       "downgraded": [],
       "file_changes": [
+        ".github/workflows/algolia-crawler-config.yml",
+        ".github/workflows/build-identifier-extractor.yml",
+        ".github/workflows/claude-easy-fix-on-milestone.yml",
+        ".github/workflows/claude-react-on-review-dispatch.yml",
+        ".github/workflows/claude-react-on-review.yml",
+        ".github/workflows/claude-update-error-docs-identifiers-change.yml",
+        ".github/workflows/docker-nightly.yml",
+        ".github/workflows/docker-stable.yml",
+        ".github/workflows/extension-tests-run.yml",
+        ".github/workflows/extension-tests.yml",
+        ".github/workflows/extract-identifiers.yml",
         ".github/workflows/integration-tests-run.yml",
         ".github/workflows/integration-tests.yml",
-        ".github/workflows/website.yml",
-        "playground-runner/composer.lock",
-        "website/package-lock.json"
+        ".github/workflows/lint-workflows.yml",
+        ".github/workflows/lock-closed-issues.yml",
+        ".github/workflows/other-tests-run.yml",
+        ".github/workflows/other-tests.yml",
+        ".github/workflows/release-toot.yml",
+        ".github/workflows/release-tweet.yml",
+        ".github/workflows/release.yml",
+        ".github/workflows/spelling.yml",
+        ".github/workflows/sponsors.yml",
+        ".github/workflows/test-projects.yml",
+        ".github/workflows/tests.yml",
+        ".github/workflows/update-playground-api.yml",
+        ".github/workflows/update-playground-runner.yml",
+        ".github/workflows/website-infra.yml",
+        ".github/workflows/website-links.yml",
+        ".github/workflows/website.yml"
       ],
       "integrity_changes": [],
       "integrity_drift": 0,
@@ -236,96 +265,33 @@
       "moved": [],
       "new_advisories": 0,
       "new_vulnerabilities": [],
-      "previous_ref": "2.3.4",
+      "previous_ref": "2.3.5",
       "release_changed": true,
       "removed": [
-        "peter-evans/create-pull-request@v8.1.1",
-        "@tko/build.knockout@4.2.0",
-        "@tko/utils.functionrewrite@4.2.0",
-        "knockout@3.5.3"
+        "ScholliYT/Broken-Links-Crawler-Action@v3.3.2"
       ],
       "removed_detail": [
         {
           "ecosystem": "github",
-          "location": ".github/workflows/integration-tests.yml",
+          "location": ".github/workflows/website-links.yml",
           "locations": [
-            ".github/workflows/integration-tests.yml"
+            ".github/workflows/website-links.yml"
           ],
-          "name": "peter-evans/create-pull-request",
-          "version": "v8.1.1"
-        },
-        {
-          "ecosystem": "npm",
-          "location": "website/package-lock.json",
-          "locations": [
-            "website/package-lock.json"
-          ],
-          "name": "@tko/build.knockout",
-          "version": "4.2.0"
-        },
-        {
-          "ecosystem": "npm",
-          "location": "website/package-lock.json",
-          "locations": [
-            "website/package-lock.json"
-          ],
-          "name": "@tko/utils.functionrewrite",
-          "version": "4.2.0"
-        },
-        {
-          "ecosystem": "npm",
-          "location": "website/package-lock.json",
-          "locations": [
-            "website/package-lock.json"
-          ],
-          "name": "knockout",
-          "version": "3.5.3"
+          "name": "ScholliYT/Broken-Links-Crawler-Action",
+          "version": "v3.3.2"
         }
       ],
       "resolved_advisories": 0,
       "resolved_vulnerabilities": [],
-      "still_affected_version_changed": [
-        {
-          "ecosystem": "npm",
-          "from": [
-            "10.2.6",
-            "3.1.5"
-          ],
-          "id": "GHSA-g3hv-75wg-m249",
-          "package": "minimatch",
-          "to": [
-            "10.2.6"
-          ]
-        }
-      ],
+      "still_affected_version_changed": [],
       "unknown_direction": [],
-      "upgraded": [
-        {
-          "direction": "upgrade",
-          "ecosystem": "composer",
-          "from": "2.1.0",
-          "level": "patch",
-          "location": "playground-runner/composer.lock",
-          "package": "phpstan/phpstan-strict-rules",
-          "to": "2.1.1"
-        }
-      ],
-      "version_changes": [
-        {
-          "direction": "upgrade",
-          "ecosystem": "composer",
-          "from": "2.1.0",
-          "level": "patch",
-          "location": "playground-runner/composer.lock",
-          "name": "phpstan/phpstan-strict-rules",
-          "to": "2.1.1"
-        }
-      ],
+      "upgraded": [],
+      "version_changes": [],
       "version_set_changes": [],
       "workflow_new": 0,
-      "workflow_resolved": 0
+      "workflow_resolved": 17
     },
-    "commit": "645a1bd6bead15fc1b8474137467961d0fa30a79",
+    "commit": "00cedebb76cc82c1592414fa4f616cefdccda16f",
     "compliance": {
       "overall_score": 55,
       "standards": {
@@ -824,6 +790,14 @@
       {
         "ecosystem": "github",
         "licenses": [],
+        "location": ".github/workflows/claude-react-on-review.yml",
+        "name": "actions/github-script",
+        "purl": "pkg:github/actions/github-script@v9.0.0",
+        "version": "v9.0.0"
+      },
+      {
+        "ecosystem": "github",
+        "licenses": [],
         "location": ".github/workflows/integration-tests.yml",
         "name": "actions/setup-node",
         "purl": "pkg:github/actions/setup-node@v7.1.0",
@@ -980,14 +954,6 @@
         "name": "rtCamp/action-slack-notify",
         "purl": "pkg:github/rtCamp/action-slack-notify@v2.4.0",
         "version": "v2.4.0"
-      },
-      {
-        "ecosystem": "github",
-        "licenses": [],
-        "location": ".github/workflows/website-links.yml",
-        "name": "ScholliYT/Broken-Links-Crawler-Action",
-        "purl": "pkg:github/ScholliYT/Broken-Links-Crawler-Action@v3.3.2",
-        "version": "v3.3.2"
       },
       {
         "ecosystem": "github",
@@ -10043,6 +10009,12 @@
     "description": "Analyze PHP code without running it",
     "errors": [],
     "id": "phpstan__phpstan",
+    "local_packages": [
+      "phpstan-playground-api",
+      "phpstan-playground-runner",
+      "phpstan-website",
+      "phpstan-website-infra"
+    ],
     "lock_aliases": {},
     "manifests": [
       ".github/workflows/algolia-crawler-config.yml",
@@ -10092,18 +10064,21 @@
     ],
     "name": "phpstan",
     "osv": {
-      "advisories": 5,
+      "advisories": 6,
       "available": true,
       "confirmed": 4,
+      "coverage": {
+        "confirmed": 4
+      },
       "osv_only": [],
       "warning": null
     },
     "osv_api": {
       "available": true,
-      "queried_at": "2026-11-09T01:36:23+00:00",
+      "queried_at": "2026-11-15T23:32:24+00:00",
       "states": {}
     },
-    "ref": "2.3.5",
+    "ref": "2.3.6",
     "ref_kind": "release",
     "release_integrity": {
       "assets": 2,
@@ -10114,96 +10089,49 @@
       "signatures_published": true,
       "verdict": "no-linux-binary"
     },
-    "released_at": "2026-11-03T12:17:04Z",
+    "released_at": "2026-11-15T20:01:15Z",
     "repository": "phpstan/phpstan",
-    "sbom_sha256": "edb367aec6b840f9b66ca165551842b0279f48f8e897a57e3dbd397e07a2314a",
+    "sbom_sha256": "f6f6ff13ade008657b45788f886b79ef34d77dd5c976bb291a13c76e4b9b2fbd",
     "sbomlyze_diff": {
-      "added": 6,
+      "added": 1,
       "baseline": {
         "attempt": "1",
-        "run_id": "41380955266"
+        "run_id": "42546359860"
       },
-      "changed": 1,
+      "changed": 0,
       "contract": "sbomlyze-diff-0.7",
       "drift": {
-        "distinct_version_changes": 1,
+        "distinct_version_changes": 0,
         "downgrades": 0,
-        "file_changes": 5,
+        "file_changes": 29,
         "integrity_drift": 0,
         "license_changes": 0,
         "metadata_drift": 0,
         "owned_file_drift": 0,
         "owned_files_changed": 0,
         "unknown_direction": 0,
-        "upgrades": 1,
-        "version_drift": 1
+        "upgrades": 0,
+        "version_drift": 0
       },
       "findings": [
-        "Scanned phpstan/phpstan changed: 2.3.4 \u2192 2.3.5",
-        "Inventory: +2 components (0.1%)",
-        "1 version upgrades among 1,439 shared packages",
-        "Integrity drift checked only 0 of 1438 same-version packages; the rest carry no comparable digest",
-        "5 file entries changed content (not package integrity drift): /.github/workflows/integration-tests-run.yml, /.github/workflows/integration-tests.yml, /.github/workflows/website.yml, /playground-runner/composer.lock, /website/package-lock.json",
-        "Core system packages stable: file (36) unchanged",
-        "composer: 44 packages before and after (1 version changes)",
-        "License shift: permissive +3"
+        "Scanned phpstan/phpstan changed: 2.3.5 \u2192 2.3.6",
+        "0 version changes among 1,444 shared packages \u2014 no actual upgrades",
+        "Integrity drift checked only 0 of 1444 same-version packages; the rest carry no comparable digest",
+        "29 file entries changed content (not package integrity drift): /.github/workflows/algolia-crawler-config.yml, /.github/workflows/build-identifier-extractor.yml, /.github/workflows/claude-easy-fix-on-milestone.yml, /.github/workflows/claude-react-on-review-dispatch.yml, /.github/workflows/claude-react-on-review.yml + 24 more",
+        "Core system packages stable: npm (1,283), composer (44) unchanged",
+        "github: 115 packages before and after (0 version changes, 2 added/removed/moved)"
       ],
       "html": "sbomlyze-diff.html",
       "occurrences": {
         "added": [
           {
-            "ecosystem": "npm",
-            "location": "website/package-lock.json",
+            "ecosystem": "github",
+            "location": ".github/workflows/claude-react-on-review.yml",
             "locations": [
-              "website/package-lock.json"
+              ".github/workflows/claude-react-on-review.yml"
             ],
-            "name": "@codemirror/merge",
-            "version": "6.12.3"
-          },
-          {
-            "ecosystem": "npm",
-            "location": "website/package-lock.json",
-            "locations": [
-              "website/package-lock.json"
-            ],
-            "name": "@stylistic/eslint-plugin",
-            "version": "5.10.0"
-          },
-          {
-            "ecosystem": "npm",
-            "location": "website/package-lock.json",
-            "locations": [
-              "website/package-lock.json"
-            ],
-            "name": "@tko/build.reference",
-            "version": "4.2.0"
-          },
-          {
-            "ecosystem": "npm",
-            "location": "website/package-lock.json",
-            "locations": [
-              "website/package-lock.json"
-            ],
-            "name": "@tko/provider.mustache",
-            "version": "4.2.0"
-          },
-          {
-            "ecosystem": "npm",
-            "location": "website/package-lock.json",
-            "locations": [
-              "website/package-lock.json"
-            ],
-            "name": "eslint-visitor-keys",
-            "version": "4.2.1"
-          },
-          {
-            "ecosystem": "npm",
-            "location": "website/package-lock.json",
-            "locations": [
-              "website/package-lock.json"
-            ],
-            "name": "espree",
-            "version": "10.4.0"
+            "name": "actions/github-script",
+            "version": "v9.0.0"
           }
         ],
         "digest_coverage": {
@@ -10213,9 +10141,53 @@
           "comparable": 0,
           "disjoint_kinds": 0,
           "packages_total": 1445,
-          "same_version_pairs": 1438
+          "same_version_pairs": 1444
         },
         "file_changes": [
+          {
+            "owners": [],
+            "path": ".github/workflows/algolia-crawler-config.yml"
+          },
+          {
+            "owners": [],
+            "path": ".github/workflows/build-identifier-extractor.yml"
+          },
+          {
+            "owners": [],
+            "path": ".github/workflows/claude-easy-fix-on-milestone.yml"
+          },
+          {
+            "owners": [],
+            "path": ".github/workflows/claude-react-on-review-dispatch.yml"
+          },
+          {
+            "owners": [],
+            "path": ".github/workflows/claude-react-on-review.yml"
+          },
+          {
+            "owners": [],
+            "path": ".github/workflows/claude-update-error-docs-identifiers-change.yml"
+          },
+          {
+            "owners": [],
+            "path": ".github/workflows/docker-nightly.yml"
+          },
+          {
+            "owners": [],
+            "path": ".github/workflows/docker-stable.yml"
+          },
+          {
+            "owners": [],
+            "path": ".github/workflows/extension-tests-run.yml"
+          },
+          {
+            "owners": [],
+            "path": ".github/workflows/extension-tests.yml"
+          },
+          {
+            "owners": [],
+            "path": ".github/workflows/extract-identifiers.yml"
+          },
           {
             "owners": [],
             "path": ".github/workflows/integration-tests-run.yml"
@@ -10226,15 +10198,67 @@
           },
           {
             "owners": [],
+            "path": ".github/workflows/lint-workflows.yml"
+          },
+          {
+            "owners": [],
+            "path": ".github/workflows/lock-closed-issues.yml"
+          },
+          {
+            "owners": [],
+            "path": ".github/workflows/other-tests-run.yml"
+          },
+          {
+            "owners": [],
+            "path": ".github/workflows/other-tests.yml"
+          },
+          {
+            "owners": [],
+            "path": ".github/workflows/release-toot.yml"
+          },
+          {
+            "owners": [],
+            "path": ".github/workflows/release-tweet.yml"
+          },
+          {
+            "owners": [],
+            "path": ".github/workflows/release.yml"
+          },
+          {
+            "owners": [],
+            "path": ".github/workflows/spelling.yml"
+          },
+          {
+            "owners": [],
+            "path": ".github/workflows/sponsors.yml"
+          },
+          {
+            "owners": [],
+            "path": ".github/workflows/test-projects.yml"
+          },
+          {
+            "owners": [],
+            "path": ".github/workflows/tests.yml"
+          },
+          {
+            "owners": [],
+            "path": ".github/workflows/update-playground-api.yml"
+          },
+          {
+            "owners": [],
+            "path": ".github/workflows/update-playground-runner.yml"
+          },
+          {
+            "owners": [],
+            "path": ".github/workflows/website-infra.yml"
+          },
+          {
+            "owners": [],
+            "path": ".github/workflows/website-links.yml"
+          },
+          {
+            "owners": [],
             "path": ".github/workflows/website.yml"
-          },
-          {
-            "owners": [],
-            "path": "playground-runner/composer.lock"
-          },
-          {
-            "owners": [],
-            "path": "website/package-lock.json"
           }
         ],
         "file_coverage": {
@@ -10243,7 +10267,7 @@
           "files_compared": 36,
           "files_unverified": 0,
           "owned_files_after": 0,
-          "unowned_files_after": 0
+          "unowned_files_after": 36
         },
         "files_added": [],
         "files_removed": [],
@@ -10255,64 +10279,27 @@
         "removed": [
           {
             "ecosystem": "github",
-            "location": ".github/workflows/integration-tests.yml",
+            "location": ".github/workflows/website-links.yml",
             "locations": [
-              ".github/workflows/integration-tests.yml"
+              ".github/workflows/website-links.yml"
             ],
-            "name": "peter-evans/create-pull-request",
-            "version": "v8.1.1"
-          },
-          {
-            "ecosystem": "npm",
-            "location": "website/package-lock.json",
-            "locations": [
-              "website/package-lock.json"
-            ],
-            "name": "@tko/build.knockout",
-            "version": "4.2.0"
-          },
-          {
-            "ecosystem": "npm",
-            "location": "website/package-lock.json",
-            "locations": [
-              "website/package-lock.json"
-            ],
-            "name": "@tko/utils.functionrewrite",
-            "version": "4.2.0"
-          },
-          {
-            "ecosystem": "npm",
-            "location": "website/package-lock.json",
-            "locations": [
-              "website/package-lock.json"
-            ],
-            "name": "knockout",
-            "version": "3.5.3"
+            "name": "ScholliYT/Broken-Links-Crawler-Action",
+            "version": "v3.3.2"
           }
         ],
         "source_change": {
-          "from": "2.3.4",
+          "from": "2.3.5",
           "name": "phpstan/phpstan",
-          "to": "2.3.5"
+          "to": "2.3.6"
         },
-        "version_changes": [
-          {
-            "direction": "upgrade",
-            "ecosystem": "composer",
-            "from": "2.1.0",
-            "level": "patch",
-            "location": "playground-runner/composer.lock",
-            "name": "phpstan/phpstan-strict-rules",
-            "to": "2.1.1"
-          }
-        ],
+        "version_changes": [],
         "version_set_changes": []
       },
-      "previous_sbom_sha256": "c933fcca0f0919fddf631fee970de55006fd1b7f449f25af012918286eb7ded0",
-      "removed": 4,
-      "sbom_sha256": "edb367aec6b840f9b66ca165551842b0279f48f8e897a57e3dbd397e07a2314a"
+      "previous_sbom_sha256": "edb367aec6b840f9b66ca165551842b0279f48f8e897a57e3dbd397e07a2314a",
+      "removed": 1,
+      "sbom_sha256": "f6f6ff13ade008657b45788f886b79ef34d77dd5c976bb291a13c76e4b9b2fbd"
     },
-    "scanned_at": "2026-11-08T05:54:11+00:00",
+    "scanned_at": "2026-11-15T23:32:17+00:00",
     "scorecard": {
       "checks": [
         {
@@ -10399,10 +10386,10 @@
         "ecosystem": "npm",
         "epss": {
           "cve": "CVE-2026-87776",
-          "percentile": 0.41469,
+          "percentile": 0.4179,
           "score": 0.00477
         },
-        "epss_date": "2026-11-07T12:00:22Z",
+        "epss_date": "2026-11-15T12:03:04Z",
         "fix_state": "fixed",
         "fixed_in": [
           "1.8.2"
@@ -10410,12 +10397,15 @@
         "id": "GHSA-vc2v-76pw-4v95",
         "kev": null,
         "kev_cves": [],
-        "kev_snapshot": "2026.11.06",
+        "kev_snapshot": "2026.11.13",
         "location": "website/package-lock.json",
         "locations": [
           "website/package-lock.json"
         ],
         "osv_confirmed": true,
+        "osv_coverage": {
+          "state": "confirmed"
+        },
         "osv_modified": "2026-10-05T23:45:07.378615963Z",
         "osv_published": "2026-10-05T23:28:01Z",
         "package": "compression",
@@ -10432,10 +10422,10 @@
         "ecosystem": "npm",
         "epss": {
           "cve": "CVE-2026-118773",
-          "percentile": 0.28872,
+          "percentile": 0.29132,
           "score": 0.0035
         },
-        "epss_date": "2026-11-07T12:00:22Z",
+        "epss_date": "2026-11-15T12:03:04Z",
         "fix_state": "fixed",
         "fixed_in": [
           "14.0.2"
@@ -10443,12 +10433,15 @@
         "id": "GHSA-3g3m-2fjr-6pw4",
         "kev": null,
         "kev_cves": [],
-        "kev_snapshot": "2026.11.06",
+        "kev_snapshot": "2026.11.13",
         "location": "website/package-lock.json",
         "locations": [
           "website/package-lock.json"
         ],
         "osv_confirmed": true,
+        "osv_coverage": {
+          "state": "confirmed"
+        },
         "osv_modified": "2026-10-30T23:15:04.503965732Z",
         "osv_published": "2026-10-30T23:09:11Z",
         "package": "glob",
@@ -10465,10 +10458,10 @@
         "ecosystem": "npm",
         "epss": {
           "cve": "CVE-2026-118764",
-          "percentile": 0.23009,
+          "percentile": 0.2316,
           "score": 0.00301
         },
-        "epss_date": "2026-11-07T12:00:22Z",
+        "epss_date": "2026-11-15T12:03:04Z",
         "fix_state": "fixed",
         "fixed_in": [
           "11.0.1"
@@ -10476,7 +10469,7 @@
         "id": "GHSA-g3hv-75wg-m249",
         "kev": null,
         "kev_cves": [],
-        "kev_snapshot": "2026.11.06",
+        "kev_snapshot": "2026.11.13",
         "location": "playground-api/package-lock.json",
         "locations": [
           "playground-api/package-lock.json",
@@ -10484,6 +10477,9 @@
           "website/package-lock.json"
         ],
         "osv_confirmed": true,
+        "osv_coverage": {
+          "state": "confirmed"
+        },
         "osv_modified": "2026-11-04T17:01:25.850114200Z",
         "osv_published": "2026-10-30T23:09:55Z",
         "package": "minimatch",
@@ -10500,10 +10496,10 @@
         "ecosystem": "npm",
         "epss": {
           "cve": "CVE-2026-104844",
-          "percentile": 0.33213,
+          "percentile": 0.33507,
           "score": 0.00389
         },
-        "epss_date": "2026-11-07T12:00:22Z",
+        "epss_date": "2026-11-15T12:03:04Z",
         "fix_state": "fixed",
         "fixed_in": [
           "6.1.5"
@@ -10511,12 +10507,15 @@
         "id": "GHSA-rj75-hqrm-r3gf",
         "kev": null,
         "kev_cves": [],
-        "kev_snapshot": "2026.11.06",
+        "kev_snapshot": "2026.11.13",
         "location": "website/package-lock.json",
         "locations": [
           "website/package-lock.json"
         ],
         "osv_confirmed": true,
+        "osv_coverage": {
+          "state": "confirmed"
+        },
         "osv_modified": "2026-10-26T14:16:59.921540799Z",
         "osv_published": "2026-10-05T22:53:54Z",
         "package": "postcss-selector-parser",
@@ -10531,240 +10530,10 @@
       "files": 29,
       "findings": [
         {
-          "confidence": "Medium",
-          "description": "use of fundamentally insecure workflow trigger",
-          "file": ".github/workflows/claude-react-on-review-dispatch.yml",
-          "line": 3,
-          "note": "this workflow",
-          "rule": "dangerous-triggers",
-          "severity": "High",
-          "url": "https://docs.zizmor.sh/audits/#dangerous-triggers"
-        },
-        {
-          "confidence": "High",
-          "description": "code injection via template expansion",
-          "file": ".github/workflows/extension-tests.yml",
-          "line": 34,
-          "note": "this step",
-          "rule": "template-injection",
-          "severity": "High",
-          "url": "https://docs.zizmor.sh/audits/#template-injection"
-        },
-        {
-          "confidence": "High",
-          "description": "code injection via template expansion",
-          "file": ".github/workflows/integration-tests.yml",
-          "line": 34,
-          "note": "this step",
-          "rule": "template-injection",
-          "severity": "High",
-          "url": "https://docs.zizmor.sh/audits/#template-injection"
-        },
-        {
-          "confidence": "High",
-          "description": "code injection via template expansion",
-          "file": ".github/workflows/other-tests.yml",
-          "line": 34,
-          "note": "this step",
-          "rule": "template-injection",
-          "severity": "High",
-          "url": "https://docs.zizmor.sh/audits/#template-injection"
-        },
-        {
-          "confidence": "Medium",
-          "description": "overly broad permissions",
-          "file": ".github/workflows/claude-react-on-review.yml",
-          "line": 8,
-          "note": "this job",
-          "rule": "excessive-permissions",
-          "severity": "Medium",
-          "url": "https://docs.zizmor.sh/audits/#excessive-permissions"
-        },
-        {
-          "confidence": "Medium",
-          "description": "overly broad permissions",
-          "file": ".github/workflows/extension-tests-run.yml",
-          "line": 3,
-          "note": "default permissions used due to no permissions: block",
-          "rule": "excessive-permissions",
-          "severity": "Medium",
-          "url": "https://docs.zizmor.sh/audits/#excessive-permissions"
-        },
-        {
-          "confidence": "Medium",
-          "description": "overly broad permissions",
-          "file": ".github/workflows/extension-tests-run.yml",
-          "line": 24,
-          "note": "this job",
-          "rule": "excessive-permissions",
-          "severity": "Medium",
-          "url": "https://docs.zizmor.sh/audits/#excessive-permissions"
-        },
-        {
-          "confidence": "Medium",
-          "description": "overly broad permissions",
-          "file": ".github/workflows/extension-tests-run.yml",
-          "line": 50,
-          "note": "this job",
-          "rule": "excessive-permissions",
-          "severity": "Medium",
-          "url": "https://docs.zizmor.sh/audits/#excessive-permissions"
-        },
-        {
-          "confidence": "Medium",
-          "description": "overly broad permissions",
-          "file": ".github/workflows/integration-tests-run.yml",
-          "line": 3,
-          "note": "default permissions used due to no permissions: block",
-          "rule": "excessive-permissions",
-          "severity": "Medium",
-          "url": "https://docs.zizmor.sh/audits/#excessive-permissions"
-        },
-        {
-          "confidence": "Medium",
-          "description": "overly broad permissions",
-          "file": ".github/workflows/integration-tests-run.yml",
-          "line": 26,
-          "note": "this job",
-          "rule": "excessive-permissions",
-          "severity": "Medium",
-          "url": "https://docs.zizmor.sh/audits/#excessive-permissions"
-        },
-        {
-          "confidence": "Medium",
-          "description": "overly broad permissions",
-          "file": ".github/workflows/integration-tests-run.yml",
-          "line": 52,
-          "note": "this job",
-          "rule": "excessive-permissions",
-          "severity": "Medium",
-          "url": "https://docs.zizmor.sh/audits/#excessive-permissions"
-        },
-        {
-          "confidence": "Medium",
-          "description": "overly broad permissions",
-          "file": ".github/workflows/other-tests-run.yml",
-          "line": 3,
-          "note": "default permissions used due to no permissions: block",
-          "rule": "excessive-permissions",
-          "severity": "Medium",
-          "url": "https://docs.zizmor.sh/audits/#excessive-permissions"
-        },
-        {
-          "confidence": "Medium",
-          "description": "overly broad permissions",
-          "file": ".github/workflows/other-tests-run.yml",
-          "line": 26,
-          "note": "this job",
-          "rule": "excessive-permissions",
-          "severity": "Medium",
-          "url": "https://docs.zizmor.sh/audits/#excessive-permissions"
-        },
-        {
-          "confidence": "Medium",
-          "description": "overly broad permissions",
-          "file": ".github/workflows/other-tests-run.yml",
-          "line": 52,
-          "note": "this job",
-          "rule": "excessive-permissions",
-          "severity": "Medium",
-          "url": "https://docs.zizmor.sh/audits/#excessive-permissions"
-        },
-        {
-          "confidence": "Medium",
-          "description": "overly broad permissions",
-          "file": ".github/workflows/release-toot.yml",
-          "line": 10,
-          "note": "this job",
-          "rule": "excessive-permissions",
-          "severity": "Medium",
-          "url": "https://docs.zizmor.sh/audits/#excessive-permissions"
-        },
-        {
-          "confidence": "Medium",
-          "description": "overly broad permissions",
-          "file": ".github/workflows/release-tweet.yml",
-          "line": 10,
-          "note": "this job",
-          "rule": "excessive-permissions",
-          "severity": "Medium",
-          "url": "https://docs.zizmor.sh/audits/#excessive-permissions"
-        },
-        {
-          "confidence": "Medium",
-          "description": "overly broad permissions",
-          "file": ".github/workflows/sponsors.yml",
-          "line": 17,
-          "note": "this job",
-          "rule": "excessive-permissions",
-          "severity": "Medium",
-          "url": "https://docs.zizmor.sh/audits/#excessive-permissions"
-        },
-        {
-          "confidence": "Medium",
-          "description": "overly broad permissions",
-          "file": ".github/workflows/website-links.yml",
-          "line": 16,
-          "note": "this job",
-          "rule": "excessive-permissions",
-          "severity": "Medium",
-          "url": "https://docs.zizmor.sh/audits/#excessive-permissions"
-        },
-        {
-          "confidence": "Medium",
-          "description": "overly broad permissions",
-          "file": ".github/workflows/website.yml",
-          "line": 3,
-          "note": "default permissions used due to no permissions: block",
-          "rule": "excessive-permissions",
-          "severity": "Medium",
-          "url": "https://docs.zizmor.sh/audits/#excessive-permissions"
-        },
-        {
-          "confidence": "Medium",
-          "description": "overly broad permissions",
-          "file": ".github/workflows/website.yml",
-          "line": 21,
-          "note": "this job",
-          "rule": "excessive-permissions",
-          "severity": "Medium",
-          "url": "https://docs.zizmor.sh/audits/#excessive-permissions"
-        },
-        {
-          "confidence": "Medium",
-          "description": "overly broad permissions",
-          "file": ".github/workflows/website.yml",
-          "line": 58,
-          "note": "this job",
-          "rule": "excessive-permissions",
-          "severity": "Medium",
-          "url": "https://docs.zizmor.sh/audits/#excessive-permissions"
-        },
-        {
-          "confidence": "Medium",
-          "description": "overly broad permissions",
-          "file": ".github/workflows/website.yml",
-          "line": 162,
-          "note": "this job",
-          "rule": "excessive-permissions",
-          "severity": "Medium",
-          "url": "https://docs.zizmor.sh/audits/#excessive-permissions"
-        },
-        {
-          "confidence": "Medium",
-          "description": "overly broad permissions",
-          "file": ".github/workflows/website.yml",
-          "line": 257,
-          "note": "this job",
-          "rule": "excessive-permissions",
-          "severity": "Medium",
-          "url": "https://docs.zizmor.sh/audits/#excessive-permissions"
-        },
-        {
           "confidence": "High",
           "description": "use GitHub's dedicated self-repository syntax",
           "file": ".github/workflows/extension-tests-run.yml",
-          "line": 50,
+          "line": 60,
           "note": "this job",
           "rule": "self-repository",
           "severity": "Low",
@@ -10774,7 +10543,7 @@
           "confidence": "High",
           "description": "use GitHub's dedicated self-repository syntax",
           "file": ".github/workflows/integration-tests-run.yml",
-          "line": 52,
+          "line": 62,
           "note": "this job",
           "rule": "self-repository",
           "severity": "Low",
@@ -10784,7 +10553,7 @@
           "confidence": "High",
           "description": "use GitHub's dedicated self-repository syntax",
           "file": ".github/workflows/other-tests-run.yml",
-          "line": 52,
+          "line": 62,
           "note": "this job",
           "rule": "self-repository",
           "severity": "Low",
@@ -10794,7 +10563,7 @@
           "confidence": "High",
           "description": "action functionality is already included by the runner",
           "file": ".github/workflows/release.yml",
-          "line": 31,
+          "line": 33,
           "note": "this step",
           "rule": "superfluous-actions",
           "severity": "Informational",
@@ -10803,5 +10572,5 @@
       ]
     }
   },
-  "updated": "2026-11-08"
+  "updated": "2026-11-15"
 }

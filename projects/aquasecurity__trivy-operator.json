@@ -141,6 +141,66 @@
       },
       "workflow_new": 0,
       "workflow_resolved": 0
+    },
+    {
+      "added": 0,
+      "advisory_state": "ok",
+      "commit": "b40091af2bfba4c90b109fc0817d6c3f49bfc9a4",
+      "date": "2026-11-15",
+      "dependencies": 425,
+      "dependency_state": "ok",
+      "downgraded": 0,
+      "errors": [],
+      "file_changes": 0,
+      "fixable": 4,
+      "go_version": "go1.27.3",
+      "in_binary": {
+        "dependencies": 2,
+        "records": 3,
+        "stdlib": 1,
+        "total": 3
+      },
+      "in_binary_new": 1,
+      "in_binary_resolved": 0,
+      "kev": 0,
+      "kev_new": 0,
+      "kev_new_match": 0,
+      "license_changes": 0,
+      "method": "sbomlyze-occurrence-v1",
+      "moved": 0,
+      "new_advisories": 2,
+      "new_vulnerabilities": 2,
+      "osv_confirmed": 4,
+      "osv_only": 0,
+      "ref": "v0.36.1",
+      "release_changed": false,
+      "release_integrity": "verified",
+      "removed": 0,
+      "resolved_advisories": 0,
+      "resolved_vulnerabilities": 0,
+      "scorecard": 7.5,
+      "scorecard_date": "2026-11-15",
+      "scorecard_note": null,
+      "scorecard_source": "scorecard-cli",
+      "unknown_direction": 0,
+      "upgraded": 0,
+      "vulnerabilities": {
+        "Critical": 0,
+        "High": 1,
+        "Low": 0,
+        "Medium": 2,
+        "Negligible": 0,
+        "Unknown": 1
+      },
+      "vulnerable_packages": 4,
+      "workflow": {
+        "High": 1,
+        "Low": 0,
+        "Medium": 0,
+        "files": 9
+      },
+      "workflow_new": 0,
+      "workflow_resolved": 0
     }
   ],
   "latest": {
@@ -154,8 +214,8 @@
       "baseline": false,
       "dependency_baseline": {
         "attempt": "1",
-        "run_id": "41380955266",
-        "sbom_sha256": "3fe78eb4aa8b8d34e4a29b9482c977c903088263d2ec1501ce7982cf7057e19e"
+        "run_id": "42546359860",
+        "sbom_sha256": "8f1b4b557674ef664d5a5ea7cb2ab7a09fbf6f6dae1ee0babefbc0b10d965f5c"
       },
       "dependency_state": "ok",
       "digest_coverage": {
@@ -173,7 +233,7 @@
       "downgraded": [],
       "file_changes": [],
       "in_binary_new": [
-        "GO-2026-6865"
+        "GO-2026-6859"
       ],
       "in_binary_resolved": [],
       "integrity_changes": [],
@@ -185,48 +245,93 @@
       "metadata_changes": [],
       "method": "sbomlyze-occurrence-v1",
       "moved": [],
-      "new_advisories": 1,
+      "new_advisories": 2,
       "new_vulnerabilities": [
         {
           "aliases": [
-            "CVE-2026-116591",
-            "GHSA-fpmh-frq8-7rj8"
+            "CVE-2026-128085"
           ],
           "ecosystem": "golang",
           "epss": {
-            "cve": "CVE-2026-116591",
-            "percentile": 0.26636,
-            "score": 0.00333
+            "cve": "CVE-2026-128085",
+            "percentile": 0.41099,
+            "score": 0.00469
           },
-          "epss_date": "2026-11-07T12:00:22Z",
+          "epss_date": "2026-11-15T12:03:04Z",
           "fix_state": "fixed",
           "fixed_in": [
-            "1.20.2"
+            "1.47.0"
           ],
-          "id": "GO-2026-6865",
-          "in_binary": "vulnerable code in binary",
+          "id": "GHSA-q7gw-24fr-5p69",
+          "in_binary": "vulnerable code not in binary",
           "kev": null,
           "kev_cves": [],
-          "kev_snapshot": "2026.11.06",
+          "kev_snapshot": "2026.11.13",
           "location": "go.mod",
           "locations": [
             "go.mod"
           ],
           "new": {
             "advisory": "published since last scan",
-            "modified": "2026-11-05T23:15:14.472777299Z",
-            "published": "2026-11-05T22:54:32Z",
+            "modified": "2026-11-13T19:15:05.908318974Z",
+            "published": "2026-11-13T19:00:55Z",
             "reason": "unchanged version"
           },
           "osv_confirmed": true,
-          "osv_modified": "2026-11-05T23:15:14.472777299Z",
-          "osv_published": "2026-11-05T22:54:32Z",
-          "package": "github.com/klauspost/compress",
-          "purl": "pkg:golang/github.com/klauspost/compress@v1.20.1",
-          "severity": "High",
-          "summary": "Panic on two-block frames in github.com/klauspost/compress",
-          "url": "https://github.com/klauspost/compress/security/advisories/GHSA-fpmh-frq8-7rj8",
-          "version": "v1.20.1"
+          "osv_coverage": {
+            "state": "confirmed"
+          },
+          "osv_modified": "2026-11-13T19:15:05.908318974Z",
+          "osv_published": "2026-11-13T19:00:55Z",
+          "package": "go.opentelemetry.io/otel/sdk",
+          "purl": "pkg:golang/go.opentelemetry.io/otel/sdk@v1.46.0",
+          "severity": "Medium",
+          "summary": "opentelemetry-go: AttributeValueLengthLimit is fully bypassed by attribute values composed of valid U+FFFD runes",
+          "url": "https://github.com/advisories/GHSA-q7gw-24fr-5p69",
+          "version": "v1.46.0"
+        },
+        {
+          "aliases": [
+            "CVE-2026-128085"
+          ],
+          "ecosystem": "golang",
+          "epss": {
+            "cve": "CVE-2026-128085",
+            "percentile": 0.41099,
+            "score": 0.00469
+          },
+          "epss_date": "2026-11-15T12:03:04Z",
+          "fix_state": "fixed",
+          "fixed_in": [
+            "1.47.0"
+          ],
+          "id": "GHSA-q7gw-24fr-5p69",
+          "in_binary": "vulnerable code not in binary",
+          "kev": null,
+          "kev_cves": [],
+          "kev_snapshot": "2026.11.13",
+          "location": "go.mod",
+          "locations": [
+            "go.mod"
+          ],
+          "new": {
+            "advisory": "published since last scan",
+            "modified": "2026-11-13T19:15:05.908318974Z",
+            "published": "2026-11-13T19:00:55Z",
+            "reason": "unchanged version"
+          },
+          "osv_confirmed": true,
+          "osv_coverage": {
+            "state": "confirmed"
+          },
+          "osv_modified": "2026-11-13T19:15:05.908318974Z",
+          "osv_published": "2026-11-13T19:00:55Z",
+          "package": "go.opentelemetry.io/otel/trace",
+          "purl": "pkg:golang/go.opentelemetry.io/otel/trace@v1.46.0",
+          "severity": "Medium",
+          "summary": "opentelemetry-go: AttributeValueLengthLimit is fully bypassed by attribute values composed of valid U+FFFD runes",
+          "url": "https://github.com/advisories/GHSA-q7gw-24fr-5p69",
+          "version": "v1.46.0"
         }
       ],
       "previous_ref": "v0.36.1",
@@ -3690,8 +3795,30 @@
       "asset": "trivy_operator_Linux_x86_64.tar.gz",
       "binary": "trivy-operator",
       "db": "https://vuln.go.dev",
-      "db_last_modified": "2026-11-05T23:49:57Z",
+      "db_last_modified": "2026-11-11T02:51:11Z",
       "findings": [
+        {
+          "aliases": [
+            "CVE-2026-97054"
+          ],
+          "epss": {
+            "cve": "CVE-2026-97054",
+            "percentile": 0.0655,
+            "score": 0.00171
+          },
+          "epss_date": "2026-11-15T12:03:04Z",
+          "fixed_version": "v1.27.4",
+          "id": "GO-2026-6859",
+          "kev": null,
+          "kev_cves": [],
+          "kev_snapshot": "2026.11.13",
+          "level": "symbol",
+          "modified": "2026-11-11T02:51:11Z",
+          "module": "stdlib",
+          "published": "2026-11-11T02:51:11Z",
+          "summary": "HTTP/1 server crash due to MaxBytesReader header race in net/http",
+          "version": "v1.27.3"
+        },
         {
           "aliases": [
             "CVE-2026-116591",
@@ -3699,15 +3826,15 @@
           ],
           "epss": {
             "cve": "CVE-2026-116591",
-            "percentile": 0.26636,
+            "percentile": 0.26849,
             "score": 0.00333
           },
-          "epss_date": "2026-11-07T12:00:22Z",
+          "epss_date": "2026-11-15T12:03:04Z",
           "fixed_version": "v1.20.2",
           "id": "GO-2026-6865",
           "kev": null,
           "kev_cves": [],
-          "kev_snapshot": "2026.11.06",
+          "kev_snapshot": "2026.11.13",
           "level": "symbol",
           "modified": "2026-11-05T22:54:32Z",
           "module": "github.com/klauspost/compress",
@@ -3718,12 +3845,12 @@
         {
           "aliases": [],
           "epss": null,
-          "epss_date": "2026-11-07T12:00:22Z",
+          "epss_date": "2026-11-15T12:03:04Z",
           "fixed_version": "v0.58.1-0.20261009181718-2f1f834330b2",
           "id": "GO-2026-5932",
           "kev": null,
           "kev_cves": [],
-          "kev_snapshot": "2026.11.06",
+          "kev_snapshot": "2026.11.13",
           "level": "symbol",
           "modified": "2026-11-02T22:01:43Z",
           "module": "golang.org/x/crypto",
@@ -3736,6 +3863,7 @@
       "main_module": ""
     },
     "id": "aquasecurity__trivy-operator",
+    "local_packages": [],
     "lock_aliases": {},
     "manifests": [
       ".github/workflows/build.yaml",
@@ -3752,15 +3880,18 @@
     ],
     "name": "trivy-operator",
     "osv": {
-      "advisories": 2,
+      "advisories": 4,
       "available": true,
-      "confirmed": 2,
+      "confirmed": 4,
+      "coverage": {
+        "confirmed": 4
+      },
       "osv_only": [],
       "warning": null
     },
     "osv_api": {
       "available": true,
-      "queried_at": "2026-11-09T01:36:28+00:00",
+      "queried_at": "2026-11-15T23:31:16+00:00",
       "states": {}
     },
     "ref": "v0.36.1",
@@ -3795,12 +3926,12 @@
     },
     "released_at": "2026-10-29T07:35:21Z",
     "repository": "aquasecurity/trivy-operator",
-    "sbom_sha256": "8f1b4b557674ef664d5a5ea7cb2ab7a09fbf6f6dae1ee0babefbc0b10d965f5c",
+    "sbom_sha256": "e3afd753aa7b991b926501f5b09863ebd6a64ba426ceca12e8d8ed98ae6f45e2",
     "sbomlyze_diff": {
       "added": 0,
       "baseline": {
         "attempt": "1",
-        "run_id": "41380955266"
+        "run_id": "42546359860"
       },
       "changed": 0,
       "contract": "sbomlyze-diff-0.7",
@@ -3829,7 +3960,7 @@
           "files_compared": 9,
           "files_unverified": 0,
           "owned_files_after": 0,
-          "unowned_files_after": 0
+          "unowned_files_after": 9
         },
         "files_added": [],
         "files_removed": [],
@@ -3843,11 +3974,11 @@
         "version_changes": [],
         "version_set_changes": []
       },
-      "previous_sbom_sha256": "3fe78eb4aa8b8d34e4a29b9482c977c903088263d2ec1501ce7982cf7057e19e",
+      "previous_sbom_sha256": "8f1b4b557674ef664d5a5ea7cb2ab7a09fbf6f6dae1ee0babefbc0b10d965f5c",
       "removed": 0,
-      "sbom_sha256": "8f1b4b557674ef664d5a5ea7cb2ab7a09fbf6f6dae1ee0babefbc0b10d965f5c"
+      "sbom_sha256": "e3afd753aa7b991b926501f5b09863ebd6a64ba426ceca12e8d8ed98ae6f45e2"
     },
-    "scanned_at": "2026-11-08T05:53:11+00:00",
+    "scanned_at": "2026-11-15T23:31:07+00:00",
     "scorecard": {
       "checks": [
         {
@@ -3876,6 +4007,11 @@
           "score": 5
         },
         {
+          "name": "Vulnerabilities",
+          "reason": "3 existing vulnerabilities detected",
+          "score": 7
+        },
+        {
           "name": "Pinned-Dependencies",
           "reason": "dependency not pinned by hash detected -- score normalized to 8",
           "score": 8
@@ -3883,11 +4019,6 @@
         {
           "name": "Signed-Releases",
           "reason": "5 out of the last 5 releases have a total of 5 signed artifacts.",
-          "score": 8
-        },
-        {
-          "name": "Vulnerabilities",
-          "reason": "2 existing vulnerabilities detected",
           "score": 8
         },
         {
@@ -3932,7 +4063,7 @@
         },
         {
           "name": "Maintained",
-          "reason": "17 commit(s) and 0 issue activity found in the last 90 days -- score normalized to 10",
+          "reason": "18 commit(s) and 0 issue activity found in the last 90 days -- score normalized to 10",
           "score": 10
         },
         {
@@ -3941,7 +4072,7 @@
           "score": 10
         }
       ],
-      "date": "2026-11-08",
+      "date": "2026-11-15",
       "score": 7.5,
       "source": "scorecard-cli",
       "version": "v5.6.0"
@@ -3955,10 +4086,10 @@
         "ecosystem": "golang",
         "epss": {
           "cve": "CVE-2026-116591",
-          "percentile": 0.26636,
+          "percentile": 0.26849,
           "score": 0.00333
         },
-        "epss_date": "2026-11-07T12:00:22Z",
+        "epss_date": "2026-11-15T12:03:04Z",
         "fix_state": "fixed",
         "fixed_in": [
           "1.20.2"
@@ -3967,12 +4098,15 @@
         "in_binary": "vulnerable code in binary",
         "kev": null,
         "kev_cves": [],
-        "kev_snapshot": "2026.11.06",
+        "kev_snapshot": "2026.11.13",
         "location": "go.mod",
         "locations": [
           "go.mod"
         ],
         "osv_confirmed": true,
+        "osv_coverage": {
+          "state": "confirmed"
+        },
         "osv_modified": "2026-11-05T23:15:14.472777299Z",
         "osv_published": "2026-11-05T22:54:32Z",
         "package": "github.com/klauspost/compress",
@@ -3983,10 +4117,84 @@
         "version": "v1.20.1"
       },
       {
+        "aliases": [
+          "CVE-2026-128085"
+        ],
+        "ecosystem": "golang",
+        "epss": {
+          "cve": "CVE-2026-128085",
+          "percentile": 0.41099,
+          "score": 0.00469
+        },
+        "epss_date": "2026-11-15T12:03:04Z",
+        "fix_state": "fixed",
+        "fixed_in": [
+          "1.47.0"
+        ],
+        "id": "GHSA-q7gw-24fr-5p69",
+        "in_binary": "vulnerable code not in binary",
+        "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.13",
+        "location": "go.mod",
+        "locations": [
+          "go.mod"
+        ],
+        "osv_confirmed": true,
+        "osv_coverage": {
+          "state": "confirmed"
+        },
+        "osv_modified": "2026-11-13T19:15:05.908318974Z",
+        "osv_published": "2026-11-13T19:00:55Z",
+        "package": "go.opentelemetry.io/otel/sdk",
+        "purl": "pkg:golang/go.opentelemetry.io/otel/sdk@v1.46.0",
+        "severity": "Medium",
+        "summary": "opentelemetry-go: AttributeValueLengthLimit is fully bypassed by attribute values composed of valid U+FFFD runes",
+        "url": "https://github.com/advisories/GHSA-q7gw-24fr-5p69",
+        "version": "v1.46.0"
+      },
+      {
+        "aliases": [
+          "CVE-2026-128085"
+        ],
+        "ecosystem": "golang",
+        "epss": {
+          "cve": "CVE-2026-128085",
+          "percentile": 0.41099,
+          "score": 0.00469
+        },
+        "epss_date": "2026-11-15T12:03:04Z",
+        "fix_state": "fixed",
+        "fixed_in": [
+          "1.47.0"
+        ],
+        "id": "GHSA-q7gw-24fr-5p69",
+        "in_binary": "vulnerable code not in binary",
+        "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.13",
+        "location": "go.mod",
+        "locations": [
+          "go.mod"
+        ],
+        "osv_confirmed": true,
+        "osv_coverage": {
+          "state": "confirmed"
+        },
+        "osv_modified": "2026-11-13T19:15:05.908318974Z",
+        "osv_published": "2026-11-13T19:00:55Z",
+        "package": "go.opentelemetry.io/otel/trace",
+        "purl": "pkg:golang/go.opentelemetry.io/otel/trace@v1.46.0",
+        "severity": "Medium",
+        "summary": "opentelemetry-go: AttributeValueLengthLimit is fully bypassed by attribute values composed of valid U+FFFD runes",
+        "url": "https://github.com/advisories/GHSA-q7gw-24fr-5p69",
+        "version": "v1.46.0"
+      },
+      {
         "aliases": [],
         "ecosystem": "golang",
         "epss": null,
-        "epss_date": "2026-11-07T12:00:22Z",
+        "epss_date": "2026-11-15T12:03:04Z",
         "fix_state": "fixed",
         "fixed_in": [
           "0.58.1-0.20261009181718-2f1f834330b2"
@@ -3995,12 +4203,15 @@
         "in_binary": "vulnerable code in binary",
         "kev": null,
         "kev_cves": [],
-        "kev_snapshot": "2026.11.06",
+        "kev_snapshot": "2026.11.13",
         "location": "go.mod",
         "locations": [
           "go.mod"
         ],
         "osv_confirmed": true,
+        "osv_coverage": {
+          "state": "confirmed"
+        },
         "osv_modified": "2026-11-02T22:15:06.677088389Z",
         "osv_published": "2026-07-07T22:15:29Z",
         "package": "golang.org/x/crypto",
@@ -4027,5 +4238,5 @@
       ]
     }
   },
-  "updated": "2026-11-08"
+  "updated": "2026-11-15"
 }

@@ -128,6 +128,61 @@
       },
       "workflow_new": 0,
       "workflow_resolved": 0
+    },
+    {
+      "added": 0,
+      "advisory_state": "ok",
+      "commit": "7cf982f07d1b04f32951b532e296b705ba370a46",
+      "date": "2026-11-15",
+      "dependencies": 8,
+      "dependency_state": "ok",
+      "downgraded": 0,
+      "errors": [],
+      "file_changes": 0,
+      "fixable": 0,
+      "go_version": null,
+      "in_binary": null,
+      "in_binary_new": 0,
+      "in_binary_resolved": 0,
+      "kev": null,
+      "kev_new": 0,
+      "kev_new_match": 0,
+      "license_changes": 0,
+      "method": "sbomlyze-occurrence-v1",
+      "moved": 0,
+      "new_advisories": 0,
+      "new_vulnerabilities": 0,
+      "osv_confirmed": 0,
+      "osv_only": 0,
+      "ref": "1.0.2",
+      "release_changed": false,
+      "release_integrity": "no-assets",
+      "removed": 0,
+      "resolved_advisories": 0,
+      "resolved_vulnerabilities": 0,
+      "scorecard": 5.5,
+      "scorecard_date": "2026-11-15",
+      "scorecard_note": null,
+      "scorecard_source": "scorecard-cli",
+      "unknown_direction": 0,
+      "upgraded": 0,
+      "vulnerabilities": {
+        "Critical": 0,
+        "High": 0,
+        "Low": 0,
+        "Medium": 0,
+        "Negligible": 0,
+        "Unknown": 0
+      },
+      "vulnerable_packages": 0,
+      "workflow": {
+        "High": 0,
+        "Low": 0,
+        "Medium": 3,
+        "files": 4
+      },
+      "workflow_new": 0,
+      "workflow_resolved": 0
     }
   ],
   "latest": {
@@ -141,8 +196,8 @@
       "baseline": false,
       "dependency_baseline": {
         "attempt": "1",
-        "run_id": "41380955266",
-        "sbom_sha256": "09b3bc452147e1cb10247597e841b3cf501863ae6bd880fd9bb6791993ec066e"
+        "run_id": "42546359860",
+        "sbom_sha256": "8d2290c878c2b09efaf25e19b406a9c34b2f198b993bafb3bedfb5058cd68aac"
       },
       "dependency_state": "ok",
       "digest_coverage": {
@@ -172,8 +227,8 @@
       "resolved_advisories": 0,
       "resolved_vulnerabilities": [],
       "scorecard": {
-        "from": 5.5,
-        "to": 5.7
+        "from": 5.7,
+        "to": 5.5
       },
       "still_affected_version_changed": [],
       "unknown_direction": [],
@@ -291,6 +346,7 @@
     "description": "Analyze Node.js applications with semantic SAST rules",
     "errors": [],
     "id": "ajinabraham__njsscan",
+    "local_packages": [],
     "lock_aliases": {},
     "manifests": [
       ".github/workflows/docker-latest.yml",
@@ -301,11 +357,16 @@
     ],
     "name": "njsscan",
     "osv": {
-      "available": false
+      "advisories": 0,
+      "available": true,
+      "confirmed": 0,
+      "coverage": {},
+      "osv_only": [],
+      "warning": null
     },
     "osv_api": {
       "available": true,
-      "queried_at": "2026-11-09T01:36:28+00:00",
+      "queried_at": "2026-11-15T23:30:35+00:00",
       "states": {}
     },
     "ref": "1.0.2",
@@ -321,12 +382,12 @@
     },
     "released_at": "2026-10-27T02:11:00Z",
     "repository": "ajinabraham/njsscan",
-    "sbom_sha256": "8d2290c878c2b09efaf25e19b406a9c34b2f198b993bafb3bedfb5058cd68aac",
+    "sbom_sha256": "7881c94fb2a507d3eef5e27744bbc0ca3972827512982340f4197ebe60e552fb",
     "sbomlyze_diff": {
       "added": 0,
       "baseline": {
         "attempt": "1",
-        "run_id": "41380955266"
+        "run_id": "42546359860"
       },
       "changed": 0,
       "contract": "sbomlyze-diff-0.7",
@@ -354,7 +415,7 @@
           "files_compared": 5,
           "files_unverified": 0,
           "owned_files_after": 0,
-          "unowned_files_after": 0
+          "unowned_files_after": 5
         },
         "files_added": [],
         "files_removed": [],
@@ -368,11 +429,11 @@
         "version_changes": [],
         "version_set_changes": []
       },
-      "previous_sbom_sha256": "09b3bc452147e1cb10247597e841b3cf501863ae6bd880fd9bb6791993ec066e",
+      "previous_sbom_sha256": "8d2290c878c2b09efaf25e19b406a9c34b2f198b993bafb3bedfb5058cd68aac",
       "removed": 0,
-      "sbom_sha256": "8d2290c878c2b09efaf25e19b406a9c34b2f198b993bafb3bedfb5058cd68aac"
+      "sbom_sha256": "7881c94fb2a507d3eef5e27744bbc0ca3972827512982340f4197ebe60e552fb"
     },
-    "scanned_at": "2026-11-08T05:52:54+00:00",
+    "scanned_at": "2026-11-15T23:30:32+00:00",
     "scorecard": {
       "checks": [
         {
@@ -383,6 +444,11 @@
         {
           "name": "CII-Best-Practices",
           "reason": "no effort to earn an OpenSSF best practices badge detected",
+          "score": 0
+        },
+        {
+          "name": "Dependency-Update-Tool",
+          "reason": "no update tool detected",
           "score": 0
         },
         {
@@ -401,6 +467,16 @@
           "score": 2
         },
         {
+          "name": "CI-Tests",
+          "reason": "7 out of 20 merged PRs checked by a CI test -- score normalized to 3",
+          "score": 3
+        },
+        {
+          "name": "SAST",
+          "reason": "SAST tool is not run on all commits -- score normalized to 3",
+          "score": 3
+        },
+        {
           "name": "Pinned-Dependencies",
           "reason": "dependency not pinned by hash detected -- score normalized to 5",
           "score": 5
@@ -408,6 +484,11 @@
         {
           "name": "Binary-Artifacts",
           "reason": "no binaries found in the repo",
+          "score": 10
+        },
+        {
+          "name": "Contributors",
+          "reason": "project has 4 contributing companies or organizations",
           "score": 10
         },
         {
@@ -422,7 +503,7 @@
         },
         {
           "name": "Maintained",
-          "reason": "13 commit(s) and 3 issue activity found in the last 90 days -- score normalized to 10",
+          "reason": "12 commit(s) and 0 issue activity found in the last 90 days -- score normalized to 10",
           "score": 10
         },
         {
@@ -436,9 +517,9 @@
           "score": 10
         },
         {
-          "name": "SAST",
-          "reason": "internal error: internal error: Client.Checks.ListCheckRunsForRef: error during graphqlHandler.setupCheckRuns: Although you appear to have the correct authorization credentials, the `cursor` organization has an IP allow list enabled, and your IP address is not permitted to access this resource.",
-          "score": -1
+          "name": "Vulnerabilities",
+          "reason": "0 existing vulnerabilities detected",
+          "score": 10
         },
         {
           "name": "Signed-Releases",
@@ -446,9 +527,9 @@
           "score": -1
         }
       ],
-      "date": "2026-11-02",
-      "score": 5.7,
-      "source": "openssf-api",
+      "date": "2026-11-15",
+      "score": 5.5,
+      "source": "scorecard-cli",
       "version": "v5.6.0"
     },
     "vulnerabilities": [],
@@ -488,5 +569,5 @@
       ]
     }
   },
-  "updated": "2026-11-08"
+  "updated": "2026-11-15"
 }

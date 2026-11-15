@@ -141,6 +141,66 @@
       },
       "workflow_new": 0,
       "workflow_resolved": 0
+    },
+    {
+      "added": 0,
+      "advisory_state": "ok",
+      "commit": "f6a412ccbfc4c3db83005348584d437348826763",
+      "date": "2026-11-15",
+      "dependencies": 128,
+      "dependency_state": "ok",
+      "downgraded": 0,
+      "errors": [],
+      "file_changes": 0,
+      "fixable": 71,
+      "go_version": "go1.24.10",
+      "in_binary": {
+        "dependencies": 43,
+        "records": 92,
+        "stdlib": 49,
+        "total": 85
+      },
+      "in_binary_new": 1,
+      "in_binary_resolved": 0,
+      "kev": 0,
+      "kev_new": 0,
+      "kev_new_match": 0,
+      "license_changes": 0,
+      "method": "sbomlyze-occurrence-v1",
+      "moved": 0,
+      "new_advisories": 2,
+      "new_vulnerabilities": 2,
+      "osv_confirmed": 77,
+      "osv_only": 0,
+      "ref": "v4.9.0",
+      "release_changed": false,
+      "release_integrity": "none",
+      "removed": 0,
+      "resolved_advisories": 0,
+      "resolved_vulnerabilities": 0,
+      "scorecard": 5.1,
+      "scorecard_date": "2026-11-09",
+      "scorecard_note": null,
+      "scorecard_source": "openssf-api",
+      "unknown_direction": 0,
+      "upgraded": 0,
+      "vulnerabilities": {
+        "Critical": 14,
+        "High": 36,
+        "Low": 6,
+        "Medium": 20,
+        "Negligible": 0,
+        "Unknown": 1
+      },
+      "vulnerable_packages": 21,
+      "workflow": {
+        "High": 69,
+        "Low": 11,
+        "Medium": 24,
+        "files": 15
+      },
+      "workflow_new": 0,
+      "workflow_resolved": 0
     }
   ],
   "latest": {
@@ -154,8 +214,8 @@
       "baseline": false,
       "dependency_baseline": {
         "attempt": "1",
-        "run_id": "41380955266",
-        "sbom_sha256": "4b86cd5b45dd1c1a9ef954a35d1bc0971072995d4e5337be4e4f65560d610f8f"
+        "run_id": "42546359860",
+        "sbom_sha256": "f2d60607f8f811efbad8bdd296984eb8a41e95fb317356d9e31b4812b8167b0d"
       },
       "dependency_state": "ok",
       "digest_coverage": {
@@ -173,8 +233,7 @@
       "downgraded": [],
       "file_changes": [],
       "in_binary_new": [
-        "GO-2026-6778",
-        "GO-2026-6865"
+        "GO-2026-6859"
       ],
       "in_binary_resolved": [],
       "integrity_changes": [],
@@ -186,48 +245,93 @@
       "metadata_changes": [],
       "method": "sbomlyze-occurrence-v1",
       "moved": [],
-      "new_advisories": 1,
+      "new_advisories": 2,
       "new_vulnerabilities": [
         {
           "aliases": [
-            "CVE-2026-116591",
-            "GHSA-fpmh-frq8-7rj8"
+            "CVE-2026-128085"
           ],
           "ecosystem": "golang",
           "epss": {
-            "cve": "CVE-2026-116591",
-            "percentile": 0.26636,
-            "score": 0.00333
+            "cve": "CVE-2026-128085",
+            "percentile": 0.41099,
+            "score": 0.00469
           },
-          "epss_date": "2026-11-07T12:00:22Z",
+          "epss_date": "2026-11-15T12:03:04Z",
           "fix_state": "fixed",
           "fixed_in": [
-            "1.20.2"
+            "1.47.0"
           ],
-          "id": "GO-2026-6865",
-          "in_binary": "vulnerable code in binary",
+          "id": "GHSA-q7gw-24fr-5p69",
+          "in_binary": "not in released binary",
           "kev": null,
           "kev_cves": [],
-          "kev_snapshot": "2026.11.06",
+          "kev_snapshot": "2026.11.13",
           "location": "go.mod",
           "locations": [
             "go.mod"
           ],
           "new": {
             "advisory": "published since last scan",
-            "modified": "2026-11-05T23:15:14.472777299Z",
-            "published": "2026-11-05T22:54:32Z",
+            "modified": "2026-11-13T19:15:05.908318974Z",
+            "published": "2026-11-13T19:00:55Z",
             "reason": "unchanged version"
           },
           "osv_confirmed": true,
-          "osv_modified": "2026-11-05T23:15:14.472777299Z",
-          "osv_published": "2026-11-05T22:54:32Z",
-          "package": "github.com/klauspost/compress",
-          "purl": "pkg:golang/github.com/klauspost/compress@v1.18.2",
-          "severity": "High",
-          "summary": "Panic on two-block frames in github.com/klauspost/compress",
-          "url": "https://github.com/klauspost/compress/security/advisories/GHSA-fpmh-frq8-7rj8",
-          "version": "v1.18.2"
+          "osv_coverage": {
+            "state": "confirmed"
+          },
+          "osv_modified": "2026-11-13T19:15:05.908318974Z",
+          "osv_published": "2026-11-13T19:00:55Z",
+          "package": "go.opentelemetry.io/otel/sdk",
+          "purl": "pkg:golang/go.opentelemetry.io/otel/sdk@v1.39.0",
+          "severity": "Medium",
+          "summary": "opentelemetry-go: AttributeValueLengthLimit is fully bypassed by attribute values composed of valid U+FFFD runes",
+          "url": "https://github.com/advisories/GHSA-q7gw-24fr-5p69",
+          "version": "v1.39.0"
+        },
+        {
+          "aliases": [
+            "CVE-2026-128085"
+          ],
+          "ecosystem": "golang",
+          "epss": {
+            "cve": "CVE-2026-128085",
+            "percentile": 0.41099,
+            "score": 0.00469
+          },
+          "epss_date": "2026-11-15T12:03:04Z",
+          "fix_state": "fixed",
+          "fixed_in": [
+            "1.47.0"
+          ],
+          "id": "GHSA-q7gw-24fr-5p69",
+          "in_binary": "vulnerable code not in binary",
+          "kev": null,
+          "kev_cves": [],
+          "kev_snapshot": "2026.11.13",
+          "location": "go.mod",
+          "locations": [
+            "go.mod"
+          ],
+          "new": {
+            "advisory": "published since last scan",
+            "modified": "2026-11-13T19:15:05.908318974Z",
+            "published": "2026-11-13T19:00:55Z",
+            "reason": "unchanged version"
+          },
+          "osv_confirmed": true,
+          "osv_coverage": {
+            "state": "confirmed"
+          },
+          "osv_modified": "2026-11-13T19:15:05.908318974Z",
+          "osv_published": "2026-11-13T19:00:55Z",
+          "package": "go.opentelemetry.io/otel/trace",
+          "purl": "pkg:golang/go.opentelemetry.io/otel/trace@v1.39.0",
+          "severity": "Medium",
+          "summary": "opentelemetry-go: AttributeValueLengthLimit is fully bypassed by attribute values composed of valid U+FFFD runes",
+          "url": "https://github.com/advisories/GHSA-q7gw-24fr-5p69",
+          "version": "v1.39.0"
         }
       ],
       "previous_ref": "v4.9.0",
@@ -1315,7 +1419,7 @@
       "asset": "clairctl-linux-amd64",
       "binary": "clairctl-linux-amd64",
       "db": "https://vuln.go.dev",
-      "db_last_modified": "2026-11-05T23:49:57Z",
+      "db_last_modified": "2026-11-11T02:51:11Z",
       "findings": [
         {
           "aliases": [
@@ -1324,15 +1428,15 @@
           ],
           "epss": {
             "cve": "CVE-2025-61729",
-            "percentile": 0.42383,
+            "percentile": 0.42701,
             "score": 0.0049
           },
-          "epss_date": "2026-11-07T12:00:22Z",
+          "epss_date": "2026-11-15T12:03:04Z",
           "fixed_version": "v1.24.11",
           "id": "GO-2025-4155",
           "kev": null,
           "kev_cves": [],
-          "kev_snapshot": "2026.11.06",
+          "kev_snapshot": "2026.11.13",
           "level": "symbol",
           "modified": "2025-12-03T17:43:24Z",
           "module": "stdlib",
@@ -1346,15 +1450,15 @@
           ],
           "epss": {
             "cve": "CVE-2025-61727",
-            "percentile": 0.2334,
+            "percentile": 0.23499,
             "score": 0.00304
           },
-          "epss_date": "2026-11-07T12:00:22Z",
+          "epss_date": "2026-11-15T12:03:04Z",
           "fixed_version": "v1.24.11",
           "id": "GO-2025-4175",
           "kev": null,
           "kev_cves": [],
-          "kev_snapshot": "2026.11.06",
+          "kev_snapshot": "2026.11.13",
           "level": "symbol",
           "modified": "2025-12-02T20:55:55Z",
           "module": "stdlib",
@@ -1368,15 +1472,15 @@
           ],
           "epss": {
             "cve": "CVE-2025-68121",
-            "percentile": 0.59938,
+            "percentile": 0.60267,
             "score": 0.00902
           },
-          "epss_date": "2026-11-07T12:00:22Z",
+          "epss_date": "2026-11-15T12:03:04Z",
           "fixed_version": "v1.24.13",
           "id": "GO-2026-4337",
           "kev": null,
           "kev_cves": [],
-          "kev_snapshot": "2026.11.06",
+          "kev_snapshot": "2026.11.13",
           "level": "symbol",
           "modified": "2026-02-05T17:23:09Z",
           "module": "stdlib",
@@ -1391,15 +1495,15 @@
           ],
           "epss": {
             "cve": "CVE-2025-61730",
-            "percentile": 0.25568,
+            "percentile": 0.25783,
             "score": 0.00324
           },
-          "epss_date": "2026-11-07T12:00:22Z",
+          "epss_date": "2026-11-15T12:03:04Z",
           "fixed_version": "v1.24.12",
           "id": "GO-2026-4340",
           "kev": null,
           "kev_cves": [],
-          "kev_snapshot": "2026.11.06",
+          "kev_snapshot": "2026.11.13",
           "level": "symbol",
           "modified": "2026-01-28T19:08:09Z",
           "module": "stdlib",
@@ -1414,15 +1518,15 @@
           ],
           "epss": {
             "cve": "CVE-2025-61726",
-            "percentile": 0.8334,
+            "percentile": 0.83521,
             "score": 0.02292
           },
-          "epss_date": "2026-11-07T12:00:22Z",
+          "epss_date": "2026-11-15T12:03:04Z",
           "fixed_version": "v1.24.12",
           "id": "GO-2026-4341",
           "kev": null,
           "kev_cves": [],
-          "kev_snapshot": "2026.11.06",
+          "kev_snapshot": "2026.11.13",
           "level": "symbol",
           "modified": "2026-01-28T19:08:18Z",
           "module": "stdlib",
@@ -1437,15 +1541,15 @@
           ],
           "epss": {
             "cve": "CVE-2025-61728",
-            "percentile": 0.54777,
+            "percentile": 0.55111,
             "score": 0.00738
           },
-          "epss_date": "2026-11-07T12:00:22Z",
+          "epss_date": "2026-11-15T12:03:04Z",
           "fixed_version": "v1.24.12",
           "id": "GO-2026-4342",
           "kev": null,
           "kev_cves": [],
-          "kev_snapshot": "2026.11.06",
+          "kev_snapshot": "2026.11.13",
           "level": "symbol",
           "modified": "2026-01-28T19:08:28Z",
           "module": "stdlib",
@@ -1459,15 +1563,15 @@
           ],
           "epss": {
             "cve": "CVE-2026-25679",
-            "percentile": 0.57704,
+            "percentile": 0.58034,
             "score": 0.00827
           },
-          "epss_date": "2026-11-07T12:00:22Z",
+          "epss_date": "2026-11-15T12:03:04Z",
           "fixed_version": "v1.25.8",
           "id": "GO-2026-4601",
           "kev": null,
           "kev_cves": [],
-          "kev_snapshot": "2026.11.06",
+          "kev_snapshot": "2026.11.13",
           "level": "symbol",
           "modified": "2026-03-06T21:03:42Z",
           "module": "stdlib",
@@ -1481,15 +1585,15 @@
           ],
           "epss": {
             "cve": "CVE-2026-27139",
-            "percentile": 0.12492,
+            "percentile": 0.12523,
             "score": 0.00219
           },
-          "epss_date": "2026-11-07T12:00:22Z",
+          "epss_date": "2026-11-15T12:03:04Z",
           "fixed_version": "v1.25.8",
           "id": "GO-2026-4602",
           "kev": null,
           "kev_cves": [],
-          "kev_snapshot": "2026.11.06",
+          "kev_snapshot": "2026.11.13",
           "level": "symbol",
           "modified": "2026-03-06T21:03:42Z",
           "module": "stdlib",
@@ -1503,15 +1607,15 @@
           ],
           "epss": {
             "cve": "CVE-2026-27142",
-            "percentile": 0.31567,
+            "percentile": 0.31843,
             "score": 0.00374
           },
-          "epss_date": "2026-11-07T12:00:22Z",
+          "epss_date": "2026-11-15T12:03:04Z",
           "fixed_version": "v1.25.8",
           "id": "GO-2026-4603",
           "kev": null,
           "kev_cves": [],
-          "kev_snapshot": "2026.11.06",
+          "kev_snapshot": "2026.11.13",
           "level": "symbol",
           "modified": "2026-03-06T21:03:42Z",
           "module": "stdlib",
@@ -1525,15 +1629,15 @@
           ],
           "epss": {
             "cve": "CVE-2026-32282",
-            "percentile": 0.22488,
+            "percentile": 0.22605,
             "score": 0.00297
           },
-          "epss_date": "2026-11-07T12:00:22Z",
+          "epss_date": "2026-11-15T12:03:04Z",
           "fixed_version": "v1.25.9",
           "id": "GO-2026-4864",
           "kev": null,
           "kev_cves": [],
-          "kev_snapshot": "2026.11.06",
+          "kev_snapshot": "2026.11.13",
           "level": "symbol",
           "modified": "2026-04-07T22:53:49Z",
           "module": "stdlib",
@@ -1547,15 +1651,15 @@
           ],
           "epss": {
             "cve": "CVE-2026-32289",
-            "percentile": 0.22311,
+            "percentile": 0.2243,
             "score": 0.00295
           },
-          "epss_date": "2026-11-07T12:00:22Z",
+          "epss_date": "2026-11-15T12:03:04Z",
           "fixed_version": "v1.25.9",
           "id": "GO-2026-4865",
           "kev": null,
           "kev_cves": [],
-          "kev_snapshot": "2026.11.06",
+          "kev_snapshot": "2026.11.13",
           "level": "symbol",
           "modified": "2026-04-07T22:53:49Z",
           "module": "stdlib",
@@ -1569,15 +1673,15 @@
           ],
           "epss": {
             "cve": "CVE-2026-32288",
-            "percentile": 0.22308,
+            "percentile": 0.22427,
             "score": 0.00295
           },
-          "epss_date": "2026-11-07T12:00:22Z",
+          "epss_date": "2026-11-15T12:03:04Z",
           "fixed_version": "v1.25.9",
           "id": "GO-2026-4869",
           "kev": null,
           "kev_cves": [],
-          "kev_snapshot": "2026.11.06",
+          "kev_snapshot": "2026.11.13",
           "level": "symbol",
           "modified": "2026-04-07T22:53:49Z",
           "module": "stdlib",
@@ -1591,15 +1695,15 @@
           ],
           "epss": {
             "cve": "CVE-2026-32283",
-            "percentile": 0.5057,
+            "percentile": 0.50894,
             "score": 0.00632
           },
-          "epss_date": "2026-11-07T12:00:22Z",
+          "epss_date": "2026-11-15T12:03:04Z",
           "fixed_version": "v1.25.9",
           "id": "GO-2026-4870",
           "kev": null,
           "kev_cves": [],
-          "kev_snapshot": "2026.11.06",
+          "kev_snapshot": "2026.11.13",
           "level": "symbol",
           "modified": "2026-04-07T22:53:49Z",
           "module": "stdlib",
@@ -1613,15 +1717,15 @@
           ],
           "epss": {
             "cve": "CVE-2026-33814",
-            "percentile": 0.58101,
+            "percentile": 0.58436,
             "score": 0.0084
           },
-          "epss_date": "2026-11-07T12:00:22Z",
+          "epss_date": "2026-11-15T12:03:04Z",
           "fixed_version": "v1.25.10",
           "id": "GO-2026-4918",
           "kev": null,
           "kev_cves": [],
-          "kev_snapshot": "2026.11.06",
+          "kev_snapshot": "2026.11.13",
           "level": "symbol",
           "modified": "2026-05-07T19:21:40Z",
           "module": "stdlib",
@@ -1635,15 +1739,15 @@
           ],
           "epss": {
             "cve": "CVE-2026-32281",
-            "percentile": 0.30125,
+            "percentile": 0.30372,
             "score": 0.00361
           },
-          "epss_date": "2026-11-07T12:00:22Z",
+          "epss_date": "2026-11-15T12:03:04Z",
           "fixed_version": "v1.25.9",
           "id": "GO-2026-4946",
           "kev": null,
           "kev_cves": [],
-          "kev_snapshot": "2026.11.06",
+          "kev_snapshot": "2026.11.13",
           "level": "symbol",
           "modified": "2026-04-07T22:53:49Z",
           "module": "stdlib",
@@ -1657,15 +1761,15 @@
           ],
           "epss": {
             "cve": "CVE-2026-32280",
-            "percentile": 0.50257,
+            "percentile": 0.50585,
             "score": 0.00626
           },
-          "epss_date": "2026-11-07T12:00:22Z",
+          "epss_date": "2026-11-15T12:03:04Z",
           "fixed_version": "v1.25.9",
           "id": "GO-2026-4947",
           "kev": null,
           "kev_cves": [],
-          "kev_snapshot": "2026.11.06",
+          "kev_snapshot": "2026.11.13",
           "level": "symbol",
           "modified": "2026-04-07T22:53:49Z",
           "module": "stdlib",
@@ -1679,15 +1783,15 @@
           ],
           "epss": {
             "cve": "CVE-2026-39822",
-            "percentile": 0.14195,
+            "percentile": 0.14223,
             "score": 0.00232
           },
-          "epss_date": "2026-11-07T12:00:22Z",
+          "epss_date": "2026-11-15T12:03:04Z",
           "fixed_version": "v1.25.12",
           "id": "GO-2026-4970",
           "kev": null,
           "kev_cves": [],
-          "kev_snapshot": "2026.11.06",
+          "kev_snapshot": "2026.11.13",
           "level": "symbol",
           "modified": "2026-07-07T21:34:47Z",
           "module": "stdlib",
@@ -1701,15 +1805,15 @@
           ],
           "epss": {
             "cve": "CVE-2026-39836",
-            "percentile": 0.50581,
+            "percentile": 0.50905,
             "score": 0.00633
           },
-          "epss_date": "2026-11-07T12:00:22Z",
+          "epss_date": "2026-11-15T12:03:04Z",
           "fixed_version": "v1.25.10",
           "id": "GO-2026-4971",
           "kev": null,
           "kev_cves": [],
-          "kev_snapshot": "2026.11.06",
+          "kev_snapshot": "2026.11.13",
           "level": "symbol",
           "modified": "2026-05-07T19:21:40Z",
           "module": "stdlib",
@@ -1723,15 +1827,15 @@
           ],
           "epss": {
             "cve": "CVE-2026-39825",
-            "percentile": 0.334,
+            "percentile": 0.33685,
             "score": 0.0039
           },
-          "epss_date": "2026-11-07T12:00:22Z",
+          "epss_date": "2026-11-15T12:03:04Z",
           "fixed_version": "v1.25.10",
           "id": "GO-2026-4976",
           "kev": null,
           "kev_cves": [],
-          "kev_snapshot": "2026.11.06",
+          "kev_snapshot": "2026.11.13",
           "level": "symbol",
           "modified": "2026-05-07T19:21:40Z",
           "module": "stdlib",
@@ -1745,15 +1849,15 @@
           ],
           "epss": {
             "cve": "CVE-2026-42499",
-            "percentile": 0.56741,
+            "percentile": 0.57079,
             "score": 0.00798
           },
-          "epss_date": "2026-11-07T12:00:22Z",
+          "epss_date": "2026-11-15T12:03:04Z",
           "fixed_version": "v1.25.10",
           "id": "GO-2026-4977",
           "kev": null,
           "kev_cves": [],
-          "kev_snapshot": "2026.11.06",
+          "kev_snapshot": "2026.11.13",
           "level": "symbol",
           "modified": "2026-05-07T19:21:40Z",
           "module": "stdlib",
@@ -1767,15 +1871,15 @@
           ],
           "epss": {
             "cve": "CVE-2026-39826",
-            "percentile": 0.31247,
+            "percentile": 0.31515,
             "score": 0.00371
           },
-          "epss_date": "2026-11-07T12:00:22Z",
+          "epss_date": "2026-11-15T12:03:04Z",
           "fixed_version": "v1.25.10",
           "id": "GO-2026-4980",
           "kev": null,
           "kev_cves": [],
-          "kev_snapshot": "2026.11.06",
+          "kev_snapshot": "2026.11.13",
           "level": "symbol",
           "modified": "2026-05-07T19:21:40Z",
           "module": "stdlib",
@@ -1789,15 +1893,15 @@
           ],
           "epss": {
             "cve": "CVE-2026-33811",
-            "percentile": 0.59192,
+            "percentile": 0.59517,
             "score": 0.00875
           },
-          "epss_date": "2026-11-07T12:00:22Z",
+          "epss_date": "2026-11-15T12:03:04Z",
           "fixed_version": "v1.25.10",
           "id": "GO-2026-4981",
           "kev": null,
           "kev_cves": [],
-          "kev_snapshot": "2026.11.06",
+          "kev_snapshot": "2026.11.13",
           "level": "symbol",
           "modified": "2026-05-07T19:21:40Z",
           "module": "stdlib",
@@ -1811,15 +1915,15 @@
           ],
           "epss": {
             "cve": "CVE-2026-39823",
-            "percentile": 0.24512,
+            "percentile": 0.24719,
             "score": 0.00314
           },
-          "epss_date": "2026-11-07T12:00:22Z",
+          "epss_date": "2026-11-15T12:03:04Z",
           "fixed_version": "v1.25.10",
           "id": "GO-2026-4982",
           "kev": null,
           "kev_cves": [],
-          "kev_snapshot": "2026.11.06",
+          "kev_snapshot": "2026.11.13",
           "level": "symbol",
           "modified": "2026-05-07T19:21:40Z",
           "module": "stdlib",
@@ -1833,15 +1937,15 @@
           ],
           "epss": {
             "cve": "CVE-2026-39820",
-            "percentile": 0.56279,
+            "percentile": 0.56613,
             "score": 0.00784
           },
-          "epss_date": "2026-11-07T12:00:22Z",
+          "epss_date": "2026-11-15T12:03:04Z",
           "fixed_version": "v1.25.10",
           "id": "GO-2026-4986",
           "kev": null,
           "kev_cves": [],
-          "kev_snapshot": "2026.11.06",
+          "kev_snapshot": "2026.11.13",
           "level": "symbol",
           "modified": "2026-05-07T19:21:40Z",
           "module": "stdlib",
@@ -1855,15 +1959,15 @@
           ],
           "epss": {
             "cve": "CVE-2026-39821",
-            "percentile": 0.79038,
+            "percentile": 0.79261,
             "score": 0.01834
           },
-          "epss_date": "2026-11-07T12:00:22Z",
+          "epss_date": "2026-11-15T12:03:04Z",
           "fixed_version": "v1.25.13",
           "id": "GO-2026-5026",
           "kev": null,
           "kev_cves": [],
-          "kev_snapshot": "2026.11.06",
+          "kev_snapshot": "2026.11.13",
           "level": "symbol",
           "modified": "2026-08-21T20:38:00Z",
           "module": "stdlib",
@@ -1877,15 +1981,15 @@
           ],
           "epss": {
             "cve": "CVE-2026-27145",
-            "percentile": 0.4849,
+            "percentile": 0.48818,
             "score": 0.00591
           },
-          "epss_date": "2026-11-07T12:00:22Z",
+          "epss_date": "2026-11-15T12:03:04Z",
           "fixed_version": "v1.25.11",
           "id": "GO-2026-5037",
           "kev": null,
           "kev_cves": [],
-          "kev_snapshot": "2026.11.06",
+          "kev_snapshot": "2026.11.13",
           "level": "symbol",
           "modified": "2026-06-02T21:39:47Z",
           "module": "stdlib",
@@ -1899,15 +2003,15 @@
           ],
           "epss": {
             "cve": "CVE-2026-42504",
-            "percentile": 0.46858,
+            "percentile": 0.47189,
             "score": 0.0056
           },
-          "epss_date": "2026-11-07T12:00:22Z",
+          "epss_date": "2026-11-15T12:03:04Z",
           "fixed_version": "v1.25.11",
           "id": "GO-2026-5038",
           "kev": null,
           "kev_cves": [],
-          "kev_snapshot": "2026.11.06",
+          "kev_snapshot": "2026.11.13",
           "level": "symbol",
           "modified": "2026-06-02T21:39:47Z",
           "module": "stdlib",
@@ -1921,15 +2025,15 @@
           ],
           "epss": {
             "cve": "CVE-2026-42507",
-            "percentile": 0.31168,
+            "percentile": 0.31434,
             "score": 0.0037
           },
-          "epss_date": "2026-11-07T12:00:22Z",
+          "epss_date": "2026-11-15T12:03:04Z",
           "fixed_version": "v1.25.11",
           "id": "GO-2026-5039",
           "kev": null,
           "kev_cves": [],
-          "kev_snapshot": "2026.11.06",
+          "kev_snapshot": "2026.11.13",
           "level": "symbol",
           "modified": "2026-06-02T21:39:47Z",
           "module": "stdlib",
@@ -1943,15 +2047,15 @@
           ],
           "epss": {
             "cve": "CVE-2026-42505",
-            "percentile": 0.32464,
+            "percentile": 0.32758,
             "score": 0.00382
           },
-          "epss_date": "2026-11-07T12:00:22Z",
+          "epss_date": "2026-11-15T12:03:04Z",
           "fixed_version": "v1.25.12",
           "id": "GO-2026-5856",
           "kev": null,
           "kev_cves": [],
-          "kev_snapshot": "2026.11.06",
+          "kev_snapshot": "2026.11.13",
           "level": "symbol",
           "modified": "2026-07-07T21:34:47Z",
           "module": "stdlib",
@@ -1965,15 +2069,15 @@
           ],
           "epss": {
             "cve": "CVE-2026-33818",
-            "percentile": 0.47308,
+            "percentile": 0.47637,
             "score": 0.00568
           },
-          "epss_date": "2026-11-07T12:00:22Z",
+          "epss_date": "2026-11-15T12:03:04Z",
           "fixed_version": "v1.25.13",
           "id": "GO-2026-5972",
           "kev": null,
           "kev_cves": [],
-          "kev_snapshot": "2026.11.06",
+          "kev_snapshot": "2026.11.13",
           "level": "symbol",
           "modified": "2026-08-13T21:43:54Z",
           "module": "stdlib",
@@ -1987,15 +2091,15 @@
           ],
           "epss": {
             "cve": "CVE-2026-56859",
-            "percentile": 0.47307,
+            "percentile": 0.47637,
             "score": 0.00568
           },
-          "epss_date": "2026-11-07T12:00:22Z",
+          "epss_date": "2026-11-15T12:03:04Z",
           "fixed_version": "v1.25.13",
           "id": "GO-2026-6088",
           "kev": null,
           "kev_cves": [],
-          "kev_snapshot": "2026.11.06",
+          "kev_snapshot": "2026.11.13",
           "level": "symbol",
           "modified": "2026-08-13T21:43:54Z",
           "module": "stdlib",
@@ -2009,15 +2113,15 @@
           ],
           "epss": {
             "cve": "CVE-2026-56853",
-            "percentile": 0.47308,
+            "percentile": 0.47638,
             "score": 0.00568
           },
-          "epss_date": "2026-11-07T12:00:22Z",
+          "epss_date": "2026-11-15T12:03:04Z",
           "fixed_version": "v1.25.13",
           "id": "GO-2026-6089",
           "kev": null,
           "kev_cves": [],
-          "kev_snapshot": "2026.11.06",
+          "kev_snapshot": "2026.11.13",
           "level": "symbol",
           "modified": "2026-08-13T21:43:54Z",
           "module": "stdlib",
@@ -2031,15 +2135,15 @@
           ],
           "epss": {
             "cve": "CVE-2026-56862",
-            "percentile": 0.47307,
+            "percentile": 0.47637,
             "score": 0.00568
           },
-          "epss_date": "2026-11-07T12:00:22Z",
+          "epss_date": "2026-11-15T12:03:04Z",
           "fixed_version": "v1.25.13",
           "id": "GO-2026-6090",
           "kev": null,
           "kev_cves": [],
-          "kev_snapshot": "2026.11.06",
+          "kev_snapshot": "2026.11.13",
           "level": "symbol",
           "modified": "2026-08-13T21:43:54Z",
           "module": "stdlib",
@@ -2053,15 +2157,15 @@
           ],
           "epss": {
             "cve": "CVE-2026-56858",
-            "percentile": 0.23952,
+            "percentile": 0.24121,
             "score": 0.0031
           },
-          "epss_date": "2026-11-07T12:00:22Z",
+          "epss_date": "2026-11-15T12:03:04Z",
           "fixed_version": "v1.25.13",
           "id": "GO-2026-6091",
           "kev": null,
           "kev_cves": [],
-          "kev_snapshot": "2026.11.06",
+          "kev_snapshot": "2026.11.13",
           "level": "symbol",
           "modified": "2026-08-13T21:43:54Z",
           "module": "stdlib",
@@ -2075,15 +2179,15 @@
           ],
           "epss": {
             "cve": "CVE-2026-56860",
-            "percentile": 0.46264,
+            "percentile": 0.46595,
             "score": 0.0055
           },
-          "epss_date": "2026-11-07T12:00:22Z",
+          "epss_date": "2026-11-15T12:03:04Z",
           "fixed_version": "v1.25.13",
           "id": "GO-2026-6218",
           "kev": null,
           "kev_cves": [],
-          "kev_snapshot": "2026.11.06",
+          "kev_snapshot": "2026.11.13",
           "level": "symbol",
           "modified": "2026-08-13T21:43:54Z",
           "module": "stdlib",
@@ -2097,15 +2201,15 @@
           ],
           "epss": {
             "cve": "CVE-2026-94448",
-            "percentile": 0.21554,
+            "percentile": 0.21688,
             "score": 0.00289
           },
-          "epss_date": "2026-11-07T12:00:22Z",
+          "epss_date": "2026-11-15T12:03:04Z",
           "fixed_version": "v1.26.9",
           "id": "GO-2026-6599",
           "kev": null,
           "kev_cves": [],
-          "kev_snapshot": "2026.11.06",
+          "kev_snapshot": "2026.11.13",
           "level": "symbol",
           "modified": "2026-10-08T22:31:09Z",
           "module": "stdlib",
@@ -2119,15 +2223,15 @@
           ],
           "epss": {
             "cve": "CVE-2026-97030",
-            "percentile": 0.21554,
+            "percentile": 0.21688,
             "score": 0.00289
           },
-          "epss_date": "2026-11-07T12:00:22Z",
+          "epss_date": "2026-11-15T12:03:04Z",
           "fixed_version": "v1.26.9",
           "id": "GO-2026-6600",
           "kev": null,
           "kev_cves": [],
-          "kev_snapshot": "2026.11.06",
+          "kev_snapshot": "2026.11.13",
           "level": "symbol",
           "modified": "2026-10-08T22:31:09Z",
           "module": "stdlib",
@@ -2141,15 +2245,15 @@
           ],
           "epss": {
             "cve": "CVE-2026-78659",
-            "percentile": 0.58917,
+            "percentile": 0.59241,
             "score": 0.00866
           },
-          "epss_date": "2026-11-07T12:00:22Z",
+          "epss_date": "2026-11-15T12:03:04Z",
           "fixed_version": "v1.26.9",
           "id": "GO-2026-6603",
           "kev": null,
           "kev_cves": [],
-          "kev_snapshot": "2026.11.06",
+          "kev_snapshot": "2026.11.13",
           "level": "symbol",
           "modified": "2026-10-08T22:31:09Z",
           "module": "stdlib",
@@ -2163,15 +2267,15 @@
           ],
           "epss": {
             "cve": "CVE-2026-56866",
-            "percentile": 0.49136,
+            "percentile": 0.49473,
             "score": 0.00604
           },
-          "epss_date": "2026-11-07T12:00:22Z",
+          "epss_date": "2026-11-15T12:03:04Z",
           "fixed_version": "v1.26.9",
           "id": "GO-2026-6605",
           "kev": null,
           "kev_cves": [],
-          "kev_snapshot": "2026.11.06",
+          "kev_snapshot": "2026.11.13",
           "level": "symbol",
           "modified": "2026-10-08T22:31:09Z",
           "module": "stdlib",
@@ -2185,15 +2289,15 @@
           ],
           "epss": {
             "cve": "CVE-2026-97031",
-            "percentile": 0.53998,
+            "percentile": 0.54314,
             "score": 0.00716
           },
-          "epss_date": "2026-11-07T12:00:22Z",
+          "epss_date": "2026-11-15T12:03:04Z",
           "fixed_version": "v1.26.9",
           "id": "GO-2026-6607",
           "kev": null,
           "kev_cves": [],
-          "kev_snapshot": "2026.11.06",
+          "kev_snapshot": "2026.11.13",
           "level": "symbol",
           "modified": "2026-10-08T22:31:09Z",
           "module": "stdlib",
@@ -2207,15 +2311,15 @@
           ],
           "epss": {
             "cve": "CVE-2026-94440",
-            "percentile": 0.53601,
+            "percentile": 0.5392,
             "score": 0.00706
           },
-          "epss_date": "2026-11-07T12:00:22Z",
+          "epss_date": "2026-11-15T12:03:04Z",
           "fixed_version": "v1.26.9",
           "id": "GO-2026-6608",
           "kev": null,
           "kev_cves": [],
-          "kev_snapshot": "2026.11.06",
+          "kev_snapshot": "2026.11.13",
           "level": "symbol",
           "modified": "2026-10-08T22:31:09Z",
           "module": "stdlib",
@@ -2229,15 +2333,15 @@
           ],
           "epss": {
             "cve": "CVE-2026-78667",
-            "percentile": 0.51957,
+            "percentile": 0.52293,
             "score": 0.00663
           },
-          "epss_date": "2026-11-07T12:00:22Z",
+          "epss_date": "2026-11-15T12:03:04Z",
           "fixed_version": "v1.26.9",
           "id": "GO-2026-6609",
           "kev": null,
           "kev_cves": [],
-          "kev_snapshot": "2026.11.06",
+          "kev_snapshot": "2026.11.13",
           "level": "symbol",
           "modified": "2026-10-08T22:31:09Z",
           "module": "stdlib",
@@ -2251,15 +2355,15 @@
           ],
           "epss": {
             "cve": "CVE-2026-78660",
-            "percentile": 0.45813,
+            "percentile": 0.46146,
             "score": 0.00542
           },
-          "epss_date": "2026-11-07T12:00:22Z",
+          "epss_date": "2026-11-15T12:03:04Z",
           "fixed_version": "v1.26.9",
           "id": "GO-2026-6610",
           "kev": null,
           "kev_cves": [],
-          "kev_snapshot": "2026.11.06",
+          "kev_snapshot": "2026.11.13",
           "level": "symbol",
           "modified": "2026-10-08T22:31:09Z",
           "module": "stdlib",
@@ -2273,15 +2377,15 @@
           ],
           "epss": {
             "cve": "CVE-2026-78669",
-            "percentile": 0.58324,
+            "percentile": 0.58655,
             "score": 0.00847
           },
-          "epss_date": "2026-11-07T12:00:22Z",
+          "epss_date": "2026-11-15T12:03:04Z",
           "fixed_version": "v1.26.9",
           "id": "GO-2026-6611",
           "kev": null,
           "kev_cves": [],
-          "kev_snapshot": "2026.11.06",
+          "kev_snapshot": "2026.11.13",
           "level": "symbol",
           "modified": "2026-10-08T22:31:09Z",
           "module": "stdlib",
@@ -2295,15 +2399,15 @@
           ],
           "epss": {
             "cve": "CVE-2026-78663",
-            "percentile": 0.58678,
+            "percentile": 0.59011,
             "score": 0.00858
           },
-          "epss_date": "2026-11-07T12:00:22Z",
+          "epss_date": "2026-11-15T12:03:04Z",
           "fixed_version": "v1.26.9",
           "id": "GO-2026-6612",
           "kev": null,
           "kev_cves": [],
-          "kev_snapshot": "2026.11.06",
+          "kev_snapshot": "2026.11.13",
           "level": "symbol",
           "modified": "2026-10-08T22:31:09Z",
           "module": "stdlib",
@@ -2317,15 +2421,15 @@
           ],
           "epss": {
             "cve": "CVE-2026-94439",
-            "percentile": 0.44963,
+            "percentile": 0.45292,
             "score": 0.00528
           },
-          "epss_date": "2026-11-07T12:00:22Z",
+          "epss_date": "2026-11-15T12:03:04Z",
           "fixed_version": "v1.26.9",
           "id": "GO-2026-6613",
           "kev": null,
           "kev_cves": [],
-          "kev_snapshot": "2026.11.06",
+          "kev_snapshot": "2026.11.13",
           "level": "symbol",
           "modified": "2026-10-08T22:31:09Z",
           "module": "stdlib",
@@ -2339,15 +2443,15 @@
           ],
           "epss": {
             "cve": "CVE-2026-97032",
-            "percentile": 0.52481,
+            "percentile": 0.5282,
             "score": 0.00676
           },
-          "epss_date": "2026-11-07T12:00:22Z",
+          "epss_date": "2026-11-15T12:03:04Z",
           "fixed_version": "v1.26.9",
           "id": "GO-2026-6617",
           "kev": null,
           "kev_cves": [],
-          "kev_snapshot": "2026.11.06",
+          "kev_snapshot": "2026.11.13",
           "level": "symbol",
           "modified": "2026-10-08T22:31:09Z",
           "module": "stdlib",
@@ -2361,15 +2465,15 @@
           ],
           "epss": {
             "cve": "CVE-2026-111943",
-            "percentile": 0.34015,
+            "percentile": 0.34304,
             "score": 0.00396
           },
-          "epss_date": "2026-11-07T12:00:22Z",
+          "epss_date": "2026-11-15T12:03:04Z",
           "fixed_version": "v1.26.10",
           "id": "GO-2026-6809",
           "kev": null,
           "kev_cves": [],
-          "kev_snapshot": "2026.11.06",
+          "kev_snapshot": "2026.11.13",
           "level": "symbol",
           "modified": "2026-10-21T00:27:29Z",
           "module": "stdlib",
@@ -2379,20 +2483,42 @@
         },
         {
           "aliases": [
+            "CVE-2026-97054"
+          ],
+          "epss": {
+            "cve": "CVE-2026-97054",
+            "percentile": 0.0655,
+            "score": 0.00171
+          },
+          "epss_date": "2026-11-15T12:03:04Z",
+          "fixed_version": "v1.26.11",
+          "id": "GO-2026-6859",
+          "kev": null,
+          "kev_cves": [],
+          "kev_snapshot": "2026.11.13",
+          "level": "symbol",
+          "modified": "2026-11-11T02:51:11Z",
+          "module": "stdlib",
+          "published": "2026-11-11T02:51:11Z",
+          "summary": "HTTP/1 server crash due to MaxBytesReader header race in net/http",
+          "version": "v1.24.10"
+        },
+        {
+          "aliases": [
             "CVE-2025-15558",
             "GHSA-p436-gjf2-799p"
           ],
           "epss": {
             "cve": "CVE-2025-15558",
-            "percentile": 0.46214,
+            "percentile": 0.46545,
             "score": 0.00549
           },
-          "epss_date": "2026-11-07T12:00:22Z",
+          "epss_date": "2026-11-15T12:03:04Z",
           "fixed_version": "v29.2.0+incompatible",
           "id": "GO-2026-4610",
           "kev": null,
           "kev_cves": [],
-          "kev_snapshot": "2026.11.06",
+          "kev_snapshot": "2026.11.13",
           "level": "symbol",
           "modified": "2026-03-10T18:28:25Z",
           "module": "github.com/docker/cli",
@@ -2407,15 +2533,15 @@
           ],
           "epss": {
             "cve": "CVE-2026-85747",
-            "percentile": 0.12318,
+            "percentile": 0.12338,
             "score": 0.00218
           },
-          "epss_date": "2026-11-07T12:00:22Z",
+          "epss_date": "2026-11-15T12:03:04Z",
           "fixed_version": "",
           "id": "GO-2026-6778",
           "kev": null,
           "kev_cves": [],
-          "kev_snapshot": "2026.11.06",
+          "kev_snapshot": "2026.11.13",
           "level": "symbol",
           "modified": "2026-11-05T22:54:00Z",
           "module": "github.com/docker/distribution",
@@ -2430,15 +2556,15 @@
           ],
           "epss": {
             "cve": "CVE-2026-34986",
-            "percentile": 0.51935,
+            "percentile": 0.52268,
             "score": 0.00663
           },
-          "epss_date": "2026-11-07T12:00:22Z",
+          "epss_date": "2026-11-15T12:03:04Z",
           "fixed_version": "v3.0.5",
           "id": "GO-2026-4945",
           "kev": null,
           "kev_cves": [],
-          "kev_snapshot": "2026.11.06",
+          "kev_snapshot": "2026.11.13",
           "level": "symbol",
           "modified": "2026-05-26T22:49:18Z",
           "module": "github.com/go-jose/go-jose/v3",
@@ -2453,15 +2579,15 @@
           ],
           "epss": {
             "cve": "CVE-2026-33815",
-            "percentile": 0.5038,
+            "percentile": 0.50705,
             "score": 0.00629
           },
-          "epss_date": "2026-11-07T12:00:22Z",
+          "epss_date": "2026-11-15T12:03:04Z",
           "fixed_version": "v5.9.0",
           "id": "GO-2026-4771",
           "kev": null,
           "kev_cves": [],
-          "kev_snapshot": "2026.11.06",
+          "kev_snapshot": "2026.11.13",
           "level": "symbol",
           "modified": "2026-04-17T14:29:55Z",
           "module": "github.com/jackc/pgx/v5",
@@ -2476,15 +2602,15 @@
           ],
           "epss": {
             "cve": "CVE-2026-33816",
-            "percentile": 0.4811,
+            "percentile": 0.48427,
             "score": 0.00583
           },
-          "epss_date": "2026-11-07T12:00:22Z",
+          "epss_date": "2026-11-15T12:03:04Z",
           "fixed_version": "v5.9.0",
           "id": "GO-2026-4772",
           "kev": null,
           "kev_cves": [],
-          "kev_snapshot": "2026.11.06",
+          "kev_snapshot": "2026.11.13",
           "level": "symbol",
           "modified": "2026-04-17T19:01:28Z",
           "module": "github.com/jackc/pgx/v5",
@@ -2499,15 +2625,15 @@
           ],
           "epss": {
             "cve": "CVE-2026-41889",
-            "percentile": 0.29494,
+            "percentile": 0.29754,
             "score": 0.00356
           },
-          "epss_date": "2026-11-07T12:00:22Z",
+          "epss_date": "2026-11-15T12:03:04Z",
           "fixed_version": "v5.9.2",
           "id": "GO-2026-5004",
           "kev": null,
           "kev_cves": [],
-          "kev_snapshot": "2026.11.06",
+          "kev_snapshot": "2026.11.13",
           "level": "symbol",
           "modified": "2026-06-22T18:40:49Z",
           "module": "github.com/jackc/pgx/v5",
@@ -2520,12 +2646,12 @@
             "GHSA-259r-337f-4rfw"
           ],
           "epss": null,
-          "epss_date": "2026-11-07T12:00:22Z",
+          "epss_date": "2026-11-15T12:03:04Z",
           "fixed_version": "v1.18.7",
           "id": "GO-2026-5841",
           "kev": null,
           "kev_cves": [],
-          "kev_snapshot": "2026.11.06",
+          "kev_snapshot": "2026.11.13",
           "level": "symbol",
           "modified": "2026-07-27T16:16:22Z",
           "module": "github.com/klauspost/compress",
@@ -2540,15 +2666,15 @@
           ],
           "epss": {
             "cve": "CVE-2026-116591",
-            "percentile": 0.26636,
+            "percentile": 0.26849,
             "score": 0.00333
           },
-          "epss_date": "2026-11-07T12:00:22Z",
+          "epss_date": "2026-11-15T12:03:04Z",
           "fixed_version": "v1.20.2",
           "id": "GO-2026-6865",
           "kev": null,
           "kev_cves": [],
-          "kev_snapshot": "2026.11.06",
+          "kev_snapshot": "2026.11.13",
           "level": "symbol",
           "modified": "2026-11-05T22:54:32Z",
           "module": "github.com/klauspost/compress",
@@ -2563,15 +2689,15 @@
           ],
           "epss": {
             "cve": "CVE-2026-29181",
-            "percentile": 0.57519,
+            "percentile": 0.57851,
             "score": 0.00821
           },
-          "epss_date": "2026-11-07T12:00:22Z",
+          "epss_date": "2026-11-15T12:03:04Z",
           "fixed_version": "v1.41.0",
           "id": "GO-2026-5506",
           "kev": null,
           "kev_cves": [],
-          "kev_snapshot": "2026.11.06",
+          "kev_snapshot": "2026.11.13",
           "level": "symbol",
           "modified": "2026-07-24T18:35:55Z",
           "module": "go.opentelemetry.io/otel",
@@ -2586,15 +2712,15 @@
           ],
           "epss": {
             "cve": "CVE-2026-39833",
-            "percentile": 0.40811,
+            "percentile": 0.41119,
             "score": 0.00469
           },
-          "epss_date": "2026-11-07T12:00:22Z",
+          "epss_date": "2026-11-15T12:03:04Z",
           "fixed_version": "v0.52.0",
           "id": "GO-2026-5005",
           "kev": null,
           "kev_cves": [],
-          "kev_snapshot": "2026.11.06",
+          "kev_snapshot": "2026.11.13",
           "level": "symbol",
           "modified": "2026-08-11T21:06:47Z",
           "module": "golang.org/x/crypto",
@@ -2609,15 +2735,15 @@
           ],
           "epss": {
             "cve": "CVE-2026-39832",
-            "percentile": 0.52766,
+            "percentile": 0.53095,
             "score": 0.00683
           },
-          "epss_date": "2026-11-07T12:00:22Z",
+          "epss_date": "2026-11-15T12:03:04Z",
           "fixed_version": "v0.52.0",
           "id": "GO-2026-5006",
           "kev": null,
           "kev_cves": [],
-          "kev_snapshot": "2026.11.06",
+          "kev_snapshot": "2026.11.13",
           "level": "symbol",
           "modified": "2026-08-11T21:06:47Z",
           "module": "golang.org/x/crypto",
@@ -2631,15 +2757,15 @@
           ],
           "epss": {
             "cve": "CVE-2026-46597",
-            "percentile": 0.41118,
+            "percentile": 0.41431,
             "score": 0.00473
           },
-          "epss_date": "2026-11-07T12:00:22Z",
+          "epss_date": "2026-11-15T12:03:04Z",
           "fixed_version": "v0.52.0",
           "id": "GO-2026-5013",
           "kev": null,
           "kev_cves": [],
-          "kev_snapshot": "2026.11.06",
+          "kev_snapshot": "2026.11.13",
           "level": "symbol",
           "modified": "2026-05-22T02:08:34Z",
           "module": "golang.org/x/crypto",
@@ -2653,15 +2779,15 @@
           ],
           "epss": {
             "cve": "CVE-2026-39828",
-            "percentile": 0.30964,
+            "percentile": 0.31231,
             "score": 0.00369
           },
-          "epss_date": "2026-11-07T12:00:22Z",
+          "epss_date": "2026-11-15T12:03:04Z",
           "fixed_version": "v0.52.0",
           "id": "GO-2026-5014",
           "kev": null,
           "kev_cves": [],
-          "kev_snapshot": "2026.11.06",
+          "kev_snapshot": "2026.11.13",
           "level": "symbol",
           "modified": "2026-05-22T02:08:34Z",
           "module": "golang.org/x/crypto",
@@ -2675,15 +2801,15 @@
           ],
           "epss": {
             "cve": "CVE-2026-39835",
-            "percentile": 0.43321,
+            "percentile": 0.43644,
             "score": 0.00504
           },
-          "epss_date": "2026-11-07T12:00:22Z",
+          "epss_date": "2026-11-15T12:03:04Z",
           "fixed_version": "v0.52.0",
           "id": "GO-2026-5015",
           "kev": null,
           "kev_cves": [],
-          "kev_snapshot": "2026.11.06",
+          "kev_snapshot": "2026.11.13",
           "level": "symbol",
           "modified": "2026-05-22T02:08:34Z",
           "module": "golang.org/x/crypto",
@@ -2697,15 +2823,15 @@
           ],
           "epss": {
             "cve": "CVE-2026-39827",
-            "percentile": 0.2053,
+            "percentile": 0.20665,
             "score": 0.00279
           },
-          "epss_date": "2026-11-07T12:00:22Z",
+          "epss_date": "2026-11-15T12:03:04Z",
           "fixed_version": "v0.52.0",
           "id": "GO-2026-5016",
           "kev": null,
           "kev_cves": [],
-          "kev_snapshot": "2026.11.06",
+          "kev_snapshot": "2026.11.13",
           "level": "symbol",
           "modified": "2026-05-22T02:08:34Z",
           "module": "golang.org/x/crypto",
@@ -2719,15 +2845,15 @@
           ],
           "epss": {
             "cve": "CVE-2026-39830",
-            "percentile": 0.52763,
+            "percentile": 0.53092,
             "score": 0.00683
           },
-          "epss_date": "2026-11-07T12:00:22Z",
+          "epss_date": "2026-11-15T12:03:04Z",
           "fixed_version": "v0.52.0",
           "id": "GO-2026-5017",
           "kev": null,
           "kev_cves": [],
-          "kev_snapshot": "2026.11.06",
+          "kev_snapshot": "2026.11.13",
           "level": "symbol",
           "modified": "2026-05-22T02:08:34Z",
           "module": "golang.org/x/crypto",
@@ -2741,15 +2867,15 @@
           ],
           "epss": {
             "cve": "CVE-2026-39829",
-            "percentile": 0.40658,
+            "percentile": 0.40961,
             "score": 0.00467
           },
-          "epss_date": "2026-11-07T12:00:22Z",
+          "epss_date": "2026-11-15T12:03:04Z",
           "fixed_version": "v0.52.0",
           "id": "GO-2026-5018",
           "kev": null,
           "kev_cves": [],
-          "kev_snapshot": "2026.11.06",
+          "kev_snapshot": "2026.11.13",
           "level": "symbol",
           "modified": "2026-05-22T02:08:34Z",
           "module": "golang.org/x/crypto",
@@ -2763,15 +2889,15 @@
           ],
           "epss": {
             "cve": "CVE-2026-39831",
-            "percentile": 0.41547,
+            "percentile": 0.41863,
             "score": 0.00478
           },
-          "epss_date": "2026-11-07T12:00:22Z",
+          "epss_date": "2026-11-15T12:03:04Z",
           "fixed_version": "v0.52.0",
           "id": "GO-2026-5019",
           "kev": null,
           "kev_cves": [],
-          "kev_snapshot": "2026.11.06",
+          "kev_snapshot": "2026.11.13",
           "level": "symbol",
           "modified": "2026-05-22T02:08:34Z",
           "module": "golang.org/x/crypto",
@@ -2785,15 +2911,15 @@
           ],
           "epss": {
             "cve": "CVE-2026-39834",
-            "percentile": 0.48823,
+            "percentile": 0.49152,
             "score": 0.00597
           },
-          "epss_date": "2026-11-07T12:00:22Z",
+          "epss_date": "2026-11-15T12:03:04Z",
           "fixed_version": "v0.52.0",
           "id": "GO-2026-5020",
           "kev": null,
           "kev_cves": [],
-          "kev_snapshot": "2026.11.06",
+          "kev_snapshot": "2026.11.13",
           "level": "symbol",
           "modified": "2026-05-22T02:08:34Z",
           "module": "golang.org/x/crypto",
@@ -2808,15 +2934,15 @@
           ],
           "epss": {
             "cve": "CVE-2026-42508",
-            "percentile": 0.94128,
+            "percentile": 0.94186,
             "score": 0.0691
           },
-          "epss_date": "2026-11-07T12:00:22Z",
+          "epss_date": "2026-11-15T12:03:04Z",
           "fixed_version": "v0.52.0",
           "id": "GO-2026-5021",
           "kev": null,
           "kev_cves": [],
-          "kev_snapshot": "2026.11.06",
+          "kev_snapshot": "2026.11.13",
           "level": "symbol",
           "modified": "2026-08-14T16:22:54Z",
           "module": "golang.org/x/crypto",
@@ -2830,15 +2956,15 @@
           ],
           "epss": {
             "cve": "CVE-2026-46595",
-            "percentile": 0.46631,
+            "percentile": 0.46961,
             "score": 0.00556
           },
-          "epss_date": "2026-11-07T12:00:22Z",
+          "epss_date": "2026-11-15T12:03:04Z",
           "fixed_version": "v0.52.0",
           "id": "GO-2026-5023",
           "kev": null,
           "kev_cves": [],
-          "kev_snapshot": "2026.11.06",
+          "kev_snapshot": "2026.11.13",
           "level": "symbol",
           "modified": "2026-05-22T02:08:34Z",
           "module": "golang.org/x/crypto",
@@ -2852,15 +2978,15 @@
           ],
           "epss": {
             "cve": "CVE-2026-46598",
-            "percentile": 0.35748,
+            "percentile": 0.36034,
             "score": 0.00412
           },
-          "epss_date": "2026-11-07T12:00:22Z",
+          "epss_date": "2026-11-15T12:03:04Z",
           "fixed_version": "v0.52.0",
           "id": "GO-2026-5033",
           "kev": null,
           "kev_cves": [],
-          "kev_snapshot": "2026.11.06",
+          "kev_snapshot": "2026.11.13",
           "level": "symbol",
           "modified": "2026-05-22T02:08:34Z",
           "module": "golang.org/x/crypto",
@@ -2871,12 +2997,12 @@
         {
           "aliases": [],
           "epss": null,
-          "epss_date": "2026-11-07T12:00:22Z",
+          "epss_date": "2026-11-15T12:03:04Z",
           "fixed_version": "v0.58.1-0.20261009181718-2f1f834330b2",
           "id": "GO-2026-5932",
           "kev": null,
           "kev_cves": [],
-          "kev_snapshot": "2026.11.06",
+          "kev_snapshot": "2026.11.13",
           "level": "symbol",
           "modified": "2026-11-02T22:01:43Z",
           "module": "golang.org/x/crypto",
@@ -2890,15 +3016,15 @@
           ],
           "epss": {
             "cve": "CVE-2026-56854",
-            "percentile": 0.3825,
+            "percentile": 0.38542,
             "score": 0.00437
           },
-          "epss_date": "2026-11-07T12:00:22Z",
+          "epss_date": "2026-11-15T12:03:04Z",
           "fixed_version": "v0.55.0",
           "id": "GO-2026-6303",
           "kev": null,
           "kev_cves": [],
-          "kev_snapshot": "2026.11.06",
+          "kev_snapshot": "2026.11.13",
           "level": "symbol",
           "modified": "2026-08-28T14:47:45Z",
           "module": "golang.org/x/crypto",
@@ -2912,15 +3038,15 @@
           ],
           "epss": {
             "cve": "CVE-2026-78662",
-            "percentile": 0.37599,
+            "percentile": 0.3789,
             "score": 0.00431
           },
-          "epss_date": "2026-11-07T12:00:22Z",
+          "epss_date": "2026-11-15T12:03:04Z",
           "fixed_version": "v0.56.0",
           "id": "GO-2026-6354",
           "kev": null,
           "kev_cves": [],
-          "kev_snapshot": "2026.11.06",
+          "kev_snapshot": "2026.11.13",
           "level": "symbol",
           "modified": "2026-09-02T19:12:04Z",
           "module": "golang.org/x/crypto",
@@ -2934,15 +3060,15 @@
           ],
           "epss": {
             "cve": "CVE-2026-56855",
-            "percentile": 0.43103,
+            "percentile": 0.43423,
             "score": 0.005
           },
-          "epss_date": "2026-11-07T12:00:22Z",
+          "epss_date": "2026-11-15T12:03:04Z",
           "fixed_version": "v0.56.0",
           "id": "GO-2026-6355",
           "kev": null,
           "kev_cves": [],
-          "kev_snapshot": "2026.11.06",
+          "kev_snapshot": "2026.11.13",
           "level": "symbol",
           "modified": "2026-09-02T19:12:04Z",
           "module": "golang.org/x/crypto",
@@ -2956,15 +3082,15 @@
           ],
           "epss": {
             "cve": "CVE-2026-33814",
-            "percentile": 0.58101,
+            "percentile": 0.58436,
             "score": 0.0084
           },
-          "epss_date": "2026-11-07T12:00:22Z",
+          "epss_date": "2026-11-15T12:03:04Z",
           "fixed_version": "v0.53.0",
           "id": "GO-2026-4918",
           "kev": null,
           "kev_cves": [],
-          "kev_snapshot": "2026.11.06",
+          "kev_snapshot": "2026.11.13",
           "level": "symbol",
           "modified": "2026-05-07T19:21:40Z",
           "module": "golang.org/x/net",
@@ -2978,15 +3104,15 @@
           ],
           "epss": {
             "cve": "CVE-2026-42506",
-            "percentile": 0.14594,
+            "percentile": 0.14629,
             "score": 0.00235
           },
-          "epss_date": "2026-11-07T12:00:22Z",
+          "epss_date": "2026-11-15T12:03:04Z",
           "fixed_version": "v0.55.0",
           "id": "GO-2026-5025",
           "kev": null,
           "kev_cves": [],
-          "kev_snapshot": "2026.11.06",
+          "kev_snapshot": "2026.11.13",
           "level": "symbol",
           "modified": "2026-05-22T02:46:43Z",
           "module": "golang.org/x/net",
@@ -3000,15 +3126,15 @@
           ],
           "epss": {
             "cve": "CVE-2026-39821",
-            "percentile": 0.79038,
+            "percentile": 0.79261,
             "score": 0.01834
           },
-          "epss_date": "2026-11-07T12:00:22Z",
+          "epss_date": "2026-11-15T12:03:04Z",
           "fixed_version": "v0.55.0",
           "id": "GO-2026-5026",
           "kev": null,
           "kev_cves": [],
-          "kev_snapshot": "2026.11.06",
+          "kev_snapshot": "2026.11.13",
           "level": "symbol",
           "modified": "2026-08-21T20:38:00Z",
           "module": "golang.org/x/net",
@@ -3022,15 +3148,15 @@
           ],
           "epss": {
             "cve": "CVE-2026-42502",
-            "percentile": 0.13021,
+            "percentile": 0.13047,
             "score": 0.00223
           },
-          "epss_date": "2026-11-07T12:00:22Z",
+          "epss_date": "2026-11-15T12:03:04Z",
           "fixed_version": "v0.55.0",
           "id": "GO-2026-5027",
           "kev": null,
           "kev_cves": [],
-          "kev_snapshot": "2026.11.06",
+          "kev_snapshot": "2026.11.13",
           "level": "symbol",
           "modified": "2026-05-22T02:46:43Z",
           "module": "golang.org/x/net",
@@ -3044,15 +3170,15 @@
           ],
           "epss": {
             "cve": "CVE-2026-25680",
-            "percentile": 0.25896,
+            "percentile": 0.26097,
             "score": 0.00326
           },
-          "epss_date": "2026-11-07T12:00:22Z",
+          "epss_date": "2026-11-15T12:03:04Z",
           "fixed_version": "v0.55.0",
           "id": "GO-2026-5028",
           "kev": null,
           "kev_cves": [],
-          "kev_snapshot": "2026.11.06",
+          "kev_snapshot": "2026.11.13",
           "level": "symbol",
           "modified": "2026-05-22T02:46:43Z",
           "module": "golang.org/x/net",
@@ -3066,15 +3192,15 @@
           ],
           "epss": {
             "cve": "CVE-2026-25681",
-            "percentile": 0.13021,
-            "score": 0.00223
+            "percentile": 0.1789,
+            "score": 0.0026
           },
-          "epss_date": "2026-11-07T12:00:22Z",
+          "epss_date": "2026-11-15T12:03:04Z",
           "fixed_version": "v0.55.0",
           "id": "GO-2026-5029",
           "kev": null,
           "kev_cves": [],
-          "kev_snapshot": "2026.11.06",
+          "kev_snapshot": "2026.11.13",
           "level": "symbol",
           "modified": "2026-05-22T02:46:43Z",
           "module": "golang.org/x/net",
@@ -3088,15 +3214,15 @@
           ],
           "epss": {
             "cve": "CVE-2026-27136",
-            "percentile": 0.1302,
-            "score": 0.00223
+            "percentile": 0.1723,
+            "score": 0.00255
           },
-          "epss_date": "2026-11-07T12:00:22Z",
+          "epss_date": "2026-11-15T12:03:04Z",
           "fixed_version": "v0.55.0",
           "id": "GO-2026-5030",
           "kev": null,
           "kev_cves": [],
-          "kev_snapshot": "2026.11.06",
+          "kev_snapshot": "2026.11.13",
           "level": "symbol",
           "modified": "2026-05-22T02:46:43Z",
           "module": "golang.org/x/net",
@@ -3110,15 +3236,15 @@
           ],
           "epss": {
             "cve": "CVE-2026-46600",
-            "percentile": 0.46216,
+            "percentile": 0.46548,
             "score": 0.00549
           },
-          "epss_date": "2026-11-07T12:00:22Z",
+          "epss_date": "2026-11-15T12:03:04Z",
           "fixed_version": "v0.56.0",
           "id": "GO-2026-5942",
           "kev": null,
           "kev_cves": [],
-          "kev_snapshot": "2026.11.06",
+          "kev_snapshot": "2026.11.13",
           "level": "symbol",
           "modified": "2026-08-14T15:30:22Z",
           "module": "golang.org/x/net",
@@ -3132,15 +3258,15 @@
           ],
           "epss": {
             "cve": "CVE-2026-78659",
-            "percentile": 0.58917,
+            "percentile": 0.59241,
             "score": 0.00866
           },
-          "epss_date": "2026-11-07T12:00:22Z",
+          "epss_date": "2026-11-15T12:03:04Z",
           "fixed_version": "v0.60.0",
           "id": "GO-2026-6603",
           "kev": null,
           "kev_cves": [],
-          "kev_snapshot": "2026.11.06",
+          "kev_snapshot": "2026.11.13",
           "level": "symbol",
           "modified": "2026-10-08T22:31:09Z",
           "module": "golang.org/x/net",
@@ -3154,15 +3280,15 @@
           ],
           "epss": {
             "cve": "CVE-2026-78660",
-            "percentile": 0.45813,
+            "percentile": 0.46146,
             "score": 0.00542
           },
-          "epss_date": "2026-11-07T12:00:22Z",
+          "epss_date": "2026-11-15T12:03:04Z",
           "fixed_version": "v0.60.0",
           "id": "GO-2026-6610",
           "kev": null,
           "kev_cves": [],
-          "kev_snapshot": "2026.11.06",
+          "kev_snapshot": "2026.11.13",
           "level": "symbol",
           "modified": "2026-10-08T22:31:09Z",
           "module": "golang.org/x/net",
@@ -3176,15 +3302,15 @@
           ],
           "epss": {
             "cve": "CVE-2026-78669",
-            "percentile": 0.58324,
+            "percentile": 0.58655,
             "score": 0.00847
           },
-          "epss_date": "2026-11-07T12:00:22Z",
+          "epss_date": "2026-11-15T12:03:04Z",
           "fixed_version": "v0.60.0",
           "id": "GO-2026-6611",
           "kev": null,
           "kev_cves": [],
-          "kev_snapshot": "2026.11.06",
+          "kev_snapshot": "2026.11.13",
           "level": "symbol",
           "modified": "2026-10-08T22:31:09Z",
           "module": "golang.org/x/net",
@@ -3198,15 +3324,15 @@
           ],
           "epss": {
             "cve": "CVE-2026-78663",
-            "percentile": 0.58678,
+            "percentile": 0.59011,
             "score": 0.00858
           },
-          "epss_date": "2026-11-07T12:00:22Z",
+          "epss_date": "2026-11-15T12:03:04Z",
           "fixed_version": "v0.60.0",
           "id": "GO-2026-6612",
           "kev": null,
           "kev_cves": [],
-          "kev_snapshot": "2026.11.06",
+          "kev_snapshot": "2026.11.13",
           "level": "symbol",
           "modified": "2026-10-08T22:31:09Z",
           "module": "golang.org/x/net",
@@ -3220,15 +3346,15 @@
           ],
           "epss": {
             "cve": "CVE-2026-97032",
-            "percentile": 0.52481,
+            "percentile": 0.5282,
             "score": 0.00676
           },
-          "epss_date": "2026-11-07T12:00:22Z",
+          "epss_date": "2026-11-15T12:03:04Z",
           "fixed_version": "v0.60.0",
           "id": "GO-2026-6617",
           "kev": null,
           "kev_cves": [],
-          "kev_snapshot": "2026.11.06",
+          "kev_snapshot": "2026.11.13",
           "level": "symbol",
           "modified": "2026-10-08T22:31:09Z",
           "module": "golang.org/x/net",
@@ -3242,15 +3368,15 @@
           ],
           "epss": {
             "cve": "CVE-2026-78661",
-            "percentile": 0.35396,
+            "percentile": 0.35693,
             "score": 0.00409
           },
-          "epss_date": "2026-11-07T12:00:22Z",
+          "epss_date": "2026-11-15T12:03:04Z",
           "fixed_version": "v0.62.0",
           "id": "GO-2026-6860",
           "kev": null,
           "kev_cves": [],
-          "kev_snapshot": "2026.11.06",
+          "kev_snapshot": "2026.11.13",
           "level": "symbol",
           "modified": "2026-10-27T21:16:18Z",
           "module": "golang.org/x/net",
@@ -3264,15 +3390,15 @@
           ],
           "epss": {
             "cve": "CVE-2026-97045",
-            "percentile": 0.18952,
+            "percentile": 0.19018,
             "score": 0.00267
           },
-          "epss_date": "2026-11-07T12:00:22Z",
+          "epss_date": "2026-11-15T12:03:04Z",
           "fixed_version": "v0.62.0",
           "id": "GO-2026-6866",
           "kev": null,
           "kev_cves": [],
-          "kev_snapshot": "2026.11.06",
+          "kev_snapshot": "2026.11.13",
           "level": "symbol",
           "modified": "2026-10-27T21:16:18Z",
           "module": "golang.org/x/net",
@@ -3286,15 +3412,15 @@
           ],
           "epss": {
             "cve": "CVE-2026-56852",
-            "percentile": 0.41281,
+            "percentile": 0.41594,
             "score": 0.00475
           },
-          "epss_date": "2026-11-07T12:00:22Z",
+          "epss_date": "2026-11-15T12:03:04Z",
           "fixed_version": "v0.39.0",
           "id": "GO-2026-5970",
           "kev": null,
           "kev_cves": [],
-          "kev_snapshot": "2026.11.06",
+          "kev_snapshot": "2026.11.13",
           "level": "symbol",
           "modified": "2026-08-10T22:42:36Z",
           "module": "golang.org/x/text",
@@ -3308,15 +3434,15 @@
           ],
           "epss": {
             "cve": "CVE-2026-56851",
-            "percentile": 0.40535,
+            "percentile": 0.40842,
             "score": 0.00466
           },
-          "epss_date": "2026-11-07T12:00:22Z",
+          "epss_date": "2026-11-15T12:03:04Z",
           "fixed_version": "v0.41.0",
           "id": "GO-2026-6629",
           "kev": null,
           "kev_cves": [],
-          "kev_snapshot": "2026.11.06",
+          "kev_snapshot": "2026.11.13",
           "level": "symbol",
           "modified": "2026-10-07T14:09:43Z",
           "module": "golang.org/x/text",
@@ -3330,12 +3456,12 @@
             "GHSA-698x-9w2p-7vvp"
           ],
           "epss": null,
-          "epss_date": "2026-11-07T12:00:22Z",
+          "epss_date": "2026-11-15T12:03:04Z",
           "fixed_version": "",
           "id": "GO-2026-5939",
           "kev": null,
           "kev_cves": [],
-          "kev_snapshot": "2026.11.06",
+          "kev_snapshot": "2026.11.13",
           "level": "module",
           "modified": "2026-07-17T19:42:05Z",
           "module": "github.com/quay/claircore",
@@ -3348,6 +3474,7 @@
       "main_module": "github.com/quay/clair/v4"
     },
     "id": "quay__clair",
+    "local_packages": [],
     "lock_aliases": {},
     "manifests": [
       ".github/actions/documentation/action.yml",
@@ -3372,15 +3499,18 @@
     ],
     "name": "clair",
     "osv": {
-      "advisories": 75,
+      "advisories": 77,
       "available": true,
-      "confirmed": 75,
+      "confirmed": 77,
+      "coverage": {
+        "confirmed": 77
+      },
       "osv_only": [],
       "warning": null
     },
     "osv_api": {
       "available": true,
-      "queried_at": "2026-11-09T01:36:33+00:00",
+      "queried_at": "2026-11-15T23:33:58+00:00",
       "states": {}
     },
     "ref": "v4.9.0",
@@ -3402,19 +3532,19 @@
     },
     "released_at": "2025-12-10T18:34:49Z",
     "repository": "quay/clair",
-    "sbom_sha256": "f2d60607f8f811efbad8bdd296984eb8a41e95fb317356d9e31b4812b8167b0d",
+    "sbom_sha256": "bfb36b0930854fa2c926a5ce07d97ddfa26408fb147a5b2a141855af027e4c0f",
     "sbomlyze_diff": {
       "added": 0,
       "baseline": {
         "attempt": "1",
-        "run_id": "41380955266"
+        "run_id": "42546359860"
       },
       "changed": 0,
       "contract": "sbomlyze-diff-0.7",
       "drift": {},
       "findings": [
         "0 version changes among 155 shared packages \u2014 no actual upgrades",
-        "Core system packages stable: golang (106), github (39), file (16) unchanged"
+        "Core system packages stable: golang (106), github (39) unchanged"
       ],
       "occurrences": {
         "added": [],
@@ -3436,7 +3566,7 @@
           "files_compared": 16,
           "files_unverified": 0,
           "owned_files_after": 0,
-          "unowned_files_after": 0
+          "unowned_files_after": 16
         },
         "files_added": [],
         "files_removed": [],
@@ -3450,11 +3580,11 @@
         "version_changes": [],
         "version_set_changes": []
       },
-      "previous_sbom_sha256": "4b86cd5b45dd1c1a9ef954a35d1bc0971072995d4e5337be4e4f65560d610f8f",
+      "previous_sbom_sha256": "f2d60607f8f811efbad8bdd296984eb8a41e95fb317356d9e31b4812b8167b0d",
       "removed": 0,
-      "sbom_sha256": "f2d60607f8f811efbad8bdd296984eb8a41e95fb317356d9e31b4812b8167b0d"
+      "sbom_sha256": "bfb36b0930854fa2c926a5ce07d97ddfa26408fb147a5b2a141855af027e4c0f"
     },
-    "scanned_at": "2026-11-08T05:54:44+00:00",
+    "scanned_at": "2026-11-15T23:33:50+00:00",
     "scorecard": {
       "checks": [
         {
@@ -3498,11 +3628,6 @@
           "score": 5
         },
         {
-          "name": "Maintained",
-          "reason": "9 commit(s) and 1 issue activity found in the last 90 days -- score normalized to 8",
-          "score": 8
-        },
-        {
           "name": "Binary-Artifacts",
           "reason": "no binaries found in the repo",
           "score": 10
@@ -3523,13 +3648,18 @@
           "score": 10
         },
         {
+          "name": "Maintained",
+          "reason": "13 commit(s) and 1 issue activity found in the last 90 days -- score normalized to 10",
+          "score": 10
+        },
+        {
           "name": "Packaging",
           "reason": "packaging workflow detected",
           "score": 10
         }
       ],
-      "date": "2026-10-26",
-      "score": 5,
+      "date": "2026-11-09",
+      "score": 5.1,
       "source": "openssf-api",
       "version": "v5.6.0"
     },
@@ -3541,10 +3671,10 @@
         "ecosystem": "golang",
         "epss": {
           "cve": "CVE-2026-33816",
-          "percentile": 0.4811,
+          "percentile": 0.48427,
           "score": 0.00583
         },
-        "epss_date": "2026-11-07T12:00:22Z",
+        "epss_date": "2026-11-15T12:03:04Z",
         "fix_state": "fixed",
         "fixed_in": [
           "5.9.0"
@@ -3553,13 +3683,16 @@
         "in_binary": "vulnerable code in binary",
         "kev": null,
         "kev_cves": [],
-        "kev_snapshot": "2026.11.06",
+        "kev_snapshot": "2026.11.13",
         "location": "go.mod",
         "locations": [
           "go.mod"
         ],
         "osv_confirmed": true,
-        "osv_modified": "2026-09-10T03:50:43.842159740Z",
+        "osv_coverage": {
+          "state": "confirmed"
+        },
+        "osv_modified": "2026-11-14T13:12:13.077777846Z",
         "osv_published": "2026-04-07T14:58:41Z",
         "package": "github.com/jackc/pgx/v5",
         "purl": "pkg:golang/github.com/jackc/pgx/v5@v5.7.6",
@@ -3575,10 +3708,10 @@
         "ecosystem": "golang",
         "epss": {
           "cve": "CVE-2026-33815",
-          "percentile": 0.5038,
+          "percentile": 0.50705,
           "score": 0.00629
         },
-        "epss_date": "2026-11-07T12:00:22Z",
+        "epss_date": "2026-11-15T12:03:04Z",
         "fix_state": "fixed",
         "fixed_in": [
           "5.9.0"
@@ -3587,13 +3720,16 @@
         "in_binary": "vulnerable code in binary",
         "kev": null,
         "kev_cves": [],
-        "kev_snapshot": "2026.11.06",
+        "kev_snapshot": "2026.11.13",
         "location": "go.mod",
         "locations": [
           "go.mod"
         ],
         "osv_confirmed": true,
-        "osv_modified": "2026-09-10T03:50:44.892822027Z",
+        "osv_coverage": {
+          "state": "confirmed"
+        },
+        "osv_modified": "2026-11-14T13:12:14.702573490Z",
         "osv_published": "2026-04-07T14:58:41Z",
         "package": "github.com/jackc/pgx/v5",
         "purl": "pkg:golang/github.com/jackc/pgx/v5@v5.7.6",
@@ -3609,10 +3745,10 @@
         "ecosystem": "golang",
         "epss": {
           "cve": "CVE-2026-77405",
-          "percentile": 0.20802,
+          "percentile": 0.20931,
           "score": 0.00282
         },
-        "epss_date": "2026-11-07T12:00:22Z",
+        "epss_date": "2026-11-15T12:03:04Z",
         "fix_state": "fixed",
         "fixed_in": [
           "1.13.0"
@@ -3621,12 +3757,15 @@
         "in_binary": "not in released binary",
         "kev": null,
         "kev_cves": [],
-        "kev_snapshot": "2026.11.06",
+        "kev_snapshot": "2026.11.13",
         "location": "go.mod",
         "locations": [
           "go.mod"
         ],
         "osv_confirmed": true,
+        "osv_coverage": {
+          "state": "confirmed"
+        },
         "osv_modified": "2026-10-01T20:56:07.689506743Z",
         "osv_published": "2026-09-17T17:04:01Z",
         "package": "github.com/rabbitmq/amqp091-go",
@@ -3643,10 +3782,10 @@
         "ecosystem": "golang",
         "epss": {
           "cve": "CVE-2026-77411",
-          "percentile": 0.44664,
+          "percentile": 0.44995,
           "score": 0.00524
         },
-        "epss_date": "2026-11-07T12:00:22Z",
+        "epss_date": "2026-11-15T12:03:04Z",
         "fix_state": "fixed",
         "fixed_in": [
           "1.13.0"
@@ -3655,12 +3794,15 @@
         "in_binary": "not in released binary",
         "kev": null,
         "kev_cves": [],
-        "kev_snapshot": "2026.11.06",
+        "kev_snapshot": "2026.11.13",
         "location": "go.mod",
         "locations": [
           "go.mod"
         ],
         "osv_confirmed": true,
+        "osv_coverage": {
+          "state": "confirmed"
+        },
         "osv_modified": "2026-10-01T20:56:08.601215981Z",
         "osv_published": "2026-09-17T17:04:25Z",
         "package": "github.com/rabbitmq/amqp091-go",
@@ -3677,10 +3819,10 @@
         "ecosystem": "golang",
         "epss": {
           "cve": "CVE-2026-77408",
-          "percentile": 0.44663,
+          "percentile": 0.44994,
           "score": 0.00524
         },
-        "epss_date": "2026-11-07T12:00:22Z",
+        "epss_date": "2026-11-15T12:03:04Z",
         "fix_state": "fixed",
         "fixed_in": [
           "1.13.0"
@@ -3689,12 +3831,15 @@
         "in_binary": "not in released binary",
         "kev": null,
         "kev_cves": [],
-        "kev_snapshot": "2026.11.06",
+        "kev_snapshot": "2026.11.13",
         "location": "go.mod",
         "locations": [
           "go.mod"
         ],
         "osv_confirmed": true,
+        "osv_coverage": {
+          "state": "confirmed"
+        },
         "osv_modified": "2026-10-01T20:55:54.424641007Z",
         "osv_published": "2026-09-17T17:04:15Z",
         "package": "github.com/rabbitmq/amqp091-go",
@@ -3711,10 +3856,10 @@
         "ecosystem": "golang",
         "epss": {
           "cve": "CVE-2026-42508",
-          "percentile": 0.94128,
+          "percentile": 0.94186,
           "score": 0.0691
         },
-        "epss_date": "2026-11-07T12:00:22Z",
+        "epss_date": "2026-11-15T12:03:04Z",
         "fix_state": "fixed",
         "fixed_in": [
           "0.52.0"
@@ -3723,13 +3868,16 @@
         "in_binary": "vulnerable code in binary",
         "kev": null,
         "kev_cves": [],
-        "kev_snapshot": "2026.11.06",
+        "kev_snapshot": "2026.11.13",
         "location": "go.mod",
         "locations": [
           "go.mod"
         ],
         "osv_confirmed": true,
-        "osv_modified": "2026-09-15T10:41:37.077781877Z",
+        "osv_coverage": {
+          "state": "confirmed"
+        },
+        "osv_modified": "2026-11-14T13:12:14.156030183Z",
         "osv_published": "2026-05-22T02:08:34Z",
         "package": "golang.org/x/crypto",
         "purl": "pkg:golang/golang.org/x/crypto@v0.45.0",
@@ -3745,10 +3893,10 @@
         "ecosystem": "golang",
         "epss": {
           "cve": "CVE-2026-39831",
-          "percentile": 0.41547,
+          "percentile": 0.41863,
           "score": 0.00478
         },
-        "epss_date": "2026-11-07T12:00:22Z",
+        "epss_date": "2026-11-15T12:03:04Z",
         "fix_state": "fixed",
         "fixed_in": [
           "0.52.0"
@@ -3757,13 +3905,16 @@
         "in_binary": "vulnerable code in binary",
         "kev": null,
         "kev_cves": [],
-        "kev_snapshot": "2026.11.06",
+        "kev_snapshot": "2026.11.13",
         "location": "go.mod",
         "locations": [
           "go.mod"
         ],
         "osv_confirmed": true,
-        "osv_modified": "2026-09-17T10:41:36.871169141Z",
+        "osv_coverage": {
+          "state": "confirmed"
+        },
+        "osv_modified": "2026-11-14T13:12:13.449500660Z",
         "osv_published": "2026-05-22T02:08:34Z",
         "package": "golang.org/x/crypto",
         "purl": "pkg:golang/golang.org/x/crypto@v0.45.0",
@@ -3779,10 +3930,10 @@
         "ecosystem": "golang",
         "epss": {
           "cve": "CVE-2026-39832",
-          "percentile": 0.52766,
+          "percentile": 0.53095,
           "score": 0.00683
         },
-        "epss_date": "2026-11-07T12:00:22Z",
+        "epss_date": "2026-11-15T12:03:04Z",
         "fix_state": "fixed",
         "fixed_in": [
           "0.52.0"
@@ -3791,13 +3942,16 @@
         "in_binary": "vulnerable code in binary",
         "kev": null,
         "kev_cves": [],
-        "kev_snapshot": "2026.11.06",
+        "kev_snapshot": "2026.11.13",
         "location": "go.mod",
         "locations": [
           "go.mod"
         ],
         "osv_confirmed": true,
-        "osv_modified": "2026-09-15T10:41:37.126500086Z",
+        "osv_coverage": {
+          "state": "confirmed"
+        },
+        "osv_modified": "2026-11-14T13:12:14.396040745Z",
         "osv_published": "2026-05-22T02:08:34Z",
         "package": "golang.org/x/crypto",
         "purl": "pkg:golang/golang.org/x/crypto@v0.45.0",
@@ -3813,10 +3967,10 @@
         "ecosystem": "golang",
         "epss": {
           "cve": "CVE-2026-39833",
-          "percentile": 0.40811,
+          "percentile": 0.41119,
           "score": 0.00469
         },
-        "epss_date": "2026-11-07T12:00:22Z",
+        "epss_date": "2026-11-15T12:03:04Z",
         "fix_state": "fixed",
         "fixed_in": [
           "0.52.0"
@@ -3825,12 +3979,15 @@
         "in_binary": "vulnerable code in binary",
         "kev": null,
         "kev_cves": [],
-        "kev_snapshot": "2026.11.06",
+        "kev_snapshot": "2026.11.13",
         "location": "go.mod",
         "locations": [
           "go.mod"
         ],
         "osv_confirmed": true,
+        "osv_coverage": {
+          "state": "confirmed"
+        },
         "osv_modified": "2026-09-10T03:50:50.029914620Z",
         "osv_published": "2026-05-22T02:08:34Z",
         "package": "golang.org/x/crypto",
@@ -3847,10 +4004,10 @@
         "ecosystem": "golang",
         "epss": {
           "cve": "CVE-2026-39834",
-          "percentile": 0.48823,
+          "percentile": 0.49152,
           "score": 0.00597
         },
-        "epss_date": "2026-11-07T12:00:22Z",
+        "epss_date": "2026-11-15T12:03:04Z",
         "fix_state": "fixed",
         "fixed_in": [
           "0.52.0"
@@ -3859,13 +4016,16 @@
         "in_binary": "vulnerable code in binary",
         "kev": null,
         "kev_cves": [],
-        "kev_snapshot": "2026.11.06",
+        "kev_snapshot": "2026.11.13",
         "location": "go.mod",
         "locations": [
           "go.mod"
         ],
         "osv_confirmed": true,
-        "osv_modified": "2026-09-22T10:41:48.726876657Z",
+        "osv_coverage": {
+          "state": "confirmed"
+        },
+        "osv_modified": "2026-11-14T13:12:14.800947466Z",
         "osv_published": "2026-05-22T02:08:34Z",
         "package": "golang.org/x/crypto",
         "purl": "pkg:golang/golang.org/x/crypto@v0.45.0",
@@ -3881,10 +4041,10 @@
         "ecosystem": "golang",
         "epss": {
           "cve": "CVE-2026-39830",
-          "percentile": 0.52763,
+          "percentile": 0.53092,
           "score": 0.00683
         },
-        "epss_date": "2026-11-07T12:00:22Z",
+        "epss_date": "2026-11-15T12:03:04Z",
         "fix_state": "fixed",
         "fixed_in": [
           "0.52.0"
@@ -3893,13 +4053,16 @@
         "in_binary": "vulnerable code in binary",
         "kev": null,
         "kev_cves": [],
-        "kev_snapshot": "2026.11.06",
+        "kev_snapshot": "2026.11.13",
         "location": "go.mod",
         "locations": [
           "go.mod"
         ],
         "osv_confirmed": true,
-        "osv_modified": "2026-09-23T10:41:39.176153896Z",
+        "osv_coverage": {
+          "state": "confirmed"
+        },
+        "osv_modified": "2026-11-14T13:12:13.975314894Z",
         "osv_published": "2026-05-22T02:08:34Z",
         "package": "golang.org/x/crypto",
         "purl": "pkg:golang/golang.org/x/crypto@v0.45.0",
@@ -3915,10 +4078,10 @@
         "ecosystem": "golang",
         "epss": {
           "cve": "CVE-2026-46595",
-          "percentile": 0.46631,
+          "percentile": 0.46961,
           "score": 0.00556
         },
-        "epss_date": "2026-11-07T12:00:22Z",
+        "epss_date": "2026-11-15T12:03:04Z",
         "fix_state": "fixed",
         "fixed_in": [
           "0.52.0"
@@ -3927,13 +4090,16 @@
         "in_binary": "vulnerable code in binary",
         "kev": null,
         "kev_cves": [],
-        "kev_snapshot": "2026.11.06",
+        "kev_snapshot": "2026.11.13",
         "location": "go.mod",
         "locations": [
           "go.mod"
         ],
         "osv_confirmed": true,
-        "osv_modified": "2026-09-10T03:50:51.157351033Z",
+        "osv_coverage": {
+          "state": "confirmed"
+        },
+        "osv_modified": "2026-11-14T13:12:14.902293444Z",
         "osv_published": "2026-05-22T02:08:34Z",
         "package": "golang.org/x/crypto",
         "purl": "pkg:golang/golang.org/x/crypto@v0.45.0",
@@ -3949,10 +4115,10 @@
         "ecosystem": "golang",
         "epss": {
           "cve": "CVE-2026-78663",
-          "percentile": 0.58678,
+          "percentile": 0.59011,
           "score": 0.00858
         },
-        "epss_date": "2026-11-07T12:00:22Z",
+        "epss_date": "2026-11-15T12:03:04Z",
         "fix_state": "fixed",
         "fixed_in": [
           "0.60.0"
@@ -3961,13 +4127,16 @@
         "in_binary": "vulnerable code in binary",
         "kev": null,
         "kev_cves": [],
-        "kev_snapshot": "2026.11.06",
+        "kev_snapshot": "2026.11.13",
         "location": "go.mod",
         "locations": [
           "go.mod"
         ],
         "osv_confirmed": true,
-        "osv_modified": "2026-10-16T09:55:54.129082194Z",
+        "osv_coverage": {
+          "state": "confirmed"
+        },
+        "osv_modified": "2026-11-14T13:12:14.440833902Z",
         "osv_published": "2026-10-08T22:31:09Z",
         "package": "golang.org/x/net",
         "purl": "pkg:golang/golang.org/x/net@v0.47.0",
@@ -3983,10 +4152,10 @@
         "ecosystem": "golang",
         "epss": {
           "cve": "CVE-2026-33186",
-          "percentile": 0.76207,
-          "score": 0.01619
+          "percentile": 0.7799,
+          "score": 0.01731
         },
-        "epss_date": "2026-11-07T12:00:22Z",
+        "epss_date": "2026-11-15T12:03:04Z",
         "fix_state": "fixed",
         "fixed_in": [
           "1.79.3"
@@ -3995,12 +4164,15 @@
         "in_binary": "not in released binary",
         "kev": null,
         "kev_cves": [],
-        "kev_snapshot": "2026.11.06",
+        "kev_snapshot": "2026.11.13",
         "location": "go.mod",
         "locations": [
           "go.mod"
         ],
         "osv_confirmed": true,
+        "osv_coverage": {
+          "state": "confirmed"
+        },
         "osv_modified": "2026-09-10T03:50:40.107473327Z",
         "osv_published": "2026-03-18T20:10:29Z",
         "package": "google.golang.org/grpc",
@@ -4017,10 +4189,10 @@
         "ecosystem": "golang",
         "epss": {
           "cve": "CVE-2025-15558",
-          "percentile": 0.46214,
+          "percentile": 0.46545,
           "score": 0.00549
         },
-        "epss_date": "2026-11-07T12:00:22Z",
+        "epss_date": "2026-11-15T12:03:04Z",
         "fix_state": "fixed",
         "fixed_in": [
           "29.2.0"
@@ -4029,12 +4201,15 @@
         "in_binary": "vulnerable code in binary",
         "kev": null,
         "kev_cves": [],
-        "kev_snapshot": "2026.11.06",
+        "kev_snapshot": "2026.11.13",
         "location": "go.mod",
         "locations": [
           "go.mod"
         ],
         "osv_confirmed": true,
+        "osv_coverage": {
+          "state": "confirmed"
+        },
         "osv_modified": "2026-09-10T03:50:39.956404854Z",
         "osv_published": "2026-03-05T00:10:40Z",
         "package": "github.com/docker/cli",
@@ -4051,10 +4226,10 @@
         "ecosystem": "golang",
         "epss": {
           "cve": "CVE-2026-34986",
-          "percentile": 0.51935,
+          "percentile": 0.52268,
           "score": 0.00663
         },
-        "epss_date": "2026-11-07T12:00:22Z",
+        "epss_date": "2026-11-15T12:03:04Z",
         "fix_state": "fixed",
         "fixed_in": [
           "3.0.5"
@@ -4063,12 +4238,15 @@
         "in_binary": "vulnerable code in binary",
         "kev": null,
         "kev_cves": [],
-        "kev_snapshot": "2026.11.06",
+        "kev_snapshot": "2026.11.13",
         "location": "go.mod",
         "locations": [
           "go.mod"
         ],
         "osv_confirmed": true,
+        "osv_coverage": {
+          "state": "confirmed"
+        },
         "osv_modified": "2026-09-10T03:50:43.639043187Z",
         "osv_published": "2026-04-03T03:28:56Z",
         "package": "github.com/go-jose/go-jose/v3",
@@ -4085,22 +4263,25 @@
         "ecosystem": "golang",
         "epss": {
           "cve": "CVE-2026-116587",
-          "percentile": 0.30652,
-          "score": 0.00366
+          "percentile": 0.42665,
+          "score": 0.00489
         },
-        "epss_date": "2026-11-07T12:00:22Z",
+        "epss_date": "2026-11-15T12:03:04Z",
         "fix_state": "not-fixed",
         "fixed_in": [],
         "id": "GHSA-mgcc-cww5-fp2q",
         "in_binary": "vulnerable code not in binary",
         "kev": null,
         "kev_cves": [],
-        "kev_snapshot": "2026.11.06",
+        "kev_snapshot": "2026.11.13",
         "location": "go.mod",
         "locations": [
           "go.mod"
         ],
         "osv_confirmed": true,
+        "osv_coverage": {
+          "state": "confirmed"
+        },
         "osv_modified": "2026-10-27T19:15:23.147827328Z",
         "osv_published": "2026-10-27T19:01:30Z",
         "package": "github.com/go-jose/go-jose/v3",
@@ -4117,22 +4298,25 @@
         "ecosystem": "golang",
         "epss": {
           "cve": "CVE-2026-32286",
-          "percentile": 0.52447,
-          "score": 0.00675
+          "percentile": 0.53377,
+          "score": 0.0069
         },
-        "epss_date": "2026-11-07T12:00:22Z",
+        "epss_date": "2026-11-15T12:03:04Z",
         "fix_state": "not-fixed",
         "fixed_in": [],
         "id": "GHSA-jqcq-xjh3-6g23",
         "in_binary": "not in released binary",
         "kev": null,
         "kev_cves": [],
-        "kev_snapshot": "2026.11.06",
+        "kev_snapshot": "2026.11.13",
         "location": "go.mod",
         "locations": [
           "go.mod"
         ],
         "osv_confirmed": true,
+        "osv_coverage": {
+          "state": "confirmed"
+        },
         "osv_modified": "2026-09-10T03:51:00.380478920Z",
         "osv_published": "2026-03-16T20:27:13Z",
         "package": "github.com/jackc/pgproto3/v2",
@@ -4149,10 +4333,10 @@
         "ecosystem": "golang",
         "epss": {
           "cve": "CVE-2026-63209",
-          "percentile": 0.47559,
+          "percentile": 0.47884,
           "score": 0.00572
         },
-        "epss_date": "2026-11-07T12:00:22Z",
+        "epss_date": "2026-11-15T12:03:04Z",
         "fix_state": "fixed",
         "fixed_in": [
           "1.18.7"
@@ -4161,12 +4345,15 @@
         "in_binary": "vulnerable code in binary",
         "kev": null,
         "kev_cves": [],
-        "kev_snapshot": "2026.11.06",
+        "kev_snapshot": "2026.11.13",
         "location": "go.mod",
         "locations": [
           "go.mod"
         ],
         "osv_confirmed": true,
+        "osv_coverage": {
+          "state": "confirmed"
+        },
         "osv_modified": "2026-10-20T14:45:03.782718646Z",
         "osv_published": "2026-07-27T16:16:22Z",
         "package": "github.com/klauspost/compress",
@@ -4184,10 +4371,10 @@
         "ecosystem": "golang",
         "epss": {
           "cve": "CVE-2026-116591",
-          "percentile": 0.26636,
+          "percentile": 0.26849,
           "score": 0.00333
         },
-        "epss_date": "2026-11-07T12:00:22Z",
+        "epss_date": "2026-11-15T12:03:04Z",
         "fix_state": "fixed",
         "fixed_in": [
           "1.20.2"
@@ -4196,12 +4383,15 @@
         "in_binary": "vulnerable code in binary",
         "kev": null,
         "kev_cves": [],
-        "kev_snapshot": "2026.11.06",
+        "kev_snapshot": "2026.11.13",
         "location": "go.mod",
         "locations": [
           "go.mod"
         ],
         "osv_confirmed": true,
+        "osv_coverage": {
+          "state": "confirmed"
+        },
         "osv_modified": "2026-11-05T23:15:14.472777299Z",
         "osv_published": "2026-11-05T22:54:32Z",
         "package": "github.com/klauspost/compress",
@@ -4218,10 +4408,10 @@
         "ecosystem": "golang",
         "epss": {
           "cve": "CVE-2026-77407",
-          "percentile": 0.02739,
+          "percentile": 0.0278,
           "score": 0.00131
         },
-        "epss_date": "2026-11-07T12:00:22Z",
+        "epss_date": "2026-11-15T12:03:04Z",
         "fix_state": "fixed",
         "fixed_in": [
           "1.13.0"
@@ -4230,12 +4420,15 @@
         "in_binary": "not in released binary",
         "kev": null,
         "kev_cves": [],
-        "kev_snapshot": "2026.11.06",
+        "kev_snapshot": "2026.11.13",
         "location": "go.mod",
         "locations": [
           "go.mod"
         ],
         "osv_confirmed": true,
+        "osv_coverage": {
+          "state": "confirmed"
+        },
         "osv_modified": "2026-10-01T20:56:19.368951740Z",
         "osv_published": "2026-09-17T17:04:10Z",
         "package": "github.com/rabbitmq/amqp091-go",
@@ -4252,10 +4445,10 @@
         "ecosystem": "golang",
         "epss": {
           "cve": "CVE-2026-77404",
-          "percentile": 0.01045,
+          "percentile": 0.01064,
           "score": 0.00104
         },
-        "epss_date": "2026-11-07T12:00:22Z",
+        "epss_date": "2026-11-15T12:03:04Z",
         "fix_state": "fixed",
         "fixed_in": [
           "1.13.0"
@@ -4264,12 +4457,15 @@
         "in_binary": "not in released binary",
         "kev": null,
         "kev_cves": [],
-        "kev_snapshot": "2026.11.06",
+        "kev_snapshot": "2026.11.13",
         "location": "go.mod",
         "locations": [
           "go.mod"
         ],
         "osv_confirmed": true,
+        "osv_coverage": {
+          "state": "confirmed"
+        },
         "osv_modified": "2026-10-01T20:56:11.411656712Z",
         "osv_published": "2026-09-17T17:03:55Z",
         "package": "github.com/rabbitmq/amqp091-go",
@@ -4286,10 +4482,10 @@
         "ecosystem": "golang",
         "epss": {
           "cve": "CVE-2026-77412",
-          "percentile": 0.4467,
+          "percentile": 0.44996,
           "score": 0.00524
         },
-        "epss_date": "2026-11-07T12:00:22Z",
+        "epss_date": "2026-11-15T12:03:04Z",
         "fix_state": "fixed",
         "fixed_in": [
           "1.13.0"
@@ -4298,12 +4494,15 @@
         "in_binary": "not in released binary",
         "kev": null,
         "kev_cves": [],
-        "kev_snapshot": "2026.11.06",
+        "kev_snapshot": "2026.11.13",
         "location": "go.mod",
         "locations": [
           "go.mod"
         ],
         "osv_confirmed": true,
+        "osv_coverage": {
+          "state": "confirmed"
+        },
         "osv_modified": "2026-10-01T20:55:54.975644527Z",
         "osv_published": "2026-09-17T17:04:29Z",
         "package": "github.com/rabbitmq/amqp091-go",
@@ -4320,10 +4519,10 @@
         "ecosystem": "golang",
         "epss": {
           "cve": "CVE-2026-79921",
-          "percentile": 0.46233,
+          "percentile": 0.46564,
           "score": 0.0055
         },
-        "epss_date": "2026-11-07T12:00:22Z",
+        "epss_date": "2026-11-15T12:03:04Z",
         "fix_state": "fixed",
         "fixed_in": [
           "1.13.0"
@@ -4332,12 +4531,15 @@
         "in_binary": "not in released binary",
         "kev": null,
         "kev_cves": [],
-        "kev_snapshot": "2026.11.06",
+        "kev_snapshot": "2026.11.13",
         "location": "go.mod",
         "locations": [
           "go.mod"
         ],
         "osv_confirmed": true,
+        "osv_coverage": {
+          "state": "confirmed"
+        },
         "osv_modified": "2026-09-15T19:10:48.577197078Z",
         "osv_published": "2026-09-03T20:15:13Z",
         "package": "github.com/rabbitmq/amqp091-go",
@@ -4354,10 +4556,10 @@
         "ecosystem": "golang",
         "epss": {
           "cve": "CVE-2026-77410",
-          "percentile": 0.44666,
+          "percentile": 0.4499,
           "score": 0.00524
         },
-        "epss_date": "2026-11-07T12:00:22Z",
+        "epss_date": "2026-11-15T12:03:04Z",
         "fix_state": "fixed",
         "fixed_in": [
           "1.13.0"
@@ -4366,12 +4568,15 @@
         "in_binary": "not in released binary",
         "kev": null,
         "kev_cves": [],
-        "kev_snapshot": "2026.11.06",
+        "kev_snapshot": "2026.11.13",
         "location": "go.mod",
         "locations": [
           "go.mod"
         ],
         "osv_confirmed": true,
+        "osv_coverage": {
+          "state": "confirmed"
+        },
         "osv_modified": "2026-10-01T20:56:22.805183146Z",
         "osv_published": "2026-09-17T17:04:20Z",
         "package": "github.com/rabbitmq/amqp091-go",
@@ -4388,10 +4593,10 @@
         "ecosystem": "golang",
         "epss": {
           "cve": "CVE-2026-77406",
-          "percentile": 0.44664,
+          "percentile": 0.44995,
           "score": 0.00524
         },
-        "epss_date": "2026-11-07T12:00:22Z",
+        "epss_date": "2026-11-15T12:03:04Z",
         "fix_state": "fixed",
         "fixed_in": [
           "1.13.0"
@@ -4400,12 +4605,15 @@
         "in_binary": "not in released binary",
         "kev": null,
         "kev_cves": [],
-        "kev_snapshot": "2026.11.06",
+        "kev_snapshot": "2026.11.13",
         "location": "go.mod",
         "locations": [
           "go.mod"
         ],
         "osv_confirmed": true,
+        "osv_coverage": {
+          "state": "confirmed"
+        },
         "osv_modified": "2026-10-01T20:56:09.404088832Z",
         "osv_published": "2026-09-17T17:04:05Z",
         "package": "github.com/rabbitmq/amqp091-go",
@@ -4422,10 +4630,10 @@
         "ecosystem": "golang",
         "epss": {
           "cve": "CVE-2026-77403",
-          "percentile": 0.44662,
+          "percentile": 0.44993,
           "score": 0.00524
         },
-        "epss_date": "2026-11-07T12:00:22Z",
+        "epss_date": "2026-11-15T12:03:04Z",
         "fix_state": "fixed",
         "fixed_in": [
           "1.13.0"
@@ -4434,12 +4642,15 @@
         "in_binary": "not in released binary",
         "kev": null,
         "kev_cves": [],
-        "kev_snapshot": "2026.11.06",
+        "kev_snapshot": "2026.11.13",
         "location": "go.mod",
         "locations": [
           "go.mod"
         ],
         "osv_confirmed": true,
+        "osv_coverage": {
+          "state": "confirmed"
+        },
         "osv_modified": "2026-10-01T20:55:38.792625193Z",
         "osv_published": "2026-09-17T17:03:50Z",
         "package": "github.com/rabbitmq/amqp091-go",
@@ -4456,10 +4667,10 @@
         "ecosystem": "golang",
         "epss": {
           "cve": "CVE-2026-29181",
-          "percentile": 0.57519,
+          "percentile": 0.57851,
           "score": 0.00821
         },
-        "epss_date": "2026-11-07T12:00:22Z",
+        "epss_date": "2026-11-15T12:03:04Z",
         "fix_state": "fixed",
         "fixed_in": [
           "1.41.0"
@@ -4468,12 +4679,15 @@
         "in_binary": "vulnerable code in binary",
         "kev": null,
         "kev_cves": [],
-        "kev_snapshot": "2026.11.06",
+        "kev_snapshot": "2026.11.13",
         "location": "go.mod",
         "locations": [
           "go.mod"
         ],
         "osv_confirmed": true,
+        "osv_coverage": {
+          "state": "confirmed"
+        },
         "osv_modified": "2026-09-10T03:51:02.265229173Z",
         "osv_published": "2026-04-07T20:12:57Z",
         "package": "go.opentelemetry.io/otel",
@@ -4490,10 +4704,10 @@
         "ecosystem": "golang",
         "epss": {
           "cve": "CVE-2026-24051",
-          "percentile": 0.07155,
+          "percentile": 0.07186,
           "score": 0.00176
         },
-        "epss_date": "2026-11-07T12:00:22Z",
+        "epss_date": "2026-11-15T12:03:04Z",
         "fix_state": "fixed",
         "fixed_in": [
           "1.40.0"
@@ -4502,12 +4716,15 @@
         "in_binary": "not in released binary",
         "kev": null,
         "kev_cves": [],
-        "kev_snapshot": "2026.11.06",
+        "kev_snapshot": "2026.11.13",
         "location": "go.mod",
         "locations": [
           "go.mod"
         ],
         "osv_confirmed": true,
+        "osv_coverage": {
+          "state": "confirmed"
+        },
         "osv_modified": "2026-09-10T03:50:34.801777790Z",
         "osv_published": "2026-02-02T20:07:46Z",
         "package": "go.opentelemetry.io/otel/sdk",
@@ -4524,10 +4741,10 @@
         "ecosystem": "golang",
         "epss": {
           "cve": "CVE-2026-39883",
-          "percentile": 0.18118,
+          "percentile": 0.18179,
           "score": 0.00262
         },
-        "epss_date": "2026-11-07T12:00:22Z",
+        "epss_date": "2026-11-15T12:03:04Z",
         "fix_state": "fixed",
         "fixed_in": [
           "1.43.0"
@@ -4536,12 +4753,15 @@
         "in_binary": "not in released binary",
         "kev": null,
         "kev_cves": [],
-        "kev_snapshot": "2026.11.06",
+        "kev_snapshot": "2026.11.13",
         "location": "go.mod",
         "locations": [
           "go.mod"
         ],
         "osv_confirmed": true,
+        "osv_coverage": {
+          "state": "confirmed"
+        },
         "osv_modified": "2026-09-10T03:51:01.896515018Z",
         "osv_published": "2026-04-08T19:22:12Z",
         "package": "go.opentelemetry.io/otel/sdk",
@@ -4558,10 +4778,10 @@
         "ecosystem": "golang",
         "epss": {
           "cve": "CVE-2026-46597",
-          "percentile": 0.41118,
+          "percentile": 0.41431,
           "score": 0.00473
         },
-        "epss_date": "2026-11-07T12:00:22Z",
+        "epss_date": "2026-11-15T12:03:04Z",
         "fix_state": "fixed",
         "fixed_in": [
           "0.52.0"
@@ -4570,13 +4790,16 @@
         "in_binary": "vulnerable code in binary",
         "kev": null,
         "kev_cves": [],
-        "kev_snapshot": "2026.11.06",
+        "kev_snapshot": "2026.11.13",
         "location": "go.mod",
         "locations": [
           "go.mod"
         ],
         "osv_confirmed": true,
-        "osv_modified": "2026-09-17T10:41:36.216580513Z",
+        "osv_coverage": {
+          "state": "confirmed"
+        },
+        "osv_modified": "2026-11-14T13:12:13.636742606Z",
         "osv_published": "2026-05-22T02:08:34Z",
         "package": "golang.org/x/crypto",
         "purl": "pkg:golang/golang.org/x/crypto@v0.45.0",
@@ -4592,10 +4815,10 @@
         "ecosystem": "golang",
         "epss": {
           "cve": "CVE-2026-39829",
-          "percentile": 0.40658,
+          "percentile": 0.40961,
           "score": 0.00467
         },
-        "epss_date": "2026-11-07T12:00:22Z",
+        "epss_date": "2026-11-15T12:03:04Z",
         "fix_state": "fixed",
         "fixed_in": [
           "0.52.0"
@@ -4604,13 +4827,16 @@
         "in_binary": "vulnerable code in binary",
         "kev": null,
         "kev_cves": [],
-        "kev_snapshot": "2026.11.06",
+        "kev_snapshot": "2026.11.13",
         "location": "go.mod",
         "locations": [
           "go.mod"
         ],
         "osv_confirmed": true,
-        "osv_modified": "2026-09-15T10:41:37.191404367Z",
+        "osv_coverage": {
+          "state": "confirmed"
+        },
+        "osv_modified": "2026-11-14T13:12:13.770896528Z",
         "osv_published": "2026-05-22T02:08:34Z",
         "package": "golang.org/x/crypto",
         "purl": "pkg:golang/golang.org/x/crypto@v0.45.0",
@@ -4626,10 +4852,10 @@
         "ecosystem": "golang",
         "epss": {
           "cve": "CVE-2026-56854",
-          "percentile": 0.3825,
+          "percentile": 0.38542,
           "score": 0.00437
         },
-        "epss_date": "2026-11-07T12:00:22Z",
+        "epss_date": "2026-11-15T12:03:04Z",
         "fix_state": "fixed",
         "fixed_in": [
           "0.55.0"
@@ -4638,12 +4864,15 @@
         "in_binary": "vulnerable code in binary",
         "kev": null,
         "kev_cves": [],
-        "kev_snapshot": "2026.11.06",
+        "kev_snapshot": "2026.11.13",
         "location": "go.mod",
         "locations": [
           "go.mod"
         ],
         "osv_confirmed": true,
+        "osv_coverage": {
+          "state": "confirmed"
+        },
         "osv_modified": "2026-08-29T10:10:52.440319762Z",
         "osv_published": "2026-08-28T14:47:45Z",
         "package": "golang.org/x/crypto",
@@ -4660,10 +4889,10 @@
         "ecosystem": "golang",
         "epss": {
           "cve": "CVE-2026-78662",
-          "percentile": 0.37599,
+          "percentile": 0.3789,
           "score": 0.00431
         },
-        "epss_date": "2026-11-07T12:00:22Z",
+        "epss_date": "2026-11-15T12:03:04Z",
         "fix_state": "fixed",
         "fixed_in": [
           "0.56.0"
@@ -4672,12 +4901,15 @@
         "in_binary": "vulnerable code in binary",
         "kev": null,
         "kev_cves": [],
-        "kev_snapshot": "2026.11.06",
+        "kev_snapshot": "2026.11.13",
         "location": "go.mod",
         "locations": [
           "go.mod"
         ],
         "osv_confirmed": true,
+        "osv_coverage": {
+          "state": "confirmed"
+        },
         "osv_modified": "2026-09-03T10:10:55.147673102Z",
         "osv_published": "2026-09-02T19:12:04Z",
         "package": "golang.org/x/crypto",
@@ -4694,10 +4926,10 @@
         "ecosystem": "golang",
         "epss": {
           "cve": "CVE-2026-56855",
-          "percentile": 0.43103,
+          "percentile": 0.43423,
           "score": 0.005
         },
-        "epss_date": "2026-11-07T12:00:22Z",
+        "epss_date": "2026-11-15T12:03:04Z",
         "fix_state": "fixed",
         "fixed_in": [
           "0.56.0"
@@ -4706,13 +4938,16 @@
         "in_binary": "vulnerable code in binary",
         "kev": null,
         "kev_cves": [],
-        "kev_snapshot": "2026.11.06",
+        "kev_snapshot": "2026.11.13",
         "location": "go.mod",
         "locations": [
           "go.mod"
         ],
         "osv_confirmed": true,
-        "osv_modified": "2026-09-24T10:41:42.556134596Z",
+        "osv_coverage": {
+          "state": "confirmed"
+        },
+        "osv_modified": "2026-11-14T13:12:14.167817306Z",
         "osv_published": "2026-09-02T19:12:04Z",
         "package": "golang.org/x/crypto",
         "purl": "pkg:golang/golang.org/x/crypto@v0.45.0",
@@ -4728,10 +4963,10 @@
         "ecosystem": "golang",
         "epss": {
           "cve": "CVE-2026-56865",
-          "percentile": 0.02572,
+          "percentile": 0.02613,
           "score": 0.00129
         },
-        "epss_date": "2026-11-07T12:00:22Z",
+        "epss_date": "2026-11-15T12:03:04Z",
         "fix_state": "fixed",
         "fixed_in": [
           "0.40.0"
@@ -4740,12 +4975,15 @@
         "in_binary": "not in released binary",
         "kev": null,
         "kev_cves": [],
-        "kev_snapshot": "2026.11.06",
+        "kev_snapshot": "2026.11.13",
         "location": "go.mod",
         "locations": [
           "go.mod"
         ],
         "osv_confirmed": true,
+        "osv_coverage": {
+          "state": "confirmed"
+        },
         "osv_modified": "2026-08-19T12:25:40.780492871Z",
         "osv_published": "2026-08-13T21:43:54Z",
         "package": "golang.org/x/mod",
@@ -4762,10 +5000,10 @@
         "ecosystem": "golang",
         "epss": {
           "cve": "CVE-2026-56864",
-          "percentile": 0.22617,
+          "percentile": 0.22737,
           "score": 0.00298
         },
-        "epss_date": "2026-11-07T12:00:22Z",
+        "epss_date": "2026-11-15T12:03:04Z",
         "fix_state": "fixed",
         "fixed_in": [
           "0.40.0"
@@ -4774,12 +5012,15 @@
         "in_binary": "not in released binary",
         "kev": null,
         "kev_cves": [],
-        "kev_snapshot": "2026.11.06",
+        "kev_snapshot": "2026.11.13",
         "location": "go.mod",
         "locations": [
           "go.mod"
         ],
         "osv_confirmed": true,
+        "osv_coverage": {
+          "state": "confirmed"
+        },
         "osv_modified": "2026-08-19T12:25:49.995487491Z",
         "osv_published": "2026-08-13T21:43:54Z",
         "package": "golang.org/x/mod",
@@ -4796,10 +5037,10 @@
         "ecosystem": "golang",
         "epss": {
           "cve": "CVE-2026-33814",
-          "percentile": 0.58101,
+          "percentile": 0.58436,
           "score": 0.0084
         },
-        "epss_date": "2026-11-07T12:00:22Z",
+        "epss_date": "2026-11-15T12:03:04Z",
         "fix_state": "fixed",
         "fixed_in": [
           "0.53.0"
@@ -4808,13 +5049,16 @@
         "in_binary": "vulnerable code in binary",
         "kev": null,
         "kev_cves": [],
-        "kev_snapshot": "2026.11.06",
+        "kev_snapshot": "2026.11.13",
         "location": "go.mod",
         "locations": [
           "go.mod"
         ],
         "osv_confirmed": true,
-        "osv_modified": "2026-10-16T10:42:05.228443950Z",
+        "osv_coverage": {
+          "state": "confirmed"
+        },
+        "osv_modified": "2026-11-14T13:12:14.488765544Z",
         "osv_published": "2026-05-07T19:21:40Z",
         "package": "golang.org/x/net",
         "purl": "pkg:golang/golang.org/x/net@v0.47.0",
@@ -4830,10 +5074,10 @@
         "ecosystem": "golang",
         "epss": {
           "cve": "CVE-2026-39821",
-          "percentile": 0.79038,
+          "percentile": 0.79261,
           "score": 0.01834
         },
-        "epss_date": "2026-11-07T12:00:22Z",
+        "epss_date": "2026-11-15T12:03:04Z",
         "fix_state": "fixed",
         "fixed_in": [
           "0.55.0"
@@ -4842,13 +5086,16 @@
         "in_binary": "vulnerable code in binary",
         "kev": null,
         "kev_cves": [],
-        "kev_snapshot": "2026.11.06",
+        "kev_snapshot": "2026.11.13",
         "location": "go.mod",
         "locations": [
           "go.mod"
         ],
         "osv_confirmed": true,
-        "osv_modified": "2026-10-16T10:42:05.164302476Z",
+        "osv_coverage": {
+          "state": "confirmed"
+        },
+        "osv_modified": "2026-11-14T13:12:14.787413175Z",
         "osv_published": "2026-05-22T02:46:43Z",
         "package": "golang.org/x/net",
         "purl": "pkg:golang/golang.org/x/net@v0.47.0",
@@ -4864,10 +5111,10 @@
         "ecosystem": "golang",
         "epss": {
           "cve": "CVE-2026-46600",
-          "percentile": 0.46216,
+          "percentile": 0.46548,
           "score": 0.00549
         },
-        "epss_date": "2026-11-07T12:00:22Z",
+        "epss_date": "2026-11-15T12:03:04Z",
         "fix_state": "fixed",
         "fixed_in": [
           "0.56.0"
@@ -4876,12 +5123,15 @@
         "in_binary": "vulnerable code in binary",
         "kev": null,
         "kev_cves": [],
-        "kev_snapshot": "2026.11.06",
+        "kev_snapshot": "2026.11.13",
         "location": "go.mod",
         "locations": [
           "go.mod"
         ],
         "osv_confirmed": true,
+        "osv_coverage": {
+          "state": "confirmed"
+        },
         "osv_modified": "2026-08-17T12:25:32.471119200Z",
         "osv_published": "2026-07-14T17:29:16Z",
         "package": "golang.org/x/net",
@@ -4898,10 +5148,10 @@
         "ecosystem": "golang",
         "epss": {
           "cve": "CVE-2026-78659",
-          "percentile": 0.58917,
+          "percentile": 0.59241,
           "score": 0.00866
         },
-        "epss_date": "2026-11-07T12:00:22Z",
+        "epss_date": "2026-11-15T12:03:04Z",
         "fix_state": "fixed",
         "fixed_in": [
           "0.60.0"
@@ -4910,13 +5160,16 @@
         "in_binary": "vulnerable code in binary",
         "kev": null,
         "kev_cves": [],
-        "kev_snapshot": "2026.11.06",
+        "kev_snapshot": "2026.11.13",
         "location": "go.mod",
         "locations": [
           "go.mod"
         ],
         "osv_confirmed": true,
-        "osv_modified": "2026-10-16T09:55:47.068117441Z",
+        "osv_coverage": {
+          "state": "confirmed"
+        },
+        "osv_modified": "2026-11-14T13:12:13.462737073Z",
         "osv_published": "2026-10-08T22:31:09Z",
         "package": "golang.org/x/net",
         "purl": "pkg:golang/golang.org/x/net@v0.47.0",
@@ -4932,10 +5185,10 @@
         "ecosystem": "golang",
         "epss": {
           "cve": "CVE-2026-78660",
-          "percentile": 0.45813,
+          "percentile": 0.46146,
           "score": 0.00542
         },
-        "epss_date": "2026-11-07T12:00:22Z",
+        "epss_date": "2026-11-15T12:03:04Z",
         "fix_state": "fixed",
         "fixed_in": [
           "0.60.0"
@@ -4944,13 +5197,16 @@
         "in_binary": "vulnerable code in binary",
         "kev": null,
         "kev_cves": [],
-        "kev_snapshot": "2026.11.06",
+        "kev_snapshot": "2026.11.13",
         "location": "go.mod",
         "locations": [
           "go.mod"
         ],
         "osv_confirmed": true,
-        "osv_modified": "2026-10-16T09:56:04.364467528Z",
+        "osv_coverage": {
+          "state": "confirmed"
+        },
+        "osv_modified": "2026-11-14T13:12:14.502576208Z",
         "osv_published": "2026-10-08T22:31:09Z",
         "package": "golang.org/x/net",
         "purl": "pkg:golang/golang.org/x/net@v0.47.0",
@@ -4966,10 +5222,10 @@
         "ecosystem": "golang",
         "epss": {
           "cve": "CVE-2026-78669",
-          "percentile": 0.58324,
+          "percentile": 0.58655,
           "score": 0.00847
         },
-        "epss_date": "2026-11-07T12:00:22Z",
+        "epss_date": "2026-11-15T12:03:04Z",
         "fix_state": "fixed",
         "fixed_in": [
           "0.60.0"
@@ -4978,13 +5234,16 @@
         "in_binary": "vulnerable code in binary",
         "kev": null,
         "kev_cves": [],
-        "kev_snapshot": "2026.11.06",
+        "kev_snapshot": "2026.11.13",
         "location": "go.mod",
         "locations": [
           "go.mod"
         ],
         "osv_confirmed": true,
-        "osv_modified": "2026-10-16T09:55:38.952277866Z",
+        "osv_coverage": {
+          "state": "confirmed"
+        },
+        "osv_modified": "2026-11-14T13:12:14.349122729Z",
         "osv_published": "2026-10-08T22:31:09Z",
         "package": "golang.org/x/net",
         "purl": "pkg:golang/golang.org/x/net@v0.47.0",
@@ -5000,10 +5259,10 @@
         "ecosystem": "golang",
         "epss": {
           "cve": "CVE-2026-97032",
-          "percentile": 0.52481,
+          "percentile": 0.5282,
           "score": 0.00676
         },
-        "epss_date": "2026-11-07T12:00:22Z",
+        "epss_date": "2026-11-15T12:03:04Z",
         "fix_state": "fixed",
         "fixed_in": [
           "0.60.0"
@@ -5012,13 +5271,16 @@
         "in_binary": "vulnerable code in binary",
         "kev": null,
         "kev_cves": [],
-        "kev_snapshot": "2026.11.06",
+        "kev_snapshot": "2026.11.13",
         "location": "go.mod",
         "locations": [
           "go.mod"
         ],
         "osv_confirmed": true,
-        "osv_modified": "2026-10-16T09:55:57.350751224Z",
+        "osv_coverage": {
+          "state": "confirmed"
+        },
+        "osv_modified": "2026-11-14T13:12:14.222191133Z",
         "osv_published": "2026-10-08T22:31:09Z",
         "package": "golang.org/x/net",
         "purl": "pkg:golang/golang.org/x/net@v0.47.0",
@@ -5034,10 +5296,10 @@
         "ecosystem": "golang",
         "epss": {
           "cve": "CVE-2026-78661",
-          "percentile": 0.35396,
+          "percentile": 0.35693,
           "score": 0.00409
         },
-        "epss_date": "2026-11-07T12:00:22Z",
+        "epss_date": "2026-11-15T12:03:04Z",
         "fix_state": "fixed",
         "fixed_in": [
           "0.62.0"
@@ -5046,12 +5308,15 @@
         "in_binary": "vulnerable code in binary",
         "kev": null,
         "kev_cves": [],
-        "kev_snapshot": "2026.11.06",
+        "kev_snapshot": "2026.11.13",
         "location": "go.mod",
         "locations": [
           "go.mod"
         ],
         "osv_confirmed": true,
+        "osv_coverage": {
+          "state": "confirmed"
+        },
         "osv_modified": "2026-10-27T21:30:04.890809062Z",
         "osv_published": "2026-10-27T21:16:18Z",
         "package": "golang.org/x/net",
@@ -5068,10 +5333,10 @@
         "ecosystem": "golang",
         "epss": {
           "cve": "CVE-2026-56852",
-          "percentile": 0.41281,
+          "percentile": 0.41594,
           "score": 0.00475
         },
-        "epss_date": "2026-11-07T12:00:22Z",
+        "epss_date": "2026-11-15T12:03:04Z",
         "fix_state": "fixed",
         "fixed_in": [
           "0.39.0"
@@ -5080,13 +5345,16 @@
         "in_binary": "vulnerable code in binary",
         "kev": null,
         "kev_cves": [],
-        "kev_snapshot": "2026.11.06",
+        "kev_snapshot": "2026.11.13",
         "location": "go.mod",
         "locations": [
           "go.mod"
         ],
         "osv_confirmed": true,
-        "osv_modified": "2026-09-23T10:41:39.386264978Z",
+        "osv_coverage": {
+          "state": "confirmed"
+        },
+        "osv_modified": "2026-11-14T13:12:13.157756222Z",
         "osv_published": "2026-07-14T17:29:56Z",
         "package": "golang.org/x/text",
         "purl": "pkg:golang/golang.org/x/text@v0.31.0",
@@ -5102,10 +5370,10 @@
         "ecosystem": "golang",
         "epss": {
           "cve": "CVE-2026-56851",
-          "percentile": 0.40535,
+          "percentile": 0.40842,
           "score": 0.00466
         },
-        "epss_date": "2026-11-07T12:00:22Z",
+        "epss_date": "2026-11-15T12:03:04Z",
         "fix_state": "fixed",
         "fixed_in": [
           "0.41.0"
@@ -5114,13 +5382,16 @@
         "in_binary": "vulnerable code in binary",
         "kev": null,
         "kev_cves": [],
-        "kev_snapshot": "2026.11.06",
+        "kev_snapshot": "2026.11.13",
         "location": "go.mod",
         "locations": [
           "go.mod"
         ],
         "osv_confirmed": true,
-        "osv_modified": "2026-10-20T10:42:24.514593111Z",
+        "osv_coverage": {
+          "state": "confirmed"
+        },
+        "osv_modified": "2026-11-14T13:12:14.100810021Z",
         "osv_published": "2026-10-07T14:09:43Z",
         "package": "golang.org/x/text",
         "purl": "pkg:golang/golang.org/x/text@v0.31.0",
@@ -5136,10 +5407,10 @@
         "ecosystem": "golang",
         "epss": {
           "cve": "CVE-2026-84445",
-          "percentile": 0.50969,
+          "percentile": 0.51298,
           "score": 0.00641
         },
-        "epss_date": "2026-11-07T12:00:22Z",
+        "epss_date": "2026-11-15T12:03:04Z",
         "fix_state": "fixed",
         "fixed_in": [
           "1.82.2"
@@ -5148,12 +5419,15 @@
         "in_binary": "not in released binary",
         "kev": null,
         "kev_cves": [],
-        "kev_snapshot": "2026.11.06",
+        "kev_snapshot": "2026.11.13",
         "location": "go.mod",
         "locations": [
           "go.mod"
         ],
         "osv_confirmed": true,
+        "osv_coverage": {
+          "state": "confirmed"
+        },
         "osv_modified": "2026-10-07T17:45:12.223368677Z",
         "osv_published": "2026-09-08T21:21:43Z",
         "package": "google.golang.org/grpc",
@@ -5167,7 +5441,7 @@
         "aliases": [],
         "ecosystem": "golang",
         "epss": null,
-        "epss_date": "2026-11-07T12:00:22Z",
+        "epss_date": "2026-11-15T12:03:04Z",
         "fix_state": "fixed",
         "fixed_in": [
           "1.82.1"
@@ -5176,12 +5450,15 @@
         "in_binary": "not in released binary",
         "kev": null,
         "kev_cves": [],
-        "kev_snapshot": "2026.11.06",
+        "kev_snapshot": "2026.11.13",
         "location": "go.mod",
         "locations": [
           "go.mod"
         ],
         "osv_confirmed": true,
+        "osv_coverage": {
+          "state": "confirmed"
+        },
         "osv_modified": "2026-09-10T03:51:11.547405330Z",
         "osv_published": "2026-07-21T22:03:55Z",
         "package": "google.golang.org/grpc",
@@ -5198,10 +5475,10 @@
         "ecosystem": "golang",
         "epss": {
           "cve": "CVE-2026-84304",
-          "percentile": 0.49398,
+          "percentile": 0.49734,
           "score": 0.00609
         },
-        "epss_date": "2026-11-07T12:00:22Z",
+        "epss_date": "2026-11-15T12:03:04Z",
         "fix_state": "fixed",
         "fixed_in": [
           "1.83.1"
@@ -5210,12 +5487,15 @@
         "in_binary": "not in released binary",
         "kev": null,
         "kev_cves": [],
-        "kev_snapshot": "2026.11.06",
+        "kev_snapshot": "2026.11.13",
         "location": "go.mod",
         "locations": [
           "go.mod"
         ],
         "osv_confirmed": true,
+        "osv_coverage": {
+          "state": "confirmed"
+        },
         "osv_modified": "2026-09-15T19:10:44.560975305Z",
         "osv_published": "2026-09-01T21:32:41Z",
         "package": "google.golang.org/grpc",
@@ -5232,22 +5512,25 @@
         "ecosystem": "golang",
         "epss": {
           "cve": "CVE-2026-85747",
-          "percentile": 0.12318,
+          "percentile": 0.12338,
           "score": 0.00218
         },
-        "epss_date": "2026-11-07T12:00:22Z",
+        "epss_date": "2026-11-15T12:03:04Z",
         "fix_state": "not-fixed",
         "fixed_in": [],
         "id": "GHSA-685w-q87j-wqw3",
         "in_binary": "vulnerable code in binary",
         "kev": null,
         "kev_cves": [],
-        "kev_snapshot": "2026.11.06",
+        "kev_snapshot": "2026.11.13",
         "location": "go.mod",
         "locations": [
           "go.mod"
         ],
         "osv_confirmed": true,
+        "osv_coverage": {
+          "state": "confirmed"
+        },
         "osv_modified": "2026-11-05T23:25:40.391377389Z",
         "osv_published": "2026-10-15T20:22:02Z",
         "package": "github.com/docker/distribution",
@@ -5264,22 +5547,25 @@
         "ecosystem": "golang",
         "epss": {
           "cve": "CVE-2026-116585",
-          "percentile": 0.18412,
+          "percentile": 0.18467,
           "score": 0.00264
         },
-        "epss_date": "2026-11-07T12:00:22Z",
+        "epss_date": "2026-11-15T12:03:04Z",
         "fix_state": "not-fixed",
         "fixed_in": [],
         "id": "GHSA-4w3g-jfj2-cw2q",
         "in_binary": "vulnerable code not in binary",
         "kev": null,
         "kev_cves": [],
-        "kev_snapshot": "2026.11.06",
+        "kev_snapshot": "2026.11.13",
         "location": "go.mod",
         "locations": [
           "go.mod"
         ],
         "osv_confirmed": true,
+        "osv_coverage": {
+          "state": "confirmed"
+        },
         "osv_modified": "2026-10-28T21:30:06.790863342Z",
         "osv_published": "2026-10-28T21:14:00Z",
         "package": "github.com/go-jose/go-jose/v3",
@@ -5296,22 +5582,25 @@
         "ecosystem": "golang",
         "epss": {
           "cve": "CVE-2026-116586",
-          "percentile": 0.21863,
+          "percentile": 0.2201,
           "score": 0.00292
         },
-        "epss_date": "2026-11-07T12:00:22Z",
+        "epss_date": "2026-11-15T12:03:04Z",
         "fix_state": "not-fixed",
         "fixed_in": [],
         "id": "GHSA-vvm8-gf78-28g4",
         "in_binary": "vulnerable code not in binary",
         "kev": null,
         "kev_cves": [],
-        "kev_snapshot": "2026.11.06",
+        "kev_snapshot": "2026.11.13",
         "location": "go.mod",
         "locations": [
           "go.mod"
         ],
         "osv_confirmed": true,
+        "osv_coverage": {
+          "state": "confirmed"
+        },
         "osv_modified": "2026-10-28T21:30:05.801821772Z",
         "osv_published": "2026-10-28T21:14:08Z",
         "package": "github.com/go-jose/go-jose/v3",
@@ -5327,19 +5616,22 @@
         ],
         "ecosystem": "golang",
         "epss": null,
-        "epss_date": "2026-11-07T12:00:22Z",
+        "epss_date": "2026-11-15T12:03:04Z",
         "fix_state": "not-fixed",
         "fixed_in": [],
         "id": "GHSA-698x-9w2p-7vvp",
         "in_binary": "module in binary",
         "kev": null,
         "kev_cves": [],
-        "kev_snapshot": "2026.11.06",
+        "kev_snapshot": "2026.11.13",
         "location": "go.mod",
         "locations": [
           "go.mod"
         ],
         "osv_confirmed": true,
+        "osv_coverage": {
+          "state": "confirmed"
+        },
         "osv_modified": "2026-09-10T03:50:48.475919020Z",
         "osv_published": "2026-06-01T09:31:12Z",
         "package": "github.com/quay/claircore",
@@ -5356,10 +5648,10 @@
         "ecosystem": "golang",
         "epss": {
           "cve": "CVE-2026-107386",
-          "percentile": 0.42595,
+          "percentile": 0.42912,
           "score": 0.00493
         },
-        "epss_date": "2026-11-07T12:00:22Z",
+        "epss_date": "2026-11-15T12:03:04Z",
         "fix_state": "fixed",
         "fixed_in": [
           "1.14.0"
@@ -5368,12 +5660,15 @@
         "in_binary": "not in released binary",
         "kev": null,
         "kev_cves": [],
-        "kev_snapshot": "2026.11.06",
+        "kev_snapshot": "2026.11.13",
         "location": "go.mod",
         "locations": [
           "go.mod"
         ],
         "osv_confirmed": true,
+        "osv_coverage": {
+          "state": "confirmed"
+        },
         "osv_modified": "2026-10-19T21:41:15.822630367Z",
         "osv_published": "2026-10-08T19:40:19Z",
         "package": "github.com/rabbitmq/amqp091-go",
@@ -5390,10 +5685,10 @@
         "ecosystem": "golang",
         "epss": {
           "cve": "CVE-2026-39882",
-          "percentile": 0.09824,
+          "percentile": 0.09834,
           "score": 0.00199
         },
-        "epss_date": "2026-11-07T12:00:22Z",
+        "epss_date": "2026-11-15T12:03:04Z",
         "fix_state": "fixed",
         "fixed_in": [
           "1.43.0"
@@ -5402,12 +5697,15 @@
         "in_binary": "not in released binary",
         "kev": null,
         "kev_cves": [],
-        "kev_snapshot": "2026.11.06",
+        "kev_snapshot": "2026.11.13",
         "location": "go.mod",
         "locations": [
           "go.mod"
         ],
         "osv_confirmed": true,
+        "osv_coverage": {
+          "state": "confirmed"
+        },
         "osv_modified": "2026-09-10T03:51:03.562742514Z",
         "osv_published": "2026-04-08T19:22:01Z",
         "package": "go.opentelemetry.io/otel/exporters/otlp/otlpmetric/otlpmetrichttp",
@@ -5424,10 +5722,10 @@
         "ecosystem": "golang",
         "epss": {
           "cve": "CVE-2026-39882",
-          "percentile": 0.09824,
+          "percentile": 0.09834,
           "score": 0.00199
         },
-        "epss_date": "2026-11-07T12:00:22Z",
+        "epss_date": "2026-11-15T12:03:04Z",
         "fix_state": "fixed",
         "fixed_in": [
           "1.43.0"
@@ -5436,12 +5734,15 @@
         "in_binary": "not in released binary",
         "kev": null,
         "kev_cves": [],
-        "kev_snapshot": "2026.11.06",
+        "kev_snapshot": "2026.11.13",
         "location": "go.mod",
         "locations": [
           "go.mod"
         ],
         "osv_confirmed": true,
+        "osv_coverage": {
+          "state": "confirmed"
+        },
         "osv_modified": "2026-09-10T03:51:03.562742514Z",
         "osv_published": "2026-04-08T19:22:01Z",
         "package": "go.opentelemetry.io/otel/exporters/otlp/otlptrace/otlptracehttp",
@@ -5453,15 +5754,89 @@
       },
       {
         "aliases": [
+          "CVE-2026-128085"
+        ],
+        "ecosystem": "golang",
+        "epss": {
+          "cve": "CVE-2026-128085",
+          "percentile": 0.41099,
+          "score": 0.00469
+        },
+        "epss_date": "2026-11-15T12:03:04Z",
+        "fix_state": "fixed",
+        "fixed_in": [
+          "1.47.0"
+        ],
+        "id": "GHSA-q7gw-24fr-5p69",
+        "in_binary": "not in released binary",
+        "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.13",
+        "location": "go.mod",
+        "locations": [
+          "go.mod"
+        ],
+        "osv_confirmed": true,
+        "osv_coverage": {
+          "state": "confirmed"
+        },
+        "osv_modified": "2026-11-13T19:15:05.908318974Z",
+        "osv_published": "2026-11-13T19:00:55Z",
+        "package": "go.opentelemetry.io/otel/sdk",
+        "purl": "pkg:golang/go.opentelemetry.io/otel/sdk@v1.39.0",
+        "severity": "Medium",
+        "summary": "opentelemetry-go: AttributeValueLengthLimit is fully bypassed by attribute values composed of valid U+FFFD runes",
+        "url": "https://github.com/advisories/GHSA-q7gw-24fr-5p69",
+        "version": "v1.39.0"
+      },
+      {
+        "aliases": [
+          "CVE-2026-128085"
+        ],
+        "ecosystem": "golang",
+        "epss": {
+          "cve": "CVE-2026-128085",
+          "percentile": 0.41099,
+          "score": 0.00469
+        },
+        "epss_date": "2026-11-15T12:03:04Z",
+        "fix_state": "fixed",
+        "fixed_in": [
+          "1.47.0"
+        ],
+        "id": "GHSA-q7gw-24fr-5p69",
+        "in_binary": "vulnerable code not in binary",
+        "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.13",
+        "location": "go.mod",
+        "locations": [
+          "go.mod"
+        ],
+        "osv_confirmed": true,
+        "osv_coverage": {
+          "state": "confirmed"
+        },
+        "osv_modified": "2026-11-13T19:15:05.908318974Z",
+        "osv_published": "2026-11-13T19:00:55Z",
+        "package": "go.opentelemetry.io/otel/trace",
+        "purl": "pkg:golang/go.opentelemetry.io/otel/trace@v1.39.0",
+        "severity": "Medium",
+        "summary": "opentelemetry-go: AttributeValueLengthLimit is fully bypassed by attribute values composed of valid U+FFFD runes",
+        "url": "https://github.com/advisories/GHSA-q7gw-24fr-5p69",
+        "version": "v1.39.0"
+      },
+      {
+        "aliases": [
           "CVE-2026-39828"
         ],
         "ecosystem": "golang",
         "epss": {
           "cve": "CVE-2026-39828",
-          "percentile": 0.30964,
+          "percentile": 0.31231,
           "score": 0.00369
         },
-        "epss_date": "2026-11-07T12:00:22Z",
+        "epss_date": "2026-11-15T12:03:04Z",
         "fix_state": "fixed",
         "fixed_in": [
           "0.52.0"
@@ -5470,13 +5845,16 @@
         "in_binary": "vulnerable code in binary",
         "kev": null,
         "kev_cves": [],
-        "kev_snapshot": "2026.11.06",
+        "kev_snapshot": "2026.11.13",
         "location": "go.mod",
         "locations": [
           "go.mod"
         ],
         "osv_confirmed": true,
-        "osv_modified": "2026-09-10T03:51:07.761861882Z",
+        "osv_coverage": {
+          "state": "confirmed"
+        },
+        "osv_modified": "2026-11-14T13:12:14.862999722Z",
         "osv_published": "2026-05-22T02:08:34Z",
         "package": "golang.org/x/crypto",
         "purl": "pkg:golang/golang.org/x/crypto@v0.45.0",
@@ -5492,10 +5870,10 @@
         "ecosystem": "golang",
         "epss": {
           "cve": "CVE-2026-39835",
-          "percentile": 0.43321,
+          "percentile": 0.43644,
           "score": 0.00504
         },
-        "epss_date": "2026-11-07T12:00:22Z",
+        "epss_date": "2026-11-15T12:03:04Z",
         "fix_state": "fixed",
         "fixed_in": [
           "0.52.0"
@@ -5504,13 +5882,16 @@
         "in_binary": "vulnerable code in binary",
         "kev": null,
         "kev_cves": [],
-        "kev_snapshot": "2026.11.06",
+        "kev_snapshot": "2026.11.13",
         "location": "go.mod",
         "locations": [
           "go.mod"
         ],
         "osv_confirmed": true,
-        "osv_modified": "2026-09-22T10:41:48.922257369Z",
+        "osv_coverage": {
+          "state": "confirmed"
+        },
+        "osv_modified": "2026-11-14T13:12:14.428389763Z",
         "osv_published": "2026-05-22T02:08:34Z",
         "package": "golang.org/x/crypto",
         "purl": "pkg:golang/golang.org/x/crypto@v0.45.0",
@@ -5526,10 +5907,10 @@
         "ecosystem": "golang",
         "epss": {
           "cve": "CVE-2026-46598",
-          "percentile": 0.35748,
+          "percentile": 0.36034,
           "score": 0.00412
         },
-        "epss_date": "2026-11-07T12:00:22Z",
+        "epss_date": "2026-11-15T12:03:04Z",
         "fix_state": "fixed",
         "fixed_in": [
           "0.52.0"
@@ -5538,13 +5919,16 @@
         "in_binary": "vulnerable code in binary",
         "kev": null,
         "kev_cves": [],
-        "kev_snapshot": "2026.11.06",
+        "kev_snapshot": "2026.11.13",
         "location": "go.mod",
         "locations": [
           "go.mod"
         ],
         "osv_confirmed": true,
-        "osv_modified": "2026-09-22T10:41:48.813027241Z",
+        "osv_coverage": {
+          "state": "confirmed"
+        },
+        "osv_modified": "2026-11-14T13:12:14.978738082Z",
         "osv_published": "2026-05-22T02:08:34Z",
         "package": "golang.org/x/crypto",
         "purl": "pkg:golang/golang.org/x/crypto@v0.45.0",
@@ -5560,10 +5944,10 @@
         "ecosystem": "golang",
         "epss": {
           "cve": "CVE-2026-39827",
-          "percentile": 0.2053,
+          "percentile": 0.20665,
           "score": 0.00279
         },
-        "epss_date": "2026-11-07T12:00:22Z",
+        "epss_date": "2026-11-15T12:03:04Z",
         "fix_state": "fixed",
         "fixed_in": [
           "0.52.0"
@@ -5572,13 +5956,16 @@
         "in_binary": "vulnerable code in binary",
         "kev": null,
         "kev_cves": [],
-        "kev_snapshot": "2026.11.06",
+        "kev_snapshot": "2026.11.13",
         "location": "go.mod",
         "locations": [
           "go.mod"
         ],
         "osv_confirmed": true,
-        "osv_modified": "2026-09-22T10:41:47.670428128Z",
+        "osv_coverage": {
+          "state": "confirmed"
+        },
+        "osv_modified": "2026-11-14T13:12:14.625769696Z",
         "osv_published": "2026-05-22T02:08:34Z",
         "package": "golang.org/x/crypto",
         "purl": "pkg:golang/golang.org/x/crypto@v0.45.0",
@@ -5594,10 +5981,10 @@
         "ecosystem": "golang",
         "epss": {
           "cve": "CVE-2026-25680",
-          "percentile": 0.25896,
+          "percentile": 0.26097,
           "score": 0.00326
         },
-        "epss_date": "2026-11-07T12:00:22Z",
+        "epss_date": "2026-11-15T12:03:04Z",
         "fix_state": "fixed",
         "fixed_in": [
           "0.55.0"
@@ -5606,12 +5993,15 @@
         "in_binary": "vulnerable code in binary",
         "kev": null,
         "kev_cves": [],
-        "kev_snapshot": "2026.11.06",
+        "kev_snapshot": "2026.11.13",
         "location": "go.mod",
         "locations": [
           "go.mod"
         ],
         "osv_confirmed": true,
+        "osv_coverage": {
+          "state": "confirmed"
+        },
         "osv_modified": "2026-09-10T03:50:45.494180024Z",
         "osv_published": "2026-05-22T02:46:43Z",
         "package": "golang.org/x/net",
@@ -5628,10 +6018,10 @@
         "ecosystem": "golang",
         "epss": {
           "cve": "CVE-2026-42506",
-          "percentile": 0.14594,
+          "percentile": 0.14629,
           "score": 0.00235
         },
-        "epss_date": "2026-11-07T12:00:22Z",
+        "epss_date": "2026-11-15T12:03:04Z",
         "fix_state": "fixed",
         "fixed_in": [
           "0.55.0"
@@ -5640,12 +6030,15 @@
         "in_binary": "vulnerable code in binary",
         "kev": null,
         "kev_cves": [],
-        "kev_snapshot": "2026.11.06",
+        "kev_snapshot": "2026.11.13",
         "location": "go.mod",
         "locations": [
           "go.mod"
         ],
         "osv_confirmed": true,
+        "osv_coverage": {
+          "state": "confirmed"
+        },
         "osv_modified": "2026-05-30T05:14:17.563517047Z",
         "osv_published": "2026-05-22T02:46:43Z",
         "package": "golang.org/x/net",
@@ -5662,10 +6055,10 @@
         "ecosystem": "golang",
         "epss": {
           "cve": "CVE-2026-42502",
-          "percentile": 0.13021,
+          "percentile": 0.13047,
           "score": 0.00223
         },
-        "epss_date": "2026-11-07T12:00:22Z",
+        "epss_date": "2026-11-15T12:03:04Z",
         "fix_state": "fixed",
         "fixed_in": [
           "0.55.0"
@@ -5674,13 +6067,16 @@
         "in_binary": "vulnerable code in binary",
         "kev": null,
         "kev_cves": [],
-        "kev_snapshot": "2026.11.06",
+        "kev_snapshot": "2026.11.13",
         "location": "go.mod",
         "locations": [
           "go.mod"
         ],
         "osv_confirmed": true,
-        "osv_modified": "2026-09-22T10:41:48.597564594Z",
+        "osv_coverage": {
+          "state": "confirmed"
+        },
+        "osv_modified": "2026-11-14T13:12:15.009419304Z",
         "osv_published": "2026-05-22T02:46:43Z",
         "package": "golang.org/x/net",
         "purl": "pkg:golang/golang.org/x/net@v0.47.0",
@@ -5696,10 +6092,10 @@
         "ecosystem": "golang",
         "epss": {
           "cve": "CVE-2026-25681",
-          "percentile": 0.13021,
-          "score": 0.00223
+          "percentile": 0.1789,
+          "score": 0.0026
         },
-        "epss_date": "2026-11-07T12:00:22Z",
+        "epss_date": "2026-11-15T12:03:04Z",
         "fix_state": "fixed",
         "fixed_in": [
           "0.55.0"
@@ -5708,13 +6104,16 @@
         "in_binary": "vulnerable code in binary",
         "kev": null,
         "kev_cves": [],
-        "kev_snapshot": "2026.11.06",
+        "kev_snapshot": "2026.11.13",
         "location": "go.mod",
         "locations": [
           "go.mod"
         ],
         "osv_confirmed": true,
-        "osv_modified": "2026-09-22T10:41:48.499970547Z",
+        "osv_coverage": {
+          "state": "confirmed"
+        },
+        "osv_modified": "2026-11-14T13:12:14.663205968Z",
         "osv_published": "2026-05-22T02:46:43Z",
         "package": "golang.org/x/net",
         "purl": "pkg:golang/golang.org/x/net@v0.47.0",
@@ -5730,10 +6129,10 @@
         "ecosystem": "golang",
         "epss": {
           "cve": "CVE-2026-27136",
-          "percentile": 0.1302,
-          "score": 0.00223
+          "percentile": 0.1723,
+          "score": 0.00255
         },
-        "epss_date": "2026-11-07T12:00:22Z",
+        "epss_date": "2026-11-15T12:03:04Z",
         "fix_state": "fixed",
         "fixed_in": [
           "0.55.0"
@@ -5742,13 +6141,16 @@
         "in_binary": "vulnerable code in binary",
         "kev": null,
         "kev_cves": [],
-        "kev_snapshot": "2026.11.06",
+        "kev_snapshot": "2026.11.13",
         "location": "go.mod",
         "locations": [
           "go.mod"
         ],
         "osv_confirmed": true,
-        "osv_modified": "2026-09-22T10:41:47.813482433Z",
+        "osv_coverage": {
+          "state": "confirmed"
+        },
+        "osv_modified": "2026-11-14T13:12:14.931426553Z",
         "osv_published": "2026-05-22T02:46:43Z",
         "package": "golang.org/x/net",
         "purl": "pkg:golang/golang.org/x/net@v0.47.0",
@@ -5764,10 +6166,10 @@
         "ecosystem": "golang",
         "epss": {
           "cve": "CVE-2026-97045",
-          "percentile": 0.18952,
+          "percentile": 0.19018,
           "score": 0.00267
         },
-        "epss_date": "2026-11-07T12:00:22Z",
+        "epss_date": "2026-11-15T12:03:04Z",
         "fix_state": "fixed",
         "fixed_in": [
           "0.62.0"
@@ -5776,12 +6178,15 @@
         "in_binary": "vulnerable code in binary",
         "kev": null,
         "kev_cves": [],
-        "kev_snapshot": "2026.11.06",
+        "kev_snapshot": "2026.11.13",
         "location": "go.mod",
         "locations": [
           "go.mod"
         ],
         "osv_confirmed": true,
+        "osv_coverage": {
+          "state": "confirmed"
+        },
         "osv_modified": "2026-10-27T21:45:08.978077289Z",
         "osv_published": "2026-10-27T21:16:18Z",
         "package": "golang.org/x/net",
@@ -5798,10 +6203,10 @@
         "ecosystem": "golang",
         "epss": {
           "cve": "CVE-2026-84303",
-          "percentile": 0.24112,
+          "percentile": 0.24303,
           "score": 0.00311
         },
-        "epss_date": "2026-11-07T12:00:22Z",
+        "epss_date": "2026-11-15T12:03:04Z",
         "fix_state": "fixed",
         "fixed_in": [
           "1.83.1"
@@ -5810,12 +6215,15 @@
         "in_binary": "not in released binary",
         "kev": null,
         "kev_cves": [],
-        "kev_snapshot": "2026.11.06",
+        "kev_snapshot": "2026.11.13",
         "location": "go.mod",
         "locations": [
           "go.mod"
         ],
         "osv_confirmed": true,
+        "osv_coverage": {
+          "state": "confirmed"
+        },
         "osv_modified": "2026-09-15T19:10:32.558419529Z",
         "osv_published": "2026-09-08T20:50:21Z",
         "package": "google.golang.org/grpc",
@@ -5832,10 +6240,10 @@
         "ecosystem": "golang",
         "epss": {
           "cve": "CVE-2026-41889",
-          "percentile": 0.29494,
+          "percentile": 0.29754,
           "score": 0.00356
         },
-        "epss_date": "2026-11-07T12:00:22Z",
+        "epss_date": "2026-11-15T12:03:04Z",
         "fix_state": "fixed",
         "fixed_in": [
           "5.9.2"
@@ -5844,12 +6252,15 @@
         "in_binary": "vulnerable code in binary",
         "kev": null,
         "kev_cves": [],
-        "kev_snapshot": "2026.11.06",
+        "kev_snapshot": "2026.11.13",
         "location": "go.mod",
         "locations": [
           "go.mod"
         ],
         "osv_confirmed": true,
+        "osv_coverage": {
+          "state": "confirmed"
+        },
         "osv_modified": "2026-09-10T03:51:02.204456790Z",
         "osv_published": "2026-04-22T20:46:51Z",
         "package": "github.com/jackc/pgx/v5",
@@ -5866,10 +6277,10 @@
         "ecosystem": "golang",
         "epss": {
           "cve": "CVE-2026-81870",
-          "percentile": 0.18599,
+          "percentile": 0.18658,
           "score": 0.00266
         },
-        "epss_date": "2026-11-07T12:00:22Z",
+        "epss_date": "2026-11-15T12:03:04Z",
         "fix_state": "fixed",
         "fixed_in": [
           "1.45.0"
@@ -5878,12 +6289,15 @@
         "in_binary": "not in released binary",
         "kev": null,
         "kev_cves": [],
-        "kev_snapshot": "2026.11.06",
+        "kev_snapshot": "2026.11.13",
         "location": "go.mod",
         "locations": [
           "go.mod"
         ],
         "osv_confirmed": true,
+        "osv_coverage": {
+          "state": "confirmed"
+        },
         "osv_modified": "2026-10-01T20:55:52.479756803Z",
         "osv_published": "2026-09-17T20:31:06Z",
         "package": "go.opentelemetry.io/otel/exporters/otlp/otlptrace",
@@ -5900,10 +6314,10 @@
         "ecosystem": "golang",
         "epss": {
           "cve": "CVE-2026-81870",
-          "percentile": 0.18599,
+          "percentile": 0.18658,
           "score": 0.00266
         },
-        "epss_date": "2026-11-07T12:00:22Z",
+        "epss_date": "2026-11-15T12:03:04Z",
         "fix_state": "fixed",
         "fixed_in": [
           "1.45.0"
@@ -5912,12 +6326,15 @@
         "in_binary": "not in released binary",
         "kev": null,
         "kev_cves": [],
-        "kev_snapshot": "2026.11.06",
+        "kev_snapshot": "2026.11.13",
         "location": "go.mod",
         "locations": [
           "go.mod"
         ],
         "osv_confirmed": true,
+        "osv_coverage": {
+          "state": "confirmed"
+        },
         "osv_modified": "2026-10-01T20:55:52.479756803Z",
         "osv_published": "2026-09-17T20:31:06Z",
         "package": "go.opentelemetry.io/otel/exporters/otlp/otlptrace/otlptracegrpc",
@@ -5934,10 +6351,10 @@
         "ecosystem": "golang",
         "epss": {
           "cve": "CVE-2026-81870",
-          "percentile": 0.18599,
+          "percentile": 0.18658,
           "score": 0.00266
         },
-        "epss_date": "2026-11-07T12:00:22Z",
+        "epss_date": "2026-11-15T12:03:04Z",
         "fix_state": "fixed",
         "fixed_in": [
           "1.45.0"
@@ -5946,12 +6363,15 @@
         "in_binary": "not in released binary",
         "kev": null,
         "kev_cves": [],
-        "kev_snapshot": "2026.11.06",
+        "kev_snapshot": "2026.11.13",
         "location": "go.mod",
         "locations": [
           "go.mod"
         ],
         "osv_confirmed": true,
+        "osv_coverage": {
+          "state": "confirmed"
+        },
         "osv_modified": "2026-10-01T20:55:52.479756803Z",
         "osv_published": "2026-09-17T20:31:06Z",
         "package": "go.opentelemetry.io/otel/exporters/otlp/otlptrace/otlptracehttp",
@@ -5968,10 +6388,10 @@
         "ecosystem": "golang",
         "epss": {
           "cve": "CVE-2026-81870",
-          "percentile": 0.18599,
+          "percentile": 0.18658,
           "score": 0.00266
         },
-        "epss_date": "2026-11-07T12:00:22Z",
+        "epss_date": "2026-11-15T12:03:04Z",
         "fix_state": "fixed",
         "fixed_in": [
           "1.45.0"
@@ -5980,12 +6400,15 @@
         "in_binary": "not in released binary",
         "kev": null,
         "kev_cves": [],
-        "kev_snapshot": "2026.11.06",
+        "kev_snapshot": "2026.11.13",
         "location": "go.mod",
         "locations": [
           "go.mod"
         ],
         "osv_confirmed": true,
+        "osv_coverage": {
+          "state": "confirmed"
+        },
         "osv_modified": "2026-10-01T20:55:52.479756803Z",
         "osv_published": "2026-09-17T20:31:06Z",
         "package": "go.opentelemetry.io/otel/sdk",
@@ -6002,10 +6425,10 @@
         "ecosystem": "golang",
         "epss": {
           "cve": "CVE-2026-39824",
-          "percentile": 0.01484,
+          "percentile": 0.01516,
           "score": 0.00114
         },
-        "epss_date": "2026-11-07T12:00:22Z",
+        "epss_date": "2026-11-15T12:03:04Z",
         "fix_state": "fixed",
         "fixed_in": [
           "0.44.0"
@@ -6014,12 +6437,15 @@
         "in_binary": "vulnerable code not in binary",
         "kev": null,
         "kev_cves": [],
-        "kev_snapshot": "2026.11.06",
+        "kev_snapshot": "2026.11.13",
         "location": "go.mod",
         "locations": [
           "go.mod"
         ],
         "osv_confirmed": true,
+        "osv_coverage": {
+          "state": "confirmed"
+        },
         "osv_modified": "2026-06-09T18:59:22.740765220Z",
         "osv_published": "2026-05-22T18:28:47Z",
         "package": "golang.org/x/sys",
@@ -6033,7 +6459,7 @@
         "aliases": [],
         "ecosystem": "golang",
         "epss": null,
-        "epss_date": "2026-11-07T12:00:22Z",
+        "epss_date": "2026-11-15T12:03:04Z",
         "fix_state": "fixed",
         "fixed_in": [
           "0.58.1-0.20261009181718-2f1f834330b2"
@@ -6042,12 +6468,15 @@
         "in_binary": "vulnerable code in binary",
         "kev": null,
         "kev_cves": [],
-        "kev_snapshot": "2026.11.06",
+        "kev_snapshot": "2026.11.13",
         "location": "go.mod",
         "locations": [
           "go.mod"
         ],
         "osv_confirmed": true,
+        "osv_coverage": {
+          "state": "confirmed"
+        },
         "osv_modified": "2026-11-02T22:15:06.677088389Z",
         "osv_published": "2026-07-07T22:15:29Z",
         "package": "golang.org/x/crypto",
@@ -7114,5 +7543,5 @@
       ]
     }
   },
-  "updated": "2026-11-08"
+  "updated": "2026-11-15"
 }

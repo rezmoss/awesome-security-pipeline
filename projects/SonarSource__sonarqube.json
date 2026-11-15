@@ -128,6 +128,61 @@
       },
       "workflow_new": 0,
       "workflow_resolved": 0
+    },
+    {
+      "added": 0,
+      "advisory_state": "ok",
+      "commit": "711081b538c275fed91ca9747272d854118e2457",
+      "date": "2026-11-15",
+      "dependencies": 3,
+      "dependency_state": "ok",
+      "downgraded": 0,
+      "errors": [],
+      "file_changes": 0,
+      "fixable": 0,
+      "go_version": null,
+      "in_binary": null,
+      "in_binary_new": 0,
+      "in_binary_resolved": 0,
+      "kev": null,
+      "kev_new": 0,
+      "kev_new_match": 0,
+      "license_changes": 0,
+      "method": "sbomlyze-occurrence-v1",
+      "moved": 0,
+      "new_advisories": 0,
+      "new_vulnerabilities": 0,
+      "osv_confirmed": 0,
+      "osv_only": 0,
+      "ref": "26.11.0.134175",
+      "release_changed": false,
+      "release_integrity": "no-assets",
+      "removed": 0,
+      "resolved_advisories": 0,
+      "resolved_vulnerabilities": 0,
+      "scorecard": 4.9,
+      "scorecard_date": "2026-11-09",
+      "scorecard_note": null,
+      "scorecard_source": "openssf-api",
+      "unknown_direction": 0,
+      "upgraded": 0,
+      "vulnerabilities": {
+        "Critical": 0,
+        "High": 0,
+        "Low": 0,
+        "Medium": 0,
+        "Negligible": 0,
+        "Unknown": 0
+      },
+      "vulnerable_packages": 0,
+      "workflow": {
+        "High": 1,
+        "Low": 0,
+        "Medium": 0,
+        "files": 1
+      },
+      "workflow_new": 0,
+      "workflow_resolved": 0
     }
   ],
   "latest": {
@@ -137,12 +192,12 @@
       "added": [],
       "added_detail": [],
       "advisory_state": "ok",
-      "any": true,
+      "any": false,
       "baseline": false,
       "dependency_baseline": {
         "attempt": "1",
-        "run_id": "41380955266",
-        "sbom_sha256": "e768ee17f25fa8d3ea4cad7fd408b64b8264c696bbf5f2ec1d0b898c0e5b55da"
+        "run_id": "42546359860",
+        "sbom_sha256": "8bd618593004eee75912ec20f928da9d46ae9584acc23171aaf1fdb12f254981"
       },
       "dependency_state": "ok",
       "digest_coverage": {
@@ -165,8 +220,8 @@
       "moved": [],
       "new_advisories": 0,
       "new_vulnerabilities": [],
-      "previous_ref": "26.10.0.133078",
-      "release_changed": true,
+      "previous_ref": "26.11.0.134175",
+      "release_changed": false,
       "removed": [],
       "removed_detail": [],
       "resolved_advisories": 0,
@@ -247,6 +302,7 @@
     "description": "Inspect code continuously for quality and security issues",
     "errors": [],
     "id": "SonarSource__sonarqube",
+    "local_packages": [],
     "lock_aliases": {},
     "manifests": [
       ".github/workflows/build.yml",
@@ -299,11 +355,16 @@
     ],
     "name": "sonarqube",
     "osv": {
-      "available": false
+      "advisories": 0,
+      "available": true,
+      "confirmed": 0,
+      "coverage": {},
+      "osv_only": [],
+      "warning": null
     },
     "osv_api": {
       "available": true,
-      "queried_at": "2026-11-09T01:36:23+00:00",
+      "queried_at": "2026-11-15T23:33:51+00:00",
       "states": {}
     },
     "ref": "26.11.0.134175",
@@ -319,21 +380,19 @@
     },
     "released_at": "2026-11-04T15:13:10Z",
     "repository": "SonarSource/sonarqube",
-    "sbom_sha256": "8bd618593004eee75912ec20f928da9d46ae9584acc23171aaf1fdb12f254981",
+    "sbom_sha256": "44431c60b08222534a01006cb11300ef97019005d4743d272b51df36d51ef3c5",
     "sbomlyze_diff": {
       "added": 0,
       "baseline": {
         "attempt": "1",
-        "run_id": "41380955266"
+        "run_id": "42546359860"
       },
       "changed": 0,
       "contract": "sbomlyze-diff-0.7",
       "drift": {},
       "findings": [
-        "Scanned SonarSource/sonarqube changed: 26.10.0.133078 \u2192 26.11.0.134175",
         "0 version changes among 3 shared packages \u2014 no actual upgrades"
       ],
-      "html": "sbomlyze-diff.html",
       "occurrences": {
         "added": [],
         "digest_coverage": {
@@ -352,7 +411,7 @@
           "files_compared": 1,
           "files_unverified": 0,
           "owned_files_after": 0,
-          "unowned_files_after": 0
+          "unowned_files_after": 1
         },
         "files_added": [],
         "files_removed": [],
@@ -362,19 +421,15 @@
         "moved": [],
         "owned_file_drift": [],
         "removed": [],
-        "source_change": {
-          "from": "26.10.0.133078",
-          "name": "SonarSource/sonarqube",
-          "to": "26.11.0.134175"
-        },
+        "source_change": null,
         "version_changes": [],
         "version_set_changes": []
       },
-      "previous_sbom_sha256": "e768ee17f25fa8d3ea4cad7fd408b64b8264c696bbf5f2ec1d0b898c0e5b55da",
+      "previous_sbom_sha256": "8bd618593004eee75912ec20f928da9d46ae9584acc23171aaf1fdb12f254981",
       "removed": 0,
-      "sbom_sha256": "8bd618593004eee75912ec20f928da9d46ae9584acc23171aaf1fdb12f254981"
+      "sbom_sha256": "44431c60b08222534a01006cb11300ef97019005d4743d272b51df36d51ef3c5"
     },
-    "scanned_at": "2026-11-08T05:54:46+00:00",
+    "scanned_at": "2026-11-15T23:33:47+00:00",
     "scorecard": {
       "checks": [
         {
@@ -448,7 +503,7 @@
           "score": -1
         }
       ],
-      "date": "2026-11-02",
+      "date": "2026-11-09",
       "score": 4.9,
       "source": "openssf-api",
       "version": "v5.6.0"
@@ -470,5 +525,5 @@
       ]
     }
   },
-  "updated": "2026-11-08"
+  "updated": "2026-11-15"
 }

@@ -141,44 +141,116 @@
       },
       "workflow_new": 0,
       "workflow_resolved": 0
+    },
+    {
+      "added": 1,
+      "advisory_state": "ok",
+      "commit": "ba39415db4b3c90cd68942a74b3cc2223ec2b23c",
+      "date": "2026-11-15",
+      "dependencies": 156,
+      "dependency_state": "ok",
+      "downgraded": 0,
+      "errors": [],
+      "file_changes": 2,
+      "fixable": 4,
+      "go_version": "go1.27.4",
+      "in_binary": {
+        "dependencies": 0,
+        "records": 0,
+        "stdlib": 0,
+        "total": 0
+      },
+      "in_binary_new": 0,
+      "in_binary_resolved": 1,
+      "kev": 0,
+      "kev_new": 0,
+      "kev_new_match": 0,
+      "license_changes": 0,
+      "method": "sbomlyze-occurrence-v1",
+      "moved": 0,
+      "new_advisories": 0,
+      "new_vulnerabilities": 0,
+      "osv_confirmed": 4,
+      "osv_only": 0,
+      "ref": "v1.22.4",
+      "release_changed": true,
+      "release_integrity": "immutable",
+      "removed": 1,
+      "resolved_advisories": 2,
+      "resolved_vulnerabilities": 2,
+      "scorecard": 7.9,
+      "scorecard_date": "2026-11-13",
+      "scorecard_note": null,
+      "scorecard_source": "openssf-api",
+      "unknown_direction": 0,
+      "upgraded": 37,
+      "vulnerabilities": {
+        "Critical": 0,
+        "High": 3,
+        "Low": 0,
+        "Medium": 1,
+        "Negligible": 0,
+        "Unknown": 0
+      },
+      "vulnerable_packages": 2,
+      "workflow": {
+        "High": 1,
+        "Low": 6,
+        "Medium": 1,
+        "files": 15
+      },
+      "workflow_new": 0,
+      "workflow_resolved": 0
     }
   ],
   "latest": {
     "archived": false,
     "category": "Policy as Code",
     "changes": {
-      "added": [],
-      "added_detail": [],
+      "added": [
+        "go.opentelemetry.io/otel/log@v1.47.0"
+      ],
+      "added_detail": [
+        {
+          "ecosystem": "golang",
+          "location": "go.mod",
+          "locations": [
+            "go.mod"
+          ],
+          "name": "go.opentelemetry.io/otel/log",
+          "version": "v1.47.0"
+        }
+      ],
       "advisory_state": "ok",
       "any": true,
       "baseline": false,
       "dependency_baseline": {
         "attempt": "1",
-        "run_id": "41380955266",
-        "sbom_sha256": "39a04910d32ea06e86460efdf9d7a6847df1c038d0aa5fb0f54344fee0101b28"
+        "run_id": "42546359860",
+        "sbom_sha256": "d2bb33344696f70e5a2c55df4af61362fe6f25b52b8e5523b5e7b06c9af66256"
       },
       "dependency_state": "ok",
       "digest_coverage": {
         "after_only": 0,
         "before_only": 0,
         "by_kind": {
-          "go-h1": 133
+          "go-h1": 95
         },
-        "comparable": 133,
+        "comparable": 95,
         "disjoint_kinds": 0,
         "packages_total": 202,
-        "same_version_pairs": 202
+        "same_version_pairs": 164
       },
-      "distinct_version_changes": 0,
+      "distinct_version_changes": 36,
       "downgraded": [],
       "file_changes": [
-        ".github/workflows/post-merge.yaml",
-        ".github/workflows/post-tag.yaml"
+        "build/tools/go.mod",
+        "go.mod"
       ],
-      "in_binary_new": [
+      "in_binary_new": [],
+      "in_binary_resolved": [
         "GO-2026-6865"
       ],
-      "in_binary_resolved": [],
       "integrity_changes": [],
       "integrity_drift": 0,
       "kev_method": "snapshot difference",
@@ -188,8 +260,26 @@
       "metadata_changes": [],
       "method": "sbomlyze-occurrence-v1",
       "moved": [],
-      "new_advisories": 1,
-      "new_vulnerabilities": [
+      "new_advisories": 0,
+      "new_vulnerabilities": [],
+      "previous_ref": "v1.22.2",
+      "release_changed": true,
+      "removed": [
+        "golang.org/x/crypto@v0.57.0"
+      ],
+      "removed_detail": [
+        {
+          "ecosystem": "golang",
+          "location": "go.mod",
+          "locations": [
+            "go.mod"
+          ],
+          "name": "golang.org/x/crypto",
+          "version": "v0.57.0"
+        }
+      ],
+      "resolved_advisories": 2,
+      "resolved_vulnerabilities": [
         {
           "aliases": [
             "CVE-2026-116591",
@@ -215,12 +305,6 @@
           "locations": [
             "go.mod"
           ],
-          "new": {
-            "advisory": "published since last scan",
-            "modified": "2026-11-05T23:15:14.472777299Z",
-            "published": "2026-11-05T22:54:32Z",
-            "reason": "unchanged version"
-          },
           "osv_confirmed": true,
           "osv_modified": "2026-11-05T23:15:14.472777299Z",
           "osv_published": "2026-11-05T22:54:32Z",
@@ -230,23 +314,717 @@
           "summary": "Panic on two-block frames in github.com/klauspost/compress",
           "url": "https://github.com/klauspost/compress/security/advisories/GHSA-fpmh-frq8-7rj8",
           "version": "v1.20.0"
+        },
+        {
+          "aliases": [],
+          "ecosystem": "golang",
+          "epss": null,
+          "epss_date": "2026-11-07T12:00:22Z",
+          "fix_state": "fixed",
+          "fixed_in": [
+            "0.58.1-0.20261009181718-2f1f834330b2"
+          ],
+          "id": "GO-2026-5932",
+          "in_binary": "module in binary",
+          "kev": null,
+          "kev_cves": [],
+          "kev_snapshot": "2026.11.06",
+          "location": "go.mod",
+          "locations": [
+            "go.mod"
+          ],
+          "osv_confirmed": true,
+          "osv_modified": "2026-11-02T22:15:06.677088389Z",
+          "osv_published": "2026-07-07T22:15:29Z",
+          "package": "golang.org/x/crypto",
+          "purl": "pkg:golang/golang.org/x/crypto@v0.57.0",
+          "severity": "Unknown",
+          "summary": "The golang.org/x/crypto/openpgp package is unsafe by design, has numerous known security issues, is not maintained, and should not be used. If you are required to interoperate with OpenPGP systems and need a maintained package, consider github.com/ProtonMail/go-crypto/openpgp which is a maintained f",
+          "url": "https://go.dev/issue/44226",
+          "version": "v0.57.0"
         }
       ],
-      "previous_ref": "v1.22.0",
-      "release_changed": true,
-      "removed": [],
-      "removed_detail": [],
-      "resolved_advisories": 0,
-      "resolved_vulnerabilities": [],
+      "scorecard": {
+        "from": 8.2,
+        "to": 7.9
+      },
       "still_affected_version_changed": [],
       "unknown_direction": [],
-      "upgraded": [],
-      "version_changes": [],
+      "upgraded": [
+        {
+          "direction": "upgrade",
+          "ecosystem": "golang",
+          "from": "v1.2.1",
+          "level": "patch",
+          "location": "go.mod",
+          "package": "github.com/agnivade/levenshtein",
+          "to": "v1.2.2"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "golang",
+          "from": "v1.2.0",
+          "level": "minor",
+          "location": "go.mod",
+          "package": "github.com/foxcpp/go-mockdns",
+          "to": "v1.3.0"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "golang",
+          "from": "v1.0.0",
+          "level": "minor",
+          "location": "go.mod",
+          "package": "github.com/gobwas/glob",
+          "to": "v1.1.0"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "golang",
+          "from": "v0.10.6",
+          "level": "minor",
+          "location": "go.mod",
+          "package": "github.com/goccy/go-json",
+          "to": "v0.11.2"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "golang",
+          "from": "v2.30.0",
+          "level": "minor",
+          "location": "go.mod",
+          "package": "github.com/grpc-ecosystem/grpc-gateway/v2",
+          "to": "v2.31.0"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "golang",
+          "from": "v1.43.0",
+          "level": "minor",
+          "location": "go.mod",
+          "package": "github.com/huandu/go-sqlbuilder",
+          "to": "v1.44.1"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "golang",
+          "from": "v1.20.0",
+          "level": "patch",
+          "location": "go.mod",
+          "package": "github.com/klauspost/compress",
+          "to": "v1.20.3"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "golang",
+          "from": "v3.3.0",
+          "level": "minor",
+          "location": "go.mod",
+          "package": "github.com/lestrrat-go/jwx/v3",
+          "to": "v3.4.0"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "golang",
+          "from": "v1.24.1",
+          "level": "minor",
+          "location": "go.mod",
+          "package": "github.com/prometheus/client_golang",
+          "to": "v1.25.0"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "golang",
+          "from": "v0.70.1",
+          "level": "minor",
+          "location": "go.mod",
+          "package": "github.com/prometheus/common",
+          "to": "v0.72.0"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "golang",
+          "from": "v0.21.1",
+          "level": "minor",
+          "location": "go.mod",
+          "package": "github.com/prometheus/procfs",
+          "to": "v0.22.0"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "golang",
+          "from": "v1.0.10",
+          "level": "minor",
+          "location": "go.mod",
+          "package": "github.com/spf13/pflag",
+          "to": "v1.1.0"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "golang",
+          "from": "v2.5.58",
+          "level": "patch",
+          "location": "go.mod",
+          "package": "github.com/vektah/gqlparser/v2",
+          "to": "v2.5.64"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "golang",
+          "from": "v0.71.0",
+          "level": "minor",
+          "location": "go.mod",
+          "package": "go.opentelemetry.io/contrib/bridges/prometheus",
+          "to": "v0.72.0"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "golang",
+          "from": "v0.71.0",
+          "level": "minor",
+          "location": "go.mod",
+          "package": "go.opentelemetry.io/contrib/instrumentation/net/http/otelhttp",
+          "to": "v0.72.0"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "golang",
+          "from": "v1.46.0",
+          "level": "minor",
+          "location": "go.mod",
+          "package": "go.opentelemetry.io/otel",
+          "to": "v1.47.0"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "golang",
+          "from": "v1.46.0",
+          "level": "minor",
+          "location": "go.mod",
+          "package": "go.opentelemetry.io/otel/exporters/otlp/otlpmetric/otlpmetricgrpc",
+          "to": "v1.47.0"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "golang",
+          "from": "v1.46.0",
+          "level": "minor",
+          "location": "go.mod",
+          "package": "go.opentelemetry.io/otel/exporters/otlp/otlpmetric/otlpmetrichttp",
+          "to": "v1.47.0"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "golang",
+          "from": "v1.46.0",
+          "level": "minor",
+          "location": "go.mod",
+          "package": "go.opentelemetry.io/otel/exporters/otlp/otlptrace",
+          "to": "v1.47.0"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "golang",
+          "from": "v1.46.0",
+          "level": "minor",
+          "location": "go.mod",
+          "package": "go.opentelemetry.io/otel/exporters/otlp/otlptrace/otlptracegrpc",
+          "to": "v1.47.0"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "golang",
+          "from": "v1.46.0",
+          "level": "minor",
+          "location": "go.mod",
+          "package": "go.opentelemetry.io/otel/exporters/otlp/otlptrace/otlptracehttp",
+          "to": "v1.47.0"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "golang",
+          "from": "v1.46.0",
+          "level": "minor",
+          "location": "go.mod",
+          "package": "go.opentelemetry.io/otel/metric",
+          "to": "v1.47.0"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "golang",
+          "from": "v1.46.0",
+          "level": "minor",
+          "location": "go.mod",
+          "package": "go.opentelemetry.io/otel/sdk",
+          "to": "v1.47.0"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "golang",
+          "from": "v1.46.0",
+          "level": "minor",
+          "location": "go.mod",
+          "package": "go.opentelemetry.io/otel/sdk/metric",
+          "to": "v1.47.0"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "golang",
+          "from": "v1.46.0",
+          "level": "minor",
+          "location": "go.mod",
+          "package": "go.opentelemetry.io/otel/trace",
+          "to": "v1.47.0"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "golang",
+          "from": "v1.11.0",
+          "level": "patch",
+          "location": "go.mod",
+          "package": "go.opentelemetry.io/proto/otlp",
+          "to": "v1.11.1"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "golang",
+          "from": "v3.0.5",
+          "level": "patch",
+          "location": "go.mod",
+          "package": "go.yaml.in/yaml/v3",
+          "to": "v3.0.6"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "golang",
+          "from": "v0.23.0",
+          "level": "minor",
+          "location": "build/tools/go.mod",
+          "package": "golang.org/x/sync",
+          "to": "v0.24.0"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "golang",
+          "from": "v0.23.0",
+          "level": "minor",
+          "location": "go.mod",
+          "package": "golang.org/x/sync",
+          "to": "v0.24.0"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "golang",
+          "from": "v0.48.0",
+          "level": "minor",
+          "location": "go.mod",
+          "package": "golang.org/x/sys",
+          "to": "v0.49.0"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "golang",
+          "from": "v0.46.0",
+          "level": "minor",
+          "location": "go.mod",
+          "package": "golang.org/x/term",
+          "to": "v0.47.0"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "golang",
+          "from": "v0.42.0",
+          "level": "minor",
+          "location": "go.mod",
+          "package": "golang.org/x/text",
+          "to": "v0.43.0"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "golang",
+          "from": "v0.49.0",
+          "level": "minor",
+          "location": "go.mod",
+          "package": "golang.org/x/tools",
+          "to": "v0.51.0"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "golang",
+          "from": "v0.0.0-20260819154853-08b0e4226688",
+          "level": "prerelease",
+          "location": "go.mod",
+          "package": "google.golang.org/genproto/googleapis/api",
+          "to": "v0.0.0-20260928230214-8a89bd6388cc"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "golang",
+          "from": "v0.0.0-20260819154853-08b0e4226688",
+          "level": "prerelease",
+          "location": "go.mod",
+          "package": "google.golang.org/genproto/googleapis/rpc",
+          "to": "v0.0.0-20260928230214-8a89bd6388cc"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "golang",
+          "from": "v1.84.0",
+          "level": "minor",
+          "location": "go.mod",
+          "package": "google.golang.org/grpc",
+          "to": "v1.85.0"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "golang",
+          "from": "v2.6.2",
+          "level": "minor",
+          "location": "go.mod",
+          "package": "oras.land/oras-go/v2",
+          "to": "v2.7.0"
+        }
+      ],
+      "version_changes": [
+        {
+          "direction": "upgrade",
+          "ecosystem": "golang",
+          "from": "v1.2.1",
+          "level": "patch",
+          "location": "go.mod",
+          "name": "github.com/agnivade/levenshtein",
+          "to": "v1.2.2"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "golang",
+          "from": "v1.2.0",
+          "level": "minor",
+          "location": "go.mod",
+          "name": "github.com/foxcpp/go-mockdns",
+          "to": "v1.3.0"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "golang",
+          "from": "v1.0.0",
+          "level": "minor",
+          "location": "go.mod",
+          "name": "github.com/gobwas/glob",
+          "to": "v1.1.0"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "golang",
+          "from": "v0.10.6",
+          "level": "minor",
+          "location": "go.mod",
+          "name": "github.com/goccy/go-json",
+          "to": "v0.11.2"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "golang",
+          "from": "v2.30.0",
+          "level": "minor",
+          "location": "go.mod",
+          "name": "github.com/grpc-ecosystem/grpc-gateway/v2",
+          "to": "v2.31.0"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "golang",
+          "from": "v1.43.0",
+          "level": "minor",
+          "location": "go.mod",
+          "name": "github.com/huandu/go-sqlbuilder",
+          "to": "v1.44.1"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "golang",
+          "from": "v1.20.0",
+          "level": "patch",
+          "location": "go.mod",
+          "name": "github.com/klauspost/compress",
+          "to": "v1.20.3"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "golang",
+          "from": "v3.3.0",
+          "level": "minor",
+          "location": "go.mod",
+          "name": "github.com/lestrrat-go/jwx/v3",
+          "to": "v3.4.0"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "golang",
+          "from": "v1.24.1",
+          "level": "minor",
+          "location": "go.mod",
+          "name": "github.com/prometheus/client_golang",
+          "to": "v1.25.0"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "golang",
+          "from": "v0.70.1",
+          "level": "minor",
+          "location": "go.mod",
+          "name": "github.com/prometheus/common",
+          "to": "v0.72.0"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "golang",
+          "from": "v0.21.1",
+          "level": "minor",
+          "location": "go.mod",
+          "name": "github.com/prometheus/procfs",
+          "to": "v0.22.0"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "golang",
+          "from": "v1.0.10",
+          "level": "minor",
+          "location": "go.mod",
+          "name": "github.com/spf13/pflag",
+          "to": "v1.1.0"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "golang",
+          "from": "v2.5.58",
+          "level": "patch",
+          "location": "go.mod",
+          "name": "github.com/vektah/gqlparser/v2",
+          "to": "v2.5.64"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "golang",
+          "from": "v0.71.0",
+          "level": "minor",
+          "location": "go.mod",
+          "name": "go.opentelemetry.io/contrib/bridges/prometheus",
+          "to": "v0.72.0"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "golang",
+          "from": "v0.71.0",
+          "level": "minor",
+          "location": "go.mod",
+          "name": "go.opentelemetry.io/contrib/instrumentation/net/http/otelhttp",
+          "to": "v0.72.0"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "golang",
+          "from": "v1.46.0",
+          "level": "minor",
+          "location": "go.mod",
+          "name": "go.opentelemetry.io/otel",
+          "to": "v1.47.0"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "golang",
+          "from": "v1.46.0",
+          "level": "minor",
+          "location": "go.mod",
+          "name": "go.opentelemetry.io/otel/exporters/otlp/otlpmetric/otlpmetricgrpc",
+          "to": "v1.47.0"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "golang",
+          "from": "v1.46.0",
+          "level": "minor",
+          "location": "go.mod",
+          "name": "go.opentelemetry.io/otel/exporters/otlp/otlpmetric/otlpmetrichttp",
+          "to": "v1.47.0"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "golang",
+          "from": "v1.46.0",
+          "level": "minor",
+          "location": "go.mod",
+          "name": "go.opentelemetry.io/otel/exporters/otlp/otlptrace",
+          "to": "v1.47.0"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "golang",
+          "from": "v1.46.0",
+          "level": "minor",
+          "location": "go.mod",
+          "name": "go.opentelemetry.io/otel/exporters/otlp/otlptrace/otlptracegrpc",
+          "to": "v1.47.0"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "golang",
+          "from": "v1.46.0",
+          "level": "minor",
+          "location": "go.mod",
+          "name": "go.opentelemetry.io/otel/exporters/otlp/otlptrace/otlptracehttp",
+          "to": "v1.47.0"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "golang",
+          "from": "v1.46.0",
+          "level": "minor",
+          "location": "go.mod",
+          "name": "go.opentelemetry.io/otel/metric",
+          "to": "v1.47.0"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "golang",
+          "from": "v1.46.0",
+          "level": "minor",
+          "location": "go.mod",
+          "name": "go.opentelemetry.io/otel/sdk",
+          "to": "v1.47.0"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "golang",
+          "from": "v1.46.0",
+          "level": "minor",
+          "location": "go.mod",
+          "name": "go.opentelemetry.io/otel/sdk/metric",
+          "to": "v1.47.0"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "golang",
+          "from": "v1.46.0",
+          "level": "minor",
+          "location": "go.mod",
+          "name": "go.opentelemetry.io/otel/trace",
+          "to": "v1.47.0"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "golang",
+          "from": "v1.11.0",
+          "level": "patch",
+          "location": "go.mod",
+          "name": "go.opentelemetry.io/proto/otlp",
+          "to": "v1.11.1"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "golang",
+          "from": "v3.0.5",
+          "level": "patch",
+          "location": "go.mod",
+          "name": "go.yaml.in/yaml/v3",
+          "to": "v3.0.6"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "golang",
+          "from": "v0.23.0",
+          "level": "minor",
+          "location": "build/tools/go.mod",
+          "name": "golang.org/x/sync",
+          "to": "v0.24.0"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "golang",
+          "from": "v0.23.0",
+          "level": "minor",
+          "location": "go.mod",
+          "name": "golang.org/x/sync",
+          "to": "v0.24.0"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "golang",
+          "from": "v0.48.0",
+          "level": "minor",
+          "location": "go.mod",
+          "name": "golang.org/x/sys",
+          "to": "v0.49.0"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "golang",
+          "from": "v0.46.0",
+          "level": "minor",
+          "location": "go.mod",
+          "name": "golang.org/x/term",
+          "to": "v0.47.0"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "golang",
+          "from": "v0.42.0",
+          "level": "minor",
+          "location": "go.mod",
+          "name": "golang.org/x/text",
+          "to": "v0.43.0"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "golang",
+          "from": "v0.49.0",
+          "level": "minor",
+          "location": "go.mod",
+          "name": "golang.org/x/tools",
+          "to": "v0.51.0"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "golang",
+          "from": "v0.0.0-20260819154853-08b0e4226688",
+          "level": "prerelease",
+          "location": "go.mod",
+          "name": "google.golang.org/genproto/googleapis/api",
+          "to": "v0.0.0-20260928230214-8a89bd6388cc"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "golang",
+          "from": "v0.0.0-20260819154853-08b0e4226688",
+          "level": "prerelease",
+          "location": "go.mod",
+          "name": "google.golang.org/genproto/googleapis/rpc",
+          "to": "v0.0.0-20260928230214-8a89bd6388cc"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "golang",
+          "from": "v1.84.0",
+          "level": "minor",
+          "location": "go.mod",
+          "name": "google.golang.org/grpc",
+          "to": "v1.85.0"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "golang",
+          "from": "v2.6.2",
+          "level": "minor",
+          "location": "go.mod",
+          "name": "oras.land/oras-go/v2",
+          "to": "v2.7.0"
+        }
+      ],
       "version_set_changes": [],
       "workflow_new": 0,
       "workflow_resolved": 0
     },
-    "commit": "482d9e368c2ddfed67ced59259fa6a247bb5f1e5",
+    "commit": "ba39415db4b3c90cd68942a74b3cc2223ec2b23c",
     "compliance": {
       "overall_score": 55,
       "standards": {
@@ -495,8 +1273,8 @@
         "licenses": [],
         "location": "go.mod",
         "name": "github.com/agnivade/levenshtein",
-        "purl": "pkg:golang/github.com/agnivade/levenshtein@v1.2.1",
-        "version": "v1.2.1"
+        "purl": "pkg:golang/github.com/agnivade/levenshtein@v1.2.2",
+        "version": "v1.2.2"
       },
       {
         "ecosystem": "golang",
@@ -647,8 +1425,8 @@
         "licenses": [],
         "location": "go.mod",
         "name": "github.com/foxcpp/go-mockdns",
-        "purl": "pkg:golang/github.com/foxcpp/go-mockdns@v1.2.0",
-        "version": "v1.2.0"
+        "purl": "pkg:golang/github.com/foxcpp/go-mockdns@v1.3.0",
+        "version": "v1.3.0"
       },
       {
         "ecosystem": "golang",
@@ -679,16 +1457,16 @@
         "licenses": [],
         "location": "go.mod",
         "name": "github.com/gobwas/glob",
-        "purl": "pkg:golang/github.com/gobwas/glob@v1.0.0",
-        "version": "v1.0.0"
+        "purl": "pkg:golang/github.com/gobwas/glob@v1.1.0",
+        "version": "v1.1.0"
       },
       {
         "ecosystem": "golang",
         "licenses": [],
         "location": "go.mod",
         "name": "github.com/goccy/go-json",
-        "purl": "pkg:golang/github.com/goccy/go-json@v0.10.6",
-        "version": "v0.10.6"
+        "purl": "pkg:golang/github.com/goccy/go-json@v0.11.2",
+        "version": "v0.11.2"
       },
       {
         "ecosystem": "golang",
@@ -757,8 +1535,8 @@
         "licenses": [],
         "location": "go.mod",
         "name": "github.com/grpc-ecosystem/grpc-gateway/v2",
-        "purl": "pkg:golang/github.com/grpc-ecosystem/grpc-gateway/v2@v2.30.0",
-        "version": "v2.30.0"
+        "purl": "pkg:golang/github.com/grpc-ecosystem/grpc-gateway/v2@v2.31.0",
+        "version": "v2.31.0"
       },
       {
         "ecosystem": "golang",
@@ -781,8 +1559,8 @@
         "licenses": [],
         "location": "go.mod",
         "name": "github.com/huandu/go-sqlbuilder",
-        "purl": "pkg:golang/github.com/huandu/go-sqlbuilder@v1.43.0",
-        "version": "v1.43.0"
+        "purl": "pkg:golang/github.com/huandu/go-sqlbuilder@v1.44.1",
+        "version": "v1.44.1"
       },
       {
         "ecosystem": "golang",
@@ -815,8 +1593,8 @@
         "licenses": [],
         "location": "go.mod",
         "name": "github.com/klauspost/compress",
-        "purl": "pkg:golang/github.com/klauspost/compress@v1.20.0",
-        "version": "v1.20.0"
+        "purl": "pkg:golang/github.com/klauspost/compress@v1.20.3",
+        "version": "v1.20.3"
       },
       {
         "ecosystem": "golang",
@@ -887,8 +1665,8 @@
         "licenses": [],
         "location": "go.mod",
         "name": "github.com/lestrrat-go/jwx/v3",
-        "purl": "pkg:golang/github.com/lestrrat-go/jwx/v3@v3.3.0",
-        "version": "v3.3.0"
+        "purl": "pkg:golang/github.com/lestrrat-go/jwx/v3@v3.4.0",
+        "version": "v3.4.0"
       },
       {
         "ecosystem": "golang",
@@ -1021,8 +1799,8 @@
         "licenses": [],
         "location": "go.mod",
         "name": "github.com/prometheus/client_golang",
-        "purl": "pkg:golang/github.com/prometheus/client_golang@v1.24.1",
-        "version": "v1.24.1"
+        "purl": "pkg:golang/github.com/prometheus/client_golang@v1.25.0",
+        "version": "v1.25.0"
       },
       {
         "ecosystem": "golang",
@@ -1037,16 +1815,16 @@
         "licenses": [],
         "location": "go.mod",
         "name": "github.com/prometheus/common",
-        "purl": "pkg:golang/github.com/prometheus/common@v0.70.1",
-        "version": "v0.70.1"
+        "purl": "pkg:golang/github.com/prometheus/common@v0.72.0",
+        "version": "v0.72.0"
       },
       {
         "ecosystem": "golang",
         "licenses": [],
         "location": "go.mod",
         "name": "github.com/prometheus/procfs",
-        "purl": "pkg:golang/github.com/prometheus/procfs@v0.21.1",
-        "version": "v0.21.1"
+        "purl": "pkg:golang/github.com/prometheus/procfs@v0.22.0",
+        "version": "v0.22.0"
       },
       {
         "ecosystem": "golang",
@@ -1127,8 +1905,8 @@
         "licenses": [],
         "location": "go.mod",
         "name": "github.com/spf13/pflag",
-        "purl": "pkg:golang/github.com/spf13/pflag@v1.0.10",
-        "version": "v1.0.10"
+        "purl": "pkg:golang/github.com/spf13/pflag@v1.1.0",
+        "version": "v1.1.0"
       },
       {
         "ecosystem": "golang",
@@ -1171,8 +1949,8 @@
         "licenses": [],
         "location": "go.mod",
         "name": "github.com/vektah/gqlparser/v2",
-        "purl": "pkg:golang/github.com/vektah/gqlparser/v2@v2.5.58",
-        "version": "v2.5.58"
+        "purl": "pkg:golang/github.com/vektah/gqlparser/v2@v2.5.64",
+        "version": "v2.5.64"
       },
       {
         "ecosystem": "golang",
@@ -1221,120 +1999,120 @@
         "licenses": [],
         "location": "go.mod",
         "name": "go.opentelemetry.io/contrib/bridges/prometheus",
-        "purl": "pkg:golang/go.opentelemetry.io/contrib/bridges/prometheus@v0.71.0",
-        "version": "v0.71.0"
+        "purl": "pkg:golang/go.opentelemetry.io/contrib/bridges/prometheus@v0.72.0",
+        "version": "v0.72.0"
       },
       {
         "ecosystem": "golang",
         "licenses": [],
         "location": "go.mod",
         "name": "go.opentelemetry.io/contrib/instrumentation/net/http/otelhttp",
-        "purl": "pkg:golang/go.opentelemetry.io/contrib/instrumentation/net/http/otelhttp@v0.71.0",
-        "version": "v0.71.0"
+        "purl": "pkg:golang/go.opentelemetry.io/contrib/instrumentation/net/http/otelhttp@v0.72.0",
+        "version": "v0.72.0"
       },
       {
         "ecosystem": "golang",
         "licenses": [],
         "location": "go.mod",
         "name": "go.opentelemetry.io/otel",
-        "purl": "pkg:golang/go.opentelemetry.io/otel@v1.46.0",
-        "version": "v1.46.0"
+        "purl": "pkg:golang/go.opentelemetry.io/otel@v1.47.0",
+        "version": "v1.47.0"
       },
       {
         "ecosystem": "golang",
         "licenses": [],
         "location": "go.mod",
         "name": "go.opentelemetry.io/otel/exporters/otlp/otlpmetric/otlpmetricgrpc",
-        "purl": "pkg:golang/go.opentelemetry.io/otel/exporters/otlp/otlpmetric/otlpmetricgrpc@v1.46.0",
-        "version": "v1.46.0"
+        "purl": "pkg:golang/go.opentelemetry.io/otel/exporters/otlp/otlpmetric/otlpmetricgrpc@v1.47.0",
+        "version": "v1.47.0"
       },
       {
         "ecosystem": "golang",
         "licenses": [],
         "location": "go.mod",
         "name": "go.opentelemetry.io/otel/exporters/otlp/otlpmetric/otlpmetrichttp",
-        "purl": "pkg:golang/go.opentelemetry.io/otel/exporters/otlp/otlpmetric/otlpmetrichttp@v1.46.0",
-        "version": "v1.46.0"
+        "purl": "pkg:golang/go.opentelemetry.io/otel/exporters/otlp/otlpmetric/otlpmetrichttp@v1.47.0",
+        "version": "v1.47.0"
       },
       {
         "ecosystem": "golang",
         "licenses": [],
         "location": "go.mod",
         "name": "go.opentelemetry.io/otel/exporters/otlp/otlptrace",
-        "purl": "pkg:golang/go.opentelemetry.io/otel/exporters/otlp/otlptrace@v1.46.0",
-        "version": "v1.46.0"
+        "purl": "pkg:golang/go.opentelemetry.io/otel/exporters/otlp/otlptrace@v1.47.0",
+        "version": "v1.47.0"
       },
       {
         "ecosystem": "golang",
         "licenses": [],
         "location": "go.mod",
         "name": "go.opentelemetry.io/otel/exporters/otlp/otlptrace/otlptracegrpc",
-        "purl": "pkg:golang/go.opentelemetry.io/otel/exporters/otlp/otlptrace/otlptracegrpc@v1.46.0",
-        "version": "v1.46.0"
+        "purl": "pkg:golang/go.opentelemetry.io/otel/exporters/otlp/otlptrace/otlptracegrpc@v1.47.0",
+        "version": "v1.47.0"
       },
       {
         "ecosystem": "golang",
         "licenses": [],
         "location": "go.mod",
         "name": "go.opentelemetry.io/otel/exporters/otlp/otlptrace/otlptracehttp",
-        "purl": "pkg:golang/go.opentelemetry.io/otel/exporters/otlp/otlptrace/otlptracehttp@v1.46.0",
-        "version": "v1.46.0"
+        "purl": "pkg:golang/go.opentelemetry.io/otel/exporters/otlp/otlptrace/otlptracehttp@v1.47.0",
+        "version": "v1.47.0"
+      },
+      {
+        "ecosystem": "golang",
+        "licenses": [],
+        "location": "go.mod",
+        "name": "go.opentelemetry.io/otel/log",
+        "purl": "pkg:golang/go.opentelemetry.io/otel/log@v1.47.0",
+        "version": "v1.47.0"
       },
       {
         "ecosystem": "golang",
         "licenses": [],
         "location": "go.mod",
         "name": "go.opentelemetry.io/otel/metric",
-        "purl": "pkg:golang/go.opentelemetry.io/otel/metric@v1.46.0",
-        "version": "v1.46.0"
+        "purl": "pkg:golang/go.opentelemetry.io/otel/metric@v1.47.0",
+        "version": "v1.47.0"
       },
       {
         "ecosystem": "golang",
         "licenses": [],
         "location": "go.mod",
         "name": "go.opentelemetry.io/otel/sdk",
-        "purl": "pkg:golang/go.opentelemetry.io/otel/sdk@v1.46.0",
-        "version": "v1.46.0"
+        "purl": "pkg:golang/go.opentelemetry.io/otel/sdk@v1.47.0",
+        "version": "v1.47.0"
       },
       {
         "ecosystem": "golang",
         "licenses": [],
         "location": "go.mod",
         "name": "go.opentelemetry.io/otel/sdk/metric",
-        "purl": "pkg:golang/go.opentelemetry.io/otel/sdk/metric@v1.46.0",
-        "version": "v1.46.0"
+        "purl": "pkg:golang/go.opentelemetry.io/otel/sdk/metric@v1.47.0",
+        "version": "v1.47.0"
       },
       {
         "ecosystem": "golang",
         "licenses": [],
         "location": "go.mod",
         "name": "go.opentelemetry.io/otel/trace",
-        "purl": "pkg:golang/go.opentelemetry.io/otel/trace@v1.46.0",
-        "version": "v1.46.0"
+        "purl": "pkg:golang/go.opentelemetry.io/otel/trace@v1.47.0",
+        "version": "v1.47.0"
       },
       {
         "ecosystem": "golang",
         "licenses": [],
         "location": "go.mod",
         "name": "go.opentelemetry.io/proto/otlp",
-        "purl": "pkg:golang/go.opentelemetry.io/proto/otlp@v1.11.0",
-        "version": "v1.11.0"
+        "purl": "pkg:golang/go.opentelemetry.io/proto/otlp@v1.11.1",
+        "version": "v1.11.1"
       },
       {
         "ecosystem": "golang",
         "licenses": [],
         "location": "go.mod",
         "name": "go.yaml.in/yaml/v3",
-        "purl": "pkg:golang/go.yaml.in/yaml/v3@v3.0.5",
-        "version": "v3.0.5"
-      },
-      {
-        "ecosystem": "golang",
-        "licenses": [],
-        "location": "go.mod",
-        "name": "golang.org/x/crypto",
-        "purl": "pkg:golang/golang.org/x/crypto@v0.57.0",
-        "version": "v0.57.0"
+        "purl": "pkg:golang/go.yaml.in/yaml/v3@v3.0.6",
+        "version": "v3.0.6"
       },
       {
         "ecosystem": "golang",
@@ -1379,8 +2157,8 @@
         ],
         "location": "build/tools/go.mod",
         "name": "golang.org/x/sync",
-        "purl": "pkg:golang/golang.org/x/sync@v0.23.0",
-        "version": "v0.23.0"
+        "purl": "pkg:golang/golang.org/x/sync@v0.24.0",
+        "version": "v0.24.0"
       },
       {
         "ecosystem": "golang",
@@ -1397,8 +2175,8 @@
         "licenses": [],
         "location": "go.mod",
         "name": "golang.org/x/sys",
-        "purl": "pkg:golang/golang.org/x/sys@v0.48.0",
-        "version": "v0.48.0"
+        "purl": "pkg:golang/golang.org/x/sys@v0.49.0",
+        "version": "v0.49.0"
       },
       {
         "ecosystem": "golang",
@@ -1415,16 +2193,16 @@
         "licenses": [],
         "location": "go.mod",
         "name": "golang.org/x/term",
-        "purl": "pkg:golang/golang.org/x/term@v0.46.0",
-        "version": "v0.46.0"
+        "purl": "pkg:golang/golang.org/x/term@v0.47.0",
+        "version": "v0.47.0"
       },
       {
         "ecosystem": "golang",
         "licenses": [],
         "location": "go.mod",
         "name": "golang.org/x/text",
-        "purl": "pkg:golang/golang.org/x/text@v0.42.0",
-        "version": "v0.42.0"
+        "purl": "pkg:golang/golang.org/x/text@v0.43.0",
+        "version": "v0.43.0"
       },
       {
         "ecosystem": "golang",
@@ -1449,8 +2227,8 @@
         "licenses": [],
         "location": "go.mod",
         "name": "golang.org/x/tools",
-        "purl": "pkg:golang/golang.org/x/tools@v0.49.0",
-        "version": "v0.49.0"
+        "purl": "pkg:golang/golang.org/x/tools@v0.51.0",
+        "version": "v0.51.0"
       },
       {
         "ecosystem": "golang",
@@ -1487,24 +2265,24 @@
         "licenses": [],
         "location": "go.mod",
         "name": "google.golang.org/genproto/googleapis/api",
-        "purl": "pkg:golang/google.golang.org/genproto/googleapis/api@v0.0.0-20260819154853-08b0e4226688",
-        "version": "v0.0.0-20260819154853-08b0e4226688"
+        "purl": "pkg:golang/google.golang.org/genproto/googleapis/api@v0.0.0-20260928230214-8a89bd6388cc",
+        "version": "v0.0.0-20260928230214-8a89bd6388cc"
       },
       {
         "ecosystem": "golang",
         "licenses": [],
         "location": "go.mod",
         "name": "google.golang.org/genproto/googleapis/rpc",
-        "purl": "pkg:golang/google.golang.org/genproto/googleapis/rpc@v0.0.0-20260819154853-08b0e4226688",
-        "version": "v0.0.0-20260819154853-08b0e4226688"
+        "purl": "pkg:golang/google.golang.org/genproto/googleapis/rpc@v0.0.0-20260928230214-8a89bd6388cc",
+        "version": "v0.0.0-20260928230214-8a89bd6388cc"
       },
       {
         "ecosystem": "golang",
         "licenses": [],
         "location": "go.mod",
         "name": "google.golang.org/grpc",
-        "purl": "pkg:golang/google.golang.org/grpc@v1.84.0",
-        "version": "v1.84.0"
+        "purl": "pkg:golang/google.golang.org/grpc@v1.85.0",
+        "version": "v1.85.0"
       },
       {
         "ecosystem": "golang",
@@ -1556,8 +2334,8 @@
         "licenses": [],
         "location": "go.mod",
         "name": "oras.land/oras-go/v2",
-        "purl": "pkg:golang/oras.land/oras-go/v2@v2.6.2",
-        "version": "v2.6.2"
+        "purl": "pkg:golang/oras.land/oras-go/v2@v2.7.0",
+        "version": "v2.7.0"
       },
       {
         "ecosystem": "unknown",
@@ -1598,62 +2376,23 @@
       "asset": "opa_linux_amd64",
       "binary": "opa_linux_amd64",
       "db": "https://vuln.go.dev",
-      "db_last_modified": "2026-11-05T23:49:57Z",
+      "db_last_modified": "2026-11-11T02:51:11Z",
       "findings": [
-        {
-          "aliases": [
-            "CVE-2026-116591",
-            "GHSA-fpmh-frq8-7rj8"
-          ],
-          "epss": {
-            "cve": "CVE-2026-116591",
-            "percentile": 0.26636,
-            "score": 0.00333
-          },
-          "epss_date": "2026-11-07T12:00:22Z",
-          "fixed_version": "v1.20.2",
-          "id": "GO-2026-6865",
-          "kev": null,
-          "kev_cves": [],
-          "kev_snapshot": "2026.11.06",
-          "level": "symbol",
-          "modified": "2026-11-05T22:54:32Z",
-          "module": "github.com/klauspost/compress",
-          "published": "2026-11-05T22:54:32Z",
-          "summary": "Panic on two-block frames in github.com/klauspost/compress",
-          "version": "v1.20.0"
-        },
-        {
-          "aliases": [],
-          "epss": null,
-          "epss_date": "2026-11-07T12:00:22Z",
-          "fixed_version": "v0.58.1-0.20261009181718-2f1f834330b2",
-          "id": "GO-2026-5932",
-          "kev": null,
-          "kev_cves": [],
-          "kev_snapshot": "2026.11.06",
-          "level": "module",
-          "modified": "2026-11-02T22:01:43Z",
-          "module": "golang.org/x/crypto",
-          "published": "2026-07-07T22:15:29Z",
-          "summary": "The golang.org/x/crypto/openpgp package is unmaintained, unsafe by design, and has known security issues",
-          "version": "v0.57.0"
-        },
         {
           "aliases": [
             "CVE-2026-78661"
           ],
           "epss": {
             "cve": "CVE-2026-78661",
-            "percentile": 0.35396,
+            "percentile": 0.35693,
             "score": 0.00409
           },
-          "epss_date": "2026-11-07T12:00:22Z",
+          "epss_date": "2026-11-15T12:03:04Z",
           "fixed_version": "v0.62.0",
           "id": "GO-2026-6860",
           "kev": null,
           "kev_cves": [],
-          "kev_snapshot": "2026.11.06",
+          "kev_snapshot": "2026.11.13",
           "level": "module",
           "modified": "2026-10-27T21:16:18Z",
           "module": "golang.org/x/net",
@@ -1667,15 +2406,15 @@
           ],
           "epss": {
             "cve": "CVE-2026-97045",
-            "percentile": 0.18952,
+            "percentile": 0.19018,
             "score": 0.00267
           },
-          "epss_date": "2026-11-07T12:00:22Z",
+          "epss_date": "2026-11-15T12:03:04Z",
           "fixed_version": "v0.62.0",
           "id": "GO-2026-6866",
           "kev": null,
           "kev_cves": [],
-          "kev_snapshot": "2026.11.06",
+          "kev_snapshot": "2026.11.13",
           "level": "module",
           "modified": "2026-10-27T21:16:18Z",
           "module": "golang.org/x/net",
@@ -1684,10 +2423,11 @@
           "version": "v0.60.0"
         }
       ],
-      "go_version": "go1.27.3",
+      "go_version": "go1.27.4",
       "main_module": "github.com/open-policy-agent/opa"
     },
     "id": "open-policy-agent__opa",
+    "local_packages": [],
     "lock_aliases": {},
     "manifests": [
       ".github/actions/build-opa/action.yml",
@@ -1714,18 +2454,21 @@
     ],
     "name": "opa",
     "osv": {
-      "advisories": 6,
+      "advisories": 4,
       "available": true,
-      "confirmed": 6,
+      "confirmed": 4,
+      "coverage": {
+        "confirmed": 4
+      },
       "osv_only": [],
       "warning": null
     },
     "osv_api": {
       "available": true,
-      "queried_at": "2026-11-09T01:36:17+00:00",
+      "queried_at": "2026-11-15T23:32:32+00:00",
       "states": {}
     },
-    "ref": "v1.22.2",
+    "ref": "v1.22.4",
     "ref_kind": "release",
     "release_integrity": {
       "asset": "opa_linux_amd64",
@@ -1748,19 +2491,19 @@
       "signer": null,
       "verdict": "immutable"
     },
-    "released_at": "2026-11-06T00:02:09Z",
+    "released_at": "2026-11-12T10:35:24Z",
     "repository": "open-policy-agent/opa",
-    "sbom_sha256": "d2bb33344696f70e5a2c55df4af61362fe6f25b52b8e5523b5e7b06c9af66256",
+    "sbom_sha256": "41d5ba1af0cc50d5d7accf431e81c13b6201a8ab505bfbf2c0d942cc11564791",
     "sbomlyze_diff": {
-      "added": 0,
+      "added": 1,
       "baseline": {
         "attempt": "1",
-        "run_id": "41380955266"
+        "run_id": "42546359860"
       },
-      "changed": 0,
+      "changed": 37,
       "contract": "sbomlyze-diff-0.7",
       "drift": {
-        "distinct_version_changes": 0,
+        "distinct_version_changes": 36,
         "downgrades": 0,
         "file_changes": 2,
         "integrity_drift": 0,
@@ -1769,37 +2512,48 @@
         "owned_file_drift": 0,
         "owned_files_changed": 0,
         "unknown_direction": 0,
-        "upgrades": 0,
-        "version_drift": 0
+        "upgrades": 37,
+        "version_drift": 37
       },
       "findings": [
-        "Scanned open-policy-agent/opa changed: v1.22.0 \u2192 v1.22.2",
-        "0 version changes among 202 shared packages \u2014 no actual upgrades",
-        "2 file entries changed content (not package integrity drift): /.github/workflows/post-merge.yaml, /.github/workflows/post-tag.yaml",
-        "Core system packages stable: golang (133), github (63), file (18) unchanged"
+        "Scanned open-policy-agent/opa changed: v1.22.2 \u2192 v1.22.4",
+        "36 version upgrades (29 minor, 5 patch, 2 prerelease) across 37 occurrences among 201 shared packages",
+        "2 file entries changed content (not package integrity drift): /build/tools/go.mod, /go.mod",
+        "Core system packages stable: github (63) unchanged",
+        "golang: 133 packages before and after (37 version changes, 2 added/removed/moved)"
       ],
       "html": "sbomlyze-diff.html",
       "occurrences": {
-        "added": [],
+        "added": [
+          {
+            "ecosystem": "golang",
+            "location": "go.mod",
+            "locations": [
+              "go.mod"
+            ],
+            "name": "go.opentelemetry.io/otel/log",
+            "version": "v1.47.0"
+          }
+        ],
         "digest_coverage": {
           "after_only": 0,
           "before_only": 0,
           "by_kind": {
-            "go-h1": 133
+            "go-h1": 95
           },
-          "comparable": 133,
+          "comparable": 95,
           "disjoint_kinds": 0,
           "packages_total": 202,
-          "same_version_pairs": 202
+          "same_version_pairs": 164
         },
         "file_changes": [
           {
             "owners": [],
-            "path": ".github/workflows/post-merge.yaml"
+            "path": "build/tools/go.mod"
           },
           {
             "owners": [],
-            "path": ".github/workflows/post-tag.yaml"
+            "path": "go.mod"
           }
         ],
         "file_coverage": {
@@ -1808,7 +2562,7 @@
           "files_compared": 18,
           "files_unverified": 0,
           "owned_files_after": 0,
-          "unowned_files_after": 0
+          "unowned_files_after": 18
         },
         "files_added": [],
         "files_removed": [],
@@ -1817,20 +2571,364 @@
         "metadata_changes": [],
         "moved": [],
         "owned_file_drift": [],
-        "removed": [],
+        "removed": [
+          {
+            "ecosystem": "golang",
+            "location": "go.mod",
+            "locations": [
+              "go.mod"
+            ],
+            "name": "golang.org/x/crypto",
+            "version": "v0.57.0"
+          }
+        ],
         "source_change": {
-          "from": "v1.22.0",
+          "from": "v1.22.2",
           "name": "open-policy-agent/opa",
-          "to": "v1.22.2"
+          "to": "v1.22.4"
         },
-        "version_changes": [],
+        "version_changes": [
+          {
+            "direction": "upgrade",
+            "ecosystem": "golang",
+            "from": "v1.2.1",
+            "level": "patch",
+            "location": "go.mod",
+            "name": "github.com/agnivade/levenshtein",
+            "to": "v1.2.2"
+          },
+          {
+            "direction": "upgrade",
+            "ecosystem": "golang",
+            "from": "v1.2.0",
+            "level": "minor",
+            "location": "go.mod",
+            "name": "github.com/foxcpp/go-mockdns",
+            "to": "v1.3.0"
+          },
+          {
+            "direction": "upgrade",
+            "ecosystem": "golang",
+            "from": "v1.0.0",
+            "level": "minor",
+            "location": "go.mod",
+            "name": "github.com/gobwas/glob",
+            "to": "v1.1.0"
+          },
+          {
+            "direction": "upgrade",
+            "ecosystem": "golang",
+            "from": "v0.10.6",
+            "level": "minor",
+            "location": "go.mod",
+            "name": "github.com/goccy/go-json",
+            "to": "v0.11.2"
+          },
+          {
+            "direction": "upgrade",
+            "ecosystem": "golang",
+            "from": "v2.30.0",
+            "level": "minor",
+            "location": "go.mod",
+            "name": "github.com/grpc-ecosystem/grpc-gateway/v2",
+            "to": "v2.31.0"
+          },
+          {
+            "direction": "upgrade",
+            "ecosystem": "golang",
+            "from": "v1.43.0",
+            "level": "minor",
+            "location": "go.mod",
+            "name": "github.com/huandu/go-sqlbuilder",
+            "to": "v1.44.1"
+          },
+          {
+            "direction": "upgrade",
+            "ecosystem": "golang",
+            "from": "v1.20.0",
+            "level": "patch",
+            "location": "go.mod",
+            "name": "github.com/klauspost/compress",
+            "to": "v1.20.3"
+          },
+          {
+            "direction": "upgrade",
+            "ecosystem": "golang",
+            "from": "v3.3.0",
+            "level": "minor",
+            "location": "go.mod",
+            "name": "github.com/lestrrat-go/jwx/v3",
+            "to": "v3.4.0"
+          },
+          {
+            "direction": "upgrade",
+            "ecosystem": "golang",
+            "from": "v1.24.1",
+            "level": "minor",
+            "location": "go.mod",
+            "name": "github.com/prometheus/client_golang",
+            "to": "v1.25.0"
+          },
+          {
+            "direction": "upgrade",
+            "ecosystem": "golang",
+            "from": "v0.70.1",
+            "level": "minor",
+            "location": "go.mod",
+            "name": "github.com/prometheus/common",
+            "to": "v0.72.0"
+          },
+          {
+            "direction": "upgrade",
+            "ecosystem": "golang",
+            "from": "v0.21.1",
+            "level": "minor",
+            "location": "go.mod",
+            "name": "github.com/prometheus/procfs",
+            "to": "v0.22.0"
+          },
+          {
+            "direction": "upgrade",
+            "ecosystem": "golang",
+            "from": "v1.0.10",
+            "level": "minor",
+            "location": "go.mod",
+            "name": "github.com/spf13/pflag",
+            "to": "v1.1.0"
+          },
+          {
+            "direction": "upgrade",
+            "ecosystem": "golang",
+            "from": "v2.5.58",
+            "level": "patch",
+            "location": "go.mod",
+            "name": "github.com/vektah/gqlparser/v2",
+            "to": "v2.5.64"
+          },
+          {
+            "direction": "upgrade",
+            "ecosystem": "golang",
+            "from": "v0.71.0",
+            "level": "minor",
+            "location": "go.mod",
+            "name": "go.opentelemetry.io/contrib/bridges/prometheus",
+            "to": "v0.72.0"
+          },
+          {
+            "direction": "upgrade",
+            "ecosystem": "golang",
+            "from": "v0.71.0",
+            "level": "minor",
+            "location": "go.mod",
+            "name": "go.opentelemetry.io/contrib/instrumentation/net/http/otelhttp",
+            "to": "v0.72.0"
+          },
+          {
+            "direction": "upgrade",
+            "ecosystem": "golang",
+            "from": "v1.46.0",
+            "level": "minor",
+            "location": "go.mod",
+            "name": "go.opentelemetry.io/otel",
+            "to": "v1.47.0"
+          },
+          {
+            "direction": "upgrade",
+            "ecosystem": "golang",
+            "from": "v1.46.0",
+            "level": "minor",
+            "location": "go.mod",
+            "name": "go.opentelemetry.io/otel/exporters/otlp/otlpmetric/otlpmetricgrpc",
+            "to": "v1.47.0"
+          },
+          {
+            "direction": "upgrade",
+            "ecosystem": "golang",
+            "from": "v1.46.0",
+            "level": "minor",
+            "location": "go.mod",
+            "name": "go.opentelemetry.io/otel/exporters/otlp/otlpmetric/otlpmetrichttp",
+            "to": "v1.47.0"
+          },
+          {
+            "direction": "upgrade",
+            "ecosystem": "golang",
+            "from": "v1.46.0",
+            "level": "minor",
+            "location": "go.mod",
+            "name": "go.opentelemetry.io/otel/exporters/otlp/otlptrace",
+            "to": "v1.47.0"
+          },
+          {
+            "direction": "upgrade",
+            "ecosystem": "golang",
+            "from": "v1.46.0",
+            "level": "minor",
+            "location": "go.mod",
+            "name": "go.opentelemetry.io/otel/exporters/otlp/otlptrace/otlptracegrpc",
+            "to": "v1.47.0"
+          },
+          {
+            "direction": "upgrade",
+            "ecosystem": "golang",
+            "from": "v1.46.0",
+            "level": "minor",
+            "location": "go.mod",
+            "name": "go.opentelemetry.io/otel/exporters/otlp/otlptrace/otlptracehttp",
+            "to": "v1.47.0"
+          },
+          {
+            "direction": "upgrade",
+            "ecosystem": "golang",
+            "from": "v1.46.0",
+            "level": "minor",
+            "location": "go.mod",
+            "name": "go.opentelemetry.io/otel/metric",
+            "to": "v1.47.0"
+          },
+          {
+            "direction": "upgrade",
+            "ecosystem": "golang",
+            "from": "v1.46.0",
+            "level": "minor",
+            "location": "go.mod",
+            "name": "go.opentelemetry.io/otel/sdk",
+            "to": "v1.47.0"
+          },
+          {
+            "direction": "upgrade",
+            "ecosystem": "golang",
+            "from": "v1.46.0",
+            "level": "minor",
+            "location": "go.mod",
+            "name": "go.opentelemetry.io/otel/sdk/metric",
+            "to": "v1.47.0"
+          },
+          {
+            "direction": "upgrade",
+            "ecosystem": "golang",
+            "from": "v1.46.0",
+            "level": "minor",
+            "location": "go.mod",
+            "name": "go.opentelemetry.io/otel/trace",
+            "to": "v1.47.0"
+          },
+          {
+            "direction": "upgrade",
+            "ecosystem": "golang",
+            "from": "v1.11.0",
+            "level": "patch",
+            "location": "go.mod",
+            "name": "go.opentelemetry.io/proto/otlp",
+            "to": "v1.11.1"
+          },
+          {
+            "direction": "upgrade",
+            "ecosystem": "golang",
+            "from": "v3.0.5",
+            "level": "patch",
+            "location": "go.mod",
+            "name": "go.yaml.in/yaml/v3",
+            "to": "v3.0.6"
+          },
+          {
+            "direction": "upgrade",
+            "ecosystem": "golang",
+            "from": "v0.23.0",
+            "level": "minor",
+            "location": "build/tools/go.mod",
+            "name": "golang.org/x/sync",
+            "to": "v0.24.0"
+          },
+          {
+            "direction": "upgrade",
+            "ecosystem": "golang",
+            "from": "v0.23.0",
+            "level": "minor",
+            "location": "go.mod",
+            "name": "golang.org/x/sync",
+            "to": "v0.24.0"
+          },
+          {
+            "direction": "upgrade",
+            "ecosystem": "golang",
+            "from": "v0.48.0",
+            "level": "minor",
+            "location": "go.mod",
+            "name": "golang.org/x/sys",
+            "to": "v0.49.0"
+          },
+          {
+            "direction": "upgrade",
+            "ecosystem": "golang",
+            "from": "v0.46.0",
+            "level": "minor",
+            "location": "go.mod",
+            "name": "golang.org/x/term",
+            "to": "v0.47.0"
+          },
+          {
+            "direction": "upgrade",
+            "ecosystem": "golang",
+            "from": "v0.42.0",
+            "level": "minor",
+            "location": "go.mod",
+            "name": "golang.org/x/text",
+            "to": "v0.43.0"
+          },
+          {
+            "direction": "upgrade",
+            "ecosystem": "golang",
+            "from": "v0.49.0",
+            "level": "minor",
+            "location": "go.mod",
+            "name": "golang.org/x/tools",
+            "to": "v0.51.0"
+          },
+          {
+            "direction": "upgrade",
+            "ecosystem": "golang",
+            "from": "v0.0.0-20260819154853-08b0e4226688",
+            "level": "prerelease",
+            "location": "go.mod",
+            "name": "google.golang.org/genproto/googleapis/api",
+            "to": "v0.0.0-20260928230214-8a89bd6388cc"
+          },
+          {
+            "direction": "upgrade",
+            "ecosystem": "golang",
+            "from": "v0.0.0-20260819154853-08b0e4226688",
+            "level": "prerelease",
+            "location": "go.mod",
+            "name": "google.golang.org/genproto/googleapis/rpc",
+            "to": "v0.0.0-20260928230214-8a89bd6388cc"
+          },
+          {
+            "direction": "upgrade",
+            "ecosystem": "golang",
+            "from": "v1.84.0",
+            "level": "minor",
+            "location": "go.mod",
+            "name": "google.golang.org/grpc",
+            "to": "v1.85.0"
+          },
+          {
+            "direction": "upgrade",
+            "ecosystem": "golang",
+            "from": "v2.6.2",
+            "level": "minor",
+            "location": "go.mod",
+            "name": "oras.land/oras-go/v2",
+            "to": "v2.7.0"
+          }
+        ],
         "version_set_changes": []
       },
-      "previous_sbom_sha256": "39a04910d32ea06e86460efdf9d7a6847df1c038d0aa5fb0f54344fee0101b28",
-      "removed": 0,
-      "sbom_sha256": "d2bb33344696f70e5a2c55df4af61362fe6f25b52b8e5523b5e7b06c9af66256"
+      "previous_sbom_sha256": "d2bb33344696f70e5a2c55df4af61362fe6f25b52b8e5523b5e7b06c9af66256",
+      "removed": 1,
+      "sbom_sha256": "41d5ba1af0cc50d5d7accf431e81c13b6201a8ab505bfbf2c0d942cc11564791"
     },
-    "scanned_at": "2026-11-08T05:54:10+00:00",
+    "scanned_at": "2026-11-15T23:32:25+00:00",
     "scorecard": {
       "checks": [
         {
@@ -1839,19 +2937,24 @@
           "score": 0
         },
         {
+          "name": "Pinned-Dependencies",
+          "reason": "dependency not pinned by hash detected -- score normalized to 1",
+          "score": 1
+        },
+        {
           "name": "CII-Best-Practices",
           "reason": "badge detected: Passing",
           "score": 5
         },
         {
-          "name": "Vulnerabilities",
-          "reason": "5 existing vulnerabilities detected",
-          "score": 5
-        },
-        {
           "name": "SAST",
           "reason": "SAST tool detected but not run on all commits",
-          "score": 8
+          "score": 7
+        },
+        {
+          "name": "Vulnerabilities",
+          "reason": "3 existing vulnerabilities detected",
+          "score": 7
         },
         {
           "name": "Binary-Artifacts",
@@ -1860,12 +2963,7 @@
         },
         {
           "name": "Code-Review",
-          "reason": "Found 22/24 approved changesets -- score normalized to 9",
-          "score": 9
-        },
-        {
-          "name": "Pinned-Dependencies",
-          "reason": "dependency not pinned by hash detected -- score normalized to 9",
+          "reason": "Found 21/22 approved changesets -- score normalized to 9",
           "score": 9
         },
         {
@@ -1880,12 +2978,12 @@
         },
         {
           "name": "CI-Tests",
-          "reason": "27 out of 27 merged PRs checked by a CI test -- score normalized to 10",
+          "reason": "24 out of 24 merged PRs checked by a CI test -- score normalized to 10",
           "score": 10
         },
         {
           "name": "Contributors",
-          "reason": "project has 29 contributing companies or organizations",
+          "reason": "project has 26 contributing companies or organizations",
           "score": 10
         },
         {
@@ -1910,7 +3008,7 @@
         },
         {
           "name": "Maintained",
-          "reason": "30 commit(s) and 18 issue activity found in the last 90 days -- score normalized to 10",
+          "reason": "30 commit(s) and 20 issue activity found in the last 90 days -- score normalized to 10",
           "score": 10
         },
         {
@@ -1924,47 +3022,12 @@
           "score": -1
         }
       ],
-      "date": "2026-11-07",
-      "score": 8.2,
+      "date": "2026-11-13",
+      "score": 7.9,
       "source": "openssf-api",
       "version": "v5.6.0"
     },
     "vulnerabilities": [
-      {
-        "aliases": [
-          "CVE-2026-116591",
-          "GHSA-fpmh-frq8-7rj8"
-        ],
-        "ecosystem": "golang",
-        "epss": {
-          "cve": "CVE-2026-116591",
-          "percentile": 0.26636,
-          "score": 0.00333
-        },
-        "epss_date": "2026-11-07T12:00:22Z",
-        "fix_state": "fixed",
-        "fixed_in": [
-          "1.20.2"
-        ],
-        "id": "GO-2026-6865",
-        "in_binary": "vulnerable code in binary",
-        "kev": null,
-        "kev_cves": [],
-        "kev_snapshot": "2026.11.06",
-        "location": "go.mod",
-        "locations": [
-          "go.mod"
-        ],
-        "osv_confirmed": true,
-        "osv_modified": "2026-11-05T23:15:14.472777299Z",
-        "osv_published": "2026-11-05T22:54:32Z",
-        "package": "github.com/klauspost/compress",
-        "purl": "pkg:golang/github.com/klauspost/compress@v1.20.0",
-        "severity": "High",
-        "summary": "Panic on two-block frames in github.com/klauspost/compress",
-        "url": "https://github.com/klauspost/compress/security/advisories/GHSA-fpmh-frq8-7rj8",
-        "version": "v1.20.0"
-      },
       {
         "aliases": [
           "CVE-2026-56865"
@@ -1972,10 +3035,10 @@
         "ecosystem": "golang",
         "epss": {
           "cve": "CVE-2026-56865",
-          "percentile": 0.02572,
+          "percentile": 0.02613,
           "score": 0.00129
         },
-        "epss_date": "2026-11-07T12:00:22Z",
+        "epss_date": "2026-11-15T12:03:04Z",
         "fix_state": "fixed",
         "fixed_in": [
           "0.40.0"
@@ -1984,12 +3047,15 @@
         "in_binary": "not in released binary",
         "kev": null,
         "kev_cves": [],
-        "kev_snapshot": "2026.11.06",
+        "kev_snapshot": "2026.11.13",
         "location": "build/tools/go.mod",
         "locations": [
           "build/tools/go.mod"
         ],
         "osv_confirmed": true,
+        "osv_coverage": {
+          "state": "confirmed"
+        },
         "osv_modified": "2026-08-19T12:25:40.780492871Z",
         "osv_published": "2026-08-13T21:43:54Z",
         "package": "golang.org/x/mod",
@@ -2006,10 +3072,10 @@
         "ecosystem": "golang",
         "epss": {
           "cve": "CVE-2026-56864",
-          "percentile": 0.22617,
+          "percentile": 0.22737,
           "score": 0.00298
         },
-        "epss_date": "2026-11-07T12:00:22Z",
+        "epss_date": "2026-11-15T12:03:04Z",
         "fix_state": "fixed",
         "fixed_in": [
           "0.40.0"
@@ -2018,12 +3084,15 @@
         "in_binary": "not in released binary",
         "kev": null,
         "kev_cves": [],
-        "kev_snapshot": "2026.11.06",
+        "kev_snapshot": "2026.11.13",
         "location": "build/tools/go.mod",
         "locations": [
           "build/tools/go.mod"
         ],
         "osv_confirmed": true,
+        "osv_coverage": {
+          "state": "confirmed"
+        },
         "osv_modified": "2026-08-19T12:25:49.995487491Z",
         "osv_published": "2026-08-13T21:43:54Z",
         "package": "golang.org/x/mod",
@@ -2040,10 +3109,10 @@
         "ecosystem": "golang",
         "epss": {
           "cve": "CVE-2026-78661",
-          "percentile": 0.35396,
+          "percentile": 0.35693,
           "score": 0.00409
         },
-        "epss_date": "2026-11-07T12:00:22Z",
+        "epss_date": "2026-11-15T12:03:04Z",
         "fix_state": "fixed",
         "fixed_in": [
           "0.62.0"
@@ -2052,12 +3121,15 @@
         "in_binary": "module in binary",
         "kev": null,
         "kev_cves": [],
-        "kev_snapshot": "2026.11.06",
+        "kev_snapshot": "2026.11.13",
         "location": "go.mod",
         "locations": [
           "go.mod"
         ],
         "osv_confirmed": true,
+        "osv_coverage": {
+          "state": "confirmed"
+        },
         "osv_modified": "2026-10-27T21:30:04.890809062Z",
         "osv_published": "2026-10-27T21:16:18Z",
         "package": "golang.org/x/net",
@@ -2074,10 +3146,10 @@
         "ecosystem": "golang",
         "epss": {
           "cve": "CVE-2026-97045",
-          "percentile": 0.18952,
+          "percentile": 0.19018,
           "score": 0.00267
         },
-        "epss_date": "2026-11-07T12:00:22Z",
+        "epss_date": "2026-11-15T12:03:04Z",
         "fix_state": "fixed",
         "fixed_in": [
           "0.62.0"
@@ -2086,12 +3158,15 @@
         "in_binary": "module in binary",
         "kev": null,
         "kev_cves": [],
-        "kev_snapshot": "2026.11.06",
+        "kev_snapshot": "2026.11.13",
         "location": "go.mod",
         "locations": [
           "go.mod"
         ],
         "osv_confirmed": true,
+        "osv_coverage": {
+          "state": "confirmed"
+        },
         "osv_modified": "2026-10-27T21:45:08.978077289Z",
         "osv_published": "2026-10-27T21:16:18Z",
         "package": "golang.org/x/net",
@@ -2100,34 +3175,6 @@
         "summary": "In childTextNodesAreLiteral, walking up the tree previously stopped at the nearest foreign ancestor once an HTML integration point was found. However, that integration point may itself be a descendant of an element that was foster-parented into a foreign namespace (such as <mglyph> or <malignmark> f",
         "url": "https://go.dev/cl/855121",
         "version": "v0.60.0"
-      },
-      {
-        "aliases": [],
-        "ecosystem": "golang",
-        "epss": null,
-        "epss_date": "2026-11-07T12:00:22Z",
-        "fix_state": "fixed",
-        "fixed_in": [
-          "0.58.1-0.20261009181718-2f1f834330b2"
-        ],
-        "id": "GO-2026-5932",
-        "in_binary": "module in binary",
-        "kev": null,
-        "kev_cves": [],
-        "kev_snapshot": "2026.11.06",
-        "location": "go.mod",
-        "locations": [
-          "go.mod"
-        ],
-        "osv_confirmed": true,
-        "osv_modified": "2026-11-02T22:15:06.677088389Z",
-        "osv_published": "2026-07-07T22:15:29Z",
-        "package": "golang.org/x/crypto",
-        "purl": "pkg:golang/golang.org/x/crypto@v0.57.0",
-        "severity": "Unknown",
-        "summary": "The golang.org/x/crypto/openpgp package is unsafe by design, has numerous known security issues, is not maintained, and should not be used. If you are required to interoperate with OpenPGP systems and need a maintained package, consider github.com/ProtonMail/go-crypto/openpgp which is a maintained f",
-        "url": "https://go.dev/issue/44226",
-        "version": "v0.57.0"
       }
     ],
     "workflow_audit": {
@@ -2216,5 +3263,5 @@
       ]
     }
   },
-  "updated": "2026-11-08"
+  "updated": "2026-11-15"
 }
