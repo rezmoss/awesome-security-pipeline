@@ -1185,6 +1185,8 @@ def changes(previous: dict[str, Any] | None, current: dict[str, Any], context: d
         # Distinct (advisory, package); the lists above have one entry per affected package version.
         result["new_advisories"] = len(set(new) - set(old))
         result["resolved_advisories"] = len(set(old) - set(new))
+        result["new_severe"] = sum(1 for key in set(new) - set(old)
+                                   if any(item.get("severity") in ("Critical", "High") for item in new[key]))
         result["still_affected_version_changed"] = [
             {"id": new[key][0]["id"], "package": new[key][0]["package"], "ecosystem": new[key][0].get("ecosystem"),
              "from": sorted({item["version"] for item in old[key]}), "to": sorted({item["version"] for item in new[key]})}
@@ -1194,10 +1196,18 @@ def changes(previous: dict[str, Any] | None, current: dict[str, Any], context: d
         result["advisory_state"] = "unavailable"
         result["advisory_reason"] = ("this week's vulnerability scan failed" if current.get("vulnerabilities") is None
                                      else "last week's vulnerability scan failed")
-    before_score = (previous.get("scorecard") or {}).get("score")
-    after_score = (current.get("scorecard") or {}).get("score")
+    before_card, after_card = previous.get("scorecard") or {}, current.get("scorecard") or {}
+    before_score, after_score = before_card.get("score"), after_card.get("score")
     if isinstance(before_score, (int, float)) and isinstance(after_score, (int, float)) and abs(before_score - after_score) >= 0.1:
-        result["scorecard"] = {"from": before_score, "to": after_score}
+        # Scores from different sources, a carried-forward score, or last week's failed scan are not a change in the project.
+        reason = ("carried forward" if before_card.get("carried_forward") or after_card.get("carried_forward")
+                  else "source changed" if before_card.get("source") != after_card.get("source")
+                  else "last week's scan failed" if previous.get("stale")
+                  else "a scan error in one of the two weeks" if previous.get("errors") or current.get("errors") else None)
+        if reason:
+            result["scorecard_not_compared"] = {"from": before_score, "to": after_score, "reason": reason}
+        else:
+            result["scorecard"] = {"from": before_score, "to": after_score}
     before_verdict = (previous.get("release_integrity") or {}).get("verdict")
     after_verdict = (current.get("release_integrity") or {}).get("verdict")
     if before_verdict and after_verdict and before_verdict != after_verdict:
@@ -1282,6 +1292,7 @@ def history_entry(date: str, project: dict[str, Any]) -> dict[str, Any]:
         "moved": count(change, "moved", "dependency_state"),
         "new_vulnerabilities": count(change, "new_vulnerabilities", "advisory_state"),
         "new_advisories": change.get("new_advisories"),
+        "new_severe": severe_new_count(change),
         "resolved_advisories": change.get("resolved_advisories"),
         "resolved_vulnerabilities": count(change, "resolved_vulnerabilities", "advisory_state"),
         "in_binary_new": None if change.get("in_binary_state") == "unavailable" else len(change.get("in_binary_new") or []),
@@ -1305,8 +1316,30 @@ def history_entry(date: str, project: dict[str, Any]) -> dict[str, Any]:
         "scorecard_date": card.get("date") if card else None,
         "scorecard_note": project.get("scorecard_note") if not card else None,
         "release_integrity": (project.get("release_integrity") or {}).get("verdict"),
+        "release_evidence": release_evidence(project.get("release_integrity")),
         "errors": project.get("errors") or [],
     }
+
+
+def severe_new_count(change: dict[str, Any]) -> int | None:
+    """Advisories new this week with Critical or High severity, counted like `new_advisories` (aliases merged, one per
+    package); null when not compared."""
+    if change.get("advisory_state") == "unavailable":
+        return None
+    if "new_severe" in change:
+        return change["new_severe"]
+    return len({(item["id"], item["package"]) for item in change.get("new_vulnerabilities") or []
+                if item.get("severity") in ("Critical", "High")})
+
+
+def release_evidence(integrity: dict[str, Any] | None) -> dict[str, Any] | None:
+    """Each kind of release evidence on its own, so a later week can tell which one was lost or failed."""
+    if not integrity or integrity.get("verdict") in (None, "no-assets", "no-linux-binary"):
+        return None
+    dimensions = checks.release_dimensions(integrity)
+    return {"build_provenance": dimensions["build_provenance"], "signature": dimensions["signature"],
+            "immutable_release": dimensions["immutable_release"],
+            "failed": sorted({item["method"] for item in integrity.get("methods") or [] if item.get("status") == "failed"})}
 
 
 def run_row(project: dict[str, Any], entry: dict[str, Any]) -> dict[str, Any]:

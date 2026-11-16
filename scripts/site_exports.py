@@ -212,7 +212,8 @@ def to_csv(header: list[str], rows: list[list[Any]]) -> str:
 def projects_csv(entries: list[dict[str, Any]]) -> str:
     header = ["repository", "name", "category", "ref", "ref_kind", "dependencies", "critical", "high", "medium", "low",
               "unknown", "vulnerable_packages", "fixable", "kev", "in_binary", "scorecard", "scorecard_source",
-              "release_integrity", "workflow_high", "changed", "go_binary_state"]
+              "release_integrity", "workflow_high", "changed", "go_binary_state", "scorecard_previous", "scorecard_delta",
+              "release_previous"]
     rows = []
     for entry in entries:
         vulns = entry.get("vulnerabilities") or {}
@@ -223,7 +224,8 @@ def projects_csv(entries: list[dict[str, Any]]) -> str:
             entry.get("vulnerable_packages"), entry.get("fixable"), entry.get("kev"),
             (entry.get("in_binary") or {}).get("total"), entry.get("scorecard"), entry.get("scorecard_source"),
             entry.get("release_integrity"), (entry.get("workflow") or {}).get("High"), entry.get("change_any"),
-            entry.get("go_binary_state"),
+            entry.get("go_binary_state"), entry.get("scorecard_previous"), entry.get("scorecard_delta"),
+            entry.get("release_previous"),
         ])
     return to_csv(header, rows)
 
@@ -419,12 +421,152 @@ TABLE_SCRIPT = r"""
       filter(table, controls);
     }
   });
+
+  var projects = document.getElementById('projects-table');
+  var projectControls = projects && document.querySelector('[data-controls="projects-table"]');
+  if (!projectControls) return;
+  function only(flag) {
+    Array.prototype.forEach.call(projectControls.querySelectorAll('input[type=checkbox]'), function (box) {
+      box.checked = box.getAttribute('data-flag') === flag;
+    });
+    var search = projectControls.querySelector('input[type=search]');
+    if (search) search.value = '';
+    filter(projects, projectControls);
+    projectControls.scrollIntoView({ block: 'start' });
+  }
+  // Each "what got worse" count links to its list; the button next to it shows the matching table rows.
+  Array.prototype.forEach.call(document.querySelectorAll('[data-strip]'), function (item) {
+    var flag = item.getAttribute('data-strip');
+    if (!projects.querySelector('tr[data-' + flag + ']')) return;
+    var button = document.createElement('button');
+    button.type = 'button';
+    button.textContent = 'show in table';
+    button.setAttribute('aria-label', 'Show only these tools in the table: ' + item.textContent.trim());
+    button.addEventListener('click', function () { only(flag); });
+    item.appendChild(button);
+  });
+
+  // "Since your last visit": the date of the newest report seen is kept in this browser only.
+  var payload = document.getElementById('week-events');
+  if (!payload) return;
+  var data;
+  try { data = JSON.parse(payload.textContent); } catch (error) { return; }
+  var latest = data.latest;
+  if (!latest || !data.weeks) return;
+  function validDate(text) {
+    if (typeof text !== 'string' || !/^\d{4}-\d{2}-\d{2}$/.test(text)) return false;
+    var date = new Date(text + 'T00:00:00Z');
+    return !isNaN(date.getTime()) && date.toISOString().slice(0, 10) === text;
+  }
+  function storage(kind) {
+    try { var store = window[kind]; store.setItem('asp-test', '1'); store.removeItem('asp-test'); return store; }
+    catch (error) { return null; }
+  }
+  function read(store, key) {
+    try { return JSON.parse(store.getItem(key)); } catch (error) { return null; }
+  }
+  function write(store, key, value) {
+    try { store.setItem(key, JSON.stringify(value)); } catch (error) { /* storage full or blocked */ }
+  }
+  var local = storage('localStorage'), session = storage('sessionStorage');
+  var since = null, revised = false, fromLink = false;
+  var match = /[?&]since=([^&#]*)/.exec(window.location.search);
+  if (match) {
+    var asked = null;
+    try { asked = decodeURIComponent(match[1]); } catch (error) { asked = null; }
+    if (validDate(asked) && asked < latest.date) { since = asked; fromLink = true; }
+  } else {
+    var kept = session && read(session, 'asp-since');
+    if (kept && kept.revision === latest.revision) {
+      since = validDate(kept.since) ? kept.since : null;
+      revised = kept.revised === true;
+    } else {
+      var seen = local && read(local, 'asp-last-seen');
+      if (seen && validDate(seen.date)) {
+        if (seen.date < latest.date) since = seen.date;
+        else if (seen.date === latest.date && seen.revision !== latest.revision) revised = true;
+      }
+      if (session) write(session, 'asp-since', { since: since, revised: revised, revision: latest.revision });
+    }
+    if (local) write(local, 'asp-last-seen', latest);
+  }
+  if (!since && !revised) return;
+  var weeks = data.weeks.filter(function (week) { return revised && !since ? week.date === latest.date : week.date > since; });
+  if (!weeks.length) return;
+  var changed = {};
+  weeks.forEach(function (week) {
+    Object.keys(week.events).forEach(function (id) {
+      (changed[id] = changed[id] || []).push(week.date + (week.method_change ? ' (scan method changed)' : '') + ': ' + week.events[id]);
+    });
+  });
+  var tools = 0;
+  Object.keys(changed).forEach(function (id) {
+    var row = document.getElementById(id);
+    if (!row || row.parentNode !== projects.tBodies[0]) return;
+    tools++;
+    row.setAttribute('data-since', '');
+    row.classList.add('since');
+    var cell = row.querySelector('td.change');
+    if (!cell) return;
+    var box = document.createElement('div');
+    box.className = 'since-events';
+    var title = document.createElement('strong');
+    title.textContent = revised && !since ? 'In this report (not a comparison with the earlier run):' : 'Since ' + since + ':';
+    box.appendChild(title);
+    changed[id].forEach(function (text) {
+      var line = document.createElement('div');
+      line.textContent = text;
+      box.appendChild(line);
+    });
+    cell.appendChild(box);
+  });
+  var label = document.createElement('label');
+  var check = document.createElement('input');
+  check.type = 'checkbox';
+  check.setAttribute('data-flag', 'since');
+  label.appendChild(check);
+  label.appendChild(document.createTextNode(fromLink ? ' changed since ' + since : ' changed since your last visit'));
+  projectControls.insertBefore(label, projectControls.querySelector('label'));
+  var added = [], removed = 0, method = [];
+  weeks.forEach(function (week) {
+    added = added.concat(week.added || []);
+    removed += week.removed || 0;
+    if (week.method_change) method.push(week.date);
+  });
+  var text;
+  if (revised && !since) {
+    text = "This week's report (" + latest.date + ') was re-run since your last visit. Marked rows show this report\'s changes from the week before; '
+      + 'they are not a comparison with the earlier run, which is kept in the data under runs/superseded.';
+  } else {
+    text = (fromLink ? 'Changes recorded since ' : 'Changes recorded since your last visit on ') + since + ': '
+      + weeks.length + ' report' + (weeks.length === 1 ? '' : 's') + ' (' + weeks.map(function (week) { return week.date; }).join(', ')
+      + '), ' + tools + ' tool' + (tools === 1 ? '' : 's') + ' with changes, marked in blue. Each week is listed separately, not as a net difference.';
+    if (data.first && since < data.first) text += ' The report history starts on ' + data.first + '.';
+    if (revised) text += " This week's report was also re-run since then.";
+  }
+  if (method.length) text += ' The scan method changed in ' + method.join(', ') + '; most differences in those weeks come from that.';
+  if (added.length) text += ' Added to the report: ' + added.join(', ') + '.';
+  if (removed) text += ' ' + removed + ' tool' + (removed === 1 ? '' : 's') + ' left the catalog; see History.';
+  text += fromLink ? ' The date comes from this page address.' : ' Your last visit is stored only in this browser.';
+  var banner = document.getElementById('since-visit');
+  if (!banner) return;
+  var message = document.createElement('span');
+  message.textContent = text + ' ';
+  banner.appendChild(message);
+  var show = document.createElement('button');
+  show.type = 'button';
+  show.textContent = 'show only these tools';
+  show.addEventListener('click', function () { only('since'); });
+  banner.appendChild(show);
+  banner.hidden = false;
+  filter(projects, projectControls);
 })();
 """
 
 TABLE_STYLE = """
 button.sort{all:unset;cursor:pointer}button.sort:focus-visible{outline:2px solid var(--link)}
 th[aria-sort=ascending] button.sort::after{content:" \\25B2";font-size:10px}th[aria-sort=descending] button.sort::after{content:" \\25BC";font-size:10px}
+[hidden]{display:none!important}
 .controls{display:flex;flex-wrap:wrap;gap:14px;align-items:center;margin:10px 0;font-size:14px}
 .controls input[type=search]{font:inherit;padding:4px 8px;border:1px solid var(--line);border-radius:6px;background:var(--bg);color:var(--fg);min-width:220px}
 .sev-Unknown{color:#1f2328;background:#eaeef2}.kev{color:#fff;background:#6639ba}

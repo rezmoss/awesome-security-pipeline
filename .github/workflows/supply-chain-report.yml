@@ -28,12 +28,14 @@ on:
       - "scripts/build_site.py"
       - "scripts/site_sections.py"
       - "scripts/site_exports.py"
+      - "scripts/site_triage.py"
       - "scripts/fetch-site-inputs.sh"
       - "scripts/report-run.sh"
       - "scripts/install-supply-chain-tools.sh"
       - "benchmarks/supply-chain/*.json"
       - "tests/test_supply_chain_scan.py"
       - "tests/test_catalog.py"
+      - "tests/test_site_triage.py"
   push:
     # Code changes on main only rebuild and redeploy the site from the recorded data; they never
     # scan or publish, so a mid-week merge cannot replace the week or move the drift baseline.
@@ -43,6 +45,7 @@ on:
       - "scripts/build_site.py"
       - "scripts/site_sections.py"
       - "scripts/site_exports.py"
+      - "scripts/site_triage.py"
       - "scripts/fetch-site-inputs.sh"
       - "scripts/report-run.sh"
       - "benchmarks/supply-chain/*.json"
@@ -80,7 +83,7 @@ jobs:
 
       - name: Test scanner and site generation
         shell: bash
-        run: python3 -m unittest tests/test_supply_chain_scan.py tests/test_catalog.py
+        run: python3 -m unittest tests/test_supply_chain_scan.py tests/test_catalog.py tests/test_site_triage.py
 
       - name: Resolve the latest release of every active catalog project
         id: targets
