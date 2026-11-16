@@ -212,7 +212,7 @@ def to_csv(header: list[str], rows: list[list[Any]]) -> str:
 def projects_csv(entries: list[dict[str, Any]]) -> str:
     header = ["repository", "name", "category", "ref", "ref_kind", "dependencies", "critical", "high", "medium", "low",
               "unknown", "vulnerable_packages", "fixable", "kev", "in_binary", "scorecard", "scorecard_source",
-              "release_integrity", "workflow_high", "changed"]
+              "release_integrity", "workflow_high", "changed", "go_binary_state"]
     rows = []
     for entry in entries:
         vulns = entry.get("vulnerabilities") or {}
@@ -223,13 +223,24 @@ def projects_csv(entries: list[dict[str, Any]]) -> str:
             entry.get("vulnerable_packages"), entry.get("fixable"), entry.get("kev"),
             (entry.get("in_binary") or {}).get("total"), entry.get("scorecard"), entry.get("scorecard_source"),
             entry.get("release_integrity"), (entry.get("workflow") or {}).get("High"), entry.get("change_any"),
+            entry.get("go_binary_state"),
         ])
     return to_csv(header, rows)
 
 
+def binary_analysis(project: dict[str, Any], item: dict[str, Any]) -> str | None:
+    """For a Go match: the project's binary-analysis state (analyzed, or why not); empty for other ecosystems and
+    for weeks recorded before states existed."""
+    status = project.get("go_binary_status")
+    if item.get("ecosystem") != "golang" or not status:
+        return None
+    return status["state"]
+
+
 def matches_csv(projects: list[dict[str, Any]], aliases: dict[str, str]) -> str:
     header = ["repository", "ref", "source", "advisory", "canonical_advisory", "aliases", "severity", "ecosystem", "package", "version",
-              "fixed_in", "location", "osv_confirmed", "in_binary", "kev", "kev_date_added", "epss", "epss_percentile", "locations"]
+              "fixed_in", "location", "osv_confirmed", "in_binary", "kev", "kev_date_added", "epss", "epss_percentile", "locations",
+              "binary_analysis"]
     rows = []
     for project in projects:
         for item in [*all_matches(project), *osv_only_matches(project)]:
@@ -240,6 +251,7 @@ def matches_csv(projects: list[dict[str, Any]], aliases: dict[str, str]) -> str:
                 " ".join(item.get("fixed_in") or []), item.get("location"), item.get("osv_confirmed"), item.get("in_binary"),
                 (bool(kev) if "kev" in item else None), (kev or {}).get("date_added"),
                 (epss or {}).get("score"), (epss or {}).get("percentile"), " ".join(match_locations(item)),
+                binary_analysis(project, item),
             ])
     return to_csv(header, rows)
 
@@ -313,7 +325,9 @@ def release_badge(verdict: str | None, signature: str | None = None) -> str | No
     return badge_json("release verification", message, color)
 
 
-def in_binary_badge(go: dict[str, Any] | None) -> str | None:
+def in_binary_badge(go: dict[str, Any] | None, state: str | None = None) -> str | None:
+    if state and state != "analyzed":
+        return badge_json("vulnerable code in binary", "not analyzed", "lightgrey")
     if not go:
         return None
     count = len(binary_advisories(go))

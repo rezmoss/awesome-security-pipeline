@@ -161,9 +161,30 @@ def verdict_cell(verdict: str | None, signature: str | None = None) -> str:
     return f'<span class="{klass}">{esc(text)}</span>'
 
 
+BINARY_STATE_REASONS = {
+    "retained": "This week's scan failed",
+    "no-release": "The project publishes no release, so there is no binary to analyze",
+    "release-lookup-failed": "The latest release could not be looked up",
+    "no-eligible-asset": "No Linux amd64 release file was found",
+    "download-failed": "The release file could not be downloaded",
+    "extract-failed": "The release file could not be unpacked",
+    "no-binary": "The release file contains no Linux executable",
+    "unreadable-binary": "The binary carries no Go build information govulncheck can read",
+    "govulncheck-error": "govulncheck failed on the binary",
+    "check-failed": "The release checks failed",
+}
+
+
 def reachability_section(go: dict[str, Any] | None, vulns: list[dict[str, Any]] | None, note: str | None = None,
-                         link: Any = None) -> str:
+                         link: Any = None, status: dict[str, Any] | None = None) -> str:
     """`link(finding)` returns (row id or None, advisory cell HTML); without it ids are shown as plain text."""
+    if status and status["state"] != "analyzed" and (status["state"] != "retained" or not go):
+        go_matches = sum(1 for item in vulns or [] if item.get("ecosystem") == "golang")
+        return ('<h2 id="in-binary">Vulnerable code in the released binary</h2>'
+                f'<p class="warn"><strong>Not analyzed this week.</strong> {esc(BINARY_STATE_REASONS.get(status["state"], status["state"]))}'
+                + (f": {esc(status['reason'])}" if status.get("reason") else "") + ".</p>"
+                + (f"<p>None of the {go_matches} Go advisories Grype matched in the source was checked against the shipped binary. "
+                   "Whether their vulnerable code ships is unknown, not ruled out.</p>" if go_matches else ""))
     if not go:
         return (f'<h2 id="in-binary">Vulnerable code in the released binary</h2><p class="small">{esc(note)}</p>' if note else "")
     symbols = [item for item in go["findings"] if item["level"] == "symbol"]
@@ -193,6 +214,11 @@ def reachability_section(go: dict[str, Any] | None, vulns: list[dict[str, Any]] 
            "that are not in the shipped binary"
            + (f", and {other_version} are in modules the binary was built with at a different version" if other_version else "")
            + ".</p>" if go_matches else "")
+        + (f'<p class="warn">This week\'s scan failed: these results are from {esc(status.get("since") or "an earlier week")}, '
+           "not a new analysis.</p>" if status and status["state"] == "retained" else "")
+        + (f'<p class="small">Also in {esc(go["asset"])} and not analyzed: '
+           + ", ".join(f"<code>{esc(name)}</code>" for name in status["other_go_binaries"]) + ". Only one binary per release is analyzed.</p>"
+           if status and status.get("other_go_binaries") else "")
         + ('<p class="small">The Go linker removes unreachable functions, so a vulnerable function in the binary is likely reachable. '
            "Standard-library advisories are fixed by rebuilding with a newer Go release.</p>")
         + (f'<div class="scroll"><table><thead><tr><th>Advisory</th><th>Module</th><th>Version</th><th>Fixed in</th><th>Summary</th></tr></thead>'
