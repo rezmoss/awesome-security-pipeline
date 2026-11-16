@@ -269,8 +269,7 @@ def release_section(integrity: dict[str, Any] | None, repository: str) -> str:
         f"<td class=\"small\">{esc(method_detail(item))}</td></tr>"
         for item in integrity.get("methods") or []
     )
-    dimensions = {**checks.integrity_dimensions(integrity.get("methods") or []),
-                  **{key: integrity[key] for key in ("build_provenance", "signature", "signer", "immutable_release") if key in integrity}}
+    dimensions = checks.release_dimensions(integrity)
     provenance = {"verified": '<span class="ok">verified</span>', "failed": '<span class="bad">did not verify</span>'}.get(
         dimensions["build_provenance"] or "", '<span class="zero">none published</span>')
     signature = {

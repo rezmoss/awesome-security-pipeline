@@ -24,6 +24,7 @@ from scripts import catalog  # noqa: E402
 from scripts import supply_chain_checks as checks  # noqa: E402
 from scripts import site_exports as exports  # noqa: E402
 from scripts import site_sections as sections  # noqa: E402
+from scripts import site_triage as triage  # noqa: E402
 from scripts.supply_chain_scan import CHECKSUMS_FILE, SEVERITIES, WORKFLOW_PATH, severity_counts  # noqa: E402
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent
@@ -75,7 +76,11 @@ SCOPE_NOTE = (
 EXTRA_STYLE = """
 .sev-Critical{color:#fff;background:#a40e26}.sev-High{color:#fff;background:#cf222e}.sev-Medium{color:#1f2328;background:#f2cc60}.sev-Low{color:#1f2328;background:#d1d9e0}
 .pill{display:inline-block;min-width:1.8em;padding:0 6px;border-radius:10px;text-align:center;font-size:13px;font-weight:600}
-.zero{color:var(--muted)}td.change{font-size:14px;min-width:180px}tr.changed td:first-child{border-left:3px solid var(--warn)}
+.zero{color:var(--muted)}td.change{font-size:14px;min-width:180px}tr.changed td:first-child{border-left:3px solid var(--warn)}tr.since td:first-child{border-left:3px solid var(--link)}
+summary h3{display:inline;margin:0}details[id]{margin:14px 0}.delta{font-size:12px;font-weight:600}.delta-line{display:block;margin-top:2px}
+.strip p{margin:16px 0 0}.strip ul{list-style:none;display:flex;flex-wrap:wrap;gap:8px 18px;padding:0;margin:6px 0 4px}.strip li{display:flex;gap:6px;align-items:baseline}
+.strip button,.note button{font:inherit;font-size:13px;padding:1px 8px;border:1px solid var(--line);border-radius:6px;background:var(--panel);color:var(--fg);cursor:pointer}
+.flag-group{display:inline-flex;flex-wrap:wrap;gap:14px;align-items:center}.since-events{font-size:13px;margin-top:4px;color:var(--fg)}
 header,main,footer{max-width:1600px}
 """
 
@@ -274,6 +279,9 @@ def change_summary(change: dict[str, Any]) -> str:
         parts.append(f"{change['workflow_resolved']} workflow findings resolved")
     if change.get("scorecard"):
         parts.append(f"Scorecard {change['scorecard']['from']} → {change['scorecard']['to']}")
+    if change.get("scorecard_not_compared"):
+        item = change["scorecard_not_compared"]
+        parts.append(f"Scorecard {item['from']} → {item['to']} (not compared: {item['reason']})")
     if change.get("release_integrity"):
         parts.append(f"release {change['release_integrity']['from']} → {change['release_integrity']['to']}")
     if change.get("kev_new"):
@@ -300,6 +308,36 @@ def scorecard_cell(entry: dict[str, Any]) -> str:
     marker, label = SCORECARD_SOURCES.get(entry.get("scorecard_source") or "", ("", "source not recorded"))
     title = label + (f", assessed {entry['scorecard_date']}" if entry.get("scorecard_date") else "")
     return f'<span title="{esc(title)}">{score:.1f}{marker}</span>'
+
+
+def score_text(value: Any) -> str:
+    return f"{value:.1f}" if isinstance(value, (int, float)) else esc(value)
+
+
+def score_delta_html(worse: dict[str, Any]) -> str:
+    """The comparable Scorecard change next to the score; a drop of SCORE_DROP or more is highlighted."""
+    delta = worse.get("delta")
+    if delta:
+        klass = "bad" if delta <= -triage.SCORE_DROP else "zero"
+        return (f' <span class="delta {klass}" title="since last week ({esc(worse.get("previous_score"))})">'
+                f'{"↓" if delta < 0 else "↑"}{abs(delta):.1f}</span>')
+    if worse.get("score_reason"):
+        return (f' <span class="delta zero" title="changed from {esc(worse.get("previous_score"))}; not compared: '
+                f'{esc(worse["score_reason"])}">≠</span>')
+    return ""
+
+
+def release_note_html(worse: dict[str, Any]) -> str:
+    parts = []
+    if worse.get("verdict"):
+        before = worse["verdict"][0]
+        parts.append(f'<div class="small">was {esc(triage.VERDICT_NAMES.get(before, before))}</div>')
+    if worse.get("failed"):
+        parts.append('<div class="bad small">check failed: '
+                     + esc(", ".join(triage.METHOD_NAMES.get(item, item) for item in worse["failed"])) + "</div>")
+    if worse.get("lost"):
+        parts.append('<div class="warn small">lost: ' + esc(", ".join(worse["lost"])) + "</div>")
+    return "".join(parts)
 
 
 class ReportSite:
@@ -333,6 +371,9 @@ class ReportSite:
         }
         latest_projects = [stored["latest"] for stored in self.projects.values()]
         self.advisories, self.aliases = exports.group_advisories(latest_projects)
+        self.previous_rows = ({row["repository"]: row for row in self.runs[-2].get("projects") or []}
+                              if len(self.runs) > 1 else {})
+        self.triage = self.latest_triage()
         self.superseded = {
             path.relative_to(data).as_posix(): load_json(path) for path in sorted((data / "runs" / "superseded").glob("*/*.json"))
         } if data and (data / "runs" / "superseded").is_dir() else {}
@@ -369,6 +410,36 @@ class ReportSite:
             integrity["verdict"] = checks.integrity_verdict(integrity)
             if name in rows and rows[name].get("release_integrity"):
                 rows[name]["release_integrity"] = integrity["verdict"]
+
+    def latest_triage(self) -> dict[str, dict[str, Any]]:
+        """Per current project, what got worse this week: new Critical/High pairs, new KEV listings, a comparable
+        Scorecard change, release verdict change, failed release checks, lost release evidence, new code in binary."""
+        if not self.runs:
+            return {}
+        result = {}
+        for row in self.runs[-1].get("projects") or []:
+            stored = self.projects.get(row["repository"]) or {}
+            project = stored.get("latest") or {}
+            change = project.get("changes") or {}
+            first = not change or change.get("baseline")
+            previous = None if first else self.previous_rows.get(row["repository"])
+            history = stored.get("history") or []
+            earlier = [item for item in history if str(item.get("date")) < str(row.get("date"))]
+            verdict = change.get("release_integrity") if not first else None
+            integrity = project.get("release_integrity")
+            result[row["repository"]] = {
+                "severe": triage.severe_pairs(change, self.aliases),
+                "kev_new": 0 if first else len(change.get("kev_new") or []),
+                "delta": triage.score_delta(previous, row),
+                "score_reason": triage.score_change_reason(previous, row),
+                "previous_score": (previous or {}).get("scorecard"),
+                "verdict": (verdict["from"], verdict["to"]) if verdict else None,
+                "failed": triage.failed_methods(integrity),
+                "lost": [] if first or not earlier else triage.evidence_lost(earlier[-1].get("release_evidence"),
+                                                                            triage.evidence_of(integrity)),
+                "binary_new": 0 if first else len(change.get("in_binary_new") or []),
+            }
+        return result
 
     def clear_first_week_changes(self) -> None:
         """The first recorded week has no earlier week to compare with. Data published before 2026-11-02 compared
@@ -513,9 +584,16 @@ class ReportSite:
                              ('<span class="pill zero">0</span>' if workflow else '<span class="zero">—</span>'))
             score_cell = scorecard_cell(entry)
             score = entry.get("scorecard")
+            worse = self.triage.get(entry["repository"]) or {} if depth == 0 else {}
+            score_cell += score_delta_html(worse)
+            release_cell = sections.verdict_cell(entry.get("release_integrity")) + release_note_html(worse)
             flags = "".join(f" data-{name}" for name, on in (
                 ("changed", entry.get("change_any")), ("binary", in_binary and in_binary["total"]), ("kev", kev),
-                ("critical", vulns and (vulns.get("Critical") or vulns.get("High")))) if on)
+                ("critical", vulns and (vulns.get("Critical") or vulns.get("High"))),
+                ("new-severe", worse.get("severe")), ("kev-new", worse.get("kev_new")),
+                ("score-drop", (worse.get("delta") or 0) <= -triage.SCORE_DROP),
+                ("release-changed", worse.get("verdict") or worse.get("failed") or worse.get("lost")),
+                ("binary-new", worse.get("binary_new"))) if on)
             kev_text = (f'<span class="pill kev" title="matches in CISA KEV">{kev}</span>' if kev else
                         ('<span class="pill zero">0</span>' if kev is not None else '<span class="zero">—</span>'))
             rows.append(
@@ -529,7 +607,7 @@ class ReportSite:
                 f"<td class=\"num\">{kev_text}</td>"
                 f"<td class=\"num\">{binary}</td><td class=\"num\" data-sort=\"{score if isinstance(score, (int, float)) else -1}\">{score_cell}</td>"
                 f"<td class=\"num\">{workflow_cell}</td>"
-                f"<td class=\"small\">{sections.verdict_cell(entry.get('release_integrity'))}</td>"
+                f"<td class=\"small\">{release_cell}</td>"
                 f"<td class=\"change\">{esc(summary)}</td></tr>"
             )
         table_id = "projects-table" if depth == 0 else "week-table"
@@ -539,7 +617,14 @@ class ReportSite:
             '<label><input type="checkbox" data-flag="critical"> critical or high</label>'
             '<label><input type="checkbox" data-flag="kev"> in CISA KEV</label>'
             '<label><input type="checkbox" data-flag="binary"> vulnerable code in binary</label>'
-            '<span class="count small"></span></div>'
+            + ('<span class="flag-group">New this week: '
+               '<label><input type="checkbox" data-flag="new-severe"> Critical/High advisory</label>'
+               '<label><input type="checkbox" data-flag="kev-new"> in CISA KEV</label>'
+               f'<label><input type="checkbox" data-flag="score-drop"> Scorecard down {triage.SCORE_DROP} or more</label>'
+               '<label><input type="checkbox" data-flag="release-changed"> release verification changed or failed</label>'
+               '<label><input type="checkbox" data-flag="binary-new"> vulnerable code in binary</label></span>'
+               if depth == 0 else "")
+            + '<span class="count small" aria-live="polite"></span></div>'
             f'<div class="scroll"><table class="sortable" id="{table_id}"><thead><tr><th>Project</th><th>Version scanned</th>'
             '<th class="num">Dependencies</th><th class="num">Critical</th><th class="num">High</th><th class="num">Medium</th>'
             '<th class="num">Low</th><th class="num" title="Unknown or negligible severity">Unknown</th>'
@@ -558,9 +643,15 @@ class ReportSite:
             "that week). <strong>In binary</strong>: Go tools only, advisories whose vulnerable functions are compiled into the "
             "released Linux binary. <strong>Scorecard</strong>: OpenSSF repository practices out of 10; * marks a score from the "
             "Scorecard CLI run by this workflow, † a score carried forward from an earlier week (hover for source and date, or for why "
-            "a score is missing). <strong>Workflow</strong>: high-severity "
+            "a score is missing)." + (" ↓/↑ is the change since last week, shown only when both weeks' scores come from the same source, neither "
+            f"was carried forward, and neither week's scan failed (≠ marks a change that is not compared); a drop of {triage.SCORE_DROP} or more is "
+            "highlighted." if depth == 0 else "") + " <strong>Workflow</strong>: high-severity "
             "GitHub Actions findings from zizmor. <strong>Release</strong>: whether the Linux release file's signature, SLSA provenance, or "
-            "GitHub attestation verifies against the project's own workflows. Select a column heading to sort.</p>"
+            "GitHub attestation verifies against the project's own workflows"
+            + ("; <em>was …</em> gives last week's verdict when it changed, and <em>check failed</em> names a check that ran and did "
+               "not verify, even when another check verified. <strong>New this week</strong> filters compare with the previous report"
+               if depth == 0 else "")
+            + ". Select a column heading to sort.</p>"
         )
 
     @staticmethod
@@ -585,11 +676,48 @@ class ReportSite:
             parts.append(binary_transition_text(entry["binary_analysis"]))
         return "; ".join(parts) or "no change"
 
+    def tool_links(self, tools: dict[str, dict[str, Any]], fragment: str, limit: int = 12) -> str:
+        names = sorted(tools.values(), key=lambda project: (project.get("name") or project["repository"]).lower())
+        links = [f'<a href="{project_path(project["repository"])}index.html#{fragment}">{esc(project.get("name") or project["repository"])}</a>'
+                 for project in names[:limit]]
+        return ", ".join(links) + (f" and {len(names) - limit} more" if len(names) > limit else "")
+
+    def advisory_id_link(self, identifier: str) -> str:
+        if identifier in self.advisories:
+            return f'<a href="{exports.advisory_path(identifier)}index.html"><code>{esc(identifier)}</code></a>'
+        return f"<code>{esc(identifier)}</code>"
+
+    def release_checks(self, latest: list[dict[str, Any]]) -> list[str]:
+        """This week's failed release checks, lost evidence, and verdict changes; then the record across weeks."""
+        items = []
+        for project in sorted(latest, key=lambda item: item["repository"].lower()):
+            worse = self.triage.get(project["repository"]) or {}
+            link = f'<a href="{project_path(project["repository"])}index.html#release">{esc(project.get("name") or project["repository"])}</a>'
+            if worse.get("failed"):
+                items.append(f'{link}: <span class="bad">check failed</span>: '
+                             + esc(", ".join(triage.METHOD_NAMES.get(item, item) for item in worse["failed"])))
+            if worse.get("lost"):
+                items.append(f'{link}: <span class="warn">no longer verifies</span>: {esc(", ".join(worse["lost"]))}')
+            if worse.get("verdict"):
+                before, after = worse["verdict"]
+                items.append(f"{link}: {esc(triage.VERDICT_NAMES.get(before, before))} → {esc(triage.VERDICT_NAMES.get(after, after))}")
+        return items
+
+    def release_record(self) -> str:
+        weeks = [run for run in self.runs if run.get("projects")]
+        failed = [(run["date"], row) for run in weeks for row in run["projects"] if row.get("release_integrity") == "unverified"]
+        if failed:
+            listed = ", ".join(f"{esc(row.get('name') or row['repository'])} ({esc(date)})" for date, row in failed)
+            return f'<p class="small">Releases whose checks did not verify in the {len(weeks)} recorded weeks: {listed}.</p>'
+        return (f'<p class="small">No release had the verdict <em>did not verify</em> in the {len(weeks)} recorded weeks. '
+                "Each check is listed on the tool's page; a release with no checksums or signatures has nothing to verify "
+                "and is not counted as failed.</p>")
+
     def this_week(self) -> str:
         latest = [stored["latest"] for stored in self.projects.values()]
-        releases, new_vulns, resolved, deps, drift, failed = [], [], [], [], [], []
-        binary, workflows, scores, integrity, kev, kev_match, files, unavailable = [], [], [], [], [], [], [], []
-        analysis = []
+        releases, resolved, deps, drift, failed = [], [], [], [], []
+        binary_removed, workflows, kev, kev_match, files, unavailable = [], [], [], [], [], []
+        analysis, drops, scores = [], [], []
         for project in sorted(latest, key=lambda item: item["repository"].lower()):
             change = project.get("changes") or {}
             page = f'{project_path(project["repository"])}index.html'
@@ -601,11 +729,6 @@ class ReportSite:
                 continue
             if change.get("release_changed"):
                 releases.append(f"{link} {esc(change.get('previous_ref'))} → {esc(project.get('ref'))}")
-            for item in change.get("new_vulnerabilities") or []:
-                new_vulns.append((SEVERITIES.index(item["severity"]) if item["severity"] in SEVERITIES else 99,
-                                  f"{link}: {badge(item['severity'], item['severity'][0])} "
-                                  f"{self.advisory_link(item, 0)} "
-                                  f"in <code>{esc(item['package'])}@{esc(item['version'])}</code>"))
             for state, label in (("dependency_state", "dependency"), ("advisory_state", "advisory")):
                 if change.get(state) == "unavailable" and not change.get("scan_failed"):
                     reason = change.get(label + "_reason") or change.get("unavailable") or "not available"
@@ -619,49 +742,87 @@ class ReportSite:
                 kev.append(f"{link}: {self.advisory_link(item, 0)} ({esc((item.get('kev') or {}).get('cve'))}, added "
                            f"{esc((item.get('kev') or {}).get('date_added'))}) in <code>{esc(item['package'])}@{esc(item['version'])}</code>")
             if change.get("resolved_vulnerabilities"):
-                resolved.append(f"{link}: {len(change['resolved_vulnerabilities'])}")
+                resolved.append(f"{link}: {change.get('resolved_advisories') or len(change['resolved_vulnerabilities'])}")
             counts = [len(change.get(key) or []) for key in ("added", "removed", "upgraded", "downgraded", "unknown_direction")]
             if any(counts):
                 deps.append(f"{link}: +{counts[0]} / −{counts[1]} / ↑{counts[2]}"
                             + (f" / ↓{counts[3]}" if counts[3] else "") + (f" / ?{counts[4]}" if counts[4] else ""))
             if change.get("integrity_drift"):
                 drift.append(f"{link}: {change['integrity_drift']}")
-            if change.get("in_binary_new") or change.get("in_binary_resolved"):
-                binary.append(f"{link}: +{len(change.get('in_binary_new') or [])} / −{len(change.get('in_binary_resolved') or [])}")
+            if change.get("in_binary_resolved"):
+                binary_removed.append(f"{link}: {len(change['in_binary_resolved'])}")
             if change.get("binary_analysis"):
                 analysis.append(f"{link}: {esc(binary_transition_text(change['binary_analysis']))}")
             if change.get("workflow_new") or change.get("workflow_resolved"):
                 workflows.append(f"{link}: +{change.get('workflow_new', 0)} / −{change.get('workflow_resolved', 0)}")
+            worse = self.triage.get(project["repository"]) or {}
+            if change.get("scorecard_not_compared"):
+                item = change["scorecard_not_compared"]
+                scores.append(f"{link}: {score_text(item['from'])} → {score_text(item['to'])} "
+                              f'<span class="small">(not compared: {esc(item["reason"])})</span>')
             if change.get("scorecard"):
-                scores.append(f"{link}: {change['scorecard']['from']} → {change['scorecard']['to']}")
-            if change.get("release_integrity"):
-                integrity.append(f"{link}: {esc(change['release_integrity']['from'])} → {esc(change['release_integrity']['to'])}")
+                text = f"{link}: {score_text(change['scorecard']['from'])} → {score_text(change['scorecard']['to'])}"
+                if worse.get("delta") is not None and worse["delta"] <= -triage.SCORE_DROP:
+                    drops.append(f'{text} <span class="bad">↓{abs(worse["delta"]):.1f}</span>')
+                else:
+                    scores.append(text + (f' <span class="small">(not compared: {esc(worse["score_reason"])})</span>'
+                                          if worse.get("score_reason") else ""))
         if all(not item.get("changes") or item["changes"].get("baseline") for item in latest):
             return ('<h2 id="this-week">This week</h2><p>This is the first weekly scan, so there is nothing to compare yet. '
                     "From next week this section lists new releases, dependency changes, new and resolved advisories, changes in "
                     "released binaries, release verification, Scorecard, and workflow findings, and drift.</p>"
                     + (f"<h3>Scan problems</h3><ul>{''.join(f'<li>{item}</li>' for item in failed)}</ul>" if failed else ""))
-        new_vulns.sort(key=lambda pair: pair[0])
+        grouped = triage.new_by_advisory(latest, self.aliases)
+
+        def advisory_item(record: dict[str, Any]) -> str:
+            packages = ", ".join(f"<code>{esc(package)}</code>" for package in sorted(record["packages"]))
+            return (f"{badge(record['severity'], record['severity'][0])} {self.advisory_link(record['item'], 0)} in {packages}: "
+                    f"{len(record['tools'])} tool{'s' if len(record['tools']) != 1 else ''} ({self.tool_links(record['tools'], 'changes')})")
+
+        severe = [advisory_item(record) for record in grouped if record["severity"] in triage.SEVERE]
+        other = [advisory_item(record) for record in grouped if record["severity"] not in triage.SEVERE]
+        binary_new = [f"{self.advisory_id_link(record['id'])}: newly in {len(record['tools'])} released binar"
+                      f"{'y' if len(record['tools']) == 1 else 'ies'} ({self.tool_links(record['tools'], 'in-binary')})"
+                      for record in triage.binary_new_by_advisory(latest, self.aliases)]
+        checks_list = self.release_checks(latest)
+        # (anchor, title, items, open by default, text when empty or None to hide)
         groups = [
-            ("Newly listed in CISA KEV", kev), ("New matches for CVEs already in CISA KEV", kev_match),
-            ("New releases", releases), ("New advisories", [text for _, text in new_vulns]),
-            ("Resolved advisories", resolved), ("Dependency changes per lockfile (+added / −removed / ↑upgraded / ↓downgraded / ?order unknown)", deps),
-            ("Vulnerable functions in released binaries (+new / −removed)", binary),
-            ("Released Go binary analysis changed", analysis),
-            ("Release verification changed", integrity), ("OpenSSF Scorecard changed", scores),
-            ("Workflow findings (+new / −resolved)", workflows),
-            ("Package hash changed without a version change (sbomlyze integrity drift)", drift),
-            ("Manifest or workflow files changed (file content, not package integrity)", files),
-            ("Comparison not available", unavailable), ("Scan problems", failed),
+            ("kev-new", "Newly listed in CISA KEV", kev, True, None),
+            ("kev-match", "New matches for CVEs already in CISA KEV", kev_match, True, None),
+            ("new-severe", "New Critical and High advisories", severe, True, None),
+            ("release-checks", "Release verification: failed checks and changes", checks_list, True,
+             "No release check failed and no release lost verified evidence this week."),
+            ("scorecard-drops", f"OpenSSF Scorecard dropped by {triage.SCORE_DROP} or more", drops, True, None),
+            ("binary-new", "Vulnerable code newly in released binaries", binary_new, True, None),
+            ("new-other", "Other new advisories", other, False, None),
+            ("releases", "New releases", releases, False, None),
+            ("resolved", "Resolved advisories", resolved, False, None),
+            ("dependencies", "Dependency changes per lockfile (+added / −removed / ↑upgraded / ↓downgraded / ?order unknown)", deps, False, None),
+            ("binary-removed", "Vulnerable code removed from released binaries", binary_removed, False, None),
+            ("binary-analysis", "Released Go binary analysis changed", analysis, False, None),
+            ("scorecard", "Other OpenSSF Scorecard changes", scores, False, None),
+            ("workflows", "Workflow findings (+new / −resolved)", workflows, False, None),
+            ("drift", "Package hash changed without a version change (sbomlyze integrity drift)", drift, False, None),
+            ("files", "Manifest or workflow files changed (file content, not package integrity)", files, False, None),
+            ("unavailable", "Comparison not available", unavailable, False, None),
+            ("scan-problems", "Scan problems", failed, True, None),
         ]
-        parts = ['<h2 id="this-week">This week</h2>', self.method_change_notice(self.latest and self.latest["date"], "")]
-        for title, items in groups:
-            if not items:
+        parts = ['<h2 id="this-week">This week</h2>',
+                 '<p class="small">Grouped by advisory where one advisory affects several tools. '
+                 "The lists that need attention are open; select a heading to open the others.</p>"]
+        shown_any = False
+        for key, title, items, opened, empty in groups:
+            if not items and empty is None:
                 continue
-            shown = items[:40]
-            more = f"<li>… and {len(items) - 40} more</li>" if len(items) > 40 else ""
-            parts.append(f"<h3>{esc(title)} ({len(items)})</h3><ul>{''.join(f'<li>{item}</li>' for item in shown)}{more}</ul>")
-        if len(parts) == 2:
+            shown_any = shown_any or bool(items)
+            shown = items[:60]
+            more = f"<li>… and {len(items) - 60} more</li>" if len(items) > 60 else ""
+            content = (f"<ul>{''.join(f'<li>{item}</li>' for item in shown)}{more}</ul>" if items else f"<p>{esc(empty)}</p>")
+            if key == "release-checks":
+                content += self.release_record()
+            parts.append(f'<details id="{key}"{" open" if opened else ""}><summary><h3>{esc(title)} ({len(items)})</h3></summary>'
+                         f"{content}</details>")
+        if not shown_any:
             parts.append("<p>No project changed this week.</p>")
         return "\n".join(parts)
 
@@ -692,6 +853,7 @@ class ReportSite:
             verified = sum(1 for item in with_assets if item.get("release_integrity") == "verified")
             scores = sorted(item["scorecard"] for item in entries if isinstance(item.get("scorecard"), (int, float)))
             median = scores[len(scores) // 2] if scores else None
+            delta = self.card_deltas(entries, totals, verified, len(with_assets), median)
             body = (
                 "<h1>Weekly supply-chain report for open-source security tools</h1>"
                 f'<p class="lede">Every week, each of the {len(entries)} active tools in the '
@@ -702,28 +864,132 @@ class ReportSite:
                 f'<a href="data/runs/{esc(run["date"])}.json">JSON</a> · <a href="data/projects.csv">CSV</a> · '
                 '<a href="feed.xml">Atom feed</a></p>'
                 '<div class="cards">'
-                f'<div class="card"><div class="big">{len(entries)}</div><div class="small">projects scanned, {sum(item.get("dependencies") or 0 for item in entries)} declared dependencies</div></div>'
+                f'<div class="card"><div class="big">{len(entries)}</div><div class="small">projects scanned, {sum(item.get("dependencies") or 0 for item in entries)} declared dependencies{delta["projects"]}</div></div>'
                 f'<div class="card"><div class="big">{totals["Critical"]} / {totals["High"]}</div><div class="small">critical / high matches in {with_findings} projects '
-                f'({len(serious)} distinct <a href="advisories/index.html">advisories</a>; {sum(totals.values())} matches of any severity)</div></div>'
+                f'({len(serious)} distinct <a href="advisories/index.html">advisories</a>; {sum(totals.values())} matches of any severity){delta["severe"]}</div></div>'
                 + kev_card +
                 f'<div class="card"><div class="big">{len(shipped)}</div><div class="small">advisories with vulnerable code shipped in a release binary, '
                 f"across {go_vulnerable} of {len(go_tools)} analyzed Go tools"
                 + (f'; <span title="{esc(", ".join(sorted((item.get("name") or item["repository"]) + ": " + binary_state_text(item["go_binary_state"], item.get("go_binary_reason")) for item in go_missed)))}">'
                    f'{len(go_missed)} Go tool{"s" if len(go_missed) != 1 else ""} not analyzed</span>' if go_missed else "")
                 + "</div></div>"
-                f'<div class="card"><div class="big">{verified} / {len(with_assets)}</div><div class="small">Linux releases verifiable by signature, provenance, or attestation</div></div>'
-                f'<div class="card"><div class="big">{median if median is not None else "—"}</div><div class="small">median OpenSSF Scorecard ({len(scores)} scored)</div></div>'
+                f'<div class="card"><div class="big">{verified} / {len(with_assets)}</div><div class="small">Linux releases verifiable by signature, provenance, or attestation{delta["verified"]}</div></div>'
+                f'<div class="card"><div class="big">{median if median is not None else "—"}</div><div class="small">median OpenSSF Scorecard ({len(scores)} scored){delta["median"]}</div></div>'
                 "</div>"
-                + self.this_week()
+                + self.triage_strip()
                 + '<h2 id="projects">All projects</h2>'
                 + f'<p class="small">{esc(VULNERABILITY_NOTE)} Rows marked on the left changed since last week. Select a project for its full inventory, advisories, and history.</p>'
+                + '<div id="since-visit" class="note" hidden></div>'
                 + self.project_table(entries, depth=0)
+                + self.this_week()
+                + self.events_payload()
                 + sections.pipeline_section(run.get("tools") or {}, len(entries))
             )
         self.write("index.html", self.page(
             "Weekly supply-chain report for open-source security tools", 0, body,
             "Weekly SBOMs, known-vulnerability matches, and dependency drift for every tool in the Awesome Security Pipeline catalog.",
         ))
+
+    def card_deltas(self, entries: list[dict[str, Any]], totals: dict[str, int], verified: int, with_assets: int,
+                    median: float | None) -> dict[str, str]:
+        """Each headline card compared with the previous week; empty when there is none or the scan method changed."""
+        keys = ("projects", "severe", "verified", "median")
+        if len(self.runs) < 2 or self.method_change(self.latest["date"]):
+            return dict.fromkeys(keys, "")
+        before = self.runs[-2].get("projects") or []
+        before_totals = {s: sum(shown_counts(item.get("vulnerabilities"))[s] for item in before) for s in ("Critical", "High")}
+        assets = [item for item in before if item.get("release_integrity") not in (None, "no-assets", "no-linux-binary")]
+        before_scores = sorted(item["scorecard"] for item in before if isinstance(item.get("scorecard"), (int, float)))
+        before_median = before_scores[len(before_scores) // 2] if before_scores else None
+        since = esc(self.runs[-2]["date"])
+
+        def line(text: str, unit: str = "") -> str:
+            return f'<span class="delta-line">{text}{unit} vs {since}</span>' if text else ""
+
+        return {
+            "projects": line(triage.card_delta(len(before), len(entries))),
+            "severe": line(f'{triage.card_delta(before_totals["Critical"], totals["Critical"])} / '
+                           f'{triage.card_delta(before_totals["High"], totals["High"])}'),
+            "verified": line(triage.card_delta(sum(1 for item in assets if item.get("release_integrity") == "verified"), verified),
+                             " verified"),
+            "median": line(triage.card_delta(before_median, median, 1)),
+        }
+
+    def triage_strip(self) -> str:
+        """What got worse this week, as counts that link to the matching list; with JS each also filters the table."""
+        if len(self.runs) < 2 or all(not (stored["latest"].get("changes") or {}) or stored["latest"]["changes"].get("baseline")
+                                     for stored in self.projects.values()):
+            return ""
+        values = list(self.triage.values())
+        severe_tools = sum(1 for item in values if item["severe"])
+        severe_advisories = len({pair[0] for item in values for pair in item["severe"]})
+        binary = triage.binary_new_by_advisory([stored["latest"] for stored in self.projects.values()], self.aliases)
+        verdicts = sum(1 for item in values if item["verdict"])
+        failed_or_lost = sum(1 for item in values if item["failed"] or item["lost"])
+        items = [
+            ("new-severe", "new-severe", f"{severe_tools} tool{'s' if severe_tools != 1 else ''}",
+             f"new Critical/High ({severe_advisories} advisor{'y' if severe_advisories == 1 else 'ies'})"),
+            ("kev-new", "kev-new", str(sum(1 for item in values if item["kev_new"])), "newly in CISA KEV"),
+            ("scorecard-drops", "score-drop", str(sum(1 for item in values if (item["delta"] or 0) <= -triage.SCORE_DROP)),
+             f"Scorecard down {triage.SCORE_DROP} or more"),
+            ("release-checks", "release-changed", str(failed_or_lost), "release checks failed or evidence lost"
+             + (f" ({verdicts} verdict{'s' if verdicts != 1 else ''} changed)" if verdicts and failed_or_lost else "")),
+            ("binary-new", "binary-new", f"{len(binary)} advisor{'y' if len(binary) == 1 else 'ies'}",
+             f"newly in released binaries ({sum(1 for item in values if item['binary_new'])} tools)"),
+        ]
+        # Tools whose comparison with last week could not be made: absence of a finding there is not evidence.
+        gaps: dict[str, list[str]] = {}
+        for name, stored in self.projects.items():
+            project = stored["latest"]
+            change = project.get("changes") or {}
+            if change.get("baseline"):
+                continue
+            label = project.get("name") or name
+            if change.get("scan_failed") or project.get("errors"):
+                gaps.setdefault("scan failed", []).append(label)
+                continue
+            for key, kind in (("advisory_state", "advisories"), ("in_binary_state", "released binaries")):
+                if change.get(key) == "unavailable":
+                    gaps.setdefault(kind, []).append(label)
+        incomplete = bool(gaps)
+
+        def names(values: list[str]) -> str:
+            values = sorted(values, key=str.lower)
+            return ", ".join(values[:8]) + (f" and {len(values) - 8} more" if len(values) > 8 else "")
+
+        caveat = (" Not compared with last week: " + "; ".join(f"{kind} for {esc(names(values))}" for kind, values in sorted(gaps.items()))
+                  + "." if gaps else "")
+        since = esc(self.runs[-2]["date"])
+        if all(count.split()[0] == "0" for _, _, count, _ in items) and not verdicts:
+            lead = "No worsening found" if incomplete else "Nothing got worse"
+            return ('<nav class="strip" aria-label="What got worse this week">'
+                    f'<p class="small">{lead} since {since}: no new Critical or High advisories, '
+                    f"nothing newly in CISA KEV, no Scorecard drop of {triage.SCORE_DROP} or more, no failed release check or lost "
+                    f"release evidence, and no vulnerable code newly in a released binary.{caveat}</p></nav>"
+                    + self.method_change_notice(self.latest["date"], ""))
+
+        def item_html(target: str, flag: str, count: str, label: str) -> str:
+            # A zero count has no list to link to.
+            if count.split()[0] != "0":
+                return f'<li data-strip="{flag}"><a href="#{target}"><strong>{esc(count)}</strong> {esc(label)}</a></li>'
+            if target == "release-checks" and verdicts:
+                return (f'<li data-strip="{flag}"><span><strong>0</strong> {esc(label)}</span> '
+                        f'<a href="#{target}">{verdicts} verdict{"s" if verdicts != 1 else ""} changed</a></li>')
+            return f'<li><strong>{esc(count)}</strong> {esc(label)}</li>'
+
+        links = "".join(item_html(*item) for item in items)
+        return ('<nav class="strip" aria-label="What got worse this week">'
+                f'<p class="small">What got worse since {since}:{caveat}</p><ul>{links}</ul></nav>'
+                + self.method_change_notice(self.latest["date"], ""))
+
+    def events_payload(self) -> str:
+        """Per-week change phrases for "since your last visit"; read by report.js, never sent anywhere."""
+        if len(self.runs) < 2:
+            return ""
+        verdicts = {name: tuple(item["verdict"]) for name, item in self.triage.items() if item.get("verdict")}
+        payload = triage.week_events(self.runs, self.method_change, verdicts)
+        data = json.dumps(payload, ensure_ascii=False, separators=(",", ":")).replace("</", "<\\/")
+        return f'<script type="application/json" id="week-events">{data}</script>'
 
     def evidence_release(self, run: dict[str, Any] | None) -> str:
         tag = (run or {}).get("evidence_release")
@@ -1260,11 +1526,18 @@ class ReportSite:
     def advisory_index(self) -> None:
         records = sorted(self.advisories.values(), key=exports.sort_key)
         order = {name: index for index, name in enumerate(SEVERITIES)}
+        latest = [stored["latest"] for stored in self.projects.values()]
+        new_tools: dict[str, set[str]] = {}
+        for record in triage.new_by_advisory(latest, self.aliases):
+            new_tools.setdefault(record["id"], set()).update(record["tools"])
+        for record in triage.binary_new_by_advisory(latest, self.aliases):
+            new_tools.setdefault(record["id"], set()).update(record["tools"])
         rows = []
         for record in records:
             kev = record["kev"]
+            fresh = len(new_tools.get(record["id"]) or ())
             flags = "".join(f" data-{name}" for name, on in (
-                ("kev", kev), ("binary", record["shipped"]), ("multi", len(record["tools"]) > 1),
+                ("new", fresh), ("kev", kev), ("binary", record["shipped"]), ("multi", len(record["tools"]) > 1),
                 ("serious", record["severity"] in ("Critical", "High"))) if on)
             kev_text = (f'<span class="pill kev" title="{esc(kev.get("cve"))}, added {esc(kev.get("date_added"))}">KEV</span>' if kev else
                         ('<span class="zero">no</span>' if record["kev_checked"] else '<span class="zero">—</span>'))
@@ -1274,6 +1547,7 @@ class ReportSite:
                 + (f"<div class=\"small\">{esc(', '.join(record['aliases'][:3]))}</div>" if record["aliases"] else "") + "</td>"
                 f"<td data-sort=\"{order.get(record['severity'], 99)}\">{badge(record['severity'])}</td>"
                 f"<td class=\"small\">{esc(record['summary'][:140])}</td>"
+                f"<td class=\"num\" data-sort=\"{fresh}\">{fresh or ZERO}</td>"
                 f"<td class=\"num\">{len(record['tools'])}</td><td class=\"num\">{len(record['shipped']) or ZERO}</td>"
                 f"<td class=\"num\">{kev_text}</td>"
                 f"<td class=\"num\" data-sort=\"{epss['score'] if epss else -1}\">{epss_text(epss)}</td></tr>"
@@ -1303,11 +1577,13 @@ class ReportSite:
             + kev_list
             + '<h2 id="all">All advisories</h2>'
             '<div class="controls" data-controls="advisories-table" hidden><input type="search" placeholder="Filter by id, package, or text" aria-label="Filter advisories">'
+            '<label><input type="checkbox" data-flag="new"> new this week</label>'
             '<label><input type="checkbox" data-flag="serious"> critical or high</label>'
             '<label><input type="checkbox" data-flag="multi"> more than one tool</label>'
             '<label><input type="checkbox" data-flag="binary"> shipped in a binary</label>'
-            '<label><input type="checkbox" data-flag="kev"> in CISA KEV</label><span class="count small"></span></div>'
+            '<label><input type="checkbox" data-flag="kev"> in CISA KEV</label><span class="count small" aria-live="polite"></span></div>'
             '<div class="scroll"><table class="sortable" id="advisories-table"><thead><tr><th>Advisory</th><th>Severity</th><th>Summary</th>'
+            '<th class="num" title="Tools this advisory newly matches or newly ships in, compared with last week">New this week</th>'
             '<th class="num">Tools</th><th class="num" title="Tools whose release binary contains the vulnerable code (Go only)">Shipped in binary</th>'
             '<th class="num">KEV</th><th class="num">EPSS</th></tr></thead><tbody>'
             + "".join(rows) + "</tbody></table></div>"
@@ -1324,7 +1600,12 @@ class ReportSite:
         entries = []
         for entry in self.latest["projects"]:
             packages, kev = self.project_extras(entry, 0)
-            entries.append({**entry, "vulnerable_packages": packages, "kev": kev})
+            worse = self.triage.get(entry["repository"]) or {}
+            previous = self.previous_rows.get(entry["repository"]) or {}
+            entries.append({**entry, "vulnerable_packages": packages, "kev": kev,
+                            "scorecard_previous": previous.get("scorecard") if previous else None,
+                            "scorecard_delta": worse.get("delta"),
+                            "release_previous": (worse.get("verdict") or (None,))[0]})
         latest = [stored["latest"] for stored in self.projects.values()]
         self.write("data/projects.csv", exports.projects_csv(entries))
         self.write("data/matches.csv", exports.matches_csv(latest, self.aliases))

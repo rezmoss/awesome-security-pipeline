@@ -754,13 +754,18 @@ def integrity_dimensions(methods: list[dict[str, Any]]) -> dict[str, Any]:
     }
 
 
+def release_dimensions(result: dict[str, Any]) -> dict[str, Any]:
+    """The evidence dimensions of one release result; values recorded on the result win over ones derived from methods."""
+    return {**integrity_dimensions(result.get("methods") or []),
+            **{key: result[key] for key in ("build_provenance", "signature", "signer", "immutable_release") if key in result}}
+
+
 def integrity_verdict(result: dict[str, Any]) -> str:
     """One label for tables and badges. *verified* needs build provenance or a signature from one of the project's
     own GitHub Actions workflows; an immutable release alone is reported as *immutable*, not verified."""
     if result.get("verdict") in ("no-assets", "no-linux-binary"):
         return result["verdict"]
-    dimensions = {**integrity_dimensions(result.get("methods") or []),
-                  **{key: result[key] for key in ("build_provenance", "signature", "immutable_release") if key in result}}
+    dimensions = release_dimensions(result)
     if dimensions["build_provenance"] == "verified" or dimensions["signature"] == "own-workflow":
         return "verified"
     if dimensions["signature"] in ("other-identity", "key-unchecked"):
