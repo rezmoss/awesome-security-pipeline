@@ -887,7 +887,10 @@ def binary_status_problems(summary: dict[str, Any], evidence: pathlib.Path) -> l
 
 def published_binary_problems(summary: dict[str, Any], latest: dict[str, Any], entry: dict[str, Any]) -> list[str]:
     """The published binary state is the scan's (or "retained" for a failed scan shown with last week's data), and
-    the history entry agrees with it: no binary change count where no comparison was made."""
+    the history entry agrees with it: no binary change count where no comparison was made. Weeks recorded before
+    binary states existed have no state in their history entry and are not checked."""
+    if "go_binary_state" not in entry:
+        return []
     problems, pid = [], summary["id"]
     change = latest.get("changes") or {}
     if not latest.get("stale") and latest.get("go_binary_status") != summary.get("go_binary_status"):

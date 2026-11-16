@@ -591,6 +591,9 @@ class SupplyChainScanTest(unittest.TestCase):
         stored["latest"]["go_binary_status"] = {"state": "no-release"}
         path.write_text(json.dumps(stored))
         self.assertTrue(any("published binary state" in item for item in scan.audit_publication(data, root / "w3", "2026-11-15")))
+        # A week recorded before binary states existed is not held to them.
+        legacy = {"id": "o__tool", "go_binary": {"findings": []}}
+        self.assertEqual(scan.published_binary_problems(legacy, {"go_binary": {"findings": []}}, {"in_binary_new": 0}), [])
 
     def test_the_audit_requires_a_result_and_raw_output_for_an_analyzed_binary(self):
         temporary = tempfile.TemporaryDirectory()
