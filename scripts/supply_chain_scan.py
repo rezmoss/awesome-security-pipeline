@@ -28,6 +28,7 @@ import shutil
 import subprocess
 import sys
 import tempfile
+import time
 from typing import Any
 
 sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent.parent))
@@ -149,8 +150,9 @@ def resolve_release(target: dict[str, str], tag_patterns: dict[str, Any]) -> dic
             {key: asset.get(key) for key in ("name", "size", "digest", "browser_download_url")}
             for asset in release.get("assets") or []
         ]
-    except RuntimeError:
-        resolved.update(ref=repository["default_branch"], ref_kind="default-branch", released_at=None)
+    except RuntimeError as exc:
+        resolved.update(ref=repository["default_branch"], ref_kind="default-branch", released_at=None,
+                        release_lookup_error=str(exc)[:300])
     return resolved
 
 
@@ -502,25 +504,90 @@ def check(summary: dict[str, Any], name: str, function: Any, *arguments: Any) ->
         return None
 
 
+def has_go_module(manifests: list[str] | None) -> bool:
+    return any(path == "go.mod" or path.endswith("/go.mod") for path in manifests or [])
+
+
+RETRY_DELAY = 10  # seconds before retrying a transient govulncheck failure
+NOT_ANALYZED_NOTE = "{asset} could not be analyzed: {reason}"
+UNREADABLE_REASON = "it may be compressed, for example with UPX, or not built with Go"
+
+
+def binary_status(state: str, reason: str = "", **extra: Any) -> dict[str, Any]:
+    """Whether govulncheck analyzed this week's released Go binary and, if not, why: an unanalyzed binary has no
+    count, never a 0."""
+    return {"state": state, **({"reason": reason} if reason else {}), **extra}
+
+
+def binary_state(project: dict[str, Any]) -> str | None:
+    """The recorded binary-analysis state; weeks recorded before states existed count as analyzed when they have a
+    result and as unknown (None) otherwise."""
+    status = project.get("go_binary_status")
+    if status:
+        return status["state"]
+    return "analyzed" if project.get("go_binary") and not project.get("stale") else None
+
+
+def analyze_go_binaries(binaries: list[pathlib.Path], asset: dict[str, Any], summary: dict[str, Any],
+                        evidence: pathlib.Path) -> dict[str, Any]:
+    """Analyze the largest Go binary in the release file (falling back to the next of the three largest Go binaries if
+    it fails) and record the outcome. Other Go binaries in the same file are listed but not analyzed."""
+    go_binaries = [binary for binary in binaries if checks.is_go_binary(binary)]
+    attempts: list[dict[str, Any]] = []
+    for binary in go_binaries[:3]:
+        result = checks.govulncheck_binary(binary, evidence / "govulncheck.json")
+        if result.get("kind") == "transient":
+            attempts.append({"binary": binary.name, "error": result["error"], "kind": result["kind"]})
+            time.sleep(RETRY_DELAY)
+            result = checks.govulncheck_binary(binary, evidence / "govulncheck.json")
+        if "error" not in result:
+            summary["go_binary"] = {**result, "asset": asset["name"]}
+            others = sorted(item.name for item in go_binaries if item != binary)
+            return binary_status("analyzed", attempts=len(attempts) + 1, **({"other_go_binaries": others} if others else {}))
+        attempts.append({"binary": binary.name, "error": result["error"], "kind": result["kind"]})
+    if not binaries:
+        status = binary_status("no-binary", f"{asset['name']} contains no Linux executable")
+    elif not go_binaries or all(item["kind"] == "unreadable" for item in attempts):
+        status = binary_status("unreadable-binary", UNREADABLE_REASON)
+    else:
+        status = binary_status("govulncheck-error", attempts[-1]["error"], attempts=len(attempts))
+    summary["go_binary_note"] = NOT_ANALYZED_NOTE.format(
+        asset=asset["name"], reason=f"no Go build information (the binary {UNREADABLE_REASON[3:]})"
+        if status["state"] == "unreadable-binary" else status["reason"])
+    return status
+
+
 def release_checks(target: dict[str, Any], summary: dict[str, Any], work: pathlib.Path, evidence: pathlib.Path) -> None:
+    is_go = has_go_module(summary.get("manifests"))
     asset = checks.select_linux_asset(target.get("assets") or [], target["repository"])
     file = None
     if asset:
         file = work / asset["name"]
-        checks.download(asset["browser_download_url"], file)
-        binaries = checks.extract_binaries(file, work / "extracted")
-        is_go = any(path.endswith("go.mod") for path in summary.get("manifests") or [])
-        for binary in binaries if is_go else []:
-            result = checks.govulncheck_binary(binary, evidence / "govulncheck.json")
-            if result:
-                summary["go_binary"] = {**result, "asset": asset["name"]}
-                break
-        if is_go and "go_binary" not in summary:
-            summary["go_binary_note"] = (
-                f"{asset['name']} could not be analyzed: no Go build information "
-                "(the binary may be compressed, for example with UPX, or not built with Go)"
-            )
+        stage = "download-failed"
+        try:
+            checks.download(asset["browser_download_url"], file)
+            stage = "extract-failed"
+            binaries = checks.extract_binaries(file, work / "extracted")
+        except Exception as exc:
+            if is_go:
+                summary["go_binary_status"] = binary_status(stage, f"{asset['name']}: {str(exc)[:200]}")
+            raise
+        if is_go:
+            summary["go_binary_status"] = analyze_go_binaries(binaries, asset, summary, evidence)
+    elif is_go:
+        count = len(target.get("assets") or [])
+        summary["go_binary_status"] = binary_status(
+            "no-eligible-asset", "the release has no files" if not count
+            else f"none of the release's {count} files is a Linux amd64 binary or archive under the size limit")
     summary["release_integrity"] = checks.release_integrity(target, asset, file, work)
+
+
+def no_release_status(target: dict[str, Any]) -> dict[str, Any]:
+    """Why a Go tool was scanned at its default branch: no published release, or the release lookup failed."""
+    error = target.get("release_lookup_error") or ""
+    if not error or "404" in error or "Not Found" in error or error.startswith("no release matches"):
+        return binary_status("no-release", "no published release" + (f" ({error})" if error.startswith("no release") else ""))
+    return binary_status("release-lookup-failed", f"the release could not be looked up: {error[:200]}")
 
 
 def scan_target(target: dict[str, Any], output: pathlib.Path, previous_dir: pathlib.Path | None, sbomlyze: str,
@@ -558,6 +625,8 @@ def scan_target(target: dict[str, Any], output: pathlib.Path, previous_dir: path
                    env={"SYFT_JAVASCRIPT_INCLUDE_DEV_DEPENDENCIES": "true"})
         if syft.returncode != 0 or not sbom.is_file():
             summary["errors"].append(f"syft failed: {syft.stderr.strip()[:300]}")
+            if has_go_module(paths):
+                summary["go_binary_status"] = binary_status("check-failed", "the scan failed before the release binary was checked")
             return summary
         workflows = check(summary, "zizmor", checks.zizmor_audit, source)
         if workflows and workflows.get("error"):
@@ -594,6 +663,10 @@ def scan_target(target: dict[str, Any], output: pathlib.Path, previous_dir: path
     if target.get("ref_kind") == "release":
         with tempfile.TemporaryDirectory() as temporary:
             check(summary, "release checks", release_checks, target, summary, pathlib.Path(temporary), directory)
+    if has_go_module(summary.get("manifests")) and "go_binary_status" not in summary:
+        summary["go_binary_status"] = (no_release_status(target) if target.get("ref_kind") != "release" else
+                                       binary_status("check-failed", next((item for item in summary["errors"]
+                                                                           if item.startswith("release checks")), "")[:300]))
     checks.annotate_reachability(summary["vulnerabilities"], summary.get("go_binary"))
     if summary.get("go_binary"):
         # The module list is in govulncheck.json; the project file keeps only the findings.
@@ -791,10 +864,47 @@ def audit_shards(shards_dir: pathlib.Path, previous_dir: pathlib.Path | None, sb
                     if without_enrichment(replayed.get(key)) != without_enrichment(summary.get(key)):
                         problems.append(f"{summary['id']} {key} does not match its raw evidence: "
                                         + first_difference(without_enrichment(replayed.get(key)), without_enrichment(summary.get(key)), key))
+                problems += binary_status_problems(summary, shard_file.parent / summary["id"])
                 expected = (replayed.get("sbomlyze_diff") or {}).get("occurrences")
                 if expected != (summary.get("sbomlyze_diff") or {}).get("occurrences"):
                     problems.append(f"{summary['id']} sbomlyze occurrences differ from a re-run of sbomlyze: "
                                     + first_difference(expected, (summary.get("sbomlyze_diff") or {}).get("occurrences"), "occurrences"))
+    return problems
+
+
+def binary_status_problems(summary: dict[str, Any], evidence: pathlib.Path) -> list[str]:
+    """A binary counts as analyzed only with a govulncheck result and its raw output. Weeks scanned before states
+    were recorded have none and are not checked for one."""
+    status, go = summary.get("go_binary_status"), summary.get("go_binary")
+    problems = []
+    if status and (status["state"] == "analyzed") != bool(go):
+        problems.append(f"{summary['id']} binary state is {status['state']} but a govulncheck result is "
+                        + ("present" if go else "missing"))
+    if go and not (evidence / "govulncheck.json").is_file():
+        problems.append(f"{summary['id']} has a govulncheck result without its raw output")
+    return problems
+
+
+def published_binary_problems(summary: dict[str, Any], latest: dict[str, Any], entry: dict[str, Any]) -> list[str]:
+    """The published binary state is the scan's (or "retained" for a failed scan shown with last week's data), and
+    the history entry agrees with it: no binary change count where no comparison was made. Weeks recorded before
+    binary states existed have no state in their history entry and are not checked."""
+    if "go_binary_state" not in entry:
+        return []
+    problems, pid = [], summary["id"]
+    change = latest.get("changes") or {}
+    if not latest.get("stale") and latest.get("go_binary_status") != summary.get("go_binary_status"):
+        problems.append(f"{pid} published binary state {latest.get('go_binary_status')} differs from the scan's {summary.get('go_binary_status')}")
+    if latest.get("stale") and summary.get("go_binary_status") and binary_state(latest) != "retained":
+        problems.append(f"{pid} failed scan of a Go tool is published as {binary_state(latest)}, not retained")
+    if entry.get("go_binary_state") != binary_state(latest) or entry.get("go_binary_reason") != (latest.get("go_binary_status") or {}).get("reason"):
+        problems.append(f"{pid} history binary state {entry.get('go_binary_state')} differs from the published {binary_state(latest)}")
+    unavailable = change.get("in_binary_state") == "unavailable"
+    for key in ("in_binary_new", "in_binary_resolved"):
+        if (entry.get(key) is None) != unavailable or (not unavailable and entry.get(key) != len(change.get(key) or [])):
+            problems.append(f"{pid} history {key} = {entry.get(key)} but the comparison is {'unavailable' if unavailable else 'available'}")
+    if entry.get("binary_analysis") != change.get("binary_analysis"):
+        problems.append(f"{pid} history binary transition differs from the published change")
     return problems
 
 
@@ -813,6 +923,7 @@ def audit_publication(data_dir: pathlib.Path, shards_dir: pathlib.Path, date: st
             if entry is None:
                 problems.append(f"{summary['id']} has no history entry for {date}")
                 continue
+            problems += published_binary_problems(summary, latest, entry)
             if summary.get("components") is None:
                 continue
             for key in DERIVED_KEYS:
@@ -1027,7 +1138,8 @@ def changes(previous: dict[str, Any] | None, current: dict[str, Any], context: d
     if not previous or previous.get("components") is None or current.get("components") is None:
         if context.get("previous_unavailable"):
             return {"baseline": False, "any": False, "unavailable": context["previous_unavailable"],
-                    "dependency_state": "unavailable", "advisory_state": "unavailable"}
+                    "dependency_state": "unavailable", "advisory_state": "unavailable",
+                    **({"in_binary_state": "unavailable"} if binary_state(current) else {})}
         return {"baseline": True}
     result: dict[str, Any] = {
         "baseline": False,
@@ -1095,11 +1207,18 @@ def changes(previous: dict[str, Any] | None, current: dict[str, Any], context: d
             return {f"{item['rule']}|{item['file']}|{item['note']}" for item in project["workflow_audit"]["findings"]}
         result["workflow_new"] = len(workflow_keys(current) - workflow_keys(previous))
         result["workflow_resolved"] = len(workflow_keys(previous) - workflow_keys(current))
-    if previous.get("go_binary") and current.get("go_binary"):
+    if (previous.get("go_binary") and current.get("go_binary")
+            and binary_state(previous) == "analyzed" and binary_state(current) == "analyzed"):
         def in_binary(project: dict[str, Any]) -> set[str]:
             return {item["id"] for item in project["go_binary"]["findings"] if item["level"] == "symbol"}
         result["in_binary_new"] = sorted(in_binary(current) - in_binary(previous))
         result["in_binary_resolved"] = sorted(in_binary(previous) - in_binary(current))
+    elif binary_state(previous) or binary_state(current):
+        # A Go tool whose binary was not analyzed in one of the two weeks: no comparison, not "no change".
+        result["in_binary_state"] = "unavailable"
+        before, after = binary_state(previous), binary_state(current)
+        if before and after and before != after and "analyzed" in (before, after):
+            result["binary_analysis"] = {"from": before, "to": after}
     if site_exports.all_matches(current) and any("kev" in item for item in site_exports.all_matches(previous)):
         # Only once last week was checked against KEV too; otherwise every listed match would look new.
         # Includes govulncheck-only findings in the shipped binary.
@@ -1128,7 +1247,7 @@ def changes(previous: dict[str, Any] | None, current: dict[str, Any], context: d
         or result.get("integrity_drift") or result.get("new_vulnerabilities") or result.get("resolved_vulnerabilities")
         or result.get("scorecard") or result.get("release_integrity") or result.get("workflow_new")
         or result.get("workflow_resolved") or result.get("in_binary_new") or result.get("in_binary_resolved")
-        or result.get("kev_new") or result.get("kev_new_match")
+        or result.get("kev_new") or result.get("kev_new_match") or result.get("binary_analysis")
     )
     return result
 
@@ -1165,8 +1284,8 @@ def history_entry(date: str, project: dict[str, Any]) -> dict[str, Any]:
         "new_advisories": change.get("new_advisories"),
         "resolved_advisories": change.get("resolved_advisories"),
         "resolved_vulnerabilities": count(change, "resolved_vulnerabilities", "advisory_state"),
-        "in_binary_new": len(change.get("in_binary_new") or []),
-        "in_binary_resolved": len(change.get("in_binary_resolved") or []),
+        "in_binary_new": None if change.get("in_binary_state") == "unavailable" else len(change.get("in_binary_new") or []),
+        "in_binary_resolved": None if change.get("in_binary_state") == "unavailable" else len(change.get("in_binary_resolved") or []),
         "workflow_new": change.get("workflow_new"),
         "workflow_resolved": change.get("workflow_resolved"),
         "dependency_state": change.get("dependency_state"),
@@ -1177,6 +1296,9 @@ def history_entry(date: str, project: dict[str, Any]) -> dict[str, Any]:
         "osv_only": len((project.get("osv") or {}).get("osv_only") or []) if (project.get("osv") or {}).get("available") else None,
         "in_binary": in_binary_counts(project.get("go_binary")),
         "go_version": (project.get("go_binary") or {}).get("go_version"),
+        "go_binary_state": binary_state(project),
+        "go_binary_reason": (project.get("go_binary_status") or {}).get("reason"),
+        "binary_analysis": change.get("binary_analysis"),
         "workflow": workflow_counts(project.get("workflow_audit")),
         "scorecard": card.get("score"),
         "scorecard_source": ("carried-forward" if card.get("carried_forward") else card.get("source")) if card else None,
@@ -1381,10 +1503,18 @@ def command_publish(args: argparse.Namespace) -> int:
                     project_context["previous_unavailable"] = "last week's record is not in this copy of the data (no Git history)"
             if project.get("components") is None and previous:
                 # A failed scan keeps last week's inventory visible and is marked as failed.
+                go_tool = bool(previous.get("go_binary") or previous.get("go_binary_status") or project.get("go_binary_status"))
                 project = {**previous, "errors": project.get("errors"), "scanned_at": project.get("scanned_at"), "stale": True,
                            "last_success_at": previous.get("last_success_at") or previous.get("scanned_at")}
+                if go_tool:
+                    # Last week's binary result (if any) is shown, but nobody analyzed a binary this week.
+                    since = str(previous.get("last_success_at") or previous.get("scanned_at") or "")[:10]
+                    project["go_binary_status"] = binary_status(
+                        "retained", f"this week's scan failed; the binary result is from {since or 'an earlier week'}"
+                        if previous.get("go_binary") else "", since=since)
                 project["changes"] = {"baseline": False, "any": False, "scan_failed": True,
-                                      "dependency_state": "unavailable", "advisory_state": "unavailable"}
+                                      "dependency_state": "unavailable", "advisory_state": "unavailable",
+                                      **({"in_binary_state": "unavailable"} if go_tool else {})}
                 enrichment.annotate(project.get("vulnerabilities"), context)
                 enrichment.annotate((project.get("go_binary") or {}).get("findings"), context)
             else:

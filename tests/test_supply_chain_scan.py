@@ -416,6 +416,235 @@ class SupplyChainScanTest(unittest.TestCase):
         project = {"vulnerabilities": [grype[0]], "go_binary": go}
         self.assertEqual([(item["package"], item["version"]) for item in site_exports.binary_matches(project)], [("stdlib", "v1.26.5")])
 
+    def test_govulncheck_failures_are_classified_not_dropped(self):
+        def completed(code, stdout="", stderr=""):
+            return subprocess.CompletedProcess([], code, stdout, stderr)
+        binary = pathlib.Path("/tmp/x/tool")
+        cases = [
+            (completed(1, stderr="govulncheck: unrecognized binary format"), "unreadable"),
+            (completed(1, stderr="creating client: unrecognized vulndb format"), "transient"),
+            (completed(0, stdout="{not json"), "failed"),
+            (completed(0, stdout='{"SBOM": {"modules": []}}'), "unreadable"),
+        ]
+        for result, kind in cases:
+            with unittest.mock.patch.object(checks, "run", return_value=result):
+                self.assertEqual(checks.govulncheck_binary(binary)["kind"], kind, result.stderr or result.stdout)
+        with unittest.mock.patch.object(checks, "run", side_effect=subprocess.TimeoutExpired("govulncheck", 1)):
+            self.assertEqual(checks.govulncheck_binary(binary)["kind"], "transient")
+        ok = completed(0, stdout='{"config": {"db": "d"}}\n{"SBOM": {"go_version": "go1.26.1", "modules": [{"path": "x"}]}}')
+        with unittest.mock.patch.object(checks, "run", return_value=ok):
+            self.assertEqual(checks.govulncheck_binary(binary)["go_version"], "go1.26.1")
+
+    def test_go_binaries_are_told_apart_by_build_information(self):
+        temporary = tempfile.TemporaryDirectory()
+        self.addCleanup(temporary.cleanup)
+        go, packed = pathlib.Path(temporary.name) / "go", pathlib.Path(temporary.name) / "packed"
+        go.write_bytes(b"\x7fELF" + b"\0" * 100 + checks.GO_BUILDINFO + b"\0" * 100)
+        packed.write_bytes(b"\x7fELF" + b"UPX!" * 100)
+        self.assertTrue(checks.is_go_binary(go))
+        self.assertFalse(checks.is_go_binary(packed))
+
+    def release_check_state(self, *, assets=None, go_files=("tool",), results=(), extract=None, download=None):
+        """Run release_checks for a Go tool with the network and scanners replaced; returns the summary."""
+        temporary = tempfile.TemporaryDirectory()
+        self.addCleanup(temporary.cleanup)
+        work = pathlib.Path(temporary.name)
+        files = [work / name for name in ("tool", "helper", "packed", "fourth")]
+        target = {"repository": "o/tool", "assets": [{"name": "tool_linux_amd64.tar.gz", "size": 10, "browser_download_url": "u"}]
+                  if assets is None else assets}
+        summary = {"manifests": ["go.mod"], "errors": []}
+        answers = iter(results)
+        patches = [
+            unittest.mock.patch.object(checks, "download", side_effect=download),
+            unittest.mock.patch.object(checks, "extract_binaries", side_effect=extract, return_value=files),
+            unittest.mock.patch.object(checks, "is_go_binary", side_effect=lambda path: path.name in go_files),
+            unittest.mock.patch.object(checks, "govulncheck_binary", side_effect=lambda binary, raw: next(answers)),
+            unittest.mock.patch.object(checks, "release_integrity", return_value={"verdict": "unsigned"}),
+            unittest.mock.patch.object(scan, "RETRY_DELAY", 0),
+        ]
+        for patch in patches:
+            patch.start()
+            self.addCleanup(patch.stop)
+        try:
+            scan.release_checks(target, summary, work, work)
+        except RuntimeError:
+            summary["raised"] = True
+        return summary
+
+    def test_every_way_a_go_binary_goes_unanalyzed_has_its_own_state(self):
+        result = {"binary": "tool", "go_version": "go1.26.1", "findings": [], "modules": [], "module_versions": {}}
+        transient = {"error": "govulncheck exited with 1: database", "kind": "transient"}
+        unreadable = {"error": "no Go build information (x)", "kind": "unreadable"}
+
+        analyzed = self.release_check_state(go_files=("tool", "helper"), results=[result])
+        self.assertEqual(analyzed["go_binary_status"], {"state": "analyzed", "attempts": 1, "other_go_binaries": ["helper"]})
+        self.assertEqual(analyzed["go_binary"]["asset"], "tool_linux_amd64.tar.gz")
+
+        retried = self.release_check_state(results=[transient, result])
+        self.assertEqual(retried["go_binary_status"]["attempts"], 2)
+
+        failed = self.release_check_state(results=[transient, transient])
+        self.assertEqual(failed["go_binary_status"]["state"], "govulncheck-error")
+        self.assertIn("database", failed["go_binary_status"]["reason"])
+        self.assertNotIn("go_binary", failed)
+        self.assertNotIn("UPX", failed["go_binary_note"])
+
+        self.assertEqual(self.release_check_state(go_files=(), results=[])["go_binary_status"]["state"], "unreadable-binary")
+        # Three larger native executables do not hide a Go binary.
+        fourth = self.release_check_state(go_files=("fourth",), results=[dict(result, binary="fourth")])
+        self.assertEqual((fourth["go_binary_status"]["state"], fourth["go_binary"]["binary"]), ("analyzed", "fourth"))
+        self.assertEqual(self.release_check_state(results=[unreadable])["go_binary_status"]["state"], "unreadable-binary")
+        self.assertEqual(self.release_check_state(assets=[])["go_binary_status"],
+                         {"state": "no-eligible-asset", "reason": "the release has no files"})
+        broken = self.release_check_state(download=RuntimeError("asset exceeds size limit"))
+        self.assertEqual(broken["go_binary_status"]["state"], "download-failed")
+        self.assertTrue(broken["raised"])
+
+        self.assertEqual(scan.no_release_status({"release_lookup_error": "Not Found (HTTP 404)"})["state"], "no-release")
+        self.assertEqual(scan.no_release_status({})["state"], "no-release")
+        self.assertEqual(scan.no_release_status({"release_lookup_error": "API rate limit exceeded"})["state"], "release-lookup-failed")
+        self.assertTrue(scan.has_go_module(["cmd/go.mod"]))
+        self.assertFalse(scan.has_go_module(["notgo.mod"]))
+
+    def test_an_unanalyzed_binary_is_no_comparison_not_zero_change(self):
+        go = {"go_version": "go1.26.1", "findings": [{"id": "GO-1", "aliases": [], "level": "symbol", "module": "x", "version": "1"}]}
+        analyzed = {"ref": "v1", "components": [], "go_binary": go, "go_binary_status": {"state": "analyzed"}}
+        missing = {"ref": "v1", "components": [], "go_binary_status": {"state": "no-eligible-asset", "reason": "none"}}
+        lost = scan.changes(analyzed, missing)
+        self.assertEqual(lost["in_binary_state"], "unavailable")
+        self.assertEqual(lost["binary_analysis"], {"from": "analyzed", "to": "no-eligible-asset"})
+        self.assertTrue(lost["any"])
+        entry = scan.history_entry("2026-11-22", {**missing, "changes": lost})
+        self.assertIsNone(entry["in_binary_new"])
+        self.assertEqual(entry["go_binary_state"], "no-eligible-asset")
+        self.assertEqual(scan.changes(missing, analyzed)["binary_analysis"]["to"], "analyzed")
+        # Without last week's record (a re-run with no Git history) there is nothing to compare either.
+        unknown = scan.changes(None, analyzed, {"previous_unavailable": "no Git history"})
+        self.assertIsNone(scan.history_entry("2026-11-22", {**analyzed, "changes": unknown})["in_binary_new"])
+        self.assertNotIn("in_binary_state", scan.changes(None, {"ref": "v1", "components": []}, {"previous_unavailable": "x"}))
+        # A week recorded before states existed tells nothing: no transition is invented.
+        self.assertNotIn("binary_analysis", scan.changes({"ref": "v1", "components": []}, missing))
+        # A non-Go tool keeps its 0 and no state.
+        other = scan.changes({"ref": "v1", "components": []}, {"ref": "v1", "components": []})
+        self.assertNotIn("in_binary_state", other)
+        entry = scan.history_entry("2026-11-22", {"ref": "v1", "changes": other})
+        self.assertEqual((entry["in_binary_new"], entry["go_binary_state"]), (0, None))
+        # Last week's binary result kept after a failed scan is not this week's analysis.
+        self.assertEqual(scan.binary_state({"go_binary": go, "stale": True}), None)
+
+    def test_a_go_tool_whose_scan_fails_early_is_not_called_a_non_go_tool(self):
+        temporary = tempfile.TemporaryDirectory()
+        self.addCleanup(temporary.cleanup)
+        target = {"repository": "o/tool", "ref": "v1", "ref_kind": "release"}
+        failed = subprocess.CompletedProcess([], 1, "", "syft: boom")
+        with unittest.mock.patch.object(scan, "fetch_manifests", return_value=("abc", ["go.mod"])), \
+                unittest.mock.patch.object(checks, "osv_scan", return_value={"groups": []}), \
+                unittest.mock.patch.object(scan, "run", return_value=failed):
+            summary = scan.scan_target(target, pathlib.Path(temporary.name), None, "sbomlyze")
+        self.assertEqual(summary["go_binary_status"]["state"], "check-failed")
+        self.assertIsNone(summary.get("components"))
+
+    def go_week(self, directory, go=None, status=None, components=True):
+        project = {"id": "o__tool", "repository": "o/tool", "name": "tool", "ref": "v1", "ref_kind": "release",
+                   "errors": [] if components else ["syft failed"], "manifests": ["go.mod"], "scanned_at": "2026-11-01T00:00:00Z"}
+        if components:
+            project.update(components=[component("x", "1")], vulnerabilities=[])
+        if go:
+            project["go_binary"] = go
+        if status:
+            project["go_binary_status"] = status
+        directory.mkdir(parents=True, exist_ok=True)
+        (directory / "shard-0.json").write_text(json.dumps({"tools": {}, "projects": [project]}))
+
+    def test_a_failed_week_and_the_week_after_it_have_no_binary_change_count(self):
+        temporary = tempfile.TemporaryDirectory()
+        self.addCleanup(temporary.cleanup)
+        root = pathlib.Path(temporary.name)
+        data = root / "data"
+        go = lambda advisory: {"go_version": "go1.26.1", "binary": "tool", "asset": "a.tgz", "main_module": "",
+                               "findings": [{"id": advisory, "aliases": [], "level": "symbol", "module": "x", "version": "1"}]}
+        self.go_week(root / "w1", go("GO-1"), {"state": "analyzed", "attempts": 1})
+        self.go_week(root / "w2", status={"state": "check-failed", "reason": "the scan failed"}, components=False)
+        self.go_week(root / "w3", go("GO-2"), {"state": "analyzed", "attempts": 1})
+        for week, date in (("w1", "2026-11-01"), ("w2", "2026-11-08"), ("w3", "2026-11-15")):
+            self.publish(root / week, data, date)
+            self.assertEqual(scan.audit_publication(data, root / week, date), [], week)
+            if week == "w2":
+                stored = json.loads((data / "projects" / "o__tool.json").read_text())
+                self.assertEqual(stored["latest"]["go_binary_status"]["state"], "retained")
+                self.assertIsNone(stored["history"][-1]["in_binary_new"])
+        history = json.loads((data / "projects" / "o__tool.json").read_text())["history"]
+        self.assertIsNone(history[-1]["in_binary_new"])
+        site = root / "site"
+        with unittest.mock.patch("sys.argv", ["build", "--output", str(site), "--supply-chain-data", str(data)]):
+            self.assertEqual(build_site.main(), 0)
+        overview = (site / "index.html").read_text()
+        self.assertIn("Released Go binary analysis changed (1)", overview)
+        self.assertIn("binary analyzed again", overview)
+        self.assertNotIn("No project changed this week", overview)
+        history_table = (site / "projects" / "o" / "tool" / "index.html").read_text().split('id="history"')[1].split("</table>")[0]
+        self.assertIn("binary analyzed again", history_table)
+        self.assertEqual(history[-1]["binary_analysis"], {"from": "retained", "to": "analyzed"})
+        # The audit notices a published state that is not the scan's.
+        path = data / "projects" / "o__tool.json"
+        stored = json.loads(path.read_text())
+        stored["latest"]["go_binary_status"] = {"state": "no-release"}
+        path.write_text(json.dumps(stored))
+        self.assertTrue(any("published binary state" in item for item in scan.audit_publication(data, root / "w3", "2026-11-15")))
+        # A week recorded before binary states existed is not held to them.
+        legacy = {"id": "o__tool", "go_binary": {"findings": []}}
+        self.assertEqual(scan.published_binary_problems(legacy, {"go_binary": {"findings": []}}, {"in_binary_new": 0}), [])
+
+    def test_the_audit_requires_a_result_and_raw_output_for_an_analyzed_binary(self):
+        temporary = tempfile.TemporaryDirectory()
+        self.addCleanup(temporary.cleanup)
+        evidence = pathlib.Path(temporary.name)
+        summary = {"id": "o__tool", "manifests": ["go.mod"], "go_binary_status": {"state": "analyzed"}}
+        self.assertEqual(len(scan.binary_status_problems(summary, evidence)), 1)
+        summary["go_binary"] = {"findings": []}
+        self.assertIn("without its raw output", scan.binary_status_problems(summary, evidence)[0])
+        (evidence / "govulncheck.json").write_text("{}")
+        self.assertEqual(scan.binary_status_problems(summary, evidence), [])
+        self.assertEqual(scan.binary_status_problems({"id": "old", "manifests": ["go.mod"]}, evidence), [])
+
+    def test_site_says_not_analyzed_instead_of_zero(self):
+        temporary = tempfile.TemporaryDirectory()
+        self.addCleanup(temporary.cleanup)
+        root = pathlib.Path(temporary.name)
+        data, site = root / "data", root / "site"
+        go_match = dict(finding("GHSA-g", "x/net"), ecosystem="golang")
+        projects = [
+            {"id": "hashicorp__vault", "repository": "hashicorp/vault", "name": "vault", "ref": "v2", "ref_kind": "release",
+             "components": [component("x/net", "1")], "errors": [], "vulnerabilities": [go_match], "manifests": ["go.mod"],
+             "go_binary_status": {"state": "no-eligible-asset", "reason": "the release has no files"}},
+            {"id": "sqlmapproject__sqlmap", "repository": "sqlmapproject/sqlmap", "name": "sqlmap", "ref": "1.0", "ref_kind": "release",
+             "components": [component("six", "1", "pypi")], "errors": [], "vulnerabilities": []},
+        ]
+        (root / "shards").mkdir()
+        (root / "shards" / "shard-0.json").write_text(json.dumps({"tools": {}, "projects": projects}))
+        self.publish(root / "shards", data, "2026-11-22")
+        argv = ["build", "--output", str(site), "--supply-chain-data", str(data)]
+        with unittest.mock.patch("sys.argv", argv):
+            self.assertEqual(build_site.main(), 0)
+        overview = (site / "index.html").read_text()
+        self.assertIn("1 Go tool not analyzed", overview)
+        self.assertRegex(overview, r'title="no Linux amd64 release file: the release has no files">not analyzed<')
+        self.assertIn('title="Not a Go tool">n/a<', overview)
+        page = (site / "projects" / "hashicorp" / "vault" / "index.html").read_text()
+        self.assertIn("Not analyzed this week.", page)
+        self.assertIn("Whether their vulnerable code ships is unknown", page)
+        badge = json.loads((site / "badges" / "hashicorp" / "vault" / "in-binary.json").read_text())
+        self.assertEqual(badge["message"], "not analyzed")
+        self.assertFalse((site / "badges" / "sqlmapproject" / "sqlmap" / "in-binary.json").exists())
+        rows = {row["repository"]: row for row in csv.DictReader(io.StringIO((site / "data" / "projects.csv").read_text()))}
+        self.assertEqual((rows["hashicorp/vault"]["go_binary_state"], rows["sqlmapproject/sqlmap"]["go_binary_state"]),
+                         ("no-eligible-asset", ""))
+        matches = list(csv.DictReader(io.StringIO((site / "data" / "matches.csv").read_text())))
+        self.assertEqual(matches[0]["binary_analysis"], "no-eligible-asset")
+        advisory = (site / "advisories" / "GHSA-g" / "index.html").read_text()
+        self.assertIn(">not analyzed<", advisory)
+        self.assertIn("no Linux amd64 release file", advisory)
+
     def write_shard(self, directory, ref, components, vulnerabilities, errors=None, sbom=None, diff=None):
         project = {
             "id": "gitleaks__gitleaks", "repository": "gitleaks/gitleaks", "name": "gitleaks",

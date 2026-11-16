@@ -13,6 +13,7 @@ import base64
 import datetime as dt
 import hashlib
 import json
+import mmap
 import os
 import pathlib
 import re
@@ -435,7 +436,17 @@ def extract_binaries(archive: pathlib.Path, destination: pathlib.Path) -> list[p
             with path.open("rb") as handle:
                 if handle.read(4) == b"\x7fELF":
                     binaries.append(path)
-    return sorted(binaries, key=lambda path: -path.stat().st_size)[:3]
+    # Every ELF file, largest first.
+    return sorted(binaries, key=lambda path: -path.stat().st_size)
+
+
+GO_BUILDINFO = b"\xff Go buildinf:"
+
+
+def is_go_binary(path: pathlib.Path) -> bool:
+    """Whether the file carries Go build information, which govulncheck needs (a UPX-packed binary does not)."""
+    with path.open("rb") as handle, mmap.mmap(handle.fileno(), 0, access=mmap.ACCESS_READ) as data:
+        return data.find(GO_BUILDINFO) >= 0
 
 
 # ----- govulncheck --------------------------------------------------------------------
@@ -443,16 +454,33 @@ def extract_binaries(archive: pathlib.Path, destination: pathlib.Path) -> list[p
 LEVELS = {"symbol": 3, "package": 2, "module": 1}
 
 
-def govulncheck_binary(binary: pathlib.Path, raw: pathlib.Path | None = None) -> dict[str, Any] | None:
-    completed = run(["govulncheck", "-mode=binary", "-format", "json", str(binary)])
+UNREADABLE_BINARY = re.compile(r"unrecognized binary format|could not read Go build info|not a Go executable", re.IGNORECASE)
+
+
+def govulncheck_binary(binary: pathlib.Path, raw: pathlib.Path | None = None) -> dict[str, Any]:
+    """The analysis of one binary, or {"error": reason, "kind": "unreadable" | "transient" | "failed"}: an unreadable
+    binary is not a Go binary govulncheck can read; a transient failure (timeout, vulnerability database or network)
+    is worth one retry."""
+    prefixes = [str(binary.parent.resolve()) + "/", str(binary.parent) + "/"]
+    try:
+        completed = run(["govulncheck", "-mode=binary", "-format", "json", str(binary)])
+    except subprocess.TimeoutExpired:
+        return {"error": f"govulncheck timed out after {TIMEOUT} seconds", "kind": "transient"}
+    stderr = strip_paths(completed.stderr.strip(), prefixes)
+    detail = stderr.splitlines()[-1][:200] if stderr else ""
     if completed.returncode != 0 or not completed.stdout.strip():
-        return None  # not a Go binary, or analysis failed
-    objects = json_stream(completed.stdout)
+        if UNREADABLE_BINARY.search(stderr):
+            return {"error": f"no Go build information ({detail})", "kind": "unreadable"}
+        return {"error": f"govulncheck exited with {completed.returncode}" + (f": {detail}" if detail else ""), "kind": "transient"}
+    try:
+        objects = json_stream(completed.stdout)
+    except ValueError as exc:
+        return {"error": f"govulncheck printed malformed JSON: {str(exc)[:120]}", "kind": "failed"}
     sbom = next((item["SBOM"] for item in objects if "SBOM" in item), {})
     if not sbom.get("go_version"):
-        return None
+        return {"error": "govulncheck reported no Go version for the binary", "kind": "unreadable"}
     if raw is not None:
-        raw.write_text(strip_paths(completed.stdout, [str(binary.parent.resolve()) + "/", str(binary.parent) + "/"]), encoding="utf-8")
+        raw.write_text(strip_paths(completed.stdout, prefixes), encoding="utf-8")
     config = next((item["config"] for item in objects if "config" in item), {})
     return {
         "binary": binary.name,

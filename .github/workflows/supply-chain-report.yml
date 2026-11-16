@@ -453,6 +453,18 @@ jobs:
         shell: bash
         run: python3 scripts/supply_chain_scan.py audit --shards-dir shards --data-dir data --date "$DATE"
 
+      - name: Report Go binaries that were not analyzed
+        shell: bash
+        run: |
+          {
+            echo "### Go release binaries"
+            jq -r '[.projects[] | select(.go_binary_state != null)] as $go
+              | "\([$go[] | select(.go_binary_state == "analyzed")] | length) of \($go | length) Go tools analyzed",
+                ($go | map(select(.go_binary_state != "analyzed")) | group_by(.go_binary_state)[]
+                  | "- **\(.[0].go_binary_state)**: " + (map(.repository + (if .go_binary_reason then " (" + .go_binary_reason + ")" else "" end)) | join("; ")))' \
+              "data/runs/$DATE.json"
+          } >> "$GITHUB_STEP_SUMMARY"
+
       - name: Commit the data branch
         id: commit
         shell: bash

@@ -190,6 +190,50 @@ def epss_cell(item: dict[str, Any]) -> str:
             f'{epss["percentile"] * 100:.0f}">{epss_text(epss)}</td>')
 
 
+BINARY_STATES = {
+    "analyzed": "analyzed",
+    "retained": "not analyzed this week",
+    "no-release": "no published release to analyze",
+    "release-lookup-failed": "the release could not be looked up",
+    "no-eligible-asset": "no Linux amd64 release file",
+    "download-failed": "the release file could not be downloaded",
+    "extract-failed": "the release file could not be unpacked",
+    "no-binary": "the release file contains no Linux executable",
+    "unreadable-binary": "the binary has no readable Go build information",
+    "govulncheck-error": "govulncheck failed",
+    "check-failed": "the release checks failed",
+}
+
+
+def binary_state_text(state: str, reason: str | None = None) -> str:
+    """Why a Go tool's released binary was not analyzed, for tooltips and notes."""
+    text = BINARY_STATES.get(state, state)
+    return f"{text}: {reason}" if reason and reason not in text else text
+
+
+def binary_transition_text(transition: dict[str, str]) -> str:
+    if transition.get("to") == "analyzed":
+        return "binary analyzed again"
+    return f"binary not analyzed this week ({BINARY_STATES.get(transition.get('to', ''), transition.get('to'))})"
+
+
+def binary_state(project: dict[str, Any]) -> str | None:
+    status = project.get("go_binary_status")
+    if status:
+        return status["state"]
+    return "analyzed" if project.get("go_binary") and not project.get("stale") else None
+
+
+def unanalyzed_cell(project: dict[str, Any], item: dict[str, Any], default: str = '<span class="zero">—</span>') -> str:
+    """The released-binary cell of a match without a govulncheck verdict: for a Go match in a Go tool whose binary
+    was not analyzed this week, say so and why."""
+    state = binary_state(project)
+    if item.get("ecosystem") == "golang" and state and state != "analyzed":
+        reason = (project.get("go_binary_status") or {}).get("reason")
+        return f'<span class="warn" title="{esc(binary_state_text(state, reason))}">not analyzed</span>'
+    return default
+
+
 def change_summary(change: dict[str, Any]) -> str:
     if not change or change.get("baseline"):
         return "first scan"
@@ -222,6 +266,8 @@ def change_summary(change: dict[str, Any]) -> str:
         parts.append(f"{len(change['in_binary_new'])} new advisories with vulnerable code in binary")
     if change.get("in_binary_resolved"):
         parts.append(f"{len(change['in_binary_resolved'])} removed from binary")
+    if change.get("binary_analysis"):
+        parts.append(binary_transition_text(change["binary_analysis"]))
     if change.get("workflow_new"):
         parts.append(f"{change['workflow_new']} new workflow findings")
     if change.get("workflow_resolved"):
@@ -448,8 +494,20 @@ class ReportSite:
             if entry.get("errors"):
                 status = ' <span class="bad" title="' + esc("; ".join(entry["errors"])) + '">scan error</span>'
             in_binary = entry.get("in_binary")
-            binary = (f'<span class="{"bad" if in_binary["total"] else "ok"}" title="{esc(entry.get("go_version") or "")}">{in_binary["total"]}</span>'
-                      if in_binary else '<span class="zero">—</span>')
+            state = entry.get("go_binary_state")
+            if in_binary and state in (None, "analyzed"):
+                binary = f'<span class="{"bad" if in_binary["total"] else "ok"}" title="{esc(entry.get("go_version") or "")}">{in_binary["total"]}</span>'
+            elif state:
+                binary = (f'<span class="warn" title="{esc(binary_state_text(state, entry.get("go_binary_reason")))}">'
+                          f'{"last week" if state == "retained" else "not analyzed"}</span>')
+                in_binary = None
+            else:
+                # Weeks recorded before binary states existed cannot tell a non-Go tool from an unanalyzed one.
+                # Only a completed scan tells that a tool is not a Go tool.
+                binary = ('<span class="zero" title="Not a Go tool">n/a</span>'
+                          if "go_binary_state" in entry and entry.get("dependencies") is not None
+                          else '<span class="zero">—</span>')
+
             workflow = entry.get("workflow")
             workflow_cell = (pill("High", workflow["High"]) if workflow and workflow["High"] else
                              ('<span class="pill zero">0</span>' if workflow else '<span class="zero">—</span>'))
@@ -523,12 +581,15 @@ class ReportSite:
                            ("workflow_resolved", "workflow findings resolved")):
             if entry.get(key):
                 parts.append(f"{entry[key]} {label}")
+        if entry.get("binary_analysis"):
+            parts.append(binary_transition_text(entry["binary_analysis"]))
         return "; ".join(parts) or "no change"
 
     def this_week(self) -> str:
         latest = [stored["latest"] for stored in self.projects.values()]
         releases, new_vulns, resolved, deps, drift, failed = [], [], [], [], [], []
         binary, workflows, scores, integrity, kev, kev_match, files, unavailable = [], [], [], [], [], [], [], []
+        analysis = []
         for project in sorted(latest, key=lambda item: item["repository"].lower()):
             change = project.get("changes") or {}
             page = f'{project_path(project["repository"])}index.html'
@@ -567,6 +628,8 @@ class ReportSite:
                 drift.append(f"{link}: {change['integrity_drift']}")
             if change.get("in_binary_new") or change.get("in_binary_resolved"):
                 binary.append(f"{link}: +{len(change.get('in_binary_new') or [])} / −{len(change.get('in_binary_resolved') or [])}")
+            if change.get("binary_analysis"):
+                analysis.append(f"{link}: {esc(binary_transition_text(change['binary_analysis']))}")
             if change.get("workflow_new") or change.get("workflow_resolved"):
                 workflows.append(f"{link}: +{change.get('workflow_new', 0)} / −{change.get('workflow_resolved', 0)}")
             if change.get("scorecard"):
@@ -584,6 +647,7 @@ class ReportSite:
             ("New releases", releases), ("New advisories", [text for _, text in new_vulns]),
             ("Resolved advisories", resolved), ("Dependency changes per lockfile (+added / −removed / ↑upgraded / ↓downgraded / ?order unknown)", deps),
             ("Vulnerable functions in released binaries (+new / −removed)", binary),
+            ("Released Go binary analysis changed", analysis),
             ("Release verification changed", integrity), ("OpenSSF Scorecard changed", scores),
             ("Workflow findings (+new / −resolved)", workflows),
             ("Package hash changed without a version change (sbomlyze integrity drift)", drift),
@@ -621,8 +685,9 @@ class ReportSite:
                 + (f' (<a href="corrections/index.html#disputes">{disputed_kev} disputed</a>)' if disputed_kev else "")
                 + "</div></div>"
                 if kev_checked else "")
-            go_tools = [item for item in entries if item.get("in_binary")]
+            go_tools = [item for item in entries if item.get("in_binary") and item.get("go_binary_state") in (None, "analyzed")]
             go_vulnerable = sum(1 for item in go_tools if item["in_binary"]["total"])
+            go_missed = [item for item in entries if item.get("go_binary_state") not in (None, "analyzed")]
             with_assets = [item for item in entries if item.get("release_integrity") not in (None, "no-assets", "no-linux-binary")]
             verified = sum(1 for item in with_assets if item.get("release_integrity") == "verified")
             scores = sorted(item["scorecard"] for item in entries if isinstance(item.get("scorecard"), (int, float)))
@@ -642,7 +707,10 @@ class ReportSite:
                 f'({len(serious)} distinct <a href="advisories/index.html">advisories</a>; {sum(totals.values())} matches of any severity)</div></div>'
                 + kev_card +
                 f'<div class="card"><div class="big">{len(shipped)}</div><div class="small">advisories with vulnerable code shipped in a release binary, '
-                f"across {go_vulnerable} of {len(go_tools)} analyzed Go tools</div></div>"
+                f"across {go_vulnerable} of {len(go_tools)} analyzed Go tools"
+                + (f'; <span title="{esc(", ".join(sorted((item.get("name") or item["repository"]) + ": " + binary_state_text(item["go_binary_state"], item.get("go_binary_reason")) for item in go_missed)))}">'
+                   f'{len(go_missed)} Go tool{"s" if len(go_missed) != 1 else ""} not analyzed</span>' if go_missed else "")
+                + "</div></div>"
                 f'<div class="card"><div class="big">{verified} / {len(with_assets)}</div><div class="small">Linux releases verifiable by signature, provenance, or attestation</div></div>'
                 f'<div class="card"><div class="big">{median if median is not None else "—"}</div><div class="small">median OpenSSF Scorecard ({len(scores)} scored)</div></div>'
                 "</div>"
@@ -703,7 +771,11 @@ class ReportSite:
             f'<div class="card"><div class="big">{fixable}</div><div class="small">advisories with a fixed version</div></div>',
         ]
         go = project.get("go_binary")
-        if go:
+        go_status = project.get("go_binary_status")
+        if go_status and go_status["state"] != "analyzed":
+            cards.append('<div class="card"><div class="big warn">not analyzed</div><div class="small">released binary: '
+                         f'{esc(binary_state_text(go_status["state"], go_status.get("reason")))}</div></div>')
+        if go and (not go_status or go_status["state"] == "analyzed"):
             symbols = len(exports.binary_advisories(go))
             cards.append(f'<div class="card"><div class="big">{symbols}</div><div class="small">advisories with vulnerable code in the {esc(go["go_version"])} binary</div></div>')
         card = project.get("scorecard") or {}
@@ -724,7 +796,7 @@ class ReportSite:
             note = self.dispute_note(repository, match, depth) if match else ""
             return (advisory_anchor(match) if match else None), self.advisory_link(finding, depth) + note
 
-        parts.append(sections.reachability_section(go, vulns, project.get("go_binary_note"), binary_link))
+        parts.append(sections.reachability_section(go, vulns, project.get("go_binary_note"), binary_link, go_status))
         parts.append(sections.release_section(project.get("release_integrity"), repository))
         parts.append(sections.scorecard_section(project.get("scorecard"), project.get("scorecard_note"), repository))
         parts.append(sections.workflow_section(project.get("workflow_audit"), repository, project.get("ref") or "HEAD"))
@@ -921,7 +993,7 @@ class ReportSite:
             osv = osv_cell(item)
             shipped = item.get("in_binary")
             shipped_cell = (f'<span class="{"bad" if shipped in ("vulnerable code in binary", "package in binary") else "zero"}">{esc(shipped)}</span>'
-                            if shipped else '<span class="zero">—</span>')
+                            if shipped else unanalyzed_cell(project, item))
             rows.append(
                 f"<tr id=\"{esc(advisory_anchor(item))}\"{' data-kev' if item.get('kev') else ''}{' data-binary' if shipped == exports.SHIPPED else ''}>"
                 f"<td data-sort=\"{order.get(item['severity'], 99)}\">{badge(item['severity'])}</td><td>{self.advisory_link(item, depth)}{source}{aliases}</td>"
@@ -1002,6 +1074,8 @@ class ReportSite:
                 changes.append(f"{item['resolved_vulnerabilities']} resolved")
             if item.get("kev_new"):
                 changes.append(f"{item['kev_new']} newly in KEV")
+            if item.get("binary_analysis"):
+                changes.append(binary_transition_text(item["binary_analysis"]))
             if item.get("errors"):
                 changes.append("scan error")
             if changes and not item.get("method") and not first_week(item):
@@ -1044,7 +1118,7 @@ class ReportSite:
         page = f"{self.site_url}{project_path(repository)}index.html"
         for name, label, content in (
             ("release", "release verification", exports.release_badge((project.get("release_integrity") or {}).get("verdict"), (project.get("release_integrity") or {}).get("signature"))),
-            ("in-binary", "vulnerable code in binary", exports.in_binary_badge(project.get("go_binary"))),
+            ("in-binary", "vulnerable code in binary", exports.in_binary_badge(project.get("go_binary"), binary_state(project))),
         ):
             if not content:
                 continue
@@ -1134,10 +1208,10 @@ class ReportSite:
             shipped = item.get("in_binary")
             if shipped:
                 status = f'<span class="{"bad" if shipped in (exports.SHIPPED, "package in binary") else "zero"}">{esc(shipped)}</span>'
-            elif project.get("go_binary") and item.get("ecosystem") == "golang":
+            elif project.get("go_binary") and item.get("ecosystem") == "golang" and binary_state(project) == "analyzed":
                 status = '<span class="zero">—</span>'
             else:
-                status = '<span class="zero" title="Only Go release binaries are analyzed for shipped code">not analyzed</span>'
+                status = unanalyzed_cell(project, item, '<span class="zero" title="Only Go release binaries are analyzed for shipped code">not analyzed</span>')
             kind = (" (workflow)" if item.get("ecosystem") == "github"
                     else " (release binary; govulncheck only)" if item.get("source") == exports.GOVULNCHECK else "")
             rows.append(
