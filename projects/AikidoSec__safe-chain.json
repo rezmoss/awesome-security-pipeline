@@ -186,33 +186,86 @@
       },
       "workflow_new": 0,
       "workflow_resolved": 0
+    },
+    {
+      "added": 0,
+      "advisory_state": "ok",
+      "binary_analysis": null,
+      "commit": "4c34c08939b5307fcc6a9329a6656b2088c9661f",
+      "date": "2026-11-22",
+      "dependencies": 280,
+      "dependency_state": "ok",
+      "downgraded": 0,
+      "errors": [],
+      "file_changes": 0,
+      "fixable": 23,
+      "go_binary_reason": null,
+      "go_binary_state": null,
+      "go_version": null,
+      "in_binary": null,
+      "in_binary_new": 0,
+      "in_binary_resolved": 0,
+      "kev": 0,
+      "kev_new": 0,
+      "kev_new_match": 0,
+      "license_changes": 0,
+      "method": "sbomlyze-occurrence-v1",
+      "moved": 0,
+      "new_advisories": 0,
+      "new_severe": 0,
+      "new_vulnerabilities": 0,
+      "osv_confirmed": 24,
+      "osv_only": 0,
+      "ref": "1.5.29",
+      "release_changed": false,
+      "release_evidence": {
+        "build_provenance": null,
+        "failed": [],
+        "immutable_release": true,
+        "signature": null
+      },
+      "release_integrity": "immutable",
+      "removed": 0,
+      "resolved_advisories": 0,
+      "resolved_vulnerabilities": 0,
+      "scorecard": 5.2,
+      "scorecard_date": "2026-11-22",
+      "scorecard_note": null,
+      "scorecard_source": "scorecard-cli",
+      "unknown_direction": 0,
+      "upgraded": 0,
+      "vulnerabilities": {
+        "Critical": 0,
+        "High": 8,
+        "Low": 6,
+        "Medium": 10,
+        "Negligible": 0,
+        "Unknown": 0
+      },
+      "vulnerable_packages": 4,
+      "workflow": {
+        "High": 18,
+        "Low": 2,
+        "Medium": 7,
+        "files": 4
+      },
+      "workflow_new": 0,
+      "workflow_resolved": 0
     }
   ],
   "latest": {
     "archived": false,
     "category": "Software Composition Analysis (SCA)",
     "changes": {
-      "added": [
-        "node-addon-api@7.1.1"
-      ],
-      "added_detail": [
-        {
-          "ecosystem": "npm",
-          "location": "npm-shrinkwrap.json",
-          "locations": [
-            "npm-shrinkwrap.json"
-          ],
-          "name": "node-addon-api",
-          "version": "7.1.1"
-        }
-      ],
+      "added": [],
+      "added_detail": [],
       "advisory_state": "ok",
       "any": true,
       "baseline": false,
       "dependency_baseline": {
         "attempt": "1",
-        "run_id": "42546359860",
-        "sbom_sha256": "614704b1b6589e1e6bc78b79168857b7ae250ab6c36ba7af6f567e2465fe5d08"
+        "run_id": "43786179934",
+        "sbom_sha256": "e1c8b73c214b55a8f3720ed33e46a626fee89dd2a973d688a11ec766af095c07"
       },
       "dependency_state": "ok",
       "digest_coverage": {
@@ -222,15 +275,11 @@
         "comparable": 0,
         "disjoint_kinds": 0,
         "packages_total": 287,
-        "same_version_pairs": 285
+        "same_version_pairs": 287
       },
-      "distinct_version_changes": 1,
+      "distinct_version_changes": null,
       "downgraded": [],
-      "file_changes": [
-        ".github/workflows/build-and-release.yml",
-        ".github/workflows/bump-endpoint.yml",
-        "npm-shrinkwrap.json"
-      ],
+      "file_changes": [],
       "integrity_changes": [],
       "integrity_drift": 0,
       "kev_method": "snapshot difference",
@@ -240,425 +289,23 @@
       "metadata_changes": [],
       "method": "sbomlyze-occurrence-v1",
       "moved": [],
-      "new_advisories": 9,
-      "new_vulnerabilities": [
-        {
-          "aliases": [
-            "CVE-2026-118776"
-          ],
-          "ecosystem": "npm",
-          "epss": {
-            "cve": "CVE-2026-118776",
-            "percentile": 0.03133,
-            "score": 0.00136
-          },
-          "epss_date": "2026-11-15T12:03:04Z",
-          "fix_state": "fixed",
-          "fixed_in": [
-            "1.4.1"
-          ],
-          "id": "GHSA-2vgq-wchc-25w7",
-          "kev": null,
-          "kev_cves": [],
-          "kev_snapshot": "2026.11.13",
-          "location": "npm-shrinkwrap.json",
-          "locations": [
-            "npm-shrinkwrap.json"
-          ],
-          "new": {
-            "advisory": "published since last scan",
-            "modified": "2026-11-10T16:15:04.155948548Z",
-            "published": "2026-11-10T15:57:46Z",
-            "reason": "unchanged version"
-          },
-          "osv_confirmed": true,
-          "osv_coverage": {
-            "state": "confirmed"
-          },
-          "osv_modified": "2026-11-10T16:15:04.155948548Z",
-          "osv_published": "2026-11-10T15:57:46Z",
-          "package": "node-forge",
-          "purl": "pkg:npm/node-forge@1.4.0",
-          "severity": "Low",
-          "summary": "Forge: Incomplete PKCS#7 padding validation in AES/DES CBC and ECB decryption",
-          "url": "https://github.com/advisories/GHSA-2vgq-wchc-25w7",
-          "version": "1.4.0"
-        },
-        {
-          "aliases": [
-            "CVE-2026-125335"
-          ],
-          "ecosystem": "npm",
-          "epss": {
-            "cve": "CVE-2026-125335",
-            "percentile": 0.10309,
-            "score": 0.00203
-          },
-          "epss_date": "2026-11-15T12:03:04Z",
-          "fix_state": "fixed",
-          "fixed_in": [
-            "1.4.3"
-          ],
-          "id": "GHSA-6889-vf6x-f3g5",
-          "kev": null,
-          "kev_cves": [],
-          "kev_snapshot": "2026.11.13",
-          "location": "npm-shrinkwrap.json",
-          "locations": [
-            "npm-shrinkwrap.json"
-          ],
-          "new": {
-            "advisory": "published since last scan",
-            "modified": "2026-11-10T21:30:03.999616287Z",
-            "published": "2026-11-10T21:18:23Z",
-            "reason": "unchanged version"
-          },
-          "osv_confirmed": true,
-          "osv_coverage": {
-            "state": "confirmed"
-          },
-          "osv_modified": "2026-11-10T21:30:03.999616287Z",
-          "osv_published": "2026-11-10T21:18:23Z",
-          "package": "node-forge",
-          "purl": "pkg:npm/node-forge@1.4.0",
-          "severity": "Low",
-          "summary": "Forge: Ed25519 signature verification accepts small-order public keys",
-          "url": "https://github.com/advisories/GHSA-6889-vf6x-f3g5",
-          "version": "1.4.0"
-        },
-        {
-          "aliases": [
-            "CVE-2026-125333"
-          ],
-          "ecosystem": "npm",
-          "epss": {
-            "cve": "CVE-2026-125333",
-            "percentile": 0.47123,
-            "score": 0.00559
-          },
-          "epss_date": "2026-11-15T12:03:04Z",
-          "fix_state": "fixed",
-          "fixed_in": [
-            "1.4.3"
-          ],
-          "id": "GHSA-6cv4-p8m7-4r25",
-          "kev": null,
-          "kev_cves": [],
-          "kev_snapshot": "2026.11.13",
-          "location": "npm-shrinkwrap.json",
-          "locations": [
-            "npm-shrinkwrap.json"
-          ],
-          "new": {
-            "advisory": "published since last scan",
-            "modified": "2026-11-10T21:30:03.999795607Z",
-            "published": "2026-11-10T21:16:22Z",
-            "reason": "unchanged version"
-          },
-          "osv_confirmed": true,
-          "osv_coverage": {
-            "state": "confirmed"
-          },
-          "osv_modified": "2026-11-10T21:30:03.999795607Z",
-          "osv_published": "2026-11-10T21:16:22Z",
-          "package": "node-forge",
-          "purl": "pkg:npm/node-forge@1.4.0",
-          "severity": "Medium",
-          "summary": "Forge: ReDoS in forge.http response header and cookie trimming",
-          "url": "https://github.com/advisories/GHSA-6cv4-p8m7-4r25",
-          "version": "1.4.0"
-        },
-        {
-          "aliases": [
-            "CVE-2026-119192"
-          ],
-          "ecosystem": "npm",
-          "epss": null,
-          "epss_date": "2026-11-15T12:03:04Z",
-          "fix_state": "fixed",
-          "fixed_in": [
-            "1.4.1"
-          ],
-          "id": "GHSA-6qrw-m8cv-hcxf",
-          "kev": null,
-          "kev_cves": [],
-          "kev_snapshot": "2026.11.13",
-          "location": "npm-shrinkwrap.json",
-          "locations": [
-            "npm-shrinkwrap.json"
-          ],
-          "new": {
-            "advisory": "published since last scan",
-            "modified": "2026-11-10T16:15:04.157919204Z",
-            "published": "2026-11-10T15:57:34Z",
-            "reason": "unchanged version"
-          },
-          "osv_confirmed": true,
-          "osv_coverage": {
-            "state": "confirmed"
-          },
-          "osv_modified": "2026-11-10T16:15:04.157919204Z",
-          "osv_published": "2026-11-10T15:57:34Z",
-          "package": "node-forge",
-          "purl": "pkg:npm/node-forge@1.4.0",
-          "severity": "High",
-          "summary": "Forge: RSA PKCS#1 v1.5 signature forgery via non-canonical DigestInfo encoding",
-          "url": "https://github.com/advisories/GHSA-6qrw-m8cv-hcxf",
-          "version": "1.4.0"
-        },
-        {
-          "aliases": [
-            "CVE-2026-118774"
-          ],
-          "ecosystem": "npm",
-          "epss": {
-            "cve": "CVE-2026-118774",
-            "percentile": 0.0101,
-            "score": 0.00103
-          },
-          "epss_date": "2026-11-15T12:03:04Z",
-          "fix_state": "fixed",
-          "fixed_in": [
-            "1.4.1"
-          ],
-          "id": "GHSA-9wg5-mj3p-v49q",
-          "kev": null,
-          "kev_cves": [],
-          "kev_snapshot": "2026.11.13",
-          "location": "npm-shrinkwrap.json",
-          "locations": [
-            "npm-shrinkwrap.json"
-          ],
-          "new": {
-            "advisory": "published since last scan",
-            "modified": "2026-11-10T16:15:04.153166136Z",
-            "published": "2026-11-10T15:57:48Z",
-            "reason": "unchanged version"
-          },
-          "osv_confirmed": true,
-          "osv_coverage": {
-            "state": "confirmed"
-          },
-          "osv_modified": "2026-11-10T16:15:04.153166136Z",
-          "osv_published": "2026-11-10T15:57:48Z",
-          "package": "node-forge",
-          "purl": "pkg:npm/node-forge@1.4.0",
-          "severity": "Low",
-          "summary": "Forge: Certificate signature verified with the issuer's RSA signature scheme",
-          "url": "https://github.com/advisories/GHSA-9wg5-mj3p-v49q",
-          "version": "1.4.0"
-        },
-        {
-          "aliases": [
-            "CVE-2026-119189"
-          ],
-          "ecosystem": "npm",
-          "epss": {
-            "cve": "CVE-2026-119189",
-            "percentile": 0.06523,
-            "score": 0.00171
-          },
-          "epss_date": "2026-11-15T12:03:04Z",
-          "fix_state": "fixed",
-          "fixed_in": [
-            "1.4.1"
-          ],
-          "id": "GHSA-h46v-rmh6-fq4f",
-          "kev": null,
-          "kev_cves": [],
-          "kev_snapshot": "2026.11.13",
-          "location": "npm-shrinkwrap.json",
-          "locations": [
-            "npm-shrinkwrap.json"
-          ],
-          "new": {
-            "advisory": "published since last scan",
-            "modified": "2026-11-10T16:15:05.046196341Z",
-            "published": "2026-11-10T15:57:43Z",
-            "reason": "unchanged version"
-          },
-          "osv_confirmed": true,
-          "osv_coverage": {
-            "state": "confirmed"
-          },
-          "osv_modified": "2026-11-10T16:15:05.046196341Z",
-          "osv_published": "2026-11-10T15:57:43Z",
-          "package": "node-forge",
-          "purl": "pkg:npm/node-forge@1.4.0",
-          "severity": "Medium",
-          "summary": "Forge: X.509 pathLenConstraint not enforced by verifyCertificateChain() for CA certificates without keyUsage",
-          "url": "https://github.com/advisories/GHSA-h46v-rmh6-fq4f",
-          "version": "1.4.0"
-        },
-        {
-          "aliases": [
-            "CVE-2026-125334"
-          ],
-          "ecosystem": "npm",
-          "epss": {
-            "cve": "CVE-2026-125334",
-            "percentile": 0.2087,
-            "score": 0.00281
-          },
-          "epss_date": "2026-11-15T12:03:04Z",
-          "fix_state": "fixed",
-          "fixed_in": [
-            "1.4.3"
-          ],
-          "id": "GHSA-j8rw-jp99-435v",
-          "kev": null,
-          "kev_cves": [],
-          "kev_snapshot": "2026.11.13",
-          "location": "npm-shrinkwrap.json",
-          "locations": [
-            "npm-shrinkwrap.json"
-          ],
-          "new": {
-            "advisory": "published since last scan",
-            "modified": "2026-11-10T21:30:04.008068866Z",
-            "published": "2026-11-10T21:14:26Z",
-            "reason": "unchanged version"
-          },
-          "osv_confirmed": true,
-          "osv_coverage": {
-            "state": "confirmed"
-          },
-          "osv_modified": "2026-11-10T21:30:04.008068866Z",
-          "osv_published": "2026-11-10T21:14:26Z",
-          "package": "node-forge",
-          "purl": "pkg:npm/node-forge@1.4.0",
-          "severity": "Medium",
-          "summary": "Forge: TLS client crash on a handshake record received without a session",
-          "url": "https://github.com/advisories/GHSA-j8rw-jp99-435v",
-          "version": "1.4.0"
-        },
-        {
-          "aliases": [
-            "CVE-2026-119191"
-          ],
-          "ecosystem": "npm",
-          "epss": {
-            "cve": "CVE-2026-119191",
-            "percentile": 0.37648,
-            "score": 0.00429
-          },
-          "epss_date": "2026-11-15T12:03:04Z",
-          "fix_state": "fixed",
-          "fixed_in": [
-            "1.4.1"
-          ],
-          "id": "GHSA-rhr8-3pm8-cq29",
-          "kev": null,
-          "kev_cves": [],
-          "kev_snapshot": "2026.11.13",
-          "location": "npm-shrinkwrap.json",
-          "locations": [
-            "npm-shrinkwrap.json"
-          ],
-          "new": {
-            "advisory": "published since last scan",
-            "modified": "2026-11-10T16:15:05.495721590Z",
-            "published": "2026-11-10T15:57:41Z",
-            "reason": "unchanged version"
-          },
-          "osv_confirmed": true,
-          "osv_coverage": {
-            "state": "confirmed"
-          },
-          "osv_modified": "2026-11-10T16:15:05.495721590Z",
-          "osv_published": "2026-11-10T15:57:41Z",
-          "package": "node-forge",
-          "purl": "pkg:npm/node-forge@1.4.0",
-          "severity": "High",
-          "summary": "Forge: ASN.1 resource exhaustion via BIT STRING decoding in asn1.fromDer",
-          "url": "https://github.com/advisories/GHSA-rhr8-3pm8-cq29",
-          "version": "1.4.0"
-        },
-        {
-          "aliases": [
-            "CVE-2026-125332"
-          ],
-          "ecosystem": "npm",
-          "epss": {
-            "cve": "CVE-2026-125332",
-            "percentile": 0.38176,
-            "score": 0.00434
-          },
-          "epss_date": "2026-11-15T12:03:04Z",
-          "fix_state": "fixed",
-          "fixed_in": [
-            "1.4.3"
-          ],
-          "id": "GHSA-w4xr-hqv8-ch44",
-          "kev": null,
-          "kev_cves": [],
-          "kev_snapshot": "2026.11.13",
-          "location": "npm-shrinkwrap.json",
-          "locations": [
-            "npm-shrinkwrap.json"
-          ],
-          "new": {
-            "advisory": "published since last scan",
-            "modified": "2026-11-10T21:30:04.002424182Z",
-            "published": "2026-11-10T21:17:14Z",
-            "reason": "unchanged version"
-          },
-          "osv_confirmed": true,
-          "osv_coverage": {
-            "state": "confirmed"
-          },
-          "osv_modified": "2026-11-10T21:30:04.002424182Z",
-          "osv_published": "2026-11-10T21:17:14Z",
-          "package": "node-forge",
-          "purl": "pkg:npm/node-forge@1.4.0",
-          "severity": "Medium",
-          "summary": "Forge: TLS client crash on an unsupported ServerHello compression method",
-          "url": "https://github.com/advisories/GHSA-w4xr-hqv8-ch44",
-          "version": "1.4.0"
-        }
-      ],
-      "previous_ref": "1.5.27",
-      "release_changed": true,
-      "removed": [
-        "nan@2.23.0"
-      ],
-      "removed_detail": [
-        {
-          "ecosystem": "npm",
-          "location": "npm-shrinkwrap.json",
-          "locations": [
-            "npm-shrinkwrap.json"
-          ],
-          "name": "nan",
-          "version": "2.23.0"
-        }
-      ],
+      "new_advisories": 0,
+      "new_severe": 0,
+      "new_vulnerabilities": [],
+      "previous_ref": "1.5.29",
+      "release_changed": false,
+      "removed": [],
+      "removed_detail": [],
       "resolved_advisories": 0,
       "resolved_vulnerabilities": [],
+      "scorecard": {
+        "from": 4.5,
+        "to": 5.2
+      },
       "still_affected_version_changed": [],
       "unknown_direction": [],
-      "upgraded": [
-        {
-          "direction": "upgrade",
-          "ecosystem": "npm",
-          "from": "1.0.0",
-          "level": "minor",
-          "location": "npm-shrinkwrap.json",
-          "package": "node-pty",
-          "to": "1.1.0"
-        }
-      ],
-      "version_changes": [
-        {
-          "direction": "upgrade",
-          "ecosystem": "npm",
-          "from": "1.0.0",
-          "level": "minor",
-          "location": "npm-shrinkwrap.json",
-          "name": "node-pty",
-          "to": "1.1.0"
-        }
-      ],
+      "upgraded": [],
+      "version_changes": [],
       "version_set_changes": [],
       "workflow_new": 0,
       "workflow_resolved": 0
@@ -3435,7 +3082,7 @@
     },
     "osv_api": {
       "available": true,
-      "queried_at": "2026-11-16T01:28:32+00:00",
+      "queried_at": "2026-11-22T05:53:19+00:00",
       "states": {}
     },
     "ref": "1.5.29",
@@ -3463,49 +3110,23 @@
     },
     "released_at": "2026-11-10T10:31:37Z",
     "repository": "AikidoSec/safe-chain",
-    "sbom_sha256": "e1c8b73c214b55a8f3720ed33e46a626fee89dd2a973d688a11ec766af095c07",
+    "sbom_sha256": "2c28b01015a2c07a16278b8ba1f179b1ce7b7ffb1b1c52768587629cc07bd96d",
     "sbomlyze_diff": {
-      "added": 1,
+      "added": 0,
       "baseline": {
         "attempt": "1",
-        "run_id": "42546359860"
+        "run_id": "43786179934"
       },
-      "changed": 1,
+      "changed": 0,
       "contract": "sbomlyze-diff-0.7",
-      "drift": {
-        "distinct_version_changes": 1,
-        "downgrades": 0,
-        "file_changes": 3,
-        "integrity_drift": 0,
-        "license_changes": 0,
-        "metadata_drift": 0,
-        "owned_file_drift": 0,
-        "owned_files_changed": 0,
-        "unknown_direction": 0,
-        "upgrades": 1,
-        "version_drift": 1
-      },
+      "drift": {},
       "findings": [
-        "Scanned AikidoSec/safe-chain changed: 1.5.27 \u2192 1.5.29",
-        "1 version upgrades (1 minor) among 286 shared packages",
-        "Integrity drift checked only 0 of 285 same-version packages; the rest carry no comparable digest",
-        "3 file entries changed content (not package integrity drift): /.github/workflows/build-and-release.yml, /.github/workflows/bump-endpoint.yml, /package-lock.json",
-        "Core system packages stable: github (13) unchanged",
-        "npm: 273 packages before and after (1 version changes, 2 added/removed/moved)"
+        "0 version changes among 287 shared packages \u2014 no actual upgrades",
+        "Integrity drift checked only 0 of 287 same-version packages; the rest carry no comparable digest",
+        "Core system packages stable: npm (273), github (13) unchanged"
       ],
-      "html": "sbomlyze-diff.html",
       "occurrences": {
-        "added": [
-          {
-            "ecosystem": "npm",
-            "location": "npm-shrinkwrap.json",
-            "locations": [
-              "npm-shrinkwrap.json"
-            ],
-            "name": "node-addon-api",
-            "version": "7.1.1"
-          }
-        ],
+        "added": [],
         "digest_coverage": {
           "after_only": 0,
           "before_only": 0,
@@ -3513,22 +3134,9 @@
           "comparable": 0,
           "disjoint_kinds": 0,
           "packages_total": 287,
-          "same_version_pairs": 285
+          "same_version_pairs": 287
         },
-        "file_changes": [
-          {
-            "owners": [],
-            "path": ".github/workflows/build-and-release.yml"
-          },
-          {
-            "owners": [],
-            "path": ".github/workflows/bump-endpoint.yml"
-          },
-          {
-            "owners": [],
-            "path": "npm-shrinkwrap.json"
-          }
-        ],
+        "file_changes": [],
         "file_coverage": {
           "ambiguous_paths": 0,
           "config_unknown": 0,
@@ -3544,40 +3152,16 @@
         "metadata_changes": [],
         "moved": [],
         "owned_file_drift": [],
-        "removed": [
-          {
-            "ecosystem": "npm",
-            "location": "npm-shrinkwrap.json",
-            "locations": [
-              "npm-shrinkwrap.json"
-            ],
-            "name": "nan",
-            "version": "2.23.0"
-          }
-        ],
-        "source_change": {
-          "from": "1.5.27",
-          "name": "AikidoSec/safe-chain",
-          "to": "1.5.29"
-        },
-        "version_changes": [
-          {
-            "direction": "upgrade",
-            "ecosystem": "npm",
-            "from": "1.0.0",
-            "level": "minor",
-            "location": "npm-shrinkwrap.json",
-            "name": "node-pty",
-            "to": "1.1.0"
-          }
-        ],
+        "removed": [],
+        "source_change": null,
+        "version_changes": [],
         "version_set_changes": []
       },
-      "previous_sbom_sha256": "614704b1b6589e1e6bc78b79168857b7ae250ab6c36ba7af6f567e2465fe5d08",
-      "removed": 1,
-      "sbom_sha256": "e1c8b73c214b55a8f3720ed33e46a626fee89dd2a973d688a11ec766af095c07"
+      "previous_sbom_sha256": "e1c8b73c214b55a8f3720ed33e46a626fee89dd2a973d688a11ec766af095c07",
+      "removed": 0,
+      "sbom_sha256": "2c28b01015a2c07a16278b8ba1f179b1ce7b7ffb1b1c52768587629cc07bd96d"
     },
-    "scanned_at": "2026-11-16T01:28:27+00:00",
+    "scanned_at": "2026-11-22T05:53:15+00:00",
     "scorecard": {
       "checks": [
         {
@@ -3603,11 +3187,6 @@
         {
           "name": "Security-Policy",
           "reason": "security policy file not detected",
-          "score": 0
-        },
-        {
-          "name": "Signed-Releases",
-          "reason": "Project has not signed or included provenance with any releases.",
           "score": 0
         },
         {
@@ -3642,7 +3221,7 @@
         },
         {
           "name": "CI-Tests",
-          "reason": "11 out of 11 merged PRs checked by a CI test -- score normalized to 10",
+          "reason": "12 out of 12 merged PRs checked by a CI test -- score normalized to 10",
           "score": 10
         },
         {
@@ -3662,7 +3241,12 @@
         },
         {
           "name": "Maintained",
-          "reason": "30 commit(s) and 3 issue activity found in the last 90 days -- score normalized to 10",
+          "reason": "30 commit(s) and 2 issue activity found in the last 90 days -- score normalized to 10",
+          "score": 10
+        },
+        {
+          "name": "Signed-Releases",
+          "reason": "5 out of the last 5 releases have a total of 0 signed artifacts and 5 immutable releases.",
           "score": 10
         },
         {
@@ -3671,10 +3255,10 @@
           "score": -1
         }
       ],
-      "date": "2026-11-16",
-      "score": 4.5,
+      "date": "2026-11-22",
+      "score": 5.2,
       "source": "scorecard-cli",
-      "version": "v5.6.0"
+      "version": "v5.7.0"
     },
     "vulnerabilities": [
       {
@@ -3684,10 +3268,10 @@
         "ecosystem": "npm",
         "epss": {
           "cve": "CVE-2026-119190",
-          "percentile": 0.15522,
+          "percentile": 0.15519,
           "score": 0.00242
         },
-        "epss_date": "2026-11-15T12:03:04Z",
+        "epss_date": "2026-11-21T12:00:24Z",
         "fix_state": "fixed",
         "fixed_in": [
           "1.4.1"
@@ -3695,7 +3279,7 @@
         "id": "GHSA-5x38-2vff-x55p",
         "kev": null,
         "kev_cves": [],
-        "kev_snapshot": "2026.11.13",
+        "kev_snapshot": "2026.11.20",
         "location": "npm-shrinkwrap.json",
         "locations": [
           "npm-shrinkwrap.json"
@@ -3718,8 +3302,12 @@
           "CVE-2026-119192"
         ],
         "ecosystem": "npm",
-        "epss": null,
-        "epss_date": "2026-11-15T12:03:04Z",
+        "epss": {
+          "cve": "CVE-2026-119192",
+          "percentile": 0.08032,
+          "score": 0.00184
+        },
+        "epss_date": "2026-11-21T12:00:24Z",
         "fix_state": "fixed",
         "fixed_in": [
           "1.4.1"
@@ -3727,7 +3315,7 @@
         "id": "GHSA-6qrw-m8cv-hcxf",
         "kev": null,
         "kev_cves": [],
-        "kev_snapshot": "2026.11.13",
+        "kev_snapshot": "2026.11.20",
         "location": "npm-shrinkwrap.json",
         "locations": [
           "npm-shrinkwrap.json"
@@ -3752,10 +3340,10 @@
         "ecosystem": "npm",
         "epss": {
           "cve": "CVE-2026-118779",
-          "percentile": 0.52538,
+          "percentile": 0.52885,
           "score": 0.00669
         },
-        "epss_date": "2026-11-15T12:03:04Z",
+        "epss_date": "2026-11-21T12:00:24Z",
         "fix_state": "fixed",
         "fixed_in": [
           "1.4.1"
@@ -3763,7 +3351,7 @@
         "id": "GHSA-7wch-p9px-956x",
         "kev": null,
         "kev_cves": [],
-        "kev_snapshot": "2026.11.13",
+        "kev_snapshot": "2026.11.20",
         "location": "npm-shrinkwrap.json",
         "locations": [
           "npm-shrinkwrap.json"
@@ -3788,16 +3376,16 @@
         "ecosystem": "npm",
         "epss": {
           "cve": "CVE-2026-85393",
-          "percentile": 0.16217,
-          "score": 0.00248
+          "percentile": 0.17807,
+          "score": 0.0026
         },
-        "epss_date": "2026-11-15T12:03:04Z",
+        "epss_date": "2026-11-21T12:00:24Z",
         "fix_state": "not-fixed",
         "fixed_in": [],
         "id": "GHSA-86w9-cpqp-85rv",
         "kev": null,
         "kev_cves": [],
-        "kev_snapshot": "2026.11.13",
+        "kev_snapshot": "2026.11.20",
         "location": "npm-shrinkwrap.json",
         "locations": [
           "npm-shrinkwrap.json"
@@ -3806,7 +3394,7 @@
         "osv_coverage": {
           "state": "confirmed"
         },
-        "osv_modified": "2026-10-01T21:40:55.016251436Z",
+        "osv_modified": "2026-11-21T20:11:10.745797815Z",
         "osv_published": "2026-09-03T21:31:15Z",
         "package": "node-forge",
         "purl": "pkg:npm/node-forge@1.4.0",
@@ -3822,10 +3410,10 @@
         "ecosystem": "npm",
         "epss": {
           "cve": "CVE-2026-119188",
-          "percentile": 0.3632,
-          "score": 0.00415
+          "percentile": 0.46099,
+          "score": 0.00537
         },
-        "epss_date": "2026-11-15T12:03:04Z",
+        "epss_date": "2026-11-21T12:00:24Z",
         "fix_state": "fixed",
         "fixed_in": [
           "1.4.1"
@@ -3833,7 +3421,7 @@
         "id": "GHSA-8hrf-8g6f-7xwp",
         "kev": null,
         "kev_cves": [],
-        "kev_snapshot": "2026.11.13",
+        "kev_snapshot": "2026.11.20",
         "location": "npm-shrinkwrap.json",
         "locations": [
           "npm-shrinkwrap.json"
@@ -3858,10 +3446,10 @@
         "ecosystem": "npm",
         "epss": {
           "cve": "CVE-2026-119187",
-          "percentile": 0.3632,
+          "percentile": 0.36554,
           "score": 0.00415
         },
-        "epss_date": "2026-11-15T12:03:04Z",
+        "epss_date": "2026-11-21T12:00:24Z",
         "fix_state": "fixed",
         "fixed_in": [
           "1.4.1"
@@ -3869,7 +3457,7 @@
         "id": "GHSA-hqq3-7jhf-c5jx",
         "kev": null,
         "kev_cves": [],
-        "kev_snapshot": "2026.11.13",
+        "kev_snapshot": "2026.11.20",
         "location": "npm-shrinkwrap.json",
         "locations": [
           "npm-shrinkwrap.json"
@@ -3894,10 +3482,10 @@
         "ecosystem": "npm",
         "epss": {
           "cve": "CVE-2026-118782",
-          "percentile": 0.0197,
+          "percentile": 0.01936,
           "score": 0.00121
         },
-        "epss_date": "2026-11-15T12:03:04Z",
+        "epss_date": "2026-11-21T12:00:24Z",
         "fix_state": "fixed",
         "fixed_in": [
           "1.4.1"
@@ -3905,7 +3493,7 @@
         "id": "GHSA-jc66-7q78-782g",
         "kev": null,
         "kev_cves": [],
-        "kev_snapshot": "2026.11.13",
+        "kev_snapshot": "2026.11.20",
         "location": "npm-shrinkwrap.json",
         "locations": [
           "npm-shrinkwrap.json"
@@ -3930,10 +3518,10 @@
         "ecosystem": "npm",
         "epss": {
           "cve": "CVE-2026-119191",
-          "percentile": 0.37648,
+          "percentile": 0.37889,
           "score": 0.00429
         },
-        "epss_date": "2026-11-15T12:03:04Z",
+        "epss_date": "2026-11-21T12:00:24Z",
         "fix_state": "fixed",
         "fixed_in": [
           "1.4.1"
@@ -3941,7 +3529,7 @@
         "id": "GHSA-rhr8-3pm8-cq29",
         "kev": null,
         "kev_cves": [],
-        "kev_snapshot": "2026.11.13",
+        "kev_snapshot": "2026.11.20",
         "location": "npm-shrinkwrap.json",
         "locations": [
           "npm-shrinkwrap.json"
@@ -3966,10 +3554,10 @@
         "ecosystem": "npm",
         "epss": {
           "cve": "CVE-2026-118773",
-          "percentile": 0.29132,
-          "score": 0.0035
+          "percentile": 0.41037,
+          "score": 0.00465
         },
-        "epss_date": "2026-11-15T12:03:04Z",
+        "epss_date": "2026-11-21T12:00:24Z",
         "fix_state": "fixed",
         "fixed_in": [
           "14.0.2"
@@ -3977,7 +3565,7 @@
         "id": "GHSA-3g3m-2fjr-6pw4",
         "kev": null,
         "kev_cves": [],
-        "kev_snapshot": "2026.11.13",
+        "kev_snapshot": "2026.11.20",
         "location": "npm-shrinkwrap.json",
         "locations": [
           "npm-shrinkwrap.json"
@@ -4002,10 +3590,10 @@
         "ecosystem": "npm",
         "epss": {
           "cve": "CVE-2026-111997",
-          "percentile": 0.24739,
+          "percentile": 0.24832,
           "score": 0.00315
         },
-        "epss_date": "2026-11-15T12:03:04Z",
+        "epss_date": "2026-11-21T12:00:24Z",
         "fix_state": "fixed",
         "fixed_in": [
           "10.7.4"
@@ -4013,7 +3601,7 @@
         "id": "GHSA-rxp7-6hxx-x8q5",
         "kev": null,
         "kev_cves": [],
-        "kev_snapshot": "2026.11.13",
+        "kev_snapshot": "2026.11.20",
         "location": "npm-shrinkwrap.json",
         "locations": [
           "npm-shrinkwrap.json"
@@ -4038,10 +3626,10 @@
         "ecosystem": "npm",
         "epss": {
           "cve": "CVE-2026-118764",
-          "percentile": 0.2316,
-          "score": 0.00301
+          "percentile": 0.35924,
+          "score": 0.00409
         },
-        "epss_date": "2026-11-15T12:03:04Z",
+        "epss_date": "2026-11-21T12:00:24Z",
         "fix_state": "fixed",
         "fixed_in": [
           "11.0.1"
@@ -4049,7 +3637,7 @@
         "id": "GHSA-g3hv-75wg-m249",
         "kev": null,
         "kev_cves": [],
-        "kev_snapshot": "2026.11.13",
+        "kev_snapshot": "2026.11.20",
         "location": "npm-shrinkwrap.json",
         "locations": [
           "npm-shrinkwrap.json"
@@ -4074,10 +3662,10 @@
         "ecosystem": "npm",
         "epss": {
           "cve": "CVE-2026-118778",
-          "percentile": 0.12027,
+          "percentile": 0.11981,
           "score": 0.00215
         },
-        "epss_date": "2026-11-15T12:03:04Z",
+        "epss_date": "2026-11-21T12:00:24Z",
         "fix_state": "fixed",
         "fixed_in": [
           "1.4.1"
@@ -4085,7 +3673,7 @@
         "id": "GHSA-525v-9gp9-w22h",
         "kev": null,
         "kev_cves": [],
-        "kev_snapshot": "2026.11.13",
+        "kev_snapshot": "2026.11.20",
         "location": "npm-shrinkwrap.json",
         "locations": [
           "npm-shrinkwrap.json"
@@ -4110,10 +3698,10 @@
         "ecosystem": "npm",
         "epss": {
           "cve": "CVE-2026-119186",
-          "percentile": 0.09871,
+          "percentile": 0.09791,
           "score": 0.002
         },
-        "epss_date": "2026-11-15T12:03:04Z",
+        "epss_date": "2026-11-21T12:00:24Z",
         "fix_state": "fixed",
         "fixed_in": [
           "1.4.1"
@@ -4121,7 +3709,7 @@
         "id": "GHSA-5cwg-6vw7-rj6p",
         "kev": null,
         "kev_cves": [],
-        "kev_snapshot": "2026.11.13",
+        "kev_snapshot": "2026.11.20",
         "location": "npm-shrinkwrap.json",
         "locations": [
           "npm-shrinkwrap.json"
@@ -4146,10 +3734,10 @@
         "ecosystem": "npm",
         "epss": {
           "cve": "CVE-2026-125333",
-          "percentile": 0.47123,
-          "score": 0.00559
+          "percentile": 0.47253,
+          "score": 0.00556
         },
-        "epss_date": "2026-11-15T12:03:04Z",
+        "epss_date": "2026-11-21T12:00:24Z",
         "fix_state": "fixed",
         "fixed_in": [
           "1.4.3"
@@ -4157,7 +3745,7 @@
         "id": "GHSA-6cv4-p8m7-4r25",
         "kev": null,
         "kev_cves": [],
-        "kev_snapshot": "2026.11.13",
+        "kev_snapshot": "2026.11.20",
         "location": "npm-shrinkwrap.json",
         "locations": [
           "npm-shrinkwrap.json"
@@ -4182,10 +3770,10 @@
         "ecosystem": "npm",
         "epss": {
           "cve": "CVE-2026-118777",
-          "percentile": 0.20188,
-          "score": 0.00275
+          "percentile": 0.34808,
+          "score": 0.00398
         },
-        "epss_date": "2026-11-15T12:03:04Z",
+        "epss_date": "2026-11-21T12:00:24Z",
         "fix_state": "fixed",
         "fixed_in": [
           "1.4.1"
@@ -4193,7 +3781,7 @@
         "id": "GHSA-6wvx-3r32-xmcg",
         "kev": null,
         "kev_cves": [],
-        "kev_snapshot": "2026.11.13",
+        "kev_snapshot": "2026.11.20",
         "location": "npm-shrinkwrap.json",
         "locations": [
           "npm-shrinkwrap.json"
@@ -4218,10 +3806,10 @@
         "ecosystem": "npm",
         "epss": {
           "cve": "CVE-2026-119189",
-          "percentile": 0.06523,
+          "percentile": 0.06525,
           "score": 0.00171
         },
-        "epss_date": "2026-11-15T12:03:04Z",
+        "epss_date": "2026-11-21T12:00:24Z",
         "fix_state": "fixed",
         "fixed_in": [
           "1.4.1"
@@ -4229,7 +3817,7 @@
         "id": "GHSA-h46v-rmh6-fq4f",
         "kev": null,
         "kev_cves": [],
-        "kev_snapshot": "2026.11.13",
+        "kev_snapshot": "2026.11.20",
         "location": "npm-shrinkwrap.json",
         "locations": [
           "npm-shrinkwrap.json"
@@ -4254,10 +3842,10 @@
         "ecosystem": "npm",
         "epss": {
           "cve": "CVE-2026-125334",
-          "percentile": 0.2087,
-          "score": 0.00281
+          "percentile": 0.2754,
+          "score": 0.00336
         },
-        "epss_date": "2026-11-15T12:03:04Z",
+        "epss_date": "2026-11-21T12:00:24Z",
         "fix_state": "fixed",
         "fixed_in": [
           "1.4.3"
@@ -4265,7 +3853,7 @@
         "id": "GHSA-j8rw-jp99-435v",
         "kev": null,
         "kev_cves": [],
-        "kev_snapshot": "2026.11.13",
+        "kev_snapshot": "2026.11.20",
         "location": "npm-shrinkwrap.json",
         "locations": [
           "npm-shrinkwrap.json"
@@ -4290,10 +3878,10 @@
         "ecosystem": "npm",
         "epss": {
           "cve": "CVE-2026-125332",
-          "percentile": 0.38176,
-          "score": 0.00434
+          "percentile": 0.45709,
+          "score": 0.0053
         },
-        "epss_date": "2026-11-15T12:03:04Z",
+        "epss_date": "2026-11-21T12:00:24Z",
         "fix_state": "fixed",
         "fixed_in": [
           "1.4.3"
@@ -4301,7 +3889,7 @@
         "id": "GHSA-w4xr-hqv8-ch44",
         "kev": null,
         "kev_cves": [],
-        "kev_snapshot": "2026.11.13",
+        "kev_snapshot": "2026.11.20",
         "location": "npm-shrinkwrap.json",
         "locations": [
           "npm-shrinkwrap.json"
@@ -4326,10 +3914,10 @@
         "ecosystem": "npm",
         "epss": {
           "cve": "CVE-2026-118776",
-          "percentile": 0.03133,
-          "score": 0.00136
+          "percentile": 0.06563,
+          "score": 0.00171
         },
-        "epss_date": "2026-11-15T12:03:04Z",
+        "epss_date": "2026-11-21T12:00:24Z",
         "fix_state": "fixed",
         "fixed_in": [
           "1.4.1"
@@ -4337,7 +3925,7 @@
         "id": "GHSA-2vgq-wchc-25w7",
         "kev": null,
         "kev_cves": [],
-        "kev_snapshot": "2026.11.13",
+        "kev_snapshot": "2026.11.20",
         "location": "npm-shrinkwrap.json",
         "locations": [
           "npm-shrinkwrap.json"
@@ -4362,10 +3950,10 @@
         "ecosystem": "npm",
         "epss": {
           "cve": "CVE-2026-118780",
-          "percentile": 0.0743,
+          "percentile": 0.07419,
           "score": 0.00178
         },
-        "epss_date": "2026-11-15T12:03:04Z",
+        "epss_date": "2026-11-21T12:00:24Z",
         "fix_state": "fixed",
         "fixed_in": [
           "1.4.1"
@@ -4373,7 +3961,7 @@
         "id": "GHSA-4487-j8r4-4g2f",
         "kev": null,
         "kev_cves": [],
-        "kev_snapshot": "2026.11.13",
+        "kev_snapshot": "2026.11.20",
         "location": "npm-shrinkwrap.json",
         "locations": [
           "npm-shrinkwrap.json"
@@ -4398,10 +3986,10 @@
         "ecosystem": "npm",
         "epss": {
           "cve": "CVE-2026-118775",
-          "percentile": 0.24463,
-          "score": 0.00312
+          "percentile": 0.26703,
+          "score": 0.00331
         },
-        "epss_date": "2026-11-15T12:03:04Z",
+        "epss_date": "2026-11-21T12:00:24Z",
         "fix_state": "fixed",
         "fixed_in": [
           "1.4.1"
@@ -4409,7 +3997,7 @@
         "id": "GHSA-4642-5mcj-2rqw",
         "kev": null,
         "kev_cves": [],
-        "kev_snapshot": "2026.11.13",
+        "kev_snapshot": "2026.11.20",
         "location": "npm-shrinkwrap.json",
         "locations": [
           "npm-shrinkwrap.json"
@@ -4434,10 +4022,10 @@
         "ecosystem": "npm",
         "epss": {
           "cve": "CVE-2026-125335",
-          "percentile": 0.10309,
-          "score": 0.00203
+          "percentile": 0.13722,
+          "score": 0.00229
         },
-        "epss_date": "2026-11-15T12:03:04Z",
+        "epss_date": "2026-11-21T12:00:24Z",
         "fix_state": "fixed",
         "fixed_in": [
           "1.4.3"
@@ -4445,7 +4033,7 @@
         "id": "GHSA-6889-vf6x-f3g5",
         "kev": null,
         "kev_cves": [],
-        "kev_snapshot": "2026.11.13",
+        "kev_snapshot": "2026.11.20",
         "location": "npm-shrinkwrap.json",
         "locations": [
           "npm-shrinkwrap.json"
@@ -4470,10 +4058,10 @@
         "ecosystem": "npm",
         "epss": {
           "cve": "CVE-2026-118774",
-          "percentile": 0.0101,
-          "score": 0.00103
+          "percentile": 0.02373,
+          "score": 0.00127
         },
-        "epss_date": "2026-11-15T12:03:04Z",
+        "epss_date": "2026-11-21T12:00:24Z",
         "fix_state": "fixed",
         "fixed_in": [
           "1.4.1"
@@ -4481,7 +4069,7 @@
         "id": "GHSA-9wg5-mj3p-v49q",
         "kev": null,
         "kev_cves": [],
-        "kev_snapshot": "2026.11.13",
+        "kev_snapshot": "2026.11.20",
         "location": "npm-shrinkwrap.json",
         "locations": [
           "npm-shrinkwrap.json"
@@ -4506,10 +4094,10 @@
         "ecosystem": "npm",
         "epss": {
           "cve": "CVE-2026-118781",
-          "percentile": 0.16012,
-          "score": 0.00246
+          "percentile": 0.36312,
+          "score": 0.00413
         },
-        "epss_date": "2026-11-15T12:03:04Z",
+        "epss_date": "2026-11-21T12:00:24Z",
         "fix_state": "fixed",
         "fixed_in": [
           "1.4.1"
@@ -4517,7 +4105,7 @@
         "id": "GHSA-h6cr-wjv9-3cpp",
         "kev": null,
         "kev_cves": [],
-        "kev_snapshot": "2026.11.13",
+        "kev_snapshot": "2026.11.20",
         "location": "npm-shrinkwrap.json",
         "locations": [
           "npm-shrinkwrap.json"
@@ -4812,5 +4400,5 @@
       ]
     }
   },
-  "updated": "2026-11-15"
+  "updated": "2026-11-22"
 }

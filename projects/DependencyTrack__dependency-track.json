@@ -186,6 +186,66 @@
       },
       "workflow_new": 0,
       "workflow_resolved": 0
+    },
+    {
+      "added": 0,
+      "advisory_state": "ok",
+      "binary_analysis": null,
+      "commit": "e06081942be5e2a2298931101119b03fdaffd90d",
+      "date": "2026-11-22",
+      "dependencies": 211,
+      "dependency_state": "ok",
+      "downgraded": 0,
+      "errors": [],
+      "file_changes": 78,
+      "fixable": 0,
+      "go_binary_reason": null,
+      "go_binary_state": null,
+      "go_version": null,
+      "in_binary": null,
+      "in_binary_new": 0,
+      "in_binary_resolved": 0,
+      "kev": null,
+      "kev_new": 0,
+      "kev_new_match": 0,
+      "license_changes": 0,
+      "method": "sbomlyze-occurrence-v1",
+      "moved": 0,
+      "new_advisories": 0,
+      "new_severe": 0,
+      "new_vulnerabilities": 0,
+      "osv_confirmed": 0,
+      "osv_only": 0,
+      "ref": "5.2.2",
+      "release_changed": true,
+      "release_evidence": null,
+      "release_integrity": "no-linux-binary",
+      "removed": 0,
+      "resolved_advisories": 0,
+      "resolved_vulnerabilities": 0,
+      "scorecard": 7.5,
+      "scorecard_date": "2026-11-16",
+      "scorecard_note": null,
+      "scorecard_source": "openssf-api",
+      "unknown_direction": 0,
+      "upgraded": 100,
+      "vulnerabilities": {
+        "Critical": 0,
+        "High": 0,
+        "Low": 0,
+        "Medium": 0,
+        "Negligible": 0,
+        "Unknown": 0
+      },
+      "vulnerable_packages": 0,
+      "workflow": {
+        "High": 0,
+        "Low": 0,
+        "Medium": 0,
+        "files": 15
+      },
+      "workflow_new": 0,
+      "workflow_resolved": 0
     }
   ],
   "latest": {
@@ -195,12 +255,12 @@
       "added": [],
       "added_detail": [],
       "advisory_state": "ok",
-      "any": false,
+      "any": true,
       "baseline": false,
       "dependency_baseline": {
         "attempt": "1",
-        "run_id": "42546359860",
-        "sbom_sha256": "ceb09c8185c7ab6906f4a5f1782b82d1b9fa5700706205d953833218187d0468"
+        "run_id": "43786179934",
+        "sbom_sha256": "d0956a958adf78aa4f6b278161e03e7beb5cdb6c355aacfb5f67813dfd8e9c03"
       },
       "dependency_state": "ok",
       "digest_coverage": {
@@ -210,11 +270,90 @@
         "comparable": 0,
         "disjoint_kinds": 0,
         "packages_total": 233,
-        "same_version_pairs": 233
+        "same_version_pairs": 133
       },
-      "distinct_version_changes": null,
+      "distinct_version_changes": 95,
       "downgraded": [],
-      "file_changes": [],
+      "file_changes": [
+        ".github/workflows/_meta-build.yaml",
+        ".github/workflows/ci-codeql.yaml",
+        ".github/workflows/ci-lint.yaml",
+        ".github/workflows/ci-release.yaml",
+        ".github/workflows/ci-test-e2e.yaml",
+        ".github/workflows/ci-test.yaml",
+        ".github/workflows/mirror-container-image.yml",
+        "alpine/alpine-common/pom.xml",
+        "alpine/alpine-infra/pom.xml",
+        "alpine/alpine-model/pom.xml",
+        "alpine/alpine-server/pom.xml",
+        "alpine/pom.xml",
+        "api/pom.xml",
+        "apiserver/pom.xml",
+        "cache/api/pom.xml",
+        "cache/pom.xml",
+        "cache/provider-database/pom.xml",
+        "cache/provider-memory/pom.xml",
+        "common/config/pom.xml",
+        "common/datasource/pom.xml",
+        "common/health/pom.xml",
+        "common/init/pom.xml",
+        "common/pagination/pom.xml",
+        "common/pom.xml",
+        "coverage-report/pom.xml",
+        "dex/api/pom.xml",
+        "dex/engine-api/pom.xml",
+        "dex/engine-migration/pom.xml",
+        "dex/engine/pom.xml",
+        "dex/pom.xml",
+        "file-storage/api/pom.xml",
+        "file-storage/pom.xml",
+        "file-storage/provider-local/pom.xml",
+        "file-storage/provider-memory/pom.xml",
+        "file-storage/provider-s3/pom.xml",
+        "kev-data-source/api/pom.xml",
+        "kev-data-source/builtin/pom.xml",
+        "kev-data-source/pom.xml",
+        "migration/pom.xml",
+        "notification/api/pom.xml",
+        "notification/pom.xml",
+        "notification/publishing/pom.xml",
+        "notification/templating/pom.xml",
+        "package-metadata/api/pom.xml",
+        "package-metadata/pom.xml",
+        "package-metadata/resolution/pom.xml",
+        "plugin/api/pom.xml",
+        "plugin/config/pom.xml",
+        "plugin/pom.xml",
+        "plugin/runtime/pom.xml",
+        "pom.xml",
+        "proto/pom.xml",
+        "secret-management/pom.xml",
+        "support/cyclonedx-proto/pom.xml",
+        "support/datanucleus-plugin/plugin/pom.xml",
+        "support/datanucleus-plugin/pom.xml",
+        "support/flyway/pom.xml",
+        "support/jdbi/pom.xml",
+        "support/net/pom.xml",
+        "support/os-distro-metadata/pom.xml",
+        "support/smallrye-config-secret-handler-file/pom.xml",
+        "support/smallrye-config-source-memory/pom.xml",
+        "support/swagger-model-converters/pom.xml",
+        "support/v4-migrator/pom.xml",
+        "vuln-analysis/api/pom.xml",
+        "vuln-analysis/checkmarx/pom.xml",
+        "vuln-analysis/internal/pom.xml",
+        "vuln-analysis/oss-index/pom.xml",
+        "vuln-analysis/pom.xml",
+        "vuln-analysis/snyk/pom.xml",
+        "vuln-analysis/trivy/pom.xml",
+        "vuln-analysis/vuln-db/pom.xml",
+        "vuln-data-source/api/pom.xml",
+        "vuln-data-source/github/pom.xml",
+        "vuln-data-source/jvn/pom.xml",
+        "vuln-data-source/nvd/pom.xml",
+        "vuln-data-source/osv/pom.xml",
+        "vuln-data-source/pom.xml"
+      ],
       "integrity_changes": [],
       "integrity_drift": 0,
       "license_changes": [],
@@ -222,22 +361,1829 @@
       "method": "sbomlyze-occurrence-v1",
       "moved": [],
       "new_advisories": 0,
+      "new_severe": 0,
       "new_vulnerabilities": [],
       "previous_ref": "5.2.1",
-      "release_changed": false,
+      "release_changed": true,
       "removed": [],
       "removed_detail": [],
       "resolved_advisories": 0,
       "resolved_vulnerabilities": [],
+      "scorecard": {
+        "from": 7.9,
+        "to": 7.5
+      },
       "still_affected_version_changed": [],
       "unknown_direction": [],
-      "upgraded": [],
-      "version_changes": [],
+      "upgraded": [
+        {
+          "direction": "upgrade",
+          "ecosystem": "github",
+          "from": "v6.0.1",
+          "level": "minor",
+          "location": ".github/workflows/_meta-build.yaml",
+          "package": "actions/setup-java",
+          "to": "v6.2.0"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "github",
+          "from": "v6.0.1",
+          "level": "minor",
+          "location": ".github/workflows/ci-lint.yaml",
+          "package": "actions/setup-java",
+          "to": "v6.2.0"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "github",
+          "from": "v6.0.1",
+          "level": "minor",
+          "location": ".github/workflows/ci-release.yaml",
+          "package": "actions/setup-java",
+          "to": "v6.2.0"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "github",
+          "from": "v6.0.1",
+          "level": "minor",
+          "location": ".github/workflows/ci-test-e2e.yaml",
+          "package": "actions/setup-java",
+          "to": "v6.2.0"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "github",
+          "from": "v6.0.1",
+          "level": "minor",
+          "location": ".github/workflows/ci-test.yaml",
+          "package": "actions/setup-java",
+          "to": "v6.2.0"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "github",
+          "from": "v4.6.0",
+          "level": "minor",
+          "location": ".github/workflows/_meta-build.yaml",
+          "package": "docker/login-action",
+          "to": "v4.8.0"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "github",
+          "from": "v4.6.0",
+          "level": "minor",
+          "location": ".github/workflows/mirror-container-image.yml",
+          "package": "docker/login-action",
+          "to": "v4.8.0"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "github",
+          "from": "v4.38.3",
+          "level": "minor",
+          "location": ".github/workflows/ci-codeql.yaml",
+          "package": "github/codeql-action/analyze",
+          "to": "v4.39.3"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "github",
+          "from": "v4.38.3",
+          "level": "minor",
+          "location": ".github/workflows/ci-codeql.yaml",
+          "package": "github/codeql-action/init",
+          "to": "v4.39.3"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "github",
+          "from": "v0.1.18",
+          "level": "patch",
+          "location": ".github/workflows/ci-lint.yaml",
+          "package": "oasdiff/oasdiff-action/breaking",
+          "to": "v0.1.23"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "github",
+          "from": "v0.6.4",
+          "level": "minor",
+          "location": ".github/workflows/ci-lint.yaml",
+          "package": "zizmorcore/zizmor-action",
+          "to": "v0.8.1"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "maven",
+          "from": "1.6.5",
+          "level": "patch",
+          "location": "alpine/alpine-server/pom.xml",
+          "package": "logback-classic",
+          "to": "1.6.6"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "maven",
+          "from": "1.6.5",
+          "level": "patch",
+          "location": "alpine/alpine-server/pom.xml",
+          "package": "logback-core",
+          "to": "1.6.6"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "maven",
+          "from": "1.5.7-23",
+          "level": "patch",
+          "location": "file-storage/provider-local/pom.xml",
+          "package": "zstd-jni",
+          "to": "1.5.7-26"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "maven",
+          "from": "2.50.0",
+          "level": "minor",
+          "location": "apiserver/pom.xml",
+          "package": "error_prone_annotations",
+          "to": "2.52.0"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "maven",
+          "from": "2.1.14",
+          "level": "patch",
+          "location": "notification/publishing/pom.xml",
+          "package": "greenmail-junit5",
+          "to": "2.1.15"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "maven",
+          "from": "13.6.1.jre11",
+          "level": "patch",
+          "location": "support/v4-migrator/pom.xml",
+          "package": "mssql-jdbc",
+          "to": "13.6.2.jre11"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "maven",
+          "from": "11.38.2",
+          "level": "minor",
+          "location": "alpine/alpine-server/pom.xml",
+          "package": "oauth2-oidc-sdk",
+          "to": "11.39"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "maven",
+          "from": "5.5.0",
+          "level": "patch",
+          "location": "apiserver/pom.xml",
+          "package": "okhttp-jvm",
+          "to": "5.5.1"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "maven",
+          "from": "0.14.0",
+          "level": "minor",
+          "location": "apiserver/pom.xml",
+          "package": "cel",
+          "to": "0.15.0"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "maven",
+          "from": "0.26.1",
+          "level": "patch",
+          "location": "apiserver/pom.xml",
+          "package": "versatile-core",
+          "to": "0.26.2"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "maven",
+          "from": "9.0.3",
+          "level": "patch",
+          "location": "apiserver/pom.xml",
+          "package": "minio",
+          "to": "9.0.4"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "maven",
+          "from": "6.3.0",
+          "level": "minor",
+          "location": "alpine/alpine-server/pom.xml",
+          "package": "json-unit-assertj",
+          "to": "6.4.0"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "maven",
+          "from": "3.21.0",
+          "level": "minor",
+          "location": "vuln-data-source/github/pom.xml",
+          "package": "commons-lang3",
+          "to": "3.22.0"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "maven",
+          "from": "5.2.1",
+          "level": "patch",
+          "location": "alpine/alpine-common/pom.xml",
+          "package": "alpine-common",
+          "to": "5.2.2"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "maven",
+          "from": "5.2.1",
+          "level": "patch",
+          "location": "alpine/alpine-infra/pom.xml",
+          "package": "alpine-infra",
+          "to": "5.2.2"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "maven",
+          "from": "5.2.1",
+          "level": "patch",
+          "location": "alpine/alpine-model/pom.xml",
+          "package": "alpine-model",
+          "to": "5.2.2"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "maven",
+          "from": "5.2.1",
+          "level": "patch",
+          "location": "alpine/pom.xml",
+          "package": "alpine-parent",
+          "to": "5.2.2"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "maven",
+          "from": "5.2.1",
+          "level": "patch",
+          "location": "alpine/alpine-server/pom.xml",
+          "package": "alpine-server",
+          "to": "5.2.2"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "maven",
+          "from": "5.2.1",
+          "level": "patch",
+          "location": "api/pom.xml",
+          "package": "api",
+          "to": "5.2.2"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "maven",
+          "from": "5.2.1",
+          "level": "patch",
+          "location": "apiserver/pom.xml",
+          "package": "apiserver",
+          "to": "5.2.2"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "maven",
+          "from": "5.2.1",
+          "level": "patch",
+          "location": "cache/api/pom.xml",
+          "package": "cache-api",
+          "to": "5.2.2"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "maven",
+          "from": "5.2.1",
+          "level": "patch",
+          "location": "cache/pom.xml",
+          "package": "cache-parent",
+          "to": "5.2.2"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "maven",
+          "from": "5.2.1",
+          "level": "patch",
+          "location": "cache/provider-database/pom.xml",
+          "package": "cache-provider-database",
+          "to": "5.2.2"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "maven",
+          "from": "5.2.1",
+          "level": "patch",
+          "location": "cache/provider-memory/pom.xml",
+          "package": "cache-provider-memory",
+          "to": "5.2.2"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "maven",
+          "from": "5.2.1",
+          "level": "patch",
+          "location": "common/config/pom.xml",
+          "package": "common-config",
+          "to": "5.2.2"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "maven",
+          "from": "5.2.1",
+          "level": "patch",
+          "location": "common/datasource/pom.xml",
+          "package": "common-datasource",
+          "to": "5.2.2"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "maven",
+          "from": "5.2.1",
+          "level": "patch",
+          "location": "common/health/pom.xml",
+          "package": "common-health",
+          "to": "5.2.2"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "maven",
+          "from": "5.2.1",
+          "level": "patch",
+          "location": "common/init/pom.xml",
+          "package": "common-init",
+          "to": "5.2.2"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "maven",
+          "from": "5.2.1",
+          "level": "patch",
+          "location": "common/pagination/pom.xml",
+          "package": "common-pagination",
+          "to": "5.2.2"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "maven",
+          "from": "5.2.1",
+          "level": "patch",
+          "location": "common/pom.xml",
+          "package": "common-parent",
+          "to": "5.2.2"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "maven",
+          "from": "5.2.1",
+          "level": "patch",
+          "location": "coverage-report/pom.xml",
+          "package": "coverage-report",
+          "to": "5.2.2"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "maven",
+          "from": "5.2.1",
+          "level": "patch",
+          "location": "support/cyclonedx-proto/pom.xml",
+          "package": "cyclonedx-proto",
+          "to": "5.2.2"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "maven",
+          "from": "5.2.1",
+          "level": "patch",
+          "location": "support/datanucleus-plugin/plugin/pom.xml",
+          "package": "datanucleus-plugin",
+          "to": "5.2.2"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "maven",
+          "from": "5.2.1",
+          "level": "patch",
+          "location": "support/datanucleus-plugin/pom.xml",
+          "package": "datanucleus-plugin-parent",
+          "to": "5.2.2"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "maven",
+          "from": "5.2.1",
+          "level": "patch",
+          "location": "coverage-report/pom.xml",
+          "package": "datanucleus-plugin-test",
+          "to": "5.2.2"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "maven",
+          "from": "5.2.1",
+          "level": "patch",
+          "location": "pom.xml",
+          "package": "dependency-track-parent",
+          "to": "5.2.2"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "maven",
+          "from": "5.2.1",
+          "level": "patch",
+          "location": "dex/api/pom.xml",
+          "package": "dex-api",
+          "to": "5.2.2"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "maven",
+          "from": "5.2.1",
+          "level": "patch",
+          "location": "dex/engine/pom.xml",
+          "package": "dex-engine",
+          "to": "5.2.2"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "maven",
+          "from": "5.2.1",
+          "level": "patch",
+          "location": "dex/engine-api/pom.xml",
+          "package": "dex-engine-api",
+          "to": "5.2.2"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "maven",
+          "from": "5.2.1",
+          "level": "patch",
+          "location": "dex/engine-migration/pom.xml",
+          "package": "dex-engine-migration",
+          "to": "5.2.2"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "maven",
+          "from": "5.2.1",
+          "level": "patch",
+          "location": "dex/pom.xml",
+          "package": "dex-parent",
+          "to": "5.2.2"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "maven",
+          "from": "5.2.1",
+          "level": "patch",
+          "location": "apiserver/pom.xml",
+          "package": "dex-testing",
+          "to": "5.2.2"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "maven",
+          "from": "5.2.1",
+          "level": "patch",
+          "location": "file-storage/api/pom.xml",
+          "package": "file-storage-api",
+          "to": "5.2.2"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "maven",
+          "from": "5.2.1",
+          "level": "patch",
+          "location": "file-storage/pom.xml",
+          "package": "file-storage-parent",
+          "to": "5.2.2"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "maven",
+          "from": "5.2.1",
+          "level": "patch",
+          "location": "file-storage/provider-local/pom.xml",
+          "package": "file-storage-provider-local",
+          "to": "5.2.2"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "maven",
+          "from": "5.2.1",
+          "level": "patch",
+          "location": "file-storage/provider-memory/pom.xml",
+          "package": "file-storage-provider-memory",
+          "to": "5.2.2"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "maven",
+          "from": "5.2.1",
+          "level": "patch",
+          "location": "file-storage/provider-s3/pom.xml",
+          "package": "file-storage-provider-s3",
+          "to": "5.2.2"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "maven",
+          "from": "5.2.1",
+          "level": "patch",
+          "location": "support/flyway/pom.xml",
+          "package": "flyway-support",
+          "to": "5.2.2"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "maven",
+          "from": "5.2.1",
+          "level": "patch",
+          "location": "support/jdbi/pom.xml",
+          "package": "jdbi-support",
+          "to": "5.2.2"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "maven",
+          "from": "5.2.1",
+          "level": "patch",
+          "location": "kev-data-source/api/pom.xml",
+          "package": "kev-data-source-api",
+          "to": "5.2.2"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "maven",
+          "from": "5.2.1",
+          "level": "patch",
+          "location": "kev-data-source/builtin/pom.xml",
+          "package": "kev-data-source-builtin",
+          "to": "5.2.2"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "maven",
+          "from": "5.2.1",
+          "level": "patch",
+          "location": "kev-data-source/pom.xml",
+          "package": "kev-data-source-parent",
+          "to": "5.2.2"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "maven",
+          "from": "5.2.1",
+          "level": "patch",
+          "location": "migration/pom.xml",
+          "package": "migration",
+          "to": "5.2.2"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "maven",
+          "from": "5.2.1",
+          "level": "patch",
+          "location": "support/net/pom.xml",
+          "package": "net-support",
+          "to": "5.2.2"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "maven",
+          "from": "5.2.1",
+          "level": "patch",
+          "location": "notification/api/pom.xml",
+          "package": "notification-api",
+          "to": "5.2.2"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "maven",
+          "from": "5.2.1",
+          "level": "patch",
+          "location": "notification/pom.xml",
+          "package": "notification-parent",
+          "to": "5.2.2"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "maven",
+          "from": "5.2.1",
+          "level": "patch",
+          "location": "notification/publishing/pom.xml",
+          "package": "notification-publishing",
+          "to": "5.2.2"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "maven",
+          "from": "5.2.1",
+          "level": "patch",
+          "location": "notification/templating/pom.xml",
+          "package": "notification-templating",
+          "to": "5.2.2"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "maven",
+          "from": "5.2.1",
+          "level": "patch",
+          "location": "support/os-distro-metadata/pom.xml",
+          "package": "os-distro-metadata",
+          "to": "5.2.2"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "maven",
+          "from": "5.2.1",
+          "level": "patch",
+          "location": "package-metadata/api/pom.xml",
+          "package": "package-metadata-api",
+          "to": "5.2.2"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "maven",
+          "from": "5.2.1",
+          "level": "patch",
+          "location": "package-metadata/pom.xml",
+          "package": "package-metadata-parent",
+          "to": "5.2.2"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "maven",
+          "from": "5.2.1",
+          "level": "patch",
+          "location": "package-metadata/resolution/pom.xml",
+          "package": "package-metadata-resolution",
+          "to": "5.2.2"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "maven",
+          "from": "5.2.1",
+          "level": "patch",
+          "location": "plugin/api/pom.xml",
+          "package": "plugin-api",
+          "to": "5.2.2"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "maven",
+          "from": "5.2.1",
+          "level": "patch",
+          "location": "plugin/config/pom.xml",
+          "package": "plugin-config",
+          "to": "5.2.2"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "maven",
+          "from": "5.2.1",
+          "level": "patch",
+          "location": "plugin/pom.xml",
+          "package": "plugin-parent",
+          "to": "5.2.2"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "maven",
+          "from": "5.2.1",
+          "level": "patch",
+          "location": "plugin/runtime/pom.xml",
+          "package": "plugin-runtime",
+          "to": "5.2.2"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "maven",
+          "from": "5.2.1",
+          "level": "patch",
+          "location": "coverage-report/pom.xml",
+          "package": "plugin-testing",
+          "to": "5.2.2"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "maven",
+          "from": "5.2.1",
+          "level": "patch",
+          "location": "proto/pom.xml",
+          "package": "proto",
+          "to": "5.2.2"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "maven",
+          "from": "5.2.1",
+          "level": "patch",
+          "location": "secret-management/pom.xml",
+          "package": "secret-management",
+          "to": "5.2.2"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "maven",
+          "from": "5.2.1",
+          "level": "patch",
+          "location": "support/smallrye-config-secret-handler-file/pom.xml",
+          "package": "smallrye-config-secret-handler-file",
+          "to": "5.2.2"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "maven",
+          "from": "5.2.1",
+          "level": "patch",
+          "location": "support/smallrye-config-source-memory/pom.xml",
+          "package": "smallrye-config-source-memory",
+          "to": "5.2.2"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "maven",
+          "from": "5.2.1",
+          "level": "patch",
+          "location": "support/swagger-model-converters/pom.xml",
+          "package": "swagger-model-converters",
+          "to": "5.2.2"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "maven",
+          "from": "5.2.1",
+          "level": "patch",
+          "location": "alpine/alpine-infra/pom.xml",
+          "package": "test-database-support",
+          "to": "5.2.2"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "maven",
+          "from": "5.2.1",
+          "level": "patch",
+          "location": "support/v4-migrator/pom.xml",
+          "package": "v4-migrator",
+          "to": "5.2.2"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "maven",
+          "from": "5.2.1",
+          "level": "patch",
+          "location": "vuln-analysis/api/pom.xml",
+          "package": "vuln-analysis-api",
+          "to": "5.2.2"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "maven",
+          "from": "5.2.1",
+          "level": "patch",
+          "location": "vuln-analysis/pom.xml",
+          "package": "vuln-analysis-parent",
+          "to": "5.2.2"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "maven",
+          "from": "5.2.1",
+          "level": "patch",
+          "location": "vuln-analysis/checkmarx/pom.xml",
+          "package": "vuln-analyzer-checkmarx",
+          "to": "5.2.2"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "maven",
+          "from": "5.2.1",
+          "level": "patch",
+          "location": "vuln-analysis/internal/pom.xml",
+          "package": "vuln-analyzer-internal",
+          "to": "5.2.2"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "maven",
+          "from": "5.2.1",
+          "level": "patch",
+          "location": "vuln-analysis/oss-index/pom.xml",
+          "package": "vuln-analyzer-oss-index",
+          "to": "5.2.2"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "maven",
+          "from": "5.2.1",
+          "level": "patch",
+          "location": "vuln-analysis/snyk/pom.xml",
+          "package": "vuln-analyzer-snyk",
+          "to": "5.2.2"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "maven",
+          "from": "5.2.1",
+          "level": "patch",
+          "location": "vuln-analysis/trivy/pom.xml",
+          "package": "vuln-analyzer-trivy",
+          "to": "5.2.2"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "maven",
+          "from": "5.2.1",
+          "level": "patch",
+          "location": "vuln-analysis/vuln-db/pom.xml",
+          "package": "vuln-analyzer-vuln-db",
+          "to": "5.2.2"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "maven",
+          "from": "5.2.1",
+          "level": "patch",
+          "location": "vuln-data-source/api/pom.xml",
+          "package": "vuln-data-source-api",
+          "to": "5.2.2"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "maven",
+          "from": "5.2.1",
+          "level": "patch",
+          "location": "vuln-data-source/github/pom.xml",
+          "package": "vuln-data-source-github",
+          "to": "5.2.2"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "maven",
+          "from": "5.2.1",
+          "level": "patch",
+          "location": "vuln-data-source/jvn/pom.xml",
+          "package": "vuln-data-source-jvn",
+          "to": "5.2.2"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "maven",
+          "from": "5.2.1",
+          "level": "patch",
+          "location": "vuln-data-source/nvd/pom.xml",
+          "package": "vuln-data-source-nvd",
+          "to": "5.2.2"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "maven",
+          "from": "5.2.1",
+          "level": "patch",
+          "location": "vuln-data-source/osv/pom.xml",
+          "package": "vuln-data-source-osv",
+          "to": "5.2.2"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "maven",
+          "from": "5.2.1",
+          "level": "patch",
+          "location": "vuln-data-source/pom.xml",
+          "package": "vuln-data-source-parent",
+          "to": "5.2.2"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "maven",
+          "from": "3.1.2",
+          "level": "patch",
+          "location": "cache/api/pom.xml",
+          "package": "microprofile-config-api",
+          "to": "3.1.3"
+        }
+      ],
+      "version_changes": [
+        {
+          "direction": "upgrade",
+          "ecosystem": "github",
+          "from": "v6.0.1",
+          "level": "minor",
+          "location": ".github/workflows/_meta-build.yaml",
+          "name": "actions/setup-java",
+          "to": "v6.2.0"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "github",
+          "from": "v6.0.1",
+          "level": "minor",
+          "location": ".github/workflows/ci-lint.yaml",
+          "name": "actions/setup-java",
+          "to": "v6.2.0"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "github",
+          "from": "v6.0.1",
+          "level": "minor",
+          "location": ".github/workflows/ci-release.yaml",
+          "name": "actions/setup-java",
+          "to": "v6.2.0"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "github",
+          "from": "v6.0.1",
+          "level": "minor",
+          "location": ".github/workflows/ci-test-e2e.yaml",
+          "name": "actions/setup-java",
+          "to": "v6.2.0"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "github",
+          "from": "v6.0.1",
+          "level": "minor",
+          "location": ".github/workflows/ci-test.yaml",
+          "name": "actions/setup-java",
+          "to": "v6.2.0"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "github",
+          "from": "v4.6.0",
+          "level": "minor",
+          "location": ".github/workflows/_meta-build.yaml",
+          "name": "docker/login-action",
+          "to": "v4.8.0"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "github",
+          "from": "v4.6.0",
+          "level": "minor",
+          "location": ".github/workflows/mirror-container-image.yml",
+          "name": "docker/login-action",
+          "to": "v4.8.0"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "github",
+          "from": "v4.38.3",
+          "level": "minor",
+          "location": ".github/workflows/ci-codeql.yaml",
+          "name": "github/codeql-action/analyze",
+          "to": "v4.39.3"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "github",
+          "from": "v4.38.3",
+          "level": "minor",
+          "location": ".github/workflows/ci-codeql.yaml",
+          "name": "github/codeql-action/init",
+          "to": "v4.39.3"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "github",
+          "from": "v0.1.18",
+          "level": "patch",
+          "location": ".github/workflows/ci-lint.yaml",
+          "name": "oasdiff/oasdiff-action/breaking",
+          "to": "v0.1.23"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "github",
+          "from": "v0.6.4",
+          "level": "minor",
+          "location": ".github/workflows/ci-lint.yaml",
+          "name": "zizmorcore/zizmor-action",
+          "to": "v0.8.1"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "maven",
+          "from": "1.6.5",
+          "level": "patch",
+          "location": "alpine/alpine-server/pom.xml",
+          "name": "logback-classic",
+          "to": "1.6.6"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "maven",
+          "from": "1.6.5",
+          "level": "patch",
+          "location": "alpine/alpine-server/pom.xml",
+          "name": "logback-core",
+          "to": "1.6.6"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "maven",
+          "from": "1.5.7-23",
+          "level": "patch",
+          "location": "file-storage/provider-local/pom.xml",
+          "name": "zstd-jni",
+          "to": "1.5.7-26"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "maven",
+          "from": "2.50.0",
+          "level": "minor",
+          "location": "apiserver/pom.xml",
+          "name": "error_prone_annotations",
+          "to": "2.52.0"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "maven",
+          "from": "2.1.14",
+          "level": "patch",
+          "location": "notification/publishing/pom.xml",
+          "name": "greenmail-junit5",
+          "to": "2.1.15"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "maven",
+          "from": "13.6.1.jre11",
+          "level": "patch",
+          "location": "support/v4-migrator/pom.xml",
+          "name": "mssql-jdbc",
+          "to": "13.6.2.jre11"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "maven",
+          "from": "11.38.2",
+          "level": "minor",
+          "location": "alpine/alpine-server/pom.xml",
+          "name": "oauth2-oidc-sdk",
+          "to": "11.39"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "maven",
+          "from": "5.5.0",
+          "level": "patch",
+          "location": "apiserver/pom.xml",
+          "name": "okhttp-jvm",
+          "to": "5.5.1"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "maven",
+          "from": "0.14.0",
+          "level": "minor",
+          "location": "apiserver/pom.xml",
+          "name": "cel",
+          "to": "0.15.0"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "maven",
+          "from": "0.26.1",
+          "level": "patch",
+          "location": "apiserver/pom.xml",
+          "name": "versatile-core",
+          "to": "0.26.2"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "maven",
+          "from": "9.0.3",
+          "level": "patch",
+          "location": "apiserver/pom.xml",
+          "name": "minio",
+          "to": "9.0.4"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "maven",
+          "from": "6.3.0",
+          "level": "minor",
+          "location": "alpine/alpine-server/pom.xml",
+          "name": "json-unit-assertj",
+          "to": "6.4.0"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "maven",
+          "from": "3.21.0",
+          "level": "minor",
+          "location": "vuln-data-source/github/pom.xml",
+          "name": "commons-lang3",
+          "to": "3.22.0"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "maven",
+          "from": "5.2.1",
+          "level": "patch",
+          "location": "alpine/alpine-common/pom.xml",
+          "name": "alpine-common",
+          "to": "5.2.2"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "maven",
+          "from": "5.2.1",
+          "level": "patch",
+          "location": "alpine/alpine-infra/pom.xml",
+          "name": "alpine-infra",
+          "to": "5.2.2"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "maven",
+          "from": "5.2.1",
+          "level": "patch",
+          "location": "alpine/alpine-model/pom.xml",
+          "name": "alpine-model",
+          "to": "5.2.2"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "maven",
+          "from": "5.2.1",
+          "level": "patch",
+          "location": "alpine/pom.xml",
+          "name": "alpine-parent",
+          "to": "5.2.2"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "maven",
+          "from": "5.2.1",
+          "level": "patch",
+          "location": "alpine/alpine-server/pom.xml",
+          "name": "alpine-server",
+          "to": "5.2.2"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "maven",
+          "from": "5.2.1",
+          "level": "patch",
+          "location": "api/pom.xml",
+          "name": "api",
+          "to": "5.2.2"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "maven",
+          "from": "5.2.1",
+          "level": "patch",
+          "location": "apiserver/pom.xml",
+          "name": "apiserver",
+          "to": "5.2.2"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "maven",
+          "from": "5.2.1",
+          "level": "patch",
+          "location": "cache/api/pom.xml",
+          "name": "cache-api",
+          "to": "5.2.2"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "maven",
+          "from": "5.2.1",
+          "level": "patch",
+          "location": "cache/pom.xml",
+          "name": "cache-parent",
+          "to": "5.2.2"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "maven",
+          "from": "5.2.1",
+          "level": "patch",
+          "location": "cache/provider-database/pom.xml",
+          "name": "cache-provider-database",
+          "to": "5.2.2"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "maven",
+          "from": "5.2.1",
+          "level": "patch",
+          "location": "cache/provider-memory/pom.xml",
+          "name": "cache-provider-memory",
+          "to": "5.2.2"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "maven",
+          "from": "5.2.1",
+          "level": "patch",
+          "location": "common/config/pom.xml",
+          "name": "common-config",
+          "to": "5.2.2"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "maven",
+          "from": "5.2.1",
+          "level": "patch",
+          "location": "common/datasource/pom.xml",
+          "name": "common-datasource",
+          "to": "5.2.2"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "maven",
+          "from": "5.2.1",
+          "level": "patch",
+          "location": "common/health/pom.xml",
+          "name": "common-health",
+          "to": "5.2.2"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "maven",
+          "from": "5.2.1",
+          "level": "patch",
+          "location": "common/init/pom.xml",
+          "name": "common-init",
+          "to": "5.2.2"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "maven",
+          "from": "5.2.1",
+          "level": "patch",
+          "location": "common/pagination/pom.xml",
+          "name": "common-pagination",
+          "to": "5.2.2"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "maven",
+          "from": "5.2.1",
+          "level": "patch",
+          "location": "common/pom.xml",
+          "name": "common-parent",
+          "to": "5.2.2"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "maven",
+          "from": "5.2.1",
+          "level": "patch",
+          "location": "coverage-report/pom.xml",
+          "name": "coverage-report",
+          "to": "5.2.2"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "maven",
+          "from": "5.2.1",
+          "level": "patch",
+          "location": "support/cyclonedx-proto/pom.xml",
+          "name": "cyclonedx-proto",
+          "to": "5.2.2"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "maven",
+          "from": "5.2.1",
+          "level": "patch",
+          "location": "support/datanucleus-plugin/plugin/pom.xml",
+          "name": "datanucleus-plugin",
+          "to": "5.2.2"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "maven",
+          "from": "5.2.1",
+          "level": "patch",
+          "location": "support/datanucleus-plugin/pom.xml",
+          "name": "datanucleus-plugin-parent",
+          "to": "5.2.2"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "maven",
+          "from": "5.2.1",
+          "level": "patch",
+          "location": "coverage-report/pom.xml",
+          "name": "datanucleus-plugin-test",
+          "to": "5.2.2"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "maven",
+          "from": "5.2.1",
+          "level": "patch",
+          "location": "pom.xml",
+          "name": "dependency-track-parent",
+          "to": "5.2.2"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "maven",
+          "from": "5.2.1",
+          "level": "patch",
+          "location": "dex/api/pom.xml",
+          "name": "dex-api",
+          "to": "5.2.2"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "maven",
+          "from": "5.2.1",
+          "level": "patch",
+          "location": "dex/engine/pom.xml",
+          "name": "dex-engine",
+          "to": "5.2.2"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "maven",
+          "from": "5.2.1",
+          "level": "patch",
+          "location": "dex/engine-api/pom.xml",
+          "name": "dex-engine-api",
+          "to": "5.2.2"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "maven",
+          "from": "5.2.1",
+          "level": "patch",
+          "location": "dex/engine-migration/pom.xml",
+          "name": "dex-engine-migration",
+          "to": "5.2.2"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "maven",
+          "from": "5.2.1",
+          "level": "patch",
+          "location": "dex/pom.xml",
+          "name": "dex-parent",
+          "to": "5.2.2"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "maven",
+          "from": "5.2.1",
+          "level": "patch",
+          "location": "apiserver/pom.xml",
+          "name": "dex-testing",
+          "to": "5.2.2"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "maven",
+          "from": "5.2.1",
+          "level": "patch",
+          "location": "file-storage/api/pom.xml",
+          "name": "file-storage-api",
+          "to": "5.2.2"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "maven",
+          "from": "5.2.1",
+          "level": "patch",
+          "location": "file-storage/pom.xml",
+          "name": "file-storage-parent",
+          "to": "5.2.2"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "maven",
+          "from": "5.2.1",
+          "level": "patch",
+          "location": "file-storage/provider-local/pom.xml",
+          "name": "file-storage-provider-local",
+          "to": "5.2.2"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "maven",
+          "from": "5.2.1",
+          "level": "patch",
+          "location": "file-storage/provider-memory/pom.xml",
+          "name": "file-storage-provider-memory",
+          "to": "5.2.2"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "maven",
+          "from": "5.2.1",
+          "level": "patch",
+          "location": "file-storage/provider-s3/pom.xml",
+          "name": "file-storage-provider-s3",
+          "to": "5.2.2"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "maven",
+          "from": "5.2.1",
+          "level": "patch",
+          "location": "support/flyway/pom.xml",
+          "name": "flyway-support",
+          "to": "5.2.2"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "maven",
+          "from": "5.2.1",
+          "level": "patch",
+          "location": "support/jdbi/pom.xml",
+          "name": "jdbi-support",
+          "to": "5.2.2"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "maven",
+          "from": "5.2.1",
+          "level": "patch",
+          "location": "kev-data-source/api/pom.xml",
+          "name": "kev-data-source-api",
+          "to": "5.2.2"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "maven",
+          "from": "5.2.1",
+          "level": "patch",
+          "location": "kev-data-source/builtin/pom.xml",
+          "name": "kev-data-source-builtin",
+          "to": "5.2.2"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "maven",
+          "from": "5.2.1",
+          "level": "patch",
+          "location": "kev-data-source/pom.xml",
+          "name": "kev-data-source-parent",
+          "to": "5.2.2"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "maven",
+          "from": "5.2.1",
+          "level": "patch",
+          "location": "migration/pom.xml",
+          "name": "migration",
+          "to": "5.2.2"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "maven",
+          "from": "5.2.1",
+          "level": "patch",
+          "location": "support/net/pom.xml",
+          "name": "net-support",
+          "to": "5.2.2"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "maven",
+          "from": "5.2.1",
+          "level": "patch",
+          "location": "notification/api/pom.xml",
+          "name": "notification-api",
+          "to": "5.2.2"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "maven",
+          "from": "5.2.1",
+          "level": "patch",
+          "location": "notification/pom.xml",
+          "name": "notification-parent",
+          "to": "5.2.2"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "maven",
+          "from": "5.2.1",
+          "level": "patch",
+          "location": "notification/publishing/pom.xml",
+          "name": "notification-publishing",
+          "to": "5.2.2"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "maven",
+          "from": "5.2.1",
+          "level": "patch",
+          "location": "notification/templating/pom.xml",
+          "name": "notification-templating",
+          "to": "5.2.2"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "maven",
+          "from": "5.2.1",
+          "level": "patch",
+          "location": "support/os-distro-metadata/pom.xml",
+          "name": "os-distro-metadata",
+          "to": "5.2.2"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "maven",
+          "from": "5.2.1",
+          "level": "patch",
+          "location": "package-metadata/api/pom.xml",
+          "name": "package-metadata-api",
+          "to": "5.2.2"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "maven",
+          "from": "5.2.1",
+          "level": "patch",
+          "location": "package-metadata/pom.xml",
+          "name": "package-metadata-parent",
+          "to": "5.2.2"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "maven",
+          "from": "5.2.1",
+          "level": "patch",
+          "location": "package-metadata/resolution/pom.xml",
+          "name": "package-metadata-resolution",
+          "to": "5.2.2"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "maven",
+          "from": "5.2.1",
+          "level": "patch",
+          "location": "plugin/api/pom.xml",
+          "name": "plugin-api",
+          "to": "5.2.2"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "maven",
+          "from": "5.2.1",
+          "level": "patch",
+          "location": "plugin/config/pom.xml",
+          "name": "plugin-config",
+          "to": "5.2.2"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "maven",
+          "from": "5.2.1",
+          "level": "patch",
+          "location": "plugin/pom.xml",
+          "name": "plugin-parent",
+          "to": "5.2.2"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "maven",
+          "from": "5.2.1",
+          "level": "patch",
+          "location": "plugin/runtime/pom.xml",
+          "name": "plugin-runtime",
+          "to": "5.2.2"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "maven",
+          "from": "5.2.1",
+          "level": "patch",
+          "location": "coverage-report/pom.xml",
+          "name": "plugin-testing",
+          "to": "5.2.2"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "maven",
+          "from": "5.2.1",
+          "level": "patch",
+          "location": "proto/pom.xml",
+          "name": "proto",
+          "to": "5.2.2"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "maven",
+          "from": "5.2.1",
+          "level": "patch",
+          "location": "secret-management/pom.xml",
+          "name": "secret-management",
+          "to": "5.2.2"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "maven",
+          "from": "5.2.1",
+          "level": "patch",
+          "location": "support/smallrye-config-secret-handler-file/pom.xml",
+          "name": "smallrye-config-secret-handler-file",
+          "to": "5.2.2"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "maven",
+          "from": "5.2.1",
+          "level": "patch",
+          "location": "support/smallrye-config-source-memory/pom.xml",
+          "name": "smallrye-config-source-memory",
+          "to": "5.2.2"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "maven",
+          "from": "5.2.1",
+          "level": "patch",
+          "location": "support/swagger-model-converters/pom.xml",
+          "name": "swagger-model-converters",
+          "to": "5.2.2"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "maven",
+          "from": "5.2.1",
+          "level": "patch",
+          "location": "alpine/alpine-infra/pom.xml",
+          "name": "test-database-support",
+          "to": "5.2.2"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "maven",
+          "from": "5.2.1",
+          "level": "patch",
+          "location": "support/v4-migrator/pom.xml",
+          "name": "v4-migrator",
+          "to": "5.2.2"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "maven",
+          "from": "5.2.1",
+          "level": "patch",
+          "location": "vuln-analysis/api/pom.xml",
+          "name": "vuln-analysis-api",
+          "to": "5.2.2"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "maven",
+          "from": "5.2.1",
+          "level": "patch",
+          "location": "vuln-analysis/pom.xml",
+          "name": "vuln-analysis-parent",
+          "to": "5.2.2"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "maven",
+          "from": "5.2.1",
+          "level": "patch",
+          "location": "vuln-analysis/checkmarx/pom.xml",
+          "name": "vuln-analyzer-checkmarx",
+          "to": "5.2.2"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "maven",
+          "from": "5.2.1",
+          "level": "patch",
+          "location": "vuln-analysis/internal/pom.xml",
+          "name": "vuln-analyzer-internal",
+          "to": "5.2.2"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "maven",
+          "from": "5.2.1",
+          "level": "patch",
+          "location": "vuln-analysis/oss-index/pom.xml",
+          "name": "vuln-analyzer-oss-index",
+          "to": "5.2.2"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "maven",
+          "from": "5.2.1",
+          "level": "patch",
+          "location": "vuln-analysis/snyk/pom.xml",
+          "name": "vuln-analyzer-snyk",
+          "to": "5.2.2"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "maven",
+          "from": "5.2.1",
+          "level": "patch",
+          "location": "vuln-analysis/trivy/pom.xml",
+          "name": "vuln-analyzer-trivy",
+          "to": "5.2.2"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "maven",
+          "from": "5.2.1",
+          "level": "patch",
+          "location": "vuln-analysis/vuln-db/pom.xml",
+          "name": "vuln-analyzer-vuln-db",
+          "to": "5.2.2"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "maven",
+          "from": "5.2.1",
+          "level": "patch",
+          "location": "vuln-data-source/api/pom.xml",
+          "name": "vuln-data-source-api",
+          "to": "5.2.2"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "maven",
+          "from": "5.2.1",
+          "level": "patch",
+          "location": "vuln-data-source/github/pom.xml",
+          "name": "vuln-data-source-github",
+          "to": "5.2.2"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "maven",
+          "from": "5.2.1",
+          "level": "patch",
+          "location": "vuln-data-source/jvn/pom.xml",
+          "name": "vuln-data-source-jvn",
+          "to": "5.2.2"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "maven",
+          "from": "5.2.1",
+          "level": "patch",
+          "location": "vuln-data-source/nvd/pom.xml",
+          "name": "vuln-data-source-nvd",
+          "to": "5.2.2"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "maven",
+          "from": "5.2.1",
+          "level": "patch",
+          "location": "vuln-data-source/osv/pom.xml",
+          "name": "vuln-data-source-osv",
+          "to": "5.2.2"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "maven",
+          "from": "5.2.1",
+          "level": "patch",
+          "location": "vuln-data-source/pom.xml",
+          "name": "vuln-data-source-parent",
+          "to": "5.2.2"
+        },
+        {
+          "direction": "upgrade",
+          "ecosystem": "maven",
+          "from": "3.1.2",
+          "level": "patch",
+          "location": "cache/api/pom.xml",
+          "name": "microprofile-config-api",
+          "to": "3.1.3"
+        }
+      ],
       "version_set_changes": [],
       "workflow_new": 0,
       "workflow_resolved": 0
     },
-    "commit": "e6c887c0207baeec1f1346e28bf90000b4b45eda",
+    "commit": "e06081942be5e2a2298931101119b03fdaffd90d",
     "compliance": {
       "overall_score": 55,
       "standards": {
@@ -338,8 +2284,8 @@
         "licenses": [],
         "location": ".github/workflows/_meta-build.yaml",
         "name": "actions/setup-java",
-        "purl": "pkg:github/actions/setup-java@v6.0.1",
-        "version": "v6.0.1"
+        "purl": "pkg:github/actions/setup-java@v6.2.0",
+        "version": "v6.2.0"
       },
       {
         "ecosystem": "github",
@@ -394,8 +2340,8 @@
         "licenses": [],
         "location": ".github/workflows/_meta-build.yaml",
         "name": "docker/login-action",
-        "purl": "pkg:github/docker/login-action@v4.6.0",
-        "version": "v4.6.0"
+        "purl": "pkg:github/docker/login-action@v4.8.0",
+        "version": "v4.8.0"
       },
       {
         "ecosystem": "github",
@@ -418,16 +2364,16 @@
         "licenses": [],
         "location": ".github/workflows/ci-codeql.yaml",
         "name": "github/codeql-action/analyze",
-        "purl": "pkg:github/github/codeql-action@v4.38.3#analyze",
-        "version": "v4.38.3"
+        "purl": "pkg:github/github/codeql-action@v4.39.3#analyze",
+        "version": "v4.39.3"
       },
       {
         "ecosystem": "github",
         "licenses": [],
         "location": ".github/workflows/ci-codeql.yaml",
         "name": "github/codeql-action/init",
-        "purl": "pkg:github/github/codeql-action@v4.38.3#init",
-        "version": "v4.38.3"
+        "purl": "pkg:github/github/codeql-action@v4.39.3#init",
+        "version": "v4.39.3"
       },
       {
         "ecosystem": "github",
@@ -442,16 +2388,16 @@
         "licenses": [],
         "location": ".github/workflows/ci-lint.yaml",
         "name": "oasdiff/oasdiff-action/breaking",
-        "purl": "pkg:github/oasdiff/oasdiff-action@v0.1.18#breaking",
-        "version": "v0.1.18"
+        "purl": "pkg:github/oasdiff/oasdiff-action@v0.1.23#breaking",
+        "version": "v0.1.23"
       },
       {
         "ecosystem": "github",
         "licenses": [],
         "location": ".github/workflows/ci-lint.yaml",
         "name": "zizmorcore/zizmor-action",
-        "purl": "pkg:github/zizmorcore/zizmor-action@v0.6.4",
-        "version": "v0.6.4"
+        "purl": "pkg:github/zizmorcore/zizmor-action@v0.8.1",
+        "version": "v0.8.1"
       },
       {
         "ecosystem": "maven",
@@ -468,8 +2414,8 @@
         ],
         "location": "alpine/alpine-common/pom.xml",
         "name": "alpine-common",
-        "purl": "pkg:maven/org.dependencytrack/alpine-common@5.2.1",
-        "version": "5.2.1"
+        "purl": "pkg:maven/org.dependencytrack/alpine-common@5.2.2",
+        "version": "5.2.2"
       },
       {
         "ecosystem": "maven",
@@ -478,8 +2424,8 @@
         ],
         "location": "alpine/alpine-infra/pom.xml",
         "name": "alpine-infra",
-        "purl": "pkg:maven/org.dependencytrack/alpine-infra@5.2.1",
-        "version": "5.2.1"
+        "purl": "pkg:maven/org.dependencytrack/alpine-infra@5.2.2",
+        "version": "5.2.2"
       },
       {
         "ecosystem": "maven",
@@ -488,8 +2434,8 @@
         ],
         "location": "alpine/alpine-model/pom.xml",
         "name": "alpine-model",
-        "purl": "pkg:maven/org.dependencytrack/alpine-model@5.2.1",
-        "version": "5.2.1"
+        "purl": "pkg:maven/org.dependencytrack/alpine-model@5.2.2",
+        "version": "5.2.2"
       },
       {
         "ecosystem": "maven",
@@ -498,8 +2444,8 @@
         ],
         "location": "alpine/pom.xml",
         "name": "alpine-parent",
-        "purl": "pkg:maven/org.dependencytrack/alpine-parent@5.2.1",
-        "version": "5.2.1"
+        "purl": "pkg:maven/org.dependencytrack/alpine-parent@5.2.2",
+        "version": "5.2.2"
       },
       {
         "ecosystem": "maven",
@@ -508,8 +2454,8 @@
         ],
         "location": "alpine/alpine-server/pom.xml",
         "name": "alpine-server",
-        "purl": "pkg:maven/org.dependencytrack/alpine-server@5.2.1",
-        "version": "5.2.1"
+        "purl": "pkg:maven/org.dependencytrack/alpine-server@5.2.2",
+        "version": "5.2.2"
       },
       {
         "ecosystem": "maven",
@@ -526,8 +2472,8 @@
         ],
         "location": "api/pom.xml",
         "name": "api",
-        "purl": "pkg:maven/org.dependencytrack/api@5.2.1",
-        "version": "5.2.1"
+        "purl": "pkg:maven/org.dependencytrack/api@5.2.2",
+        "version": "5.2.2"
       },
       {
         "ecosystem": "maven",
@@ -536,8 +2482,8 @@
         ],
         "location": "apiserver/pom.xml",
         "name": "apiserver",
-        "purl": "pkg:maven/org.dependencytrack/apiserver@5.2.1",
-        "version": "5.2.1"
+        "purl": "pkg:maven/org.dependencytrack/apiserver@5.2.2",
+        "version": "5.2.2"
       },
       {
         "ecosystem": "maven",
@@ -570,8 +2516,8 @@
         ],
         "location": "cache/api/pom.xml",
         "name": "cache-api",
-        "purl": "pkg:maven/org.dependencytrack/cache-api@5.2.1",
-        "version": "5.2.1"
+        "purl": "pkg:maven/org.dependencytrack/cache-api@5.2.2",
+        "version": "5.2.2"
       },
       {
         "ecosystem": "maven",
@@ -580,8 +2526,8 @@
         ],
         "location": "cache/pom.xml",
         "name": "cache-parent",
-        "purl": "pkg:maven/org.dependencytrack/cache-parent@5.2.1",
-        "version": "5.2.1"
+        "purl": "pkg:maven/org.dependencytrack/cache-parent@5.2.2",
+        "version": "5.2.2"
       },
       {
         "ecosystem": "maven",
@@ -590,8 +2536,8 @@
         ],
         "location": "cache/provider-database/pom.xml",
         "name": "cache-provider-database",
-        "purl": "pkg:maven/org.dependencytrack/cache-provider-database@5.2.1",
-        "version": "5.2.1"
+        "purl": "pkg:maven/org.dependencytrack/cache-provider-database@5.2.2",
+        "version": "5.2.2"
       },
       {
         "ecosystem": "maven",
@@ -600,8 +2546,8 @@
         ],
         "location": "cache/provider-memory/pom.xml",
         "name": "cache-provider-memory",
-        "purl": "pkg:maven/org.dependencytrack/cache-provider-memory@5.2.1",
-        "version": "5.2.1"
+        "purl": "pkg:maven/org.dependencytrack/cache-provider-memory@5.2.2",
+        "version": "5.2.2"
       },
       {
         "ecosystem": "maven",
@@ -616,8 +2562,8 @@
         "licenses": [],
         "location": "apiserver/pom.xml",
         "name": "cel",
-        "purl": "pkg:maven/dev.cel/cel@0.14.0",
-        "version": "0.14.0"
+        "purl": "pkg:maven/dev.cel/cel@0.15.0",
+        "version": "0.15.0"
       },
       {
         "ecosystem": "maven",
@@ -626,8 +2572,8 @@
         ],
         "location": "common/config/pom.xml",
         "name": "common-config",
-        "purl": "pkg:maven/org.dependencytrack/common-config@5.2.1",
-        "version": "5.2.1"
+        "purl": "pkg:maven/org.dependencytrack/common-config@5.2.2",
+        "version": "5.2.2"
       },
       {
         "ecosystem": "maven",
@@ -636,8 +2582,8 @@
         ],
         "location": "common/datasource/pom.xml",
         "name": "common-datasource",
-        "purl": "pkg:maven/org.dependencytrack/common-datasource@5.2.1",
-        "version": "5.2.1"
+        "purl": "pkg:maven/org.dependencytrack/common-datasource@5.2.2",
+        "version": "5.2.2"
       },
       {
         "ecosystem": "maven",
@@ -646,8 +2592,8 @@
         ],
         "location": "common/health/pom.xml",
         "name": "common-health",
-        "purl": "pkg:maven/org.dependencytrack/common-health@5.2.1",
-        "version": "5.2.1"
+        "purl": "pkg:maven/org.dependencytrack/common-health@5.2.2",
+        "version": "5.2.2"
       },
       {
         "ecosystem": "maven",
@@ -656,8 +2602,8 @@
         ],
         "location": "common/init/pom.xml",
         "name": "common-init",
-        "purl": "pkg:maven/org.dependencytrack/common-init@5.2.1",
-        "version": "5.2.1"
+        "purl": "pkg:maven/org.dependencytrack/common-init@5.2.2",
+        "version": "5.2.2"
       },
       {
         "ecosystem": "maven",
@@ -666,8 +2612,8 @@
         ],
         "location": "common/pagination/pom.xml",
         "name": "common-pagination",
-        "purl": "pkg:maven/org.dependencytrack/common-pagination@5.2.1",
-        "version": "5.2.1"
+        "purl": "pkg:maven/org.dependencytrack/common-pagination@5.2.2",
+        "version": "5.2.2"
       },
       {
         "ecosystem": "maven",
@@ -676,16 +2622,16 @@
         ],
         "location": "common/pom.xml",
         "name": "common-parent",
-        "purl": "pkg:maven/org.dependencytrack/common-parent@5.2.1",
-        "version": "5.2.1"
+        "purl": "pkg:maven/org.dependencytrack/common-parent@5.2.2",
+        "version": "5.2.2"
       },
       {
         "ecosystem": "maven",
         "licenses": [],
         "location": "vuln-data-source/github/pom.xml",
         "name": "commons-lang3",
-        "purl": "pkg:maven/org.apache.commons/commons-lang3@3.21.0",
-        "version": "3.21.0"
+        "purl": "pkg:maven/org.apache.commons/commons-lang3@3.22.0",
+        "version": "3.22.0"
       },
       {
         "ecosystem": "maven",
@@ -694,8 +2640,8 @@
         ],
         "location": "coverage-report/pom.xml",
         "name": "coverage-report",
-        "purl": "pkg:maven/org.dependencytrack/coverage-report@5.2.1",
-        "version": "5.2.1"
+        "purl": "pkg:maven/org.dependencytrack/coverage-report@5.2.2",
+        "version": "5.2.2"
       },
       {
         "ecosystem": "maven",
@@ -720,8 +2666,8 @@
         ],
         "location": "support/cyclonedx-proto/pom.xml",
         "name": "cyclonedx-proto",
-        "purl": "pkg:maven/org.dependencytrack/cyclonedx-proto@5.2.1",
-        "version": "5.2.1"
+        "purl": "pkg:maven/org.dependencytrack/cyclonedx-proto@5.2.2",
+        "version": "5.2.2"
       },
       {
         "ecosystem": "maven",
@@ -746,8 +2692,8 @@
         ],
         "location": "support/datanucleus-plugin/plugin/pom.xml",
         "name": "datanucleus-plugin",
-        "purl": "pkg:maven/org.dependencytrack/datanucleus-plugin@5.2.1",
-        "version": "5.2.1"
+        "purl": "pkg:maven/org.dependencytrack/datanucleus-plugin@5.2.2",
+        "version": "5.2.2"
       },
       {
         "ecosystem": "maven",
@@ -756,16 +2702,16 @@
         ],
         "location": "support/datanucleus-plugin/pom.xml",
         "name": "datanucleus-plugin-parent",
-        "purl": "pkg:maven/org.dependencytrack/datanucleus-plugin-parent@5.2.1",
-        "version": "5.2.1"
+        "purl": "pkg:maven/org.dependencytrack/datanucleus-plugin-parent@5.2.2",
+        "version": "5.2.2"
       },
       {
         "ecosystem": "maven",
         "licenses": [],
         "location": "coverage-report/pom.xml",
         "name": "datanucleus-plugin-test",
-        "purl": "pkg:maven/org.dependencytrack/datanucleus-plugin-test@5.2.1",
-        "version": "5.2.1"
+        "purl": "pkg:maven/org.dependencytrack/datanucleus-plugin-test@5.2.2",
+        "version": "5.2.2"
       },
       {
         "ecosystem": "maven",
@@ -798,8 +2744,8 @@
         ],
         "location": "pom.xml",
         "name": "dependency-track-parent",
-        "purl": "pkg:maven/org.dependencytrack/dependency-track-parent@5.2.1",
-        "version": "5.2.1"
+        "purl": "pkg:maven/org.dependencytrack/dependency-track-parent@5.2.2",
+        "version": "5.2.2"
       },
       {
         "ecosystem": "maven",
@@ -808,8 +2754,8 @@
         ],
         "location": "dex/api/pom.xml",
         "name": "dex-api",
-        "purl": "pkg:maven/org.dependencytrack/dex-api@5.2.1",
-        "version": "5.2.1"
+        "purl": "pkg:maven/org.dependencytrack/dex-api@5.2.2",
+        "version": "5.2.2"
       },
       {
         "ecosystem": "maven",
@@ -818,8 +2764,8 @@
         ],
         "location": "dex/engine/pom.xml",
         "name": "dex-engine",
-        "purl": "pkg:maven/org.dependencytrack/dex-engine@5.2.1",
-        "version": "5.2.1"
+        "purl": "pkg:maven/org.dependencytrack/dex-engine@5.2.2",
+        "version": "5.2.2"
       },
       {
         "ecosystem": "maven",
@@ -828,8 +2774,8 @@
         ],
         "location": "dex/engine-api/pom.xml",
         "name": "dex-engine-api",
-        "purl": "pkg:maven/org.dependencytrack/dex-engine-api@5.2.1",
-        "version": "5.2.1"
+        "purl": "pkg:maven/org.dependencytrack/dex-engine-api@5.2.2",
+        "version": "5.2.2"
       },
       {
         "ecosystem": "maven",
@@ -838,8 +2784,8 @@
         ],
         "location": "dex/engine-migration/pom.xml",
         "name": "dex-engine-migration",
-        "purl": "pkg:maven/org.dependencytrack/dex-engine-migration@5.2.1",
-        "version": "5.2.1"
+        "purl": "pkg:maven/org.dependencytrack/dex-engine-migration@5.2.2",
+        "version": "5.2.2"
       },
       {
         "ecosystem": "maven",
@@ -848,24 +2794,24 @@
         ],
         "location": "dex/pom.xml",
         "name": "dex-parent",
-        "purl": "pkg:maven/org.dependencytrack/dex-parent@5.2.1",
-        "version": "5.2.1"
+        "purl": "pkg:maven/org.dependencytrack/dex-parent@5.2.2",
+        "version": "5.2.2"
       },
       {
         "ecosystem": "maven",
         "licenses": [],
         "location": "apiserver/pom.xml",
         "name": "dex-testing",
-        "purl": "pkg:maven/org.dependencytrack/dex-testing@5.2.1",
-        "version": "5.2.1"
+        "purl": "pkg:maven/org.dependencytrack/dex-testing@5.2.2",
+        "version": "5.2.2"
       },
       {
         "ecosystem": "maven",
         "licenses": [],
         "location": "apiserver/pom.xml",
         "name": "error_prone_annotations",
-        "purl": "pkg:maven/com.google.errorprone/error_prone_annotations@2.50.0",
-        "version": "2.50.0"
+        "purl": "pkg:maven/com.google.errorprone/error_prone_annotations@2.52.0",
+        "version": "2.52.0"
       },
       {
         "ecosystem": "maven",
@@ -874,8 +2820,8 @@
         ],
         "location": "file-storage/api/pom.xml",
         "name": "file-storage-api",
-        "purl": "pkg:maven/org.dependencytrack/file-storage-api@5.2.1",
-        "version": "5.2.1"
+        "purl": "pkg:maven/org.dependencytrack/file-storage-api@5.2.2",
+        "version": "5.2.2"
       },
       {
         "ecosystem": "maven",
@@ -884,8 +2830,8 @@
         ],
         "location": "file-storage/pom.xml",
         "name": "file-storage-parent",
-        "purl": "pkg:maven/org.dependencytrack/file-storage-parent@5.2.1",
-        "version": "5.2.1"
+        "purl": "pkg:maven/org.dependencytrack/file-storage-parent@5.2.2",
+        "version": "5.2.2"
       },
       {
         "ecosystem": "maven",
@@ -894,8 +2840,8 @@
         ],
         "location": "file-storage/provider-local/pom.xml",
         "name": "file-storage-provider-local",
-        "purl": "pkg:maven/org.dependencytrack/file-storage-provider-local@5.2.1",
-        "version": "5.2.1"
+        "purl": "pkg:maven/org.dependencytrack/file-storage-provider-local@5.2.2",
+        "version": "5.2.2"
       },
       {
         "ecosystem": "maven",
@@ -904,8 +2850,8 @@
         ],
         "location": "file-storage/provider-memory/pom.xml",
         "name": "file-storage-provider-memory",
-        "purl": "pkg:maven/org.dependencytrack/file-storage-provider-memory@5.2.1",
-        "version": "5.2.1"
+        "purl": "pkg:maven/org.dependencytrack/file-storage-provider-memory@5.2.2",
+        "version": "5.2.2"
       },
       {
         "ecosystem": "maven",
@@ -914,8 +2860,8 @@
         ],
         "location": "file-storage/provider-s3/pom.xml",
         "name": "file-storage-provider-s3",
-        "purl": "pkg:maven/org.dependencytrack/file-storage-provider-s3@5.2.1",
-        "version": "5.2.1"
+        "purl": "pkg:maven/org.dependencytrack/file-storage-provider-s3@5.2.2",
+        "version": "5.2.2"
       },
       {
         "ecosystem": "maven",
@@ -940,16 +2886,16 @@
         ],
         "location": "support/flyway/pom.xml",
         "name": "flyway-support",
-        "purl": "pkg:maven/org.dependencytrack/flyway-support@5.2.1",
-        "version": "5.2.1"
+        "purl": "pkg:maven/org.dependencytrack/flyway-support@5.2.2",
+        "version": "5.2.2"
       },
       {
         "ecosystem": "maven",
         "licenses": [],
         "location": "notification/publishing/pom.xml",
         "name": "greenmail-junit5",
-        "purl": "pkg:maven/com.icegreen/greenmail-junit5@2.1.14",
-        "version": "2.1.14"
+        "purl": "pkg:maven/com.icegreen/greenmail-junit5@2.1.15",
+        "version": "2.1.15"
       },
       {
         "ecosystem": "maven",
@@ -1118,8 +3064,8 @@
         ],
         "location": "support/jdbi/pom.xml",
         "name": "jdbi-support",
-        "purl": "pkg:maven/org.dependencytrack/jdbi-support@5.2.1",
-        "version": "5.2.1"
+        "purl": "pkg:maven/org.dependencytrack/jdbi-support@5.2.2",
+        "version": "5.2.2"
       },
       {
         "ecosystem": "maven",
@@ -1286,8 +3232,8 @@
         "licenses": [],
         "location": "alpine/alpine-server/pom.xml",
         "name": "json-unit-assertj",
-        "purl": "pkg:maven/net.javacrumbs.json-unit/json-unit-assertj@6.3.0",
-        "version": "6.3.0"
+        "purl": "pkg:maven/net.javacrumbs.json-unit/json-unit-assertj@6.4.0",
+        "version": "6.4.0"
       },
       {
         "ecosystem": "maven",
@@ -1344,8 +3290,8 @@
         ],
         "location": "kev-data-source/api/pom.xml",
         "name": "kev-data-source-api",
-        "purl": "pkg:maven/org.dependencytrack/kev-data-source-api@5.2.1",
-        "version": "5.2.1"
+        "purl": "pkg:maven/org.dependencytrack/kev-data-source-api@5.2.2",
+        "version": "5.2.2"
       },
       {
         "ecosystem": "maven",
@@ -1354,8 +3300,8 @@
         ],
         "location": "kev-data-source/builtin/pom.xml",
         "name": "kev-data-source-builtin",
-        "purl": "pkg:maven/org.dependencytrack/kev-data-source-builtin@5.2.1",
-        "version": "5.2.1"
+        "purl": "pkg:maven/org.dependencytrack/kev-data-source-builtin@5.2.2",
+        "version": "5.2.2"
       },
       {
         "ecosystem": "maven",
@@ -1364,24 +3310,24 @@
         ],
         "location": "kev-data-source/pom.xml",
         "name": "kev-data-source-parent",
-        "purl": "pkg:maven/org.dependencytrack/kev-data-source-parent@5.2.1",
-        "version": "5.2.1"
+        "purl": "pkg:maven/org.dependencytrack/kev-data-source-parent@5.2.2",
+        "version": "5.2.2"
       },
       {
         "ecosystem": "maven",
         "licenses": [],
         "location": "alpine/alpine-server/pom.xml",
         "name": "logback-classic",
-        "purl": "pkg:maven/ch.qos.logback/logback-classic@1.6.5",
-        "version": "1.6.5"
+        "purl": "pkg:maven/ch.qos.logback/logback-classic@1.6.6",
+        "version": "1.6.6"
       },
       {
         "ecosystem": "maven",
         "licenses": [],
         "location": "alpine/alpine-server/pom.xml",
         "name": "logback-core",
-        "purl": "pkg:maven/ch.qos.logback/logback-core@1.6.5",
-        "version": "1.6.5"
+        "purl": "pkg:maven/ch.qos.logback/logback-core@1.6.6",
+        "version": "1.6.6"
       },
       {
         "ecosystem": "maven",
@@ -1428,8 +3374,8 @@
         "licenses": [],
         "location": "cache/api/pom.xml",
         "name": "microprofile-config-api",
-        "purl": "pkg:maven/org.eclipse.microprofile.config/microprofile-config-api@3.1.2",
-        "version": "3.1.2"
+        "purl": "pkg:maven/org.eclipse.microprofile.config/microprofile-config-api@3.1.3",
+        "version": "3.1.3"
       },
       {
         "ecosystem": "maven",
@@ -1446,16 +3392,16 @@
         ],
         "location": "migration/pom.xml",
         "name": "migration",
-        "purl": "pkg:maven/org.dependencytrack/migration@5.2.1",
-        "version": "5.2.1"
+        "purl": "pkg:maven/org.dependencytrack/migration@5.2.2",
+        "version": "5.2.2"
       },
       {
         "ecosystem": "maven",
         "licenses": [],
         "location": "apiserver/pom.xml",
         "name": "minio",
-        "purl": "pkg:maven/io.minio/minio@9.0.3",
-        "version": "9.0.3"
+        "purl": "pkg:maven/io.minio/minio@9.0.4",
+        "version": "9.0.4"
       },
       {
         "ecosystem": "maven",
@@ -1470,8 +3416,8 @@
         "licenses": [],
         "location": "support/v4-migrator/pom.xml",
         "name": "mssql-jdbc",
-        "purl": "pkg:maven/com.microsoft.sqlserver/mssql-jdbc@13.6.1.jre11",
-        "version": "13.6.1.jre11"
+        "purl": "pkg:maven/com.microsoft.sqlserver/mssql-jdbc@13.6.2.jre11",
+        "version": "13.6.2.jre11"
       },
       {
         "ecosystem": "maven",
@@ -1480,8 +3426,8 @@
         ],
         "location": "support/net/pom.xml",
         "name": "net-support",
-        "purl": "pkg:maven/org.dependencytrack/net-support@5.2.1",
-        "version": "5.2.1"
+        "purl": "pkg:maven/org.dependencytrack/net-support@5.2.2",
+        "version": "5.2.2"
       },
       {
         "ecosystem": "maven",
@@ -1490,8 +3436,8 @@
         ],
         "location": "notification/api/pom.xml",
         "name": "notification-api",
-        "purl": "pkg:maven/org.dependencytrack/notification-api@5.2.1",
-        "version": "5.2.1"
+        "purl": "pkg:maven/org.dependencytrack/notification-api@5.2.2",
+        "version": "5.2.2"
       },
       {
         "ecosystem": "maven",
@@ -1500,8 +3446,8 @@
         ],
         "location": "notification/pom.xml",
         "name": "notification-parent",
-        "purl": "pkg:maven/org.dependencytrack/notification-parent@5.2.1",
-        "version": "5.2.1"
+        "purl": "pkg:maven/org.dependencytrack/notification-parent@5.2.2",
+        "version": "5.2.2"
       },
       {
         "ecosystem": "maven",
@@ -1510,8 +3456,8 @@
         ],
         "location": "notification/publishing/pom.xml",
         "name": "notification-publishing",
-        "purl": "pkg:maven/org.dependencytrack/notification-publishing@5.2.1",
-        "version": "5.2.1"
+        "purl": "pkg:maven/org.dependencytrack/notification-publishing@5.2.2",
+        "version": "5.2.2"
       },
       {
         "ecosystem": "maven",
@@ -1520,24 +3466,24 @@
         ],
         "location": "notification/templating/pom.xml",
         "name": "notification-templating",
-        "purl": "pkg:maven/org.dependencytrack/notification-templating@5.2.1",
-        "version": "5.2.1"
+        "purl": "pkg:maven/org.dependencytrack/notification-templating@5.2.2",
+        "version": "5.2.2"
       },
       {
         "ecosystem": "maven",
         "licenses": [],
         "location": "alpine/alpine-server/pom.xml",
         "name": "oauth2-oidc-sdk",
-        "purl": "pkg:maven/com.nimbusds/oauth2-oidc-sdk@11.38.2",
-        "version": "11.38.2"
+        "purl": "pkg:maven/com.nimbusds/oauth2-oidc-sdk@11.39",
+        "version": "11.39"
       },
       {
         "ecosystem": "maven",
         "licenses": [],
         "location": "apiserver/pom.xml",
         "name": "okhttp-jvm",
-        "purl": "pkg:maven/com.squareup.okhttp3/okhttp-jvm@5.5.0",
-        "version": "5.5.0"
+        "purl": "pkg:maven/com.squareup.okhttp3/okhttp-jvm@5.5.1",
+        "version": "5.5.1"
       },
       {
         "ecosystem": "maven",
@@ -1554,8 +3500,8 @@
         ],
         "location": "support/os-distro-metadata/pom.xml",
         "name": "os-distro-metadata",
-        "purl": "pkg:maven/org.dependencytrack/os-distro-metadata@5.2.1",
-        "version": "5.2.1"
+        "purl": "pkg:maven/org.dependencytrack/os-distro-metadata@5.2.2",
+        "version": "5.2.2"
       },
       {
         "ecosystem": "maven",
@@ -1572,8 +3518,8 @@
         ],
         "location": "package-metadata/api/pom.xml",
         "name": "package-metadata-api",
-        "purl": "pkg:maven/org.dependencytrack/package-metadata-api@5.2.1",
-        "version": "5.2.1"
+        "purl": "pkg:maven/org.dependencytrack/package-metadata-api@5.2.2",
+        "version": "5.2.2"
       },
       {
         "ecosystem": "maven",
@@ -1582,8 +3528,8 @@
         ],
         "location": "package-metadata/pom.xml",
         "name": "package-metadata-parent",
-        "purl": "pkg:maven/org.dependencytrack/package-metadata-parent@5.2.1",
-        "version": "5.2.1"
+        "purl": "pkg:maven/org.dependencytrack/package-metadata-parent@5.2.2",
+        "version": "5.2.2"
       },
       {
         "ecosystem": "maven",
@@ -1592,8 +3538,8 @@
         ],
         "location": "package-metadata/resolution/pom.xml",
         "name": "package-metadata-resolution",
-        "purl": "pkg:maven/org.dependencytrack/package-metadata-resolution@5.2.1",
-        "version": "5.2.1"
+        "purl": "pkg:maven/org.dependencytrack/package-metadata-resolution@5.2.2",
+        "version": "5.2.2"
       },
       {
         "ecosystem": "maven",
@@ -1626,8 +3572,8 @@
         ],
         "location": "plugin/api/pom.xml",
         "name": "plugin-api",
-        "purl": "pkg:maven/org.dependencytrack/plugin-api@5.2.1",
-        "version": "5.2.1"
+        "purl": "pkg:maven/org.dependencytrack/plugin-api@5.2.2",
+        "version": "5.2.2"
       },
       {
         "ecosystem": "maven",
@@ -1636,8 +3582,8 @@
         ],
         "location": "plugin/config/pom.xml",
         "name": "plugin-config",
-        "purl": "pkg:maven/org.dependencytrack/plugin-config@5.2.1",
-        "version": "5.2.1"
+        "purl": "pkg:maven/org.dependencytrack/plugin-config@5.2.2",
+        "version": "5.2.2"
       },
       {
         "ecosystem": "maven",
@@ -1646,8 +3592,8 @@
         ],
         "location": "plugin/pom.xml",
         "name": "plugin-parent",
-        "purl": "pkg:maven/org.dependencytrack/plugin-parent@5.2.1",
-        "version": "5.2.1"
+        "purl": "pkg:maven/org.dependencytrack/plugin-parent@5.2.2",
+        "version": "5.2.2"
       },
       {
         "ecosystem": "maven",
@@ -1656,16 +3602,16 @@
         ],
         "location": "plugin/runtime/pom.xml",
         "name": "plugin-runtime",
-        "purl": "pkg:maven/org.dependencytrack/plugin-runtime@5.2.1",
-        "version": "5.2.1"
+        "purl": "pkg:maven/org.dependencytrack/plugin-runtime@5.2.2",
+        "version": "5.2.2"
       },
       {
         "ecosystem": "maven",
         "licenses": [],
         "location": "coverage-report/pom.xml",
         "name": "plugin-testing",
-        "purl": "pkg:maven/org.dependencytrack/plugin-testing@5.2.1",
-        "version": "5.2.1"
+        "purl": "pkg:maven/org.dependencytrack/plugin-testing@5.2.2",
+        "version": "5.2.2"
       },
       {
         "ecosystem": "maven",
@@ -1690,8 +3636,8 @@
         ],
         "location": "proto/pom.xml",
         "name": "proto",
-        "purl": "pkg:maven/org.dependencytrack/proto@5.2.1",
-        "version": "5.2.1"
+        "purl": "pkg:maven/org.dependencytrack/proto@5.2.2",
+        "version": "5.2.2"
       },
       {
         "ecosystem": "maven",
@@ -1748,8 +3694,8 @@
         ],
         "location": "secret-management/pom.xml",
         "name": "secret-management",
-        "purl": "pkg:maven/org.dependencytrack/secret-management@5.2.1",
-        "version": "5.2.1"
+        "purl": "pkg:maven/org.dependencytrack/secret-management@5.2.2",
+        "version": "5.2.2"
       },
       {
         "ecosystem": "maven",
@@ -1806,8 +3752,8 @@
         ],
         "location": "support/smallrye-config-secret-handler-file/pom.xml",
         "name": "smallrye-config-secret-handler-file",
-        "purl": "pkg:maven/org.dependencytrack/smallrye-config-secret-handler-file@5.2.1",
-        "version": "5.2.1"
+        "purl": "pkg:maven/org.dependencytrack/smallrye-config-secret-handler-file@5.2.2",
+        "version": "5.2.2"
       },
       {
         "ecosystem": "maven",
@@ -1816,8 +3762,8 @@
         ],
         "location": "support/smallrye-config-source-memory/pom.xml",
         "name": "smallrye-config-source-memory",
-        "purl": "pkg:maven/org.dependencytrack/smallrye-config-source-memory@5.2.1",
-        "version": "5.2.1"
+        "purl": "pkg:maven/org.dependencytrack/smallrye-config-source-memory@5.2.2",
+        "version": "5.2.2"
       },
       {
         "ecosystem": "maven",
@@ -1842,8 +3788,8 @@
         ],
         "location": "support/swagger-model-converters/pom.xml",
         "name": "swagger-model-converters",
-        "purl": "pkg:maven/org.dependencytrack/swagger-model-converters@5.2.1",
-        "version": "5.2.1"
+        "purl": "pkg:maven/org.dependencytrack/swagger-model-converters@5.2.2",
+        "version": "5.2.2"
       },
       {
         "ecosystem": "maven",
@@ -1858,8 +3804,8 @@
         "licenses": [],
         "location": "alpine/alpine-infra/pom.xml",
         "name": "test-database-support",
-        "purl": "pkg:maven/org.dependencytrack/test-database-support@5.2.1",
-        "version": "5.2.1"
+        "purl": "pkg:maven/org.dependencytrack/test-database-support@5.2.2",
+        "version": "5.2.2"
       },
       {
         "ecosystem": "maven",
@@ -1932,16 +3878,16 @@
         ],
         "location": "support/v4-migrator/pom.xml",
         "name": "v4-migrator",
-        "purl": "pkg:maven/org.dependencytrack/v4-migrator@5.2.1",
-        "version": "5.2.1"
+        "purl": "pkg:maven/org.dependencytrack/v4-migrator@5.2.2",
+        "version": "5.2.2"
       },
       {
         "ecosystem": "maven",
         "licenses": [],
         "location": "apiserver/pom.xml",
         "name": "versatile-core",
-        "purl": "pkg:maven/io.github.nscuro/versatile-core@0.26.1",
-        "version": "0.26.1"
+        "purl": "pkg:maven/io.github.nscuro/versatile-core@0.26.2",
+        "version": "0.26.2"
       },
       {
         "ecosystem": "maven",
@@ -1950,8 +3896,8 @@
         ],
         "location": "vuln-analysis/api/pom.xml",
         "name": "vuln-analysis-api",
-        "purl": "pkg:maven/org.dependencytrack/vuln-analysis-api@5.2.1",
-        "version": "5.2.1"
+        "purl": "pkg:maven/org.dependencytrack/vuln-analysis-api@5.2.2",
+        "version": "5.2.2"
       },
       {
         "ecosystem": "maven",
@@ -1960,8 +3906,8 @@
         ],
         "location": "vuln-analysis/pom.xml",
         "name": "vuln-analysis-parent",
-        "purl": "pkg:maven/org.dependencytrack/vuln-analysis-parent@5.2.1",
-        "version": "5.2.1"
+        "purl": "pkg:maven/org.dependencytrack/vuln-analysis-parent@5.2.2",
+        "version": "5.2.2"
       },
       {
         "ecosystem": "maven",
@@ -1970,8 +3916,8 @@
         ],
         "location": "vuln-analysis/checkmarx/pom.xml",
         "name": "vuln-analyzer-checkmarx",
-        "purl": "pkg:maven/org.dependencytrack/vuln-analyzer-checkmarx@5.2.1",
-        "version": "5.2.1"
+        "purl": "pkg:maven/org.dependencytrack/vuln-analyzer-checkmarx@5.2.2",
+        "version": "5.2.2"
       },
       {
         "ecosystem": "maven",
@@ -1980,8 +3926,8 @@
         ],
         "location": "vuln-analysis/internal/pom.xml",
         "name": "vuln-analyzer-internal",
-        "purl": "pkg:maven/org.dependencytrack/vuln-analyzer-internal@5.2.1",
-        "version": "5.2.1"
+        "purl": "pkg:maven/org.dependencytrack/vuln-analyzer-internal@5.2.2",
+        "version": "5.2.2"
       },
       {
         "ecosystem": "maven",
@@ -1990,8 +3936,8 @@
         ],
         "location": "vuln-analysis/oss-index/pom.xml",
         "name": "vuln-analyzer-oss-index",
-        "purl": "pkg:maven/org.dependencytrack/vuln-analyzer-oss-index@5.2.1",
-        "version": "5.2.1"
+        "purl": "pkg:maven/org.dependencytrack/vuln-analyzer-oss-index@5.2.2",
+        "version": "5.2.2"
       },
       {
         "ecosystem": "maven",
@@ -2000,8 +3946,8 @@
         ],
         "location": "vuln-analysis/snyk/pom.xml",
         "name": "vuln-analyzer-snyk",
-        "purl": "pkg:maven/org.dependencytrack/vuln-analyzer-snyk@5.2.1",
-        "version": "5.2.1"
+        "purl": "pkg:maven/org.dependencytrack/vuln-analyzer-snyk@5.2.2",
+        "version": "5.2.2"
       },
       {
         "ecosystem": "maven",
@@ -2010,8 +3956,8 @@
         ],
         "location": "vuln-analysis/trivy/pom.xml",
         "name": "vuln-analyzer-trivy",
-        "purl": "pkg:maven/org.dependencytrack/vuln-analyzer-trivy@5.2.1",
-        "version": "5.2.1"
+        "purl": "pkg:maven/org.dependencytrack/vuln-analyzer-trivy@5.2.2",
+        "version": "5.2.2"
       },
       {
         "ecosystem": "maven",
@@ -2020,8 +3966,8 @@
         ],
         "location": "vuln-analysis/vuln-db/pom.xml",
         "name": "vuln-analyzer-vuln-db",
-        "purl": "pkg:maven/org.dependencytrack/vuln-analyzer-vuln-db@5.2.1",
-        "version": "5.2.1"
+        "purl": "pkg:maven/org.dependencytrack/vuln-analyzer-vuln-db@5.2.2",
+        "version": "5.2.2"
       },
       {
         "ecosystem": "maven",
@@ -2030,8 +3976,8 @@
         ],
         "location": "vuln-data-source/api/pom.xml",
         "name": "vuln-data-source-api",
-        "purl": "pkg:maven/org.dependencytrack/vuln-data-source-api@5.2.1",
-        "version": "5.2.1"
+        "purl": "pkg:maven/org.dependencytrack/vuln-data-source-api@5.2.2",
+        "version": "5.2.2"
       },
       {
         "ecosystem": "maven",
@@ -2040,8 +3986,8 @@
         ],
         "location": "vuln-data-source/github/pom.xml",
         "name": "vuln-data-source-github",
-        "purl": "pkg:maven/org.dependencytrack/vuln-data-source-github@5.2.1",
-        "version": "5.2.1"
+        "purl": "pkg:maven/org.dependencytrack/vuln-data-source-github@5.2.2",
+        "version": "5.2.2"
       },
       {
         "ecosystem": "maven",
@@ -2050,8 +3996,8 @@
         ],
         "location": "vuln-data-source/jvn/pom.xml",
         "name": "vuln-data-source-jvn",
-        "purl": "pkg:maven/org.dependencytrack/vuln-data-source-jvn@5.2.1",
-        "version": "5.2.1"
+        "purl": "pkg:maven/org.dependencytrack/vuln-data-source-jvn@5.2.2",
+        "version": "5.2.2"
       },
       {
         "ecosystem": "maven",
@@ -2060,8 +4006,8 @@
         ],
         "location": "vuln-data-source/nvd/pom.xml",
         "name": "vuln-data-source-nvd",
-        "purl": "pkg:maven/org.dependencytrack/vuln-data-source-nvd@5.2.1",
-        "version": "5.2.1"
+        "purl": "pkg:maven/org.dependencytrack/vuln-data-source-nvd@5.2.2",
+        "version": "5.2.2"
       },
       {
         "ecosystem": "maven",
@@ -2070,8 +4016,8 @@
         ],
         "location": "vuln-data-source/osv/pom.xml",
         "name": "vuln-data-source-osv",
-        "purl": "pkg:maven/org.dependencytrack/vuln-data-source-osv@5.2.1",
-        "version": "5.2.1"
+        "purl": "pkg:maven/org.dependencytrack/vuln-data-source-osv@5.2.2",
+        "version": "5.2.2"
       },
       {
         "ecosystem": "maven",
@@ -2080,8 +4026,8 @@
         ],
         "location": "vuln-data-source/pom.xml",
         "name": "vuln-data-source-parent",
-        "purl": "pkg:maven/org.dependencytrack/vuln-data-source-parent@5.2.1",
-        "version": "5.2.1"
+        "purl": "pkg:maven/org.dependencytrack/vuln-data-source-parent@5.2.2",
+        "version": "5.2.2"
       },
       {
         "ecosystem": "maven",
@@ -2104,8 +4050,8 @@
         "licenses": [],
         "location": "file-storage/provider-local/pom.xml",
         "name": "zstd-jni",
-        "purl": "pkg:maven/com.github.luben/zstd-jni@1.5.7-23",
-        "version": "1.5.7-23"
+        "purl": "pkg:maven/com.github.luben/zstd-jni@1.5.7-26",
+        "version": "1.5.7-26"
       }
     ],
     "description": "Track components and analyze dependency risk from SBOMs",
@@ -2208,14 +4154,14 @@
       "confirmed": 0,
       "coverage": {},
       "osv_only": [],
-      "warning": "osv-scanner could not resolve every manifest: failed resolution for vuln-data-source/osv/pom.xml: failed resolving {Maven:org.dependencytrack:vuln-data-source-osv[Concrete:5.2.1] {}}: version Maven:org.dependencytrack:os-distro-metadata[Concrete:"
+      "warning": "osv-scanner could not resolve every manifest: failed resolution for vuln-data-source/osv/pom.xml: failed resolving {Maven:org.dependencytrack:vuln-data-source-osv[Concrete:5.2.2] {}}: version Maven:org.dependencytrack:os-distro-metadata[Concrete:"
     },
     "osv_api": {
       "available": true,
-      "queried_at": "2026-11-16T01:29:13+00:00",
+      "queried_at": "2026-11-22T05:53:47+00:00",
       "states": {}
     },
-    "ref": "5.2.1",
+    "ref": "5.2.2",
     "ref_kind": "release",
     "release_integrity": {
       "assets": 4,
@@ -2226,23 +4172,39 @@
       "signatures_published": false,
       "verdict": "no-linux-binary"
     },
-    "released_at": "2026-10-25T11:13:32Z",
+    "released_at": "2026-11-18T22:19:43Z",
     "repository": "DependencyTrack/dependency-track",
-    "sbom_sha256": "d0956a958adf78aa4f6b278161e03e7beb5cdb6c355aacfb5f67813dfd8e9c03",
+    "sbom_sha256": "740633f71e6473d8fcb9f9cba2376ec1f12b3f522eecbf665c892781670db233",
     "sbomlyze_diff": {
       "added": 0,
       "baseline": {
         "attempt": "1",
-        "run_id": "42546359860"
+        "run_id": "43786179934"
       },
-      "changed": 0,
+      "changed": 100,
       "contract": "sbomlyze-diff-0.7",
-      "drift": {},
+      "drift": {
+        "distinct_version_changes": 95,
+        "downgrades": 0,
+        "file_changes": 78,
+        "integrity_drift": 0,
+        "license_changes": 0,
+        "metadata_drift": 0,
+        "owned_file_drift": 0,
+        "owned_files_changed": 0,
+        "unknown_direction": 0,
+        "upgrades": 100,
+        "version_drift": 100
+      },
       "findings": [
-        "0 version changes among 233 shared packages \u2014 no actual upgrades",
-        "Integrity drift checked only 0 of 233 same-version packages; the rest carry no comparable digest",
-        "Core system packages stable: maven (189), github (44) unchanged"
+        "Scanned DependencyTrack/dependency-track changed: 5.2.1 \u2192 5.2.2",
+        "95 version upgrades (10 minor, 85 patch) across 100 occurrences among 233 shared packages",
+        "Integrity drift checked only 0 of 133 same-version packages; the rest carry no comparable digest",
+        "78 file entries changed content (not package integrity drift): /.github/workflows/_meta-build.yaml, /.github/workflows/ci-codeql.yaml, /.github/workflows/ci-lint.yaml, /.github/workflows/ci-release.yaml, /.github/workflows/ci-test-e2e.yaml + 73 more",
+        "maven: 189 packages before and after (89 version changes)",
+        "github: 44 packages before and after (11 version changes)"
       ],
+      "html": "sbomlyze-diff.html",
       "occurrences": {
         "added": [],
         "digest_coverage": {
@@ -2252,9 +4214,322 @@
           "comparable": 0,
           "disjoint_kinds": 0,
           "packages_total": 233,
-          "same_version_pairs": 233
+          "same_version_pairs": 133
         },
-        "file_changes": [],
+        "file_changes": [
+          {
+            "owners": [],
+            "path": ".github/workflows/_meta-build.yaml"
+          },
+          {
+            "owners": [],
+            "path": ".github/workflows/ci-codeql.yaml"
+          },
+          {
+            "owners": [],
+            "path": ".github/workflows/ci-lint.yaml"
+          },
+          {
+            "owners": [],
+            "path": ".github/workflows/ci-release.yaml"
+          },
+          {
+            "owners": [],
+            "path": ".github/workflows/ci-test-e2e.yaml"
+          },
+          {
+            "owners": [],
+            "path": ".github/workflows/ci-test.yaml"
+          },
+          {
+            "owners": [],
+            "path": ".github/workflows/mirror-container-image.yml"
+          },
+          {
+            "owners": [],
+            "path": "alpine/alpine-common/pom.xml"
+          },
+          {
+            "owners": [],
+            "path": "alpine/alpine-infra/pom.xml"
+          },
+          {
+            "owners": [],
+            "path": "alpine/alpine-model/pom.xml"
+          },
+          {
+            "owners": [],
+            "path": "alpine/alpine-server/pom.xml"
+          },
+          {
+            "owners": [],
+            "path": "alpine/pom.xml"
+          },
+          {
+            "owners": [],
+            "path": "api/pom.xml"
+          },
+          {
+            "owners": [],
+            "path": "apiserver/pom.xml"
+          },
+          {
+            "owners": [],
+            "path": "cache/api/pom.xml"
+          },
+          {
+            "owners": [],
+            "path": "cache/pom.xml"
+          },
+          {
+            "owners": [],
+            "path": "cache/provider-database/pom.xml"
+          },
+          {
+            "owners": [],
+            "path": "cache/provider-memory/pom.xml"
+          },
+          {
+            "owners": [],
+            "path": "common/config/pom.xml"
+          },
+          {
+            "owners": [],
+            "path": "common/datasource/pom.xml"
+          },
+          {
+            "owners": [],
+            "path": "common/health/pom.xml"
+          },
+          {
+            "owners": [],
+            "path": "common/init/pom.xml"
+          },
+          {
+            "owners": [],
+            "path": "common/pagination/pom.xml"
+          },
+          {
+            "owners": [],
+            "path": "common/pom.xml"
+          },
+          {
+            "owners": [],
+            "path": "coverage-report/pom.xml"
+          },
+          {
+            "owners": [],
+            "path": "dex/api/pom.xml"
+          },
+          {
+            "owners": [],
+            "path": "dex/engine-api/pom.xml"
+          },
+          {
+            "owners": [],
+            "path": "dex/engine-migration/pom.xml"
+          },
+          {
+            "owners": [],
+            "path": "dex/engine/pom.xml"
+          },
+          {
+            "owners": [],
+            "path": "dex/pom.xml"
+          },
+          {
+            "owners": [],
+            "path": "file-storage/api/pom.xml"
+          },
+          {
+            "owners": [],
+            "path": "file-storage/pom.xml"
+          },
+          {
+            "owners": [],
+            "path": "file-storage/provider-local/pom.xml"
+          },
+          {
+            "owners": [],
+            "path": "file-storage/provider-memory/pom.xml"
+          },
+          {
+            "owners": [],
+            "path": "file-storage/provider-s3/pom.xml"
+          },
+          {
+            "owners": [],
+            "path": "kev-data-source/api/pom.xml"
+          },
+          {
+            "owners": [],
+            "path": "kev-data-source/builtin/pom.xml"
+          },
+          {
+            "owners": [],
+            "path": "kev-data-source/pom.xml"
+          },
+          {
+            "owners": [],
+            "path": "migration/pom.xml"
+          },
+          {
+            "owners": [],
+            "path": "notification/api/pom.xml"
+          },
+          {
+            "owners": [],
+            "path": "notification/pom.xml"
+          },
+          {
+            "owners": [],
+            "path": "notification/publishing/pom.xml"
+          },
+          {
+            "owners": [],
+            "path": "notification/templating/pom.xml"
+          },
+          {
+            "owners": [],
+            "path": "package-metadata/api/pom.xml"
+          },
+          {
+            "owners": [],
+            "path": "package-metadata/pom.xml"
+          },
+          {
+            "owners": [],
+            "path": "package-metadata/resolution/pom.xml"
+          },
+          {
+            "owners": [],
+            "path": "plugin/api/pom.xml"
+          },
+          {
+            "owners": [],
+            "path": "plugin/config/pom.xml"
+          },
+          {
+            "owners": [],
+            "path": "plugin/pom.xml"
+          },
+          {
+            "owners": [],
+            "path": "plugin/runtime/pom.xml"
+          },
+          {
+            "owners": [],
+            "path": "pom.xml"
+          },
+          {
+            "owners": [],
+            "path": "proto/pom.xml"
+          },
+          {
+            "owners": [],
+            "path": "secret-management/pom.xml"
+          },
+          {
+            "owners": [],
+            "path": "support/cyclonedx-proto/pom.xml"
+          },
+          {
+            "owners": [],
+            "path": "support/datanucleus-plugin/plugin/pom.xml"
+          },
+          {
+            "owners": [],
+            "path": "support/datanucleus-plugin/pom.xml"
+          },
+          {
+            "owners": [],
+            "path": "support/flyway/pom.xml"
+          },
+          {
+            "owners": [],
+            "path": "support/jdbi/pom.xml"
+          },
+          {
+            "owners": [],
+            "path": "support/net/pom.xml"
+          },
+          {
+            "owners": [],
+            "path": "support/os-distro-metadata/pom.xml"
+          },
+          {
+            "owners": [],
+            "path": "support/smallrye-config-secret-handler-file/pom.xml"
+          },
+          {
+            "owners": [],
+            "path": "support/smallrye-config-source-memory/pom.xml"
+          },
+          {
+            "owners": [],
+            "path": "support/swagger-model-converters/pom.xml"
+          },
+          {
+            "owners": [],
+            "path": "support/v4-migrator/pom.xml"
+          },
+          {
+            "owners": [],
+            "path": "vuln-analysis/api/pom.xml"
+          },
+          {
+            "owners": [],
+            "path": "vuln-analysis/checkmarx/pom.xml"
+          },
+          {
+            "owners": [],
+            "path": "vuln-analysis/internal/pom.xml"
+          },
+          {
+            "owners": [],
+            "path": "vuln-analysis/oss-index/pom.xml"
+          },
+          {
+            "owners": [],
+            "path": "vuln-analysis/pom.xml"
+          },
+          {
+            "owners": [],
+            "path": "vuln-analysis/snyk/pom.xml"
+          },
+          {
+            "owners": [],
+            "path": "vuln-analysis/trivy/pom.xml"
+          },
+          {
+            "owners": [],
+            "path": "vuln-analysis/vuln-db/pom.xml"
+          },
+          {
+            "owners": [],
+            "path": "vuln-data-source/api/pom.xml"
+          },
+          {
+            "owners": [],
+            "path": "vuln-data-source/github/pom.xml"
+          },
+          {
+            "owners": [],
+            "path": "vuln-data-source/jvn/pom.xml"
+          },
+          {
+            "owners": [],
+            "path": "vuln-data-source/nvd/pom.xml"
+          },
+          {
+            "owners": [],
+            "path": "vuln-data-source/osv/pom.xml"
+          },
+          {
+            "owners": [],
+            "path": "vuln-data-source/pom.xml"
+          }
+        ],
         "file_coverage": {
           "ambiguous_paths": 0,
           "config_unknown": 0,
@@ -2271,21 +4546,931 @@
         "moved": [],
         "owned_file_drift": [],
         "removed": [],
-        "source_change": null,
-        "version_changes": [],
+        "source_change": {
+          "from": "5.2.1",
+          "name": "DependencyTrack/dependency-track",
+          "to": "5.2.2"
+        },
+        "version_changes": [
+          {
+            "direction": "upgrade",
+            "ecosystem": "github",
+            "from": "v6.0.1",
+            "level": "minor",
+            "location": ".github/workflows/_meta-build.yaml",
+            "name": "actions/setup-java",
+            "to": "v6.2.0"
+          },
+          {
+            "direction": "upgrade",
+            "ecosystem": "github",
+            "from": "v6.0.1",
+            "level": "minor",
+            "location": ".github/workflows/ci-lint.yaml",
+            "name": "actions/setup-java",
+            "to": "v6.2.0"
+          },
+          {
+            "direction": "upgrade",
+            "ecosystem": "github",
+            "from": "v6.0.1",
+            "level": "minor",
+            "location": ".github/workflows/ci-release.yaml",
+            "name": "actions/setup-java",
+            "to": "v6.2.0"
+          },
+          {
+            "direction": "upgrade",
+            "ecosystem": "github",
+            "from": "v6.0.1",
+            "level": "minor",
+            "location": ".github/workflows/ci-test-e2e.yaml",
+            "name": "actions/setup-java",
+            "to": "v6.2.0"
+          },
+          {
+            "direction": "upgrade",
+            "ecosystem": "github",
+            "from": "v6.0.1",
+            "level": "minor",
+            "location": ".github/workflows/ci-test.yaml",
+            "name": "actions/setup-java",
+            "to": "v6.2.0"
+          },
+          {
+            "direction": "upgrade",
+            "ecosystem": "github",
+            "from": "v4.6.0",
+            "level": "minor",
+            "location": ".github/workflows/_meta-build.yaml",
+            "name": "docker/login-action",
+            "to": "v4.8.0"
+          },
+          {
+            "direction": "upgrade",
+            "ecosystem": "github",
+            "from": "v4.6.0",
+            "level": "minor",
+            "location": ".github/workflows/mirror-container-image.yml",
+            "name": "docker/login-action",
+            "to": "v4.8.0"
+          },
+          {
+            "direction": "upgrade",
+            "ecosystem": "github",
+            "from": "v4.38.3",
+            "level": "minor",
+            "location": ".github/workflows/ci-codeql.yaml",
+            "name": "github/codeql-action/analyze",
+            "to": "v4.39.3"
+          },
+          {
+            "direction": "upgrade",
+            "ecosystem": "github",
+            "from": "v4.38.3",
+            "level": "minor",
+            "location": ".github/workflows/ci-codeql.yaml",
+            "name": "github/codeql-action/init",
+            "to": "v4.39.3"
+          },
+          {
+            "direction": "upgrade",
+            "ecosystem": "github",
+            "from": "v0.1.18",
+            "level": "patch",
+            "location": ".github/workflows/ci-lint.yaml",
+            "name": "oasdiff/oasdiff-action/breaking",
+            "to": "v0.1.23"
+          },
+          {
+            "direction": "upgrade",
+            "ecosystem": "github",
+            "from": "v0.6.4",
+            "level": "minor",
+            "location": ".github/workflows/ci-lint.yaml",
+            "name": "zizmorcore/zizmor-action",
+            "to": "v0.8.1"
+          },
+          {
+            "direction": "upgrade",
+            "ecosystem": "maven",
+            "from": "1.6.5",
+            "level": "patch",
+            "location": "alpine/alpine-server/pom.xml",
+            "name": "logback-classic",
+            "to": "1.6.6"
+          },
+          {
+            "direction": "upgrade",
+            "ecosystem": "maven",
+            "from": "1.6.5",
+            "level": "patch",
+            "location": "alpine/alpine-server/pom.xml",
+            "name": "logback-core",
+            "to": "1.6.6"
+          },
+          {
+            "direction": "upgrade",
+            "ecosystem": "maven",
+            "from": "1.5.7-23",
+            "level": "patch",
+            "location": "file-storage/provider-local/pom.xml",
+            "name": "zstd-jni",
+            "to": "1.5.7-26"
+          },
+          {
+            "direction": "upgrade",
+            "ecosystem": "maven",
+            "from": "2.50.0",
+            "level": "minor",
+            "location": "apiserver/pom.xml",
+            "name": "error_prone_annotations",
+            "to": "2.52.0"
+          },
+          {
+            "direction": "upgrade",
+            "ecosystem": "maven",
+            "from": "2.1.14",
+            "level": "patch",
+            "location": "notification/publishing/pom.xml",
+            "name": "greenmail-junit5",
+            "to": "2.1.15"
+          },
+          {
+            "direction": "upgrade",
+            "ecosystem": "maven",
+            "from": "13.6.1.jre11",
+            "level": "patch",
+            "location": "support/v4-migrator/pom.xml",
+            "name": "mssql-jdbc",
+            "to": "13.6.2.jre11"
+          },
+          {
+            "direction": "upgrade",
+            "ecosystem": "maven",
+            "from": "11.38.2",
+            "level": "minor",
+            "location": "alpine/alpine-server/pom.xml",
+            "name": "oauth2-oidc-sdk",
+            "to": "11.39"
+          },
+          {
+            "direction": "upgrade",
+            "ecosystem": "maven",
+            "from": "5.5.0",
+            "level": "patch",
+            "location": "apiserver/pom.xml",
+            "name": "okhttp-jvm",
+            "to": "5.5.1"
+          },
+          {
+            "direction": "upgrade",
+            "ecosystem": "maven",
+            "from": "0.14.0",
+            "level": "minor",
+            "location": "apiserver/pom.xml",
+            "name": "cel",
+            "to": "0.15.0"
+          },
+          {
+            "direction": "upgrade",
+            "ecosystem": "maven",
+            "from": "0.26.1",
+            "level": "patch",
+            "location": "apiserver/pom.xml",
+            "name": "versatile-core",
+            "to": "0.26.2"
+          },
+          {
+            "direction": "upgrade",
+            "ecosystem": "maven",
+            "from": "9.0.3",
+            "level": "patch",
+            "location": "apiserver/pom.xml",
+            "name": "minio",
+            "to": "9.0.4"
+          },
+          {
+            "direction": "upgrade",
+            "ecosystem": "maven",
+            "from": "6.3.0",
+            "level": "minor",
+            "location": "alpine/alpine-server/pom.xml",
+            "name": "json-unit-assertj",
+            "to": "6.4.0"
+          },
+          {
+            "direction": "upgrade",
+            "ecosystem": "maven",
+            "from": "3.21.0",
+            "level": "minor",
+            "location": "vuln-data-source/github/pom.xml",
+            "name": "commons-lang3",
+            "to": "3.22.0"
+          },
+          {
+            "direction": "upgrade",
+            "ecosystem": "maven",
+            "from": "5.2.1",
+            "level": "patch",
+            "location": "alpine/alpine-common/pom.xml",
+            "name": "alpine-common",
+            "to": "5.2.2"
+          },
+          {
+            "direction": "upgrade",
+            "ecosystem": "maven",
+            "from": "5.2.1",
+            "level": "patch",
+            "location": "alpine/alpine-infra/pom.xml",
+            "name": "alpine-infra",
+            "to": "5.2.2"
+          },
+          {
+            "direction": "upgrade",
+            "ecosystem": "maven",
+            "from": "5.2.1",
+            "level": "patch",
+            "location": "alpine/alpine-model/pom.xml",
+            "name": "alpine-model",
+            "to": "5.2.2"
+          },
+          {
+            "direction": "upgrade",
+            "ecosystem": "maven",
+            "from": "5.2.1",
+            "level": "patch",
+            "location": "alpine/pom.xml",
+            "name": "alpine-parent",
+            "to": "5.2.2"
+          },
+          {
+            "direction": "upgrade",
+            "ecosystem": "maven",
+            "from": "5.2.1",
+            "level": "patch",
+            "location": "alpine/alpine-server/pom.xml",
+            "name": "alpine-server",
+            "to": "5.2.2"
+          },
+          {
+            "direction": "upgrade",
+            "ecosystem": "maven",
+            "from": "5.2.1",
+            "level": "patch",
+            "location": "api/pom.xml",
+            "name": "api",
+            "to": "5.2.2"
+          },
+          {
+            "direction": "upgrade",
+            "ecosystem": "maven",
+            "from": "5.2.1",
+            "level": "patch",
+            "location": "apiserver/pom.xml",
+            "name": "apiserver",
+            "to": "5.2.2"
+          },
+          {
+            "direction": "upgrade",
+            "ecosystem": "maven",
+            "from": "5.2.1",
+            "level": "patch",
+            "location": "cache/api/pom.xml",
+            "name": "cache-api",
+            "to": "5.2.2"
+          },
+          {
+            "direction": "upgrade",
+            "ecosystem": "maven",
+            "from": "5.2.1",
+            "level": "patch",
+            "location": "cache/pom.xml",
+            "name": "cache-parent",
+            "to": "5.2.2"
+          },
+          {
+            "direction": "upgrade",
+            "ecosystem": "maven",
+            "from": "5.2.1",
+            "level": "patch",
+            "location": "cache/provider-database/pom.xml",
+            "name": "cache-provider-database",
+            "to": "5.2.2"
+          },
+          {
+            "direction": "upgrade",
+            "ecosystem": "maven",
+            "from": "5.2.1",
+            "level": "patch",
+            "location": "cache/provider-memory/pom.xml",
+            "name": "cache-provider-memory",
+            "to": "5.2.2"
+          },
+          {
+            "direction": "upgrade",
+            "ecosystem": "maven",
+            "from": "5.2.1",
+            "level": "patch",
+            "location": "common/config/pom.xml",
+            "name": "common-config",
+            "to": "5.2.2"
+          },
+          {
+            "direction": "upgrade",
+            "ecosystem": "maven",
+            "from": "5.2.1",
+            "level": "patch",
+            "location": "common/datasource/pom.xml",
+            "name": "common-datasource",
+            "to": "5.2.2"
+          },
+          {
+            "direction": "upgrade",
+            "ecosystem": "maven",
+            "from": "5.2.1",
+            "level": "patch",
+            "location": "common/health/pom.xml",
+            "name": "common-health",
+            "to": "5.2.2"
+          },
+          {
+            "direction": "upgrade",
+            "ecosystem": "maven",
+            "from": "5.2.1",
+            "level": "patch",
+            "location": "common/init/pom.xml",
+            "name": "common-init",
+            "to": "5.2.2"
+          },
+          {
+            "direction": "upgrade",
+            "ecosystem": "maven",
+            "from": "5.2.1",
+            "level": "patch",
+            "location": "common/pagination/pom.xml",
+            "name": "common-pagination",
+            "to": "5.2.2"
+          },
+          {
+            "direction": "upgrade",
+            "ecosystem": "maven",
+            "from": "5.2.1",
+            "level": "patch",
+            "location": "common/pom.xml",
+            "name": "common-parent",
+            "to": "5.2.2"
+          },
+          {
+            "direction": "upgrade",
+            "ecosystem": "maven",
+            "from": "5.2.1",
+            "level": "patch",
+            "location": "coverage-report/pom.xml",
+            "name": "coverage-report",
+            "to": "5.2.2"
+          },
+          {
+            "direction": "upgrade",
+            "ecosystem": "maven",
+            "from": "5.2.1",
+            "level": "patch",
+            "location": "support/cyclonedx-proto/pom.xml",
+            "name": "cyclonedx-proto",
+            "to": "5.2.2"
+          },
+          {
+            "direction": "upgrade",
+            "ecosystem": "maven",
+            "from": "5.2.1",
+            "level": "patch",
+            "location": "support/datanucleus-plugin/plugin/pom.xml",
+            "name": "datanucleus-plugin",
+            "to": "5.2.2"
+          },
+          {
+            "direction": "upgrade",
+            "ecosystem": "maven",
+            "from": "5.2.1",
+            "level": "patch",
+            "location": "support/datanucleus-plugin/pom.xml",
+            "name": "datanucleus-plugin-parent",
+            "to": "5.2.2"
+          },
+          {
+            "direction": "upgrade",
+            "ecosystem": "maven",
+            "from": "5.2.1",
+            "level": "patch",
+            "location": "coverage-report/pom.xml",
+            "name": "datanucleus-plugin-test",
+            "to": "5.2.2"
+          },
+          {
+            "direction": "upgrade",
+            "ecosystem": "maven",
+            "from": "5.2.1",
+            "level": "patch",
+            "location": "pom.xml",
+            "name": "dependency-track-parent",
+            "to": "5.2.2"
+          },
+          {
+            "direction": "upgrade",
+            "ecosystem": "maven",
+            "from": "5.2.1",
+            "level": "patch",
+            "location": "dex/api/pom.xml",
+            "name": "dex-api",
+            "to": "5.2.2"
+          },
+          {
+            "direction": "upgrade",
+            "ecosystem": "maven",
+            "from": "5.2.1",
+            "level": "patch",
+            "location": "dex/engine/pom.xml",
+            "name": "dex-engine",
+            "to": "5.2.2"
+          },
+          {
+            "direction": "upgrade",
+            "ecosystem": "maven",
+            "from": "5.2.1",
+            "level": "patch",
+            "location": "dex/engine-api/pom.xml",
+            "name": "dex-engine-api",
+            "to": "5.2.2"
+          },
+          {
+            "direction": "upgrade",
+            "ecosystem": "maven",
+            "from": "5.2.1",
+            "level": "patch",
+            "location": "dex/engine-migration/pom.xml",
+            "name": "dex-engine-migration",
+            "to": "5.2.2"
+          },
+          {
+            "direction": "upgrade",
+            "ecosystem": "maven",
+            "from": "5.2.1",
+            "level": "patch",
+            "location": "dex/pom.xml",
+            "name": "dex-parent",
+            "to": "5.2.2"
+          },
+          {
+            "direction": "upgrade",
+            "ecosystem": "maven",
+            "from": "5.2.1",
+            "level": "patch",
+            "location": "apiserver/pom.xml",
+            "name": "dex-testing",
+            "to": "5.2.2"
+          },
+          {
+            "direction": "upgrade",
+            "ecosystem": "maven",
+            "from": "5.2.1",
+            "level": "patch",
+            "location": "file-storage/api/pom.xml",
+            "name": "file-storage-api",
+            "to": "5.2.2"
+          },
+          {
+            "direction": "upgrade",
+            "ecosystem": "maven",
+            "from": "5.2.1",
+            "level": "patch",
+            "location": "file-storage/pom.xml",
+            "name": "file-storage-parent",
+            "to": "5.2.2"
+          },
+          {
+            "direction": "upgrade",
+            "ecosystem": "maven",
+            "from": "5.2.1",
+            "level": "patch",
+            "location": "file-storage/provider-local/pom.xml",
+            "name": "file-storage-provider-local",
+            "to": "5.2.2"
+          },
+          {
+            "direction": "upgrade",
+            "ecosystem": "maven",
+            "from": "5.2.1",
+            "level": "patch",
+            "location": "file-storage/provider-memory/pom.xml",
+            "name": "file-storage-provider-memory",
+            "to": "5.2.2"
+          },
+          {
+            "direction": "upgrade",
+            "ecosystem": "maven",
+            "from": "5.2.1",
+            "level": "patch",
+            "location": "file-storage/provider-s3/pom.xml",
+            "name": "file-storage-provider-s3",
+            "to": "5.2.2"
+          },
+          {
+            "direction": "upgrade",
+            "ecosystem": "maven",
+            "from": "5.2.1",
+            "level": "patch",
+            "location": "support/flyway/pom.xml",
+            "name": "flyway-support",
+            "to": "5.2.2"
+          },
+          {
+            "direction": "upgrade",
+            "ecosystem": "maven",
+            "from": "5.2.1",
+            "level": "patch",
+            "location": "support/jdbi/pom.xml",
+            "name": "jdbi-support",
+            "to": "5.2.2"
+          },
+          {
+            "direction": "upgrade",
+            "ecosystem": "maven",
+            "from": "5.2.1",
+            "level": "patch",
+            "location": "kev-data-source/api/pom.xml",
+            "name": "kev-data-source-api",
+            "to": "5.2.2"
+          },
+          {
+            "direction": "upgrade",
+            "ecosystem": "maven",
+            "from": "5.2.1",
+            "level": "patch",
+            "location": "kev-data-source/builtin/pom.xml",
+            "name": "kev-data-source-builtin",
+            "to": "5.2.2"
+          },
+          {
+            "direction": "upgrade",
+            "ecosystem": "maven",
+            "from": "5.2.1",
+            "level": "patch",
+            "location": "kev-data-source/pom.xml",
+            "name": "kev-data-source-parent",
+            "to": "5.2.2"
+          },
+          {
+            "direction": "upgrade",
+            "ecosystem": "maven",
+            "from": "5.2.1",
+            "level": "patch",
+            "location": "migration/pom.xml",
+            "name": "migration",
+            "to": "5.2.2"
+          },
+          {
+            "direction": "upgrade",
+            "ecosystem": "maven",
+            "from": "5.2.1",
+            "level": "patch",
+            "location": "support/net/pom.xml",
+            "name": "net-support",
+            "to": "5.2.2"
+          },
+          {
+            "direction": "upgrade",
+            "ecosystem": "maven",
+            "from": "5.2.1",
+            "level": "patch",
+            "location": "notification/api/pom.xml",
+            "name": "notification-api",
+            "to": "5.2.2"
+          },
+          {
+            "direction": "upgrade",
+            "ecosystem": "maven",
+            "from": "5.2.1",
+            "level": "patch",
+            "location": "notification/pom.xml",
+            "name": "notification-parent",
+            "to": "5.2.2"
+          },
+          {
+            "direction": "upgrade",
+            "ecosystem": "maven",
+            "from": "5.2.1",
+            "level": "patch",
+            "location": "notification/publishing/pom.xml",
+            "name": "notification-publishing",
+            "to": "5.2.2"
+          },
+          {
+            "direction": "upgrade",
+            "ecosystem": "maven",
+            "from": "5.2.1",
+            "level": "patch",
+            "location": "notification/templating/pom.xml",
+            "name": "notification-templating",
+            "to": "5.2.2"
+          },
+          {
+            "direction": "upgrade",
+            "ecosystem": "maven",
+            "from": "5.2.1",
+            "level": "patch",
+            "location": "support/os-distro-metadata/pom.xml",
+            "name": "os-distro-metadata",
+            "to": "5.2.2"
+          },
+          {
+            "direction": "upgrade",
+            "ecosystem": "maven",
+            "from": "5.2.1",
+            "level": "patch",
+            "location": "package-metadata/api/pom.xml",
+            "name": "package-metadata-api",
+            "to": "5.2.2"
+          },
+          {
+            "direction": "upgrade",
+            "ecosystem": "maven",
+            "from": "5.2.1",
+            "level": "patch",
+            "location": "package-metadata/pom.xml",
+            "name": "package-metadata-parent",
+            "to": "5.2.2"
+          },
+          {
+            "direction": "upgrade",
+            "ecosystem": "maven",
+            "from": "5.2.1",
+            "level": "patch",
+            "location": "package-metadata/resolution/pom.xml",
+            "name": "package-metadata-resolution",
+            "to": "5.2.2"
+          },
+          {
+            "direction": "upgrade",
+            "ecosystem": "maven",
+            "from": "5.2.1",
+            "level": "patch",
+            "location": "plugin/api/pom.xml",
+            "name": "plugin-api",
+            "to": "5.2.2"
+          },
+          {
+            "direction": "upgrade",
+            "ecosystem": "maven",
+            "from": "5.2.1",
+            "level": "patch",
+            "location": "plugin/config/pom.xml",
+            "name": "plugin-config",
+            "to": "5.2.2"
+          },
+          {
+            "direction": "upgrade",
+            "ecosystem": "maven",
+            "from": "5.2.1",
+            "level": "patch",
+            "location": "plugin/pom.xml",
+            "name": "plugin-parent",
+            "to": "5.2.2"
+          },
+          {
+            "direction": "upgrade",
+            "ecosystem": "maven",
+            "from": "5.2.1",
+            "level": "patch",
+            "location": "plugin/runtime/pom.xml",
+            "name": "plugin-runtime",
+            "to": "5.2.2"
+          },
+          {
+            "direction": "upgrade",
+            "ecosystem": "maven",
+            "from": "5.2.1",
+            "level": "patch",
+            "location": "coverage-report/pom.xml",
+            "name": "plugin-testing",
+            "to": "5.2.2"
+          },
+          {
+            "direction": "upgrade",
+            "ecosystem": "maven",
+            "from": "5.2.1",
+            "level": "patch",
+            "location": "proto/pom.xml",
+            "name": "proto",
+            "to": "5.2.2"
+          },
+          {
+            "direction": "upgrade",
+            "ecosystem": "maven",
+            "from": "5.2.1",
+            "level": "patch",
+            "location": "secret-management/pom.xml",
+            "name": "secret-management",
+            "to": "5.2.2"
+          },
+          {
+            "direction": "upgrade",
+            "ecosystem": "maven",
+            "from": "5.2.1",
+            "level": "patch",
+            "location": "support/smallrye-config-secret-handler-file/pom.xml",
+            "name": "smallrye-config-secret-handler-file",
+            "to": "5.2.2"
+          },
+          {
+            "direction": "upgrade",
+            "ecosystem": "maven",
+            "from": "5.2.1",
+            "level": "patch",
+            "location": "support/smallrye-config-source-memory/pom.xml",
+            "name": "smallrye-config-source-memory",
+            "to": "5.2.2"
+          },
+          {
+            "direction": "upgrade",
+            "ecosystem": "maven",
+            "from": "5.2.1",
+            "level": "patch",
+            "location": "support/swagger-model-converters/pom.xml",
+            "name": "swagger-model-converters",
+            "to": "5.2.2"
+          },
+          {
+            "direction": "upgrade",
+            "ecosystem": "maven",
+            "from": "5.2.1",
+            "level": "patch",
+            "location": "alpine/alpine-infra/pom.xml",
+            "name": "test-database-support",
+            "to": "5.2.2"
+          },
+          {
+            "direction": "upgrade",
+            "ecosystem": "maven",
+            "from": "5.2.1",
+            "level": "patch",
+            "location": "support/v4-migrator/pom.xml",
+            "name": "v4-migrator",
+            "to": "5.2.2"
+          },
+          {
+            "direction": "upgrade",
+            "ecosystem": "maven",
+            "from": "5.2.1",
+            "level": "patch",
+            "location": "vuln-analysis/api/pom.xml",
+            "name": "vuln-analysis-api",
+            "to": "5.2.2"
+          },
+          {
+            "direction": "upgrade",
+            "ecosystem": "maven",
+            "from": "5.2.1",
+            "level": "patch",
+            "location": "vuln-analysis/pom.xml",
+            "name": "vuln-analysis-parent",
+            "to": "5.2.2"
+          },
+          {
+            "direction": "upgrade",
+            "ecosystem": "maven",
+            "from": "5.2.1",
+            "level": "patch",
+            "location": "vuln-analysis/checkmarx/pom.xml",
+            "name": "vuln-analyzer-checkmarx",
+            "to": "5.2.2"
+          },
+          {
+            "direction": "upgrade",
+            "ecosystem": "maven",
+            "from": "5.2.1",
+            "level": "patch",
+            "location": "vuln-analysis/internal/pom.xml",
+            "name": "vuln-analyzer-internal",
+            "to": "5.2.2"
+          },
+          {
+            "direction": "upgrade",
+            "ecosystem": "maven",
+            "from": "5.2.1",
+            "level": "patch",
+            "location": "vuln-analysis/oss-index/pom.xml",
+            "name": "vuln-analyzer-oss-index",
+            "to": "5.2.2"
+          },
+          {
+            "direction": "upgrade",
+            "ecosystem": "maven",
+            "from": "5.2.1",
+            "level": "patch",
+            "location": "vuln-analysis/snyk/pom.xml",
+            "name": "vuln-analyzer-snyk",
+            "to": "5.2.2"
+          },
+          {
+            "direction": "upgrade",
+            "ecosystem": "maven",
+            "from": "5.2.1",
+            "level": "patch",
+            "location": "vuln-analysis/trivy/pom.xml",
+            "name": "vuln-analyzer-trivy",
+            "to": "5.2.2"
+          },
+          {
+            "direction": "upgrade",
+            "ecosystem": "maven",
+            "from": "5.2.1",
+            "level": "patch",
+            "location": "vuln-analysis/vuln-db/pom.xml",
+            "name": "vuln-analyzer-vuln-db",
+            "to": "5.2.2"
+          },
+          {
+            "direction": "upgrade",
+            "ecosystem": "maven",
+            "from": "5.2.1",
+            "level": "patch",
+            "location": "vuln-data-source/api/pom.xml",
+            "name": "vuln-data-source-api",
+            "to": "5.2.2"
+          },
+          {
+            "direction": "upgrade",
+            "ecosystem": "maven",
+            "from": "5.2.1",
+            "level": "patch",
+            "location": "vuln-data-source/github/pom.xml",
+            "name": "vuln-data-source-github",
+            "to": "5.2.2"
+          },
+          {
+            "direction": "upgrade",
+            "ecosystem": "maven",
+            "from": "5.2.1",
+            "level": "patch",
+            "location": "vuln-data-source/jvn/pom.xml",
+            "name": "vuln-data-source-jvn",
+            "to": "5.2.2"
+          },
+          {
+            "direction": "upgrade",
+            "ecosystem": "maven",
+            "from": "5.2.1",
+            "level": "patch",
+            "location": "vuln-data-source/nvd/pom.xml",
+            "name": "vuln-data-source-nvd",
+            "to": "5.2.2"
+          },
+          {
+            "direction": "upgrade",
+            "ecosystem": "maven",
+            "from": "5.2.1",
+            "level": "patch",
+            "location": "vuln-data-source/osv/pom.xml",
+            "name": "vuln-data-source-osv",
+            "to": "5.2.2"
+          },
+          {
+            "direction": "upgrade",
+            "ecosystem": "maven",
+            "from": "5.2.1",
+            "level": "patch",
+            "location": "vuln-data-source/pom.xml",
+            "name": "vuln-data-source-parent",
+            "to": "5.2.2"
+          },
+          {
+            "direction": "upgrade",
+            "ecosystem": "maven",
+            "from": "3.1.2",
+            "level": "patch",
+            "location": "cache/api/pom.xml",
+            "name": "microprofile-config-api",
+            "to": "3.1.3"
+          }
+        ],
         "version_set_changes": []
       },
-      "previous_sbom_sha256": "ceb09c8185c7ab6906f4a5f1782b82d1b9fa5700706205d953833218187d0468",
+      "previous_sbom_sha256": "d0956a958adf78aa4f6b278161e03e7beb5cdb6c355aacfb5f67813dfd8e9c03",
       "removed": 0,
-      "sbom_sha256": "d0956a958adf78aa4f6b278161e03e7beb5cdb6c355aacfb5f67813dfd8e9c03"
+      "sbom_sha256": "740633f71e6473d8fcb9f9cba2376ec1f12b3f522eecbf665c892781670db233"
     },
-    "scanned_at": "2026-11-16T01:29:00+00:00",
+    "scanned_at": "2026-11-22T05:53:28+00:00",
     "scorecard": {
       "checks": [
         {
           "name": "Fuzzing",
           "reason": "project is not fuzzed",
           "score": 0
+        },
+        {
+          "name": "Code-Review",
+          "reason": "Found 1/6 approved changesets -- score normalized to 1",
+          "score": 1
         },
         {
           "name": "CII-Best-Practices",
@@ -2296,11 +5481,6 @@
           "name": "Branch-Protection",
           "reason": "branch protection is not maximal on development and all release branches",
           "score": 3
-        },
-        {
-          "name": "Code-Review",
-          "reason": "Found 3/6 approved changesets -- score normalized to 5",
-          "score": 5
         },
         {
           "name": "Pinned-Dependencies",
@@ -2329,7 +5509,7 @@
         },
         {
           "name": "Maintained",
-          "reason": "30 commit(s) and 14 issue activity found in the last 90 days -- score normalized to 10",
+          "reason": "30 commit(s) and 10 issue activity found in the last 90 days -- score normalized to 10",
           "score": 10
         },
         {
@@ -2353,8 +5533,8 @@
           "score": -1
         }
       ],
-      "date": "2026-11-09",
-      "score": 7.9,
+      "date": "2026-11-16",
+      "score": 7.5,
       "source": "openssf-api",
       "version": "v5.6.0"
     },
@@ -2364,5 +5544,5 @@
       "findings": []
     }
   },
-  "updated": "2026-11-15"
+  "updated": "2026-11-22"
 }

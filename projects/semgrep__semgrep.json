@@ -186,6 +186,66 @@
       },
       "workflow_new": 0,
       "workflow_resolved": 0
+    },
+    {
+      "added": 0,
+      "advisory_state": "ok",
+      "binary_analysis": null,
+      "commit": "a5844e7c2d9d04548f86048f525d467a00742656",
+      "date": "2026-11-22",
+      "dependencies": 216,
+      "dependency_state": "ok",
+      "downgraded": 0,
+      "errors": [],
+      "file_changes": 2,
+      "fixable": 80,
+      "go_binary_reason": null,
+      "go_binary_state": null,
+      "go_version": null,
+      "in_binary": null,
+      "in_binary_new": 0,
+      "in_binary_resolved": 0,
+      "kev": 1,
+      "kev_new": 0,
+      "kev_new_match": 0,
+      "license_changes": 0,
+      "method": "sbomlyze-occurrence-v1",
+      "moved": 0,
+      "new_advisories": 2,
+      "new_severe": 1,
+      "new_vulnerabilities": 2,
+      "osv_confirmed": 80,
+      "osv_only": 1,
+      "ref": "v1.186.0",
+      "release_changed": true,
+      "release_evidence": null,
+      "release_integrity": "no-assets",
+      "removed": 0,
+      "resolved_advisories": 0,
+      "resolved_vulnerabilities": 0,
+      "scorecard": null,
+      "scorecard_date": null,
+      "scorecard_note": "the project is not in the OpenSSF public dataset; the Scorecard CLI fallback was skipped because this shard's weekly budget was used",
+      "scorecard_source": null,
+      "unknown_direction": 0,
+      "upgraded": 2,
+      "vulnerabilities": {
+        "Critical": 2,
+        "High": 29,
+        "Low": 13,
+        "Medium": 36,
+        "Negligible": 0,
+        "Unknown": 0
+      },
+      "vulnerable_packages": 21,
+      "workflow": {
+        "High": 8,
+        "Low": 4,
+        "Medium": 27,
+        "files": 13
+      },
+      "workflow_new": 0,
+      "workflow_resolved": 0
     }
   ],
   "latest": {
@@ -199,8 +259,8 @@
       "baseline": false,
       "dependency_baseline": {
         "attempt": "1",
-        "run_id": "42546359860",
-        "sbom_sha256": "75edafc714d7ecf516ace90f2003661a3167dd8b991a8338b8e0ba22a20b859e"
+        "run_id": "43786179934",
+        "sbom_sha256": "21b928f40ee1c5788e48af788eeaceed9af8fd34e20b6082ceef8a33a5db90e5"
       },
       "dependency_state": "ok",
       "digest_coverage": {
@@ -227,52 +287,95 @@
       "metadata_changes": [],
       "method": "sbomlyze-occurrence-v1",
       "moved": [],
-      "new_advisories": 1,
+      "new_advisories": 2,
+      "new_severe": 1,
       "new_vulnerabilities": [
         {
           "aliases": [
-            "CVE-2026-126360"
+            "CVE-2026-132276"
           ],
           "ecosystem": "pypi",
           "epss": {
-            "cve": "CVE-2026-126360",
-            "percentile": 0.44655,
-            "score": 0.00519
+            "cve": "CVE-2026-132276",
+            "percentile": 0.6002,
+            "score": 0.00881
           },
-          "epss_date": "2026-11-15T12:03:04Z",
+          "epss_date": "2026-11-21T12:00:24Z",
           "fix_state": "fixed",
           "fixed_in": [
-            "1.45.2"
+            "11.2"
           ],
-          "id": "GHSA-mf5v-w3w3-f6cg",
+          "id": "GHSA-53pm-wgxf-c6qf",
           "kev": null,
           "kev_cves": [],
-          "kev_snapshot": "2026.11.13",
+          "kev_snapshot": "2026.11.20",
           "location": "cli/uv.lock",
           "locations": [
             "cli/uv.lock"
           ],
           "new": {
             "advisory": "published since last scan",
-            "modified": "2026-11-13T17:00:03.925479166Z",
-            "published": "2026-11-13T16:43:18Z",
+            "modified": "2026-11-21T00:00:04.019297357Z",
+            "published": "2026-11-20T23:49:18Z",
             "reason": "unchanged version"
           },
           "osv_confirmed": true,
           "osv_coverage": {
             "state": "confirmed"
           },
-          "osv_modified": "2026-11-13T17:00:03.925479166Z",
-          "osv_published": "2026-11-13T16:43:18Z",
-          "package": "opentelemetry-api",
-          "purl": "pkg:pypi/opentelemetry-api@1.37.0",
+          "osv_modified": "2026-11-21T00:00:04.019297357Z",
+          "osv_published": "2026-11-20T23:49:18Z",
+          "package": "wcmatch",
+          "purl": "pkg:pypi/wcmatch@8.5.2",
           "severity": "Medium",
-          "summary": "OpenTelemetry Python API: Denial of service through quadratic-time traceparent parsing",
-          "url": "https://github.com/advisories/GHSA-mf5v-w3w3-f6cg",
-          "version": "1.37.0"
+          "summary": "wcmatch: Polynomial-time ReDoS when matching untrusted names against multi-star patterns (default flags)",
+          "url": "https://github.com/advisories/GHSA-53pm-wgxf-c6qf",
+          "version": "8.5.2"
+        },
+        {
+          "aliases": [
+            "CVE-2026-115563"
+          ],
+          "ecosystem": "pypi",
+          "epss": {
+            "cve": "CVE-2026-115563",
+            "percentile": 0.21059,
+            "score": 0.00282
+          },
+          "epss_date": "2026-11-21T12:00:24Z",
+          "fix_state": "fixed",
+          "fixed_in": [
+            "1.30.0"
+          ],
+          "id": "GHSA-qx49-fqc8-xw99",
+          "kev": null,
+          "kev_cves": [],
+          "kev_snapshot": "2026.11.20",
+          "location": "cli/uv.lock",
+          "locations": [
+            "cli/uv.lock"
+          ],
+          "new": {
+            "advisory": "published since last scan",
+            "modified": "2026-11-19T23:00:36.665030140Z",
+            "published": "2026-11-19T22:45:40Z",
+            "reason": "unchanged version"
+          },
+          "osv_confirmed": true,
+          "osv_coverage": {
+            "state": "confirmed"
+          },
+          "osv_modified": "2026-11-19T23:00:36.665030140Z",
+          "osv_published": "2026-11-19T22:45:40Z",
+          "package": "mcp",
+          "purl": "pkg:pypi/mcp@1.29.0",
+          "severity": "High",
+          "summary": "Model Context Protocol Python SDK: OAuth client could send credentials to an authorization server chosen by the MCP server",
+          "url": "https://github.com/advisories/GHSA-qx49-fqc8-xw99",
+          "version": "1.29.0"
         }
       ],
-      "previous_ref": "v1.184.0",
+      "previous_ref": "v1.185.0",
       "release_changed": true,
       "removed": [],
       "removed_detail": [],
@@ -284,47 +387,47 @@
         {
           "direction": "upgrade",
           "ecosystem": "pypi",
-          "from": "1.184.0",
+          "from": "1.185.0",
           "level": "minor",
           "location": "cli/uv.lock",
           "package": "semgrep",
-          "to": "1.185.0"
+          "to": "1.186.0"
         },
         {
           "direction": "upgrade",
           "ecosystem": "pypi",
-          "from": "1.184.0",
+          "from": "1.185.0",
           "level": "minor",
           "location": "setup.py",
           "package": "semgrep",
-          "to": "1.185.0"
+          "to": "1.186.0"
         }
       ],
       "version_changes": [
         {
           "direction": "upgrade",
           "ecosystem": "pypi",
-          "from": "1.184.0",
+          "from": "1.185.0",
           "level": "minor",
           "location": "cli/uv.lock",
           "name": "semgrep",
-          "to": "1.185.0"
+          "to": "1.186.0"
         },
         {
           "direction": "upgrade",
           "ecosystem": "pypi",
-          "from": "1.184.0",
+          "from": "1.185.0",
           "level": "minor",
           "location": "setup.py",
           "name": "semgrep",
-          "to": "1.185.0"
+          "to": "1.186.0"
         }
       ],
       "version_set_changes": [],
       "workflow_new": 0,
       "workflow_resolved": 0
     },
-    "commit": "9240f708f8d7e2fbd38b67aa6cd17704b1f81e14",
+    "commit": "a5844e7c2d9d04548f86048f525d467a00742656",
     "compliance": {
       "overall_score": 55,
       "standards": {
@@ -1873,8 +1976,8 @@
         "licenses": [],
         "location": "cli/uv.lock",
         "name": "semgrep",
-        "purl": "pkg:pypi/semgrep@1.185.0",
-        "version": "1.185.0"
+        "purl": "pkg:pypi/semgrep@1.186.0",
+        "version": "1.186.0"
       },
       {
         "ecosystem": "pypi",
@@ -2139,21 +2242,38 @@
     ],
     "name": "semgrep",
     "osv": {
-      "advisories": 72,
+      "advisories": 75,
       "available": true,
-      "confirmed": 78,
+      "confirmed": 80,
       "coverage": {
-        "confirmed": 78
+        "confirmed": 80
       },
-      "osv_only": [],
+      "osv_only": [
+        {
+          "ecosystem": "PyPI",
+          "ids": [
+            "BIT-virtualenv-2026-113713",
+            "CVE-2026-113713",
+            "GHSA-4f8h-vr72-p32c",
+            "PYSEC-2026-4372"
+          ],
+          "modified": "2026-11-18T12:10:36.831511269Z",
+          "package": "virtualenv",
+          "path": "scripts/release/uv.lock",
+          "published": "2026-10-20T19:17:33.887Z",
+          "score": "6.0",
+          "severity": "Medium",
+          "version": "21.13.0"
+        }
+      ],
       "warning": null
     },
     "osv_api": {
       "available": true,
-      "queried_at": "2026-11-16T01:30:30+00:00",
+      "queried_at": "2026-11-22T05:56:09+00:00",
       "states": {}
     },
-    "ref": "v1.185.0",
+    "ref": "v1.186.0",
     "ref_kind": "release",
     "release_integrity": {
       "assets": 0,
@@ -2164,14 +2284,14 @@
       "signatures_published": false,
       "verdict": "no-assets"
     },
-    "released_at": "2026-11-10T09:32:54Z",
+    "released_at": "2026-11-18T00:22:26Z",
     "repository": "semgrep/semgrep",
-    "sbom_sha256": "21b928f40ee1c5788e48af788eeaceed9af8fd34e20b6082ceef8a33a5db90e5",
+    "sbom_sha256": "b2382496a5a7f8199062ad5ae962f3fdd7857fbe6643ce253dc3ffed456f02d0",
     "sbomlyze_diff": {
       "added": 0,
       "baseline": {
         "attempt": "1",
-        "run_id": "42546359860"
+        "run_id": "43786179934"
       },
       "changed": 2,
       "contract": "sbomlyze-diff-0.7",
@@ -2189,7 +2309,7 @@
         "version_drift": 2
       },
       "findings": [
-        "Scanned semgrep/semgrep changed: v1.184.0 \u2192 v1.185.0",
+        "Scanned semgrep/semgrep changed: v1.185.0 \u2192 v1.186.0",
         "1 version upgrades (1 minor) across 2 occurrences among 242 shared packages",
         "Integrity drift checked only 0 of 240 same-version packages; the rest carry no comparable digest",
         "2 file entries changed content (not package integrity drift): /cli/uv.lock, /setup.py",
@@ -2235,37 +2355,37 @@
         "owned_file_drift": [],
         "removed": [],
         "source_change": {
-          "from": "v1.184.0",
+          "from": "v1.185.0",
           "name": "semgrep/semgrep",
-          "to": "v1.185.0"
+          "to": "v1.186.0"
         },
         "version_changes": [
           {
             "direction": "upgrade",
             "ecosystem": "pypi",
-            "from": "1.184.0",
+            "from": "1.185.0",
             "level": "minor",
             "location": "cli/uv.lock",
             "name": "semgrep",
-            "to": "1.185.0"
+            "to": "1.186.0"
           },
           {
             "direction": "upgrade",
             "ecosystem": "pypi",
-            "from": "1.184.0",
+            "from": "1.185.0",
             "level": "minor",
             "location": "setup.py",
             "name": "semgrep",
-            "to": "1.185.0"
+            "to": "1.186.0"
           }
         ],
         "version_set_changes": []
       },
-      "previous_sbom_sha256": "75edafc714d7ecf516ace90f2003661a3167dd8b991a8338b8e0ba22a20b859e",
+      "previous_sbom_sha256": "21b928f40ee1c5788e48af788eeaceed9af8fd34e20b6082ceef8a33a5db90e5",
       "removed": 0,
-      "sbom_sha256": "21b928f40ee1c5788e48af788eeaceed9af8fd34e20b6082ceef8a33a5db90e5"
+      "sbom_sha256": "b2382496a5a7f8199062ad5ae962f3fdd7857fbe6643ce253dc3ffed456f02d0"
     },
-    "scanned_at": "2026-11-16T01:30:26+00:00",
+    "scanned_at": "2026-11-22T05:56:04+00:00",
     "scorecard": null,
     "scorecard_note": "the project is not in the OpenSSF public dataset; the Scorecard CLI fallback was skipped because this shard's weekly budget was used",
     "vulnerabilities": [
@@ -2274,10 +2394,10 @@
         "ecosystem": "pypi",
         "epss": {
           "cve": "CVE-2026-39892",
-          "percentile": 0.52873,
+          "percentile": 0.53227,
           "score": 0.00677
         },
-        "epss_date": "2026-11-15T12:03:04Z",
+        "epss_date": "2026-11-21T12:00:24Z",
         "fix_state": "fixed",
         "fixed_in": [
           "46.0.7"
@@ -2285,7 +2405,7 @@
         "id": "CVE-2026-39892",
         "kev": null,
         "kev_cves": [],
-        "kev_snapshot": "2026.11.13",
+        "kev_snapshot": "2026.11.20",
         "location": "cli/uv.lock",
         "locations": [
           "cli/uv.lock"
@@ -2310,10 +2430,10 @@
         "ecosystem": "npm",
         "epss": {
           "cve": "CVE-2021-44906",
-          "percentile": 0.91777,
+          "percentile": 0.91849,
           "score": 0.04581
         },
-        "epss_date": "2026-11-15T12:03:04Z",
+        "epss_date": "2026-11-21T12:00:24Z",
         "fix_state": "fixed",
         "fixed_in": [
           "1.2.6"
@@ -2321,7 +2441,7 @@
         "id": "GHSA-xvch-5gv4-984h",
         "kev": null,
         "kev_cves": [],
-        "kev_snapshot": "2026.11.13",
+        "kev_snapshot": "2026.11.20",
         "location": "libs/ocaml-tree-sitter-semgrep/lang/semgrep-grammars/package-lock.json",
         "locations": [
           "libs/ocaml-tree-sitter-semgrep/lang/semgrep-grammars/package-lock.json"
@@ -2344,10 +2464,10 @@
         "ecosystem": "pypi",
         "epss": {
           "cve": "CVE-2026-69247",
-          "percentile": 0.20057,
+          "percentile": 0.20095,
           "score": 0.00274
         },
-        "epss_date": "2026-11-15T12:03:04Z",
+        "epss_date": "2026-11-21T12:00:24Z",
         "fix_state": "fixed",
         "fixed_in": [
           "50.0.0"
@@ -2355,7 +2475,7 @@
         "id": "CVE-2026-69247",
         "kev": null,
         "kev_cves": [],
-        "kev_snapshot": "2026.11.13",
+        "kev_snapshot": "2026.11.20",
         "location": "cli/uv.lock",
         "locations": [
           "cli/uv.lock"
@@ -2378,10 +2498,10 @@
         "ecosystem": "pypi",
         "epss": {
           "cve": "CVE-2026-69249",
-          "percentile": 0.18099,
+          "percentile": 0.18109,
           "score": 0.00262
         },
-        "epss_date": "2026-11-15T12:03:04Z",
+        "epss_date": "2026-11-21T12:00:24Z",
         "fix_state": "fixed",
         "fixed_in": [
           "49.0.0"
@@ -2389,7 +2509,7 @@
         "id": "CVE-2026-69249",
         "kev": null,
         "kev_cves": [],
-        "kev_snapshot": "2026.11.13",
+        "kev_snapshot": "2026.11.20",
         "location": "cli/uv.lock",
         "locations": [
           "cli/uv.lock"
@@ -2411,7 +2531,7 @@
         "aliases": [],
         "ecosystem": "pypi",
         "epss": null,
-        "epss_date": "2026-11-15T12:03:04Z",
+        "epss_date": "2026-11-21T12:00:24Z",
         "fix_state": "fixed",
         "fixed_in": [
           "48.0.1"
@@ -2419,7 +2539,7 @@
         "id": "GHSA-537c-gmf6-5ccf",
         "kev": null,
         "kev_cves": [],
-        "kev_snapshot": "2026.11.13",
+        "kev_snapshot": "2026.11.20",
         "location": "cli/uv.lock",
         "locations": [
           "cli/uv.lock"
@@ -2444,10 +2564,10 @@
         "ecosystem": "pypi",
         "epss": {
           "cve": "CVE-2026-69247",
-          "percentile": 0.20057,
+          "percentile": 0.20095,
           "score": 0.00274
         },
-        "epss_date": "2026-11-15T12:03:04Z",
+        "epss_date": "2026-11-21T12:00:24Z",
         "fix_state": "fixed",
         "fixed_in": [
           "50.0.0"
@@ -2455,7 +2575,7 @@
         "id": "GHSA-g6cj-pr64-35w5",
         "kev": null,
         "kev_cves": [],
-        "kev_snapshot": "2026.11.13",
+        "kev_snapshot": "2026.11.20",
         "location": "cli/uv.lock",
         "locations": [
           "cli/uv.lock"
@@ -2480,10 +2600,10 @@
         "ecosystem": "pypi",
         "epss": {
           "cve": "CVE-2026-69249",
-          "percentile": 0.18099,
+          "percentile": 0.18109,
           "score": 0.00262
         },
-        "epss_date": "2026-11-15T12:03:04Z",
+        "epss_date": "2026-11-21T12:00:24Z",
         "fix_state": "fixed",
         "fixed_in": [
           "49.0.0"
@@ -2491,7 +2611,7 @@
         "id": "GHSA-jwv3-5hgf-82ww",
         "kev": null,
         "kev_cves": [],
-        "kev_snapshot": "2026.11.13",
+        "kev_snapshot": "2026.11.20",
         "location": "cli/uv.lock",
         "locations": [
           "cli/uv.lock"
@@ -2516,10 +2636,10 @@
         "ecosystem": "pypi",
         "epss": {
           "cve": "CVE-2026-26007",
-          "percentile": 0.32966,
+          "percentile": 0.33181,
           "score": 0.00384
         },
-        "epss_date": "2026-11-15T12:03:04Z",
+        "epss_date": "2026-11-21T12:00:24Z",
         "fix_state": "fixed",
         "fixed_in": [
           "46.0.5"
@@ -2527,7 +2647,7 @@
         "id": "GHSA-r6ph-v2qm-q3c2",
         "kev": null,
         "kev_cves": [],
-        "kev_snapshot": "2026.11.13",
+        "kev_snapshot": "2026.11.20",
         "location": "cli/uv.lock",
         "locations": [
           "cli/uv.lock"
@@ -2552,10 +2672,10 @@
         "ecosystem": "pypi",
         "epss": {
           "cve": "CVE-2026-116588",
-          "percentile": 0.41037,
+          "percentile": 0.41304,
           "score": 0.00468
         },
-        "epss_date": "2026-11-15T12:03:04Z",
+        "epss_date": "2026-11-21T12:00:24Z",
         "fix_state": "fixed",
         "fixed_in": [
           "4.15.6"
@@ -2563,7 +2683,7 @@
         "id": "GHSA-3633-r77q-h3v3",
         "kev": null,
         "kev_cves": [],
-        "kev_snapshot": "2026.11.13",
+        "kev_snapshot": "2026.11.20",
         "location": "cli/uv.lock",
         "locations": [
           "cli/uv.lock"
@@ -2588,10 +2708,10 @@
         "ecosystem": "pypi",
         "epss": {
           "cve": "CVE-2026-50271",
-          "percentile": 0.56921,
+          "percentile": 0.57258,
           "score": 0.00793
         },
-        "epss_date": "2026-11-15T12:03:04Z",
+        "epss_date": "2026-11-21T12:00:24Z",
         "fix_state": "fixed",
         "fixed_in": [
           "4.8.2"
@@ -2599,7 +2719,7 @@
         "id": "GHSA-mw54-j2v2-42hr",
         "kev": null,
         "kev_cves": [],
-        "kev_snapshot": "2026.11.13",
+        "kev_snapshot": "2026.11.20",
         "location": "cli/uv.lock",
         "locations": [
           "cli/uv.lock"
@@ -2624,10 +2744,10 @@
         "ecosystem": "pypi",
         "epss": {
           "cve": "CVE-2026-116589",
-          "percentile": 0.26221,
+          "percentile": 0.26352,
           "score": 0.00328
         },
-        "epss_date": "2026-11-15T12:03:04Z",
+        "epss_date": "2026-11-21T12:00:24Z",
         "fix_state": "fixed",
         "fixed_in": [
           "4.15.5"
@@ -2635,7 +2755,7 @@
         "id": "GHSA-p3m5-h5v9-vqj6",
         "kev": null,
         "kev_cves": [],
-        "kev_snapshot": "2026.11.13",
+        "kev_snapshot": "2026.11.20",
         "location": "cli/uv.lock",
         "locations": [
           "cli/uv.lock"
@@ -2660,10 +2780,10 @@
         "ecosystem": "pypi",
         "epss": {
           "cve": "CVE-2026-112940",
-          "percentile": 0.08769,
+          "percentile": 0.08719,
           "score": 0.0019
         },
-        "epss_date": "2026-11-15T12:03:04Z",
+        "epss_date": "2026-11-21T12:00:24Z",
         "fix_state": "fixed",
         "fixed_in": [
           "4.2.1"
@@ -2671,7 +2791,7 @@
         "id": "GHSA-v4x8-3wr5-3wq8",
         "kev": null,
         "kev_cves": [],
-        "kev_snapshot": "2026.11.13",
+        "kev_snapshot": "2026.11.20",
         "location": "scripts/release/uv.lock",
         "locations": [
           "scripts/release/uv.lock"
@@ -2691,15 +2811,51 @@
       },
       {
         "aliases": [
+          "CVE-2026-115563"
+        ],
+        "ecosystem": "pypi",
+        "epss": {
+          "cve": "CVE-2026-115563",
+          "percentile": 0.21059,
+          "score": 0.00282
+        },
+        "epss_date": "2026-11-21T12:00:24Z",
+        "fix_state": "fixed",
+        "fixed_in": [
+          "1.30.0"
+        ],
+        "id": "GHSA-qx49-fqc8-xw99",
+        "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.20",
+        "location": "cli/uv.lock",
+        "locations": [
+          "cli/uv.lock"
+        ],
+        "osv_confirmed": true,
+        "osv_coverage": {
+          "state": "confirmed"
+        },
+        "osv_modified": "2026-11-19T23:00:36.665030140Z",
+        "osv_published": "2026-11-19T22:45:40Z",
+        "package": "mcp",
+        "purl": "pkg:pypi/mcp@1.29.0",
+        "severity": "High",
+        "summary": "Model Context Protocol Python SDK: OAuth client could send credentials to an authorization server chosen by the MCP server",
+        "url": "https://github.com/advisories/GHSA-qx49-fqc8-xw99",
+        "version": "1.29.0"
+      },
+      {
+        "aliases": [
           "CVE-2026-0994"
         ],
         "ecosystem": "pypi",
         "epss": {
           "cve": "CVE-2026-0994",
-          "percentile": 0.54146,
+          "percentile": 0.54489,
           "score": 0.00712
         },
-        "epss_date": "2026-11-15T12:03:04Z",
+        "epss_date": "2026-11-21T12:00:24Z",
         "fix_state": "fixed",
         "fixed_in": [
           "6.33.5"
@@ -2707,7 +2863,7 @@
         "id": "GHSA-7gcm-g887-7qv7",
         "kev": null,
         "kev_cves": [],
-        "kev_snapshot": "2026.11.13",
+        "kev_snapshot": "2026.11.20",
         "location": "cli/uv.lock",
         "locations": [
           "cli/uv.lock"
@@ -2732,10 +2888,10 @@
         "ecosystem": "pypi",
         "epss": {
           "cve": "CVE-2026-53539",
-          "percentile": 0.40414,
+          "percentile": 0.40656,
           "score": 0.0046
         },
-        "epss_date": "2026-11-15T12:03:04Z",
+        "epss_date": "2026-11-21T12:00:24Z",
         "fix_state": "fixed",
         "fixed_in": [
           "0.0.30"
@@ -2743,7 +2899,7 @@
         "id": "GHSA-5rvq-cxj2-64vf",
         "kev": null,
         "kev_cves": [],
-        "kev_snapshot": "2026.11.13",
+        "kev_snapshot": "2026.11.20",
         "location": "cli/uv.lock",
         "locations": [
           "cli/uv.lock"
@@ -2768,10 +2924,10 @@
         "ecosystem": "pypi",
         "epss": {
           "cve": "CVE-2026-42561",
-          "percentile": 0.55192,
+          "percentile": 0.55533,
           "score": 0.0074
         },
-        "epss_date": "2026-11-15T12:03:04Z",
+        "epss_date": "2026-11-21T12:00:24Z",
         "fix_state": "fixed",
         "fixed_in": [
           "0.0.27"
@@ -2779,7 +2935,7 @@
         "id": "GHSA-pp6c-gr5w-3c5g",
         "kev": null,
         "kev_cves": [],
-        "kev_snapshot": "2026.11.13",
+        "kev_snapshot": "2026.11.20",
         "location": "cli/uv.lock",
         "locations": [
           "cli/uv.lock"
@@ -2804,10 +2960,10 @@
         "ecosystem": "pypi",
         "epss": {
           "cve": "CVE-2026-24486",
-          "percentile": 0.82855,
+          "percentile": 0.83007,
           "score": 0.02206
         },
-        "epss_date": "2026-11-15T12:03:04Z",
+        "epss_date": "2026-11-21T12:00:24Z",
         "fix_state": "fixed",
         "fixed_in": [
           "0.0.22"
@@ -2815,7 +2971,7 @@
         "id": "GHSA-wp53-j4wj-2cfg",
         "kev": null,
         "kev_cves": [],
-        "kev_snapshot": "2026.11.13",
+        "kev_snapshot": "2026.11.20",
         "location": "cli/uv.lock",
         "locations": [
           "cli/uv.lock"
@@ -2840,10 +2996,10 @@
         "ecosystem": "npm",
         "epss": {
           "cve": "CVE-2022-25883",
-          "percentile": 0.86506,
+          "percentile": 0.86623,
           "score": 0.02761
         },
-        "epss_date": "2026-11-15T12:03:04Z",
+        "epss_date": "2026-11-21T12:00:24Z",
         "fix_state": "fixed",
         "fixed_in": [
           "5.7.2"
@@ -2851,7 +3007,7 @@
         "id": "GHSA-c2qf-rxjj-qqgw",
         "kev": null,
         "kev_cves": [],
-        "kev_snapshot": "2026.11.13",
+        "kev_snapshot": "2026.11.20",
         "location": "libs/ocaml-tree-sitter-semgrep/lang/semgrep-grammars/package-lock.json",
         "locations": [
           "libs/ocaml-tree-sitter-semgrep/lang/semgrep-grammars/package-lock.json"
@@ -2876,10 +3032,10 @@
         "ecosystem": "npm",
         "epss": {
           "cve": "CVE-2022-0355",
-          "percentile": 0.81319,
-          "score": 0.02024
+          "percentile": 0.8209,
+          "score": 0.02091
         },
-        "epss_date": "2026-11-15T12:03:04Z",
+        "epss_date": "2026-11-21T12:00:24Z",
         "fix_state": "fixed",
         "fixed_in": [
           "3.1.1"
@@ -2887,7 +3043,7 @@
         "id": "GHSA-wpg7-2c88-r8xv",
         "kev": null,
         "kev_cves": [],
-        "kev_snapshot": "2026.11.13",
+        "kev_snapshot": "2026.11.20",
         "location": "libs/ocaml-tree-sitter-semgrep/lang/semgrep-grammars/package-lock.json",
         "locations": [
           "libs/ocaml-tree-sitter-semgrep/lang/semgrep-grammars/package-lock.json"
@@ -2912,10 +3068,10 @@
         "ecosystem": "pypi",
         "epss": {
           "cve": "CVE-2026-54283",
-          "percentile": 0.42023,
+          "percentile": 0.42308,
           "score": 0.00481
         },
-        "epss_date": "2026-11-15T12:03:04Z",
+        "epss_date": "2026-11-21T12:00:24Z",
         "fix_state": "fixed",
         "fixed_in": [
           "1.3.1"
@@ -2923,7 +3079,7 @@
         "id": "GHSA-82w8-qh3p-5jfq",
         "kev": null,
         "kev_cves": [],
-        "kev_snapshot": "2026.11.13",
+        "kev_snapshot": "2026.11.20",
         "location": "cli/uv.lock",
         "locations": [
           "cli/uv.lock"
@@ -2948,10 +3104,10 @@
         "ecosystem": "pypi",
         "epss": {
           "cve": "CVE-2026-48818",
-          "percentile": 0.31109,
+          "percentile": 0.31287,
           "score": 0.00368
         },
-        "epss_date": "2026-11-15T12:03:04Z",
+        "epss_date": "2026-11-21T12:00:24Z",
         "fix_state": "fixed",
         "fixed_in": [
           "1.1.0"
@@ -2959,7 +3115,7 @@
         "id": "GHSA-wqp7-x3pw-xc5r",
         "kev": null,
         "kev_cves": [],
-        "kev_snapshot": "2026.11.13",
+        "kev_snapshot": "2026.11.20",
         "location": "cli/uv.lock",
         "locations": [
           "cli/uv.lock"
@@ -2984,10 +3140,10 @@
         "ecosystem": "npm",
         "epss": {
           "cve": "CVE-2025-48387",
-          "percentile": 0.48214,
+          "percentile": 0.48547,
           "score": 0.00579
         },
-        "epss_date": "2026-11-15T12:03:04Z",
+        "epss_date": "2026-11-21T12:00:24Z",
         "fix_state": "fixed",
         "fixed_in": [
           "2.1.3"
@@ -2995,7 +3151,7 @@
         "id": "GHSA-8cj5-5rvv-wf4v",
         "kev": null,
         "kev_cves": [],
-        "kev_snapshot": "2026.11.13",
+        "kev_snapshot": "2026.11.20",
         "location": "libs/ocaml-tree-sitter-semgrep/lang/semgrep-grammars/package-lock.json",
         "locations": [
           "libs/ocaml-tree-sitter-semgrep/lang/semgrep-grammars/package-lock.json"
@@ -3020,10 +3176,10 @@
         "ecosystem": "npm",
         "epss": {
           "cve": "CVE-2024-12905",
-          "percentile": 0.83579,
+          "percentile": 0.8372,
           "score": 0.02299
         },
-        "epss_date": "2026-11-15T12:03:04Z",
+        "epss_date": "2026-11-21T12:00:24Z",
         "fix_state": "fixed",
         "fixed_in": [
           "2.1.2"
@@ -3031,7 +3187,7 @@
         "id": "GHSA-pq67-2wwv-3xjx",
         "kev": null,
         "kev_cves": [],
-        "kev_snapshot": "2026.11.13",
+        "kev_snapshot": "2026.11.20",
         "location": "libs/ocaml-tree-sitter-semgrep/lang/semgrep-grammars/package-lock.json",
         "locations": [
           "libs/ocaml-tree-sitter-semgrep/lang/semgrep-grammars/package-lock.json"
@@ -3056,10 +3212,10 @@
         "ecosystem": "npm",
         "epss": {
           "cve": "CVE-2025-59343",
-          "percentile": 0.4827,
+          "percentile": 0.48601,
           "score": 0.0058
         },
-        "epss_date": "2026-11-15T12:03:04Z",
+        "epss_date": "2026-11-21T12:00:24Z",
         "fix_state": "fixed",
         "fixed_in": [
           "2.1.4"
@@ -3067,7 +3223,7 @@
         "id": "GHSA-vj76-c3g6-qr5v",
         "kev": null,
         "kev_cves": [],
-        "kev_snapshot": "2026.11.13",
+        "kev_snapshot": "2026.11.20",
         "location": "libs/ocaml-tree-sitter-semgrep/lang/semgrep-grammars/package-lock.json",
         "locations": [
           "libs/ocaml-tree-sitter-semgrep/lang/semgrep-grammars/package-lock.json"
@@ -3092,10 +3248,10 @@
         "ecosystem": "pypi",
         "epss": {
           "cve": "CVE-2026-113718",
-          "percentile": 0.15533,
-          "score": 0.00242
+          "percentile": 0.14484,
+          "score": 0.00235
         },
-        "epss_date": "2026-11-15T12:03:04Z",
+        "epss_date": "2026-11-21T12:00:24Z",
         "fix_state": "fixed",
         "fixed_in": [
           "21.14.9"
@@ -3103,7 +3259,7 @@
         "id": "GHSA-394h-qwmc-48pf",
         "kev": null,
         "kev_cves": [],
-        "kev_snapshot": "2026.11.13",
+        "kev_snapshot": "2026.11.20",
         "location": "scripts/release/uv.lock",
         "locations": [
           "scripts/release/uv.lock"
@@ -3112,8 +3268,8 @@
         "osv_coverage": {
           "state": "confirmed"
         },
-        "osv_modified": "2026-10-29T10:55:57.228294866Z",
-        "osv_published": "2026-10-23T22:24:43Z",
+        "osv_modified": "2026-11-18T12:11:02.144706067Z",
+        "osv_published": "2026-10-20T20:17:18.197Z",
         "package": "virtualenv",
         "purl": "pkg:pypi/virtualenv@21.13.0",
         "severity": "High",
@@ -3128,10 +3284,10 @@
         "ecosystem": "pypi",
         "epss": {
           "cve": "CVE-2026-113726",
-          "percentile": 0.28438,
-          "score": 0.00345
+          "percentile": 0.32607,
+          "score": 0.00379
         },
-        "epss_date": "2026-11-15T12:03:04Z",
+        "epss_date": "2026-11-21T12:00:24Z",
         "fix_state": "fixed",
         "fixed_in": [
           "21.14.4"
@@ -3139,7 +3295,7 @@
         "id": "GHSA-5vjq-rrrf-7h2q",
         "kev": null,
         "kev_cves": [],
-        "kev_snapshot": "2026.11.13",
+        "kev_snapshot": "2026.11.20",
         "location": "scripts/release/uv.lock",
         "locations": [
           "scripts/release/uv.lock"
@@ -3148,8 +3304,8 @@
         "osv_coverage": {
           "state": "confirmed"
         },
-        "osv_modified": "2026-10-29T10:55:33.825448161Z",
-        "osv_published": "2026-10-21T16:46:23Z",
+        "osv_modified": "2026-11-18T12:10:39.867666001Z",
+        "osv_published": "2026-10-20T22:19:29.423Z",
         "package": "virtualenv",
         "purl": "pkg:pypi/virtualenv@21.13.0",
         "severity": "High",
@@ -3164,10 +3320,10 @@
         "ecosystem": "pypi",
         "epss": {
           "cve": "CVE-2026-113723",
-          "percentile": 0.15533,
-          "score": 0.00242
+          "percentile": 0.14484,
+          "score": 0.00235
         },
-        "epss_date": "2026-11-15T12:03:04Z",
+        "epss_date": "2026-11-21T12:00:24Z",
         "fix_state": "fixed",
         "fixed_in": [
           "21.14.9"
@@ -3175,7 +3331,7 @@
         "id": "GHSA-6w3r-xr62-4xcp",
         "kev": null,
         "kev_cves": [],
-        "kev_snapshot": "2026.11.13",
+        "kev_snapshot": "2026.11.20",
         "location": "scripts/release/uv.lock",
         "locations": [
           "scripts/release/uv.lock"
@@ -3184,8 +3340,8 @@
         "osv_coverage": {
           "state": "confirmed"
         },
-        "osv_modified": "2026-10-29T10:55:32.039209236Z",
-        "osv_published": "2026-10-23T22:21:57Z",
+        "osv_modified": "2026-11-18T12:10:38.476413749Z",
+        "osv_published": "2026-10-20T20:17:18.967Z",
         "package": "virtualenv",
         "purl": "pkg:pypi/virtualenv@21.13.0",
         "severity": "High",
@@ -3200,10 +3356,10 @@
         "ecosystem": "pypi",
         "epss": {
           "cve": "CVE-2026-113776",
-          "percentile": 0.19246,
-          "score": 0.00269
+          "percentile": 0.21912,
+          "score": 0.0029
         },
-        "epss_date": "2026-11-15T12:03:04Z",
+        "epss_date": "2026-11-21T12:00:24Z",
         "fix_state": "fixed",
         "fixed_in": [
           "21.14.2"
@@ -3211,7 +3367,7 @@
         "id": "GHSA-8rjx-v5ww-45pp",
         "kev": null,
         "kev_cves": [],
-        "kev_snapshot": "2026.11.13",
+        "kev_snapshot": "2026.11.20",
         "location": "scripts/release/uv.lock",
         "locations": [
           "scripts/release/uv.lock"
@@ -3220,8 +3376,8 @@
         "osv_coverage": {
           "state": "confirmed"
         },
-        "osv_modified": "2026-10-29T10:55:59.336337258Z",
-        "osv_published": "2026-10-21T16:39:38Z",
+        "osv_modified": "2026-11-18T12:11:04.341356971Z",
+        "osv_published": "2026-10-20T22:19:30.557Z",
         "package": "virtualenv",
         "purl": "pkg:pypi/virtualenv@21.13.0",
         "severity": "High",
@@ -3236,10 +3392,10 @@
         "ecosystem": "pypi",
         "epss": {
           "cve": "CVE-2026-113732",
-          "percentile": 0.14772,
-          "score": 0.00236
+          "percentile": 0.17876,
+          "score": 0.0026
         },
-        "epss_date": "2026-11-15T12:03:04Z",
+        "epss_date": "2026-11-21T12:00:24Z",
         "fix_state": "fixed",
         "fixed_in": [
           "21.14.2"
@@ -3247,7 +3403,7 @@
         "id": "GHSA-c947-3pg5-gm8q",
         "kev": null,
         "kev_cves": [],
-        "kev_snapshot": "2026.11.13",
+        "kev_snapshot": "2026.11.20",
         "location": "scripts/release/uv.lock",
         "locations": [
           "scripts/release/uv.lock"
@@ -3256,8 +3412,8 @@
         "osv_coverage": {
           "state": "confirmed"
         },
-        "osv_modified": "2026-10-29T10:55:30.348006947Z",
-        "osv_published": "2026-10-21T16:39:58Z",
+        "osv_modified": "2026-11-18T12:10:36.233350896Z",
+        "osv_published": "2026-10-20T22:19:30.413Z",
         "package": "virtualenv",
         "purl": "pkg:pypi/virtualenv@21.13.0",
         "severity": "High",
@@ -3272,10 +3428,10 @@
         "ecosystem": "pypi",
         "epss": {
           "cve": "CVE-2026-113722",
-          "percentile": 0.2131,
-          "score": 0.00285
+          "percentile": 0.18087,
+          "score": 0.00261
         },
-        "epss_date": "2026-11-15T12:03:04Z",
+        "epss_date": "2026-11-21T12:00:24Z",
         "fix_state": "fixed",
         "fixed_in": [
           "21.14.9"
@@ -3283,7 +3439,7 @@
         "id": "GHSA-c978-59m8-c77v",
         "kev": null,
         "kev_cves": [],
-        "kev_snapshot": "2026.11.13",
+        "kev_snapshot": "2026.11.20",
         "location": "scripts/release/uv.lock",
         "locations": [
           "scripts/release/uv.lock"
@@ -3292,8 +3448,8 @@
         "osv_coverage": {
           "state": "confirmed"
         },
-        "osv_modified": "2026-10-29T10:55:46.719521464Z",
-        "osv_published": "2026-10-21T21:30:12Z",
+        "osv_modified": "2026-11-18T12:10:51.899471924Z",
+        "osv_published": "2026-10-20T20:17:18.810Z",
         "package": "virtualenv",
         "purl": "pkg:pypi/virtualenv@21.13.0",
         "severity": "High",
@@ -3308,10 +3464,10 @@
         "ecosystem": "pypi",
         "epss": {
           "cve": "CVE-2026-113725",
-          "percentile": 0.18346,
-          "score": 0.00263
+          "percentile": 0.20422,
+          "score": 0.00277
         },
-        "epss_date": "2026-11-15T12:03:04Z",
+        "epss_date": "2026-11-21T12:00:24Z",
         "fix_state": "fixed",
         "fixed_in": [
           "21.14.7"
@@ -3319,7 +3475,7 @@
         "id": "GHSA-vxj4-q4g9-crj7",
         "kev": null,
         "kev_cves": [],
-        "kev_snapshot": "2026.11.13",
+        "kev_snapshot": "2026.11.20",
         "location": "scripts/release/uv.lock",
         "locations": [
           "scripts/release/uv.lock"
@@ -3328,8 +3484,8 @@
         "osv_coverage": {
           "state": "confirmed"
         },
-        "osv_modified": "2026-10-29T10:55:53.696944055Z",
-        "osv_published": "2026-10-21T16:49:01Z",
+        "osv_modified": "2026-11-18T12:10:58.337631692Z",
+        "osv_published": "2026-10-20T20:17:19.257Z",
         "package": "virtualenv",
         "purl": "pkg:pypi/virtualenv@21.13.0",
         "severity": "High",
@@ -3342,10 +3498,10 @@
         "ecosystem": "pypi",
         "epss": {
           "cve": "CVE-2026-26007",
-          "percentile": 0.32966,
+          "percentile": 0.33181,
           "score": 0.00384
         },
-        "epss_date": "2026-11-15T12:03:04Z",
+        "epss_date": "2026-11-21T12:00:24Z",
         "fix_state": "fixed",
         "fixed_in": [
           "46.0.5"
@@ -3353,7 +3509,7 @@
         "id": "CVE-2026-26007",
         "kev": null,
         "kev_cves": [],
-        "kev_snapshot": "2026.11.13",
+        "kev_snapshot": "2026.11.20",
         "location": "cli/uv.lock",
         "locations": [
           "cli/uv.lock"
@@ -3376,10 +3532,10 @@
         "ecosystem": "pypi",
         "epss": {
           "cve": "CVE-2026-34073",
-          "percentile": 0.1357,
+          "percentile": 0.13539,
           "score": 0.00227
         },
-        "epss_date": "2026-11-15T12:03:04Z",
+        "epss_date": "2026-11-21T12:00:24Z",
         "fix_state": "fixed",
         "fixed_in": [
           "46.0.6"
@@ -3387,7 +3543,7 @@
         "id": "CVE-2026-34073",
         "kev": null,
         "kev_cves": [],
-        "kev_snapshot": "2026.11.13",
+        "kev_snapshot": "2026.11.20",
         "location": "cli/uv.lock",
         "locations": [
           "cli/uv.lock"
@@ -3410,10 +3566,10 @@
         "ecosystem": "pypi",
         "epss": {
           "cve": "CVE-2026-69248",
-          "percentile": 0.1568,
+          "percentile": 0.15679,
           "score": 0.00244
         },
-        "epss_date": "2026-11-15T12:03:04Z",
+        "epss_date": "2026-11-21T12:00:24Z",
         "fix_state": "fixed",
         "fixed_in": [
           "49.0.0"
@@ -3421,7 +3577,7 @@
         "id": "CVE-2026-69248",
         "kev": null,
         "kev_cves": [],
-        "kev_snapshot": "2026.11.13",
+        "kev_snapshot": "2026.11.20",
         "location": "cli/uv.lock",
         "locations": [
           "cli/uv.lock"
@@ -3446,10 +3602,10 @@
         "ecosystem": "pypi",
         "epss": {
           "cve": "CVE-2026-69248",
-          "percentile": 0.1568,
+          "percentile": 0.15679,
           "score": 0.00244
         },
-        "epss_date": "2026-11-15T12:03:04Z",
+        "epss_date": "2026-11-21T12:00:24Z",
         "fix_state": "fixed",
         "fixed_in": [
           "49.0.0"
@@ -3457,7 +3613,7 @@
         "id": "GHSA-m2h6-j472-rp4c",
         "kev": null,
         "kev_cves": [],
-        "kev_snapshot": "2026.11.13",
+        "kev_snapshot": "2026.11.20",
         "location": "cli/uv.lock",
         "locations": [
           "cli/uv.lock"
@@ -3482,10 +3638,10 @@
         "ecosystem": "pypi",
         "epss": {
           "cve": "CVE-2026-39892",
-          "percentile": 0.52873,
+          "percentile": 0.53227,
           "score": 0.00677
         },
-        "epss_date": "2026-11-15T12:03:04Z",
+        "epss_date": "2026-11-21T12:00:24Z",
         "fix_state": "fixed",
         "fixed_in": [
           "46.0.7"
@@ -3493,7 +3649,7 @@
         "id": "GHSA-p423-j2cm-9vmq",
         "kev": null,
         "kev_cves": [],
-        "kev_snapshot": "2026.11.13",
+        "kev_snapshot": "2026.11.20",
         "location": "cli/uv.lock",
         "locations": [
           "cli/uv.lock"
@@ -3518,10 +3674,10 @@
         "ecosystem": "pypi",
         "epss": {
           "cve": "CVE-2026-112908",
-          "percentile": 0.01939,
-          "score": 0.00121
+          "percentile": 0.05789,
+          "score": 0.00165
         },
-        "epss_date": "2026-11-15T12:03:04Z",
+        "epss_date": "2026-11-21T12:00:24Z",
         "fix_state": "fixed",
         "fixed_in": [
           "4.2.1"
@@ -3529,7 +3685,7 @@
         "id": "GHSA-6627-m3xw-93mp",
         "kev": null,
         "kev_cves": [],
-        "kev_snapshot": "2026.11.13",
+        "kev_snapshot": "2026.11.20",
         "location": "scripts/release/uv.lock",
         "locations": [
           "scripts/release/uv.lock"
@@ -3554,10 +3710,10 @@
         "ecosystem": "pypi",
         "epss": {
           "cve": "CVE-2026-112909",
-          "percentile": 0.127,
+          "percentile": 0.12649,
           "score": 0.0022
         },
-        "epss_date": "2026-11-15T12:03:04Z",
+        "epss_date": "2026-11-21T12:00:24Z",
         "fix_state": "fixed",
         "fixed_in": [
           "4.2.1"
@@ -3565,7 +3721,7 @@
         "id": "GHSA-69hj-f68j-2879",
         "kev": null,
         "kev_cves": [],
-        "kev_snapshot": "2026.11.13",
+        "kev_snapshot": "2026.11.20",
         "location": "scripts/release/uv.lock",
         "locations": [
           "scripts/release/uv.lock"
@@ -3590,10 +3746,10 @@
         "ecosystem": "pypi",
         "epss": {
           "cve": "CVE-2026-112910",
-          "percentile": 0.05335,
-          "score": 0.00161
+          "percentile": 0.08892,
+          "score": 0.00192
         },
-        "epss_date": "2026-11-15T12:03:04Z",
+        "epss_date": "2026-11-21T12:00:24Z",
         "fix_state": "fixed",
         "fixed_in": [
           "4.2.1"
@@ -3601,7 +3757,7 @@
         "id": "GHSA-8mx5-7m5m-r77g",
         "kev": null,
         "kev_cves": [],
-        "kev_snapshot": "2026.11.13",
+        "kev_snapshot": "2026.11.20",
         "location": "scripts/release/uv.lock",
         "locations": [
           "scripts/release/uv.lock"
@@ -3626,10 +3782,10 @@
         "ecosystem": "pypi",
         "epss": {
           "cve": "CVE-2026-112911",
-          "percentile": 0.04039,
+          "percentile": 0.03959,
           "score": 0.00148
         },
-        "epss_date": "2026-11-15T12:03:04Z",
+        "epss_date": "2026-11-21T12:00:24Z",
         "fix_state": "fixed",
         "fixed_in": [
           "4.2.1"
@@ -3637,7 +3793,7 @@
         "id": "GHSA-9c4x-gm8v-wgc4",
         "kev": null,
         "kev_cves": [],
-        "kev_snapshot": "2026.11.13",
+        "kev_snapshot": "2026.11.20",
         "location": "scripts/release/uv.lock",
         "locations": [
           "scripts/release/uv.lock"
@@ -3662,10 +3818,10 @@
         "ecosystem": "pypi",
         "epss": {
           "cve": "CVE-2026-112915",
-          "percentile": 0.12323,
+          "percentile": 0.12276,
           "score": 0.00218
         },
-        "epss_date": "2026-11-15T12:03:04Z",
+        "epss_date": "2026-11-21T12:00:24Z",
         "fix_state": "fixed",
         "fixed_in": [
           "4.2.1"
@@ -3673,7 +3829,7 @@
         "id": "GHSA-cwqr-hh33-gh44",
         "kev": null,
         "kev_cves": [],
-        "kev_snapshot": "2026.11.13",
+        "kev_snapshot": "2026.11.20",
         "location": "scripts/release/uv.lock",
         "locations": [
           "scripts/release/uv.lock"
@@ -3698,10 +3854,10 @@
         "ecosystem": "pypi",
         "epss": {
           "cve": "CVE-2026-112934",
-          "percentile": 0.14253,
+          "percentile": 0.14231,
           "score": 0.00233
         },
-        "epss_date": "2026-11-15T12:03:04Z",
+        "epss_date": "2026-11-21T12:00:24Z",
         "fix_state": "fixed",
         "fixed_in": [
           "4.2.1"
@@ -3709,7 +3865,7 @@
         "id": "GHSA-fj95-fr6c-h845",
         "kev": null,
         "kev_cves": [],
-        "kev_snapshot": "2026.11.13",
+        "kev_snapshot": "2026.11.20",
         "location": "scripts/release/uv.lock",
         "locations": [
           "scripts/release/uv.lock"
@@ -3734,10 +3890,10 @@
         "ecosystem": "pypi",
         "epss": {
           "cve": "CVE-2026-112935",
-          "percentile": 0.02842,
+          "percentile": 0.02772,
           "score": 0.00132
         },
-        "epss_date": "2026-11-15T12:03:04Z",
+        "epss_date": "2026-11-21T12:00:24Z",
         "fix_state": "fixed",
         "fixed_in": [
           "4.2.1"
@@ -3745,7 +3901,7 @@
         "id": "GHSA-fq56-3cx3-fjxp",
         "kev": null,
         "kev_cves": [],
-        "kev_snapshot": "2026.11.13",
+        "kev_snapshot": "2026.11.20",
         "location": "scripts/release/uv.lock",
         "locations": [
           "scripts/release/uv.lock"
@@ -3770,10 +3926,10 @@
         "ecosystem": "pypi",
         "epss": {
           "cve": "CVE-2026-112936",
-          "percentile": 0.14184,
+          "percentile": 0.14165,
           "score": 0.00232
         },
-        "epss_date": "2026-11-15T12:03:04Z",
+        "epss_date": "2026-11-21T12:00:24Z",
         "fix_state": "fixed",
         "fixed_in": [
           "4.0.9"
@@ -3781,7 +3937,7 @@
         "id": "GHSA-j8f7-rjxc-mr56",
         "kev": null,
         "kev_cves": [],
-        "kev_snapshot": "2026.11.13",
+        "kev_snapshot": "2026.11.20",
         "location": "scripts/release/uv.lock",
         "locations": [
           "scripts/release/uv.lock"
@@ -3806,10 +3962,10 @@
         "ecosystem": "pypi",
         "epss": {
           "cve": "CVE-2026-112938",
-          "percentile": 0.01161,
-          "score": 0.00107
+          "percentile": 0.01372,
+          "score": 0.00112
         },
-        "epss_date": "2026-11-15T12:03:04Z",
+        "epss_date": "2026-11-21T12:00:24Z",
         "fix_state": "fixed",
         "fixed_in": [
           "4.2.1"
@@ -3817,7 +3973,7 @@
         "id": "GHSA-m462-7rxw-wvpg",
         "kev": null,
         "kev_cves": [],
-        "kev_snapshot": "2026.11.13",
+        "kev_snapshot": "2026.11.20",
         "location": "scripts/release/uv.lock",
         "locations": [
           "scripts/release/uv.lock"
@@ -3842,10 +3998,10 @@
         "ecosystem": "pypi",
         "epss": {
           "cve": "CVE-2026-112939",
-          "percentile": 0.03385,
+          "percentile": 0.03305,
           "score": 0.0014
         },
-        "epss_date": "2026-11-15T12:03:04Z",
+        "epss_date": "2026-11-21T12:00:24Z",
         "fix_state": "fixed",
         "fixed_in": [
           "4.2.1"
@@ -3853,7 +4009,7 @@
         "id": "GHSA-rfpc-qcw5-3pc4",
         "kev": null,
         "kev_cves": [],
-        "kev_snapshot": "2026.11.13",
+        "kev_snapshot": "2026.11.20",
         "location": "scripts/release/uv.lock",
         "locations": [
           "scripts/release/uv.lock"
@@ -3878,10 +4034,10 @@
         "ecosystem": "pypi",
         "epss": {
           "cve": "CVE-2026-45409",
-          "percentile": 0.35625,
+          "percentile": 0.35856,
           "score": 0.00408
         },
-        "epss_date": "2026-11-15T12:03:04Z",
+        "epss_date": "2026-11-21T12:00:24Z",
         "fix_state": "fixed",
         "fixed_in": [
           "3.15"
@@ -3889,7 +4045,7 @@
         "id": "GHSA-65pc-fj4g-8rjx",
         "kev": null,
         "kev_cves": [],
-        "kev_snapshot": "2026.11.13",
+        "kev_snapshot": "2026.11.20",
         "location": "cli/uv.lock",
         "locations": [
           "cli/uv.lock"
@@ -3914,10 +4070,10 @@
         "ecosystem": "pypi",
         "epss": {
           "cve": "CVE-2026-116685",
-          "percentile": 0.34683,
+          "percentile": 0.34907,
           "score": 0.00399
         },
-        "epss_date": "2026-11-15T12:03:04Z",
+        "epss_date": "2026-11-21T12:00:24Z",
         "fix_state": "fixed",
         "fixed_in": [
           "1.30.0"
@@ -3925,7 +4081,7 @@
         "id": "GHSA-5h93-6whr-6q8j",
         "kev": null,
         "kev_cves": [],
-        "kev_snapshot": "2026.11.13",
+        "kev_snapshot": "2026.11.20",
         "location": "cli/uv.lock",
         "locations": [
           "cli/uv.lock"
@@ -3950,10 +4106,10 @@
         "ecosystem": "pypi",
         "epss": {
           "cve": "CVE-2026-59951",
-          "percentile": 0.40238,
+          "percentile": 0.40505,
           "score": 0.00458
         },
-        "epss_date": "2026-11-15T12:03:04Z",
+        "epss_date": "2026-11-21T12:00:24Z",
         "fix_state": "fixed",
         "fixed_in": [
           "1.30.0"
@@ -3961,7 +4117,7 @@
         "id": "GHSA-84m7-p3x7-pcfv",
         "kev": null,
         "kev_cves": [],
-        "kev_snapshot": "2026.11.13",
+        "kev_snapshot": "2026.11.20",
         "location": "cli/uv.lock",
         "locations": [
           "cli/uv.lock"
@@ -3986,10 +4142,10 @@
         "ecosystem": "pypi",
         "epss": {
           "cve": "CVE-2026-116686",
-          "percentile": 0.27463,
+          "percentile": 0.27606,
           "score": 0.00337
         },
-        "epss_date": "2026-11-15T12:03:04Z",
+        "epss_date": "2026-11-21T12:00:24Z",
         "fix_state": "fixed",
         "fixed_in": [
           "1.30.0"
@@ -3997,7 +4153,7 @@
         "id": "GHSA-rwrf-2pqf-9j8j",
         "kev": null,
         "kev_cves": [],
-        "kev_snapshot": "2026.11.13",
+        "kev_snapshot": "2026.11.20",
         "location": "cli/uv.lock",
         "locations": [
           "cli/uv.lock"
@@ -4022,10 +4178,10 @@
         "ecosystem": "pypi",
         "epss": {
           "cve": "CVE-2026-116684",
-          "percentile": 0.30799,
+          "percentile": 0.30979,
           "score": 0.00365
         },
-        "epss_date": "2026-11-15T12:03:04Z",
+        "epss_date": "2026-11-21T12:00:24Z",
         "fix_state": "fixed",
         "fixed_in": [
           "1.30.0"
@@ -4033,7 +4189,7 @@
         "id": "GHSA-w4fh-qvv9-3v23",
         "kev": null,
         "kev_cves": [],
-        "kev_snapshot": "2026.11.13",
+        "kev_snapshot": "2026.11.20",
         "location": "cli/uv.lock",
         "locations": [
           "cli/uv.lock"
@@ -4058,10 +4214,10 @@
         "ecosystem": "pypi",
         "epss": {
           "cve": "CVE-2026-126360",
-          "percentile": 0.44655,
-          "score": 0.00519
+          "percentile": 0.46787,
+          "score": 0.00548
         },
-        "epss_date": "2026-11-15T12:03:04Z",
+        "epss_date": "2026-11-21T12:00:24Z",
         "fix_state": "fixed",
         "fixed_in": [
           "1.45.2"
@@ -4069,7 +4225,7 @@
         "id": "GHSA-mf5v-w3w3-f6cg",
         "kev": null,
         "kev_cves": [],
-        "kev_snapshot": "2026.11.13",
+        "kev_snapshot": "2026.11.20",
         "location": "cli/uv.lock",
         "locations": [
           "cli/uv.lock"
@@ -4094,10 +4250,10 @@
         "ecosystem": "pypi",
         "epss": {
           "cve": "CVE-2026-114603",
-          "percentile": 0.42502,
-          "score": 0.00487
+          "percentile": 0.49045,
+          "score": 0.00589
         },
-        "epss_date": "2026-11-15T12:03:04Z",
+        "epss_date": "2026-11-21T12:00:24Z",
         "fix_state": "fixed",
         "fixed_in": [
           "1.45.1"
@@ -4105,7 +4261,7 @@
         "id": "GHSA-xcq7-p3pf-p88h",
         "kev": null,
         "kev_cves": [],
-        "kev_snapshot": "2026.11.13",
+        "kev_snapshot": "2026.11.20",
         "location": "cli/uv.lock",
         "locations": [
           "cli/uv.lock"
@@ -4127,7 +4283,7 @@
         "aliases": [],
         "ecosystem": "pypi",
         "epss": null,
-        "epss_date": "2026-11-15T12:03:04Z",
+        "epss_date": "2026-11-21T12:00:24Z",
         "fix_state": "fixed",
         "fixed_in": [
           "2.14.2"
@@ -4135,7 +4291,7 @@
         "id": "GHSA-4xgf-cpjx-pc3j",
         "kev": null,
         "kev_cves": [],
-        "kev_snapshot": "2026.11.13",
+        "kev_snapshot": "2026.11.20",
         "location": "cli/uv.lock",
         "locations": [
           "cli/uv.lock"
@@ -4160,10 +4316,10 @@
         "ecosystem": "pypi",
         "epss": {
           "cve": "CVE-2025-71176",
-          "percentile": 0.0456,
+          "percentile": 0.04472,
           "score": 0.00154
         },
-        "epss_date": "2026-11-15T12:03:04Z",
+        "epss_date": "2026-11-21T12:00:24Z",
         "fix_state": "fixed",
         "fixed_in": [
           "9.0.3"
@@ -4171,7 +4327,7 @@
         "id": "GHSA-6w46-j5rx-g56g",
         "kev": null,
         "kev_cves": [],
-        "kev_snapshot": "2026.11.13",
+        "kev_snapshot": "2026.11.20",
         "location": "cli/uv.lock",
         "locations": [
           "cli/uv.lock"
@@ -4196,10 +4352,10 @@
         "ecosystem": "pypi",
         "epss": {
           "cve": "CVE-2026-28684",
-          "percentile": 0.16838,
-          "score": 0.00252
+          "percentile": 0.18191,
+          "score": 0.00262
         },
-        "epss_date": "2026-11-15T12:03:04Z",
+        "epss_date": "2026-11-21T12:00:24Z",
         "fix_state": "fixed",
         "fixed_in": [
           "1.2.2"
@@ -4207,7 +4363,7 @@
         "id": "GHSA-mf9w-mj56-hr94",
         "kev": null,
         "kev_cves": [],
-        "kev_snapshot": "2026.11.13",
+        "kev_snapshot": "2026.11.20",
         "location": "cli/uv.lock",
         "locations": [
           "cli/uv.lock"
@@ -4232,10 +4388,10 @@
         "ecosystem": "pypi",
         "epss": {
           "cve": "CVE-2026-40347",
-          "percentile": 0.30723,
+          "percentile": 0.30906,
           "score": 0.00364
         },
-        "epss_date": "2026-11-15T12:03:04Z",
+        "epss_date": "2026-11-21T12:00:24Z",
         "fix_state": "fixed",
         "fixed_in": [
           "0.0.26"
@@ -4243,7 +4399,7 @@
         "id": "GHSA-mj87-hwqh-73pj",
         "kev": null,
         "kev_cves": [],
-        "kev_snapshot": "2026.11.13",
+        "kev_snapshot": "2026.11.20",
         "location": "cli/uv.lock",
         "locations": [
           "cli/uv.lock"
@@ -4268,10 +4424,10 @@
         "ecosystem": "pypi",
         "epss": {
           "cve": "CVE-2026-25645",
-          "percentile": 0.09125,
-          "score": 0.00194
+          "percentile": 0.2379,
+          "score": 0.00306
         },
-        "epss_date": "2026-11-15T12:03:04Z",
+        "epss_date": "2026-11-21T12:00:24Z",
         "fix_state": "fixed",
         "fixed_in": [
           "2.33.0"
@@ -4279,7 +4435,7 @@
         "id": "GHSA-gc5v-m9x4-r6x2",
         "kev": null,
         "kev_cves": [],
-        "kev_snapshot": "2026.11.13",
+        "kev_snapshot": "2026.11.20",
         "location": "cli/uv.lock",
         "locations": [
           "cli/uv.lock"
@@ -4304,10 +4460,10 @@
         "ecosystem": "pypi",
         "epss": {
           "cve": "CVE-2026-59890",
-          "percentile": 0.45399,
+          "percentile": 0.457,
           "score": 0.0053
         },
-        "epss_date": "2026-11-15T12:03:04Z",
+        "epss_date": "2026-11-21T12:00:24Z",
         "fix_state": "fixed",
         "fixed_in": [
           "83.0.0"
@@ -4315,7 +4471,7 @@
         "id": "GHSA-h35f-9h28-mq5c",
         "kev": null,
         "kev_cves": [],
-        "kev_snapshot": "2026.11.13",
+        "kev_snapshot": "2026.11.20",
         "location": "cli/uv.lock",
         "locations": [
           "cli/uv.lock"
@@ -4340,10 +4496,10 @@
         "ecosystem": "pypi",
         "epss": {
           "cve": "CVE-2026-48710",
-          "percentile": 0.99395,
+          "percentile": 0.99397,
           "score": 0.70288
         },
-        "epss_date": "2026-11-15T12:03:04Z",
+        "epss_date": "2026-11-21T12:00:24Z",
         "fix_state": "fixed",
         "fixed_in": [
           "1.0.1"
@@ -4356,7 +4512,7 @@
         "kev_cves": [
           "CVE-2026-48710"
         ],
-        "kev_snapshot": "2026.11.13",
+        "kev_snapshot": "2026.11.20",
         "location": "cli/uv.lock",
         "locations": [
           "cli/uv.lock"
@@ -4381,10 +4537,10 @@
         "ecosystem": "pypi",
         "epss": {
           "cve": "CVE-2026-48817",
-          "percentile": 0.11668,
+          "percentile": 0.11606,
           "score": 0.00213
         },
-        "epss_date": "2026-11-15T12:03:04Z",
+        "epss_date": "2026-11-21T12:00:24Z",
         "fix_state": "fixed",
         "fixed_in": [
           "1.1.0"
@@ -4392,7 +4548,7 @@
         "id": "GHSA-x746-7m8f-x49c",
         "kev": null,
         "kev_cves": [],
-        "kev_snapshot": "2026.11.13",
+        "kev_snapshot": "2026.11.20",
         "location": "cli/uv.lock",
         "locations": [
           "cli/uv.lock"
@@ -4417,10 +4573,10 @@
         "ecosystem": "pypi",
         "epss": {
           "cve": "CVE-2026-113724",
-          "percentile": 0.10389,
-          "score": 0.00203
+          "percentile": 0.0935,
+          "score": 0.00196
         },
-        "epss_date": "2026-11-15T12:03:04Z",
+        "epss_date": "2026-11-21T12:00:24Z",
         "fix_state": "fixed",
         "fixed_in": [
           "21.14.9"
@@ -4428,7 +4584,7 @@
         "id": "GHSA-43mp-35q3-x3fq",
         "kev": null,
         "kev_cves": [],
-        "kev_snapshot": "2026.11.13",
+        "kev_snapshot": "2026.11.20",
         "location": "scripts/release/uv.lock",
         "locations": [
           "scripts/release/uv.lock"
@@ -4437,8 +4593,8 @@
         "osv_coverage": {
           "state": "confirmed"
         },
-        "osv_modified": "2026-10-29T10:55:47.691444554Z",
-        "osv_published": "2026-10-21T21:31:34Z",
+        "osv_modified": "2026-11-18T12:10:52.514839260Z",
+        "osv_published": "2026-10-20T20:17:19.113Z",
         "package": "virtualenv",
         "purl": "pkg:pypi/virtualenv@21.13.0",
         "severity": "Medium",
@@ -4453,10 +4609,10 @@
         "ecosystem": "pypi",
         "epss": {
           "cve": "CVE-2026-113721",
-          "percentile": 0.03737,
-          "score": 0.00144
+          "percentile": 0.09349,
+          "score": 0.00196
         },
-        "epss_date": "2026-11-15T12:03:04Z",
+        "epss_date": "2026-11-21T12:00:24Z",
         "fix_state": "fixed",
         "fixed_in": [
           "21.14.9"
@@ -4464,7 +4620,7 @@
         "id": "GHSA-558c-9hv2-4prj",
         "kev": null,
         "kev_cves": [],
-        "kev_snapshot": "2026.11.13",
+        "kev_snapshot": "2026.11.20",
         "location": "scripts/release/uv.lock",
         "locations": [
           "scripts/release/uv.lock"
@@ -4473,8 +4629,8 @@
         "osv_coverage": {
           "state": "confirmed"
         },
-        "osv_modified": "2026-10-29T10:55:51.822936662Z",
-        "osv_published": "2026-10-22T17:03:12Z",
+        "osv_modified": "2026-11-18T12:10:56.790021158Z",
+        "osv_published": "2026-10-20T20:17:18.653Z",
         "package": "virtualenv",
         "purl": "pkg:pypi/virtualenv@21.13.0",
         "severity": "Medium",
@@ -4489,10 +4645,10 @@
         "ecosystem": "pypi",
         "epss": {
           "cve": "CVE-2026-113716",
-          "percentile": 0.03737,
-          "score": 0.00144
+          "percentile": 0.09349,
+          "score": 0.00196
         },
-        "epss_date": "2026-11-15T12:03:04Z",
+        "epss_date": "2026-11-21T12:00:24Z",
         "fix_state": "fixed",
         "fixed_in": [
           "21.14.9"
@@ -4500,7 +4656,7 @@
         "id": "GHSA-cw65-gx24-rc82",
         "kev": null,
         "kev_cves": [],
-        "kev_snapshot": "2026.11.13",
+        "kev_snapshot": "2026.11.20",
         "location": "scripts/release/uv.lock",
         "locations": [
           "scripts/release/uv.lock"
@@ -4509,8 +4665,8 @@
         "osv_coverage": {
           "state": "confirmed"
         },
-        "osv_modified": "2026-10-29T10:55:59.838026441Z",
-        "osv_published": "2026-10-21T21:35:56Z",
+        "osv_modified": "2026-11-18T12:11:04.388986940Z",
+        "osv_published": "2026-10-20T20:17:17.850Z",
         "package": "virtualenv",
         "purl": "pkg:pypi/virtualenv@21.13.0",
         "severity": "Medium",
@@ -4525,10 +4681,10 @@
         "ecosystem": "pypi",
         "epss": {
           "cve": "CVE-2026-113720",
-          "percentile": 0.02943,
-          "score": 0.00134
+          "percentile": 0.07802,
+          "score": 0.00182
         },
-        "epss_date": "2026-11-15T12:03:04Z",
+        "epss_date": "2026-11-21T12:00:24Z",
         "fix_state": "fixed",
         "fixed_in": [
           "21.14.9"
@@ -4536,7 +4692,7 @@
         "id": "GHSA-fc2g-4w5p-6whm",
         "kev": null,
         "kev_cves": [],
-        "kev_snapshot": "2026.11.13",
+        "kev_snapshot": "2026.11.20",
         "location": "scripts/release/uv.lock",
         "locations": [
           "scripts/release/uv.lock"
@@ -4545,8 +4701,8 @@
         "osv_coverage": {
           "state": "confirmed"
         },
-        "osv_modified": "2026-10-29T10:55:56.743073990Z",
-        "osv_published": "2026-10-23T22:23:11Z",
+        "osv_modified": "2026-11-18T12:11:01.943005174Z",
+        "osv_published": "2026-10-20T20:17:18.493Z",
         "package": "virtualenv",
         "purl": "pkg:pypi/virtualenv@21.13.0",
         "severity": "Medium",
@@ -4561,10 +4717,10 @@
         "ecosystem": "pypi",
         "epss": {
           "cve": "CVE-2026-113719",
-          "percentile": 0.10389,
-          "score": 0.00203
+          "percentile": 0.09349,
+          "score": 0.00196
         },
-        "epss_date": "2026-11-15T12:03:04Z",
+        "epss_date": "2026-11-21T12:00:24Z",
         "fix_state": "fixed",
         "fixed_in": [
           "21.14.9"
@@ -4572,7 +4728,7 @@
         "id": "GHSA-hhxq-47xx-j5xx",
         "kev": null,
         "kev_cves": [],
-        "kev_snapshot": "2026.11.13",
+        "kev_snapshot": "2026.11.20",
         "location": "scripts/release/uv.lock",
         "locations": [
           "scripts/release/uv.lock"
@@ -4581,8 +4737,8 @@
         "osv_coverage": {
           "state": "confirmed"
         },
-        "osv_modified": "2026-10-29T10:56:02.747342068Z",
-        "osv_published": "2026-10-23T22:19:15Z",
+        "osv_modified": "2026-11-18T12:11:06.983073747Z",
+        "osv_published": "2026-10-20T20:17:18.347Z",
         "package": "virtualenv",
         "purl": "pkg:pypi/virtualenv@21.13.0",
         "severity": "Medium",
@@ -4592,15 +4748,51 @@
       },
       {
         "aliases": [
+          "CVE-2026-132276"
+        ],
+        "ecosystem": "pypi",
+        "epss": {
+          "cve": "CVE-2026-132276",
+          "percentile": 0.6002,
+          "score": 0.00881
+        },
+        "epss_date": "2026-11-21T12:00:24Z",
+        "fix_state": "fixed",
+        "fixed_in": [
+          "11.2"
+        ],
+        "id": "GHSA-53pm-wgxf-c6qf",
+        "kev": null,
+        "kev_cves": [],
+        "kev_snapshot": "2026.11.20",
+        "location": "cli/uv.lock",
+        "locations": [
+          "cli/uv.lock"
+        ],
+        "osv_confirmed": true,
+        "osv_coverage": {
+          "state": "confirmed"
+        },
+        "osv_modified": "2026-11-21T00:00:04.019297357Z",
+        "osv_published": "2026-11-20T23:49:18Z",
+        "package": "wcmatch",
+        "purl": "pkg:pypi/wcmatch@8.5.2",
+        "severity": "Medium",
+        "summary": "wcmatch: Polynomial-time ReDoS when matching untrusted names against multi-star patterns (default flags)",
+        "url": "https://github.com/advisories/GHSA-53pm-wgxf-c6qf",
+        "version": "8.5.2"
+      },
+      {
+        "aliases": [
           "CVE-2026-34073"
         ],
         "ecosystem": "pypi",
         "epss": {
           "cve": "CVE-2026-34073",
-          "percentile": 0.1357,
+          "percentile": 0.13539,
           "score": 0.00227
         },
-        "epss_date": "2026-11-15T12:03:04Z",
+        "epss_date": "2026-11-21T12:00:24Z",
         "fix_state": "fixed",
         "fixed_in": [
           "46.0.6"
@@ -4608,7 +4800,7 @@
         "id": "GHSA-m959-cc7f-wv43",
         "kev": null,
         "kev_cves": [],
-        "kev_snapshot": "2026.11.13",
+        "kev_snapshot": "2026.11.20",
         "location": "cli/uv.lock",
         "locations": [
           "cli/uv.lock"
@@ -4633,10 +4825,10 @@
         "ecosystem": "pypi",
         "epss": {
           "cve": "CVE-2026-112907",
-          "percentile": 0.01049,
-          "score": 0.00104
+          "percentile": 0.04994,
+          "score": 0.00158
         },
-        "epss_date": "2026-11-15T12:03:04Z",
+        "epss_date": "2026-11-21T12:00:24Z",
         "fix_state": "fixed",
         "fixed_in": [
           "4.2.1"
@@ -4644,7 +4836,7 @@
         "id": "GHSA-567q-5qvw-pf92",
         "kev": null,
         "kev_cves": [],
-        "kev_snapshot": "2026.11.13",
+        "kev_snapshot": "2026.11.20",
         "location": "scripts/release/uv.lock",
         "locations": [
           "scripts/release/uv.lock"
@@ -4669,10 +4861,10 @@
         "ecosystem": "pypi",
         "epss": {
           "cve": "CVE-2026-112912",
-          "percentile": 0.11743,
+          "percentile": 0.11684,
           "score": 0.00213
         },
-        "epss_date": "2026-11-15T12:03:04Z",
+        "epss_date": "2026-11-21T12:00:24Z",
         "fix_state": "fixed",
         "fixed_in": [
           "4.2.1"
@@ -4680,7 +4872,7 @@
         "id": "GHSA-9j6q-wvj5-jgjg",
         "kev": null,
         "kev_cves": [],
-        "kev_snapshot": "2026.11.13",
+        "kev_snapshot": "2026.11.20",
         "location": "scripts/release/uv.lock",
         "locations": [
           "scripts/release/uv.lock"
@@ -4705,10 +4897,10 @@
         "ecosystem": "pypi",
         "epss": {
           "cve": "CVE-2026-112913",
-          "percentile": 0.01741,
-          "score": 0.00118
+          "percentile": 0.06086,
+          "score": 0.00168
         },
-        "epss_date": "2026-11-15T12:03:04Z",
+        "epss_date": "2026-11-21T12:00:24Z",
         "fix_state": "fixed",
         "fixed_in": [
           "4.2.1"
@@ -4716,7 +4908,7 @@
         "id": "GHSA-9vhv-jxww-xfm5",
         "kev": null,
         "kev_cves": [],
-        "kev_snapshot": "2026.11.13",
+        "kev_snapshot": "2026.11.20",
         "location": "scripts/release/uv.lock",
         "locations": [
           "scripts/release/uv.lock"
@@ -4741,10 +4933,10 @@
         "ecosystem": "pypi",
         "epss": {
           "cve": "CVE-2026-4539",
-          "percentile": 0.0549,
-          "score": 0.00162
+          "percentile": 0.06909,
+          "score": 0.00174
         },
-        "epss_date": "2026-11-15T12:03:04Z",
+        "epss_date": "2026-11-21T12:00:24Z",
         "fix_state": "fixed",
         "fixed_in": [
           "2.20.0"
@@ -4752,7 +4944,7 @@
         "id": "GHSA-5239-wwwm-4pmq",
         "kev": null,
         "kev_cves": [],
-        "kev_snapshot": "2026.11.13",
+        "kev_snapshot": "2026.11.20",
         "location": "cli/uv.lock",
         "locations": [
           "cli/uv.lock"
@@ -4777,10 +4969,10 @@
         "ecosystem": "pypi",
         "epss": {
           "cve": "CVE-2026-53538",
-          "percentile": 0.17283,
+          "percentile": 0.17303,
           "score": 0.00256
         },
-        "epss_date": "2026-11-15T12:03:04Z",
+        "epss_date": "2026-11-21T12:00:24Z",
         "fix_state": "fixed",
         "fixed_in": [
           "0.0.30"
@@ -4788,7 +4980,7 @@
         "id": "GHSA-6jv3-5f52-599m",
         "kev": null,
         "kev_cves": [],
-        "kev_snapshot": "2026.11.13",
+        "kev_snapshot": "2026.11.20",
         "location": "cli/uv.lock",
         "locations": [
           "cli/uv.lock"
@@ -4813,10 +5005,10 @@
         "ecosystem": "pypi",
         "epss": {
           "cve": "CVE-2026-53540",
-          "percentile": 0.28139,
+          "percentile": 0.28283,
           "score": 0.00342
         },
-        "epss_date": "2026-11-15T12:03:04Z",
+        "epss_date": "2026-11-21T12:00:24Z",
         "fix_state": "fixed",
         "fixed_in": [
           "0.0.31"
@@ -4824,7 +5016,7 @@
         "id": "GHSA-v9pg-7xvm-68hf",
         "kev": null,
         "kev_cves": [],
-        "kev_snapshot": "2026.11.13",
+        "kev_snapshot": "2026.11.20",
         "location": "cli/uv.lock",
         "locations": [
           "cli/uv.lock"
@@ -4849,10 +5041,10 @@
         "ecosystem": "pypi",
         "epss": {
           "cve": "CVE-2026-53537",
-          "percentile": 0.21997,
+          "percentile": 0.22058,
           "score": 0.00291
         },
-        "epss_date": "2026-11-15T12:03:04Z",
+        "epss_date": "2026-11-21T12:00:24Z",
         "fix_state": "fixed",
         "fixed_in": [
           "0.0.30"
@@ -4860,7 +5052,7 @@
         "id": "GHSA-vffw-93wf-4j4q",
         "kev": null,
         "kev_cves": [],
-        "kev_snapshot": "2026.11.13",
+        "kev_snapshot": "2026.11.20",
         "location": "cli/uv.lock",
         "locations": [
           "cli/uv.lock"
@@ -4882,7 +5074,7 @@
         "aliases": [],
         "ecosystem": "pypi",
         "epss": null,
-        "epss_date": "2026-11-15T12:03:04Z",
+        "epss_date": "2026-11-21T12:00:24Z",
         "fix_state": "fixed",
         "fixed_in": [
           "84.1.0"
@@ -4890,7 +5082,7 @@
         "id": "GHSA-xmj3-9gf7-h52w",
         "kev": null,
         "kev_cves": [],
-        "kev_snapshot": "2026.11.13",
+        "kev_snapshot": "2026.11.20",
         "location": "cli/uv.lock",
         "locations": [
           "cli/uv.lock"
@@ -4915,10 +5107,10 @@
         "ecosystem": "pypi",
         "epss": {
           "cve": "CVE-2026-54282",
-          "percentile": 0.19911,
+          "percentile": 0.19953,
           "score": 0.00273
         },
-        "epss_date": "2026-11-15T12:03:04Z",
+        "epss_date": "2026-11-21T12:00:24Z",
         "fix_state": "fixed",
         "fixed_in": [
           "1.3.0"
@@ -4926,7 +5118,7 @@
         "id": "GHSA-jp82-jpqv-5vv3",
         "kev": null,
         "kev_cves": [],
-        "kev_snapshot": "2026.11.13",
+        "kev_snapshot": "2026.11.20",
         "location": "cli/uv.lock",
         "locations": [
           "cli/uv.lock"
@@ -4951,10 +5143,10 @@
         "ecosystem": "pypi",
         "epss": {
           "cve": "CVE-2026-113714",
-          "percentile": 0.164,
-          "score": 0.00249
+          "percentile": 0.10619,
+          "score": 0.00206
         },
-        "epss_date": "2026-11-15T12:03:04Z",
+        "epss_date": "2026-11-21T12:00:24Z",
         "fix_state": "fixed",
         "fixed_in": [
           "21.14.9"
@@ -4962,7 +5154,7 @@
         "id": "GHSA-494p-63j8-28p3",
         "kev": null,
         "kev_cves": [],
-        "kev_snapshot": "2026.11.13",
+        "kev_snapshot": "2026.11.20",
         "location": "scripts/release/uv.lock",
         "locations": [
           "scripts/release/uv.lock"
@@ -4971,8 +5163,8 @@
         "osv_coverage": {
           "state": "confirmed"
         },
-        "osv_modified": "2026-10-29T10:55:43.999222952Z",
-        "osv_published": "2026-10-23T22:25:22Z",
+        "osv_modified": "2026-11-18T12:10:49.565642866Z",
+        "osv_published": "2026-10-20T19:17:34.050Z",
         "package": "virtualenv",
         "purl": "pkg:pypi/virtualenv@21.13.0",
         "severity": "Low",
@@ -4987,10 +5179,10 @@
         "ecosystem": "pypi",
         "epss": {
           "cve": "CVE-2026-113717",
-          "percentile": 0.22136,
-          "score": 0.00293
+          "percentile": 0.10918,
+          "score": 0.00208
         },
-        "epss_date": "2026-11-15T12:03:04Z",
+        "epss_date": "2026-11-21T12:00:24Z",
         "fix_state": "fixed",
         "fixed_in": [
           "21.14.9"
@@ -4998,7 +5190,7 @@
         "id": "GHSA-cx28-75q4-x26q",
         "kev": null,
         "kev_cves": [],
-        "kev_snapshot": "2026.11.13",
+        "kev_snapshot": "2026.11.20",
         "location": "scripts/release/uv.lock",
         "locations": [
           "scripts/release/uv.lock"
@@ -5007,8 +5199,8 @@
         "osv_coverage": {
           "state": "confirmed"
         },
-        "osv_modified": "2026-10-29T10:55:56.839709622Z",
-        "osv_published": "2026-10-23T22:26:04Z",
+        "osv_modified": "2026-11-18T12:11:02.020890202Z",
+        "osv_published": "2026-10-20T20:17:18.017Z",
         "package": "virtualenv",
         "purl": "pkg:pypi/virtualenv@21.13.0",
         "severity": "Low",
@@ -5023,10 +5215,10 @@
         "ecosystem": "pypi",
         "epss": {
           "cve": "CVE-2026-113715",
-          "percentile": 0.15533,
-          "score": 0.00242
+          "percentile": 0.16066,
+          "score": 0.00247
         },
-        "epss_date": "2026-11-15T12:03:04Z",
+        "epss_date": "2026-11-21T12:00:24Z",
         "fix_state": "fixed",
         "fixed_in": [
           "21.14.9"
@@ -5034,7 +5226,7 @@
         "id": "GHSA-qmx5-4p3x-wvqf",
         "kev": null,
         "kev_cves": [],
-        "kev_snapshot": "2026.11.13",
+        "kev_snapshot": "2026.11.20",
         "location": "scripts/release/uv.lock",
         "locations": [
           "scripts/release/uv.lock"
@@ -5043,8 +5235,8 @@
         "osv_coverage": {
           "state": "confirmed"
         },
-        "osv_modified": "2026-10-29T10:55:39.718166145Z",
-        "osv_published": "2026-10-23T22:20:43Z",
+        "osv_modified": "2026-11-18T12:10:44.781421503Z",
+        "osv_published": "2026-10-20T20:17:17.690Z",
         "package": "virtualenv",
         "purl": "pkg:pypi/virtualenv@21.13.0",
         "severity": "Low",
@@ -5449,5 +5641,5 @@
       ]
     }
   },
-  "updated": "2026-11-15"
+  "updated": "2026-11-22"
 }

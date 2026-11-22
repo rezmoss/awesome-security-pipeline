@@ -186,24 +186,134 @@
       },
       "workflow_new": 0,
       "workflow_resolved": 0
+    },
+    {
+      "added": 4,
+      "advisory_state": "ok",
+      "binary_analysis": null,
+      "commit": "a26a905cf0e5b988131e4fd8024cd88bb65fea77",
+      "date": "2026-11-22",
+      "dependencies": 3,
+      "dependency_state": "ok",
+      "downgraded": 0,
+      "errors": [],
+      "file_changes": 0,
+      "fixable": 0,
+      "go_binary_reason": null,
+      "go_binary_state": null,
+      "go_version": null,
+      "in_binary": null,
+      "in_binary_new": 0,
+      "in_binary_resolved": 0,
+      "kev": null,
+      "kev_new": 0,
+      "kev_new_match": 0,
+      "license_changes": 0,
+      "method": "sbomlyze-occurrence-v1",
+      "moved": 0,
+      "new_advisories": 0,
+      "new_severe": 0,
+      "new_vulnerabilities": 0,
+      "osv_confirmed": 0,
+      "osv_only": 23,
+      "ref": "v1.7.0",
+      "release_changed": true,
+      "release_evidence": null,
+      "release_integrity": "no-assets",
+      "removed": 0,
+      "resolved_advisories": 0,
+      "resolved_vulnerabilities": 0,
+      "scorecard": 3.8,
+      "scorecard_date": "2026-11-01",
+      "scorecard_note": null,
+      "scorecard_source": "carried-forward",
+      "unknown_direction": 0,
+      "upgraded": 0,
+      "vulnerabilities": {
+        "Critical": 0,
+        "High": 0,
+        "Low": 0,
+        "Medium": 0,
+        "Negligible": 0,
+        "Unknown": 0
+      },
+      "vulnerable_packages": 0,
+      "workflow": {
+        "High": 4,
+        "Low": 0,
+        "Medium": 2,
+        "files": 3
+      },
+      "workflow_new": 4,
+      "workflow_resolved": 0
     }
   ],
   "latest": {
     "archived": false,
     "category": "API & Dynamic Testing (DAST)",
     "changes": {
-      "added": [],
-      "added_detail": [],
+      "added": [
+        "actions/checkout@v4.2.2",
+        "actions/checkout@v4.2.2",
+        "actions/setup-python@v5.3.0",
+        "contributor-assistant/github-action@v2.6.1"
+      ],
+      "added_detail": [
+        {
+          "ecosystem": "github",
+          "location": ".github/workflows/build-and-push.yml",
+          "locations": [
+            ".github/workflows/build-and-push.yml"
+          ],
+          "name": "actions/checkout",
+          "version": "v4.2.2"
+        },
+        {
+          "ecosystem": "github",
+          "location": ".github/workflows/tests.yml",
+          "locations": [
+            ".github/workflows/tests.yml"
+          ],
+          "name": "actions/checkout",
+          "version": "v4.2.2"
+        },
+        {
+          "ecosystem": "github",
+          "location": ".github/workflows/tests.yml",
+          "locations": [
+            ".github/workflows/tests.yml"
+          ],
+          "name": "actions/setup-python",
+          "version": "v5.3.0"
+        },
+        {
+          "ecosystem": "github",
+          "location": ".github/workflows/cla.yml",
+          "locations": [
+            ".github/workflows/cla.yml"
+          ],
+          "name": "contributor-assistant/github-action",
+          "version": "v2.6.1"
+        }
+      ],
       "advisory_state": "ok",
-      "any": false,
+      "any": true,
       "baseline": false,
       "dependency_baseline": {
         "attempt": "1",
-        "run_id": "42546359860",
-        "sbom_sha256": "7c4c05de02e1acb05fcf0c817945b73ff561626189f671b0722381c8b0558008"
+        "run_id": "43786179934",
+        "sbom_sha256": "ef93df4a8761a15d2ccaa4e6923374c7d335285a2278221b888fa149de1c4d00"
       },
       "dependency_state": "ok",
-      "digest_coverage": null,
+      "digest_coverage": {
+        "after_only": 0,
+        "before_only": 0,
+        "by_kind": {},
+        "comparable": 0,
+        "disjoint_kinds": 0,
+        "packages_total": 4,
+        "same_version_pairs": 0
+      },
       "distinct_version_changes": null,
       "downgraded": [],
       "file_changes": [],
@@ -214,9 +324,10 @@
       "method": "sbomlyze-occurrence-v1",
       "moved": [],
       "new_advisories": 0,
+      "new_severe": 0,
       "new_vulnerabilities": [],
       "previous_ref": "v1.6.0",
-      "release_changed": false,
+      "release_changed": true,
       "removed": [],
       "removed_detail": [],
       "resolved_advisories": 0,
@@ -226,21 +337,83 @@
       "upgraded": [],
       "version_changes": [],
       "version_set_changes": [],
-      "workflow_new": 0,
+      "workflow_new": 4,
       "workflow_resolved": 0
     },
-    "commit": "2b20a2cfb50d07ab35ed1b5a47309d91b9ef5890",
+    "commit": "a26a905cf0e5b988131e4fd8024cd88bb65fea77",
     "compliance": {
-      "overall_score": 0,
-      "standards": {}
+      "overall_score": 55,
+      "standards": {
+        "bsi_tr03183": {
+          "failed_checks": [
+            "Component Creator",
+            "Distribution Licences",
+            "SHA-512 Hash",
+            "Dependency Relationship",
+            "SBOM Creator Contact"
+          ],
+          "passed": 4,
+          "score": 44,
+          "total": 9
+        },
+        "cisa": {
+          "failed_checks": [
+            "Software Producer",
+            "Dependency Relationship",
+            "License Information",
+            "Component Hash",
+            "SBOM Author"
+          ],
+          "passed": 5,
+          "score": 50,
+          "total": 10
+        },
+        "ntia": {
+          "failed_checks": [
+            "Supplier Name",
+            "Dependency Relationship"
+          ],
+          "passed": 5,
+          "score": 71,
+          "total": 7
+        }
+      }
     },
-    "components": [],
+    "components": [
+      {
+        "ecosystem": "github",
+        "licenses": [],
+        "location": ".github/workflows/build-and-push.yml",
+        "name": "actions/checkout",
+        "purl": "pkg:github/actions/checkout@v4.2.2",
+        "version": "v4.2.2"
+      },
+      {
+        "ecosystem": "github",
+        "licenses": [],
+        "location": ".github/workflows/tests.yml",
+        "name": "actions/setup-python",
+        "purl": "pkg:github/actions/setup-python@v5.3.0",
+        "version": "v5.3.0"
+      },
+      {
+        "ecosystem": "github",
+        "licenses": [],
+        "location": ".github/workflows/cla.yml",
+        "name": "contributor-assistant/github-action",
+        "purl": "pkg:github/contributor-assistant/github-action@v2.6.1",
+        "version": "v2.6.1"
+      }
+    ],
     "description": "Autonomous AI penetration testing platform that exercises running web, API, Active Directory and Kubernetes targets with proof of exploitation",
     "errors": [],
     "id": "ASCIT31__Dark-Moon",
     "local_packages": [],
     "lock_aliases": {},
     "manifests": [
+      ".github/workflows/build-and-push.yml",
+      ".github/workflows/cla.yml",
+      ".github/workflows/tests.yml",
       "mcp/requirements.txt"
     ],
     "name": "Dark-Moon",
@@ -588,10 +761,10 @@
     },
     "osv_api": {
       "available": true,
-      "queried_at": "2026-11-16T01:31:13+00:00",
+      "queried_at": "2026-11-22T05:56:19+00:00",
       "states": {}
     },
-    "ref": "v1.6.0",
+    "ref": "v1.7.0",
     "ref_kind": "release",
     "release_integrity": {
       "assets": 0,
@@ -602,25 +775,86 @@
       "signatures_published": false,
       "verdict": "no-assets"
     },
-    "released_at": "2026-10-25T12:10:25Z",
+    "released_at": "2026-11-20T21:38:41Z",
     "repository": "ASCIT31/Dark-Moon",
-    "sbom_sha256": "ef93df4a8761a15d2ccaa4e6923374c7d335285a2278221b888fa149de1c4d00",
+    "sbom_sha256": "1e2a999ab1000140d8cec8bbcd6dc6c4f4b5721eac76cff759d53e1d67f17d09",
     "sbomlyze_diff": {
-      "added": 0,
+      "added": 4,
       "baseline": {
         "attempt": "1",
-        "run_id": "42546359860"
+        "run_id": "43786179934"
       },
       "changed": 0,
       "contract": "sbomlyze-diff-0.7",
       "drift": {},
-      "findings": [],
+      "findings": [
+        "Scanned ASCIT31/Dark-Moon changed: v1.6.0 \u2192 v1.7.0",
+        "Inventory: +4 components (+Inf%)",
+        "New ecosystem: github (4 packages)"
+      ],
+      "html": "sbomlyze-diff.html",
       "occurrences": {
-        "added": [],
-        "digest_coverage": null,
+        "added": [
+          {
+            "ecosystem": "github",
+            "location": ".github/workflows/build-and-push.yml",
+            "locations": [
+              ".github/workflows/build-and-push.yml"
+            ],
+            "name": "actions/checkout",
+            "version": "v4.2.2"
+          },
+          {
+            "ecosystem": "github",
+            "location": ".github/workflows/tests.yml",
+            "locations": [
+              ".github/workflows/tests.yml"
+            ],
+            "name": "actions/checkout",
+            "version": "v4.2.2"
+          },
+          {
+            "ecosystem": "github",
+            "location": ".github/workflows/tests.yml",
+            "locations": [
+              ".github/workflows/tests.yml"
+            ],
+            "name": "actions/setup-python",
+            "version": "v5.3.0"
+          },
+          {
+            "ecosystem": "github",
+            "location": ".github/workflows/cla.yml",
+            "locations": [
+              ".github/workflows/cla.yml"
+            ],
+            "name": "contributor-assistant/github-action",
+            "version": "v2.6.1"
+          }
+        ],
+        "digest_coverage": {
+          "after_only": 0,
+          "before_only": 0,
+          "by_kind": {},
+          "comparable": 0,
+          "disjoint_kinds": 0,
+          "packages_total": 4,
+          "same_version_pairs": 0
+        },
         "file_changes": [],
-        "file_coverage": null,
-        "files_added": [],
+        "file_coverage": {
+          "ambiguous_paths": 0,
+          "config_unknown": 0,
+          "files_compared": 0,
+          "files_unverified": 0,
+          "owned_files_after": 0,
+          "unowned_files_after": 3
+        },
+        "files_added": [
+          ".github/workflows/build-and-push.yml",
+          ".github/workflows/cla.yml",
+          ".github/workflows/tests.yml"
+        ],
         "files_removed": [],
         "integrity_changes": [],
         "license_changes": [],
@@ -628,15 +862,19 @@
         "moved": [],
         "owned_file_drift": [],
         "removed": [],
-        "source_change": null,
+        "source_change": {
+          "from": "v1.6.0",
+          "name": "ASCIT31/Dark-Moon",
+          "to": "v1.7.0"
+        },
         "version_changes": [],
         "version_set_changes": []
       },
-      "previous_sbom_sha256": "7c4c05de02e1acb05fcf0c817945b73ff561626189f671b0722381c8b0558008",
+      "previous_sbom_sha256": "ef93df4a8761a15d2ccaa4e6923374c7d335285a2278221b888fa149de1c4d00",
       "removed": 0,
-      "sbom_sha256": "ef93df4a8761a15d2ccaa4e6923374c7d335285a2278221b888fa149de1c4d00"
+      "sbom_sha256": "1e2a999ab1000140d8cec8bbcd6dc6c4f4b5721eac76cff759d53e1d67f17d09"
     },
-    "scanned_at": "2026-11-16T01:28:53+00:00",
+    "scanned_at": "2026-11-22T05:53:42+00:00",
     "scorecard": {
       "carried_forward": true,
       "checks": [
@@ -739,9 +977,70 @@
     "scorecard_note": "the project is not in the OpenSSF public dataset; the Scorecard CLI fallback was skipped because this shard's weekly budget was used",
     "vulnerabilities": [],
     "workflow_audit": {
-      "files": 0,
-      "findings": []
+      "files": 3,
+      "findings": [
+        {
+          "confidence": "High",
+          "description": "unpinned action reference",
+          "file": ".github/workflows/build-and-push.yml",
+          "line": 32,
+          "note": "this step",
+          "rule": "unpinned-uses",
+          "severity": "High",
+          "url": "https://docs.zizmor.sh/audits/#unpinned-uses"
+        },
+        {
+          "confidence": "High",
+          "description": "unpinned action reference",
+          "file": ".github/workflows/tests.yml",
+          "line": 26,
+          "note": "this step",
+          "rule": "unpinned-uses",
+          "severity": "High",
+          "url": "https://docs.zizmor.sh/audits/#unpinned-uses"
+        },
+        {
+          "confidence": "High",
+          "description": "unpinned action reference",
+          "file": ".github/workflows/tests.yml",
+          "line": 29,
+          "note": "this step",
+          "rule": "unpinned-uses",
+          "severity": "High",
+          "url": "https://docs.zizmor.sh/audits/#unpinned-uses"
+        },
+        {
+          "confidence": "High",
+          "description": "unpinned action reference",
+          "file": ".github/workflows/tests.yml",
+          "line": 49,
+          "note": "this step",
+          "rule": "unpinned-uses",
+          "severity": "High",
+          "url": "https://docs.zizmor.sh/audits/#unpinned-uses"
+        },
+        {
+          "confidence": "Medium",
+          "description": "overly broad permissions",
+          "file": ".github/workflows/build-and-push.yml",
+          "line": 25,
+          "note": "this job",
+          "rule": "excessive-permissions",
+          "severity": "Medium",
+          "url": "https://docs.zizmor.sh/audits/#excessive-permissions"
+        },
+        {
+          "confidence": "High",
+          "description": "action or reusable workflow from archived repository",
+          "file": ".github/workflows/cla.yml",
+          "line": 25,
+          "note": "this step",
+          "rule": "archived-uses",
+          "severity": "Medium",
+          "url": "https://docs.zizmor.sh/audits/#archived-uses"
+        }
+      ]
     }
   },
-  "updated": "2026-11-15"
+  "updated": "2026-11-22"
 }
